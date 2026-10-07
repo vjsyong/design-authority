@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap navbar">
+    <span class="name">Cadence</span>
+    <nav class="tabs" id="tabs" aria-label="Sections" data-improvised="no tab canon; navbar underline language">
+      <button class="tab on" type="button" data-view="today" aria-current="page">Today</button>
+      <button class="tab" type="button" data-view="history">History</button>
+      <button class="tab" type="button" data-view="achievements">Achievements</button>
+      <button class="tab" type="button" data-view="settings">Settings</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <div id="panel-slot"></div>
+
+  <!-- ============ TODAY ============ -->
+  <section id="view-today" class="view">
+    <div class="view-head">
+      <p class="slabel">Today</p>
+      <h1 class="h-display" id="greeting">Good evening, Sam.</h1>
+      <p class="stand">Tuesday, 7 October</p>
+    </div>
+
+    <section class="hero" aria-label="Today at a glance">
+      <div class="ring-wrap" id="ring-wrap" role="img" aria-label="3 of 5 rituals done today" data-improvised="ring outside rectilinear canon; meter colours">
+        <svg class="ring" viewBox="0 0 132 132" width="132" height="132" aria-hidden="true">
+          <circle class="track" cx="66" cy="66" r="56" fill="none" stroke-width="12"></circle>
+          <circle class="arc" id="ring-progress" cx="66" cy="66" r="56" fill="none" stroke-width="12" transform="rotate(-90 66 66)"></circle>
+        </svg>
+        <div class="ring-center" aria-hidden="true"><span id="ring-count">3 of 5</span></div>
+      </div>
+      <div class="hero-copy">
+        <p class="hero-line"><span id="done-n">3</span> of <span id="total-n">5</span> rituals done</p>
+        <div class="hero-sub">
+          <span class="tag sm" id="status-tag" data-improvised="status tags per sheet L-13; not in pack">On track</span>
+          <span class="meta" id="today-min">30 min logged today · goal 30 min</span>
+        </div>
+        <div class="celebrate" id="celebrate" aria-hidden="true" data-improvised="no celebration canon; stepped glyph reveal">
+          <span class="thread"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span>
+        </div>
+      </div>
+      <div>
+        <div class="streak" data-improvised="no counter canon; display numeral">
+          <span class="n num-display" id="streak-n">12</span>
+          <span class="lab meta-caps">day streak</span>
+        </div>
+        <div class="hero-cta">
+          <button class="btn primary" id="open-log" type="button">Log a ritual</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="notice banner" id="week-banner" data-improvised="synonym search: notice alias 'banner'; phrase below threshold">
+      <span id="banner-text">245 minutes logged this week. The streak holds at 12 days.</span>
+    </div>
+
+    <ul class="rituals" id="ritual-list"></ul>
+
+    <div class="notice plain" id="empty-rituals" hidden data-improvised="no empty-state canon; ruled block">
+      <span>No rituals on the list. Restore the five to open the day.</span>
+      <div class="rowlink">
+        <button class="btn secondary small" id="restore-rituals" type="button">Restore the five</button>
+      </div>
+    </div>
+
+    <div id="undo-slot"></div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section id="view-history" class="view" hidden>
+    <div class="view-head">
+      <p class="slabel">History</p>
+      <h2 class="h-display">The log, kept plain.</h2>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <p class="slabel">This week</p>
+        <h3 class="h-mid serif">Minutes, Monday to Sunday</h3>
+      </div>
+      <div class="bars" id="bars" data-improvised="no chart canon; rectilinear bars, city-blue reserve"></div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <p class="slabel">October</p>
+        <h3 class="h-mid serif">Days kept</h3>
+      </div>
+      <div class="hm" id="heatmap" data-improvised="no heatmap canon; London grey ramp"></div>
+      <div class="hm-legend">
+        <span class="meta-caps">Less</span>
+        <i class="l1"></i><i class="l2"></i><i class="l3"></i>
+        <span class="meta-caps">More</span>
+        <span class="meta">grey counts minutes; red marks today</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <p class="slabel">Logged entries</p>
+        <h3 class="h-mid serif">Every ritual, dated</h3>
+      </div>
+      <div class="filter-row">
+        <div class="searchbox">
+          <input id="filter" type="search" placeholder="Filter entries" aria-label="Filter logged entries">
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+        <button class="btn secondary" id="export-history" type="button" data-improvised="no export canon; client-side CSV">Export CSV</button>
+      </div>
+      <table class="ledger" id="ledger" data-improvised="no ledger in pack; sheet table language">
+        <thead>
+          <tr><th>Date</th><th>Ritual</th><th>Minutes</th><th>Notes</th></tr>
+        </thead>
+        <tbody id="ledger-body"></tbody>
+      </table>
+      <div class="pager" id="pager" data-improvised="no pagination canon; ruled strip">
+        <span class="meta" id="page-meta"></span>
+        <button class="btn secondary small" id="page-newer" type="button">Newer entries</button>
+        <button class="btn secondary small" id="page-older" type="button">Older entries</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section id="view-achievements" class="view" hidden>
+    <div class="view-head">
+      <p class="slabel">Achievements</p>
+      <h2 class="h-display">Kept so far.</h2>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><div class="n">12</div><div class="lab meta-caps">Current streak</div></div>
+      <div class="stat"><div class="n">21</div><div class="lab meta-caps">Best streak</div></div>
+      <div class="stat"><div class="n">240</div><div class="lab meta-caps">Total rituals</div></div>
+    </div>
+
+    <div class="block">
+      <div class="block-head">
+        <p class="slabel">Badges</p>
+        <h3 class="h-mid serif">Earned and locked</h3>
+      </div>
+      <div class="banner-toggle" style="margin-bottom:18px">
+        <label class="switch">
+          <input type="checkbox" id="badge-demo" role="switch">
+          <span class="tr" aria-hidden="true"></span>
+          <span class="meta">demo: empty state</span>
+        </label>
+      </div>
+      <div class="badges" id="badge-grid"></div>
+      <div class="notice plain" id="badge-empty" hidden data-improvised="no empty-state canon; illustration omitted per character">
+        <span>Nothing earned yet. The first badge opens on day seven.</span>
+        <div class="rowlink">
+          <button class="btn secondary small" id="badge-empty-back" type="button">Show badges</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section id="view-settings" class="view" hidden>
+    <div class="view-head">
+      <p class="slabel">Settings</p>
+      <h2 class="h-display">Preferences</h2>
+    </div>
+
+    <section class="set-sec" style="border-top:0">
+      <h3 class="h-mid serif">Profile</h3>
+      <div class="profile-row">
+        <div class="avatar" aria-hidden="true" data-improvised="photo imagery absent; initials block">
+          <span id="avatar-initial">S</span>
+        </div>
+        <div class="field" style="flex:1;max-width:420px">
+          <label for="set-name">Name</label>
+          <input id="set-name" type="text" value="Sam" autocomplete="off">
+          <p class="err" id="name-err" hidden>Enter a name.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="set-sec">
+      <h3 class="h-mid serif">Preferences</h3>
+      <div class="field" data-improvised="fallback/selection; native field styling">
+        <label for="set-cat">Default category</label>
+        <select id="set-cat">
+          <option>Movement</option><option>Mind</option><option>Craft</option><option>Discipline</option>
+        </select>
+      </div>
+      <div class="field" data-improvised="fallback/platform-controls; field styling">
+        <p class="meta-caps" id="week-lab" style="font-size:10.5px;margin-bottom:7px">Week starts</p>
+        <div class="radio-row" role="radiogroup" aria-labelledby="week-lab">
+          <label><input type="radio" name="weekstart" value="monday"><span class="rd" aria-hidden="true"></span>Monday</label>
+          <label><input type="radio" name="weekstart" value="sunday"><span class="rd" aria-hidden="true"></span>Sunday</label>
+        </div>
+      </div>
+      <div class="field" data-improvised="fallback/platform-controls; field styling">
+        <label for="set-goal">Daily goal</label>
+        <input id="set-goal" type="range" min="0" max="120" step="5" value="30">
+        <p class="goal-read" id="goal-read">30 min daily</p>
+      </div>
+      <div class="toggle-stack">
+        <label class="cbx" data-improvised="fallback/platform-controls; field styling">
+          <input type="checkbox" id="rem-am" checked><span class="box" aria-hidden="true"></span>
+          <span>Morning reminder 07:30</span>
+        </label>
+        <label class="cbx" data-improvised="fallback/platform-controls; field styling">
+          <input type="checkbox" id="rem-pm" checked><span class="box" aria-hidden="true"></span>
+          <span>Evening check-in 21:00</span>
+        </label>
+        <label class="switch" data-improvised="fallback/platform-controls; field styling">
+          <input type="checkbox" id="set-dark" role="switch"><span class="tr" aria-hidden="true"></span>
+          <span>Dark mode</span>
+        </label>
+      </div>
+      <div class="save-row">
+        <button class="btn primary" id="save-settings" type="button">Save settings</button>
+        <div class="saving" id="saving" hidden data-improvised="no spinner canon; stepped meter readout">
+          <span class="meter" aria-hidden="true"><i id="save-meter"></i></span>
+          <span class="meta">Saving…</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="set-sec">
+      <h3 class="h-mid serif">Data</h3>
+      <div class="panel-actions">
+        <button class="btn secondary" id="export-settings" type="button" data-improvised="no export canon; client-side CSV">Export CSV</button>
+        <button class="btn secondary" id="replay-intro" type="button" data-improvised="no wizard canon; ruled panel">Replay intro</button>
+      </div>
+    </section>
+
+    <section class="danger" data-improvised="fallback/ruled-panel: in-flow, no scrim">
+      <p class="kicker">Danger zone</p>
+      <p class="serif" style="font-size:15px;margin:6px 0 12px">This clears every ritual log and setting on this device.</p>
+      <button class="btn danger" id="delete-all" type="button">Delete all data</button>
+      <div class="confirm" id="danger-confirm" hidden>
+        <p class="ct" tabindex="-1" id="danger-ct">Delete all data?</p>
+        <p class="cb">Every log, streak and setting goes. It cannot be undone. The five starter rituals come back.</p>
+        <button class="btn danger" id="danger-yes" type="button">Delete data</button>
+        <button class="btn secondary" id="danger-no" type="button">Cancel</button>
+      </div>
+    </section>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Cadence — a leader-variant demo. Authority: leader 0.1.0 (fallback policy: undefined actions are improvised, marked and reported). Fixture data; no network calls. Toggle ◌ for the authority marks.</p>
+  </div>
+</footer>
+
+<button class="marks-toggle" id="marks-toggle" type="button" aria-pressed="false" aria-label="Toggle authority marks" title="Authority marks">◌</button>
+<div class="toast-region" id="toast-region" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

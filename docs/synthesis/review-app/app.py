@@ -169,6 +169,10 @@ DEMO_LANDING = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <p class="sub">Compiled from your Gate-2 verdicts by the pack compiler, verified against the
 frozen kernel. Open a candidate and ask it anything — each one answers in its own character.</p>
 <div class="src-grid">__CARDS__</div>
+<h2 style="margin-top:26px">Stress test — "Cadence", one app × three authorities</h2>
+<p class="sub">Same habit-tracker spec, built three times under quarantine. 42 required elements
+were resolved against each authority first; improvised/adapted elements are marked in-app (tap ◌).</p>
+<div class="src-grid">__STRESS__</div>
 <p class="sub" style="margin-top:22px">Review sheets: <a class="back" href="/">Gate 2 review</a></p>
 </div></body></html>"""
 
@@ -607,7 +611,22 @@ def demo():
             "<a class='src' href='/demo/%s'><b>%s</b><p>%s</p>"
             "<p><span class='chip src'>%s</span> <span class='chip gold'>golden %d/%d</span></p></a>"
             % (name, _esc(pack.manifest.get("name")), _esc(src), _esc(ktxt), g["passed"], g["total"]))
-    return DEMO_LANDING.replace("__CSS__", DEMO_CSS).replace("__CARDS__", "".join(cards))
+    stress = []
+    for name in PACK_META:
+        d = os.path.join(_REPO, "examples", "cadence-%s" % name)
+        if os.path.isdir(d):
+            gaps = 0
+            gp = os.path.join(d, ".design-authority", "gaps.jsonl")
+            if os.path.exists(gp):
+                gaps = sum(1 for _ in open(gp))
+            stress.append(
+                "<a class='src' href='/stress/%s/'><b>Cadence · %s</b>"
+                "<p>the same tracker, rendered by the %s authority</p>"
+                "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
+                % (name, name, name, gaps))
+    return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
+            .replace("__CARDS__", "".join(cards))
+            .replace("__STRESS__", "".join(stress)))
 
 
 @app.route("/demo/<name>")
@@ -686,6 +705,26 @@ def demo_pack(name):
             .replace("__RECIPES__", recipes)
             .replace("__PACK__", _esc(name)))
     return page
+
+
+@app.route("/stress/<name>/")
+def stress_index(name):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, "index.html")
+
+
+@app.route("/stress/<name>/<path:fn>")
+def stress_file(name, fn):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, fn)
 
 
 @app.route("/api/demo/resolve", methods=["POST"])

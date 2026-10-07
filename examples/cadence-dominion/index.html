@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — ritual tracker</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23fff'/><rect x='2' y='2' width='12' height='3' fill='%23EB2D37'/></svg>">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="mh">
+  <div class="wrap mh-in">
+    <span class="acc" aria-hidden="true"></span>
+    <span class="t">Cadence</span>
+    <span class="mh-sub"><span>Ritual tracker</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Suivi des rituels</span></span>
+  </div>
+</header>
+
+<nav class="tabbar" id="tabbar" role="tablist" aria-label="Views" data-improvised="tabs = masthead nav idiom (D-08); plain row, bottom on narrow">
+  <div class="wrap tabbar-in">
+    <button class="tab is-on" role="tab" id="tab-today" aria-selected="true" aria-controls="view-today" data-view="today">
+      <span>Today</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Aujourd’hui</span>
+    </button>
+    <button class="tab" role="tab" id="tab-history" aria-selected="false" aria-controls="view-history" data-view="history">
+      <span>History</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Historique</span>
+    </button>
+    <button class="tab" role="tab" id="tab-achievements" aria-selected="false" aria-controls="view-achievements" data-view="achievements">
+      <span>Achievements</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Réalisations</span>
+    </button>
+    <button class="tab" role="tab" id="tab-settings" aria-selected="false" aria-controls="view-settings" data-view="settings">
+      <span>Settings</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Paramètres</span>
+    </button>
+  </div>
+</nav>
+
+<main id="main" class="wrap">
+  <div class="notice-region" id="notice-region" role="status" aria-live="polite"></div>
+
+  <!-- ======================= TODAY ======================= -->
+  <section class="view" id="view-today" role="tabpanel" aria-labelledby="tab-today">
+    <div class="vhead">
+      <h1 class="title bil"><span>Today</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Aujourd’hui</span></h1>
+      <div class="id-card" data-adapted="avatar → initials block (no imagery, D-22)">
+        <span class="initials" id="initials">S</span>
+        <span class="id-name" id="id-name">Sam</span>
+      </div>
+    </div>
+
+    <div class="today-top">
+      <div>
+        <p class="kicker" id="today-date">Tuesday, 7 October</p>
+        <p class="greeting" id="today-greeting">Good evening, Sam.</p>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="ring-wrap" data-improvised="circular ring composed from meter primitives (D-15); static">
+        <svg id="ring" viewBox="0 0 140 140" width="140" height="140" role="img" aria-label="Today's progress">
+          <circle class="ring-disc" cx="70" cy="70" r="64"></circle>
+          <circle class="ring-arc" id="ring-arc" cx="70" cy="70" r="50" transform="rotate(-90 70 70)"></circle>
+        </svg>
+        <div class="ring-center">
+          <span class="ring-pct" id="ring-pct">60%</span>
+          <span class="ring-sub" id="ring-sub">3 of 5</span>
+        </div>
+      </div>
+      <div class="hero-mid">
+        <p class="hero-label bil"><span id="hero-done">3 of 5 rituals done</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr" id="hero-done-fr">3 de 5 rituels faits</span></p>
+        <p class="hero-sub" id="hero-sub">2 left today.</p>
+      </div>
+      <div class="hero-streak" data-improvised="big numeral display invented (not catalogued)">
+        <span class="streak-num" id="streak-num">12</span>
+        <span class="streak-lab bil"><span>day streak</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">jours d’affilée</span></span>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <h2 class="sec bil"><span>Rituals</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Rituels</span></h2>
+      <button class="btn b-slate" id="btn-log">Log a ritual</button>
+    </div>
+    <ul class="register" id="ritual-list" data-improvised="drag to reorder: native drag + Alt+Arrow keys (not catalogued)"></ul>
+    <div class="empty" id="rituals-empty" hidden data-improvised="empty state per D-16 (not in catalogue)">
+      <p>No rituals left to track. Replay the intro to set them up again.</p>
+      <button class="btn b-out" data-open="wizard">Replay intro</button>
+    </div>
+  </section>
+
+  <!-- ======================= HISTORY ======================= -->
+  <section class="view" id="view-history" role="tabpanel" aria-labelledby="tab-history" hidden>
+    <h1 class="title bil"><span>History</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Historique</span></h1>
+
+    <div class="notice week-banner" data-improvised="week summary in D-13 notice vessel (not catalogued)">
+      <p class="banner-lab">This week <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Cette semaine</span></p>
+      <p id="banner-text">245 minutes across 6 days. Longest day: Wednesday, 60 minutes.</p>
+    </div>
+
+    <div class="sec-head">
+      <h2 class="sec bil"><span>Weekly minutes</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Minutes par semaine</span></h2>
+    </div>
+    <div class="chartwrap">
+      <div class="chart" id="chart" data-improvised="bar chart: black bars on ruled baseline (data-viz not catalogued)"></div>
+      <div class="chart-days" id="chart-days"></div>
+    </div>
+
+    <div class="sec-head">
+      <h2 class="sec bil"><span>The month</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Le mois</span></h2>
+    </div>
+    <div class="heatwrap">
+      <div class="heat-head" id="heat-head"></div>
+      <div class="heat" id="heat" data-improvised="heat = black/white/pewter grey ramp (not catalogued)"></div>
+      <div class="legend" id="legend">
+        <span class="lg-item"><i class="lg lg0"></i>0</span>
+        <span class="lg-item"><i class="lg lg1"></i>1–24</span>
+        <span class="lg-item"><i class="lg lg2"></i>25–44</span>
+        <span class="lg-item"><i class="lg lg3"></i>45–64</span>
+        <span class="lg-item"><i class="lg lg4"></i>65+</span>
+        <span class="lg-note">minutes a day</span>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <h2 class="sec bil"><span>Logged entries</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Entrées consignées</span></h2>
+      <button class="btn b-out" id="btn-export" data-improvised="client-side CSV download (not catalogued)">Export CSV</button>
+    </div>
+    <div class="filter-row">
+      <div class="field f-search">
+        <label for="filter">Filter <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Filtrer</span></label>
+        <input id="filter" type="search" placeholder="Ritual or note" data-improvised="platform fallback: native search input (fallback/large-selection)">
+      </div>
+      <p class="readout" id="filter-readout">Showing 8 entries.</p>
+    </div>
+    <div class="tbl-wrap" data-improvised="ledger per D-17 (not in catalogue)">
+      <table class="ledger">
+        <thead>
+          <tr><th>Date</th><th>Ritual</th><th>Minutes</th><th>Notes</th></tr>
+        </thead>
+        <tbody id="entries-body"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="entries-empty" hidden>
+      <p>No entries match. Clear the filter to see them all.</p>
+      <button class="btn b-out" id="btn-clear-filter">Clear filter</button>
+    </div>
+    <div class="pager" data-improvised="paging = outline squares + plain readout (not catalogued)">
+      <p class="readout" id="pager-readout">Page 1 of 2</p>
+      <button class="btn b-out" id="btn-older">Older entries</button>
+      <button class="btn b-out" id="btn-newer" hidden>Newer entries</button>
+    </div>
+  </section>
+
+  <!-- ======================= ACHIEVEMENTS ======================= -->
+  <section class="view" id="view-achievements" role="tabpanel" aria-labelledby="tab-achievements" hidden>
+    <h1 class="title bil"><span>Achievements</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Réalisations</span></h1>
+
+    <div class="stats" data-improvised="stat tiles: ruled headline figures (not catalogued)">
+      <div class="stat">
+        <span class="stat-num" id="stat-current">12</span>
+        <span class="stat-lab bil"><span>current streak</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">série actuelle</span></span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-best">21</span>
+        <span class="stat-lab bil"><span>best streak</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">meilleure série</span></span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-total">240</span>
+        <span class="stat-lab bil"><span>total checks</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">pointages au total</span></span>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <h2 class="sec bil"><span>Badges</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Insignes</span></h2>
+      <button class="btn b-out btn-small" id="btn-empty-demo" aria-pressed="false">demo: empty state</button>
+    </div>
+    <div class="badges" id="badges" data-improvised="badge = ruled tile, no pictograms (not catalogued)"></div>
+    <div class="empty" id="badges-empty" hidden data-adapted="illustration → ruled statement + one action (D-16; no imagery)">
+      <p>No badges yet. Check off rituals to earn the first one.</p>
+      <button class="btn b-out" id="btn-badges-back">Show badges</button>
+    </div>
+  </section>
+
+  <!-- ======================= SETTINGS ======================= -->
+  <section class="view" id="view-settings" role="tabpanel" aria-labelledby="tab-settings" hidden>
+    <h1 class="title bil"><span>Settings</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Paramètres</span></h1>
+
+    <form id="settings-form" novalidate>
+      <h2 class="sec bil"><span>Profile</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Profil</span></h2>
+      <div class="field f-narrow">
+        <label for="set-name">Name <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Nom</span></label>
+        <input id="set-name" value="Sam" autocomplete="off">
+      </div>
+      <p class="err" id="name-err" hidden>Enter a name before saving.</p>
+
+      <h2 class="sec bil"><span>Preferences</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Préférences</span></h2>
+      <div class="field f-narrow">
+        <label for="set-cat">Default category <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Catégorie par défaut</span></label>
+        <select id="set-cat">
+          <option>Movement</option><option>Mind</option><option>Craft</option><option>Discipline</option>
+        </select>
+      </div>
+      <fieldset class="fs" data-improvised="platform fallback: native radios, squared (fallback/platform-controls)">
+        <legend class="flab">Week starts <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Début de semaine</span></legend>
+        <label class="pick"><input type="radio" name="weekstart" value="monday" checked><span>Monday <span class="fr" lang="fr">| Lundi</span></span></label>
+        <label class="pick"><input type="radio" name="weekstart" value="sunday"><span>Sunday <span class="fr" lang="fr">| Dimanche</span></span></label>
+      </fieldset>
+      <div class="field f-slider" data-improvised="platform fallback: native range styled (fallback/platform-controls)">
+        <label for="set-goal">Daily goal <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Objectif quotidien</span></label>
+        <div class="slider-row">
+          <input type="range" id="set-goal" min="10" max="90" step="5" value="30">
+          <span class="readout" id="goal-readout">30 min</span>
+        </div>
+      </div>
+
+      <h2 class="sec bil"><span>Reminders</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Rappels</span></h2>
+      <label class="switchrow"><span class="switchwr" data-improvised="platform fallback: native checkbox styled as squared switch (fallback/platform-controls)"><input type="checkbox" id="set-morning" checked class="switch-in"><span class="switch" aria-hidden="true"></span></span><span class="switch-lab">Morning reminder 07:30</span></label>
+      <label class="switchrow"><span class="switchwr"><input type="checkbox" id="set-evening" checked class="switch-in"><span class="switch" aria-hidden="true"></span></span><span class="switch-lab">Evening check-in 21:00</span></label>
+
+      <h2 class="sec bil"><span>Appearance</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Apparence</span></h2>
+      <label class="switchrow"><span class="switchwr" data-improvised="dark = reversed colourway (gestalt; not catalogued)"><input type="checkbox" id="set-dark" class="switch-in"><span class="switch" aria-hidden="true"></span></span><span class="switch-lab">Dark mode</span></label>
+
+      <h2 class="sec bil"><span>Data</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Données</span></h2>
+      <div class="btnrow">
+        <button type="button" class="btn b-out" id="btn-export-2">Export CSV</button>
+        <button type="button" class="btn b-out" data-open="wizard">Replay intro</button>
+      </div>
+
+      <div class="save-row">
+        <button class="btn b-slate" type="submit" id="btn-save">Save settings</button>
+      </div>
+
+      <h2 class="sec bil danger"><span>Delete all data</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Supprimer toutes les données</span></h2>
+      <p class="note">This removes your rituals, checks and settings from this demo. You can undo once, right after.</p>
+      <button type="button" class="btn b-out" id="btn-delete-all">Delete all data</button>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in"><span class="wordmark">Cadence · demonstration build</span></div>
+</footer>
+
+<!-- ======================= OVERLAYS ======================= -->
+<div class="overlay" id="ov-detail" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="detail-title" data-improvised="dialog vessel per D-18 (not catalogued)">
+    <p class="kicker">Ritual <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Rituel</span></p>
+    <h2 class="dtitle" id="detail-title">Ritual</h2>
+    <p class="dmeta" id="detail-meta"></p>
+    <p class="blab">Last 7 days <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">7 derniers jours</span></p>
+    <div class="spark" id="detail-spark" data-improvised="sparkline in meter idiom (not catalogued)"></div>
+    <p class="blab">Recent entries <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Entrées récentes</span></p>
+    <ul class="minihist" id="detail-hist"></ul>
+    <div class="dfoot">
+      <button class="btn b-out" id="detail-delete">Delete ritual</button>
+      <button class="btn b-txt" data-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-log" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="log-title">
+    <h2 class="dtitle bil" id="log-title"><span>Log a ritual</span><span class="bdiv" aria-hidden="true"></span><span class="fr" lang="fr">Consigner un rituel</span></h2>
+    <div class="field">
+      <label for="log-ritual">Ritual <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Rituel</span></label>
+      <select id="log-ritual"></select>
+    </div>
+    <div class="row2">
+      <div class="field" data-improvised="platform fallback: native date input (fallback/large-selection)">
+        <label for="log-date">Date <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Date</span></label>
+        <input type="date" id="log-date" value="2026-10-07">
+      </div>
+      <div class="stepper-wrap" data-improvised="stepper = field + outline squares (not catalogued)">
+        <span class="flab">Minutes <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Minutes</span></span>
+        <div class="stepper">
+          <button type="button" class="btn b-out step" id="min-minus" aria-label="Fewer minutes">−</button>
+          <input class="field-input step-in" id="log-min" type="number" min="0" max="600" step="1" value="30">
+          <button type="button" class="btn b-out step" id="min-plus" aria-label="More minutes">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="field" data-adapted="photo upload → written note (no imagery, D-22)">
+      <label for="log-notes">Notes <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Notes</span></label>
+      <textarea id="log-notes" rows="3" placeholder="Anything worth remembering?"></textarea>
+    </div>
+    <div class="saving" id="log-saving" hidden data-improvised="loading = meter compose, no spinner (not catalogued)">
+      <p class="readout">Saving <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Enregistrement…</span></p>
+      <div class="meter"><i class="sweep"></i></div>
+    </div>
+    <div class="dfoot">
+      <button class="btn b-slate" id="log-submit">Log</button>
+      <button class="btn b-out" data-close>Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-confirm" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <h2 class="dtitle bil" id="confirm-title"></h2>
+    <p class="dbody" id="confirm-body"></p>
+    <div class="saving" id="confirm-saving" hidden>
+      <p class="readout">Saving <span class="bdiv" aria-hidden="true"></span> <span class="fr" lang="fr">Enregistrement…</span></p>
+      <div class="meter"><i class="sweep"></i></div>
+    </div>
+    <div class="dfoot">
+      <button class="btn b-slate" id="confirm-yes"></button>
+      <button class="btn b-out" data-close>Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ov-wizard" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="wiz-title" data-improvised="three-step dialog process (not catalogued)">
+    <div class="wiz-head">
+      <span class="dots" id="wiz-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span>
+      <button class="btn b-txt" id="wiz-skip">Skip</button>
+    </div>
+    <h2 class="dtitle bil" id="wiz-title"></h2>
+    <div id="wiz-body" class="wiz-body"></div>
+    <div class="dfoot">
+      <button class="btn b-out" id="wiz-back">Back</button>
+      <button class="btn b-slate" id="wiz-next">Next</button>
+    </div>
+  </div>
+</div>
+
+<button id="marks-toggle" class="marks-btn" aria-pressed="false" title="Show design-origin marks (improvised / adapted)">◌</button>
+
+<script src="app.js"></script>
+</body>
+</html>

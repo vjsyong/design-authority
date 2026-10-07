@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — small rituals, kept daily</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FFE01B'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23231E15' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- top bar = component/navbar (RESOLVED for element 30). Single row, white bar, dark links. -->
+<header class="topbar">
+  <div class="inner">
+    <div class="wordmark">Cadence</div>
+    <nav class="tabs" aria-label="Views">
+      <button class="navitem on" data-view="today">Today</button>
+      <button class="navitem" data-view="history">History</button>
+      <button class="navitem" data-view="achievements">Achievements</button>
+      <button class="navitem" data-view="settings">Settings</button>
+    </nav>
+    <!-- avatar: element 18 (improvised — no photo canon; initials stand-in) -->
+    <div data-improvised="avatar photo: no canon; initials stand-in" style="margin-left:16px">
+      <div class="avatar" id="avatar" style="width:38px;height:38px;border-radius:50%;background:var(--yellow);box-shadow:inset 0 0 0 1px var(--ink);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px" title="Sam">S</div>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+
+  <!-- ============================= TODAY ============================= -->
+  <section class="view" id="view-today">
+    <div class="today-head">
+      <div>
+        <div class="kicker" id="todayDate">TUESDAY, 7 OCTOBER</div>
+        <h1 class="display" id="greeting">Good evening, <em>Sam</em>.</h1>
+      </div>
+    </div>
+
+    <div class="card1 lg">
+      <div class="hero">
+        <!-- ring: element 11 (improvised — meter logic; no ring canon) -->
+        <div class="ringwrap" id="ringWrap" data-improvised="progress ring: undefined; meter logic reused">
+          <svg width="172" height="172" viewBox="0 0 172 172" role="img" aria-label="3 of 5 rituals done">
+            <circle class="ring-track" cx="86" cy="86" r="68" fill="none" stroke-width="14"></circle>
+            <circle class="ring-fill" id="ringFill" cx="86" cy="86" r="68" fill="none" stroke-width="14"
+                    stroke-linecap="round" stroke-dasharray="427.26" stroke-dashoffset="170.9"></circle>
+          </svg>
+          <div class="ring-center">
+            <div class="ringpct" id="ringPct">60%</div>
+            <div class="ringsub" id="ringSub">3 of 5 done</div>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="h2" id="heroDone">3 of 5 rituals done</div>
+          <div class="caption" style="margin-top:4px">Keep the thread going — every check counts.</div>
+          <div class="hero-stats">
+            <!-- streak counter: element 15 (improvised) -->
+            <div class="statbig" data-improvised="streak counter: undefined">
+              <span class="bignum" id="streakNum">12</span>
+              <span class="lbl">day streak</span>
+            </div>
+            <!-- status label: element 17 (improvised — state colours) -->
+            <span class="chip" id="statusPill" data-improvised="status states: undefined; word-first pill per badge shape"
+                  style="background:var(--parsnip);box-shadow:inset 0 0 0 1px var(--border);padding:6px 14px">On track</span>
+          </div>
+        </div>
+      </div>
+      <!-- week banner: element 7 (improvised) -->
+      <div class="weekband" data-improvised="week banner: undefined; ochre band role inferred">
+        <span class="wb-title">This week</span>
+        <span class="wb-metric"><b>245</b><span>min kept</span></span>
+        <span class="wb-metric"><b>5</b><span>of 7 days</span></span>
+        <span class="wb-metric"><b>5</b><span>rituals</span></span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <h2 class="h2">Today&rsquo;s rituals</h2>
+        <button class="cta" id="openLog">Log a ritual</button>
+      </div>
+      <div id="todayListWrap">
+        <ul class="ritlist" id="ritList"></ul>
+        <!-- empty state: element 8 (improvised; reusable block) -->
+        <div class="card2 empty" id="emptyToday" hidden data-improvised="empty state: undefined">
+          <div class="art" data-improvised="illustration: none supplied; restrained warm line art">
+            <svg width="120" height="86" viewBox="0 0 120 86" fill="none" aria-hidden="true">
+              <circle cx="84" cy="30" r="16" fill="#FFE01B"/>
+              <circle cx="84" cy="30" r="23" stroke="#231E15" stroke-width="1.5"/>
+              <path d="M18 70c14 0 20-10 20-22 0 8 8 14 20 14" stroke="#231E15" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 70h66" stroke="#231E15" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p>Nothing here yet. Add your first ritual and today starts carrying itself.</p>
+          <button class="cta dark" id="emptyAdd">Add a ritual</button>
+        </div>
+      </div>
+      <!-- undo notice: element 36 (improvised) -->
+      <div class="noticeline" id="undoBar" hidden data-improvised="undo affordance: undefined">
+        <span class="grow" id="undoMsg">Ritual deleted.</span>
+        <button class="cta outline sm" id="undoBtn">Undo</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= HISTORY ============================= -->
+  <section class="view" id="view-history" hidden>
+    <div class="section-head" style="margin-bottom:24px"><h2 class="h2">History</h2></div>
+
+    <!-- bar chart: element 12 (improvised) -->
+    <div class="card1 chartcard" data-improvised="bar chart: undefined; no data-viz canon">
+      <div>
+        <div class="kicker" style="color:var(--muted)">MINUTES KEPT</div>
+        <div class="clead" style="margin-top:6px">This week, day by day</div>
+      </div>
+      <div class="bars" id="bars" role="img" aria-label="Weekly minutes: Mon 45, Tue 30, Wed 60, Thu 25, Fri 50, Sat 0, Sun 35"></div>
+    </div>
+
+    <!-- calendar heatmap: element 13 (improvised) -->
+    <div class="card1" style="margin-top:24px" data-improvised="calendar heatmap: undefined">
+      <div class="section-head" style="margin-bottom:18px">
+        <div class="clead" id="heatMonth">October 2026</div>
+        <div class="heatleg">Less <i></i><i class="l2"></i><i></i><i class="l4"></i> More</div>
+      </div>
+      <div class="heatwrap">
+        <div class="weekhead"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+        <div class="heatgrid" id="heatGrid"></div>
+      </div>
+    </div>
+
+    <div class="card1" style="margin-top:24px">
+      <div class="section-head" style="margin-bottom:6px"><div class="clead">Logged entries</div></div>
+      <div class="tabletools">
+        <div class="searchbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"></circle><path d="M15.2 15.2L20 20"></path></svg>
+          <input type="text" id="entrySearch" placeholder="Search rituals, notes, dates" aria-label="Search logged entries">
+        </div>
+        <button class="cta outline" id="exportHist" data-improvised="export flow: undefined; control is an outline pill">Export CSV</button>
+      </div>
+      <!-- ledger: element 31 (RESOLVED via search → component/ledger) -->
+      <table class="ledger">
+        <thead><tr><th>Date</th><th>Ritual</th><th>Minutes</th><th>Notes</th></tr></thead>
+        <tbody id="entryBody"></tbody>
+      </table>
+      <!-- pagination: element 32 (improvised pattern) -->
+      <div class="pager" data-improvised="pagination: undefined; outline pill + readout">
+        <button class="cta outline sm" id="olderBtn">Older entries</button>
+        <span class="caption" id="pageInfo">Showing 8 of 14</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= ACHIEVEMENTS ============================= -->
+  <section class="view" id="view-achievements" hidden>
+    <div class="section-head" style="margin-bottom:24px">
+      <h2 class="h2">Achievements</h2>
+      <label class="switchrow" style="border:none;padding:0;gap:10px">
+        <span class="caption">demo: empty state</span>
+        <input type="checkbox" class="switch" id="demoToggle" data-improvised="fallback: platform control; switch styling improvised">
+      </label>
+    </div>
+    <div class="tiles">
+      <div class="card1 tile"><div class="bignum">12</div><div class="lbl">current streak</div></div>
+      <div class="card1 tile"><div class="bignum">21</div><div class="lbl">best streak</div></div>
+      <div class="card1 tile"><div class="bignum">240</div><div class="lbl">total rituals logged</div></div>
+    </div>
+    <div style="margin-top:24px">
+      <div class="badgegrid" id="badgeGrid"></div>
+      <div class="card2 empty" id="emptyAch" hidden data-improvised="empty state: undefined">
+        <div class="art" data-improvised="illustration: none supplied">
+          <svg width="120" height="86" viewBox="0 0 120 86" fill="none" aria-hidden="true">
+            <circle cx="60" cy="38" r="20" fill="#FFE01B"/>
+            <circle cx="60" cy="38" r="27" stroke="#231E15" stroke-width="1.5"/>
+            <path d="M60 60l0 12M48 72h24" stroke="#231E15" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p>No badges yet. Keep a few small days and the first ones land on their own.</p>
+        <button class="cta dark" id="emptyAchBtn">Log a ritual</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= SETTINGS ============================= -->
+  <section class="view" id="view-settings" hidden>
+    <div class="section-head" style="margin-bottom:24px"><h2 class="h2">Settings</h2></div>
+
+    <div class="card1">
+      <div class="clead" style="margin-bottom:18px">Profile</div>
+      <div class="field" id="nameField">
+        <label for="setName">Your name</label>
+        <input type="text" id="setName" value="Sam" autocomplete="off">
+        <div class="errmsg" id="nameErr" hidden>That name is doing a lot of work empty — mind giving it one letter?</div>
+      </div>
+      <div class="field">
+        <label for="setCat">Default category</label>
+        <select id="setCat">
+          <option selected>Movement</option><option>Mind</option><option>Craft</option><option>Discipline</option>
+        </select>
+      </div>
+      <div class="field">
+        <span class="field-label" style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">Week starts on</span>
+        <!-- radios: element 27 (FALLBACK platform controls) -->
+        <div class="radiowrap" data-improvised="fallback: platform radio; native semantics">
+          <label><input type="radio" class="rd" name="weekstart" value="monday" checked> Monday</label>
+          <label><input type="radio" class="rd" name="weekstart" value="sunday"> Sunday</label>
+        </div>
+      </div>
+      <!-- slider: element 21 (improvised; not in fallback scope) -->
+      <div class="field" data-improvised="slider: undefined; parsnip track + yellow thumb">
+        <label for="goalSlider">Daily goal</label>
+        <div class="sliderline">
+          <input type="range" class="slider" id="goalSlider" min="10" max="90" step="5" value="30">
+          <span class="sliderval" id="goalVal">30 min</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card1" style="margin-top:24px">
+      <div class="clead" style="margin-bottom:8px">Reminders</div>
+      <!-- toggles: element 20 (FALLBACK platform controls) -->
+      <div class="switchrow" data-improvised="fallback: platform control; switch styling improvised">
+        <div><div class="lbl">Morning reminder 07:30</div><div class="sub">A gentle nudge before the day fills up.</div></div>
+        <input type="checkbox" class="switch" id="remMorning" checked aria-label="Morning reminder">
+      </div>
+      <div class="switchrow" data-improvised="fallback: platform control; switch styling improvised">
+        <div><div class="lbl">Evening check-in 21:00</div><div class="sub">Close the loop before bed.</div></div>
+        <input type="checkbox" class="switch" id="remEvening">
+      </div>
+      <!-- dark mode: element 39 (FALLBACK light-only — noncanonical, ink+yellow kept) -->
+      <div class="switchrow" data-improvised="dark theme: fallback/light-only; ink+yellow roles kept">
+        <div><div class="lbl">Dark mode</div><div class="sub">Noncanonical — the authority ships light surfaces only.</div></div>
+        <input type="checkbox" class="switch" id="darkToggle" aria-label="Dark mode">
+      </div>
+    </div>
+
+    <div class="card1" style="margin-top:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <button class="cta outline" id="exportSet" data-improvised="export flow: undefined; control is an outline pill">Export CSV</button>
+      <button class="cta outline" id="replayBtn">Replay intro</button>
+      <button class="cta dark" id="saveBtn" style="margin-left:auto"><span class="spinner" id="saveSpinner" hidden data-improvised="loading spinner: undefined"></span>Save changes</button>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="dangerzone">
+        <div class="grow">
+          <div class="lbl">Delete all data</div>
+          <div class="sub">Clears rituals, logs and settings from this browser. It can&rsquo;t be undone.</div>
+        </div>
+        <button class="cta danger" id="deleteAll" data-improvised="destructive affordance: undefined">Delete all data</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- bottom tab bar (element 30: navbar collapsed to a bottom bar on small screens) -->
+<nav class="tabs-bottom" aria-label="Views" id="tabsBottom"></nav>
+
+<!-- ============================= OVERLAYS ============================= -->
+
+<!-- log form (modal vessel: element 5 improvised) -->
+<div class="scrim" id="logModal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Log a ritual" data-improvised="modal vessel: undefined">
+    <h3>Log a ritual</h3>
+    <p class="caption" style="margin-bottom:18px">Done beats perfect — a minute counts.</p>
+    <form id="logForm" novalidate>
+      <div class="field">
+        <label for="logRitual">Ritual</label>
+        <select id="logRitual"></select>
+      </div>
+      <div class="field">
+        <label for="logDate">Date</label>
+        <input type="date" id="logDate" value="2026-10-07" data-improvised="fallback: platform date control">
+      </div>
+      <div class="field" id="minsField">
+        <label for="logMins">Minutes</label>
+        <!-- stepper: element 23 (improvised composition) -->
+        <div class="stepper" data-improvised="number stepper: undefined; composed from field + pills">
+          <button type="button" class="cta outline" id="minsMinus" aria-label="Fewer minutes">&minus;</button>
+          <input type="number" id="logMins" value="30" min="1" max="300">
+          <button type="button" class="cta outline" id="minsPlus" aria-label="More minutes">+</button>
+          <span class="stepval">minutes</span>
+        </div>
+        <div class="errmsg" id="minsErr" hidden>Minutes need to be at least 1 — mind nudging it up?</div>
+      </div>
+      <div class="field">
+        <label for="logNotes">Notes</label>
+        <textarea id="logNotes" placeholder="How did it go?" data-improvised="field-select mapped to multiline (no textarea canon)"></textarea>
+      </div>
+      <div class="actions">
+        <button type="button" class="cta outline" id="logCancel">Cancel</button>
+        <button type="submit" class="cta" id="logSubmit" style="margin-left:auto"><span class="spinner ink" id="logSpinner" hidden data-improvised="loading spinner: undefined"></span>Log it</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ritual detail (modal vessel: element 5) -->
+<div class="scrim" id="detailModal" hidden>
+  <div class="dialog wide" role="dialog" aria-modal="true" aria-label="Ritual details" data-improvised="modal vessel: undefined">
+    <div class="det-top">
+      <div class="ritoicon" id="detIcon"></div>
+      <div>
+        <div class="h2" id="detTitle" style="font-size:24px">Morning run</div>
+        <div class="meta" style="display:flex;gap:8px;margin-top:6px"><span class="chip tag" id="detTag" data-improvised="neutral tag variant: undefined">Movement</span></div>
+      </div>
+      <button class="cta outline sm" id="detClose" style="margin-left:auto">Close</button>
+    </div>
+    <div class="detsplit">
+      <div class="detblock">
+        <span class="kicker">LAST 7 DAYS</span>
+        <!-- sparkline: element 14 (improvised) -->
+        <div class="sparkwrap" id="detSpark" data-improvised="sparkline: undefined"></div>
+      </div>
+      <div class="detblock" data-improvised="streak counter: undefined">
+        <span class="kicker">STREAK</span>
+        <div class="statbig"><span class="bignum" id="detStreak">12</span><span class="lbl">days</span></div>
+        <div class="caption" style="margin-top:6px">Best: <span id="detBest">21</span> days</div>
+      </div>
+    </div>
+    <div class="detblock">
+      <span class="kicker">MINI HISTORY</span>
+      <div class="minihist" id="detHist"></div>
+    </div>
+    <div class="actions" style="display:flex;gap:12px;margin-top:22px;align-items:center">
+      <!-- photo upload: element 42 (FALLBACK via search 'file') -->
+      <button type="button" class="cta outline sm" id="photoBtn" data-improvised="fallback: platform file control for photo upload">Add photo</button>
+      <input type="file" id="photoInput" accept="image/*" hidden>
+      <span class="caption" id="photoName"></span>
+      <button type="button" class="cta danger" id="detDelete" style="margin-left:auto" data-improvised="destructive affordance: undefined">Delete ritual</button>
+    </div>
+  </div>
+</div>
+
+<!-- confirm dialog (element 4, improvised) -->
+<div class="scrim" id="confirmModal" hidden>
+  <div class="dialog narrow" role="alertdialog" aria-modal="true" aria-label="Confirm" data-improvised="confirmation dialog: undefined">
+    <h3 id="cfTitle">Delete this ritual?</h3>
+    <p class="consequence" id="cfMsg">It leaves your list and its history isn&rsquo;t restored.</p>
+    <div class="actions">
+      <button class="cta outline" id="cfCancel">Keep it</button>
+      <button class="cta dark" id="cfConfirm" style="margin-left:auto">Delete ritual</button>
+    </div>
+  </div>
+</div>
+
+<!-- onboarding wizard (element 37, improvised) -->
+<div class="scrim" id="wizardModal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Welcome" data-improvised="onboarding wizard: undefined">
+    <div class="wizard-step on" id="wz1">
+      <div class="kicker">WELCOME</div>
+      <h3 style="margin-top:10px">Small rituals, <em style="font-style:italic">kept daily</em>.</h3>
+      <p class="caption" style="font-size:14px;margin-top:10px">Cadence keeps five small promises in view. Check one off and the day starts to hum.</p>
+    </div>
+    <div class="wizard-step" id="wz2">
+      <div class="kicker">STEP 2 OF 3</div>
+      <h3 style="margin-top:10px">Pick your rituals</h3>
+      <div style="margin-top:14px">
+        <div class="checkrow"><input type="checkbox" class="cb" checked id="wzr1" data-improvised="fallback: platform checkbox"><label for="wzr1">Morning run</label></div>
+        <div class="checkrow"><input type="checkbox" class="cb" checked id="wzr2" data-improvised="fallback: platform checkbox"><label for="wzr2">Read 20 pages</label></div>
+        <div class="checkrow"><input type="checkbox" class="cb" checked id="wzr3" data-improvised="fallback: platform checkbox"><label for="wzr3">Meditate</label></div>
+        <div class="checkrow"><input type="checkbox" class="cb" checked id="wzr4" data-improvised="fallback: platform checkbox"><label for="wzr4">No sugar</label></div>
+        <div class="checkrow"><input type="checkbox" class="cb" checked id="wzr5" data-improvised="fallback: platform checkbox"><label for="wzr5">Practice guitar</label></div>
+      </div>
+    </div>
+    <div class="wizard-step" id="wz3">
+      <div class="kicker">STEP 3 OF 3</div>
+      <h3 style="margin-top:10px">Set your goal</h3>
+      <p class="caption" style="margin-top:10px">Roughly how many minutes a day feels honest, not heroic?</p>
+      <div class="sliderline" style="margin-top:16px">
+        <input type="range" class="slider" id="wzGoal" min="10" max="90" step="5" value="30" data-improvised="slider: undefined">
+        <span class="sliderval" id="wzGoalVal">30 min</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="cta outline" id="wzBack">Back</button>
+      <button class="link" id="wzSkip" style="margin-left:6px">Skip</button>
+      <button class="cta dark" id="wzNext" style="margin-left:auto">Next</button>
+    </div>
+    <div class="dots" id="wzDots"><i class="on"></i><i></i><i></i></div>
+  </div>
+</div>
+
+<!-- toast (element 6, improvised) -->
+<div class="toast" id="toast" role="status" aria-live="polite" data-improvised="toast: undefined; no feedback canon">
+  <span id="toastMsg">Logged ✓</span>
+  <button class="undo" id="toastUndo" hidden>Undo</button>
+</div>
+
+<!-- ◌ authority-marks toggle (experiment scaffolding) -->
+<button id="marksBtn" title="Show authority marks (improvised / adapted)" aria-pressed="false">◌</button>
+
+<script src="app.js"></script>
+</body>
+</html>
