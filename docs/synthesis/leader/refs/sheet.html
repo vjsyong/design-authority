@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>leader · decision sheet — Gate 2</title>
+<style>
+@font-face { font-family: 'Gelasio'; src: url('../tile/fonts/Gelasio-VF.ttf'); font-weight: 400 700; }
+@font-face { font-family: 'Inter'; src: url('../tile/fonts/Inter-VF.ttf'); font-weight: 100 900; }
+@font-face { font-family: 'Archivo Black'; src: url('../tile/fonts/ArchivoBlack-Regular.ttf'); }
+:root { --red:#E3120B; --red60:#F6423C; --red95:#FEE7E7; --ink:#1A1A1A; --l40:#666; --l85:#D9D9D9; --l95:#F2F2F2; }
+* { box-sizing: border-box; margin: 0; }
+body { font-family: system-ui, -apple-system, sans-serif; color:#141414; background:#fff; }
+.part { width: 1500px; padding: 26px 34px 30px; }
+.phead { border-bottom: 2px solid #141414; padding-bottom: 12px; margin-bottom: 16px; }
+.phead h1 { font-size: 22px; } .phead p { font-size: 13px; color:#555; margin-top: 4px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.card { border: 1px solid #dcdcdc; border-radius: 8px; padding: 13px 15px; }
+.card.att { border-left: 4px solid #141414; }
+.chead { display:flex; gap:7px; align-items:baseline; margin-bottom:7px; flex-wrap: wrap; }
+.cid { font-weight: 700; font-size: 13px; }
+.chip { font-size: 10.5px; background:#f2f2f2; border-radius:4px; padding:2px 7px; color:#555; }
+.chip.st { color:#141414; } .chip.att { background:#141414; color:#fff; }
+.ctext { font-size:12.5px; line-height:1.45; color:#333; margin-bottom:10px; }
+.cex { background:#fafafa; border:1px dashed #e2e2e2; border-radius:6px; padding:14px; }
+/* leader system styles */
+.l { font-family:'Inter', sans-serif; color:var(--ink); }
+.l .btn { font-family:'Inter'; font-size:13.5px; font-weight:500; border:none; padding:10px 18px; }
+.l .b-red { background:var(--red); color:#fff; } .l .b-out { background:#fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.l .b-txt { background:none; text-decoration:underline; padding:10px 4px; }
+.l .serif { font-family:'Gelasio', serif; }
+.l .display { font-family:'Gelasio'; font-size:34px; line-height:1.12; font-weight:700; }
+.l .stand { font-family:'Gelasio'; font-size:15px; color:#444; margin-top:6px; }
+.l .body { font-family:'Gelasio'; font-size:15px; line-height:1.5; }
+.l .meta { font-family:'Inter'; font-size:12px; color:var(--l40); }
+.l .tag2 { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border:2px solid var(--ink); }
+.l .tag2.red { background:var(--red); border-color:var(--red); color:#fff; }
+.l .field label { display:block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--l40); margin-bottom:5px; font-family:'Inter'; }
+.l .field input { font-family:'Gelasio'; font-size:15px; width:100%; padding:9px 11px; border:2px solid var(--ink); background:#fff; }
+.l .field input.focus { outline:1px solid var(--ink); outline-offset:2px; }
+.l .field .err { font-family:'Gelasio'; font-size:12.5px; color:var(--red); margin-top:5px; }
+.l .notice { border-top:2px solid var(--ink); background:var(--l95); padding:12px 14px; font-size:13px; }
+.l .meter { height:13px; background:var(--l85); } .l .meter i { display:block; height:100%; width:70%; background:var(--red); }
+.l .ledger { width:100%; border-collapse:collapse; font-size:13px; }
+.l .ledger th { font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; text-align:left; padding:7px 9px; border-bottom:2px solid var(--ink); font-weight:700; font-family:'Inter'; }
+.l .ledger td { padding:10px 9px; border-bottom:1px solid var(--l85); font-family:'Gelasio'; }
+.l .ledger td.n { font-family:'Inter'; font-size:12px; color:var(--l40); }
+.l .ledger tr.hov td { background:var(--red95); }
+.l .dialog { background:#fff; border:2px solid var(--ink); padding:20px 22px; }
+.l .thread { height:3px; background:var(--red); width:150px; }
+.l .glyphs i { display:inline-block; background:var(--ink); margin-right:8px; }
+.l .cursorbox { border:2px solid var(--ink); padding:8px 12px; font-size:12.5px; display:inline-block; }
+.l .cursorbox .cur { display:inline-block; width:2px; height:14px; background:var(--red); margin-left:5px; vertical-align:middle; }
+.l .swrow { display:flex; gap:8px; } .l .sw { flex:1; text-align:center; font-size:9.5px; color:#666; }
+.l .sw i { display:block; height:34px; margin-bottom:4px; }
+.l .navbar { background:#fff; border-bottom:2px solid var(--ink); padding:11px 15px; display:flex; gap:16px; align-items:center; font-size:12.5px; }
+.l .navbar .name { font-family:'Gelasio'; font-weight:700; font-size:15px; margin-right:6px; }
+.l .navbar .on { border-bottom:2px solid var(--red); padding-bottom:2px; }
+</style>
+</head>
+<body class="l">
+
+<section class="part">
+  <div class="phead"><h1>leader · decision sheet — part 1 of 2</h1>
+  <p>Every semantic decision, rendered as it would appear if accepted. Dark left edge = your call; the rest are settled from evidence. Part 1: L-01 … L-12.</p></div>
+  <div class="grid">
+
+  <div class="card att"><div class="chead"><span class="cid">L-01</span><span class="chip">actions</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Primary = solid red rectangle, white label; secondary = 2px ink outline; tertiary = underlined text link.</p>
+  <div class="cex"><button class="btn b-red">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read the full entry</button></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">Zero radius everywhere; rectangles, rules and glyph marks are the only shapes.</p>
+  <div class="cex"><span style="display:inline-block;background:#1A1A1A;color:#fff;padding:9px 16px;font-size:12.5px">Rectangle</span> <span style="display:inline-block;border:2px solid #1A1A1A;padding:7px 14px;font-size:12.5px">Outline</span> <span style="display:inline-block;background:#E3120B;color:#fff;padding:9px 16px;font-size:12.5px">Red</span> <span class="meta" style="margin-left:10px">radius: none, ever</span></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-03</span><span class="chip">events</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Near-instant interaction transitions (≤0.15s colour swaps); no spring, bounce or decorative motion in UI chrome.</p>
+  <div class="cex"><span class="meta">Hover = colour deepens in 0.15s — static sheet can’t show it; the point is what it is NOT: no lift, no bounce, no glow.</span></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-04</span><span class="chip">typography</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">Three registers by role: Serif = headlines + body; Sans = nav, metadata, captions; Sans Headline = display-only moments.</p>
+  <div class="cex"><p class="display" style="font-size:24px">Serif carries the story</p><p class="meta" style="margin-top:8px">SANS CARRIES THE APPARATUS — ASIA · MAY 31ST 2025 · 4 MIN READ</p><p style="font-family:'Archivo Black';font-size:20px;margin-top:8px">DISPLAY: THE WORLD IN BRIEF</p></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-05</span><span class="chip">typography</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Screen rhythm: headline 30–34/1.15 · standfirst 16–17 muted · body 17/1.55 · metadata 12.5–13 with caps labels · display 44 tight.</p>
+  <div class="cex"><p class="display" style="font-size:28px">Headline at 28 here</p><p class="stand">One-line standfirst, muted serif.</p><p class="body" style="margin-top:6px">Body serif 15 at sheet scale (17 at full scale).</p></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-06</span><span class="chip">colour</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">Red #E3120B is punctuation (labels, rules, single blocks, primary controls); everything else is ink, white, or the London grey ramp.</p>
+  <div class="cex"><div class="swrow"><div class="sw"><i style="background:#E3120B"></i>Red · accent</div><div class="sw"><i style="background:#F6423C"></i>Red 60</div><div class="sw"><i style="background:#FEE7E7"></i>Red 95</div><div class="sw"><i style="background:#1A1A1A"></i>London 10</div><div class="sw"><i style="background:#D9D9D9"></i>London 85</div><div class="sw"><i style="background:#F2F2F2"></i>London 95</div></div></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-07</span><span class="chip">surfaces</span><span class="chip st">INFERRED</span></div>
+  <p class="ctext">White ground; separation via 2px ink rules, hairlines, and tinted canvas washes. No shadows, no elevation, no soft chrome.</p>
+  <div class="cex"><div style="border-top:2px solid #1A1A1A;padding-top:10px;font-size:12.5px">Ruled separation</div><div style="border-bottom:1px solid #D9D9D9;padding:10px 0;font-size:12.5px">Hairline below</div><div style="background:#F2F2F2;padding:10px;font-size:12.5px">Wash separation</div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-08</span><span class="chip">motifs</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Red thread = hairline red rule device (connective, never a content border). Rhythm glyphs = small black squares of graded size.</p>
+  <div class="cex"><div class="thread"></div><div class="glyphs" style="margin-top:12px"><i style="width:9px;height:9px"></i><i style="width:14px;height:14px"></i><i style="width:19px;height:19px"></i></div></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-09</span><span class="chip">hierarchy</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">Section label (sans caps, red) → serif headline → one-line muted standfirst. Repeats strictly; no decorative sub-heads.</p>
+  <div class="cex"><p style="font-size:10px;letter-spacing:.1em;font-weight:700;color:#E3120B">ASIA</p><p class="display" style="font-size:22px;margin-top:4px">A deeply unfashionable idea is quietly winning</p><p class="stand">Policymakers are learning to love industrial policy again.</p></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-10</span><span class="chip">navigation</span><span class="chip st">INFERRED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = red underline; crisp search rectangle with typing-cursor motif right.</p>
+  <div class="cex"><div class="navbar"><span class="name">The Register</span><span class="on">Items</span><span>Activity</span><span class="cursorbox" style="margin-left:auto">Search<span class="cur"></span></span></div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Fields: white, 2px ink border, square; label above in caps; focus = border + 1px offset outer line; error = small red serif under the field.</p>
+  <div class="cex"><div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="err">That name isn’t on the member list.</p></div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-12</span><span class="chip">selection</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Small sets (≤ ~12) = native select squared like a field; larger/filtered = out of scope, platform fallback, marked.</p>
+  <div class="cex"><div class="field"><label>Loan days</label><select style="font-family:'Gelasio';font-size:15px;padding:9px 11px;border:2px solid #1A1A1A;background:#fff;width:100%"><option>7 days</option><option>14 days</option></select></div></div></div>
+
+  </div>
+</section>
+
+<section class="part">
+  <div class="phead"><h1>leader · decision sheet — part 2 of 2</h1>
+  <p>Part 2: L-13 … L-24.</p></div>
+  <div class="grid">
+
+  <div class="card att"><div class="chead"><span class="cid">L-13</span><span class="chip">status</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Status = rectangular ink-outline tag, word inside (caps sans); attention states turn the tag solid red. No pills, no dots as sole signal.</p>
+  <div class="cex"><span class="tag2">Available</span> <span class="tag2">On loan</span> <span class="tag2 red">Overdue</span></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-14</span><span class="chip">feedback</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Notices = ruled boxes (2px ink top rule) with terse declarative copy; no toasts; problem copy names the fact and the next step.</p>
+  <div class="cex"><div class="notice">Two loans are due this week. Borrowers have been emailed; no action needed yet.</div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-15</span><span class="chip">destructive</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Destructive confirm in a square dialog: 2px ink frame, consequence sentence, confirm = solid red rectangle with the verb; never pre-focused.</p>
+  <div class="cex" style="background:rgba(26,26,26,.62);border-radius:0;padding:16px"><div class="dialog"><b style="font-family:'Gelasio';font-size:15px">Retire “Cordless drill 18V”?</b><p style="font-size:12px;margin:6px 0 12px;color:#333">It leaves the register permanently. Existing loan records stand.</p><button class="btn b-red">Retire</button> <button class="btn b-out">Cancel</button></div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-16</span><span class="chip">progress</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Meter = rectangle track (London 85) with red fill; sans readout “7 of 10 steps”; restart = outline rectangle. Static updates only.</p>
+  <div class="cex"><div class="meter"><i></i></div><p class="meta" style="margin:6px 0 10px">7 of 10 steps · reconciling loan dates…</p><button class="btn b-out">Restart import</button></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-17</span><span class="chip">empty</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Empty state = ruled statement block with one action; no illustration.</p>
+  <div class="cex"><div class="notice" style="background:#fff">Nothing is registered yet. Add the first entry to open the register.<br><br><button class="btn b-out">Add an entry</button></div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-18</span><span class="chip">repeated content</span><span class="chip st">INFERRED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Ledger = editorial table: 2px ink header rule, hairline rows, serif names + sans numbers, hover = red95 wash, no zebra.</p>
+  <div class="cex"><table class="ledger"><tr><th>Item</th><th>Status</th><th></th></tr><tr><td>Torque wrench 200Nm</td><td class="n">Hand tools</td><td><span class="tag2" style="padding:3px 7px;font-size:9.5px">Available</span></td></tr><tr class="hov"><td>Cordless drill 18V</td><td class="n">Power tools</td><td><span class="tag2" style="padding:3px 7px;font-size:9.5px">On loan</span></td></tr></table></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-19</span><span class="chip">overlays</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Dialog = square white sheet, 2px ink frame, ink scrim 62%, instant; no entrance motion.</p>
+  <div class="cex" style="background:rgba(26,26,26,.62);padding:18px;text-align:center"><span style="display:inline-block;background:#fff;border:2px solid #1A1A1A;padding:12px 16px;font-size:12px">Square sheet · scrim 62% · instant</span></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-20</span><span class="chip">voice</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">Terse, declarative, fact-forward; dry wit in one clause; no exclamation marks; headline + one-line standfirst cadence in UI copy too.</p>
+  <div class="cex"><p style="font-size:13px">“Two loans overdue. The register still works; the borrowers have been emailed.”</p><p class="meta" style="margin-top:6px">Fact first. No cheerleading.</p></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-21</span><span class="chip">imagery</span><span class="chip st">OBSERVED</span></div>
+  <p class="ctext">No imagery in the reference build; blur→focus belongs to story layouts. Absence here is honest, not a gap.</p>
+  <div class="cex" style="border:2px dashed #D9D9D9;padding:18px;text-align:center;font-size:12px;color:#666">No image zone — words do the work here</div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-22</span><span class="chip">responsive</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Single-column collapse; display steps 44→34; table stacks rows with sans labels; minimal, honest.</p>
+  <div class="cex" style="display:flex;gap:10px;align-items:flex-end"><div style="flex:2;border:1px solid #D9D9D9;padding:9px"><p class="display" style="font-size:17px">Headline 44</p></div><div style="flex:1;border:1px solid #D9D9D9;padding:7px"><p class="display" style="font-size:12px">Headline 34</p></div></div></div>
+
+  <div class="card att"><div class="chead"><span class="cid">L-23</span><span class="chip">focus</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
+  <p class="ctext">Focus ring = 2px red outline, offset 2, on white; on red fills switch to white inner + ink outer ring.</p>
+  <div class="cex" style="display:flex;gap:14px;align-items:center"><button class="btn b-out" style="outline:2px solid #E3120B;outline-offset:2px">Focused on white</button><button class="btn b-red" style="outline:2px solid #fff;box-shadow:0 0 0 4px #1A1A1A inset, inset 0 0 0 100px transparent">Focused on red</button></div></div>
+
+  <div class="card"><div class="chead"><span class="cid">L-24</span><span class="chip">prohibitions</span><span class="chip st">INFERRED</span></div>
+  <p class="ctext">Never: rounded corners · soft shadows · pills · decorative colour · red as reading background · invented hues · emoji · exclamation marks.</p>
+  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>pill button with drop shadow</s></span><span>✓ <button class="btn b-red" style="padding:7px 12px;font-size:11.5px">flat rectangle</button></span></div></div>
+
+  </div>
+</section>
+
+</body>
+</html>
