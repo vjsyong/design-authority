@@ -326,6 +326,28 @@ html[data-theme="dark"] .field select { background-image: url("data:image/svg+xm
 .actions-row { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; align-items: center; }
 
 /* ---------- marks (provenance toggle) ---------- */
+.cbrow { padding: 11px 0; border-bottom: 1px solid var(--line); max-width: 420px; }
+.cbrow label { font: 500 14px/1.4 var(--sans); cursor: pointer; }
+.cbrow .cb { top: 0; }
+
+/* mark picker (photo-upload adaptation) */
+.markpicker { display: flex; gap: 8px; flex-wrap: wrap; }
+.markbtn { width: 44px; height: 40px; border: 2px solid var(--line); border-radius: var(--r); background: none; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; padding: 8px 0 9px; transition: var(--t); }
+.markbtn:hover { background: var(--wash); }
+.markbtn.on { border-color: var(--blue); }
+.markbtn .glyph { gap: 2px; }
+.markbtn .glyph i { background: var(--ink); }
+.markbtn .glyph i.hollow { background: none; }
+
+/* heat legend (generic) */
+.legend { display: flex; align-items: center; gap: 6px; margin-top: 12px; }
+.legend .meta { margin: 0; }
+.legend i { width: 16px; height: 16px; }
+.legend i.lv1 { background: var(--wash); border: 1px solid var(--line); }
+.legend i.lv2 { background: var(--line); }
+.legend i.lv3 { background: var(--mute); }
+.legend i.lv4 { background: var(--ink); }
+
 .marks-btn {
   position: fixed; right: 14px; bottom: 14px; z-index: 140;
   width: 36px; height: 36px; border: 2px solid var(--ink); border-radius: var(--r);

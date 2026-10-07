@@ -149,7 +149,6 @@ function renderToday() {
 
   $('#today-empty').hidden = t !== 0;
   list.hidden = t === 0;
-  $$('.list-head').forEach(el => { });
   buildMarks();
 }
 
@@ -299,8 +298,8 @@ function renderHeat() {
   ['28', '29', '30'].forEach(d => { html += `<div class="hc out">${d}</div>`; });
   for (let d = 1; d <= 31; d++) {
     const v = HEAT[d];
-    if (v === undefined) { html += `<div class="hc">${d}</div>`; continue; }
-    const cls = v === 0 ? '' : v < 15 ? ' l1' : v < 30 ? ' l2' : ' l3';
+    if (v === undefined || v === 0) { html += `<div class="hc">${d}</div>`; continue; }
+    const cls = v < 15 ? ' l1' : v < 30 ? ' l2' : ' l3';
     html += `<div class="hc has${cls}" title="${d} Oct — ${v} min">${d}</div>`;
   }
   heat.innerHTML = html;

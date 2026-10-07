@@ -786,6 +786,8 @@ PROP_CSS = DEMO_CSS + RENDER_CSS + """
 .fbar{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
 .fbar button{font:600 12px system-ui;padding:6px 12px;border:1.5px solid #141414;border-radius:999px;background:#fff;cursor:pointer}
 .fbar button.sel{background:#141414;color:#fff}
+.rec{border:1px solid #e4e4e4;border-radius:8px;padding:10px 12px;margin:8px 0}
+.chip.cl-p{background:#087830;color:#fff}.chip.cl-f{background:#2E45B8;color:#fff}.chip.cl-n{background:#666;color:#fff}
 """
 
 PROV_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -804,6 +806,9 @@ compiled into the pack (versioned) with goldens + the stress sweep re-run.</p>
 <button data-f="rejected" onclick="filt(this)">Rejected</button>
 <button data-f="needs-info" onclick="filt(this)">Needs info</button>
 </div>
+<details id="record"><summary style="cursor:pointer;font:600 13.5px system-ui;padding:10px 0">
+The adjudicator's record — all __TOTAL__ dispositions · __REC_SUM__ <span style="color:#2E45B8">(tap to audit every call, including the declines)</span></summary>
+<div id="recbody">__RECORD__</div></details>
 <div id="list">__CARDS__</div>
 </div>
 <script>
@@ -872,7 +877,35 @@ document.addEventListener('DOMContentLoaded', function(){
 </body></html>"""
 
 
-def _prop_card(entry):
+def load_adjudication():
+    p = os.path.join(SYN, "data", "adjudication.json")
+    if os.path.exists(p):
+        with open(p) as fh:
+            return json.load(fh)
+    return []
+
+
+def _rec_row(r):
+    ccls = {"PROPOSAL": "cl-p", "LEXICON-FIX": "cl-f", "SCOPE-FIX": "cl-f",
+            "NO-ACTION": "cl-n", "INVALID": "cl-n"}.get(r["class"], "cl-n")
+    if r.get("prop_id"):
+        oc = ("<a class='back' href='#pc-%s'>promoted &rarr; %s</a>"
+              % (r["prop_id"].replace("/", "-"), _esc(r.get("entry") or "")))
+    elif r.get("outcome") == "fix-applied":
+        oc = "<span style='color:#087830;font-weight:700'>fix applied &check; (verified)</span>"
+    elif r.get("outcome") == "declined":
+        oc = "<span style='color:#666;font-weight:600'>declined &mdash; policy, not canon</span>"
+    else:
+        oc = _esc(r.get("outcome"))
+    return ("<div class='rec'><span class='chip src'>%s</span> <span class='mono'>%s</span> "
+            "<span class='chip %s'>%s</span> <b style='font-size:12.5px'>%s</b>"
+            "<p class='dim' style='margin:5px 0 0'>%s</p>"
+            "<p class='sts' style='margin-top:4px'>%s</p></div>"
+            % (_esc(r["src"]), _esc(r["suffix"]), ccls, _esc(r["class"]),
+               _esc(r["need"]), _esc(r["rationale"]), oc))
+
+
+def _prop_card(entry, adj=None):
     ws, src, p = entry["ws"], entry["src"], entry["prop"]
     gap = entry.get("gap") or {}
     st = p.get("status") or "candidate"
@@ -885,6 +918,10 @@ def _prop_card(entry):
     if gap.get("need"):
         h.append("<p class='dim'>from gap: %s — %s</p>"
                  % (_esc((p.get("gap_id") or "").split("/")[-1]), _esc(gap["need"])))
+    if adj and adj.get("rationale"):
+        h.append("<p class='secl'>Adjudicator's rationale</p><p class='main'>%s</p>" % _esc(adj["rationale"]))
+        if adj.get("evidence"):
+            h.append("<p class='dim'>re-verified: %s</p>" % _esc(adj["evidence"]))
     for label, key in (("Problem", "problem"), ("Insufficiency", "insufficiency"),
                        ("Reuse case", "reuse_case"), ("Composition check", "composition_check")):
         if p.get(key):
@@ -986,9 +1023,25 @@ def load_proposals():
 @app.route("/proposals")
 def proposals_page():
     entries = load_proposals()
-    cards = "".join(_prop_card(e) for e in entries)
+    adj = load_adjudication()
+    adj_by_key = {(r["src"], r["suffix"]): r for r in adj}
+    cards = "".join(_prop_card(e, adj_by_key.get((e["src"], (e["prop"].get("gap_id") or "").split("/")[-1].split("-")[-1]))) for e in entries)
+    rec = []
+    for srcc in ("wink", "leader", "dominion"):
+        rows = [r for r in adj if r["src"] == srcc]
+        if not rows:
+            continue
+        rec.append("<h3 style='margin:16px 0 6px;font-size:14px'>%s — %d dispositions</h3>" % (srcc, len(rows)))
+        rec.extend(_rec_row(r) for r in rows)
+    rec_html = "".join(rec)
+    n_p = sum(1 for r in adj if r["class"] == "PROPOSAL")
+    n_f = sum(1 for r in adj if r["class"] in ("LEXICON-FIX", "SCOPE-FIX"))
+    n_n = sum(1 for r in adj if r["class"] == "NO-ACTION")
     page = (PROV_PAGE.replace("__CSS__", PROP_CSS)
             .replace("__N__", str(len(entries)))
+            .replace("__TOTAL__", str(len(adj)))
+            .replace("__RECORD__", rec_html)
+            .replace("__REC_SUM__", "%d promoted · %d fixes applied · %d declined" % (n_p, n_f, n_n))
             .replace("__CARDS__", cards))
     return page
 

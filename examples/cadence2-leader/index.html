@@ -33,6 +33,7 @@
     </div>
     <div class="notice-slot" id="slot-today"></div>
 
+    <div id="todayMain">
     <div class="hero">
       <div class="ringbox" data-improvised="radial meter adaptation (L-16 colours; no canonical circle form)">
         <svg width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Today 60 percent complete" id="ringSvg">
@@ -67,6 +68,8 @@
     <div class="actions-row">
       <button class="btn b-navy" id="openLog">Log a ritual</button>
     </div>
+    </div><!-- /todayMain -->
+    <div id="todayEmpty" hidden></div>
     <div id="panelHost"></div>
   </section>
 
@@ -90,12 +93,9 @@
       <p class="lab">October</p>
       <p class="meta" style="margin-top:4px">Shaded by minutes logged.</p>
       <div class="heat" id="heatmap" data-improvised="heat grid: London ramp steps"></div>
-      <div class="legend heat-legend">
+      <div class="legend">
         <span class="meta">Less</span>
-        <i class="lv1" style="width:16px;height:16px;display:inline-block;background:#F2F2F2;border:1px solid #D9D9D9"></i>
-        <i style="width:16px;height:16px;display:inline-block;background:#D9D9D9"></i>
-        <i style="width:16px;height:16px;display:inline-block;background:#666666"></i>
-        <i style="width:16px;height:16px;display:inline-block;background:#1A1A1A"></i>
+        <i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i>
         <span class="meta">More</span>
       </div>
     </div>
@@ -193,10 +193,9 @@
 
       <div class="sblock">
         <h3>Reminders</h3>
-        <label class="sw" style="max-width:420px">
-          <span class="sw-lab"><input type="checkbox" class="cb" id="remAm" checked data-improvised="fallback/platform-controls: native checkbox, field skin"> Morning reminder</span>
-          <span></span>
-        </label>
+        <div class="cbrow">
+          <label><input type="checkbox" class="cb" id="remAm" checked data-improvised="fallback/platform-controls: native checkbox, field skin"> Morning reminder</label>
+        </div>
         <label class="sw" style="max-width:420px">
           <span class="sw-lab">Evening reminder</span>
           <input type="checkbox" id="remPm" data-improvised="fallback/platform-controls: native checkbox, switch skin">
