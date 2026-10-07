@@ -24,8 +24,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .cex { background:#fafafa; border:1px dashed #e2e2e2; border-radius:6px; padding:14px; }
 /* leader system styles */
 .l { font-family:'Inter', sans-serif; color:var(--ink); }
-.l .btn { font-family:'Inter'; font-size:13.5px; font-weight:500; border:none; padding:10px 18px; }
+.l .btn { font-family:'Inter'; font-size:13.5px; font-weight:500; border:none; padding:10px 18px; border-radius:8px; }
 .l .b-red { background:var(--red); color:#fff; } .l .b-out { background:#fff; box-shadow: inset 0 0 0 2px var(--ink); }
+.l .b-navy { background:#2E45B8; color:#fff; }
 .l .b-txt { background:none; text-decoration:underline; padding:10px 4px; }
 .l .serif { font-family:'Gelasio', serif; }
 .l .display { font-family:'Gelasio'; font-size:34px; line-height:1.12; font-weight:700; }
@@ -35,7 +36,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .l .tag2 { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border:2px solid var(--ink); }
 .l .tag2.red { background:var(--red); border-color:var(--red); color:#fff; }
 .l .field label { display:block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--l40); margin-bottom:5px; font-family:'Inter'; }
-.l .field input { font-family:'Gelasio'; font-size:15px; width:100%; padding:9px 11px; border:2px solid var(--ink); background:#fff; }
+.l .field input { font-family:'Gelasio'; font-size:15px; width:100%; padding:9px 11px; border:2px solid var(--ink); background:#fff; border-radius:8px; }
 .l .field input.focus { outline:1px solid var(--ink); outline-offset:2px; }
 .l .field .err { font-family:'Gelasio'; font-size:12.5px; color:var(--red); margin-top:5px; }
 .l .notice { border-top:2px solid var(--ink); background:var(--l95); padding:12px 14px; font-size:13px; }
@@ -54,7 +55,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .l .sw i { display:block; height:34px; margin-bottom:4px; }
 .l .navbar { background:#fff; border-bottom:2px solid var(--ink); padding:11px 15px; display:flex; gap:16px; align-items:center; font-size:12.5px; }
 .l .navbar .name { font-family:'Gelasio'; font-weight:700; font-size:15px; margin-right:6px; }
-.l .navbar .on { border-bottom:2px solid var(--red); padding-bottom:2px; }
+.l .navbar .on { border-bottom:2px solid #2E45B8; padding-bottom:2px; }
 </style>
 </head>
 <body class="l">
@@ -64,13 +65,13 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p>Every semantic decision, rendered as it would appear if accepted. Dark left edge = your call; the rest are settled from evidence. Part 1: L-01 … L-12.</p></div>
   <div class="grid">
 
-  <div class="card att"><div class="chead"><span class="cid">L-01</span><span class="chip">actions</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Primary = solid red rectangle, white label; secondary = 2px ink outline; tertiary = underlined text link.</p>
-  <div class="cex"><button class="btn b-red">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read the full entry</button></div></div>
+  <div class="card att rev"><div class="chead"><span class="cid">L-01</span><span class="chip">actions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Primary = solid navy-blue rounded rectangle (live-observed: deep navy CTA, soft radius ~8); secondary = 2px ink outline; tertiary = underlined text link. Red steps back to brand/attention duty.</p>
+  <div class="cex"><button class="btn b-navy">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read the full entry</button></div></div>
 
-  <div class="card"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span></div>
-  <p class="ctext">Zero radius everywhere; rectangles, rules and glyph marks are the only shapes.</p>
-  <div class="cex"><span style="display:inline-block;background:#1A1A1A;color:#fff;padding:9px 16px;font-size:12.5px">Rectangle</span> <span style="display:inline-block;border:2px solid #1A1A1A;padding:7px 14px;font-size:12.5px">Outline</span> <span style="display:inline-block;background:#E3120B;color:#fff;padding:9px 16px;font-size:12.5px">Red</span> <span class="meta" style="margin-left:10px">radius: none, ever</span></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Soft rounded corners on interactive components (radius ~8px; the live product is NOT square-only); rectangles, rules and glyph marks remain the brand geometry for editorial surfaces.</p>
+  <div class="cex"><span style="display:inline-block;background:#2E45B8;color:#fff;padding:9px 16px;font-size:12.5px;border-radius:8px">Rounded action</span> <span style="display:inline-block;border:2px solid #1A1A1A;padding:7px 14px;font-size:12.5px">Rectilinear mark</span> <span style="display:inline-block;background:#E3120B;color:#fff;padding:9px 16px;font-size:12.5px">Red accent block</span> <span class="meta" style="margin-left:10px">radius: interactive 8 · editorial marks stay crisp</span></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-03</span><span class="chip">events</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
   <p class="ctext">Near-instant interaction transitions (≤0.15s colour swaps); no spring, bounce or decorative motion in UI chrome.</p>
@@ -84,13 +85,13 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Screen rhythm: headline 30–34/1.15 · standfirst 16–17 muted · body 17/1.55 · metadata 12.5–13 with caps labels · display 44 tight.</p>
   <div class="cex"><p class="display" style="font-size:28px">Headline at 28 here</p><p class="stand">One-line standfirst, muted serif.</p><p class="body" style="margin-top:6px">Body serif 15 at sheet scale (17 at full scale).</p></div></div>
 
-  <div class="card"><div class="chead"><span class="cid">L-06</span><span class="chip">colour</span><span class="chip st">OBSERVED</span></div>
-  <p class="ctext">Red #E3120B is punctuation (labels, rules, single blocks, primary controls); everything else is ink, white, or the London grey ramp.</p>
-  <div class="cex"><div class="swrow"><div class="sw"><i style="background:#E3120B"></i>Red · accent</div><div class="sw"><i style="background:#F6423C"></i>Red 60</div><div class="sw"><i style="background:#FEE7E7"></i>Red 95</div><div class="sw"><i style="background:#1A1A1A"></i>London 10</div><div class="sw"><i style="background:#D9D9D9"></i>London 85</div><div class="sw"><i style="background:#F2F2F2"></i>London 95</div></div></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-06</span><span class="chip">colour</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Red #E3120B = brand/editorial punctuation (labels, rules, single blocks). The Chicago blue family = the interactive layer (CTAs, active nav, links) — copious, per live review. Frame: ink, white, London grey ramp.</p>
+  <div class="cex"><div class="swrow"><div class="sw"><i style="background:#E3120B"></i>Economist Red</div><div class="sw"><i style="background:#2E45B8"></i>Chicago 45 · action</div><div class="sw"><i style="background:#141F52"></i>Chicago 10</div><div class="sw"><i style="background:#1A1A1A"></i>London 10</div><div class="sw"><i style="background:#D9D9D9"></i>London 85</div><div class="sw"><i style="background:#F2F2F2"></i>London 95</div></div></div></div>
 
-  <div class="card"><div class="chead"><span class="cid">L-07</span><span class="chip">surfaces</span><span class="chip st">INFERRED</span></div>
-  <p class="ctext">White ground; separation via 2px ink rules, hairlines, and tinted canvas washes. No shadows, no elevation, no soft chrome.</p>
-  <div class="cex"><div style="border-top:2px solid #1A1A1A;padding-top:10px;font-size:12.5px">Ruled separation</div><div style="border-bottom:1px solid #D9D9D9;padding:10px 0;font-size:12.5px">Hairline below</div><div style="background:#F2F2F2;padding:10px;font-size:12.5px">Wash separation</div></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-07</span><span class="chip">surfaces</span><span class="chip st">INFERRED</span><span class="chip rev">v2 · your modify applied</span></div>
+  <p class="ctext">White ground; separation via 2px ink rules and hairlines below. Wash separation removed per review. (Elevation, where a marber-style overlay needs it, uses defined shadow tokens — not ambient glows.)</p>
+  <div class="cex"><div style="border-top:2px solid #1A1A1A;padding-top:10px;font-size:12.5px">Ruled separation ✓</div><div style="border-bottom:1px solid #D9D9D9;padding:10px 0;font-size:12.5px">Hairline below ✓</div><div style="padding:10px;font-size:12.5px;color:#999;text-decoration:line-through">Wash separation — removed</div></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-08</span><span class="chip">motifs</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
   <p class="ctext">Red thread = hairline red rule device (connective, never a content border). Rhythm glyphs = small black squares of graded size.</p>
@@ -100,12 +101,12 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Section label (sans caps, red) → serif headline → one-line muted standfirst. Repeats strictly; no decorative sub-heads.</p>
   <div class="cex"><p style="font-size:10px;letter-spacing:.1em;font-weight:700;color:#E3120B">ASIA</p><p class="display" style="font-size:22px;margin-top:4px">A deeply unfashionable idea is quietly winning</p><p class="stand">Policymakers are learning to love industrial policy again.</p></div></div>
 
-  <div class="card att"><div class="chead"><span class="cid">L-10</span><span class="chip">navigation</span><span class="chip st">INFERRED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = red underline; crisp search rectangle with typing-cursor motif right.</p>
+  <div class="card att rev"><div class="chead"><span class="cid">L-10</span><span class="chip">navigation</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = blue underline (Chicago 45) per review; crisp search rectangle with typing-cursor motif right.</p>
   <div class="cex"><div class="navbar"><span class="name">The Register</span><span class="on">Items</span><span>Activity</span><span class="cursorbox" style="margin-left:auto">Search<span class="cur"></span></span></div></div></div>
 
-  <div class="card att"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Fields: white, 2px ink border, square; label above in caps; focus = border + 1px offset outer line; error = small red serif under the field.</p>
+  <div class="card att rev"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip rev">v2 · applied per review</span></div>
+  <p class="ctext">Fields: white, 2px ink border, soft radius 8, serif field text (reviewer-directed); label above in caps; focus = offset outline; error = small red serif under the field.</p>
   <div class="cex"><div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="err">That name isn’t on the member list.</p></div></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-12</span><span class="chip">selection</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
@@ -164,9 +165,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Focus ring = 2px red outline, offset 2, on white; on red fills switch to white inner + ink outer ring.</p>
   <div class="cex" style="display:flex;gap:14px;align-items:center"><button class="btn b-out" style="outline:2px solid #E3120B;outline-offset:2px">Focused on white</button><button class="btn b-red" style="outline:2px solid #fff;box-shadow:0 0 0 4px #1A1A1A inset, inset 0 0 0 100px transparent">Focused on red</button></div></div>
 
-  <div class="card"><div class="chead"><span class="cid">L-24</span><span class="chip">prohibitions</span><span class="chip st">INFERRED</span></div>
-  <p class="ctext">Never: rounded corners · soft shadows · pills · decorative colour · red as reading background · invented hues · emoji · exclamation marks.</p>
-  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>pill button with drop shadow</s></span><span>✓ <button class="btn b-red" style="padding:7px 12px;font-size:11.5px">flat rectangle</button></span></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-24</span><span class="chip">prohibitions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · rewrite per review</span></div>
+  <p class="ctext">Never: decorating with colour outside the defined families · red as a reading background · invented hues · emoji · exclamation marks · ambient glow shadows. (Rounded interactives and defined shadow tokens are permitted — per live review.)</p>
+  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>soft-glow pill with invented teal</s></span><span>✓ <button class="btn b-navy" style="padding:7px 12px;font-size:11.5px">rounded action</button></span><span>✓ <span class="tag2 red" style="padding:3px 7px;font-size:9.5px">red stays attention-only</span></span></div></div>
 
   </div>
 </section>

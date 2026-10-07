@@ -22,8 +22,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .cex { background:#fafafa; border:1px dashed #e2e2e2; border-radius:6px; padding:14px; }
 /* dominion styles */
 .d { font-family:'Arimo','Helvetica',sans-serif; color:#000; }
-.d .btn { font-size:13.5px; border:none; padding:10px 18px; }
+.d .btn { font-size:13.5px; border:none; padding:10px 18px; border-radius:4px; }
 .d .b-red { background:var(--red); color:#fff; } .d .b-out { background:#fff; box-shadow: inset 0 0 0 2px #000; }
+.d .b-slate { background:#26374A; color:#fff; }
 .d .b-txt { background:none; text-decoration:underline; padding:10px 4px; }
 .d .bil { font-size:21px; display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
 .d .bil .div { width:1px; height:22px; background:#000; }
@@ -33,8 +34,8 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .d .st-a { border:1px solid #000; } .d .st-b { background:var(--band); border:1px solid var(--line); }
 .d .st-c { border-left:4px solid #000; background:var(--band); font-weight:700; }
 .d .field label { display:block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:#555; margin-bottom:5px; }
-.d .field input { font-family:'Arimo'; font-size:15px; width:100%; padding:9px 11px; border:1.5px solid #000; }
-.d .field input.focus { border-width:2px; outline:1px solid #000; outline-offset:2px; }
+.d .field input { font-family:'Arimo'; font-size:15px; width:100%; padding:9px 11px; border:1px solid #E0E0E0; border-radius:4px; }
+.d .field input.focus { outline:1px solid #66AFE9; box-shadow: inset 0 0 1px 0 #000, 0 0 8px 0 rgba(102,175,233,.6); }
 .d .notice { border-top:2px solid #000; background:var(--band); padding:12px 14px; font-size:13px; }
 .d .meter { height:13px; background:var(--band); border:1px solid var(--line); } .d .meter i { display:block; height:100%; width:70%; background:#000; }
 .d .ledger { width:100%; border-collapse:collapse; font-size:13px; }
@@ -58,9 +59,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p>Every semantic decision, rendered as it would appear if accepted. Dark left edge = your call; the rest are settled from evidence. Part 1: D-01 … D-11.</p></div>
   <div class="grid">
 
-  <div class="card att"><div class="chead"><span class="cid">D-01</span><span class="chip">actions</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Primary = solid FIP-red square, white label; secondary = 2px black outline; tertiary = underlined text. One primary per view.</p>
-  <div class="cex"><button class="btn b-red">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read details</button></div></div>
+  <div class="card att rev"><div class="chead"><span class="cid">D-01</span><span class="chip">actions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Primary = solid slate button (#26374A, 4px radius — live-measured on Canada.ca), white label; secondary = 2px slate outline; tertiary = underlined link. One primary per view. Red stays ceremonial, out of action roles.</p>
+  <div class="cex"><button class="btn b-slate">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read details</button></div></div>
 
   <div class="card"><div class="chead"><span class="cid">D-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span></div>
   <p class="ctext">Zero radius anywhere; no shadows; structure via 2px black rules and 1px pewter hairlines.</p>
@@ -98,8 +99,8 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Status = words, never colour: plain label (available), grey band (on loan), 2px black left rule + bold (overdue). Structure carries emphasis.</p>
   <div class="cex"><span class="st st-a">Available</span> <span class="st st-b">On loan — S. Ho</span> <span class="st st-c">Overdue — due back 3 days ago</span></div></div>
 
-  <div class="card att"><div class="chead"><span class="cid">D-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Fields: square, 1.5px black border, label above (medium caps); focus = border thickens + 1px offset outer line; error = left rule + plain sentence under.</p>
+  <div class="card att rev"><div class="chead"><span class="cid">D-11</span><span class="chip">forms</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · measured on live</span></div>
+  <p class="ctext">Fields: soft border (1px #E0E0E0), soft radius 4; label above (medium caps); focus = blue glow (1px #66AFE9 outline + 8px rgba(102,175,233,.6) halo — live-measured); error = left rule + plain sentence under.</p>
   <div class="cex"><div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p style="font-size:12px;color:#333;margin-top:6px;border-left:2px solid #000;padding-left:8px">That name isn’t on the member list. Check the spelling, or add the member first.</p></div></div></div>
 
   </div>
@@ -118,9 +119,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Notices = ruled boxes (2px black top rule, grey ground), plain sentences: what happened + what happens next. No toasts.</p>
   <div class="cex"><div class="notice">Two loans are due this week. The borrowers have been contacted. Nothing needs your attention yet.</div></div></div>
 
-  <div class="card att"><div class="chead"><span class="cid">D-14</span><span class="chip">destructive</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Destructive confirm in a square dialog: 2px black frame, consequence sentence, confirm = solid black square with the verb; never pre-focused.</p>
-  <div class="cex" style="background:rgba(0,0,0,.55);padding:16px"><div class="dialog"><b style="font-size:15px;font-weight:500">Retire “Cordless drill 18V”?</b><p style="font-size:12px;margin:6px 0 12px;color:#333">It will be removed from the register and cannot be restored. Loan records remain intact.</p><button class="btn b-out" style="background:#000;color:#fff;box-shadow:none">Retire item</button> <button class="btn b-out">Cancel</button></div></div></div>
+  <div class="card att rev"><div class="chead"><span class="cid">D-14</span><span class="chip">destructive</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
+  <p class="ctext">Destructive confirm in a dialog: consequence sentence, confirm = solid slate rounded button with the verb (live-measured grey/slate, 4px); never pre-focused.</p>
+  <div class="cex" style="background:rgba(0,0,0,.55);padding:16px"><div class="dialog"><b style="font-size:15px;font-weight:500">Retire “Cordless drill 18V”?</b><p style="font-size:12px;margin:6px 0 12px;color:#333">It will be removed from the register and cannot be restored. Loan records remain intact.</p><button class="btn b-slate">Retire item</button> <button class="btn b-out">Cancel</button></div></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">D-15</span><span class="chip">progress</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
   <p class="ctext">Meter = square track (#F4F4F4 + hairline) with black fill and plain readout; restart = outline square. Motion stays gated.</p>
@@ -146,13 +147,13 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Bilingual side-by-side collapses to over-under (the observed fallback rule); nav collapses to a plain row; scaling stays quiet.</p>
   <div class="cex" style="display:flex;gap:10px;align-items:flex-end"><div style="flex:2;border:1px solid #C9C9C9;padding:9px"><div class="bil" style="font-size:15px"><span>Tool register</span><span class="div" style="height:16px"></span><span>Registre des outils</span></div></div><div style="flex:1;border:1px solid #C9C9C9;padding:7px"><div class="bilstack" style="font-size:13px"><span>Tool register</span><span>Registre des outils</span></div></div></div></div>
 
-  <div class="card att"><div class="chead"><span class="cid">D-21</span><span class="chip">focus</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
-  <p class="ctext">Focus = 2px black outer ring, offset 2 (visible on any ground); colour is never used for focus.</p>
-  <div class="cex"><button class="btn b-out" style="outline:2px solid #000;outline-offset:2px">Focused control</button> <span style="font-size:11.5px;color:#555">same ring on white, grey, or red — colour-free</span></div></div>
+  <div class="card att rev"><div class="chead"><span class="cid">D-21</span><span class="chip">focus</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · measured on live</span></div>
+  <p class="ctext">Focus DOES change colour: blue glow — 1px #66AFE9 outline + 8px rgba(102,175,233,.6) halo (live-measured on Canada.ca). It reads on any ground; no other state uses this glow.</p>
+  <div class="cex" style="display:flex;gap:14px;align-items:center"><button class="btn b-out" style="outline:1px solid #66AFE9;box-shadow:0 0 8px 0 rgba(102,175,233,.6)">Focused control</button> <input value="S. Ho" style="padding:8px 11px;border:1px solid #E0E0E0;border-radius:4px;outline:1px solid #66AFE9;box-shadow:inset 0 0 1px 0 #000, 0 0 8px 0 rgba(102,175,233,.6);font-family:'Arimo';font-size:13px;width:120px"></div></div>
 
-  <div class="card"><div class="chead"><span class="cid">D-22</span><span class="chip">prohibitions</span><span class="chip st">INFERRED</span></div>
-  <p class="ctext">Never: corner radii · shadows · decorative colour · red for status/errors · imagery · pictograms · slogan headings · Crown marks reproduced.</p>
-  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>rounded red status pill</s></span><span>✓ <span class="st st-c" style="padding:4px 9px;font-size:11.5px">Overdue</span> words + structure</span></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">D-22</span><span class="chip">prohibitions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · rewrite per review</span></div>
+  <p class="ctext">Never: decorative colour outside the FIP families · red for status/errors · elevation shadows · imagery · pictograms · slogan headings · Crown marks reproduced. (Soft radii and the blue focus glow belong to the live web layer — permitted.)</p>
+  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>rounded red status pill</s></span><span>✓ <span class="st st-c" style="padding:4px 9px;font-size:11.5px">Overdue</span> words + structure</span><span>✓ <button class="btn b-slate" style="padding:5px 11px;font-size:11.5px">slate action</button></span></div></div>
 
   </div>
 </section>
