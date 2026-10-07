@@ -154,4 +154,14 @@ Web fetch/search is disabled for every condition equally. Residual risk:
 `~/.local/share/opencode` stays shared for auth/session storage; agents cannot
 see other sessions from within a run.
 
+**D-2 · 2026-10-07 — `.bench/materials.json` leaked experiment context into
+workspaces; removed.** During the pilot, run a1 read its workspace's
+`.bench/materials.json`, which contained the condition label, the starter path
+and the snapshot path (`/home/xrim/triage-design-system-demo`). The sandbox
+blocked any access, and the agent made no escape attempts, but the file is a
+hint agents must not receive. Fix: the materials manifest is now written to
+`benchmark/runs/<id>/materials.json` (run dir) and never into the workspace;
+pilot runs that already saw it are pilot-only (`b1`/`c1` rerun if they started
+pre-fix).
+
 *(next deviations appended below)*

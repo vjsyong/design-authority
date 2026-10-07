@@ -85,9 +85,6 @@ def build(condition, dest):
     manifest["starter_commit"] = starter_sha
     for rel in ("app.py", "templates/base.html", "static/app.css"):
         manifest["files"][rel] = sha256(os.path.join(dest, rel))
-    os.makedirs(os.path.join(dest, ".bench"), exist_ok=True)
-    with open(os.path.join(dest, ".bench", "materials.json"), "w") as fh:
-        json.dump(manifest, fh, indent=1)
     return manifest
 
 

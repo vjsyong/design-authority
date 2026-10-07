@@ -223,6 +223,8 @@ def main(argv=None):
 
     manifest = build(args.condition, ws)
     run["materials"] = {"starter_commit": manifest["starter_commit"]}
+    with open(os.path.join(run_dir, "materials.json"), "w") as fh:
+        json.dump(manifest, fh, indent=1)
 
     if args.prompt_file:
         with open(args.prompt_file) as fh:
