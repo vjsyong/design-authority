@@ -116,3 +116,20 @@ the layer error in v1/v2: I gated the wrong layer.
 - G1 log (skill reads only, no writes): `~/.hermes/cache/delegation/live/deleg_aa7c81b8/task-0.log`
 - Config: `~/.hermes/config.yaml` (`curator:` enabled; `skills.creation_nudge_interval`)
 - Prior: `06-leak-audit.md`, `07-orbit-v2.md`
+
+## Addendum — G1 adversarial result (Orbit v2), 10:15
+
+G1 returned **PASS-WITH-FIXES** (zero structural twins — verified by live-DOM
+computed styles + pixel sampling; eight WEAK residuals; ~75–80% confidence
+the gate would pass after three fixes). Crucially, it **independently flagged
+two of the reviewer's three named axes** — the 5px square marker (= the
+incumbent dot+label device) and the high-contrast black plates (= the
+incumbent's primary paint) — but graded them *fixable WEAK residuals* while
+the reviewer failed the same artifact instantly on gestalt. Lesson, now a
+hard rule in the skill: **anatomy gates under-weight gestalt; the reviewer's
+named axes are hard-fail criteria in any internal gate, and gestalt is
+settled before anatomy work.** Full verdict + 44 KB trace:
+`data/g1-orbit-v2-verdict.md`, `data/g1-orbit-v2-transcript.log`.
+(Its render-fidelity notes — font substitution in the old mocks; scrim
+covering only the content column — are moot for the retired NASA line and
+carried into the v3 renderer checklist.)
