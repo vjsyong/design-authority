@@ -34,7 +34,7 @@ figcaption{font-size:12px;color:#666}
 <h1>Procura review gallery — builds</h1>
 <p>Each build is labelled with a code only. Review each build independently and
 fill in <code>questionnaire.md</code> per code. Do not try to guess conditions.</p>
-{body}
+__DA_BODY__
 """
 
 QUESTIONNAIRE = """# Procura blind review — questionnaire
@@ -59,12 +59,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "runs"))
     ap.add_argument("--out", default="/tmp/da-gallery")
+    ap.add_argument("--include", default=None,
+                    help="comma-separated run ids to include (default: all)")
     ap.add_argument("--seed", type=int, default=7)
     args = ap.parse_args()
 
     rng = random.Random(args.seed)
+    include = set(args.include.split(",")) if args.include else None
     runs = []
     for name in sorted(os.listdir(args.runs)):
+        if include and name not in include:
+            continue
         cap = os.path.join(args.runs, name, "capture", "screens")
         if os.path.isdir(cap):
             runs.append((name, cap))
@@ -101,7 +106,7 @@ def main():
                         % (code, "".join(figs)))
 
     with open(os.path.join(args.out, "index.html"), "w") as fh:
-        fh.write(INDEX_HTML.format(body="\n".join(sections)))
+        fh.write(INDEX_HTML.replace("__DA_BODY__", "\n".join(sections)))
     with open(os.path.join(args.out, "questionnaire.md"), "w") as fh:
         fh.write(QUESTIONNAIRE.format(
             codes="\n".join("## Build %s\n- Consistency:\n- Coherence:\n- Mistakes:\n"

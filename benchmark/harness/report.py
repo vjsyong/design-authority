@@ -19,9 +19,11 @@ def load(path):
     return None
 
 
-def collect(runs_dir):
+def collect(runs_dir, include=None):
     rows = []
     for name in sorted(os.listdir(runs_dir)):
+        if include and name not in include:
+            continue
         rdir = os.path.join(runs_dir, name)
         run = load(os.path.join(rdir, "run.json"))
         if not run:
@@ -182,9 +184,12 @@ def render(rows):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", default=DEFAULT_RUNS)
+    ap.add_argument("--include", default=None,
+                    help="comma-separated run ids to include (default: all)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args(argv)
-    rows = collect(args.runs)
+    include = set(args.include.split(",")) if args.include else None
+    rows = collect(args.runs, include)
     text = render(rows)
     if args.out:
         with open(args.out, "w") as fh:
