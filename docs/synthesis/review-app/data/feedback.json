@@ -1,1 +1,292 @@
-{}
+{
+ "L-01": {
+  "images": [
+   "uploads/L-01/1791379867_Screenshot_2026-10-07_213101.png"
+  ],
+  "verdict": "reject",
+  "comment": "The buttons are rounded rectangles in blue",
+  "updated": "2026-10-07 13:31:15"
+ },
+ "L-02": {
+  "images": [
+   "uploads/L-02/1791379883_Screenshot_2026-10-07_213117.png"
+  ],
+  "verdict": "reject",
+  "comment": "That is incorrect. The economist uses rounded corners ",
+  "updated": "2026-10-07 13:31:38"
+ },
+ "L-03": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:31:50"
+ },
+ "L-04": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:31:55"
+ },
+ "L-05": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:32:19"
+ },
+ "L-06": {
+  "images": [
+   "uploads/L-06/1791379961_Screenshot_2026-10-07_213234.png"
+  ],
+  "verdict": "reject",
+  "comment": "That is incorrect. there is copious use of clue as a secondary colour",
+  "updated": "2026-10-07 13:33:11"
+ },
+ "L-07": {
+  "images": [],
+  "verdict": "modify",
+  "comment": "Yes to ruled seperation, hairline below but no to wash separation",
+  "updated": "2026-10-07 13:33:26"
+ },
+ "L-08": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:33:36"
+ },
+ "L-09": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:33:58"
+ },
+ "L-10": {
+  "images": [],
+  "verdict": "modify",
+  "comment": "The highlight line is blue not red",
+  "updated": "2026-10-07 13:34:41"
+ },
+ "L-11": {
+  "images": [
+   "uploads/L-11/1791380096_Screenshot_2026-10-07_213437.png"
+  ],
+  "verdict": "reject",
+  "comment": "That is incorrect. Rounded corners, serif font",
+  "updated": "2026-10-07 13:34:56"
+ },
+ "L-12": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:35:06"
+ },
+ "L-13": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:35:09"
+ },
+ "L-14": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:35:21"
+ },
+ "L-15": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:35:29"
+ },
+ "L-16": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:35:35"
+ },
+ "L-17": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:35:49"
+ },
+ "L-18": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:02"
+ },
+ "L-19": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:15"
+ },
+ "L-20": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:23"
+ },
+ "L-22": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:25"
+ },
+ "L-21": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:27"
+ },
+ "L-23": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:36:32"
+ },
+ "L-24": {
+  "images": [],
+  "verdict": "reject",
+  "comment": "That is incorrect. there are rounded corners",
+  "updated": "2026-10-07 13:36:49"
+ },
+ "D-01": {
+  "images": [
+   "uploads/D-01/1791380367_Screenshot_2026-10-07_213919.png"
+  ],
+  "verdict": "reject",
+  "comment": "That is incorrect. Rounded buttons in grey",
+  "updated": "2026-10-07 13:39:27"
+ },
+ "D-02": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:39:30"
+ },
+ "D-03": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:39:37"
+ },
+ "D-04": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:39:38"
+ },
+ "D-05": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:39:40"
+ },
+ "D-06": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:39:41"
+ },
+ "D-07": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:39:48"
+ },
+ "D-08": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:40:03"
+ },
+ "D-09": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:39:55"
+ },
+ "D-10": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:39:59"
+ },
+ "D-11": {
+  "images": [
+   "uploads/D-11/1791380419_Screenshot_2026-10-07_214012.png"
+  ],
+  "verdict": "reject",
+  "comment": "Has a blue glow and rounded corners, soft border",
+  "updated": "2026-10-07 13:41:51"
+ },
+ "D-12": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:40:38"
+ },
+ "D-13": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:40:41"
+ },
+ "D-15": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:40:42"
+ },
+ "D-14": {
+  "images": [],
+  "verdict": "reject",
+  "comment": "Rounded buttons, grey button",
+  "updated": "2026-10-07 13:41:02"
+ },
+ "D-16": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:41:02"
+ },
+ "D-17": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:41:04"
+ },
+ "D-18": {
+  "images": [],
+  "verdict": "undefined",
+  "comment": "",
+  "updated": "2026-10-07 13:41:05"
+ },
+ "D-19": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:41:08"
+ },
+ "D-20": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:41:14"
+ },
+ "D-21": {
+  "images": [
+   "uploads/D-21/1791380487_Screenshot_2026-10-07_214122.png"
+  ],
+  "verdict": "reject",
+  "comment": "Focus changes colour",
+  "updated": "2026-10-07 13:41:36"
+ },
+ "D-22": {
+  "images": [],
+  "verdict": "accept",
+  "comment": "",
+  "updated": "2026-10-07 13:41:36"
+ }
+}
