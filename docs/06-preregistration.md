@@ -286,4 +286,21 @@ wall-clock window. The partial sequential b3 (≈11 s in) was discarded and
 relaunched fresh in the batch. No run that completes (in either mode) is
 rerun; any timeout- or contention-marked run is flagged in the report.
 
+**D-6 · 2026-10-07 — two condition-C runs lost their opencode session to
+SIGTERM during late-stage verification; c2 rerun as c2b.** Symptoms:
+`c1-broken-pilot` and `c2` both ended with opencode exit -15 while the model
+was streaming the next step. Both sessions had recently exercised agent-driven
+local processes (flask servers via `pkill` cleanup patterns, own Playwright
+checks) and opencode's shell-timeout machinery (one command terminated for
+exceeding 120 s); no local killer is recorded (earlyoom inactive, journal and
+opencode logs clean — the log shows the LLM stream starting with no subsequent
+exit record). Both builds were complete enough for full measurement (all
+captures/scan/interact artifacts; c2: 13/13, 0 lint), so the residual risk is
+truncated final polish/reporting, not broken output. Policy: affected runs are
+flagged, kept as extra data, and **not** counted as production reps; c2 was
+rerun as `c2b` (fresh id — the production C set becomes c2b/c3/c4). All A/B
+runs so far completed with exit 0; both losses are C-only (n small, no
+mechanism found that would bias a delivered *build* rather than its
+completeness — reported per-run in the final report).
+
 *(next deviations appended below)*
