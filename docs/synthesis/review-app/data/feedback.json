@@ -297,23 +297,23 @@
  },
  "W-01": {
   "images": [],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "Yellow pill has black border",
-  "updated": "2026-10-07 13:46:06"
+  "updated": "2026-10-07 14:15:38"
  },
  "W-02": {
   "images": [],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "Yes to all buttons are pills, but leave labels stay 13/500 undefined",
-  "updated": "2026-10-07 13:46:28"
+  "updated": "2026-10-07 14:15:39"
  },
  "W-03": {
   "images": [
    "uploads/W-03/1791380801_Screenshot_2026-10-07_214636.png"
   ],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "Button hover lifts the button upwards and leaves a dark bold solid shadow",
-  "updated": "2026-10-07 13:46:56"
+  "updated": "2026-10-07 14:15:42"
  },
  "W-04": {
   "images": [],
@@ -335,9 +335,9 @@
  },
  "W-08": {
   "images": [],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "Yes, but buttons have black borders",
-  "updated": "2026-10-07 13:47:44"
+  "updated": "2026-10-07 14:15:45"
  },
  "W-09": {
   "images": [],
@@ -353,25 +353,25 @@
  },
  "W-11": {
   "images": [
-   "uploads/W-11/1791380888_Screenshot_2026-10-07_214803.png"
+   "uploads/W-11/1791382574_Screenshot_2026-10-07_221608.png"
   ],
-  "verdict": "reject",
-  "comment": "Color is off, missing chevron for menu items",
-  "updated": "2026-10-07 13:48:37"
+  "verdict": "",
+  "comment": "Should not become two rows",
+  "updated": "2026-10-07 14:16:17"
  },
  "W-12": {
   "images": [],
-  "verdict": "undefined",
+  "verdict": "accept",
   "comment": "",
-  "updated": "2026-10-07 13:48:37"
+  "updated": "2026-10-07 14:15:54"
  },
  "W-13": {
   "images": [
    "uploads/W-13/1791380947_Screenshot_2026-10-07_214859.png"
   ],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "More rounded, serif font",
-  "updated": "2026-10-07 13:49:19"
+  "updated": "2026-10-07 14:16:20"
  },
  "W-14": {
   "images": [],
