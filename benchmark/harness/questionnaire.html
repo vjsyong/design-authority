@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Procura build review — questionnaire</title>
+<style>
+  :root { --ink:#111; --muted:#666; --line:#d9d9d9; --bg:#fafafa; --accent:#111; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; background: var(--bg); color: var(--ink); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 28px 18px 80px; }
+  h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .sub { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+  .bar { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 0; z-index: 5; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .bar .grow { flex:1; }
+  input[type=text] { padding: 8px 10px; border: 1px solid var(--line); border-radius: 0; background:#fff; font-size: 14px; }
+  button { padding: 9px 14px; border: 1px solid var(--accent); background: var(--accent); color: #fff; border-radius: 0; font-size: 14px; cursor: pointer; }
+  button.ghost { background: #fff; color: var(--ink); }
+  button:active { transform: translateY(1px); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 0; padding: 16px 16px 10px; margin: 16px 0; }
+  .card h2 { font-size: 16px; margin: 0 0 2px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .card h2 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .card .note { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+  .q { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; align-items: center; padding: 7px 0; border-top: 1px solid #f0f0f0; }
+  .q .lbl { font-size: 14px; }
+  .q .hint { color: var(--muted); font-size: 12px; }
+  .scale { display: flex; gap: 6px; }
+  .scale label { display: flex; align-items: center; gap: 3px; font-size: 13px; cursor: pointer; padding: 2px 5px; border: 1px solid transparent; }
+  .scale label:hover { border-color: var(--line); }
+  .scale input { margin: 0; }
+  textarea { width: 100%; min-height: 54px; border: 1px solid var(--line); border-radius: 0; padding: 8px 10px; font: inherit; font-size: 13px; resize: vertical; margin: 8px 0 4px; }
+  .foot { margin-top: 22px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .status { color: var(--muted); font-size: 13px; }
+  .done { color: #0a7d33; }
+  @media print { .bar, .foot, .status { display: none; } }
+</style>
+<div class="wrap">
+  <h1>Procura build review — questionnaire</h1>
+  <div class="sub">
+    Nine anonymous builds. Rate each 1 (poor) – 5 (excellent). Do not try to guess
+    which condition a build belongs to. Open each build from the gallery, look at it,
+    then fill this form. Inputs autosave in this browser; use <b>Export CSV</b> when done.
+  </div>
+
+  <div class="bar">
+    <input type="text" id="reviewer" placeholder="Your name (optional)" style="width:200px">
+    <span class="grow"></span>
+    <span class="status" id="progress"></span>
+    <button id="export">Export CSV</button>
+    <button class="ghost" id="copy">Copy CSV</button>
+  </div>
+
+  <div id="forms"></div>
+
+  <div class="foot">
+    <button id="export2">Export CSV</button>
+    <span class="status" id="save-note"></span>
+  </div>
+</div>
+
+<script>
+const CODES = ["CWGM","NGQC","DWFP","XCVJ","XQCK","CDRR","KXCX","DKDW","RCXF"];
+const GALLERY = "https://gpu-vm1.bigscale-snapper.ts.net:9110/index.html";
+const AXES = [
+  ["consistency", "Consistency",  "do the pages feel like one product?"],
+  ["coherence",   "Coherence",    "do the pieces hang together as a system?"],
+  ["mistakes",    "Obvious mistakes", "5 = nothing broken · 1 = many problems"],
+  ["confidence",  "Confidence to extend", "5 = very confident a new page lands consistently · 1 = not at all"],
+  ["cleanup",     "Low cleanup needed", "5 = ship as-is · 1 = heavy designer cleanup"],
+];
+const KEY = "procura-review-v1";
+
+function el(html) { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
+
+const forms = document.getElementById("forms");
+CODES.forEach(code => {
+  const card = el(`<section class="card" id="card-${code}">
+    <h2><a href="${GALLERY}#build-${code}" target="_blank" rel="noopener">Build ${code} ↗</a></h2>
+    <div class="note">opens the gallery at this build</div>
+    <div class="qs"></div>
+    <textarea name="notes-${code}" placeholder="Notes for this build (optional)"></textarea>
+  </section>`);
+  const qs = card.querySelector(".qs");
+  AXES.forEach(([id, label, hint]) => {
+    const row = el(`<div class="q"><div><div class="lbl">${label}</div><div class="hint">${hint}</div></div>
+      <div class="scale">${[1,2,3,4,5].map(v => `<label><input type="radio" name="${code}_${id}" value="${v}">${v}</label>`).join("")}</div></div>`);
+    qs.appendChild(row);
+  });
+  forms.appendChild(card);
+});
+
+function state() {
+  return {
+    reviewer: document.getElementById("reviewer").value,
+    ratings: Object.fromEntries(CODES.map(c => [c, Object.fromEntries(
+      AXES.map(([a]) => { const r = document.querySelector(`input[name="${c}_${a}"]:checked`); return [a, r ? r.value : ""]; }))])),
+    notes: Object.fromEntries(CODES.map(c => [c, document.querySelector(`textarea[name="notes-${c}"]`).value])),
+  };
+}
+function restore() {
+  let s; try { s = JSON.parse(localStorage.getItem(KEY) || "null"); } catch { s = null; }
+  if (!s) return;
+  document.getElementById("reviewer").value = s.reviewer || "";
+  CODES.forEach(c => {
+    AXES.forEach(([a]) => { const v = (s.ratings[c] || {})[a];
+      if (v) { const r = document.querySelector(`input[name="${c}_${a}"][value="${v}"]`); if (r) r.checked = true; } });
+    const t = document.querySelector(`textarea[name="notes-${c}"]`); if (t) t.value = (s.notes[c] || "");
+  });
+}
+function save() {
+  localStorage.setItem(KEY, JSON.stringify(state()));
+  const note = document.getElementById("save-note");
+  note.textContent = "autosaved " + new Date().toLocaleTimeString();
+  updateProgress();
+}
+function updateProgress() {
+  const s = state(); let n = 0;
+  CODES.forEach(c => AXES.forEach(([a]) => { if (s.ratings[c][a]) n++; }));
+  const p = document.getElementById("progress");
+  const total = CODES.length * AXES.length;
+  p.textContent = n + "/" + total + " ratings";
+  p.className = "status" + (n === total ? " done" : "");
+}
+function csvField(v) { v = (v == null ? "" : String(v)); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+function buildCSV() {
+  const s = state();
+  const rows = [["reviewer","build","consistency","coherence","obvious_mistakes","confidence_extend","low_cleanup","notes"]];
+  CODES.forEach(c => rows.push([s.reviewer, c, s.ratings[c].consistency, s.ratings[c].coherence, s.ratings[c].mistakes, s.ratings[c].confidence, s.ratings[c].cleanup, s.notes[c]]));
+  return "\ufeff" + rows.map(r => r.map(csvField).join(",")).join("\r\n") + "\r\n";
+}
+function download() {
+  const blob = new Blob([buildCSV()], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "procura-review-" + new Date().toISOString().slice(0,10) + ".csv";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+document.getElementById("export").addEventListener("click", download);
+document.getElementById("export2").addEventListener("click", download);
+document.getElementById("copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(buildCSV()); document.getElementById("save-note").textContent = "CSV copied to clipboard"; }
+  catch (e) { document.getElementById("save-note").textContent = "clipboard blocked — use Export CSV"; }
+});
+document.addEventListener("input", save);
+document.addEventListener("change", save);
+restore(); updateProgress();
+</script>
+</html>

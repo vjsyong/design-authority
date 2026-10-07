@@ -102,8 +102,8 @@ def main():
             shutil.copy2(src, os.path.join(dest, fname))
             figs.append('<figure><img src="%s/%s"><figcaption>%s · %s</figcaption></figure>'
                         % (code, fname, route, viewport))
-        sections.append('<section><h2>Build %s</h2><div class="imgs">%s</div></section>'
-                        % (code, "".join(figs)))
+        sections.append('<section id="build-%s"><h2>Build %s</h2><div class="imgs">%s</div></section>'
+                        % (code, code, "".join(figs)))
 
     with open(os.path.join(args.out, "index.html"), "w") as fh:
         fh.write(INDEX_HTML.replace("__DA_BODY__", "\n".join(sections)))
