@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Depot{% endblock %}</title>
+  <!-- The interface layer is intentionally unstyled in this starter.
+       Fill static/orbit.css and refine these templates per the design authority. -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='orbit.css') }}">
+</head>
+<body>
+  <main data-view="{% block view %}{% endblock %}">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

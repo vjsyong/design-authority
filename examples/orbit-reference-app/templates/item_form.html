@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block view %}form{% endblock %}
+{% block title %}Depot — New item{% endblock %}
+{% block content %}
+<h1>New item</h1>
+
+<form method="post" action="{{ url_for('item_create') }}">
+  <p>
+    <label for="name">Name</label><br>
+    <input id="name" name="name" type="text" required>
+  </p>
+  <p>
+    <label for="category">Category</label><br>
+    <select id="category" name="category">
+      {% for c in categories %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="note">Note</label><br>
+    <input id="note" name="note" type="text">
+  </p>
+  <p>
+    <button type="submit" name="submit">Create item</button>
+    <a href="{{ url_for('items_view') }}">Cancel</a>
+  </p>
+</form>
+{% endblock %}

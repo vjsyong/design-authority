@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block view %}activity{% endblock %}
+{% block title %}Depot — Activity{% endblock %}
+{% block content %}
+<h1>Activity</h1>
+
+<p>
+  Import job:
+  <span data-job-state="{{ job.state }}">{{ job.state }}</span>
+  {% if job.state == "running" %}({{ job.done }} of {{ job.total }}){% endif %}
+</p>
+
+{% if job.state != "idle" %}
+<div data-job-done="{{ job.done }}" data-job-total="{{ job.total }}"
+     role="progressbar" aria-valuemin="0" aria-valuemax="{{ job.total }}"
+     aria-valuenow="{{ job.done }}" aria-valuetext="{{ job.done }} of {{ job.total }}"></div>
+{% endif %}
+
+<form method="post" action="{{ url_for('activity_import') }}">
+  <button type="submit" name="import"
+          {% if job.state == "running" %}disabled{% endif %}>
+    {% if job.state == "running" %}Importing…{% else %}Start import{% endif %}
+  </button>
+</form>
+
+<h2>Log</h2>
+<table data-list="activity">
+  <thead><tr><th>When</th><th>Event</th></tr></thead>
+  <tbody>
+    {% for e in entries %}
+    <tr><td>{{ e.at }}</td><td>{{ e.message }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

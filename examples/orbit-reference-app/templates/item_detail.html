@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block view %}detail{% endblock %}
+{% block title %}Depot — {{ item.name }}{% endblock %}
+{% block content %}
+<h1>{{ item.name }}</h1>
+
+<p>
+  Category: {{ item.category }}<br>
+  Status: <span data-status="{{ item.status }}">{{ status_labels[item.status] }}</span><br>
+  {% if item.borrower %}Borrower: {{ item.borrower }}<br>{% endif %}
+  {% if item.due %}Due: {{ item.due }}{% endif %}
+</p>
+
+{% if item.note %}<p>{{ item.note }}</p>{% endif %}
+
+<form method="post" action="{{ url_for('item_update', iid=item.id) }}">
+  <p>
+    <label for="name">Name</label><br>
+    <input id="name" name="name" type="text" value="{{ item.name }}">
+  </p>
+  <p>
+    <label for="category">Category</label><br>
+    <select id="category" name="category">
+      {% for c in ["Hand tools", "Power tools", "Measuring", "Safety"] %}
+      <option value="{{ c }}" {% if c == item.category %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="note">Note</label><br>
+    <input id="note" name="note" type="text" value="{{ item.note }}">
+  </p>
+  <button type="submit" name="save">Save changes</button>
+</form>
+
+<hr>
+
+{% if item.status != "on_loan" and item.status != "overdue" %}
+<form method="post" action="{{ url_for('item_checkout', iid=item.id) }}">
+  <p>
+    <label for="borrower">Borrower</label><br>
+    <select id="borrower" name="borrower">
+      {% for m in members %}<option value="{{ m }}">{{ m }}</option>{% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="days">Loan days</label><br>
+    <input id="days" name="days" type="number" value="14" min="1" max="90">
+  </p>
+  <button type="submit" name="checkout">Check out</button>
+</form>
+{% else %}
+<form method="post" action="{{ url_for('item_return', iid=item.id) }}">
+  <button type="submit" name="return">Return</button>
+</form>
+{% endif %}
+
+<hr>
+
+<form method="post" action="{{ url_for('item_retire', iid=item.id) }}">
+  <button type="submit" name="retire" data-action="retire">Retire item</button>
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block view %}register{% endblock %}
+{% block title %}Depot — Items{% endblock %}
+{% block content %}
+<h1>Items</h1>
+
+<p><a href="{{ url_for('item_new') }}">New item</a></p>
+
+<table data-list="items">
+  <thead>
+    <tr><th>Name</th><th>Category</th><th>Status</th><th>Borrower</th></tr>
+  </thead>
+  <tbody>
+    {% for it in items %}
+    <tr data-item="{{ it.id }}">
+      <td><a href="{{ url_for('item_detail', iid=it.id) }}">{{ it.name }}</a></td>
+      <td>{{ it.category }}</td>
+      <td data-status="{{ it.status }}">{{ status_labels[it.status] }}</td>
+      <td>{{ it.borrower or '' }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
