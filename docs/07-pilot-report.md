@@ -16,9 +16,12 @@ No composite score — dimensions are reported independently, as designed.
 
 | run | authored (e/w/i) | delta vs baseline | by rule |
 |---|---|---|---|
-| A | 158 (44/103/11) | +154 | TDS002 72 · TDS003 40 · TDS013 30 · TDS006 8 · TDS007 3 · TDS009 2 · TDS005/8/12 1 each |
-| B | **0** | −10 (baseline eliminated) | — |
-| C | **0** | −10 (baseline eliminated) | — |
+| A | 158 (44/103/11) | +154 introduced | TDS002 72 · TDS003 40 · TDS013 30 · TDS006 8 · TDS007 3 · TDS009 2 · TDS005/8/12 1 each |
+| B | **0** | 0 introduced; baseline's 10 eliminated | — |
+| C | **0** | 0 introduced; baseline's 10 eliminated | — |
+
+`authored` = all findings present in the delivered workspace; `delta` = the
+multiset excess over the pristine starter's findings (agent-introduced).
 
 A built a coherent but wholly bespoke UI (0 system classes used); B and C
 leave the linter with nothing to say, matching the system's own dogfood bar
