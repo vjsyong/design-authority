@@ -1,5 +1,15 @@
 # Portability Spike · 05 · Portability report (Phase 9)
 
+> **⚠ Reviewer outcome (2026-10-07): REJECTED — verdict withdrawn.**
+> The reviewer identified Triage leakage in the built interface (“from the
+> buttons to the layout and the chips”). The audit (`06-leak-audit.md`)
+> confirms: the **element layer** of this authority reproduced Triage’s
+> component anatomy; the failure is in the *derivation*, not the sandbox
+> (which was verifiably Triage-free). Success criterion #1 (“visually
+> different authority”) is **not met**, so the decision below is re-scoped to
+> *mechanical* portability only and **must not be cited as the spike’s final
+> verdict** until the v2 authority passes the reviewer gate.
+
 **Question:** can a public brand kit that was not designed around Triage be
 derived into a small design system, encoded as a second Design Authority,
 and served by the existing kernel without Triage-specific special cases?
