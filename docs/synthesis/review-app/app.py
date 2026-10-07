@@ -58,6 +58,11 @@ FB_CSS = """
 .fb .thumbdel { position:absolute; top:-7px; right:-7px; width:21px; height:21px; border-radius:50%;
   border:none; background:#141414; color:#fff; font:700 11px system-ui; cursor:pointer; }
 .fb .thumbdel.confirm { width:auto; border-radius:11px; padding:0 7px; height:22px; background:#b3261e; }
+#fb-toast { position:fixed; right:16px; bottom:16px; background:#141414; color:#fff;
+  font:600 13px system-ui; padding:11px 17px; border-radius:9px; opacity:0; pointer-events:none;
+  transition:opacity .25s; z-index:99; max-width:80vw; }
+#fb-toast.on { opacity:1; }
+.filterbar .hint { font:12px system-ui; color:#777; margin-left:6px; }
 .card[data-verdict] { outline:1px solid #e4e4e4; }
 .filterbar { position:sticky; top:0; z-index:9; background:#fff; border-bottom:2px solid #141414;
   padding:10px 0 10px; display:flex; gap:8px; align-items:center; width:100%; }
@@ -76,53 +81,82 @@ FB_JS = """
 const API = '/api/feedback';
 let FB = {};
 const esc = s => (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let toastT = null;
+function toast(msg) {
+  let t = document.getElementById('fb-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'fb-toast'; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('on'), 2400);
+}
 function counts() {
   let tot = 0, done = 0;
-  document.querySelectorAll('.card').forEach(c => {
-    tot++; if (c.dataset.verdict) done++;
-  });
+  document.querySelectorAll('.card').forEach(c => { tot++; if (c.dataset.verdict) done++; });
   document.querySelectorAll('.prog').forEach(p => p.textContent = done + ' / ' + tot + ' decided');
-  return {tot, done};
 }
+function stLine(card) { return card.querySelector('.fb .status'); }
 function paintThumbs(card) {
   const e = FB[card.dataset.did] || {};
   const th = card.querySelector('.thumbs');
   th.innerHTML = (e.images||[]).map(p =>
-    `<span class="thumbwrap" data-path="${p}"><a href="/${p}" target="_blank"><img src="/${p}" title="${esc(p.split('/').pop())}"></a><button class="thumbdel" title="delete image">\\u00d7</button></span>`
+    `<span class="thumbwrap" data-path="${p}"><a href="/${p}" target="_blank"><img src="/${p}" title="${esc(p.split('/').pop())}"></a><button class="thumbdel" title="delete image">×</button></span>`
   ).join('');
   th.querySelectorAll('.thumbdel').forEach(btn => {
     btn.addEventListener('click', () => {
       if (!btn.classList.contains('confirm')) {
         btn.classList.add('confirm'); btn.textContent = 'delete?';
-        setTimeout(() => { btn.classList.remove('confirm'); btn.textContent = '\\u00d7'; }, 4000);
+        setTimeout(() => { btn.classList.remove('confirm'); btn.textContent = '×'; }, 4000);
         return;
       }
       const fd = new FormData();
       fd.append('id', card.dataset.did);
       fd.append('path', btn.closest('.thumbwrap').dataset.path);
-      btn.textContent = '\\u2026';
+      btn.textContent = '…';
       fetch('/api/image/delete', {method:'POST', body:fd}).then(r => r.json()).then(e => {
-        if (e.error) { btn.textContent = '\\u00d7'; return; }
-        FB[card.dataset.did] = e; paintThumbs(card);
-      }).catch(() => { btn.textContent = '\\u00d7'; });
+        if (e.error) { btn.textContent = '×'; return; }
+        FB[card.dataset.did] = e; paintThumbs(card); toast('image deleted');
+      }).catch(() => { btn.textContent = '×'; });
     });
   });
 }
-function paintPending(card) {
-  const box = card.querySelector('.pending');
-  const p = card._pending || [];
-  box.innerHTML = p.map((f, i) =>
-    `<span class="pchip">${esc(f.name)} \\u00b7 ${Math.max(1, Math.round(f.size/1024))}KB <button data-i="${i}" title="remove">\\u00d7</button></span>`
-  ).join('');
-  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-    card._pending.splice(+b.dataset.i, 1); paintPending(card);
-  }));
+function applyEntry(card, e) {
+  FB[card.dataset.did] = e;
+  card.dataset.verdict = e.verdict || '';
+  paintThumbs(card); counts();
+  const st = stLine(card);
+  st.textContent = 'saved ✓ ' + (new Date()).toLocaleTimeString();
+  st.classList.remove('err');
+}
+function push(card, files, pre) {
+  if (card._busy) { card._queued = {files, pre}; return; }
+  const fb = card.querySelector('.fb');
+  const fd = new FormData();
+  fd.append('id', card.dataset.did);
+  fd.append('verdict', card._sel || '');
+  fd.append('comment', fb.querySelector('textarea').value);
+  (files || []).forEach(f => fd.append('images', f));
+  card._busy = true;
+  const st = stLine(card);
+  st.classList.remove('err');
+  st.textContent = pre || 'saving…';
+  fetch(API, {method:'POST', body:fd}).then(r => r.json()).then(e => {
+    card._busy = false;
+    if (e.error) { st.textContent = e.error; st.classList.add('err'); return; }
+    applyEntry(card, e);
+    if (files && files.length) toast('uploaded ✓ ' + files.length + ' image(s)');
+    if (card._queued) { const q = card._queued; card._queued = null; push(card, q.files, q.pre); }
+  }).catch(() => {
+    card._busy = false;
+    st.textContent = 'save failed — make any change to retry';
+    st.classList.add('err');
+  });
 }
 function render(card) {
   const e = FB[card.dataset.did] || {};
   const fb = card.querySelector('.fb');
   fb.querySelectorAll('.vb button').forEach(b => b.classList.toggle('sel', b.dataset.v === (e.verdict||'')));
-  fb.querySelector('textarea').value = e.comment || '';
+  const ta = fb.querySelector('textarea');
+  if (document.activeElement !== ta) ta.value = e.comment || '';
   paintThumbs(card);
   card.dataset.verdict = e.verdict || '';
 }
@@ -132,40 +166,22 @@ function hydrate() {
 function init() {
   document.querySelectorAll('.card').forEach(card => {
     const fb = card.querySelector('.fb');
-    card._pending = [];
     const inp = fb.querySelector('input[type=file]');
     inp.addEventListener('change', () => {
-      card._pending.push(...Array.from(inp.files));
-      inp.value = '';
-      paintPending(card);
+      const files = Array.from(inp.files); inp.value = '';
+      if (files.length) push(card, files, 'uploading ' + files.length + ' file(s)…');
     });
     fb.querySelectorAll('.vb button').forEach(b => b.addEventListener('click', () => {
-      const cur = card._sel;
-      const next = (cur === b.dataset.v) ? '' : b.dataset.v;
+      const next = (card._sel === b.dataset.v) ? '' : b.dataset.v;
       card._sel = next;
       fb.querySelectorAll('.vb button').forEach(x => x.classList.toggle('sel', x.dataset.v === next));
+      push(card);
     }));
     card._sel = '';
-    fb.querySelector('.save').addEventListener('click', () => {
-      if (card._busy) return;
-      const fd = new FormData();
-      fd.append('id', card.dataset.did);
-      fd.append('verdict', card._sel || '');
-      fd.append('comment', fb.querySelector('textarea').value);
-      const n = (card._pending||[]).length;
-      (card._pending||[]).forEach(f => fd.append('images', f));
-      const st = fb.querySelector('.status'); st.classList.remove('err');
-      st.textContent = n ? `uploading ${n} file(s)\\u2026` : 'saving\\u2026';
-      card._busy = true;
-      fetch(API, {method:'POST', body:fd}).then(r => r.json()).then(e => {
-        card._busy = false;
-        if (e.error) { st.textContent = e.error; st.classList.add('err'); return; }
-        FB[e.id] = e;
-        card._pending = []; paintPending(card);
-        render(card); counts();
-        st.textContent = 'saved \\u2713 ' + (new Date()).toLocaleTimeString() + (n ? ` \\u00b7 ${n} image(s) attached` : '');
-      }).catch(err => { card._busy = false; st.textContent = 'save failed'; st.classList.add('err'); });
-    });
+    const ta = fb.querySelector('textarea');
+    ta.addEventListener('input', () => { clearTimeout(card._t); card._t = setTimeout(() => push(card, null, 'saving notes…'), 900); });
+    ta.addEventListener('blur', () => { clearTimeout(card._t); push(card); });
+    fb.querySelector('.save').addEventListener('click', () => push(card));
   });
   document.querySelectorAll('.filterbar button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.filterbar button').forEach(x => x.classList.toggle('sel', x === b));
@@ -191,6 +207,7 @@ BAR = """
   <button data-f="call">Your call</button>
   <button data-f="undecided">Undecided</button>
   <button data-f="decided">Decided</button>
+  <span class="hint">autosaves as you go</span>
   <span class="prog"></span>
 </div>
 """
@@ -227,10 +244,9 @@ def build_page(src):
   <textarea placeholder="Notes for this item…"></textarea>
   <div class="row2">
     <label class="upl">Attach image(s) — camera or gallery<input type="file" accept="image/*" multiple></label>
-    <button class="save">Save</button>
+    <button class="save">Save now</button>
     <span class="status"></span>
   </div>
-  <div class="pending"></div>
   <div class="thumbs"></div>
 </div>""", "html.parser")
         card.append(fb)
