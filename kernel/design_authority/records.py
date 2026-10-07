@@ -1,0 +1,116 @@
+"""Gap + proposal records. Noncanonical by construction: they live in the
+consuming workspace under .design-authority/ and never touch the published pack.
+"""
+import json
+import os
+import uuid
+from datetime import datetime, timezone
+
+PROPOSAL_REQUIRED = ("problem", "insufficiency", "reuse_case", "composition_check",
+                     "proposed", "tests")
+
+
+def _now():
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _rid(prefix):
+    return "%s/%s-%s" % (prefix, datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S"),
+                         uuid.uuid4().hex[:6])
+
+
+def _ws(workspace):
+    d = os.path.join(os.path.abspath(workspace), ".design-authority")
+    os.makedirs(os.path.join(d, "proposals"), exist_ok=True)
+    return d
+
+
+def add_gap(pack, workspace, need, context=None, attempted_resolution=None,
+            why_insufficient=None, fallback_used=None, evidence=None,
+            scope_hint="unknown"):
+    gap = {
+        "id": _rid("gap"), "need": need, "context": dict(context or {}),
+        "authority": pack.identity(),
+        "searched": (attempted_resolution or {}).get("searched"),
+        "closest": (attempted_resolution or {}).get("closest"),
+        "why_insufficient": why_insufficient or (attempted_resolution or {}).get("why"),
+        "fallback_used": fallback_used,
+        "evidence": list(evidence or []),
+        "scope_hint": scope_hint,
+        "status": "open",
+        "created": _now(),
+    }
+    path = os.path.join(_ws(workspace), "gaps.jsonl")
+    with open(path, "a") as fh:
+        fh.write(json.dumps(gap) + "\n")
+    gap["stored_at"] = path
+    return gap
+
+
+def list_gaps(workspace):
+    path = os.path.join(_ws(workspace), "gaps.jsonl")
+    if not os.path.exists(path):
+        return []
+    with open(path) as fh:
+        return [json.loads(line) for line in fh if line.strip()]
+
+
+def get_gap(workspace, gap_id):
+    for g in list_gaps(workspace):
+        if g["id"] == gap_id:
+            return g
+    return None
+
+
+def add_proposal(pack, workspace, gap_id, proposal):
+    missing = [k for k in PROPOSAL_REQUIRED if not proposal.get(k)]
+    if missing:
+        raise ValueError("proposal missing required fields: %s" % ", ".join(missing))
+    gap = get_gap(workspace, gap_id)
+    if gap is None:
+        raise ValueError("unknown gap %s (list gaps first)" % gap_id)
+    unknown = [t for t in proposal.get("depends_on", []) if t not in pack.by_id]
+    if unknown:
+        raise ValueError("depends_on cites unknown ids: %s" % ", ".join(unknown))
+
+    pid = _rid("prop")
+    record = {
+        "id": pid, "gap_id": gap_id,
+        "problem": proposal["problem"],
+        "insufficiency": proposal["insufficiency"],
+        "reuse_case": proposal["reuse_case"],
+        "composition_check": proposal["composition_check"],
+        "proposed": proposal["proposed"],
+        "depends_on": proposal.get("depends_on", []),
+        "new_primitives": proposal.get("new_primitives", []),
+        "tests": proposal["tests"],
+        "status": "candidate",
+        "review": {"verdict": None, "notes": None},
+        "authority": pack.identity(),
+        "created": _now(),
+    }
+    safe = pid.replace("/", "_")
+    path = os.path.join(_ws(workspace), "proposals", safe + ".json")
+    with open(path, "w") as fh:
+        json.dump(record, fh, indent=1)
+    record["stored_at"] = path
+    record["review_checklist"] = [
+        "Necessity: can the existing authority express this? (adversarial review assumes it can)",
+        "Reuse: is this genuinely reusable beyond this project?",
+        "Composition: why can existing artifacts not compose to satisfy it?",
+        "Dependencies: do cited authority ids/decisions hold?",
+        "New primitives: are they unavoidable?",
+        "Compliance tests: at least one deterministic check proposed?",
+        "Deterministic checks pass (shape, citations, tests present)",
+    ]
+    return record
+
+
+def list_proposals(workspace):
+    d = os.path.join(_ws(workspace), "proposals")
+    out = []
+    for name in sorted(os.listdir(d)):
+        if name.endswith(".json"):
+            with open(os.path.join(d, name)) as fh:
+                out.append(json.load(fh))
+    return out

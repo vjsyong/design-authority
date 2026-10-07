@@ -44,6 +44,25 @@ by an accepted extension.
   golden set will quantify false positives/negatives before the benchmark.
 - **[pack] Docs mapping is approximate** (group pages). Candidate extension:
   canonical page ids per component in the snapshot's docs data.
+- **[pack] Golden set v0.2 → 19/19 agreement** (7 RESOLVED · 5 COMPOSE ·
+  1 FALLBACK · 2 UNDEFINED · 4 CONFLICT); enforced by unit test. The two
+  UNDEFINED cases are real Triage holes (progress/job treatment: G-004; charts:
+  token-only) and are *expected* to stay UNDEFINED — they are the benchmark's
+  probe targets.
+- **[pack] Tokenizer precision incident.** A fuller stemmer ("-ing"/"-ed"/
+  "-able") caused wrong direct matches (e.g. "saving" matched the savebar
+  component; "enable" reduced to "en"). Fixed by shrinking the stemmer to a
+  consistent minimum and letting recipe `needs` carry recall — recorded because
+  the failure mode (tokenizer overreach silently reordering resolution
+  outcomes) will recur in any future tuning.
+- **[pack] `needs` lists are the recall surface.** Resolution quality for
+  free-text needs depends on the recipe/artifact vocabulary containing the
+  consumer's phrasings ("show the state of a request or item", "show the
+  approval status of a record"). This is exactly the kind of knowledge the
+  benchmark's Condition C will stress; additions are logged here as curation.
+- **[pack] Prohibitions use bare signals + `signals_all` groups**
+  (e.g. "confirm dialog" + "delete"); false-positive/negative rates measured
+  only against the goldens so far — quantified properly in P3.
 
-*(more appended as P1 continues — kernel + golden set)*
+*(more appended as P1 continues — MCP + e2e loop)*
 

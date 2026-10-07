@@ -82,6 +82,21 @@ conformance deltas in the gap log.
 citing its determining evidence; nothing is ever auto-applied upstream.
 (Tokens Studio / OPA / Cedar lessons.)
 
+**D-017 · Resolution priority follows the brief.** CONFLICT first; RESOLVED
+when an artifact directly defines the solution (score ≥ 6.5, margin ≥ 2 over
+the runner-up); COMPOSE when no artifact qualifies but a recipe does (≥ 5.0);
+FALLBACK when a non-catch-all fallback scope matches; else UNDEFINED. A
+"recipe beats artifact" variant was prototyped and rejected — it contradicts
+the stated meaning of COMPOSE ("no dedicated artifact exists") and was masking
+tokenizer precision bugs. Pinned by the golden set (100% gate in unit tests).
+
+**D-018 · Search tuning is curation + minimal mechanics.** One tiny consistent
+suffix normaliser (plural, e-drop, guarded -able); artifact aliases and recipe
+`needs` are the recall surface, edited deliberately and recorded in the gap
+log; thresholds (6.5 / 5.0 / margin 2.0) live in `resolve.py` as named
+constants. Golden-set edits require a note here; the unit test enforces 100%
+agreement so precision regressions cannot land silently.
+
 ---
 
 ## Assumptions to verify

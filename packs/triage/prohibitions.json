@@ -8,7 +8,8 @@
     "border-radius",
     "rounded edges",
     "soft corners",
-    "round the corners",
+    "rounded",
+    "corner radius",
     "pill-shaped"
    ],
    "rule": "TDS003",
@@ -19,6 +20,7 @@
    "statement": "Removing focus outlines without an equivalent visible :focus-visible replacement.",
    "signals": [
     "remove focus",
+    "remove the focus",
     "hide the outline",
     "no focus ring",
     "disable outline",
@@ -84,10 +86,26 @@
    "id": "prohibit/custom-confirm-for-entity-delete",
    "statement": "A confirm() dialog or custom modal to delete a listed entity \u2014 entity deletes use the armed two-step pattern instead.",
    "signals": [
-    "confirm dialog for deleting",
-    "popup to confirm delete",
     "confirm before deleting",
-    "confirmation dialog for delete"
+    "popup to confirm delete"
+   ],
+   "signals_all": [
+    [
+     "confirm dialog",
+     "delete"
+    ],
+    [
+     "confirm popup",
+     "delete"
+    ],
+    [
+     "confirmation dialog",
+     "delete"
+    ],
+    [
+     "confirm modal",
+     "delete"
+    ]
    ],
    "related": [
     "guideline/armed-delete"

@@ -9,7 +9,8 @@
     "show the result of a form submit",
     "confirm settings saved",
     "announce an action after redirect",
-    "show a success message"
+    "show a success message",
+    "show the result of saving a form"
    ],
    "ingredients": [
     "component/msg"
@@ -32,7 +33,10 @@
    "needs": [
     "announce an action without navigation",
     "confirm an async result",
-    "show transient confirmation"
+    "show transient confirmation",
+    "announce that something was removed",
+    "show a toast message",
+    "show a success toast after an action"
    ],
    "ingredients": [
     "component/toast2"
@@ -126,7 +130,9 @@
     "show the state of an item",
     "waiting for approval indicator",
     "approved or rejected marker",
-    "status of a job"
+    "status of a job",
+    "show the state of a request or item",
+    "show the approval status of a record"
    ],
    "ingredients": [
     "component/badge",
@@ -314,6 +320,30 @@
    "evidence": {
     "source": "INTERACTION.md#copy",
     "quote": "Never call `navigator.clipboard` from page code \u2014 the helper owns the fallback and the confirmation labelling."
+   }
+  },
+  {
+   "id": "recipe/filter-row",
+   "kind": "recipe",
+   "title": "Filtering a list is a chip row over the table",
+   "summary": "Narrow a list with a row of chips above the table; chips are selection tokens, not status badges.",
+   "needs": [
+    "filter a list",
+    "narrow results by category",
+    "filter rows by status",
+    "search and filter records"
+   ],
+   "ingredients": [
+    "component/chip",
+    "component/tbl"
+   ],
+   "constraints": [
+    "chips mark selection, badges mark status \u2014 do not conflate",
+    "active filters stay visible with a clear affordance"
+   ],
+   "evidence": {
+    "source": "spec/states.json#chip",
+    "quote": "Filter chip"
    }
   }
  ]

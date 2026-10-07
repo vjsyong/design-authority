@@ -463,7 +463,10 @@
     "flash message",
     "notice",
     "inline alert",
-    "callout"
+    "callout",
+    "error message",
+    "success message",
+    "server error"
    ],
    "body": {
     "class": "msg",
@@ -1440,7 +1443,9 @@
     "history list",
     "event feed",
     "step history",
-    "approval history"
+    "approval history",
+    "approval steps",
+    "approval trail"
    ],
    "body": {
     "class": "tl",

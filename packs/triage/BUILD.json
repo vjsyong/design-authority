@@ -1,5 +1,5 @@
 {
- "built_at": "2026-10-07T01:59:32+00:00",
+ "built_at": "2026-10-07T02:04:24+00:00",
  "snapshot": {
   "path": "/home/xrim/triage-design-system-demo",
   "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
@@ -8,7 +8,7 @@
  "counts": {
   "artifacts": 73,
   "rules": 15,
-  "recipes": 14,
+  "recipes": 15,
   "fallbacks": 3,
   "prohibitions": 9,
   "components": 35,
@@ -31,14 +31,14 @@
   "dataviz": 8
  },
  "curation_sha256": {
-  "aliases.json": "3a4aceb6acb40507ead9df366cb6e592d46b98d4a472480ba2367e2d208e1834",
+  "aliases.json": "8ed2b68f5df3b4f51c54c55832e72dfbc4f5943a04bab9c10e64240946599315",
   "component-notes.json": "827fdf597ca61314f73f63be9b3670e513cafd78e8aaefbff5232b8737206f5c",
   "docs-map.json": "222c393395a1751f78ab4c99ba6d3aca1ae5229fe80728614d19d606d1989797",
   "fallbacks.json": "707e84b9051fec353402a0fd11a901ee879c03275f922915067712eda65f31a7",
   "guidelines.json": "10340c0c26763f92c05fa83baa700e9ec6b68d0e15fa7499b945cd324aaf31e1",
   "patterns.json": "f8953d6f3fbe2d230019bdae2c11835f33f96233e19e51989a7ab431f92c1d11",
-  "prohibitions.json": "3748a787b399f2b46c7aa4f4455efd4e9d722f5205b15aa96cd7c3130daae039",
-  "recipes.json": "96310b7c7f8b27cda0a7de53b1f5a21712790a682ba100c1806eb8444dd2c85f",
+  "prohibitions.json": "718d075cde70f594cd03b84eb4aa7aebf273e2ac740349c7f2060d958ebbff0b",
+  "recipes.json": "8848d0d79d79235ae4ede6acf0b4cad9178a2ed2662c4c952e94dfe7d1ac41de",
   "references.json": "6e3381543a7f35bcc2f9b4a50d9cc45a8ef4591ba178b2b30aecaa39c61a0d6c",
   "token-sets.json": "fbc15f2acce114f257ce0abd8d5eed2ec386e9046dd5b5b033545a6ab6ec49cc"
  },
