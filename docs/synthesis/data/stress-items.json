@@ -1,0 +1,170 @@
+[
+ [
+  "control",
+  "a primary button for the main action"
+ ],
+ [
+  "control",
+  "a secondary button and a text link"
+ ],
+ [
+  "control",
+  "delete a ritual permanently"
+ ],
+ [
+  "control",
+  "a confirmation dialog before deleting"
+ ],
+ [
+  "control",
+  "a modal with ritual details"
+ ],
+ [
+  "control",
+  "a toast notification saying logged"
+ ],
+ [
+  "control",
+  "a banner summarizing the week"
+ ],
+ [
+  "control",
+  "an empty state when no rituals exist"
+ ],
+ [
+  "control",
+  "an error message under the field"
+ ],
+ [
+  "control",
+  "a loading spinner while saving"
+ ],
+ [
+  "data",
+  "a circular progress ring of today's completion"
+ ],
+ [
+  "data",
+  "a bar chart of weekly minutes"
+ ],
+ [
+  "data",
+  "a calendar heatmap of the month"
+ ],
+ [
+  "data",
+  "a tiny sparkline trend of the last week"
+ ],
+ [
+  "data",
+  "a big streak counter"
+ ],
+ [
+  "data",
+  "an achievement badge for seven days"
+ ],
+ [
+  "data",
+  "a status label on track or slipping"
+ ],
+ [
+  "identity",
+  "a profile avatar photo"
+ ],
+ [
+  "identity",
+  "an icon for each ritual"
+ ],
+ [
+  "forms",
+  "a toggle switch in settings"
+ ],
+ [
+  "forms",
+  "a slider for daily goal minutes"
+ ],
+ [
+  "forms",
+  "a date picker for the log entry"
+ ],
+ [
+  "forms",
+  "a number stepper for minutes"
+ ],
+ [
+  "forms",
+  "a text field for the ritual name"
+ ],
+ [
+  "forms",
+  "a select for ritual category"
+ ],
+ [
+  "forms",
+  "a checkbox for reminders"
+ ],
+ [
+  "forms",
+  "radio buttons for frequency"
+ ],
+ [
+  "forms",
+  "a text area for notes"
+ ],
+ [
+  "layout",
+  "tabs for today history achievements"
+ ],
+ [
+  "layout",
+  "a bottom navigation bar on mobile"
+ ],
+ [
+  "layout",
+  "a table of logged entries"
+ ],
+ [
+  "layout",
+  "pagination for older entries"
+ ],
+ [
+  "layout",
+  "a search box to filter rituals"
+ ],
+ [
+  "layout",
+  "a small category tag"
+ ],
+ [
+  "layout",
+  "drag to reorder rituals"
+ ],
+ [
+  "layout",
+  "an undo button after deleting"
+ ],
+ [
+  "layout",
+  "a three-step onboarding wizard"
+ ],
+ [
+  "layout",
+  "export the data as csv"
+ ],
+ [
+  "layout",
+  "a dark mode theme"
+ ],
+ [
+  "events",
+  "a celebration animation when checking off"
+ ],
+ [
+  "events",
+  "an illustration in the empty state"
+ ],
+ [
+  "events",
+  "upload a photo for the ritual"
+ ]
+]

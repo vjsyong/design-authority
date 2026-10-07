@@ -11,7 +11,9 @@
         "pill button",
         "start free trial",
         "action",
-        "submit"
+        "submit",
+        "secondary button",
+        "outline button"
       ],
       "body": {
         "class": "cta",

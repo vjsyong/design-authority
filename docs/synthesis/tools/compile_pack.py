@@ -93,7 +93,7 @@ def build_wink():
     S = "wink"
     art(S, ["W-01", "W-02", "W-03"],
         "component/action-pill", "component", "Action (pill)",
-        ["button", "cta", "primary button", "pill button", "start free trial", "action", "submit"],
+        ["button", "cta", "primary button", "pill button", "start free trial", "action", "submit", "secondary button", "outline button"],
         {"class": "cta", "group": "Actions",
          "states": ["default: yellow fill + 1px ink ring (box-shadow 0 0 0 1px #231E15)",
                     "dark variant on warm fields (ink fill, white label)",
@@ -250,7 +250,7 @@ def build_leader():
          "verify": [".navbar", ".navbar .on", ".cursorbox"]})
     art(S, ["L-11"],
         "component/field", "component", "Field (rounded, sans text)",
-        ["field", "input", "form field", "text field", "textbox"],
+        ["field", "input", "form field", "text field", "textbox", "error message", "validation error"],
         {"class": "field", "group": "Forms",
          "states": ["default (1px soft ink border)", "focus adds no border highlight",
                     "invalid (small red line under)"],
@@ -332,7 +332,7 @@ def build_dominion():
     S = "dominion"
     art(S, ["D-01"],
         "component/action", "component", "Action (slate rounded)",
-        ["button", "cta", "primary button", "action", "submit button", "slate button"],
+        ["button", "cta", "primary button", "action", "submit button", "slate button", "secondary button", "outline button"],
         {"class": "btn", "group": "Actions",
          "states": ["primary: solid slate #26374A, radius 4 (live-measured)",
                     "secondary: 2px slate outline",
@@ -362,7 +362,7 @@ def build_dominion():
         {"group": "Voice"})
     art(S, ["D-11"],
         "component/field", "component", "Field (soft border, blue glow focus)",
-        ["field", "input", "form field", "text field"],
+        ["field", "input", "form field", "text field", "error message", "validation error"],
         {"class": "field", "group": "Forms",
          "states": ["default (1px #E0E0E0, radius 4)",
                     "focus: blue glow (1px #66AFE9 + 8px rgba(102,175,233,.6) halo — live-measured)",

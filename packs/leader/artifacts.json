@@ -179,7 +179,9 @@
         "input",
         "form field",
         "text field",
-        "textbox"
+        "textbox",
+        "error message",
+        "validation error"
       ],
       "body": {
         "class": "field",

@@ -10,7 +10,9 @@
         "primary button",
         "action",
         "submit button",
-        "slate button"
+        "slate button",
+        "secondary button",
+        "outline button"
       ],
       "body": {
         "class": "btn",
@@ -122,7 +124,9 @@
         "field",
         "input",
         "form field",
-        "text field"
+        "text field",
+        "error message",
+        "validation error"
       ],
       "body": {
         "class": "field",

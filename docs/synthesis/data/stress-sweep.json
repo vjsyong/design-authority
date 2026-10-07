@@ -1,0 +1,1061 @@
+[
+ {
+  "area": "control",
+  "ask": "a primary button for the main action",
+  "packs": {
+   "wink": {
+    "outcome": "RESOLVED",
+    "id": "component/action-pill",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/action",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "RESOLVED",
+    "id": "component/action",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a secondary button and a text link",
+  "packs": {
+   "wink": {
+    "outcome": "RESOLVED",
+    "id": "component/action-pill",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/action",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "RESOLVED",
+    "id": "component/action",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "delete a ritual permanently",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a confirmation dialog before deleting",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/ruled-panel",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a modal with ritual details",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/ruled-panel",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a toast notification saying logged",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/notice",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a banner summarizing the week",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/notice",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "an empty state when no rituals exist",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/card",
+      "score": 1.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field",
+      "score": 1.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "guideline/interaction-states",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "an error message under the field",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field-select",
+      "score": 4.0
+     },
+     {
+      "id": "component/action-pill",
+      "score": 1.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/field",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "RESOLVED",
+    "id": "component/field",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "control",
+  "ask": "a loading spinner while saving",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a circular progress ring of today's completion",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/action-pill",
+      "score": 1.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/meter",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/meter",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/interaction-states",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a bar chart of weekly minutes",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/navbar",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/meter",
+      "score": 4.0
+     },
+     {
+      "id": "component/navbar",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/masthead",
+      "score": 4.0
+     },
+     {
+      "id": "component/meter",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a calendar heatmap of the month",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a tiny sparkline trend of the last week",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a big streak counter",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "an achievement badge for seven days",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/badge",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "data",
+  "ask": "a status label on track or slipping",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/badge",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/hierarchy",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "guideline/hierarchy",
+      "score": 4.0
+     },
+     {
+      "id": "component/field",
+      "score": 1.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/select",
+      "score": 1.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "identity",
+  "ask": "a profile avatar photo",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "CONFLICT",
+    "id": "prohibit/imagery-pictograms",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "identity",
+  "ask": "an icon for each ritual",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a toggle switch in settings",
+  "packs": {
+   "wink": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a slider for daily goal minutes",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a date picker for the log entry",
+  "packs": {
+   "wink": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/selection",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/large-selection",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a number stepper for minutes",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a text field for the ritual name",
+  "packs": {
+   "wink": {
+    "outcome": "RESOLVED",
+    "id": "component/field-select",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/field",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "RESOLVED",
+    "id": "component/field",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a select for ritual category",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field-select",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/selection",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/select",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a checkbox for reminders",
+  "packs": {
+   "wink": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "radio buttons for frequency",
+  "packs": {
+   "wink": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/platform-controls",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "forms",
+  "ask": "a text area for notes",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field-select",
+      "score": 4.0
+     },
+     {
+      "id": "component/action-pill",
+      "score": 1.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "tabs for today history achievements",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a bottom navigation bar on mobile",
+  "packs": {
+   "wink": {
+    "outcome": "RESOLVED",
+    "id": "component/navbar",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/navbar",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "RESOLVED",
+    "id": "component/masthead",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a table of logged entries",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/ledger",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "pagination for older entries",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a search box to filter rituals",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "RESOLVED",
+    "id": "component/navbar",
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "FALLBACK",
+    "id": "fallback/large-selection",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a small category tag",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/badge",
+      "score": 4.0
+     },
+     {
+      "id": "component/field-select",
+      "score": 1.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/field",
+      "score": 1.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/select",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "drag to reorder rituals",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "an undo button after deleting",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/action-pill",
+      "score": 4.0
+     }
+    ]
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/action",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "component/action",
+      "score": 4.0
+     }
+    ]
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a three-step onboarding wizard",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "export the data as csv",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "layout",
+  "ask": "a dark mode theme",
+  "packs": {
+   "wink": {
+    "outcome": "FALLBACK",
+    "id": "fallback/light-only",
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "events",
+  "ask": "a celebration animation when checking off",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": [
+     {
+      "id": "guideline/motion",
+      "score": 4.0
+     }
+    ]
+   },
+   "dominion": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "events",
+  "ask": "an illustration in the empty state",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "CONFLICT",
+    "id": "prohibit/imagery-pictograms",
+    "closest": []
+   }
+  }
+ },
+ {
+  "area": "events",
+  "ask": "upload a photo for the ritual",
+  "packs": {
+   "wink": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "leader": {
+    "outcome": "UNDEFINED",
+    "id": null,
+    "closest": []
+   },
+   "dominion": {
+    "outcome": "CONFLICT",
+    "id": "prohibit/imagery-pictograms",
+    "closest": []
+   }
+  }
+ }
+]
