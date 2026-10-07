@@ -103,6 +103,14 @@ agreement so precision regressions cannot land silently.
 review notes + timestamp. The agent does the judging; the kernel does the
 bookkeeping. First use: the P2 e2e demo (docs/05) → `needs-info`.
 
+**D-020 · Benchmark containment is a hard requirement.** Agent runs execute
+sandboxed: bubblewrap minimal filesystem + per-run `XDG_CONFIG_HOME` + strict
+opencode permissions + transcript containment audit. Any run with
+`containment.refs_outside > 0` is flagged and rerun; breaches are recorded in
+the deviations log (docs/06). Workspaces live outside the repo
+(`/tmp/da-ws/<run-id>`), archived back to `benchmark/runs/<run-id>/ws` after
+the run. (Triggered by the a1/b1 breach — see docs/06 D-1.)
+
 ---
 
 ## Assumptions to verify

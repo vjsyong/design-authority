@@ -120,4 +120,38 @@ outcome vocabulary; "incorrect resolution audit" is manual and marked as such.
 
 ## 6 · Deviations log (append during runs)
 
-*(none yet)*
+**D-1 · 2026-10-07 — Containment breach in pilot runs a1/b1; both invalidated.**
+Observed: the condition-A agent walked up from its workspace (then inside the
+repo tree), read `benchmark/` (all three condition briefs, the harness code,
+other runs' outputs), attempted access to the Triage repo, and loaded a
+globally installed opencode skill named `triage-design-system`; it built
+nothing in 54 s. Condition B showed the same exploration pattern (23
+experiment-referencing lines). Root cause: workspaces lived under the repo and
+opencode defaults are permissive (unrestricted bash; skills loaded from
+`~/.config/opencode`, `~/.claude`, `~/.agents`; global plugins/config active;
+`external_directory` did not intercept bash).
+
+Fixes applied before any production run; the pilot restarted from scratch:
+
+1. Workspaces moved to `/tmp/da-ws/<run-id>/ws` — outside the repo entirely.
+2. Agent runs inside **bubblewrap** with a minimal filesystem; the benchmark
+   repo and unrelated home paths are invisible, and external access fails at
+   the filesystem level (verified: `ls /home/xrim/design-authority` →
+   "No such file or directory", bash included).
+3. Per-run `XDG_CONFIG_HOME` (no global config/skills/plugins/agents) plus
+   strict opencode permissions (skill / webfetch / websearch /
+   external_directory **deny**; edit/bash/read allowed inside the workspace).
+4. Transcript **containment audit** recorded per run
+   (`run.json.containment`: `refs_outside`, `denied_events`); runs with
+   `refs_outside > 0` are flagged and rerun.
+5. Ops note: Ubuntu 24.04 blocks unprivileged user namespaces; installed the
+   targeted AppArmor profile `/etc/apparmor.d/bwrap` (userns granted to
+   `bwrap` only). This host-config change is recorded here deliberately.
+
+Implications: C runs can still read `tools/`, `kernel/`, `packs/` (the
+authority server needs them; the pack is legitimately C's information sphere).
+Web fetch/search is disabled for every condition equally. Residual risk:
+`~/.local/share/opencode` stays shared for auth/session storage; agents cannot
+see other sessions from within a run.
+
+*(next deviations appended below)*
