@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbit v2 — mock screens</title>
+<link rel="stylesheet" href="orbit-v2.css">
+</head>
+<body>
+
+<!-- ═══ 1 · REGISTER ═══════════════════════════════════════ -->
+<section class="sheet" id="s1">
+  <div class="wrap">
+    <header class="band">
+      <div class="id">
+        <div class="name">Depot</div>
+        <div class="descr">equipment lending register</div>
+      </div>
+      <nav>
+        <a class="on" href="#">Items</a>
+        <a href="#">Activity</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Items</h1>
+        <p class="subline">6 entries &middot; 2 on loan &middot; 1 overdue</p>
+      </div>
+    </div>
+
+    <div class="notice" data-kind="info">
+      One item is overdue and one falls due this week. Borrowers are listed with each entry.
+    </div>
+
+    <div class="toolbar">
+      <div class="entry search">
+        <label for="q">Search items</label>
+        <input id="q" type="text" placeholder="name or category">
+      </div>
+      <a class="command" data-variant="primary" href="#">New item</a>
+    </div>
+
+    <table class="register">
+      <caption>Register of equipment &middot; updated 7 October 2026</caption>
+      <thead>
+        <tr><th></th><th>Name</th><th>Category</th><th>Status</th><th>Borrower</th><th class="r"></th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="n">1</td>
+          <td><a href="#">Torque wrench 200Nm</a></td>
+          <td><span class="tag">Hand tools</span></td>
+          <td><span class="indicator">Available</span></td>
+          <td></td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+        <tr>
+          <td class="n">2</td>
+          <td><a href="#">Digital caliper 150mm</a></td>
+          <td><span class="tag">Measuring</span></td>
+          <td><span class="indicator" data-tone="neutral">On loan</span></td>
+          <td>M. Chen &middot; due 12 Oct</td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+        <tr>
+          <td class="n">3</td>
+          <td><a href="#">Cordless drill 18V</a></td>
+          <td><span class="tag">Power tools</span></td>
+          <td><span class="indicator" data-tone="alert">Overdue</span></td>
+          <td>R. Ali &middot; due 1 Oct</td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+        <tr>
+          <td class="n">4</td>
+          <td><a href="#">Safety goggles (pair)</a></td>
+          <td><span class="tag">Safety</span></td>
+          <td><span class="indicator">Available</span></td>
+          <td></td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+        <tr>
+          <td class="n">5</td>
+          <td><a href="#">Multimeter</a></td>
+          <td><span class="tag">Measuring</span></td>
+          <td><span class="indicator">Available</span></td>
+          <td></td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+        <tr>
+          <td class="n">6</td>
+          <td><a href="#">Heat gun</a></td>
+          <td><span class="tag">Power tools</span></td>
+          <td><span class="indicator" data-tone="neutral">On loan</span></td>
+          <td>J. Wong &middot; due 20 Oct</td>
+          <td class="r"><a href="#">Open</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="folio"><span>Depot &middot; Register</span><span>7 Oct 2026</span></div>
+  </div>
+</section>
+
+<!-- ═══ 2 · ITEM DETAIL ════════════════════════════════════ -->
+<section class="sheet" id="s2">
+  <div class="wrap">
+    <header class="band">
+      <div class="id">
+        <div class="name">Depot</div>
+        <div class="descr">equipment lending register</div>
+      </div>
+      <nav>
+        <a class="on" href="#">Items</a>
+        <a href="#">Activity</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Cordless drill 18V</h1>
+        <p class="subline"><span class="tag">Power tools</span> &nbsp; <span class="indicator" data-tone="alert">Overdue</span></p>
+      </div>
+      <a class="command" href="#">Back to items</a>
+    </div>
+
+    <dl class="facts">
+      <dt>Borrower</dt><dd>R. Ali</dd>
+      <dt>Due</dt><dd>1 October 2026</dd>
+      <dt>Note</dt><dd>Two batteries.</dd>
+    </dl>
+
+    <section class="section">
+      <h2><span class="sec">1</span>Item</h2>
+      <hr class="hr">
+      <div class="entry">
+        <label for="d-name">Name</label>
+        <input id="d-name" type="text" value="Cordless drill 18V">
+      </div>
+      <div class="entry">
+        <label for="d-cat">Category</label>
+        <select id="d-cat"><option>Power tools</option></select>
+      </div>
+      <div class="entry">
+        <label for="d-note">Note</label>
+        <input id="d-note" type="text" value="Two batteries.">
+      </div>
+      <a class="command" data-variant="primary" href="#">Save changes</a>
+    </section>
+
+    <section class="section">
+      <h2><span class="sec">2</span>Lending</h2>
+      <hr class="hr">
+      <p style="margin:0 0 14px">On loan to <b>R. Ali</b>, due 1 October 2026.</p>
+      <a class="command" href="#">Return</a>
+    </section>
+
+    <section class="section">
+      <h2><span class="sec">3</span>Retire</h2>
+      <hr class="hr">
+      <p style="margin:0 0 14px">Retiring removes the item from the register permanently.</p>
+      <button class="command" data-variant="destructive" type="button">Retire item</button>
+    </section>
+
+    <div class="folio"><span>Depot &middot; Item</span><span>7 Oct 2026</span></div>
+  </div>
+</section>
+
+<!-- ═══ 3 · NEW ITEM FORM ══════════════════════════════════ -->
+<section class="sheet" id="s3">
+  <div class="wrap">
+    <header class="band">
+      <div class="id">
+        <div class="name">Depot</div>
+        <div class="descr">equipment lending register</div>
+      </div>
+      <nav>
+        <a class="on" href="#">Items</a>
+        <a href="#">Activity</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>New item</h1>
+        <p class="subline">catalogue a tool for lending</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2><span class="sec">1</span>Description</h2>
+      <hr class="hr">
+      <div class="entry">
+        <label for="n-name">Name</label>
+        <input id="n-name" type="text" placeholder="e.g. Torque wrench 200Nm">
+      </div>
+      <div class="entry">
+        <label for="n-cat">Category</label>
+        <select id="n-cat">
+          <option>Hand tools</option><option>Power tools</option>
+          <option>Measuring</option><option>Safety</option>
+        </select>
+      </div>
+      <div class="entry entry--short">
+        <label for="n-qty">Units</label>
+        <input id="n-qty" type="number" value="1" min="1">
+      </div>
+      <div class="entry">
+        <label for="n-note">Note</label>
+        <input id="n-note" type="text">
+      </div>
+    </section>
+
+    <div style="display:flex;align-items:center;gap:24px;margin-top:30px">
+      <a class="command" data-variant="primary" href="#">Create item</a>
+      <a class="command" href="#">Cancel</a>
+    </div>
+
+    <div class="folio"><span>Depot &middot; New item</span><span>7 Oct 2026</span></div>
+  </div>
+</section>
+
+<!-- ═══ 4 · ACTIVITY ═══════════════════════════════════════ -->
+<section class="sheet" id="s4">
+  <div class="wrap">
+    <header class="band">
+      <div class="id">
+        <div class="name">Depot</div>
+        <div class="descr">equipment lending register</div>
+      </div>
+      <nav>
+        <a href="#">Items</a>
+        <a class="on" href="#">Activity</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Activity</h1>
+        <p class="subline">import and event log</p>
+      </div>
+    </div>
+
+    <figure style="margin:0">
+      <div class="figure">
+        <div class="top">
+          <span class="indicator" data-tone="neutral">Importing</span>
+          <span class="gauge-readout">7 of 10 steps</span>
+        </div>
+        <div class="gauge"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="gauge-readout" style="color:var(--gray-mid)">Reconciling loan dates&hellip;</div>
+      </div>
+      <figcaption>Figure 1 &mdash; Equipment import, running (7 of 10 steps complete)</figcaption>
+    </figure>
+
+    <div style="display:flex;align-items:center;gap:24px;margin-bottom:30px">
+      <button class="command" data-variant="primary" type="button" disabled>Import running&hellip;</button>
+      <a class="command" href="#">Reload status</a>
+    </div>
+
+    <section class="section" style="margin-top:0">
+      <h2><span class="sec"></span>Event log</h2>
+      <hr class="hr">
+      <ol class="log">
+        <li><span class="i">1</span><span class="t">07 Oct 10:32</span><span>Import started (10 steps).</span></li>
+        <li><span class="i">2</span><span class="t">07 Oct 10:31</span><span>Returned Multimeter.</span></li>
+        <li><span class="i">3</span><span class="t">05 Oct 09:48</span><span>Checked out Heat gun to J. Wong (due 20 Oct).</span></li>
+        <li><span class="i">4</span><span class="t">04 Oct 16:20</span><span>Checked out Cordless drill 18V to R. Ali (due 1 Oct) &mdash; now overdue.</span></li>
+        <li><span class="i">5</span><span class="t">03 Oct 14:03</span><span>Added item: Safety goggles (pair).</span></li>
+      </ol>
+      <p style="font-size:12px;color:var(--gray-mid);margin-top:10px">Log of recorded events &middot; most recent first</p>
+    </section>
+
+    <div class="folio"><span>Depot &middot; Activity</span><span>7 Oct 2026</span></div>
+  </div>
+</section>
+
+<!-- ═══ 5 · DIALOG (dark plate) ════════════════════════════ -->
+<section class="sheet" id="s5">
+  <div class="wrap dimm">
+    <div class="veil"></div>
+    <header class="band">
+      <div class="id">
+        <div class="name">Depot</div>
+        <div class="descr">equipment lending register</div>
+      </div>
+      <nav>
+        <a class="on" href="#">Items</a>
+        <a href="#">Activity</a>
+      </nav>
+    </header>
+
+    <div class="page-head">
+      <div>
+        <h1>Cordless drill 18V</h1>
+        <p class="subline"><span class="tag">Power tools</span> &nbsp; <span class="indicator" data-tone="alert">Overdue</span></p>
+      </div>
+      <a class="command" href="#">Back to items</a>
+    </div>
+
+    <dl class="facts">
+      <dt>Borrower</dt><dd>R. Ali</dd>
+      <dt>Due</dt><dd>1 October 2026</dd>
+    </dl>
+
+    <div class="dialog" role="dialog" aria-labelledby="dlg-t">
+      <div class="dialog__header"><h2 id="dlg-t">Retire item</h2></div>
+      <p class="dialog__body">Retire &ldquo;Cordless drill 18V&rdquo; permanently? It will be removed from the register and cannot be restored.</p>
+      <div class="dialog__actions">
+        <button class="command" type="button">Cancel</button>
+        <button class="command" data-variant="reverse" type="button">Retire permanently</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

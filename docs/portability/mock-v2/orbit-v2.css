@@ -1,0 +1,188 @@
+/* Orbit v2 — mock stylesheet (anti-leak revision)
+   Laws: no decorative borders (p46); boxes only for technical figures (p41);
+   line spaces not indents (p21); white-on-dark where dark (p8);
+   40% value threshold (p47). Separation = rules, bands, plates, spacing. */
+
+:root {
+  --paper: #ffffff;
+  --ink: #101010;
+  --gray-mid: #6f6f6f;
+  --accent: #d63829;      /* a11y revision of the authored screen red (4.71:1 on white text) */
+  --rule: #d9d9d9;
+  --off: #e6e6e6;
+  --font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { background: #ececec; }
+body {
+  margin: 0; background: #ececec; color: var(--ink);
+  font-family: var(--font); font-size: 15px; line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+.sheet { background: var(--paper); margin: 0 0 36px; padding: 0 44px 38px; }
+.wrap { max-width: 880px; margin: 0 auto; }
+
+/* ── masthead band ─────────────────────────────────────────── */
+.band {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 22px 0 13px; border-bottom: 2px solid var(--ink);
+}
+.band .id .name { font-size: 17px; font-weight: 500; letter-spacing: .01em; }
+.band .id .descr { font-size: 12px; color: var(--gray-mid); margin-top: 2px; }
+.band nav { display: flex; gap: 26px; }
+.band nav a {
+  color: var(--gray-mid); text-decoration: none; font-size: 13px; font-weight: 500;
+  padding-bottom: 4px; border-bottom: 2px solid transparent;
+}
+.band nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.band nav a.on { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ── page head ─────────────────────────────────────────────── */
+.page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+h1 { font-size: 26px; font-weight: 300; margin: 26px 0 4px; }
+.subline { font-size: 12px; color: var(--gray-mid); margin: 0 0 20px; }
+
+/* ── commands: plates + text commands ──────────────────────── */
+.command {
+  display: inline-block; font: inherit; font-size: 13px; font-weight: 500;
+  border: 0; background: none; color: var(--ink); cursor: pointer; padding: 0;
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px;
+}
+.command[data-variant="primary"], .command[data-variant="destructive"], .command[data-variant="reverse"] {
+  text-decoration: none; padding: 9px 16px; min-height: 34px;
+}
+.command[data-variant="primary"] { background: var(--accent); color: #fff; }
+.command[data-variant="destructive"] { background: var(--ink); color: #fff; }
+.command[data-variant="reverse"] { background: var(--paper); color: var(--ink); }
+.command[data-variant="primary"]:hover, .command[data-variant="destructive"]:hover,
+.command[data-variant="reverse"]:hover { text-decoration: underline; text-underline-offset: 3px; }
+.command:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.dialog .command:focus-visible { outline-color: var(--paper); }
+.command[disabled] { color: var(--gray-mid); text-decoration: none; cursor: not-allowed; background: none; }
+a { color: var(--ink); }
+
+/* ── ruled-line fields ─────────────────────────────────────── */
+.entry { margin: 0 0 18px; }
+.entry label { display: block; font-size: 13px; font-weight: 500; margin: 0 0 5px; }
+.entry input, .entry select {
+  font: inherit; font-size: 15px; color: var(--ink); background: transparent;
+  border: 0; border-bottom: 1px solid var(--ink); border-radius: 0;
+  padding: 5px 1px; width: 100%;
+}
+.entry input:focus, .entry select:focus { outline: none; border-bottom-width: 2px; }
+.entry input.err, .entry select.err { border-bottom-color: var(--accent); }
+.entry .error { font-size: 12px; color: var(--accent); margin-top: 4px; }
+.entry--short { max-width: 220px; }
+
+/* ── marked-text tags ──────────────────────────────────────── */
+.tag { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; }
+.tag::before { content: ""; width: 5px; height: 5px; background: var(--ink); flex: none; }
+
+/* ── status plates ─────────────────────────────────────────── */
+.indicator {
+  display: inline-block; font-size: 12px; font-weight: 500;
+  padding: 3px 8px; color: #fff; background: var(--ink); white-space: nowrap;
+}
+.indicator[data-tone="neutral"] { background: var(--gray-mid); }
+.indicator[data-tone="alert"] { background: var(--accent); }
+
+/* ── numbered register ─────────────────────────────────────── */
+.toolbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin: 0 0 26px; }
+.toolbar .search { flex: 0 1 300px; }
+
+.register { width: 100%; border-collapse: collapse; font-size: 14px; }
+.register caption {
+  caption-side: bottom; text-align: left; font-size: 12px; color: var(--gray-mid);
+  padding-top: 12px;
+}
+.register th {
+  font-size: 12px; font-weight: 500; text-align: left;
+  padding: 0 16px 8px 0; border-bottom: 2px solid var(--ink);
+}
+.register td { padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.register .n { width: 26px; color: var(--gray-mid); font-size: 12px; font-variant-numeric: tabular-nums; }
+.register .num { font-variant-numeric: tabular-nums; }
+.register .r { text-align: right; padding-right: 0; }
+.register a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── sections ──────────────────────────────────────────────── */
+.section { margin: 32px 0 0; }
+.section h2 { font-size: 15px; font-weight: 500; margin: 0 0 9px; }
+.section h2 .sec { color: var(--gray-mid); margin-right: 10px; font-variant-numeric: tabular-nums; }
+.section .hr { border: 0; border-top: 1px solid var(--rule); margin: 0 0 16px; }
+
+/* ── definition rows (facts) ───────────────────────────────── */
+.facts {
+  display: grid; grid-template-columns: 170px 1fr; margin: 0;
+  font-size: 14px;
+}
+.facts dt, .facts dd { margin: 0; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.facts dt { font-size: 13px; font-weight: 500; }
+.facts dd { font-variant-numeric: tabular-nums; }
+
+/* ── sign bands (notices) ──────────────────────────────────── */
+.notice { padding: 11px 16px; margin: 0 0 20px; font-size: 13.5px; }
+.notice[data-kind="info"] { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.notice[data-kind="warning"] { background: var(--ink); color: #fff; }
+.notice[data-kind="alert"] { background: var(--accent); color: #fff; }
+.notice .lead { font-weight: 500; }
+
+/* ── figures + segmented meter ─────────────────────────────── */
+.figure { border: 1px solid var(--ink); padding: 18px 20px 16px; }
+figcaption { font-size: 12px; color: var(--gray-mid); margin: 8px 0 26px; }
+.gauge { display: flex; gap: 3px; max-width: 420px; }
+.gauge i { height: 14px; flex: 1; background: var(--off); }
+.gauge i.on { background: var(--ink); }
+.gauge[data-tone="alert"] i.on { background: var(--accent); }
+.gauge-readout { font-size: 13px; margin-top: 10px; font-variant-numeric: tabular-nums; }
+.figure .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 12px; }
+
+/* ── log list ──────────────────────────────────────────────── */
+ol.log { list-style: none; margin: 0; padding: 0; font-size: 14px; }
+ol.log li { display: flex; gap: 18px; padding: 9px 0; border-bottom: 1px solid var(--rule); }
+ol.log .i { width: 22px; flex: none; color: var(--gray-mid); font-size: 12px; font-variant-numeric: tabular-nums; }
+ol.log .t { width: 118px; flex: none; color: var(--gray-mid); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+/* ── dialog: dark plate ────────────────────────────────────── */
+.dimm { position: relative; }
+.dimm .veil { position: absolute; inset: 0; background: rgba(16, 16, 16, .4); }
+.dialog {
+  border: 0; padding: 0; background: var(--ink); color: #fff;
+  width: 520px; max-width: calc(100% - 48px); margin: 0;
+  position: absolute; left: 50%; top: 120px; transform: translateX(-50%);
+}
+.dialog__header { padding: 22px 26px 0; }
+.dialog__header h2 { font-size: 17px; font-weight: 500; margin: 0; }
+.dialog__body { padding: 12px 26px 0; font-size: 14.5px; color: #f2f2f2; margin: 0; }
+.dialog__actions { display: flex; justify-content: flex-end; align-items: center; gap: 20px; padding: 24px 26px; }
+.dialog .command { color: #fff; }
+.dialog .command[data-variant="reverse"] { color: var(--ink); }
+
+/* ── folio ─────────────────────────────────────────────────── */
+.folio {
+  display: flex; justify-content: space-between; font-size: 12px;
+  color: var(--gray-mid); border-top: 1px solid var(--rule);
+  margin-top: 44px; padding-top: 10px;
+}
+
+/* ── mobile ────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .sheet { padding: 0 20px 30px; }
+  .band { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .page-head { flex-direction: column; gap: 12px; }
+  .toolbar { flex-direction: column; align-items: stretch; gap: 16px; }
+  .register thead { display: none; }
+  .register tr { display: block; padding: 14px 0 10px; border-bottom: 1px solid var(--rule); }
+  .register td { display: block; border: 0; padding: 3px 0; }
+  .register td.n { display: none; }
+  .register td::before {
+    content: attr(data-label); display: block; font-size: 11px; color: var(--gray-mid);
+  }
+  .register td:first-child::before { content: none; }
+  .register td:first-child { padding-bottom: 6px; }
+  .register .r { text-align: left; }
+  .facts { grid-template-columns: 1fr; }
+  .facts dt { padding-bottom: 0; border-bottom: 0; }
+  .facts dd { padding-top: 2px; }
+}
