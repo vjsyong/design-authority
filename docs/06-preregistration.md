@@ -303,4 +303,19 @@ runs so far completed with exit 0; both losses are C-only (n small, no
 mechanism found that would bias a delivered *build* rather than its
 completeness — reported per-run in the final report).
 
+**D-7 · 2026-10-07 — parallel batch #1 killed by session-cgroup OOM; relaunched
+as systemd user units.** The five-run parallel batch launched from a single
+Hermes background session exceeded that session's memory cgroup (MemoryMax =
+4 GiB; observed single-run peak ≈ 0.95 GiB, and five runs with overlapping
+chromium/Playwright capture phases reached ~3–4× the cap). The kernel
+OOM-killed the `opencode` processes (`dmesg`: "Memory cgroup out of memory:
+Killed process … (opencode)"), ending all five runs mid-transcript; c2b was
+unaffected (separate session). Relaunch fix: each run now executes as its own
+transient systemd user unit (`systemd-run --user`, MemoryMax = 6 GiB per
+unit), outside any session cgroup — parallelism no longer shares a memory
+budget. Lesson: **parallel agent runs must each live in their own cgroup; a
+per-session cap sized for one run cannot host N.** The OOM'd batch's partial
+transcripts were discarded (no measurement value) and the runs restarted
+fresh under the frozen protocol.
+
 *(next deviations appended below)*
