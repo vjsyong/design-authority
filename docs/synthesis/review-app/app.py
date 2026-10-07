@@ -191,6 +191,7 @@ function init() {
       const dec = !!c.dataset.verdict;
       let show = true;
       if (f === 'call') show = att;
+      if (f === 'rev') show = c.classList.contains('rev');
       if (f === 'undecided') show = !dec;
       if (f === 'decided') show = dec;
       c.style.display = show ? '' : 'none';
@@ -205,6 +206,7 @@ BAR = """
 <div class="filterbar">
   <button data-f="all" class="sel">All</button>
   <button data-f="call">Your call</button>
+  <button data-f="rev">Revised v2</button>
   <button data-f="undecided">Undecided</button>
   <button data-f="decided">Decided</button>
   <span class="hint">autosaves as you go</span>
