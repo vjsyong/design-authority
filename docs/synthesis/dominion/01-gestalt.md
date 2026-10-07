@@ -121,3 +121,8 @@ Hex codes for marks (consumers convert; we converted mechanically) · UI
 states & interactivity (deferred by the standard to Canada.ca spec, not
 fetched — not imported) · grids & margins · type sizes · feedback semantics ·
 motion timing beyond the musical signature · imagery style.
+
+## Gate 1 record
+
+**APPROVE** — 2026-10-07, reviewer: "Very good. Much better than last time."
+No corrections requested. Proceed to Phase 5.

@@ -116,3 +116,8 @@ hierarchy; soft blobby chrome; hollow hype; dryness without wit.
 Numeric type scale · spacing/grid values · corner radii · shadow/elevation ·
 feedback & status patterns · hover/motion timings · breakpoints · live-2026
 nav specifics.
+
+## Gate 1 record
+
+**APPROVE** — 2026-10-07, reviewer: "Very good. Much better than last time."
+No corrections requested. Proceed to Phase 5.

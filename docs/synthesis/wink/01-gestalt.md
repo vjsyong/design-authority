@@ -119,3 +119,8 @@ that overpowers function; hype-yelling copy.
 Hover end-states · scroll/entrance motion · breakpoints & mobile behaviour ·
 dark mode · focus rings & disabled states · product-UI spacing tokens ·
 hexes for the described supporting palette (muted greens/peach/blue/red).
+
+## Gate 1 record
+
+**APPROVE** — 2026-10-07, reviewer: "Very good. Much better than last time."
+No corrections requested. Proceed to Phase 5.
