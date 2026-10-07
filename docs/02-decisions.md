@@ -59,6 +59,29 @@ authority) — plus C's validation loop and gap protocol, which are the
 treatment. Package README/AGENTS/INTERACTION are NOT vendored as files for B/C;
 their content enters via the pack render (B) / authority (C).
 
+**D-012 · Findings contract = SARIF-aligned subset.** Validate outputs use
+{rule, severity, message, location{path,line}, fix} — ESLint/axe/SARIF
+conventions; a `--sarif` export is a later option, never a new format.
+Severities stay error/warning/info.
+
+**D-013 · Version identity per read, echoed.** Every tool response includes
+`{authority, version, snapshot}`; `DESIGN.md` instructs agents to cite them in
+records. (Helios/AntD lesson.)
+
+**D-014 · Authority decision log.** The server appends every tool call (name,
+params digest, outcome class, matched IDs, latency) to
+`<workspace>/.design-authority/decision-log.jsonl` — primary source for metrics
+D3 and for replay. Disabling it must not change behaviour.
+
+**D-015 · DTCG 2025.10 consumed, not forked.** The pack builder validates
+Triage's `tokens.json` against the official format where possible and records
+conformance deltas in the gap log.
+
+**D-016 · Proposals use the existing governance shape.** Adversarial reviewer
++ deterministic checks + explicit accept/reject/needs-info, every verdict
+citing its determining evidence; nothing is ever auto-applied upstream.
+(Tokens Studio / OPA / Cedar lessons.)
+
 ---
 
 ## Assumptions to verify

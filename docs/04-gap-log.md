@@ -20,4 +20,30 @@ by an accepted extension.
 
 ## Codification decisions made while building the pack (append during P1+)
 
-*(none yet)*
+- **[pack] Patterns registered as artifacts, deliberately without a states/verify
+  contract.** The 7 patterns become first-class pack members (kind=pattern,
+  sources: docs page + CSS + example) while staying out of the lifecycle matrix.
+  The component↔pattern boundary rule remains unresolved (G-003) — recorded, not
+  invented.
+- **[pack] 14 recipes extracted** from `INTERACTION.md` and two docs pages
+  (feedback routing, armed delete, high-stakes confirm, reversible mutations,
+  entity toggle, status-with-text, empty-with-CTA, bulk actions, editor savebar,
+  row actions, page head, dialog task, paginated list, copy helper). Each recipe
+  carries an evidence quote; extraction forced the decision that composition
+  belongs to prose→recipe formalisation, not to new component invention.
+- **[pack] Guidelines vs rules split by enforceability.** 13 guidelines were
+  created for normative-but-unenforceable guidance (colour-not-alone, page
+  hierarchy, copy helper, z-order, spacing roles…); only what lint can check
+  stays a rule. This keeps "deterministic validation ≠ agent judgment" honest.
+- **[pack] Per-artifact aliases are curated (47 artifacts).** Search quality
+  depends on them; today they live in this repo's curation, not in Triage.
+  Candidate extension: an `aliases` field maintained with each component in
+  `spec/states.json`.
+- **[pack] Prohibitions are keyword-triggered** (substring signals + one
+  `color_literal` detector). Detection breadth is a known limitation; the
+  golden set will quantify false positives/negatives before the benchmark.
+- **[pack] Docs mapping is approximate** (group pages). Candidate extension:
+  canonical page ids per component in the snapshot's docs data.
+
+*(more appended as P1 continues — kernel + golden set)*
+

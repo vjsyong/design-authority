@@ -1,0 +1,128 @@
+{
+ "prohibitions": [
+  {
+   "id": "prohibit/rounded-corners",
+   "statement": "Non-zero border-radius anywhere \u2014 zero radius is a system policy (enforced globally).",
+   "signals": [
+    "rounded corner",
+    "border-radius",
+    "rounded edges",
+    "soft corners",
+    "round the corners",
+    "pill-shaped"
+   ],
+   "rule": "TDS003",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/remove-focus-ring",
+   "statement": "Removing focus outlines without an equivalent visible :focus-visible replacement.",
+   "signals": [
+    "remove focus",
+    "hide the outline",
+    "no focus ring",
+    "disable outline",
+    "outline: none",
+    "outline none"
+   ],
+   "rule": "TDS004",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/raw-color",
+   "statement": "Raw colour literals where tokens exist; off-palette colours must be added to the token source deliberately, not inlined.",
+   "signals": [],
+   "detect": "color_literal",
+   "rule": "TDS002",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/off-system-font",
+   "statement": "Off-system font stacks (Geist / Geist Mono or inherit only).",
+   "signals": [
+    "comic sans",
+    "futura",
+    "custom typeface",
+    "off-system font",
+    "different font family",
+    "helvetica"
+   ],
+   "rule": "TDS008",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/token-override",
+   "statement": "Redefining a system custom property (--bg, --acc, --surface-*, \u2026) in product CSS.",
+   "signals": [
+    "override the css variable",
+    "redefine the token",
+    "change --bg",
+    "redefine --",
+    "override --"
+   ],
+   "rule": "TDS009",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/color-only-status",
+   "statement": "Conveying status by colour alone.",
+   "signals": [
+    "colour only",
+    "color only",
+    "by colour",
+    "by color",
+    "colored dot only",
+    "coloured dot only"
+   ],
+   "related": [
+    "guideline/colour-not-alone"
+   ],
+   "source": "INTERACTION.md#labels-accessibility",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/custom-confirm-for-entity-delete",
+   "statement": "A confirm() dialog or custom modal to delete a listed entity \u2014 entity deletes use the armed two-step pattern instead.",
+   "signals": [
+    "confirm dialog for deleting",
+    "popup to confirm delete",
+    "confirm before deleting",
+    "confirmation dialog for delete"
+   ],
+   "related": [
+    "guideline/armed-delete"
+   ],
+   "source": "INTERACTION.md#item-deletes",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/page-local-toast",
+   "statement": "Page-local toast markup or query-param toasts \u2014 the shared toast host owns feedback.",
+   "signals": [
+    "page-local toast",
+    "query param toast",
+    "query-param toast"
+   ],
+   "related": [
+    "guideline/feedback-routing"
+   ],
+   "source": "INTERACTION.md#feedback",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/ad-hoc-chart-colors",
+   "statement": "Chart colours chosen ad hoc instead of the dataviz palette (CVD-checked, greyscale-safe).",
+   "signals": [
+    "chart colors",
+    "chart colours",
+    "graph colors",
+    "graph colours"
+   ],
+   "related": [
+    "token-set/dataviz"
+   ],
+   "source": "site/pages_foundations.py#dataviz-guidance",
+   "kind": "prohibition"
+  }
+ ]
+}

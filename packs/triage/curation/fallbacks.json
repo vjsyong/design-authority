@@ -1,0 +1,8 @@
+{
+  "_note": "Sanctioned generic fallbacks: what a consumer may legitimately do when the authority has no specific answer. These are deliberately generic and must not be presented as canonical components.",
+  "fallbacks": [
+    {"id": "fallback/plain-content", "title": "Plain content on system surfaces", "scope": ["layout", "content", "typography", "status"], "statement": "Render plain content using the system type scale, spacing roles and layout tokens: system text styles on a system surface, no new visual language, no invented component skin.", "constraints": ["tokens only", "mark the improvisation (code comment or note) so it is not mistaken for canon"]},
+    {"id": "fallback/native-control", "title": "Native control, token-conformant", "scope": ["forms", "controls", "input"], "statement": "If no system control fits, use the platform's native element with minimal token-conformant styling; keep native semantics and degrade without JS.", "constraints": ["native semantics first", "no invented component presented as canonical"]},
+    {"id": "fallback/omit-and-report", "title": "Omit and report", "scope": ["*"], "statement": "When nothing sanctioned fits and any fallback would mislead users, omit the feature area rather than inventing canon, and report a gap.", "constraints": ["never silently invent", "a gap record is required when this fallback is used"]}
+  ]
+}

@@ -1,0 +1,47 @@
+{
+ "id": "triage",
+ "name": "Triage Design System",
+ "format_version": "0.1",
+ "version": "0.12.1",
+ "snapshot": {
+  "repo": "vjsyong/triage-design-system",
+  "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+  "branch": "tds-fix-wrap",
+  "version": "0.12.1",
+  "path_hint": "~/triage-design-system-demo"
+ },
+ "description": "The central, app-agnostic UI design authority for these products.",
+ "kinds": [
+  "component",
+  "pattern",
+  "token-set",
+  "guideline",
+  "recipe",
+  "example",
+  "reference"
+ ],
+ "capabilities": {
+  "search": true,
+  "resolve": true,
+  "validators": [
+   "triage-lint"
+  ],
+  "gap_reporting": true,
+  "extension_proposals": true,
+  "resolution_assist": "off"
+ },
+ "policy": {
+  "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+  "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+  "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+ },
+ "entrypoints": {
+  "artifacts": "artifacts.json",
+  "rules": "rules.json",
+  "recipes": "recipes.json",
+  "fallbacks": "fallbacks.json",
+  "prohibitions": "prohibitions.json",
+  "validators": "validators.json",
+  "scoring": "scoring.json"
+ }
+}

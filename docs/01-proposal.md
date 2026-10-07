@@ -194,7 +194,7 @@ structured body — and is distinguished from retrieval failure (which is a tool
 (a small LLM) may *rank/select among retrieved candidates only*; it can never
 introduce an ID, and turning it off must not change correctness of the
 outcome classes (only match quality within them). The kernel validates every
-ID against the pack before returning.
+ID against the pack before returning. Every response echoes the authority identity (`{authority, version, snapshot}`); a miss still carries nearest candidates, the reason each was rejected, and a recovery hint (what to try next).
 
 ### 3.8 Gaps and proposals
 
@@ -244,6 +244,13 @@ Proposal: { "id": "prop/…", "gap_id": "gap/…",
 | `validate_implementation(target)` | → normalized findings (validator, rule, severity, file, line, message, fix) + summary | Runs declared validators (triage-lint wrapper first; drift/a11y later). |
 | `report_gap(need, context, attempted_resolution)` | → gap record (id, stored path) + template for proposals | Writes to workspace `gaps.jsonl`; marks improvisation. |
 | `propose_extension(gap_id, proposal)` | → validated candidate proposal + review checklist | Shape-validated; citations checked; stored noncanonically. |
+
+Prior-art conventions adopted (see §12): every response echoes
+`{authority, version, snapshot}` (per-read version identity);
+`validate_implementation` findings use a SARIF-aligned subset (rule id,
+severity, location, message, fix); error results carry a recovery hint (the
+next tool to call); the server keeps a decision log (JSONL) of calls in the
+run workspace for metrics and replay.
 
 Also exposed: MCP **resources** `authority://overview`, `authority://rules`,
 `authority://artifact/{id}` for agents that prefer passive reads.
@@ -365,7 +372,7 @@ composite score** (unless later justified in writing).
   semantic element → same treatment across pages; e.g. destructive styling,
   row actions, empty-state anatomy).
 ### D3 · Authority behaviour (C only; partially manual)
-- authority calls by tool; resolutions obtained; **incorrect resolutions**
+- authority calls by tool (from the server decision log); **incorrect resolutions**
   (manual audit vs golden-set expectations); UNDEFINED cases handled as
   UNDEFINED (not silently invented); gaps reported; unauthorised inventions;
   fallback use conformance; validation calls and reaction to findings.
@@ -459,10 +466,51 @@ every framework · universal design ontology. Also deferred within scope:
 multi-authority packs, HTTP transport, authn, LLM-authored authority content,
 automatic pack regeneration on upstream changes.
 
-## 12 · Prior art (item 12 — research digest to fold in)
+## 12 · Prior art (folded 2026-10-07)
 
-Two research passes are in flight (agent-facing design-system interfaces;
-design linting + policy-as-code). Findings will be folded into this document
-and referenced in decisions; anything already solved cheaply (DTCG, rule-ID
-conventions, validators-as-declarations, gap registers from OPA/Conftest-style
-policy testing) gets reused rather than rebuilt.
+Two research passes surveyed ~40 agent-facing design-system servers and the
+design-linting / policy-as-code canon. Condensed findings and what they change:
+
+**Agent-facing design systems (selected).** Figma Dev Mode MCP (~30 tools,
+typed fallbacks); Storybook addon-mcp (component manifest; docs→generate→
+test-run→fix loop; `isError` + "use docs-list" recovery hints); zeroheight
+(search; token linting with nearest-name suggestions; "tell the agent what's
+missing so it doesn't guess"); Supernova (**the only shipped agent
+feedback/gap primitive found**); Atlassian ADS MCP (**explicit canonical tier
+vs fallback tier**: "do not treat as equal-priority replacements"); Tokens
+Studio (review→apply/discard/undo governance, branch provenance); shadcn /
+Ant Design / MUI (staged discovery list→search→view→examples; per-version
+pinning + changelog diffs; validation lives in their CLIs); Helios (tools +
+resources + prompts; explicit installed-vs-bundled version seam; top-5
+suggestions on miss); figma-console-mcp (DTCG verify + parity scoring —
+community).
+
+**Key lessons (mapped to this plan).**
+1. The five-way outcome vocabulary is **unclaimed**. Nearest precedents:
+   Atlassian's canonical/fallback tiers, zeroheight's exact/close suggestions.
+   The kernel's differentiator stands.
+2. Structured gap reporting is nearly greenfield; keep `report_gap` +
+   proposals as core, not garnish.
+3. Never confabulate a match: misses carry nearest candidates, rejection
+   reasons, recovery hints (Helios / zeroheight / Storybook lessons).
+4. Version identity per read, echoed back; model version seams explicitly
+   (done: manifest + snapshot echo; D-013).
+5. Reuse lint/report conventions: stable rule IDs, error/warn/info severities,
+   why/fix, and a SARIF-aligned findings shape (D-012).
+6. Copy the policy-engine operating model (OPA/Conftest/Cedar): decisions cite
+   the determining rule(s); policies have their own tests (our golden set);
+   keep an optional decision log for replay/metrics (D-014).
+7. DTCG 2025.10 is now a stable spec with a JSON Schema + conformance suite:
+   consume it, don't fork it (D-015).
+8. Validation archetypes to copy: snippet→validated result; artifact→parity
+   verifier; model→dry-run validator. Uber/Atlassian/Primer component-usage
+   linting confirms Triage's rule-content direction; API Extractor's
+   golden-file pattern is noted for a later component-API contract.
+9. Human governance channels already exist (RFC/stages/contribution models;
+   Brad Frost's flow covers exactly our UNDEFINED/COMPOSE cases) — proposals
+   hook into that shape rather than a parallel process (D-016).
+
+**Consequential adjustments:** findings shape SARIF-aligned (§4, D-012);
+per-response version echo (§3.7/§4, D-013); decision log for D3 (§7, D-014);
+DTCG conformance check added to pack-builder gates (P1, D-015); recipe and
+prohibition content seeded from INTERACTION.md rather than invented (P1).

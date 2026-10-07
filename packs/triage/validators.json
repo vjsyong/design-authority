@@ -1,0 +1,24 @@
+{
+ "validators": [
+  {
+   "name": "triage-lint",
+   "title": "Triage lint engine",
+   "kind": "command",
+   "workdir": "{snapshot}",
+   "command": [
+    "python3",
+    "lint/triage_lint.py",
+    "{target}",
+    "--json"
+   ],
+   "parser": "triage-lint-json",
+   "applies_to": [
+    "css",
+    "html",
+    "js"
+   ],
+   "rules_source": "rules.json",
+   "notes": "Runs the pinned snapshot's linter over the target path. --json report shape: findings[{rule,severity,file,line,message,excerpt,fix}], counts, by_rule, score."
+  }
+ ]
+}

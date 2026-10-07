@@ -1,0 +1,2428 @@
+{
+ "artifacts": [
+  {
+   "id": "component/btn",
+   "kind": "component",
+   "title": "Button",
+   "summary": "Action trigger. Use a real button or link; variants (primary/ghost/danger/small), busy state via guardApply. Never a clickable div.",
+   "status": "stable",
+   "aliases": [
+    "button",
+    "cta",
+    "action button",
+    "submit button",
+    "primary action"
+   ],
+   "body": {
+    "class": "btn",
+    "states": [
+     "default",
+     "hover",
+     "active",
+     "focus-visible",
+     "disabled",
+     "busy (guardApply)"
+    ],
+    "verify": [
+     ".btn",
+     ".btn:hover",
+     ".btn:active",
+     ".btn:disabled",
+     ".btn:focus-visible"
+    ],
+    "a11y": [
+     "Use a real <button> or <a>; never a clickable div.",
+     "Icon-only buttons need aria-label.",
+     "guardApply freezes and relabels the submit button until navigation."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/buttons"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "btn"
+   }
+  },
+  {
+   "id": "component/iconbtn",
+   "kind": "component",
+   "title": "Icon button",
+   "summary": "Square icon-only control for compact toolbars and rows; must carry an aria-label.",
+   "status": "stable",
+   "aliases": [
+    "icon button",
+    "icon-only button",
+    "kebab menu button",
+    "ellipsis button",
+    "overflow button"
+   ],
+   "body": {
+    "class": "iconbtn",
+    "states": [
+     "default",
+     "hover",
+     "active",
+     "focus-visible"
+    ],
+    "verify": [
+     ".iconbtn",
+     ".iconbtn:hover",
+     ".iconbtn:active",
+     ".iconbtn:focus-visible"
+    ],
+    "a11y": [
+     "aria-label is mandatory (the glyph is aria-hidden).",
+     "Minimum 44px on coarse pointers."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/buttons"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "iconbtn"
+   }
+  },
+  {
+   "id": "component/px-sw",
+   "kind": "component",
+   "title": "Switch",
+   "summary": "The one boolean control for enabling/disabling an entity; auto-submits and announces.",
+   "status": "stable",
+   "aliases": [
+    "toggle",
+    "switch",
+    "enable disable control",
+    "boolean control",
+    "on off control"
+   ],
+   "body": {
+    "class": "px-sw",
+    "states": [
+     "checked",
+     "unchecked",
+     "disabled",
+     "focus-visible"
+    ],
+    "verify": [
+     ".px-sw",
+     ".px-sw input:checked",
+     ".px-sw input:disabled",
+     ".px-sw input:focus-visible"
+    ],
+    "a11y": [
+     "The visible label wraps a real checkbox; hidden twin carries the off value.",
+     "aria-label carries the verb: Enable/Disable <object>.",
+     "Coarse pointers get a 44px hit area.",
+     "Disabled state dims the track and blocks interaction."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "px-sw"
+   }
+  },
+  {
+   "id": "component/menu-item",
+   "kind": "component",
+   "title": "Menu item",
+   "summary": "Item inside a dropdown menu; sentence case; destructive items carry 'menu-item danger arm-del'.",
+   "status": "stable",
+   "aliases": [
+    "dropdown item",
+    "menu entry",
+    "menu option",
+    "context menu item"
+   ],
+   "body": {
+    "class": "menu-item",
+    "states": [
+     "default",
+     "hover",
+     "danger",
+     "armed",
+     "focus-visible"
+    ],
+    "verify": [
+     ".menu-item",
+     ".menu-item:hover",
+     ".menu-item.danger",
+     ".arm-del.armed",
+     ".menu-item:focus-visible"
+    ],
+    "a11y": [
+     "Destructive items use .arm-del with data-arm-label naming the object.",
+     "Escape and outside click disarm; details close disarms."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/navigation"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "menu-item"
+   }
+  },
+  {
+   "id": "component/nav-item",
+   "kind": "component",
+   "title": "Nav item",
+   "summary": "Sidebar/navigation link with icon, active rail state and aria-current.",
+   "status": "stable",
+   "aliases": [
+    "navigation link",
+    "sidebar link",
+    "nav link",
+    "menu link"
+   ],
+   "body": {
+    "class": "nav-item",
+    "states": [
+     "default",
+     "hover",
+     "active(selected)",
+     "focus-visible"
+    ],
+    "verify": [
+     ".nav-item",
+     ".nav-item:hover",
+     ".nav-item.active",
+     ".nav-item:focus-visible"
+    ],
+    "a11y": [
+     "aria-current=\"page\" on the active item.",
+     "Active rail is border-inline-start (mirrors in RTL)."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/navigation"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "nav-item"
+   }
+  },
+  {
+   "id": "component/chip",
+   "kind": "component",
+   "title": "Chip",
+   "summary": "Compact filter/selection token used in filter rows; distinct from badge (not a status).",
+   "status": "stable",
+   "aliases": [
+    "filter chip",
+    "filter pill",
+    "facet",
+    "filter tag"
+   ],
+   "body": {
+    "class": "chip",
+    "states": [
+     "default",
+     "hover",
+     "active(selected)",
+     "focus-visible"
+    ],
+    "verify": [
+     ".chip",
+     ".chip:hover",
+     ".chip.active",
+     ".chip:focus-visible"
+    ],
+    "a11y": [
+     "Counts live in .n; the whole chip is the target (not just the label)."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "chip"
+   }
+  },
+  {
+   "id": "component/index-row",
+   "kind": "component",
+   "title": "Index row",
+   "summary": "Standard row for list/index pages: primary text, meta, optional actions.",
+   "status": "stable",
+   "aliases": [
+    "list row",
+    "index item",
+    "resource row",
+    "result row"
+   ],
+   "body": {
+    "class": "index-row",
+    "states": [
+     "default",
+     "hover",
+     "active",
+     "focus-visible"
+    ],
+    "verify": [
+     ".index-row",
+     ".index-row:hover",
+     ".index-row:active",
+     ".index-row:focus-visible"
+    ],
+    "a11y": [
+     "54px minimum height; one row = one destination."
+    ],
+    "source_file": "patterns.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "index-row"
+   }
+  },
+  {
+   "id": "component/tbl",
+   "kind": "component",
+   "title": "Table",
+   "summary": "Data table with sticky headers; collapses to card rows (.mcards) on phones.",
+   "status": "stable",
+   "aliases": [
+    "table",
+    "data grid",
+    "data table",
+    "list table",
+    "grid"
+   ],
+   "body": {
+    "class": "tbl",
+    "states": [
+     "default",
+     "row hover",
+     "selected",
+     "reflowed (mcards)"
+    ],
+    "verify": [
+     ".tbl",
+     ".tbl tr:hover",
+     ".tbl tr.selected",
+     ".tbl.mcards",
+     ".tbl-records"
+    ],
+    "a11y": [
+     "th scope where the header is meaningful; row checkbox needs aria-label.",
+     "Hover-revealed row actions must also be reachable by keyboard focus."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "tbl"
+   }
+  },
+  {
+   "id": "component/bulkbar",
+   "kind": "component",
+   "title": "Bulk bar",
+   "summary": "Selection-only toolbar for batch operations; hidden until rows are selected.",
+   "status": "stable",
+   "aliases": [
+    "bulk actions",
+    "selection toolbar",
+    "action bar",
+    "batch toolbar"
+   ],
+   "body": {
+    "class": "bulkbar",
+    "states": [
+     "hidden",
+     "shown with selection"
+    ],
+    "verify": [
+     ".bulkbar",
+     ".bulkbar.on"
+    ],
+    "a11y": [
+     "role=region with aria-label; count is text, not colour."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "bulkbar"
+   }
+  },
+  {
+   "id": "component/savebar",
+   "kind": "component",
+   "title": "Save bar",
+   "summary": "Sticky footer for editors: primary Save plus Cancel; validation renders above, focused.",
+   "status": "stable",
+   "aliases": [
+    "sticky save",
+    "form footer",
+    "editor actions",
+    "save bar"
+   ],
+   "body": {
+    "class": "savebar",
+    "states": [
+     "sticky",
+     "keyboard-lifted (JS transform)"
+    ],
+    "verify": [
+     ".savebar"
+    ],
+    "a11y": [
+     "Lifts above the mobile keyboard via keyboard-fit.js (transform), not a class toggle.",
+     "One primary action per card."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "savebar"
+   }
+  },
+  {
+   "id": "component/msg",
+   "kind": "component",
+   "title": "Flash message",
+   "summary": "Banner for server/redirect feedback; exactly ok/warn/err kinds.",
+   "status": "stable",
+   "aliases": [
+    "banner",
+    "alert",
+    "flash message",
+    "notice",
+    "inline alert",
+    "callout"
+   ],
+   "body": {
+    "class": "msg",
+    "states": [
+     "ok",
+     "warn",
+     "err"
+    ],
+    "verify": [
+     ".msg",
+     ".msg.ok",
+     ".msg.warn",
+     ".msg.err"
+    ],
+    "a11y": [
+     "role=status (or role=alert for errors) on the rendered banner.",
+     "Colour is always paired with text."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "msg"
+   }
+  },
+  {
+   "id": "component/toast2",
+   "kind": "component",
+   "title": "Toast",
+   "summary": "Transient in-place feedback (one at a time) from the shared toast host.",
+   "status": "stable",
+   "aliases": [
+    "toast",
+    "snackbar",
+    "transient notification",
+    "popup message"
+   ],
+   "body": {
+    "class": "toast2",
+    "states": [
+     "ok",
+     "warn",
+     "err",
+     "auto-dismiss"
+    ],
+    "verify": [
+     ".toast2",
+     ".toast2.ok",
+     ".toast2.warn",
+     ".toast2.err"
+    ],
+    "a11y": [
+     "#toasts is aria-live=polite; one toast at a time."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "toast2"
+   }
+  },
+  {
+   "id": "component/badge",
+   "kind": "component",
+   "title": "Badge",
+   "summary": "Compact status label (uppercase micro-badge); pair colour with text, never colour alone.",
+   "status": "stable",
+   "aliases": [
+    "status chip",
+    "lozenge",
+    "status label",
+    "state marker",
+    "pill",
+    "status badge",
+    "status indicator"
+   ],
+   "body": {
+    "class": "badge",
+    "states": [
+     "neutral",
+     "ok",
+     "warn",
+     "err",
+     "acc",
+     "solid"
+    ],
+    "verify": [
+     ".badge",
+     ".badge.ok",
+     ".badge.warn",
+     ".badge.err",
+     ".badge.acc",
+     ".badge.solid"
+    ],
+    "a11y": [
+     "Uppercase micro-label; never the only signal \u2014 pair with text that says the same thing."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "badge"
+   }
+  },
+  {
+   "id": "component/empty",
+   "kind": "component",
+   "title": "Empty state",
+   "summary": "Empty state anatomy: title, one-line reason, at most one primary CTA.",
+   "status": "stable",
+   "aliases": [
+    "empty state",
+    "nothing to show",
+    "zero state",
+    "blank state",
+    "no results"
+   ],
+   "body": {
+    "class": "empty",
+    "states": [
+     "default"
+    ],
+    "verify": [
+     ".empty",
+     ".empty h4"
+    ],
+    "a11y": [
+     "h4 + one-line reason + at most one action; never a bare blank area."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "empty"
+   }
+  },
+  {
+   "id": "component/dlg",
+   "kind": "component",
+   "title": "Dialog (native)",
+   "summary": "Native dialog element for modals/confirms; static-backdrop variant available; dialog is the confirm primitive.",
+   "status": "stable",
+   "aliases": [
+    "modal",
+    "dialog",
+    "popup window",
+    "modal window",
+    "confirm window"
+   ],
+   "body": {
+    "class": "dlg",
+    "states": [
+     "open (showModal)",
+     "backdrop",
+     "wide variant"
+    ],
+    "verify": [
+     ".dlg",
+     ".dlg::backdrop",
+     ".dlg.dlg-wide",
+     ".dlg-h",
+     ".dlg-b",
+     ".dlg-f"
+    ],
+    "a11y": [
+     "Native <dialog> + showModal(): top layer, inert background, Escape, focus restore \u2014 do not hand-roll a focus trap.",
+     "aria-labelledby points at the heading; autofocus the first meaningful control, not the close button.",
+     "Backdrop click closes unless the dialog is destructive.",
+     "Backdrop close is suppressed for [data-dlg-static] / [data-danger] dialogs."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/overlays"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "dlg"
+   }
+  },
+  {
+   "id": "component/tip",
+   "kind": "component",
+   "title": "Tooltip",
+   "summary": "Tooltip for supplementary hints; hover/focus triggered.",
+   "status": "stable",
+   "aliases": [
+    "tooltip",
+    "hint popup",
+    "help bubble"
+   ],
+   "body": {
+    "class": "tip",
+    "states": [
+     "hover",
+     "focus-visible"
+    ],
+    "verify": [
+     ".tip",
+     ".tip:hover",
+     ".tip:focus-visible::after",
+     ".tip::after"
+    ],
+    "a11y": [
+     "Decorative tips only; essential text must be in the DOM. Pair with aria-describedby for screen readers."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/overlays"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "tip"
+   }
+  },
+  {
+   "id": "component/spinner",
+   "kind": "component",
+   "title": "Spinner",
+   "summary": "Loading indicator for waiting states; pair with text describing what is loading.",
+   "status": "stable",
+   "aliases": [
+    "loading spinner",
+    "loader",
+    "activity indicator",
+    "loading indicator"
+   ],
+   "body": {
+    "class": "spinner",
+    "states": [
+     "spinning",
+     "reduced-motion (slowed)"
+    ],
+    "verify": [
+     ".spinner",
+     "@keyframes tri-spin"
+    ],
+    "a11y": [
+     "Indeterminate progress: keep the action label honest ('Queued\u2026'), and slow to 1s under prefers-reduced-motion."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "spinner"
+   }
+  },
+  {
+   "id": "component/field-err",
+   "kind": "component",
+   "title": "Field error",
+   "summary": "Inline field validation message; form-level summary focuses at top.",
+   "status": "stable",
+   "aliases": [
+    "field error",
+    "inline validation",
+    "form error",
+    "error text under field"
+   ],
+   "body": {
+    "class": "field-err",
+    "states": [
+     "message",
+     "aria-invalid input"
+    ],
+    "verify": [
+     ".field-err",
+     "input[aria-invalid=\"true\"]"
+    ],
+    "a11y": [
+     "Focusable summary at the top + inline message per field, linked with aria-describedby; aria-invalid=true on the control (W3C ARIA21)."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "field-err"
+   }
+  },
+  {
+   "id": "component/tabs",
+   "kind": "component",
+   "title": "Tabs",
+   "summary": "In-place view switcher; roving tabindex + arrow keys via components.js.",
+   "status": "stable",
+   "aliases": [
+    "tab bar",
+    "tabbed views",
+    "section switcher",
+    "tabs control"
+   ],
+   "body": {
+    "class": "tabs",
+    "states": [
+     "selected",
+     "hover",
+     "focus-visible",
+     "overflow-scroll"
+    ],
+    "verify": [
+     ".tab",
+     ".tablist",
+     ".tab[aria-selected=\"true\"]",
+     ".tab:focus-visible"
+    ],
+    "a11y": [
+     "tablist/tab/tabpanel roles wired by components.js with roving tabindex and Arrow/Home/End.",
+     "Panels are hidden, not unmounted; one tab is always selected."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/navigation"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "tabs"
+   }
+  },
+  {
+   "id": "component/crumbs",
+   "kind": "component",
+   "title": "Breadcrumbs",
+   "summary": "Breadcrumb trail for hierarchical navigation.",
+   "status": "stable",
+   "aliases": [
+    "breadcrumb",
+    "breadcrumbs",
+    "trail",
+    "path indicator"
+   ],
+   "body": {
+    "class": "crumbs",
+    "states": [
+     "default",
+     "current"
+    ],
+    "verify": [
+     ".crumbs",
+     ".crumbs [aria-current=\"page\"]"
+    ],
+    "a11y": [
+     "nav[aria-label=Breadcrumb] wraps an ordered list; plain text + separators.",
+     "aria-current on the leaf; the last item is not a link."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/navigation"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "crumbs"
+   }
+  },
+  {
+   "id": "component/radio",
+   "kind": "component",
+   "title": "Radio",
+   "summary": "Square single-choice control.",
+   "status": "stable",
+   "aliases": [
+    "radio button",
+    "single choice control",
+    "radio group"
+   ],
+   "body": {
+    "class": "radio",
+    "states": [
+     "checked",
+     "unchecked",
+     "focus-visible",
+     "disabled"
+    ],
+    "verify": [
+     ".radio",
+     ".radio input:checked",
+     ".radio input:focus-visible"
+    ],
+    "a11y": [
+     "Native input inside the label; group with fieldset/radiogroup and a shared name."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "radio"
+   }
+  },
+  {
+   "id": "component/slider",
+   "kind": "component",
+   "title": "Slider",
+   "summary": "Range control with numeric readout.",
+   "status": "stable",
+   "aliases": [
+    "range slider",
+    "seek control",
+    "range input"
+   ],
+   "body": {
+    "class": "slider",
+    "states": [
+     "default",
+     "focus-visible",
+     "disabled"
+    ],
+    "verify": [
+     ".slider",
+     ".slider:focus-visible::-webkit-slider-thumb"
+    ],
+    "a11y": [
+     "aria-label on the range; the readout mirrors the value; keyboard steps come from the native input."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "slider"
+   }
+  },
+  {
+   "id": "component/cb",
+   "kind": "component",
+   "title": "Combobox",
+   "summary": "Combobox: type-to-filter select, optionally multi-select with chips and a mirror input.",
+   "status": "stable",
+   "aliases": [
+    "combobox",
+    "autocomplete",
+    "multi-select",
+    "tag input",
+    "typeahead",
+    "picker with search"
+   ],
+   "body": {
+    "class": "cb",
+    "states": [
+     "closed",
+     "open",
+     "filtered",
+     "selected",
+     "multi-chips"
+    ],
+    "verify": [
+     ".cb",
+     ".cb.open .cb-list",
+     ".cb-opt[aria-selected=\"true\"]",
+     ".cb-chips"
+    ],
+    "a11y": [
+     "aria-activedescendant listbox: focus stays in the input; options are filtered in place.",
+     "Multi-select mirrors values into a hidden input and announces chips via aria-live."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "cb"
+   }
+  },
+  {
+   "id": "component/dp",
+   "kind": "component",
+   "title": "Date picker",
+   "summary": "Date picker: text input plus calendar popover; min/max supported.",
+   "status": "stable",
+   "aliases": [
+    "date picker",
+    "datepicker",
+    "calendar input",
+    "date field"
+   ],
+   "body": {
+    "class": "dp",
+    "states": [
+     "open",
+     "today",
+     "selected",
+     "out-of-month",
+     "disabled-day",
+     "roving-focus (one tabbable cell)"
+    ],
+    "verify": [
+     ".dp",
+     ".dp.open .dp-pop",
+     ".dp-d.sel",
+     ".dp-d[aria-current=\"date\"]"
+    ],
+    "a11y": [
+     "ISO value on the input; month/weekday names and full-date day labels via Intl (locale-aware).",
+     "Roving tabindex: exactly one day cell is tabbable \u2014 the selected day in view, else today, else the first enabled day.",
+     "Arrow keys move \u00b11/\u00b17 days, Home/End to week start/end, PageUp/PageDown change month; disabled days are skipped.",
+     "Escape from anywhere inside the popup closes it and returns focus to the input; selecting a day does the same.",
+     "min/max disable days; today carries aria-current=date.",
+     "Clicking the input reopens the picker after a selection (the input is already focused, so no focus event fires)."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "dp"
+   }
+  },
+  {
+   "id": "component/acc",
+   "kind": "component",
+   "title": "Accordion",
+   "summary": "Accordion/disclosure for collapsible sections.",
+   "status": "stable",
+   "aliases": [
+    "accordion",
+    "disclosure",
+    "collapsible section",
+    "expandable section"
+   ],
+   "body": {
+    "class": "acc",
+    "states": [
+     "closed",
+     "open",
+     "focus-visible"
+    ],
+    "verify": [
+     ".acc",
+     ".acc-h",
+     "details.acc[open]>.acc-h::after"
+    ],
+    "a11y": [
+     "Native details/summary \u2014 keyboard and find-in-page work for free; group with the details name attribute for exclusivity."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "acc"
+   }
+  },
+  {
+   "id": "component/avatar-sq",
+   "kind": "component",
+   "title": "Avatar",
+   "summary": "Square avatar chip for people. (avatar-sq)",
+   "status": "stable",
+   "aliases": [
+    "avatar",
+    "profile image",
+    "user picture",
+    "user chip"
+   ],
+   "body": {
+    "class": "avatar-sq",
+    "states": [
+     "initials",
+     "image",
+     "ink",
+     "group"
+    ],
+    "verify": [
+     ".avatar-sq",
+     ".avatar-32",
+     ".avatar-group",
+     ".avatar-more"
+    ],
+    "a11y": [
+     "Decorative avatars are aria-hidden; meaningful ones need alt/label. Groups carry an aria-label with the count."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "avatar-sq"
+   }
+  },
+  {
+   "id": "component/img",
+   "kind": "component",
+   "title": "Image",
+   "summary": "Image presentation with system borders; always alt text.",
+   "status": "stable",
+   "aliases": [
+    "image",
+    "media",
+    "thumbnail",
+    "attachment preview"
+   ],
+   "body": {
+    "class": "img",
+    "states": [
+     "16:9",
+     "4:3",
+     "1:1",
+     "contain",
+     "caption"
+    ],
+    "verify": [
+     ".img",
+     ".img-16x9",
+     ".img img",
+     ".img-cap"
+    ],
+    "a11y": [
+     "alt is mandatory (TDS014); the frame reserves space so loading never shifts layout."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "img"
+   }
+  },
+  {
+   "id": "component/drop",
+   "kind": "component",
+   "title": "Upload / dropzone",
+   "summary": "Dropzone + file input for uploads; dispatches triage:files.",
+   "status": "stable",
+   "aliases": [
+    "dropzone",
+    "upload",
+    "file drop",
+    "attach files",
+    "upload area"
+   ],
+   "body": {
+    "class": "drop",
+    "states": [
+     "idle",
+     "dragover",
+     "focus-visible",
+     "file-list"
+    ],
+    "verify": [
+     ".drop",
+     ".drop.over",
+     ".up-row",
+     ".up-rm"
+    ],
+    "a11y": [
+     "role=button + Enter/Space; announces files with name and size; removal is a labelled button."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/forms"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "drop"
+   }
+  },
+  {
+   "id": "component/notif",
+   "kind": "component",
+   "title": "Notifications",
+   "summary": "Notifications panel with unread dot and mark-all-read.",
+   "status": "stable",
+   "aliases": [
+    "notifications panel",
+    "notification centre",
+    "inbox dropdown",
+    "alerts menu"
+   ],
+   "body": {
+    "class": "notif",
+    "states": [
+     "unread",
+     "read",
+     "empty",
+     "mark-all"
+    ],
+    "verify": [
+     ".notif-dot",
+     ".notif-item.unread",
+     ".notif-panel",
+     ".notif-foot"
+    ],
+    "a11y": [
+     "The summary's accessible name carries the unread count; unread uses background + a dot, never colour alone."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "notif"
+   }
+  },
+  {
+   "id": "component/cmd",
+   "kind": "component",
+   "title": "Command palette",
+   "summary": "Command palette dialog (cmd-k style) with input, items and triggers.",
+   "status": "stable",
+   "aliases": [
+    "command palette",
+    "command menu",
+    "quick switcher",
+    "command bar",
+    "cmdk"
+   ],
+   "body": {
+    "class": "cmd",
+    "states": [
+     "closed",
+     "open",
+     "filtered",
+     "active-item",
+     "empty"
+    ],
+    "verify": [
+     ".dlg.cmd",
+     ".cmd-item[aria-selected=\"true\"]",
+     ".cmd-hint",
+     ".cmd-empty"
+    ],
+    "a11y": [
+     "Native dialog; Arrow/Enter/Escape inside, cmd/ctrl+K opens; items are buttons with listbox roles.",
+     "A click executes the clicked item (both data-href and data-cmd-action paths); Enter executes the highlighted item."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/overlays"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "cmd"
+   }
+  },
+  {
+   "id": "component/page-state",
+   "kind": "component",
+   "title": "Full-page state",
+   "summary": "Full-page state (e.g. fatal/empty app shell) with message and action.",
+   "status": "stable",
+   "aliases": [
+    "full page state",
+    "error page",
+    "fatal state",
+    "whole page message",
+    "404 state"
+   ],
+   "body": {
+    "class": "page-state",
+    "states": [
+     "404",
+     "500",
+     "403",
+     "offline",
+     "maintenance"
+    ],
+    "verify": [
+     ".page-state",
+     ".ps-icon",
+     ".ps-code",
+     ".ps-actions",
+     ".ps-meta"
+    ],
+    "a11y": [
+     "One h2 per page state; the code is secondary; actions are the only focusable elements."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/feedback"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "page-state"
+   }
+  },
+  {
+   "id": "component/pager-num",
+   "kind": "component",
+   "title": "Numbered pagination",
+   "summary": "Numbered pagination with page-size control; phone-trimmed.",
+   "status": "stable",
+   "aliases": [
+    "pagination",
+    "pager",
+    "page numbers",
+    "paging control"
+   ],
+   "body": {
+    "class": "pager-num",
+    "states": [
+     "first",
+     "middle",
+     "current",
+     "gap",
+     "disabled"
+    ],
+    "verify": [
+     ".pager-num",
+     ".pgn[aria-current=\"page\"]",
+     ".pgn-gap",
+     ".pager-size"
+    ],
+    "a11y": [
+     "aria-current marks the active page; range labels on prev/next; page-size select is labelled."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "pager-num"
+   }
+  },
+  {
+   "id": "component/tl",
+   "kind": "component",
+   "title": "Timeline",
+   "summary": "Timeline for histories (e.g. approval steps): ordered entries with markers, time, actor.",
+   "status": "stable",
+   "aliases": [
+    "timeline",
+    "activity trail",
+    "history list",
+    "event feed",
+    "step history",
+    "approval history"
+   ],
+   "body": {
+    "class": "tl",
+    "states": [
+     "default",
+     "status-dots"
+    ],
+    "verify": [
+     ".tl",
+     ".tl-item",
+     ".tl-dot.ok",
+     ".tl-dot.err"
+    ],
+    "a11y": [
+     "Ordered list; dots are decorative (the text carries the meaning)."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "tl"
+   }
+  },
+  {
+   "id": "component/diff",
+   "kind": "component",
+   "title": "Diff",
+   "summary": "Diff presentation for before/after comparison.",
+   "status": "stable",
+   "aliases": [
+    "diff view",
+    "change comparison",
+    "before after view"
+   ],
+   "body": {
+    "class": "diff",
+    "states": [
+     "context",
+     "added",
+     "removed",
+     "empty"
+    ],
+    "verify": [
+     ".diff",
+     ".diff-row",
+     ".diff-add",
+     ".diff-del",
+     ".diff-empty"
+    ],
+    "a11y": [
+     "role=table with labelled columns; +/- expressed as background tints plus repeated line numbers."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/data"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "diff"
+   }
+  },
+  {
+   "id": "component/sheet-end",
+   "kind": "component",
+   "title": "Sheet dialog",
+   "summary": "End sheet: slide-over dialog variant for secondary panels.",
+   "status": "stable",
+   "aliases": [
+    "side sheet",
+    "end sheet",
+    "slide-over panel",
+    "side panel"
+   ],
+   "body": {
+    "class": "sheet-end",
+    "states": [
+     "side",
+     "bottom"
+    ],
+    "verify": [
+     ".dlg.sheet-end",
+     ".dlg.sheet-bottom"
+    ],
+    "a11y": [
+     "Same native-dialog contract as .dlg (top layer, Escape, focus restore); data-dlg-static still blocks backdrop close."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/overlays"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "spec/states.json",
+    "pointer": "sheet-end"
+   }
+  },
+  {
+   "id": "pattern/dashboard",
+   "kind": "pattern",
+   "title": "Dashboard / overview",
+   "summary": "Landing overview: hero metric strip, status/automation chips, recent-activity feed, follow-up cards.",
+   "status": "documented",
+   "aliases": [
+    "overview",
+    "home page",
+    "metrics page",
+    "stats page",
+    "landing dashboard"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/dashboard",
+     "css": "src/core/patterns.css",
+     "example": "examples/dashboard.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/detail",
+   "kind": "pattern",
+   "title": "Detail / record page",
+   "summary": "Single-record page: page head with actions, fields, related lists, timeline.",
+   "status": "documented",
+   "aliases": [
+    "detail view",
+    "record page",
+    "entity page",
+    "item page",
+    "profile page"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/detail",
+     "css": "src/core/patterns.css",
+     "example": "examples/viewer.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/settings",
+   "kind": "pattern",
+   "title": "Settings",
+   "summary": "Task-sectioned settings cards with scoped partial saves.",
+   "status": "documented",
+   "aliases": [
+    "preferences",
+    "config pages",
+    "settings page",
+    "options page"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/settings",
+     "css": "src/core/patterns.css",
+     "example": "examples/form.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/flows",
+   "kind": "pattern",
+   "title": "Flow / automation builder",
+   "summary": "Builder canvas for trigger \u2192 filter \u2192 action chains (node spine, insert-on-connector).",
+   "status": "documented",
+   "aliases": [
+    "automation builder",
+    "pipeline editor",
+    "flow editor",
+    "rule builder"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/flows",
+     "css": "src/core/patterns.css",
+     "example": "examples/components.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/dry-run",
+   "kind": "pattern",
+   "title": "Dry-run / simulator report",
+   "summary": "Two-column draft|report layout for previewing what an automated pipeline would do.",
+   "status": "documented",
+   "aliases": [
+    "simulator",
+    "preview report",
+    "what would happen",
+    "dry run page",
+    "test run"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/dry-run",
+     "css": "src/core/patterns.css",
+     "example": "examples/components.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/stepper",
+   "kind": "pattern",
+   "title": "Stepper / wizard",
+   "summary": "Multi-step task flow with step rail and per-step actions.",
+   "status": "documented",
+   "aliases": [
+    "wizard",
+    "multi-step form",
+    "onboarding wizard",
+    "step flow"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/stepper",
+     "css": "src/core/patterns.css",
+     "example": "examples/form.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "pattern/index-eval",
+   "kind": "pattern",
+   "title": "Index & eval queue",
+   "summary": "Work-queue page: progress stats, per-item review rows, blind-labelling flow.",
+   "status": "documented",
+   "aliases": [
+    "indexing page",
+    "evaluation queue",
+    "labelling flow",
+    "review queue",
+    "annotation queue"
+   ],
+   "body": {
+    "sources": {
+     "docs": "/patterns/index-eval",
+     "css": "src/core/patterns.css",
+     "example": "examples/list.html"
+    },
+    "note": "no states/verify contract (see gap G-003)"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/ + src/core/patterns.css"
+   }
+  },
+  {
+   "id": "guideline/armed-delete",
+   "kind": "guideline",
+   "title": "Armed two-step delete",
+   "summary": "Deleting an entity listed in the UI is a two-step, in-place action with auto-disarm; no confirm() dialogs for these.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "carry .arm-del with data-arm-label and a matching aria-label",
+     "arm on first activation (label becomes 'Confirm delete'), delete on second",
+     "auto-disarm after 4s, on Escape, outside click, or menu close",
+     "announce the result afterwards (banner or toast)"
+    ],
+    "dont": [
+     "no confirm() for entity deletes",
+     "no arming as a substitute for feedback"
+    ],
+    "quote": "No `confirm()` dialog, ever, for these.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#item-deletes"
+   }
+  },
+  {
+   "id": "guideline/high-stakes-confirm",
+   "kind": "guideline",
+   "title": "High-stakes confirmations",
+   "summary": "Irreversible, security-relevant, or multi-item actions keep a native confirm() whose sentence names the object and consequence.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "name the object and the consequence in the sentence",
+     "keep strings apostrophe-safe"
+    ],
+    "dont": [
+     "do not route entity deletes through confirm() (use arming)"
+    ],
+    "quote": "Representative set: remove account \u00b7 reset tokens \u00b7 rebuild the index \u00b7 clear a chat \u00b7 enable auto-apply \u00b7 approve a risky plugin.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#one-way-actions"
+   }
+  },
+  {
+   "id": "guideline/reversible-mutations",
+   "kind": "guideline",
+   "title": "Reversible mutations show the reverse",
+   "summary": "Edits undoable in place need no confirmation and no danger styling; put the reverse control next to the action.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "pair remove \u21c4 re-include, snooze \u21c4 wake, tag \u21c4 untag"
+    ],
+    "dont": [
+     "no confirms or danger styling for reversible edits"
+    ],
+    "quote": "Put the reverse control next to the action.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#reversible-mutations"
+   }
+  },
+  {
+   "id": "guideline/feedback-routing",
+   "kind": "guideline",
+   "title": "Feedback routing: banner vs toast",
+   "summary": "Server/redirect results render an .msg banner; in-place JS results call toast(); kinds are exactly ok/warn/err.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "announce every mutation unless the new state is self-evident in the same viewport",
+     "wording is past tense and names the object"
+    ],
+    "dont": [
+     "no info kind",
+     "no page-local toast markup or query-param toasts"
+    ],
+    "quote": "There is no `info` kind \u2014 use `ok` for a benign outcome and `warn` when only part of it worked.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#feedback"
+   }
+  },
+  {
+   "id": "guideline/row-actions",
+   "kind": "guideline",
+   "title": "Row actions",
+   "summary": "Clicking a row opens the record; secondary actions live in .rowacts, revealed on hover/focus (always visible on touch).",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "inline the relevant few with .ra-inline; rest in details.menu with .ra-menu",
+     "sentence case menu items; destructive item is 'menu-item danger arm-del'"
+    ],
+    "dont": [
+     "no physical-direction CSS (use logical properties)",
+     "no grey tags/categories styling here \u2014 that's product convention"
+    ],
+    "quote": "Touch (\u2264767px): `.ra-inline` hides and the `\u22ef` menu shows.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#lists-row-actions"
+   }
+  },
+  {
+   "id": "guideline/savebar-editor",
+   "kind": "guideline",
+   "title": "Editors end in a save bar",
+   "summary": "Editors end in .savebar: primary Save <thing> plus Cancel. Cancel is the way out; Back is only for a navigation backlink.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "render server-side validation at the top of the form and focus it",
+     "settings cards keep scoped partial saves"
+    ],
+    "dont": [
+     "a card never submits fields it does not own"
+    ],
+    "quote": "Settings cards keep scoped partial saves.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#save-bars"
+   }
+  },
+  {
+   "id": "guideline/empty-anatomy",
+   "kind": "guideline",
+   "title": "Empty state anatomy",
+   "summary": ".empty = optional icon, h4 title, one line of reason, at most one CTA (.btn primary).",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "use for any list or card with nothing to show",
+     "micro-empties inside a feed may be a single .sub line"
+    ],
+    "dont": [
+     "never a bare blank area or a bare 'failed'"
+    ],
+    "quote": "Give a specific reason and one recovery action.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#empty-states"
+   }
+  },
+  {
+   "id": "guideline/copy-helper",
+   "kind": "guideline",
+   "title": "Copy helper owns the clipboard",
+   "summary": "Use the shared cp() helper / .copy element; the helper owns fallback and confirmation labelling.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     ".copy marks the copy affordance"
+    ],
+    "dont": [
+     "never call navigator.clipboard from page code"
+    ],
+    "quote": "The helper owns the fallback and the confirmation labelling.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#copy"
+   }
+  },
+  {
+   "id": "guideline/labels-accessibility",
+   "kind": "guideline",
+   "title": "Labels & accessibility baseline",
+   "summary": "Sentence case for buttons/links/menu items; name the object; keep the global focus ring; 44px touch targets; colour never the only signal; every interactive element has an accessible name.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "name the object in destructive labels and aria-labels",
+     "keep :focus-visible intact"
+    ],
+    "dont": [
+     "positive tabindex",
+     "icon-only controls without labels"
+    ],
+    "quote": null,
+    "enforced_by": "triage-lint TDS014/TDS015/TDS004"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#labels-accessibility"
+   }
+  },
+  {
+   "id": "guideline/colour-not-alone",
+   "kind": "guideline",
+   "title": "Colour is never the only signal",
+   "summary": "Status and meaning are carried by text or icon as well as colour; charts must survive greyscale and colour-blindness.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "label status lines directly",
+     "vary dash patterns or annotate in charts"
+    ],
+    "dont": [
+     "no colour-only dots or fills for meaning"
+    ],
+    "quote": "Do not rely on colour alone: label lines directly, vary dash patterns, or annotate.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md#labels-accessibility + dataviz guidance"
+   }
+  },
+  {
+   "id": "guideline/page-hierarchy",
+   "kind": "guideline",
+   "title": "Page hierarchy",
+   "summary": "One element, one token and one job per level: page title \u2192 section heading \u2192 card heading \u2192 body \u2192 meta. Don't skip levels.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "let a long page title wrap at --fs-page-title"
+    ],
+    "dont": [
+     "don't shrink a page title with inline font-size",
+     "don't use a section heading as a card label"
+    ],
+    "quote": "Don't skip levels or spend a level you don't need.",
+    "enforced_by": null
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "site/pages_foundations.py#typography"
+   }
+  },
+  {
+   "id": "guideline/overlay-zorder",
+   "kind": "guideline",
+   "title": "Overlay z-order",
+   "summary": "New full-screen overlays must clear the mobile tab bar; the ladder is tokenised (misc.zindex).",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "use ladder values from tokens"
+    ],
+    "dont": [
+     "no arbitrary z-index values"
+    ],
+    "quote": null,
+    "enforced_by": "triage-lint TDS007"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens.json#misc.zindex"
+   }
+  },
+  {
+   "id": "guideline/spacing-roles",
+   "kind": "guideline",
+   "title": "Spacing by role, not by vibe",
+   "summary": "Use semantic spacing roles (page/card/field/control) and the preferred scale 2/4/8/12/16/24/32/48; legacy steps remain only for compatibility.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "snap new work to the preferred scale"
+    ],
+    "dont": [
+     "no ad-hoc spacing values"
+    ],
+    "quote": null,
+    "enforced_by": "triage-lint TDS005"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens.json#spacing"
+   }
+  },
+  {
+   "id": "token-set/color",
+   "kind": "token-set",
+   "title": "Colour tokens",
+   "summary": "Primitives plus semantic aliases (surface-*, text-*, status-*, interactive-*, ink), tints and solid status surfaces; both themes.",
+   "status": "source-of-truth",
+   "aliases": [
+    "colour tokens",
+    "palette",
+    "colors",
+    "theme colors",
+    "colour palette"
+   ],
+   "body": {
+    "group": "color"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#color"
+   }
+  },
+  {
+   "id": "token-set/typography",
+   "kind": "token-set",
+   "title": "Typography tokens",
+   "summary": "Geist / Geist Mono families, relative --base-size root, --fs-* scale, weights and line-heights.",
+   "status": "source-of-truth",
+   "aliases": [
+    "type scale",
+    "fonts",
+    "text styles",
+    "typography"
+   ],
+   "body": {
+    "group": "typography"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#typography"
+   }
+  },
+  {
+   "id": "token-set/spacing",
+   "kind": "token-set",
+   "title": "Spacing tokens",
+   "summary": "Preferred scale 2/4/8/12/16/24/32/48 + semantic roles --space-page/card/field/control + legacy steps (compatibility).",
+   "status": "source-of-truth",
+   "aliases": [
+    "spacing scale",
+    "gaps and padding",
+    "space tokens"
+   ],
+   "body": {
+    "group": "spacing"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#spacing"
+   }
+  },
+  {
+   "id": "token-set/motion",
+   "kind": "token-set",
+   "title": "Motion tokens",
+   "summary": "Duration set (100\u2013400ms) and easings; ad-hoc durations are off-token.",
+   "status": "source-of-truth",
+   "aliases": [
+    "durations",
+    "animation timing",
+    "easing",
+    "motion tokens"
+   ],
+   "body": {
+    "group": "motion"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#motion"
+   }
+  },
+  {
+   "id": "token-set/misc",
+   "kind": "token-set",
+   "title": "System constants",
+   "summary": "Radius policy 0, breakpoint set, z-index ladder, fixed layout widths (--layout-sidebar/content-max/dock).",
+   "status": "source-of-truth",
+   "aliases": [
+    "radius policy",
+    "breakpoints",
+    "z-index ladder",
+    "layout widths"
+   ],
+   "body": {
+    "group": "misc"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#misc"
+   }
+  },
+  {
+   "id": "token-set/dataviz",
+   "kind": "token-set",
+   "title": "Dataviz palette",
+   "summary": "Eight categorical series (Okabe-Ito derived), CVD-checked, for downstream chart code.",
+   "status": "source-of-truth",
+   "aliases": [
+    "chart colors",
+    "data visualization palette",
+    "chart palette"
+   ],
+   "body": {
+    "group": "dataviz"
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "tokens/tokens.json#dataviz"
+   }
+  },
+  {
+   "id": "example/chat",
+   "kind": "example",
+   "title": "Example: Chat \u2014 skeleton",
+   "summary": "Reference screen (85 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/chat.html",
+    "classes_used": 85
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/chat.html"
+   }
+  },
+  {
+   "id": "example/components",
+   "kind": "example",
+   "title": "Example: Component gallery \u2014 design system",
+   "summary": "Reference screen (160 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/components.html",
+    "classes_used": 160
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/components.html"
+   }
+  },
+  {
+   "id": "example/dashboard",
+   "kind": "example",
+   "title": "Example: Dashboard \u2014 skeleton",
+   "summary": "Reference screen (87 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/dashboard.html",
+    "classes_used": 87
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/dashboard.html"
+   }
+  },
+  {
+   "id": "example/form",
+   "kind": "example",
+   "title": "Example: Settings \u2014 skeleton",
+   "summary": "Reference screen (50 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/form.html",
+    "classes_used": 50
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/form.html"
+   }
+  },
+  {
+   "id": "example/list",
+   "kind": "example",
+   "title": "Example: List \u2014 skeleton",
+   "summary": "Reference screen (68 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/list.html",
+    "classes_used": 68
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/list.html"
+   }
+  },
+  {
+   "id": "example/shell",
+   "kind": "example",
+   "title": "Example: App name",
+   "summary": "Reference screen (55 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/shell.html",
+    "classes_used": 55
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/shell.html"
+   }
+  },
+  {
+   "id": "example/viewer",
+   "kind": "example",
+   "title": "Example: Viewer \u2014 skeleton",
+   "summary": "Reference screen (66 classes used).",
+   "status": "reference",
+   "aliases": [],
+   "body": {
+    "path": "examples/viewer.html",
+    "classes_used": 66
+   },
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "examples/viewer.html"
+   }
+  },
+  {
+   "id": "reference/quickstart",
+   "kind": "reference",
+   "title": "Consumption quickstart",
+   "summary": "Global vs scoped adoption, load order, component dependencies, theme and density switches.",
+   "status": "documented",
+   "aliases": [
+    "getting started",
+    "install",
+    "how to load the css"
+   ],
+   "body": {},
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "README.md"
+   }
+  },
+  {
+   "id": "reference/interaction-standard",
+   "kind": "reference",
+   "title": "Interaction standard (binding)",
+   "summary": "Action grammar, feedback, save bars, empty states, copy, a11y labels, exceptions register, review checklist.",
+   "status": "documented",
+   "aliases": [
+    "interaction rules",
+    "ux conventions",
+    "behaviour standard"
+   ],
+   "body": {},
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "INTERACTION.md"
+   }
+  },
+  {
+   "id": "reference/agents-contract",
+   "kind": "reference",
+   "title": "Repository agent contract",
+   "summary": "How to change the system: generated files, gates, spec disciplines, provenance policy (repo-internal).",
+   "status": "documented",
+   "aliases": [
+    "agents.md",
+    "repo rules"
+   ],
+   "body": {},
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "AGENTS.md"
+   }
+  },
+  {
+   "id": "reference/migration",
+   "kind": "reference",
+   "title": "0.6 \u2192 0.12 migration",
+   "summary": "Upgrade guide for consumers on older versions.",
+   "status": "documented",
+   "aliases": [
+    "upgrade guide"
+   ],
+   "body": {},
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "MIGRATION.md"
+   }
+  },
+  {
+   "id": "reference/rename-map",
+   "kind": "reference",
+   "title": "Vocabulary rename map",
+   "summary": "Pre-Triage (mail-triage era) names \u2192 current names; TDS001 enforcement source.",
+   "status": "documented",
+   "aliases": [
+    "old class names",
+    "renames"
+   ],
+   "body": {},
+   "relations": [],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
+    "path": "RENAME-MAP.md"
+   }
+  }
+ ]
+}
