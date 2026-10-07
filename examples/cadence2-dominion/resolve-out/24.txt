@@ -1,0 +1,29 @@
+OUTCOME: RESOLVED
+{
+ "artifact": {
+  "id": "component/field",
+  "kind": "component",
+  "title": "Field (soft border, blue glow focus)",
+  "summary": "Fields: soft border (1px #E0E0E0), soft radius 4; label above (medium caps); focus = blue glow (1px #66AFE9 outline + 8px rgba(102,175,233,.6) halo \u2014 live-measured); error = left rule + plain sentence under.",
+  "status": "beta",
+  "class": "field",
+  "states": [
+   "default (1px #E0E0E0, radius 4)",
+   "focus: blue glow (1px #66AFE9 + 8px rgba(102,175,233,.6) halo \u2014 live-measured)",
+   "invalid: left rule + plain sentence"
+  ],
+  "aliases": [
+   "field",
+   "input",
+   "form field",
+   "text field",
+   "error message",
+   "validation error"
+  ],
+  "source": {
+   "repo": "FIP design standard + canada.ca live web layer",
+   "path": "Gate 2 accepted decisions: D-11"
+  }
+ }
+}
+next: Call inspect_artifact('component/field') for full detail; validate_implementation(target) after building.

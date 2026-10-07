@@ -1,0 +1,7 @@
+OUTCOME: UNDEFINED
+closest:
+     3.0  token-set/colour
+     1.5  component/action
+     1.5  component/field
+why: No artifact met the direct-match threshold (top candidate token-set/colour scored 3.00 vs 6.50 needed); no recipe matched; no scoped fallback applies.
+next: Implement per the consuming project's fallback policy; mark the improvisation; then report_gap(need, context, attempted_resolution).

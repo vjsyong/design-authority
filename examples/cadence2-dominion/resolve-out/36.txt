@@ -1,0 +1,32 @@
+OUTCOME: RESOLVED
+{
+ "artifact": {
+  "id": "component/action",
+  "kind": "component",
+  "title": "Action (slate rounded)",
+  "summary": "Primary = solid slate button (#26374A, 4px radius \u2014 live-measured on Canada.ca), white label; secondary = 2px slate outline; tertiary = underlined link. One primary per view. Red stays ceremonial, out of action roles.",
+  "status": "beta",
+  "class": "btn",
+  "states": [
+   "primary: solid slate #26374A, radius 4 (live-measured)",
+   "secondary: 2px slate outline",
+   "tertiary: underlined link"
+  ],
+  "aliases": [
+   "button",
+   "cta",
+   "primary button",
+   "action",
+   "submit button",
+   "slate button",
+   "secondary button",
+   "outline button",
+   "undo"
+  ],
+  "source": {
+   "repo": "FIP design standard + canada.ca live web layer",
+   "path": "Gate 2 accepted decisions: D-01"
+  }
+ }
+}
+next: Call inspect_artifact('component/action') for full detail; validate_implementation(target) after building.

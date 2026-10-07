@@ -1,0 +1,14 @@
+OUTCOME: CONFLICT
+{
+ "prohibition": {
+  "id": "prohibit/imagery-pictograms",
+  "statement": "Imagery, pictograms or illustrative decoration (D-22)."
+ },
+ "rule": {
+  "id": "D-R1",
+  "severity": "warning",
+  "summary": "Interactive layer follows the live web layer: slate actions (#26374A, radius 4), blue focus glow (#66AFE9), soft borders.",
+  "fix": "Use the measured slate/blue values for interactive elements."
+ },
+ "detected": "signal 'illustration'"
+}

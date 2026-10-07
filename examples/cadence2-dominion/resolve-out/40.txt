@@ -1,0 +1,5 @@
+OUTCOME: UNDEFINED
+closest:
+     1.5  component/meter
+why: No artifact met the direct-match threshold (top candidate component/meter scored 1.50 vs 6.50 needed); no recipe matched; no scoped fallback applies.
+next: Implement per the consuming project's fallback policy; mark the improvisation; then report_gap(need, context, attempted_resolution).

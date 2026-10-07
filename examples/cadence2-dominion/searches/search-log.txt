@@ -1,0 +1,100 @@
+### dialog
+   3.0  recipe       recipe/retire-confirm        Retire with confirmation
+### overlay
+### sheet
+### notice
+### notification
+### toast
+### banner
+### callout
+### summary
+### empty
+### empty state
+   4.0  guideline    guideline/interaction-states Focus & interaction states
+   1.5  component    component/masthead           Masthead
+### placeholder
+   1.5  component    component/masthead           Masthead
+### spinner
+### loading
+### busy
+### progress ring
+   4.0  component    component/meter              Progress meter
+   4.0  guideline    guideline/interaction-states Focus & interaction states
+### gauge
+### donut
+### chart
+### graph
+### bar chart
+   4.0  component    component/masthead           Masthead
+   4.0  component    component/meter              Progress meter
+### calendar
+### heatmap
+### grid
+### sparkline
+### trend
+### line chart
+   1.5  guideline    guideline/bilingual          Bilingual pairings
+### streak
+### counter
+### stat
+   4.0  guideline    guideline/interaction-states Focus & interaction states
+   1.5  component    component/masthead           Masthead
+### badge
+### achievement
+### award
+### status
+   1.5  token-set    token-set/colour             Colour roles (ceremony + web layer)
+### state label
+   4.0  guideline    guideline/interaction-states Focus & interaction states
+   1.5  component    component/action             Action (slate rounded)
+   1.5  component    component/field              Field (soft border, blue glow focus)
+   1.5  component    component/masthead           Masthead
+   1.5  guideline    guideline/bilingual          Bilingual pairings
+   1.5  guideline    guideline/typography         Typography (one family)
+   1.5  token-set    token-set/colour             Colour roles (ceremony + web layer)
+   1.0  component    component/select             Select (small sets)
+### on track
+   1.5  component    component/meter              Progress meter
+### icon
+### pictogram
+### symbol
+### select
+   9.0  component    component/select             Select (small sets)
+   1.5  fallback     fallback/large-selection     Selection beyond small sets
+### dropdown
+   9.0  component    component/select             Select (small sets)
+### textarea
+### multiline
+### tabs
+### tab
+### segmented
+### table
+### ledger
+### register
+   3.0  recipe       recipe/retire-confirm        Retire with confirmation
+### pagination
+### pager
+### tag
+### chip
+### category
+### reorder
+### sort
+### drag
+### wizard
+### stepper
+   2.5  fallback     fallback/platform-controls   Platform defaults for uncovered controls
+### onboarding
+### export
+### download
+### csv
+### dark
+### theme
+### animation
+   1.5  component    component/meter              Progress meter
+### motion
+   1.5  component    component/meter              Progress meter
+### celebrate
+### bottom navigation
+   5.5  component    component/masthead           Masthead
+### navigation
+   9.0  component    component/masthead           Masthead

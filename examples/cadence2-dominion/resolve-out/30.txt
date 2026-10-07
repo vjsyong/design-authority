@@ -1,0 +1,27 @@
+OUTCOME: RESOLVED
+{
+ "artifact": {
+  "id": "component/masthead",
+  "kind": "component",
+  "title": "Masthead",
+  "summary": "Top bar: white, black bottom rule, identity zone at left (red accent bar + title \u2014 generic, no Crown marks), nav links regular with medium active state underlined in black (not red \u2014 red stays ceremonial). Footer: bottom-right zone reserved for the system's wordmark placeholder (plain text).",
+  "status": "beta",
+  "class": "mh",
+  "states": [
+   "default (white, 2px black rule, red accent bar)",
+   "active nav item: medium + underline"
+  ],
+  "aliases": [
+   "masthead",
+   "header",
+   "top bar",
+   "navigation",
+   "identity zone"
+  ],
+  "source": {
+   "repo": "FIP design standard + canada.ca live web layer",
+   "path": "Gate 2 accepted decisions: D-08"
+  }
+ }
+}
+next: Call inspect_artifact('component/masthead') for full detail; validate_implementation(target) after building.

@@ -1,0 +1,14 @@
+OUTCOME: FALLBACK
+{
+ "fallback": {
+  "id": "fallback/platform-controls",
+  "title": "Platform defaults for uncovered controls",
+  "statement": "If the system defines no control for a need, use the platform's native element with the field styling; keep native semantics.",
+  "constraints": [
+   "field styling (soft border, radius 4)",
+   "blue glow focus",
+   "mark the improvisation and report a gap"
+  ]
+ }
+}
+next: Use the fallback; mark the improvisation; report_gap if the need is likely to recur.

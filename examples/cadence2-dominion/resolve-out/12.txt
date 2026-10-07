@@ -1,0 +1,6 @@
+OUTCOME: UNDEFINED
+closest:
+     4.0  component/masthead
+     4.0  component/meter
+why: No artifact met the direct-match threshold (top candidate component/masthead scored 4.00 vs 6.50 needed); no recipe matched; no scoped fallback applies.
+next: Implement per the consuming project's fallback policy; mark the improvisation; then report_gap(need, context, attempted_resolution).

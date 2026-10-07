@@ -1,0 +1,3 @@
+OUTCOME: UNDEFINED
+why: No artifact met the direct-match threshold; no recipe matched; no scoped fallback applies.
+next: Implement per the consuming project's fallback policy; mark the improvisation; then report_gap(need, context, attempted_resolution).

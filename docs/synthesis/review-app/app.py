@@ -44,6 +44,7 @@ _REPO = os.path.dirname(os.path.dirname(os.path.dirname(ROOT)))
 _sys.path.insert(0, os.path.join(_REPO, "kernel"))
 from design_authority.pack import Pack, PackError          # noqa: E402
 from design_authority.resolve import resolve, resolve_golden  # noqa: E402
+from design_authority import records as da_records         # noqa: E402
 
 PACKS_DIR = os.path.join(_REPO, "packs")
 PACK_META = {
@@ -173,6 +174,9 @@ frozen kernel. Open a candidate and ask it anything — each one answers in its 
 <p class="sub">Same habit-tracker spec, built three times under quarantine. 42 required elements
 were resolved against each authority first; improvised/adapted elements are marked in-app (tap ◌).</p>
 <div class="src-grid">__STRESS__</div>
+<h2 style="margin-top:26px">Proposal gate</h2>
+<p class="sub">The adjudication pass filed proposals for canon changes — inspect and rule on each.</p>
+<p><a class="src" style="max-width:420px" href="/proposals"><b>Proposal gate &rarr;</b><p>verdicts write to the kernel records</p></a></p>
 <p class="sub" style="margin-top:22px">Review sheets: <a class="back" href="/">Gate 2 review</a></p>
 </div></body></html>"""
 
@@ -757,6 +761,273 @@ def demo_resolve():
     pack = get_pack(name)
     r = resolve(pack, problem)
     return jsonify({"html": render_resolution(pack, r)})
+
+
+# ---- proposal gate (adjudication verdicts -> kernel records) ----
+PROP_WS = {"cadence-wink": "wink", "cadence-leader": "leader", "cadence-dominion": "dominion"}
+PROP_DRAFTS = os.path.join(DATA, "proposal-notes.json")
+PROP_CSS = DEMO_CSS + """
+.prop{border:1.5px solid #141414;border-radius:10px;padding:14px 16px;margin:14px 0}
+.prop .phead{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.chip.st-candidate{background:#eee;color:#333}.chip.st-accepted{background:#087830;color:#fff}
+.chip.st-rejected{background:#b3261e;color:#fff}.chip.st-needs-info{background:#8a5a00;color:#fff}
+.secl{font:600 10.5px system-ui;letter-spacing:.07em;text-transform:uppercase;color:#888;margin:12px 0 3px}
+.vb{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.vb button{font:600 11.5px system-ui;padding:8px 14px;border:1.5px solid #444;border-radius:6px;background:#fff;cursor:pointer}
+.vb button.sel-a{background:#087830;color:#fff;border-color:#087830}
+.vb button.sel-r{background:#b3261e;color:#fff;border-color:#b3261e}
+.vb button.sel-n{background:#8a5a00;color:#fff;border-color:#8a5a00}
+.verdict-note{width:100%;min-height:46px;font:13px/1.4 system-ui;padding:8px 10px;border:1.5px solid #cfcfcf;border-radius:6px;margin-top:8px;box-sizing:border-box}
+.pstatus{font:12px system-ui;color:#666;margin:6px 0 0}
+.fbar{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
+.fbar button{font:600 12px system-ui;padding:6px 12px;border:1.5px solid #141414;border-radius:999px;background:#fff;cursor:pointer}
+.fbar button.sel{background:#141414;color:#fff}
+"""
+
+PROV_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposal gate</title><style>__CSS__</style></head><body>
+<div class="dwrap">
+<p><a class="back" href="/demo">&larr; candidates demo</a></p>
+<h1>Proposal gate — what the agents are promoting</h1>
+<p class="sub">__N__ proposals from the adjudication pass, across three authorities. Inspect the full
+record, then rule. Verdicts write straight to the kernel proposal records; accepted proposals are
+compiled into the pack (versioned) with goldens + the stress sweep re-run.</p>
+<div class="fbar" id="fb">
+<button data-f="all" class="sel" onclick="filt(this)">All (__N__)</button>
+<button data-f="candidate" onclick="filt(this)">Pending</button>
+<button data-f="accepted" onclick="filt(this)">Accepted</button>
+<button data-f="rejected" onclick="filt(this)">Rejected</button>
+<button data-f="needs-info" onclick="filt(this)">Needs info</button>
+</div>
+<div id="list">__CARDS__</div>
+</div>
+<script>
+function post(u, b) {
+  return fetch(u, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(b)})
+    .then(function(r){ return r.json(); });
+}
+function toast(m) {
+  var t = document.getElementById('pg-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'pg-toast'; document.body.appendChild(t);
+    t.style.cssText = 'position:fixed;right:16px;bottom:16px;background:#141414;color:#fff;padding:11px 17px;'+
+      'border-radius:9px;font:600 13px system-ui;opacity:0;transition:opacity .25s;z-index:99'; }
+  t.textContent = m; t.style.opacity = 1;
+  clearTimeout(t._t); t._t = setTimeout(function(){ t.style.opacity = 0; }, 2400);
+}
+function refresh(card, prop) {
+  var st = prop.status || 'candidate';
+  card.dataset.status = st;
+  var sc = card.querySelector('.stchip'); sc.className = 'chip stchip st-' + st; sc.textContent = st;
+  var v = prop.review && prop.review.verdict ? prop.review.verdict : '—';
+  var extra = prop.review && prop.review.reviewed_at ? (' · ' + prop.review.reviewed_at) : '';
+  card.querySelector('.pstatus').textContent = 'verdict: ' + v + extra;
+  card.querySelectorAll('.vb button').forEach(function(b){
+    b.className = (prop.review && b.dataset.v === prop.review.verdict) ? ('sel-' + b.dataset.v[0]) : '';
+  });
+  if (prop.review && prop.review.notes) { card.querySelector('textarea').value = prop.review.notes; }
+}
+function pv(btn) {
+  var card = btn.closest('.prop');
+  var note = card.querySelector('textarea').value;
+  btn.disabled = true;
+  post('/api/proposal/review', {ws: card.dataset.ws, id: card.dataset.pid, verdict: btn.dataset.v, note: note})
+    .then(function(j){
+      btn.disabled = false;
+      if (j.error) { toast('error: ' + j.error); return; }
+      refresh(card, j.prop); toast('recorded \u2713 ' + j.prop.review.verdict);
+    }).catch(function(){ btn.disabled = false; toast('request failed'); });
+}
+function pn(ta) {
+  var card = ta.closest('.prop');
+  clearTimeout(card._t);
+  card._t = setTimeout(function(){
+    post('/api/proposal/note', {ws: card.dataset.ws, id: card.dataset.pid, note: ta.value})
+      .then(function(j){ if (!j.error) { toast('draft note saved'); } });
+  }, 900);
+}
+function filt(btn) {
+  document.querySelectorAll('#fb button').forEach(function(b){ b.classList.toggle('sel', b === btn); });
+  var f = btn.dataset.f;
+  document.querySelectorAll('.prop').forEach(function(c){
+    c.style.display = (f === 'all' || c.dataset.status === f) ? '' : 'none';
+  });
+}
+document.addEventListener('DOMContentLoaded', function(){
+  fetch('/api/proposals').then(function(r){ return r.json(); }).then(function(list){
+    list.forEach(function(e){
+      var card = document.querySelector('.prop[data-pid="' + e.id + '"]');
+      if (!card) { return; }
+      refresh(card, e);
+      var ta = card.querySelector('textarea');
+      if ((!e.review || !e.review.notes) && e.draft) { ta.value = e.draft; }
+    });
+  });
+});
+</script>
+</body></html>"""
+
+
+def _prop_card(entry):
+    ws, src, p = entry["ws"], entry["src"], entry["prop"]
+    gap = entry.get("gap") or {}
+    st = p.get("status") or "candidate"
+    h = ["<div class='prop' data-ws='%s' data-pid='%s' data-status='%s'>"
+         % (_esc(ws), _esc(p.get("id")), _esc(st))]
+    h.append("<div class='phead'><span class='chip src'>%s</span>"
+             "<span class='chip stchip st-%s'>%s</span>"
+             "<span class='mono'>%s</span></div>"
+             % (_esc(src), _esc(st), _esc(st), _esc(p.get("id"))))
+    if gap.get("need"):
+        h.append("<p class='dim'>from gap: %s — %s</p>"
+                 % (_esc((p.get("gap_id") or "").split("/")[-1]), _esc(gap["need"])))
+    for label, key in (("Problem", "problem"), ("Insufficiency", "insufficiency"),
+                       ("Reuse case", "reuse_case"), ("Composition check", "composition_check")):
+        if p.get(key):
+            h.append("<p class='secl'>%s</p><p class='main'>%s</p>" % (label, _esc(p[key])))
+    h.append("<p class='secl'>Proposed</p>")
+    prop = p.get("proposed")
+    if isinstance(prop, dict):
+        h.append("<p class='main'><b>%s</b> <span class='mono'>%s</span> <span class='chip'>%s</span></p>"
+                 % (_esc(prop.get("title")), _esc(prop.get("id", "")), _esc(prop.get("kind", ""))))
+        for k in ("statement", "summary", "description"):
+            if prop.get(k):
+                h.append("<p class='main'>%s</p>" % _esc(prop[k]))
+        if prop.get("aliases"):
+            h.append("<p class='dim'>aliases: %s</p>" % _esc(", ".join(prop["aliases"])))
+        body = prop.get("body") or {}
+        for key in ("states", "a11y", "do", "dont"):
+            for item in (body.get(key) or []):
+                h.append("<p class='sts'>· <b>%s</b> — %s</p>" % (key, _esc(item)))
+        entries = prop.get("entries") or []
+        for e in entries:
+            h.append("<p class='sts'>· %s</p>" % _esc(json.dumps(e, ensure_ascii=False)))
+        if prop.get("notes"):
+            h.append("<p class='dim'>%s</p>" % _esc(prop["notes"]))
+    else:
+        h.append("<pre class='mono' style='white-space:pre-wrap'>%s</pre>"
+                 % _esc(json.dumps(prop, indent=1, ensure_ascii=False)[:2000]))
+    if p.get("depends_on"):
+        h.append("<p class='dim'>depends on: %s</p>" % _esc(", ".join(p["depends_on"])))
+    if p.get("new_primitives"):
+        h.append("<p class='dim'>new primitives declared: %s</p>" % _esc(", ".join(p["new_primitives"])))
+    tests = p.get("tests") or {}
+    if tests:
+        h.append("<p class='secl'>Tests</p>")
+        if isinstance(tests, list):
+            for t in tests:
+                if isinstance(t, dict):
+                    h.append("<p class='sts'>· %s</p>" % _esc(json.dumps(t, ensure_ascii=False)))
+                else:
+                    h.append("<p class='sts'>· %s</p>" % _esc(t))
+        else:
+            for g in (tests.get("golden") or []):
+                h.append("<p class='sts'>· golden: %s &rarr; %s%s</p>"
+                         % (_esc(g.get("problem")), _esc(g.get("expect")),
+                            (" (%s)" % _esc(g.get("expect_id"))) if g.get("expect_id") else ""))
+            for c in (tests.get("checks") or []):
+                h.append("<p class='sts'>· check: %s</p>" % _esc(c))
+    h.append("<details><summary>full proposal JSON</summary>"
+             "<pre class='mono' style='white-space:pre-wrap'>%s</pre></details>"
+             % _esc(json.dumps(p, indent=1, ensure_ascii=False)))
+    h.append("<div class='vb'><button data-v='accept' onclick=\"pv(this)\">ACCEPT &rarr; compile</button>"
+             "<button data-v='reject' onclick=\"pv(this)\">REJECT</button>"
+             "<button data-v='needs-info' onclick=\"pv(this)\">NEEDS INFO</button></div>")
+    h.append("<textarea class='verdict-note' placeholder='review note — draft saves automatically; recorded with your verdict' oninput=\"pn(this)\" onblur=\"pn(this)\"></textarea>")
+    h.append("<p class='pstatus'>verdict: —</p></div>")
+    return "".join(h)
+
+
+def _load_drafts():
+    if os.path.exists(PROP_DRAFTS):
+        with open(PROP_DRAFTS) as fh:
+            return json.load(fh)
+    return {}
+
+
+def _save_drafts(d):
+    with open(PROP_DRAFTS, "w") as fh:
+        json.dump(d, fh, indent=1)
+
+
+def load_proposals():
+    out = []
+    for ws, src in PROP_WS.items():
+        wsdir = os.path.join(_REPO, "examples", ws)
+        pdir = os.path.join(wsdir, ".design-authority", "proposals")
+        gmap = {}
+        gp = os.path.join(wsdir, ".design-authority", "gaps.jsonl")
+        if os.path.exists(gp):
+            for line in open(gp):
+                try:
+                    g = json.loads(line)
+                    gmap[g["id"]] = g
+                except ValueError:
+                    pass
+        if os.path.isdir(pdir):
+            for fn in sorted(os.listdir(pdir)):
+                if fn.endswith(".json"):
+                    with open(os.path.join(pdir, fn)) as fh:
+                        rec = json.load(fh)
+                    out.append({"ws": ws, "src": src, "prop": rec,
+                                "gap": gmap.get(rec.get("gap_id"))})
+    return out
+
+
+@app.route("/proposals")
+def proposals_page():
+    entries = load_proposals()
+    cards = "".join(_prop_card(e) for e in entries)
+    page = (PROV_PAGE.replace("__CSS__", PROP_CSS)
+            .replace("__N__", str(len(entries)))
+            .replace("__CARDS__", cards))
+    return page
+
+
+@app.route("/api/proposals")
+def proposals_api():
+    drafts = _load_drafts()
+    out = []
+    for e in load_proposals():
+        p = e["prop"]
+        out.append({"id": p.get("id"), "ws": e["ws"], "status": p.get("status"),
+                    "review": p.get("review") or {},
+                    "draft": drafts.get(e["ws"] + "|" + p.get("id", ""), "")})
+    return jsonify(out)
+
+
+@app.route("/api/proposal/review", methods=["POST"])
+def proposal_review():
+    data = request.get_json(silent=True) or {}
+    ws = data.get("ws")
+    pid = (data.get("id") or "").strip()
+    verdict = (data.get("verdict") or "").strip().lower()
+    note = data.get("note") or None
+    if ws not in PROP_WS or not pid.startswith("prop/") or verdict not in ("accept", "reject", "needs-info"):
+        return jsonify({"error": "bad request"}), 400
+    ws_abs = os.path.join(_REPO, "examples", ws)
+    try:
+        rec = da_records.set_proposal_review(ws_abs, pid, verdict, notes=note)
+    except ValueError as exc:
+        return jsonify({"error": str(exc)}), 400
+    drafts = _load_drafts()
+    drafts.pop(ws + "|" + pid, None)
+    _save_drafts(drafts)
+    return jsonify({"prop": {"id": rec.get("id"), "status": rec.get("status"),
+                             "review": rec.get("review") or {}}})
+
+
+@app.route("/api/proposal/note", methods=["POST"])
+def proposal_note():
+    data = request.get_json(silent=True) or {}
+    ws = data.get("ws")
+    pid = (data.get("id") or "").strip()
+    if ws not in PROP_WS or not pid.startswith("prop/"):
+        return jsonify({"error": "bad request"}), 400
+    drafts = _load_drafts()
+    drafts[ws + "|" + pid] = data.get("note") or ""
+    _save_drafts(drafts)
+    return jsonify({"ok": True})
 
 
 if __name__ == "__main__":

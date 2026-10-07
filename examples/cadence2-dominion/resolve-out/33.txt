@@ -1,0 +1,13 @@
+OUTCOME: FALLBACK
+{
+ "fallback": {
+  "id": "fallback/large-selection",
+  "title": "Selection beyond small sets",
+  "statement": "Small fixed sets use the select; larger or filtered selection uses the platform default, marked.",
+  "constraints": [
+   "keep field styling",
+   "mark the improvisation"
+  ]
+ }
+}
+next: Use the fallback; mark the improvisation; report_gap if the need is likely to recur.
