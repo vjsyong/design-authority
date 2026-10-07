@@ -1,0 +1,203 @@
+{
+  "artifacts": [
+    {
+      "id": "component/action",
+      "kind": "component",
+      "title": "Action (slate rounded)",
+      "aliases": [
+        "button",
+        "cta",
+        "primary button",
+        "action",
+        "submit button",
+        "slate button"
+      ],
+      "body": {
+        "class": "btn",
+        "group": "Actions",
+        "states": [
+          "primary: solid slate #26374A, radius 4 (live-measured)",
+          "secondary: 2px slate outline",
+          "tertiary: underlined link"
+        ],
+        "verify": [
+          ".btn.b-slate",
+          ".btn.b-out"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/typography",
+      "kind": "guideline",
+      "title": "Typography (one family)",
+      "aliases": [
+        "typography",
+        "font",
+        "weights",
+        "helvetica"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/type-scale",
+      "kind": "token-set",
+      "title": "Screen type rhythm",
+      "aliases": [
+        "type scale",
+        "font size",
+        "title size",
+        "body size"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/colour",
+      "kind": "token-set",
+      "title": "Colour roles (ceremony + web layer)",
+      "aliases": [
+        "palette",
+        "colour",
+        "color",
+        "fip red",
+        "slate",
+        "ceremonial red"
+      ],
+      "body": {
+        "group": "Colour"
+      },
+      "note": null
+    },
+    {
+      "id": "component/masthead",
+      "kind": "component",
+      "title": "Masthead",
+      "aliases": [
+        "masthead",
+        "header",
+        "top bar",
+        "navigation",
+        "identity zone"
+      ],
+      "body": {
+        "class": "mh",
+        "group": "Structure",
+        "states": [
+          "default (white, 2px black rule, red accent bar)",
+          "active nav item: medium + underline"
+        ],
+        "verify": [
+          ".mh",
+          ".mh .acc"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/bilingual",
+      "kind": "guideline",
+      "title": "Bilingual pairings",
+      "aliases": [
+        "bilingual",
+        "french",
+        "english",
+        "bilingual titles"
+      ],
+      "body": {
+        "group": "Voice"
+      },
+      "note": null
+    },
+    {
+      "id": "component/field",
+      "kind": "component",
+      "title": "Field (soft border, blue glow focus)",
+      "aliases": [
+        "field",
+        "input",
+        "form field",
+        "text field"
+      ],
+      "body": {
+        "class": "field",
+        "group": "Forms",
+        "states": [
+          "default (1px #E0E0E0, radius 4)",
+          "focus: blue glow (1px #66AFE9 + 8px rgba(102,175,233,.6) halo — live-measured)",
+          "invalid: left rule + plain sentence"
+        ],
+        "verify": [
+          ".field input",
+          ".field input.focus"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/select",
+      "kind": "component",
+      "title": "Select (small sets)",
+      "aliases": [
+        "select",
+        "dropdown",
+        "choice",
+        "small select"
+      ],
+      "body": {
+        "class": "choice",
+        "group": "Forms",
+        "states": [
+          "default",
+          "focus (blue glow)"
+        ],
+        "a11y": [
+          "Native semantics; visible label; larger selection uses the fallback."
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/meter",
+      "kind": "component",
+      "title": "Progress meter",
+      "aliases": [
+        "meter",
+        "progress",
+        "progress bar",
+        "import progress",
+        "readout"
+      ],
+      "body": {
+        "class": "meter",
+        "group": "Progress",
+        "verify": [
+          ".meter",
+          ".meter i"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/interaction-states",
+      "kind": "guideline",
+      "title": "Focus & interaction states",
+      "aliases": [
+        "focus",
+        "focused",
+        "focus ring",
+        "focus glow",
+        "interaction states"
+      ],
+      "body": {
+        "group": "Interaction"
+      },
+      "note": null
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "artifacts": [
+    {
+      "id": "component/action",
+      "kind": "component",
+      "title": "Action (navy rounded)",
+      "aliases": [
+        "button",
+        "cta",
+        "primary button",
+        "action",
+        "link button",
+        "subscribe button"
+      ],
+      "body": {
+        "class": "btn",
+        "group": "Actions",
+        "states": [
+          "primary: solid navy #2E45B8, radius ~8",
+          "secondary: 2px ink outline",
+          "tertiary: underlined blue link"
+        ],
+        "verify": [
+          ".btn.b-navy",
+          ".btn.b-out",
+          ".btn.b-txt"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/shape-language",
+      "kind": "guideline",
+      "title": "Shape language (rounded product)",
+      "aliases": [
+        "shape",
+        "corner",
+        "radius",
+        "rounded corners",
+        "square corners"
+      ],
+      "body": {
+        "group": "Shape"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/motion",
+      "kind": "guideline",
+      "title": "Motion",
+      "aliases": [
+        "motion",
+        "transition",
+        "animation",
+        "hover timing"
+      ],
+      "body": {
+        "group": "Motion"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/typography",
+      "kind": "guideline",
+      "title": "Typography (three registers)",
+      "aliases": [
+        "typography",
+        "font",
+        "serif",
+        "sans",
+        "headline font"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/type-scale",
+      "kind": "token-set",
+      "title": "Screen type scale",
+      "aliases": [
+        "type scale",
+        "font size",
+        "display size",
+        "heading size",
+        "body size"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/colour",
+      "kind": "token-set",
+      "title": "Colour roles (red + Chicago blue)",
+      "aliases": [
+        "palette",
+        "colour",
+        "color",
+        "economist red",
+        "chicago blue",
+        "navy"
+      ],
+      "body": {
+        "group": "Colour"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/surfaces",
+      "kind": "guideline",
+      "title": "Surfaces & separation",
+      "aliases": [
+        "surfaces",
+        "backgrounds",
+        "rules",
+        "hairlines",
+        "separation",
+        "elevation"
+      ],
+      "body": {
+        "group": "Surfaces"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/hierarchy",
+      "kind": "guideline",
+      "title": "Section rhythm",
+      "aliases": [
+        "hierarchy",
+        "section label",
+        "headline",
+        "standfirst",
+        "page structure"
+      ],
+      "body": {
+        "group": "Structure"
+      },
+      "note": null
+    },
+    {
+      "id": "component/navbar",
+      "kind": "component",
+      "title": "Top bar",
+      "aliases": [
+        "navbar",
+        "top bar",
+        "header",
+        "navigation",
+        "menu",
+        "search box",
+        "nav bar"
+      ],
+      "body": {
+        "class": "navbar",
+        "group": "Structure",
+        "states": [
+          "default (white bar, 2px ink rule)",
+          "active item: blue underline",
+          "search: rectangle with typing-cursor motif"
+        ],
+        "verify": [
+          ".navbar",
+          ".navbar .on",
+          ".cursorbox"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/field",
+      "kind": "component",
+      "title": "Field (rounded, sans text)",
+      "aliases": [
+        "field",
+        "input",
+        "form field",
+        "text field",
+        "textbox"
+      ],
+      "body": {
+        "class": "field",
+        "group": "Forms",
+        "states": [
+          "default (1px soft ink border)",
+          "focus adds no border highlight",
+          "invalid (small red line under)"
+        ],
+        "verify": [
+          ".field input",
+          ".field .err"
+        ],
+        "a11y": [
+          "<label for> always; focus visible by other means if border highlight is suppressed."
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/notice",
+      "kind": "component",
+      "title": "Notice (ruled box)",
+      "aliases": [
+        "notice",
+        "alert",
+        "message",
+        "banner",
+        "notification"
+      ],
+      "body": {
+        "class": "notice",
+        "group": "Feedback"
+      },
+      "note": null
+    },
+    {
+      "id": "component/meter",
+      "kind": "component",
+      "title": "Progress meter",
+      "aliases": [
+        "meter",
+        "progress",
+        "progress bar",
+        "import progress",
+        "readout"
+      ],
+      "body": {
+        "class": "meter",
+        "group": "Progress",
+        "verify": [
+          ".meter",
+          ".meter i"
+        ]
+      },
+      "note": null
+    }
+  ]
+}

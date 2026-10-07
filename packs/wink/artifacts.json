@@ -1,0 +1,246 @@
+{
+  "artifacts": [
+    {
+      "id": "component/action-pill",
+      "kind": "component",
+      "title": "Action (pill)",
+      "aliases": [
+        "button",
+        "cta",
+        "primary button",
+        "pill button",
+        "start free trial",
+        "action",
+        "submit"
+      ],
+      "body": {
+        "class": "cta",
+        "group": "Actions",
+        "states": [
+          "default: yellow fill + 1px ink ring (box-shadow 0 0 0 1px #231E15)",
+          "dark variant on warm fields (ink fill, white label)",
+          "secondary: outline pill (2px ink inset)",
+          "hover: translateY(-4.875px) + hard ink shadow 0 4.875px 0 0 (live-measured, zero blur)"
+        ],
+        "verify": [
+          ".cta",
+          ".cta.dark",
+          ".cta.outline"
+        ],
+        "a11y": [
+          "Real <button>/<a> semantics; visible label; focus must not rely on colour alone."
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/typography",
+      "kind": "guideline",
+      "title": "Typography (two registers)",
+      "aliases": [
+        "typography",
+        "font",
+        "display font",
+        "body font",
+        "headline font"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/type-scale",
+      "kind": "token-set",
+      "title": "Screen type scale",
+      "aliases": [
+        "type scale",
+        "font size",
+        "display size",
+        "heading size"
+      ],
+      "body": {
+        "group": "Type"
+      },
+      "note": null
+    },
+    {
+      "id": "token-set/colour",
+      "kind": "token-set",
+      "title": "Colour roles",
+      "aliases": [
+        "palette",
+        "colour",
+        "color",
+        "yellow",
+        "peppercorn",
+        "ink colour"
+      ],
+      "body": {
+        "group": "Colour"
+      },
+      "note": null
+    },
+    {
+      "id": "component/card",
+      "kind": "component",
+      "title": "Card (soft vessel)",
+      "aliases": [
+        "card",
+        "surface",
+        "panel",
+        "tile"
+      ],
+      "body": {
+        "class": "card1",
+        "group": "Surfaces",
+        "states": [
+          "default (white, shadow, radius 16/24)",
+          "tinted variant (Parsnip, no shadow)"
+        ],
+        "verify": [
+          ".card1",
+          ".card2"
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/shape-language",
+      "kind": "guideline",
+      "title": "Shape classes",
+      "aliases": [
+        "shape",
+        "corner",
+        "radius",
+        "rounded corners",
+        "square corners",
+        "pill"
+      ],
+      "body": {
+        "group": "Shape"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/hierarchy",
+      "kind": "guideline",
+      "title": "Section rhythm",
+      "aliases": [
+        "hierarchy",
+        "section label",
+        "page structure",
+        "headline pattern"
+      ],
+      "body": {
+        "group": "Structure"
+      },
+      "note": null
+    },
+    {
+      "id": "component/navbar",
+      "kind": "component",
+      "title": "Top bar",
+      "aliases": [
+        "navbar",
+        "top bar",
+        "header",
+        "navigation",
+        "menu",
+        "nav bar"
+      ],
+      "body": {
+        "class": "navbar",
+        "group": "Structure",
+        "states": [
+          "default (white bar)",
+          "hover (light-grey rounded-rect fill)",
+          "dropdown items carry chevrons"
+        ],
+        "a11y": [
+          "Dropdown affordances need aria-haspopup/expanded when built; single-row layout."
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/field-select",
+      "kind": "component",
+      "title": "Field & small-set select",
+      "aliases": [
+        "field",
+        "input",
+        "form field",
+        "select",
+        "dropdown",
+        "text field"
+      ],
+      "body": {
+        "class": "field",
+        "group": "Forms",
+        "states": [
+          "default",
+          "focus",
+          "invalid"
+        ],
+        "verify": [
+          ".field input",
+          ".field select"
+        ],
+        "a11y": [
+          "<label for> always; native select for small sets."
+        ]
+      },
+      "note": null
+    },
+    {
+      "id": "component/ledger",
+      "kind": "component",
+      "title": "Ledger rows",
+      "aliases": [
+        "table",
+        "ledger",
+        "list rows",
+        "register list",
+        "rows"
+      ],
+      "body": {
+        "class": "ledger",
+        "group": "Repeated content"
+      },
+      "note": null
+    },
+    {
+      "id": "component/badge",
+      "kind": "component",
+      "title": "Emphasis badge",
+      "aliases": [
+        "badge",
+        "label",
+        "most popular",
+        "tag"
+      ],
+      "body": {
+        "class": "badge",
+        "group": "Emphasis"
+      },
+      "note": null
+    },
+    {
+      "id": "guideline/voice",
+      "kind": "guideline",
+      "title": "Voice",
+      "aliases": [
+        "voice",
+        "tone",
+        "copy",
+        "microcopy",
+        "writing"
+      ],
+      "body": {
+        "group": "Voice"
+      },
+      "note": null
+    }
+  ]
+}

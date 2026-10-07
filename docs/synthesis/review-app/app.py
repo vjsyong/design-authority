@@ -32,6 +32,206 @@ SOURCES = {
 ID_RE = re.compile(r"^[WLD]-\d{2}$")
 SAFE_RE = re.compile(r"[^A-Za-z0-9._-]")
 
+# ---- candidate pack demo (Phase 3 compilation) ----
+import sys as _sys
+from html import escape as _escape
+
+
+def _esc(s):
+    return _escape(str(s if s is not None else ""))
+
+_REPO = os.path.dirname(os.path.dirname(os.path.dirname(ROOT)))
+_sys.path.insert(0, os.path.join(_REPO, "kernel"))
+from design_authority.pack import Pack, PackError          # noqa: E402
+from design_authority.resolve import resolve, resolve_golden  # noqa: E402
+
+PACKS_DIR = os.path.join(_REPO, "packs")
+PACK_META = {
+    "wink": "Mailchimp brand + live product",
+    "leader": "Marber (The Economist) + live product",
+    "dominion": "Canada FIP + live Canada.ca web layer",
+}
+_demo_packs = {}
+_demo_golden = {}
+
+
+def get_pack(name):
+    if name not in PACK_META:
+        abort(404)
+    if name not in _demo_packs:
+        try:
+            _demo_packs[name] = Pack(os.path.join(PACKS_DIR, name))
+        except PackError:
+            abort(404)
+    return _demo_packs[name]
+
+
+def golden_summary(name):
+    if name not in _demo_golden:
+        pack = get_pack(name)
+        with open(os.path.join(PACKS_DIR, name, "golden.json")) as fh:
+            cases = json.load(fh)["cases"]
+        _demo_golden[name] = resolve_golden(pack, cases)
+    return _demo_golden[name]
+
+
+def render_resolution(pack, r):
+    o = r.get("outcome")
+    res = r.get("resolution") or {}
+    ident = "%s %s" % (_esc(pack.manifest.get("id")), _esc(pack.manifest.get("version")))
+    out = ["<div class='out out-%s'><div class='ohead'><span class='obadge'>%s</span> "
+           "<span class='oid'>%s</span></div>" % (o.lower(), o, ident)]
+    if o == "CONFLICT":
+        p = res.get("prohibition") or {}
+        rule = res.get("rule") or {}
+        out.append("<p class='main'><b>Do not implement as requested.</b> %s</p>" % _esc(p.get("statement")))
+        out.append("<p class='dim'>detected: %s</p>" % _esc(res.get("detected")))
+        if rule:
+            out.append("<p class='main'><b>%s · %s</b> — %s</p>" % (_esc(rule.get("id")), _esc(rule.get("severity")), _esc(rule.get("summary"))))
+            out.append("<p class='dim'>fix: %s</p>" % _esc(rule.get("fix")))
+    elif o == "RESOLVED":
+        a = res.get("artifact") or {}
+        out.append("<p class='main'><b>%s</b> <span class='dim'>(%s)</span></p>" % (_esc(a.get("title")), _esc(a.get("id"))))
+        out.append("<p class='main'>%s</p>" % _esc(a.get("summary")))
+        for st in (a.get("states") or []):
+            out.append("<p class='dim'>· %s</p>" % _esc(st))
+        for st in (a.get("a11y") or []):
+            out.append("<p class='dim'>a11y: %s</p>" % _esc(st))
+    elif o == "COMPOSE":
+        rec = res.get("recipe") or {}
+        out.append("<p class='main'><b>%s</b> <span class='dim'>(%s)</span></p>" % (_esc(rec.get("title")), _esc(rec.get("id"))))
+        out.append("<p class='main'>%s</p>" % _esc(rec.get("summary")))
+        for c in (rec.get("constraints") or []):
+            out.append("<p class='dim'>· %s</p>" % _esc(c))
+        ing = [i.get("id") for i in (res.get("ingredients") or [])]
+        if ing:
+            out.append("<p class='dim'>ingredients: %s</p>" % _esc(", ".join(ing)))
+    elif o == "FALLBACK":
+        fb = res.get("fallback") or {}
+        out.append("<p class='main'><b>%s</b></p>" % _esc(fb.get("title")))
+        out.append("<p class='main'>%s</p>" % _esc(fb.get("statement")))
+        for c in (fb.get("constraints") or []):
+            out.append("<p class='dim'>· %s</p>" % _esc(c))
+    else:
+        out.append("<p class='main'>%s</p>" % _esc(r.get("why")))
+        closest = r.get("closest") or []
+        if closest:
+            out.append("<p class='dim'>closest: %s</p>" % _esc(", ".join("%s (%s)" % (c["id"], c["score"]) for c in closest[:3])))
+        pol = (r.get("fallback_policy") or {}).get("note")
+        if pol:
+            out.append("<p class='dim'>policy: %s</p>" % _esc(pol))
+    alts = r.get("alternatives") or []
+    if alts:
+        out.append("<p class='dim'>also considered: %s</p>" % _esc(", ".join(a.get("id") for a in alts)))
+    out.append("</div>")
+    return "".join(out)
+
+DEMO_CSS = """
+body{font-family:system-ui,-apple-system,sans-serif;color:#141414;background:#fff;margin:0}
+.dwrap{max-width:960px;margin:0 auto;padding:26px 18px 60px}
+h1{font-size:22px;margin:0 0 4px} h2{font-size:15px;margin:26px 0 10px;border-bottom:2px solid #141414;padding-bottom:6px}
+.sub{color:#555;font-size:13.5px;margin:0 0 18px}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+.chip{font:600 11px system-ui;padding:4px 10px;border-radius:999px;background:#f2f2f2;color:#444}
+.chip.gold{background:#087830;color:#fff}.chip.src{background:#141414;color:#fff}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+a.src{display:block;border:1.5px solid #141414;border-radius:10px;padding:14px 16px;text-decoration:none;color:inherit}
+a.src b{font-size:15px} a.src p{margin:6px 0 0;font-size:12.5px;color:#555}
+.ask{display:flex;gap:8px;margin:10px 0}
+.ask input{flex:1;font:13.5px system-ui;padding:11px 13px;border:1.5px solid #141414;border-radius:8px}
+.ask button{font:600 13px system-ui;padding:11px 20px;border:none;background:#141414;color:#fff;border-radius:8px;cursor:pointer}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.chips button{font:12px system-ui;padding:6px 11px;border:1.2px solid #b9b9b9;background:#fafafa;border-radius:999px;cursor:pointer}
+.out{border:2px solid #141414;border-radius:10px;padding:14px 16px;margin-top:12px;background:#fff}
+.out .ohead{margin-bottom:8px}.out .main{font:13.5px/1.5 system-ui;margin:5px 0}
+.out .dim{font:12px/1.5 system-ui;color:#666;margin:3px 0}.oid{font:12px system-ui;color:#888}
+.obadge{font:700 11px system-ui;letter-spacing:.08em;padding:4px 10px;border-radius:999px;color:#fff;background:#141414}
+.out-resolved .obadge{background:#087830}.out-conflict .obadge{background:#b3261e}
+.out-compose .obadge{background:#2E45B8}.out-fallback .obadge{background:#8a5a00}.out-undefined .obadge{background:#666}
+.art{border:1px solid #dcdcdc;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.art .t{font-size:13.5px}
+.art .s{font-size:12.5px/1.5;color:#333;margin:6px 0 0}
+.kd{font:600 10px system-ui;letter-spacing:.06em;text-transform:uppercase;background:#141414;color:#fff;border-radius:4px;padding:3px 7px;margin-right:6px}
+.sts{font:12px/1.5 system-ui;color:#555;margin:4px 0 0}
+.mono{font:11.5px ui-monospace,monospace;color:#555}
+details{margin-top:8px} summary{cursor:pointer;font:600 13px system-ui}
+table{border-collapse:collapse;font:12.5px system-ui;margin-top:8px;width:100%}
+td,th{border-bottom:1px solid #e4e4e4;padding:6px 8px;text-align:left;vertical-align:top}
+.ok{color:#087830;font-weight:700}.miss{color:#b3261e;font-weight:700}
+.back{font:600 12.5px system-ui;color:#2E45B8;text-decoration:none}
+"""
+
+DEMO_LANDING = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authority synthesis — candidates</title><style>__CSS__</style></head><body>
+<div class="dwrap">
+<h1>Authority Synthesis — the three candidates</h1>
+<p class="sub">Compiled from your Gate-2 verdicts by the pack compiler, verified against the
+frozen kernel. Open a candidate and ask it anything — each one answers in its own character.</p>
+<div class="src-grid">__CARDS__</div>
+<p class="sub" style="margin-top:22px">Review sheets: <a class="back" href="/">Gate 2 review</a></p>
+</div></body></html>"""
+
+DEMO_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title><style>__CSS__</style></head><body>
+<div class="dwrap">
+<p><a class="back" href="/demo">&larr; all candidates</a></p>
+<h1>__TITLE__</h1>
+<p class="sub">__DESC__</p>
+<div class="meta">__META__</div>
+
+<h2>Ask this authority</h2>
+<div class="ask"><input id="q" placeholder="e.g. make the buttons square" autocomplete="off">
+<button onclick="ask()">Ask</button></div>
+<div class="chips" id="chips">__CHIPS__</div>
+<div id="out"></div>
+
+<h2>Golden set</h2>
+__GOLDEN__
+
+<h2>Artifacts</h2>
+__ARTS__
+
+<h2>Rules</h2>
+__RULES__
+
+<h2>Prohibitions</h2>
+__PROH__
+
+<h2>Fallbacks</h2>
+__FB__
+
+__RECIPES__
+
+</div>
+<script>
+var PACK = "__PACK__";
+function ask(q) {
+  var input = document.getElementById('q');
+  var problem = q || input.value.trim();
+  if (!problem) return;
+  if (q) input.value = q;
+  var out = document.getElementById('out');
+  out.innerHTML = "<p class='sub'>asking\u2026</p>";
+  fetch('/api/demo/resolve', {method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({pack: PACK, problem: problem})})
+    .then(function (r) { return r.json(); })
+    .then(function (j) { out.innerHTML = j.html || ("error: " + (j.error || "unknown")); })
+    .catch(function () { out.innerHTML = "<p class='sub'>request failed</p>"; });
+}
+document.getElementById('q').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') ask(); });
+</script>
+</body></html>"""
+
+DEMO_EXAMPLES = [
+    "make the buttons square",
+    "add a soft blue glow to the button",
+    "use rounded pills for the primary action",
+    "add a photograph to the empty state",
+]
+
 FB_CSS = """
 .fb { margin-top:12px; border-top:1px dashed #c9c9c9; padding-top:10px; }
 .fb .vb { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
@@ -296,7 +496,7 @@ a.src b{font-size:17px} a.src p{margin:4px 0 0;color:#555;font-size:13.5px}
 .bar i{display:block;height:100%;background:#141414}
 h1{font-size:22px} .sub{color:#555;font-size:13.5px;margin-bottom:18px}</style></head><body>
 <h1>Authority Synthesis — Gate 2</h1>
-<p class="sub">Review each decision card: verdict, notes, and image attachments save straight to disk. Safe to reload; come back any time.</p>
+<p class="sub">Review each decision card: verdict, notes, and image attachments save straight to disk. Safe to reload; come back any time. · <a href="/demo" style="color:#2E45B8;font-weight:600">Candidate pack demo &rarr;</a></p>
 {{cards|safe}}
 </body></html>"""
 
@@ -391,6 +591,113 @@ def fonts(src, fn):
     if src not in SOURCES:
         abort(404)
     return send_from_directory(os.path.join(SYN, src, "tile", "fonts"), fn)
+
+
+@app.route("/demo")
+def demo():
+    cards = []
+    for name, src in PACK_META.items():
+        pack = get_pack(name)
+        g = golden_summary(name)
+        kinds = {}
+        for a in pack.artifacts:
+            kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
+        ktxt = " · ".join("%d %s" % (v, k) for k, v in sorted(kinds.items()))
+        cards.append(
+            "<a class='src' href='/demo/%s'><b>%s</b><p>%s</p>"
+            "<p><span class='chip src'>%s</span> <span class='chip gold'>golden %d/%d</span></p></a>"
+            % (name, _esc(pack.manifest.get("name")), _esc(src), _esc(ktxt), g["passed"], g["total"]))
+    return DEMO_LANDING.replace("__CSS__", DEMO_CSS).replace("__CARDS__", "".join(cards))
+
+
+@app.route("/demo/<name>")
+def demo_pack(name):
+    pack = get_pack(name)
+    g = golden_summary(name)
+    m = pack.manifest
+    counts = ("%d artifacts · %d rules · %d prohibitions · %d fallbacks · %d recipes"
+              % (len(pack.artifacts), len(pack.rules), len(pack.prohibitions),
+                 len(pack.fallbacks), len(pack.recipes)))
+    meta = ("<span class='chip src'>pack %s</span><span class='chip'>v%s</span>"
+            "<span class='chip'>%s</span><span class='chip'>%s</span>"
+            "<span class='chip gold'>golden %d/%d</span>"
+            % (_esc(name), _esc(m.get("version")), _esc(PACK_META[name]),
+               _esc(counts), g["passed"], g["total"]))
+    chips = "".join("<button onclick=\"ask(&quot;%s&quot;)\">%s</button>" % (_esc(q), _esc(q))
+                    for q in DEMO_EXAMPLES)
+
+    rows = g.get("rows") or []
+    grow = "".join(
+        "<tr><td class='%s'>%s</td><td>%s</td><td>%s</td><td>%s</td><td class='mono'>%s</td></tr>"
+        % ("ok" if r.get("ok") else "miss", "pass" if r.get("ok") else "MISS",
+           _esc(r.get("problem")), _esc(r.get("expected")), _esc(r.get("got")),
+           _esc(r.get("resolution_id") or "")) for r in rows)
+    golden_html = ("<details><summary>%d / %d cases pass</summary><table>"
+                   "<tr><th></th><th>ask</th><th>expected</th><th>got</th><th>resolved to</th></tr>%s"
+                   "</table></details>" % (g["passed"], g["total"], grow))
+
+    def art_html(a):
+        body = a.get("body") or {}
+        s = ["<div class='art'><span class='kd'>%s</span><b>%s</b> "
+             "<span class='mono'>%s</span>" % (_esc(a.get("kind")), _esc(a.get("title")), _esc(a.get("id")))]
+        s.append("<p class='s'>%s</p>" % _esc(a.get("summary")))
+        if body.get("class"):
+            s.append("<p class='sts'>class <span class='mono'>.%s</span></p>" % _esc(body["class"]))
+        for st in (body.get("states") or []):
+            s.append("<p class='sts'>· %s</p>" % _esc(st))
+        return "".join(s) + "</div>"
+
+    arts = "".join(art_html(a) for a in pack.artifacts)
+    rules = "".join(
+        "<div class='art'><span class='kd'>rule</span><b>%s · %s</b> <span class='mono'>%s</span>"
+        "<p class='s'>%s</p><p class='sts'>fix: %s</p></div>"
+        % (_esc(r.get("id")), _esc(r.get("name")), _esc(r.get("severity")),
+           _esc(r.get("summary")), _esc(r.get("fix"))) for r in pack.rules)
+    proh = "".join(
+        "<div class='art'><b>%s</b><p class='s'>%s</p><p class='sts mono'>signals: %s</p></div>"
+        % (_esc(p.get("id")), _esc(p.get("statement")),
+           _esc(", ".join(p.get("signals", [])))) for p in pack.prohibitions)
+    fbs = "".join(
+        "<div class='art'><b>%s</b><p class='s'>%s</p><p class='sts mono'>scope: %s</p></div>"
+        % (_esc(f.get("title")), _esc(f.get("statement")),
+           _esc(", ".join(f.get("scope", [])))) for f in pack.fallbacks)
+    if pack.recipes:
+        recipes = "<h2>Recipes</h2>" + "".join(
+            "<div class='art'><b>%s</b> <span class='mono'>%s</span><p class='s'>%s</p>"
+            "<p class='sts'>· %s</p></div>"
+            % (_esc(r.get("title")), _esc(r.get("id")), _esc(r.get("summary")),
+               "</p><p class='sts'>· ".join(_esc(c) for c in r.get("constraints", [])))
+            for r in pack.recipes)
+    else:
+        recipes = ("<h2>Recipes</h2><p class='sub'>None — flow-level behaviour was left "
+                   "undefined in this authority (by review decision).</p>")
+
+    page = (DEMO_PAGE
+            .replace("__CSS__", DEMO_CSS)
+            .replace("__TITLE__", _esc(m.get("name")))
+            .replace("__DESC__", _esc(m.get("description")))
+            .replace("__META__", meta)
+            .replace("__CHIPS__", chips)
+            .replace("__GOLDEN__", golden_html)
+            .replace("__ARTS__", arts)
+            .replace("__RULES__", rules)
+            .replace("__PROH__", proh)
+            .replace("__FB__", fbs)
+            .replace("__RECIPES__", recipes)
+            .replace("__PACK__", _esc(name)))
+    return page
+
+
+@app.route("/api/demo/resolve", methods=["POST"])
+def demo_resolve():
+    data = request.get_json(silent=True) or {}
+    name = data.get("pack")
+    problem = (data.get("problem") or "").strip()
+    if name not in PACK_META or not problem:
+        return jsonify({"error": "bad request"}), 400
+    pack = get_pack(name)
+    r = resolve(pack, problem)
+    return jsonify({"html": render_resolution(pack, r)})
 
 
 if __name__ == "__main__":

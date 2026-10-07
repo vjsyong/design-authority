@@ -1,0 +1,59 @@
+{
+  "fallbacks": [
+    {
+      "id": "fallback/platform-controls",
+      "title": "Platform defaults for uncovered controls",
+      "statement": "If the system defines no control for a need, use the platform's native element with the leader field styling; keep native semantics.",
+      "scope": [
+        "checkbox",
+        "radio",
+        "date",
+        "toggle",
+        "switch",
+        "slider"
+      ],
+      "constraints": [
+        "field styling (rounded, 1px soft border)",
+        "mark the improvisation and report a gap"
+      ],
+      "kind": "fallback"
+    },
+    {
+      "id": "fallback/selection",
+      "title": "Selection beyond small sets",
+      "statement": "Small sets use a native select styled like a field; larger or filtered selection uses the platform default, marked.",
+      "scope": [
+        "select",
+        "dropdown",
+        "picker",
+        "combobox",
+        "listbox",
+        "filter"
+      ],
+      "constraints": [
+        "keep field styling",
+        "mark the improvisation",
+        "report a gap if the need recurs"
+      ],
+      "kind": "fallback"
+    },
+    {
+      "id": "fallback/ruled-panel",
+      "title": "Interstitials become ruled panels",
+      "statement": "No dialog canon: interstitials render as plain ruled panels in the page flow (L-07); mark the improvisation.",
+      "scope": [
+        "dialog",
+        "modal",
+        "overlay",
+        "popup",
+        "interstitial"
+      ],
+      "constraints": [
+        "2px ink rules, hairline detail",
+        "no scrim, no motion",
+        "mark the improvisation"
+      ],
+      "kind": "fallback"
+    }
+  ]
+}

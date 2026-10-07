@@ -1,0 +1,25 @@
+{
+  "recipes": [
+    {
+      "id": "recipe/retire-confirm",
+      "title": "Retire with confirmation",
+      "summary": "Destructive removal of a registered item, confirmed in a dialog with the consequence sentence.",
+      "needs": [
+        "retire an item",
+        "remove an item",
+        "delete from the register",
+        "confirmation"
+      ],
+      "constraints": [
+        "confirm = solid slate rounded button with the verb",
+        "never pre-focused",
+        "bilingual titles (D-09)"
+      ],
+      "ingredients": [
+        "component/action",
+        "component/field"
+      ],
+      "kind": "recipe"
+    }
+  ]
+}
