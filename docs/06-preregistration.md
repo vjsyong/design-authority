@@ -193,7 +193,9 @@ and if it invalidates a run that run is rerun under a new id and excluded.
   score; D5 blind review over production captures only; reviewers get the
   gallery + questionnaire, mapping sealed until review completes.
 - **Reporting**: raw distributions shown alongside any aggregate; threats to
-  validity mandatory.
+  validity mandatory. *Analysis tooling (report.py / gallery.py) may be
+  extended during production — run instruments and thresholds are what is
+  frozen, not the report renderer.*
 
 ## 6 · Deviations log (append during runs)
 
