@@ -1,8 +1,8 @@
 # Production report — A vs B vs C (n = 3 per condition)
 
-**Status: production set complete (2026-10-07 07:00 UTC). Blind human review
-pending (gallery served at `https://gpu-vm1.bigscale-snapper.ts.net:9110/`,
-mapping sealed).** This report covers the nine production runs; pilot runs
+**Status: production set complete (2026-10-07). Blind human review complete
+— scores + synthesis in `docs/09-final-synthesis.md`; gallery still at
+`https://gpu-vm1.bigscale-snapper.ts.net:9110/` (mapping now unsealed).** This report covers the nine production runs; pilot runs
 (a1/b1/c1) remain excluded from headline metrics per the pre-registration,
 with one exception noted in §2 (c2b, supplementary).
 

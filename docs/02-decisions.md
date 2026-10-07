@@ -143,3 +143,12 @@ Public catalogue · multi-tenant hosting · Studio · Figma integration · site
 reverse-engineering · RBAC · Git governance product · framework breadth ·
 universal ontology · HTTP MCP transport · authn · multi-pack arbitration ·
 automatic pack regeneration · LLM-authored authority content.
+
+## D-021 · D5 blind review complete (2026-10-07)
+
+Single blind reviewer (project owner) scored all nine production builds
+before the condition mapping was unsealed; scores archived at
+`benchmark/review/procura-review-2026-10-07.csv`, mapping at
+`benchmark/runs/_gallery-mapping-SEALED.json`. Condition totals (of 25):
+A 10/18/17 · B 22/19/23 · C 25/21/19. Full analysis in
+`docs/09-final-synthesis.md`.
