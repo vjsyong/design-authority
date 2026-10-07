@@ -1,6 +1,16 @@
 # Portability Spike · 07 · Orbit v2 — element re-derivation (anti-leak)
 
-**Status:** green-lit by the reviewer (2026-10-07) after the v1 rejection
+> **⚠ Reviewer outcome (2nd, 2026-10-07): REJECTED — “still leaking… the
+> dots are triage so are the sharp corners and high contrast.”** v2 fixed
+> the component-anatomy layer but not the **gestalt** layer; and the
+> contamination audit (`08`) found additional channels (skills-curator
+> auto-distillation, a memory house-style directive, same-session incumbent
+> context). Per pre-registration: **NASA is retired; source kit swap
+> proceeds** (recommendation: Ubuntu, alt: NYCTA) with quarantine rules and
+> a style-tile gate before any screen design. This document is retained as
+> the v2 record.
+
+**Status (original):** green-lit by the reviewer (2026-10-07) after the v1 rejection
 (`06-leak-audit.md`). Foundations carry over; the **element layer and layout
 grammar are re-derived under anti-leak gates**. Mock screens await reviewer
 sign-off (G2) before any agent run.
