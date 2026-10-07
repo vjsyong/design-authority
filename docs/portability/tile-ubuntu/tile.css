@@ -1,0 +1,121 @@
+/* Indaba — style tile v0.1
+   Ubuntu-brand-derived interface vocabulary (working name; no Ubuntu marks).
+   Source: design.ubuntu.com/brand (colour palette, font) — fetched 2026-10-07.
+   Fonts: Ubuntu Font Family, Ubuntu Font Licence 1.0 (Dalton Maag for Canonical).
+
+   Palette roles (INFERRED from the brand's stated usage; values OBSERVED):
+     orange #E95420        actions / community accent
+     aubergine #77216F     identity / headings / structural emphasis
+     deep aubergine #2C001E  heaviest surfaces, destructive
+     warm grey #AEA79F     balance: surfaces, rules, graphics, dot patterns
+     warm tint #F5F3F1     surface tint ("tints… may be used as backgrounds")
+     text grey #111111     body copy and small headings ("black is harsh with
+                           aubergine; grey delivers more balance")
+     cool grey #333333     meta text (charts/diagram grey)
+   Shape language: rounded everywhere — the brand's forms are circular
+   (logo, dot patterns) and its typeface is humanist with rounded terminals. */
+
+@font-face { font-family: 'Ubuntu'; src: url('fonts/Ubuntu-Light.ttf'); font-weight: 300; }
+@font-face { font-family: 'Ubuntu'; src: url('fonts/Ubuntu-Regular.ttf'); font-weight: 400; }
+@font-face { font-family: 'Ubuntu'; src: url('fonts/Ubuntu-Medium.ttf'); font-weight: 500; }
+@font-face { font-family: 'Ubuntu'; src: url('fonts/Ubuntu-Bold.ttf'); font-weight: 700; }
+
+:root {
+  --orange: #e95420;
+  --orange-hover: #cf4617;          /* authored hover shade */
+  --aubergine: #77216f;
+  --aubergine-dark: #5e2750;        /* hmm: from page; keep unused? leave token */
+  --ink-deep: #2c001e;
+  --warm-grey: #aea79f;
+  --warm-rule: #d9d5d1;             /* tint of warm grey for rules */
+  --warm-tint: #f5f3f1;             /* tint for surfaces */
+  --text: #111111;
+  --muted: #333333;
+  --radius: 12px;
+  --radius-pill: 999px;
+  --font: 'Ubuntu', 'Ubuntu Light', sans-serif;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: #ffffff; color: var(--text);
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 1120px; margin: 0 auto; padding: 40px 32px 56px; }
+
+.caption { font-size: 13px; color: var(--muted); }
+h1.tile { font-size: 30px; font-weight: 300; color: var(--aubergine); margin: 6px 0 2px; }
+h2.sec { font-size: 16px; font-weight: 500; color: var(--aubergine); margin: 40px 0 14px; }
+.rule { border: 0; border-top: 1px solid var(--warm-rule); margin: 0 0 18px; }
+
+/* palette strip */
+.swatches { display: flex; gap: 14px; flex-wrap: wrap; }
+.sw { flex: 1 1 150px; }
+.sw .chip { height: 76px; border-radius: var(--radius); border: 1px solid var(--warm-rule); }
+.sw .name { font-size: 14px; font-weight: 500; margin-top: 8px; }
+.sw .val { font-size: 12px; color: var(--muted); }
+.sw .role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* type specimen */
+.type-row { display: flex; gap: 40px; align-items: baseline; flex-wrap: wrap; }
+.bigA { font-size: 84px; font-weight: 300; color: var(--aubergine); line-height: 1; }
+.type-col { max-width: 560px; }
+.sample-h { font-size: 22px; font-weight: 400; color: var(--aubergine); margin: 0 0 6px; }
+.sample-p { font-size: 16px; margin: 0 0 10px; color: var(--text); }
+.sample-p .muted { color: var(--muted); }
+.sample-label { font-size: 14px; font-weight: 500; }
+.sample-meta { font-size: 13px; color: var(--muted); }
+
+/* controls */
+.controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.pill {
+  display: inline-block; font-family: var(--font); font-size: 14px; font-weight: 500;
+  padding: 9px 20px; border-radius: var(--radius-pill); border: 0; cursor: pointer;
+  text-decoration: none;
+}
+.pill.primary { background: var(--orange); color: #fff; }
+.pill.primary:hover { background: var(--orange-hover); }
+.pill.secondary { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1.5px var(--warm-grey); }
+.pill.secondary:hover { box-shadow: inset 0 0 0 1.5px var(--muted); }
+.pill.destructive { background: var(--ink-deep); color: #fff; }
+
+.statuses { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.spill { display: inline-block; font-size: 13px; font-weight: 500; padding: 5px 14px; border-radius: var(--radius-pill); }
+.spill.avail { background: var(--warm-tint); color: var(--text); box-shadow: inset 0 0 0 1px var(--warm-rule); }
+.spill.loan { background: var(--aubergine); color: #fff; }
+.spill.overdue { background: var(--orange); color: #fff; }
+
+.cat { display: inline-block; font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: var(--radius-pill); background: var(--warm-tint); color: var(--muted); }
+
+/* fields */
+.fields { display: flex; gap: 28px; flex-wrap: wrap; }
+.field { flex: 1 1 260px; max-width: 340px; }
+.field label { display: block; font-size: 14px; font-weight: 500; margin: 0 0 6px; }
+.field input, .field select {
+  width: 100%; font-family: var(--font); font-size: 16px; color: var(--text);
+  background: #fff; border: 1.5px solid var(--warm-rule); border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(233, 84, 32, .18); }
+
+/* surface + dot pattern */
+.surfaces { display: flex; gap: 24px; align-items: stretch; flex-wrap: wrap; }
+.surface {
+  flex: 1 1 300px; background: #fff; border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(44, 0, 30, .07);
+  padding: 22px 24px;
+}
+.surface .t { font-size: 16px; font-weight: 500; margin: 0 0 6px; }
+.surface .b { font-size: 14px; color: var(--muted); margin: 0; }
+.dotband {
+  flex: 1 1 300px; border-radius: var(--radius);
+  background-color: var(--warm-tint);
+  background-image: radial-gradient(var(--warm-grey) 2.4px, transparent 2.6px);
+  background-size: 16px 16px;
+  min-height: 110px;
+  display: flex; align-items: center; justify-content: center;
+}
+.dotband span { background: #fff; border-radius: var(--radius-pill); padding: 8px 18px; font-size: 13px; font-weight: 500; color: var(--muted); }
+
+.foot { margin-top: 44px; font-size: 12px; color: var(--muted); line-height: 1.6; }
