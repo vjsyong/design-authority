@@ -50,12 +50,10 @@ class Pack(object):
         if not os.path.isdir(self.path):
             raise PackError("pack directory not found: %s" % self.path)
 
-        def load(name, required=True):
+        def load(name):
             p = os.path.join(self.path, name)
             if not os.path.exists(p):
-                if required:
-                    raise PackError("missing pack file: %s" % name)
-                return None
+                raise PackError("missing pack file: %s" % name)
             with open(p) as fh:
                 return json.load(fh)
 
@@ -75,8 +73,7 @@ class Pack(object):
         self.prohibitions = load_opt(ep.get("prohibitions", "prohibitions.json"),
                                      "prohibitions")
         self.validators = load_opt(ep.get("validators", "validators.json"), "validators")
-        scoring = load(ep.get("scoring", "scoring.json"), False)
-        self.scoring = scoring or {}
+        self.scoring = load(ep.get("scoring", "scoring.json"))
 
         self.by_id = {}
         for entry in (self.artifacts + self.recipes + self.fallbacks
