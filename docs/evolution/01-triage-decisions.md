@@ -1,7 +1,7 @@
 # 01 · Upstream design triage — decisions on each consolidated gap
 
 **Phase 2 output.** Stance per protocol: *assume the authority should NOT be
-extended; first solve with the existing Triage authority.* Method: 30-phrasing
+extended; first solve with the existing Triage authority.* Method: 27-phrasing
 resolve battery on triage 0.12.1 (saved:
 `docs/evolution/data/baseline-resolves-0.12.1.json`), search/inspect probes,
 and direct verification against the raw Triage sources (CSS, spec, examples,

@@ -4,10 +4,11 @@
   "gap": "G-02",
   "classification": "DOCUMENTATION-FIX",
   "layer": "triage-snapshot + curation",
+  "review": {"verdict": "REVISE (minor)", "source": "docs/evolution/03-review.md#cand-02", "applied": "alias trim (req 1), aria-valuetext added to a11y (req 2), convergence criterion rewritten to the verified mapping (req 3)"},
   "problem": "Downstream agents (3 independent runs) needed determinate progress for a long-running job and rebuilt the same composition from scratch under fallback/plain-content; the .progress primitive ships in core/base.css and is demoed in the docs, but is unciteable (no spec entry, no a11y contract, no aliases).",
   "evidence": [
     "gap/...19217d (c1), gap/...e336ee (c3), gap/...0e1da7 (c4)",
-    "baseline resolves: 3x FALLBACK(plain-content), 3x UNDEFINED, 1x stray COMPOSE for progress phrasings; search 'progress' yields only spinner + index-eval (docs/evolution/data/baseline-resolves-0.12.1.json)"
+    "baseline resolves: 3x FALLBACK(plain-content), 3x UNDEFINED, 1x stray COMPOSE for progress phrasings; search 'progress' yields only pattern/index-eval + component/spinner (docs/evolution/data/baseline-resolves-0.12.1.json)"
   ],
   "existing_authority_considered": [
     "component/spinner - indeterminate only",
@@ -15,15 +16,15 @@
     "component/tl - history, not live progress",
     "pattern/index-eval, pattern/dashboard - placements, not the unit"
   ],
-  "why_insufficient": "The CSS primitive exists (core/base.css:179-180, .progress + .progress i + --dur-progress) and is demonstrated in examples, but has no states/verify contract, no documented a11y semantics (role/aria-valuenow), and no vocabulary; every run had to re-derive it as an improvisation.",
+  "why_insufficient": "The CSS primitive exists (core/base.css:179-180, .progress + .progress i + --dur-progress) and is demonstrated in examples, but has no states/verify contract, no documented a11y semantics (role/aria-valuenow/aria-valuetext), and no vocabulary; every run had to re-derive it as an improvisation.",
   "proposed_change": {
     "triage_snapshot": [
-      "spec/states.json: add component { class: 'progress', name: 'Progress bar', source: 'base.css', status: 'beta', states: ['determinate (aria-valuenow)','complete (100%)'], verify: ['.progress','.progress i'], a11y: [role=progressbar with aria-valuemin/max/now on the track; always pair with an adjacent visible text readout (n of total) - never colour alone; width transitions use --dur-progress; completion announced via toast/banner] }",
+      "spec/states.json: add component { class: 'progress', name: 'Progress bar', source: 'base.css', status: 'beta', states: ['determinate (aria-valuenow)','complete (100%)'], verify: ['.progress','.progress i'], a11y: [role=progressbar with aria-valuemin/max/now on the track; aria-valuetext carries the human readout (e.g. '12 of 40 scanned') and the adjacent visible text is the same words; never colour alone; width transitions use --dur-progress; completion announced via toast/banner] }",
       "site/pages_components.py: the existing .progress demo gains role=progressbar + aria-valuenow attributes in the demo markup.",
       "VERSION bump + CHANGELOG entry (shared with cand/01)."
     ],
     "curation": [
-      "aliases.json: component/progress -> ['progress bar','progress meter','determinate progress','progress track']",
+      "aliases.json: component/progress -> ['progress bar','progress meter','progress track'] (dropped 'determinate progress' - with it, baseline phrasings #3/#4/#6 resolved to the bare component instead of the recipe)",
       "component-notes.json: component/progress summary ('Determinate progress bar; compose with badge + text readout via recipe/job-progress; indeterminate waits use component/spinner')",
       "docs-map.json: component/progress -> the components page section that demos it"
     ]
@@ -35,9 +36,12 @@
   "dependencies": ["component/badge", "component/spinner", "recipe/status-with-text"],
   "scope": "global",
   "compatibility": "Additive: no CSS changes at all; only a spec entry + docs attributes + vocabulary. Zero breakage risk.",
-  "validation": [
-    "triage: build.py check (states matrix 37 components, verify selector pass, strict lint)",
-    "authority: convergence for the 7 baseline progress phrasings onto recipe/job-progress; non-regression: spinner/status phrasings unchanged"
-  ],
+  "validation": {
+    "criterion": "verified contract (review req 3):",
+    "g02_mapping": "5 x COMPOSE recipe/job-progress (#1,#3,#4,#6,#7) + 2 x RESOLVED component/progress (#2 '...live progress readout', #5 'Progress bar ... stalled state'); zero FALLBACK / UNDEFINED / stray COMPOSE",
+    "why_component_level": "#2/#5 name the bar itself; routing them to the recipe would require contorting component docs - not recommended (review note)",
+    "triage_gates": "build.py check (states matrix at 37 components, verify selector pass), strict lint",
+    "non_regression": "spinner/status phrasings unchanged; delete battery unaffected"
+  },
   "migration": "Existing .progress compositions become sanctioned when they cite component/progress + recipe/job-progress; no markup change required for the bar itself."
 }

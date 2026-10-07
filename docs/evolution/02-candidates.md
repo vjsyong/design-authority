@@ -3,7 +3,9 @@
 **Phase 3 output.** Five candidates, stored separately from the published
 authority under `proposals/evolution/`. None of them touches the pinned 0.12.1
 pack; implementation happens on a candidate branch/version (Phase 5) and only
-what survives review (Phase 4) gets built.
+what survives review (Phase 4) gets built. **Update: all five candidates were
+independently reviewed (`docs/evolution/03-review.md`; verdict REVISE ×5) and
+every required action was applied — see each candidate's `review` block.**
 
 | # | candidate | gap | classification | layer |
 |---|---|---|---|---|
@@ -70,8 +72,12 @@ Per candidate, as recorded in the JSON files:
    stay byte-identical.
 3. **Convergence tests** — every baseline phrasing from
    `docs/evolution/data/baseline-resolves-0.12.1.json` for the three gaps must
-   land on one sanctioned answer, with the exact old failures re-tested
-   (pattern/detail mis-routes, stray COMPOSEs, UNDEFINEDs).
+   land on one sanctioned answer per the **verified contracts** in the
+   candidate files (G-01: 7 → component/select + 1 → recipe/assign-picker;
+   G-02: 5 → recipe/job-progress + 2 → component/progress; G-03: 4 →
+   recipe/high-stakes-confirm), with the exact old failures re-tested
+   (pattern/detail mis-routes, stray COMPOSEs, UNDEFINEDs) plus the
+   delete-probe battery (all → entity-delete-armed).
 4. **Non-regression battery** — the baseline regression set (combobox, date
    picker, loading spinner, toast, banner, delete, empty, pagination) must
    keep its 0.12.1 answers.

@@ -4,39 +4,41 @@
   "gap": "G-03",
   "classification": "DOCUMENTATION-FIX",
   "layer": "curation",
+  "review": {"verdict": "REVISE -> Option A adjudicated, Option B not built", "source": "docs/evolution/03-review.md#cand-05", "applied": "5th need added (req 1); fallback/native-control + component/tl ingredients added (req 2); guideline representative set + recipe 'only the listed set' constraint reconciled (req 3); non-regression re-verified (req 4)"},
   "problem": "A reject/decline flow that requires a typed reason at the point of action is not covered: the confirm sentence exists (recipe fires when worded close), the reason-typing flow does not; resolve adjudicated UNDEFINED for the exact wording.",
   "evidence": [
     "gap/...b66012 (c3): required textarea + native confirm() naming object and consequence, reason surfacing in history",
-    "baseline resolves: 2/4 decision phrasings UNDEFINED, 2/4 partial COMPOSE (docs/evolution/data/baseline-resolves-0.12.1.json)"
+    "baseline resolves: 2/4 decision phrasings UNDEFINED, 2/4 partial COMPOSE (docs/evolution/data/baseline-resolves-0.12.1.json); 4/4 COMPOSE after the edits below (review-verified)"
   ],
-  "existing_authority_considered": ["recipe/high-stakes-confirm (confirm sentence)", "guideline/high-stakes-confirm", "fallback/native-control (textarea)", "recipe/feedback-redirect (post-action feedback)"],
+  "existing_authority_considered": ["recipe/high-stakes-confirm (confirm sentence)", "guideline/high-stakes-confirm", "fallback/native-control (textarea)", "component/tl (history)", "recipe/feedback-redirect (post-action feedback)"],
   "why_insufficient": "The combined flow - required reason + confirm whose sentence names the object and the irreversibility + reason recorded in history - is described by no artifact; agents adjudicate it UNDEFINED.",
   "proposed_change": {
-    "recommended": {
-      "option": "A - extend the existing recipe (smallest change)",
+    "option_a_recommended": {
+      "option": "A - extend the existing recipe (smallest change; adjudicated in review)",
       "edits": {
         "curation/recipes.json#recipe/high-stakes-confirm": {
-          "needs_add": ["reject with a reason", "require a typed reason at the point of action", "one-way decision with rationale", "decline with a reason"],
-          "constraints_add": ["when the rationale must be recorded, pair the confirm with a required, labelled textarea (native control); the reason surfaces in the history"]
+          "needs_add": ["reject with a reason", "require a typed reason at the point of action", "one-way decision with rationale", "decline with a reason", "high-stakes confirmation with a required reason"],
+          "constraints_add": ["when the rationale must be recorded, pair the confirm with a required, labelled textarea (native control); the reason surfaces in the history (component/tl)"],
+          "constraint_amend": "'only the listed set' -> 'the listed set plus reason-bearing reject/decline decisions'"
+        },
+        "curation/guidelines.json#guideline/high-stakes-confirm": {
+          "edit": "extend the representative set (quote) to include the reason-bearing reject/decline case, so the recipe and guideline stay consistent"
         }
       }
     },
-    "alternative": {
-      "option": "B - new small recipe (held for review if A is judged to dilute the recipe's identity)",
-      "new_recipe": {
-        "id": "recipe/reasoned-decision",
-        "title": "One-way decisions that require a typed reason",
-        "ingredients": ["recipe/high-stakes-confirm", "fallback/native-control", "component/tl"],
-        "needs": ["reject with a reason", "one-way decision with rationale", "require a typed reason at the point of action"]
-      }
-    }
+    "option_b_held_not_built": {
+      "option": "B - new small recipe reasoned-decision",
+      "status": "NOT BUILT this phase: duplicates needs, fragments confirm guidance across two recipes, and still leaves 'High stakes confirmation with a required reason' UNDEFINED unless the same need is added anyway (review-verified). Held as a future option only."
+    },
+    "ingredients_add": ["fallback/native-control", "component/tl"]
   },
-  "dependencies": ["recipe/high-stakes-confirm", "guideline/high-stakes-confirm", "fallback/native-control"],
+  "dependencies": ["recipe/high-stakes-confirm", "guideline/high-stakes-confirm", "fallback/native-control", "component/tl"],
   "scope": "global",
   "compatibility": "Additive wording + needs; no semantics changed for existing confirm-only phrasings.",
-  "validation": [
-    "convergence: the 4 baseline decision phrasings all land on a sanctioned answer (high-stakes-confirm or the recipe extension) with zero UNDEFINED",
-    "non-regression: 'delete a rule' still entity-delete-armed; 'modal task' still dialog-task"
-  ],
+  "validation": {
+    "criterion": "verified contract (review req 1):",
+    "g03_mapping": "4/4 baseline decision phrasings -> COMPOSE recipe/high-stakes-confirm (scores 34/12/6/9); zero UNDEFINED",
+    "non_regression": "'confirm rebuild' -> high-stakes-confirm; 'delete a rule from a list' -> entity-delete-armed; 'modal task' -> dialog-task"
+  },
   "migration": "c3's reject form becomes a citation; single-run evidence keeps this at documentation priority."
 }
