@@ -1,0 +1,202 @@
+{
+ "runs": {
+  "e1": {
+   "exit": 0,
+   "duration_s": 751.9,
+   "pack": "triage-evolution",
+   "calls": {
+    "authority_overview": 1,
+    "resolve_design_problem": 8,
+    "inspect_artifact": 25,
+    "search_authority": 3,
+    "validate_implementation": 2
+   },
+   "resolve_outcomes": {
+    "RESOLVED": 7,
+    "COMPOSE": 1
+   },
+   "interact": {
+    "passed": 13,
+    "total": 13
+   },
+   "gaps_filed": false,
+   "containment": {
+    "attempts": 0,
+    "mentions": 3,
+    "denied_events": 5,
+    "da_zone": 0
+   },
+   "resolves": [
+    {
+     "problem": "Display the status and progress of a long-running background operation (job) with running/done/failed states, including when it is stuck or failed",
+     "outcome": "RESOLVED",
+     "resolution": "component/badge"
+    },
+    {
+     "problem": "Select multiple items in a list and apply a bulk action (approve or reject) to all selected at once",
+     "outcome": "RESOLVED",
+     "resolution": "component/bulkbar"
+    },
+    {
+     "problem": "Show a compact history of recent approval steps on a request detail page (audit trail)",
+     "outcome": "RESOLVED",
+     "resolution": "component/tl"
+    },
+    {
+     "problem": "A compact picker for assigning a reviewer from a small list of people",
+     "outcome": "RESOLVED",
+     "resolution": "component/select"
+    },
+    {
+     "problem": "Make clear at the point of action that rejecting a request is irreversible for the requester, and confirm a destructive decision",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/high-stakes-confirm"
+    },
+    {
+     "problem": "Show empty, loading and error states for lists and pages as visible states instead of blank areas",
+     "outcome": "RESOLVED",
+     "resolution": "component/empty"
+    },
+    {
+     "problem": "Filter a request list by status and category and search by title, with an active filter chip and a submit control",
+     "outcome": "RESOLVED",
+     "resolution": "component/chip"
+    },
+    {
+     "problem": "Show a small persistent background-job status indicator in the app sidebar on every page",
+     "outcome": "RESOLVED",
+     "resolution": "component/badge"
+    }
+   ]
+  },
+  "e2": {
+   "exit": 0,
+   "duration_s": 210.8,
+   "pack": "triage-evolution",
+   "calls": {
+    "authority_overview": 1,
+    "search_authority": 9,
+    "inspect_artifact": 18,
+    "resolve_design_problem": 8,
+    "validate_implementation": 1
+   },
+   "resolve_outcomes": {
+    "RESOLVED": 5,
+    "COMPOSE": 3
+   },
+   "interact": {
+    "passed": 8,
+    "total": 13
+   },
+   "gaps_filed": false,
+   "containment": {
+    "attempts": 0,
+    "mentions": 1,
+    "denied_events": 1,
+    "da_zone": 6
+   },
+   "resolves": [
+    {
+     "problem": "Show a dashboard overview: pending count and amount, approved last 30 days, rejected count, as a hero metric strip",
+     "outcome": "RESOLVED",
+     "resolution": "pattern/dashboard"
+    },
+    {
+     "problem": "Show the status of a long-running background triage job: how far it has come, whether it is stuck or failed",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/job-progress"
+    },
+    {
+     "problem": "Approve or reject many selected requests at once in a table",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/bulk-actions"
+    },
+    {
+     "problem": "Show a compact history of recent approval steps on each request",
+     "outcome": "RESOLVED",
+     "resolution": "component/tl"
+    },
+    {
+     "problem": "A compact picker for assigning a reviewer to a request from a short fixed list of people",
+     "outcome": "RESOLVED",
+     "resolution": "component/select"
+    },
+    {
+     "problem": "Reject a request with a required reason; rejection is irreversible for the requester, make the consequence clear at the point of action",
+     "outcome": "RESOLVED",
+     "resolution": "guideline/high-stakes-confirm"
+    },
+    {
+     "problem": "Show empty, loading and error states instead of blank areas",
+     "outcome": "RESOLVED",
+     "resolution": "component/empty"
+    },
+    {
+     "problem": "After approve, reject, bulk or settings form submit, tell the user what happened",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/feedback-redirect"
+    }
+   ]
+  },
+  "e3": {
+   "exit": 0,
+   "duration_s": 808.7,
+   "pack": "triage-evolution",
+   "calls": {
+    "authority_overview": 1,
+    "search_authority": 8,
+    "inspect_artifact": 34,
+    "resolve_design_problem": 6,
+    "validate_implementation": 3
+   },
+   "resolve_outcomes": {
+    "COMPOSE": 3,
+    "RESOLVED": 3
+   },
+   "interact": {
+    "passed": 13,
+    "total": 13
+   },
+   "gaps_filed": false,
+   "containment": {
+    "attempts": 0,
+    "mentions": 12,
+    "denied_events": 4,
+    "da_zone": 0
+   },
+   "resolves": [
+    {
+     "problem": "Show the status and determinate progress of a long-running background AI triage scan, including running/stalled/failed/done states, with the failure reason and a retry.",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/job-progress"
+    },
+    {
+     "problem": "Bulk approve or reject many selected requests at once from the requests list.",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/bulk-actions"
+    },
+    {
+     "problem": "Show a compact history of recent approval steps on a request.",
+     "outcome": "RESOLVED",
+     "resolution": "component/tl"
+    },
+    {
+     "problem": "A compact picker to assign a reviewer to a request from a small fixed list of people, with feedback.",
+     "outcome": "RESOLVED",
+     "resolution": "component/select"
+    },
+    {
+     "problem": "Rejecting a request is effectively irreversible for the requester; make the consequence clear at the point of action and require a reason.",
+     "outcome": "RESOLVED",
+     "resolution": "guideline/high-stakes-confirm"
+    },
+    {
+     "problem": "Announce the outcome of a form submit that redirects (approve, reject, bulk, assign, settings saved).",
+     "outcome": "COMPOSE",
+     "resolution": "recipe/feedback-redirect"
+    }
+   ]
+  }
+ },
+ "note": "P7 downstream re-runs under triage 0.13.0-experiment (authority-evolution). e2 flagged: agent-side Jinja defect in detail route (500)."
+}
