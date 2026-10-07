@@ -20,6 +20,7 @@ Containment (learned the hard way — see docs/06 §Deviations):
   * the transcript is audited for references outside the sandbox
 """
 import argparse
+import glob
 import json
 import os
 import shutil
@@ -41,9 +42,11 @@ OPENCODE = os.path.expanduser("~/.opencode/bin/opencode")
 VENV_PY = os.path.join(ROOT, ".venv", "bin", "python")
 RUNS_ROOT = os.environ.get("DA_BENCH_RUNS_ROOT", "/tmp/da-ws")
 HOME = os.path.expanduser("~")
-NODE_BIN = os.path.join(HOME, ".hermes/tools/node-26.7.0-linux-x64/bin")
-SANDBOX_PATH = "%s:%s:/usr/local/bin:/usr/bin:/bin" % (
-    os.path.join(ROOT, ".venv", "bin"), NODE_BIN)
+NODE_DIR = os.path.join(HOME, ".hermes/tools/node-26.7.0-linux-x64")
+PYTOOLCHAIN = sorted(glob.glob(os.path.join(
+    HOME, ".hermes/tools/python-*-linux-x64")))[-1]
+PLAYWRIGHT_CACHE = os.path.join(HOME, ".cache/ms-playwright")
+SANDBOX_PATH = "/opt/py/venv/bin:/opt/node/bin:/usr/local/bin:/usr/bin:/bin"
 
 STRICT_PERMISSION = {
     "external_directory": {"*": "deny"},
@@ -58,9 +61,20 @@ STRICT_PERMISSION = {
     "grep": {"*": "allow"},
 }
 
-# condition C needs the authority server + pack reachable inside the sandbox
-SANDBOX_RO_C = [os.path.join(ROOT, "tools"), os.path.join(ROOT, "kernel"),
-                os.path.join(ROOT, "packs")]
+# Filesystem sandbox layout (docs/06 D-1/D-4): the project tree is invisible;
+# toolchain and (condition C) the authority service are mounted at opaque /opt
+# paths, so no condition can see the benchmark, the repo, or each other.
+SANDBOX_MOUNTS = [
+    (os.path.join(ROOT, ".venv"), "/opt/py/venv"),
+    (NODE_DIR, "/opt/node"),
+    (PLAYWRIGHT_CACHE, "/opt/playwright"),
+    (PYTOOLCHAIN, PYTOOLCHAIN),
+]
+SANDBOX_MOUNTS_C = [
+    (os.path.join(ROOT, "tools"), "/opt/da/tools"),
+    (os.path.join(ROOT, "kernel"), "/opt/da/kernel"),
+    (os.path.join(ROOT, "packs"), "/opt/da/packs"),
+]
 
 
 def now_iso():
@@ -91,7 +105,8 @@ def wait_http(url, timeout=30):
 
 
 def bwrap_cmd(run_root, ws, condition):
-    """Minimal-filesystem sandbox around the agent run."""
+    """Minimal-filesystem sandbox: benchmark tree invisible, opaque /opt
+    toolchain mounts, clean environment (no host TMPDIR/XDG leakage)."""
     args = [
         "bwrap",
         "--ro-bind", "/usr", "/usr",
@@ -107,21 +122,24 @@ def bwrap_cmd(run_root, ws, condition):
         "--dev", "/dev",
         "--tmpfs", "/tmp",
         "--bind", run_root, run_root,
-        "--ro-bind", os.path.join(HOME, ".opencode"), os.path.join(HOME, ".opencode"),
+        "--ro-bind", os.path.join(HOME, ".opencode"),
+        os.path.join(HOME, ".opencode"),
         "--bind", os.path.join(HOME, ".local/share/opencode"),
         os.path.join(HOME, ".local/share/opencode"),
-        "--ro-bind", os.path.join(HOME, ".hermes/tools"),
-        os.path.join(HOME, ".hermes/tools"),
-        "--ro-bind", os.path.join(ROOT, ".venv"), os.path.join(ROOT, ".venv"),
         "--die-with-parent",
     ]
-    if condition == "C":
-        for path in SANDBOX_RO_C:
-            args += ["--ro-bind", path, path]
+    mounts = SANDBOX_MOUNTS + (SANDBOX_MOUNTS_C if condition == "C" else [])
+    for src, dest in mounts:
+        args += ["--ro-bind", src, dest]
     args += [
+        "--clearenv",
         "--setenv", "HOME", HOME,
-        "--setenv", "XDG_CONFIG_HOME", os.path.join(run_root, "oc-config"),
         "--setenv", "PATH", SANDBOX_PATH,
+        "--setenv", "TMPDIR", "/tmp",
+        "--setenv", "XDG_CONFIG_HOME", os.path.join(run_root, "oc-config"),
+        "--setenv", "PLAYWRIGHT_BROWSERS_PATH", "/opt/playwright",
+        "--setenv", "PYTHONDONTWRITEBYTECODE", "1",
+        "--setenv", "LANG", "C.UTF-8",
         "--chdir", ws,
         "--",
         OPENCODE, "run", "--pure",
@@ -153,10 +171,7 @@ def tool_stats(transcript_path):
             "event_types": dict(types)}
 
 
-SANDBOX_TRIPWIRES = ("/home/xrim/design-authority/benchmark",
-                     "/home/xrim/design-authority/packs",
-                     "/home/xrim/design-authority/kernel",
-                     "/home/xrim/design-authority/tools",
+SANDBOX_TRIPWIRES = ("/home/xrim/design-authority",
                      "/home/xrim/triage-design-system",
                      "/home/xrim/.claude/skills",
                      "/home/xrim/.agents/skills")
@@ -165,10 +180,12 @@ SANDBOX_TRIPWIRES = ("/home/xrim/design-authority/benchmark",
 def containment_audit(transcript_path):
     """Tripwire audit. `attempts` = protected-path references inside tool
     INPUTS (the signal that matters); `mentions` = any other occurrence in the
-    transcript (results, permission text — informational)."""
+    transcript (results, permission text — informational). `da_zone` counts
+    condition-C service-zone (/opt/da) reads from tool inputs — raw access to
+    the authority files instead of the MCP interface (recorded, informational)."""
     if not os.path.exists(transcript_path):
-        return {"attempts": 0, "mentions": 0, "denied_events": 0}
-    attempts, mentions, denied = 0, 0, 0
+        return {"attempts": 0, "mentions": 0, "denied_events": 0, "da_zone": 0}
+    attempts, mentions, denied, da_zone = 0, 0, 0, 0
     with open(transcript_path) as fh:
         for line in fh:
             for pat in SANDBOX_TRIPWIRES:
@@ -183,11 +200,13 @@ def containment_audit(transcript_path):
             inp = json.dumps(st.get("input") or {})
             for pat in SANDBOX_TRIPWIRES:
                 attempts += inp.count(pat)
+            da_zone += inp.count("/opt/da")
             err = str(st.get("error") or "").lower()
             if st.get("status") == "error" and (
                     "denied" in err or "permission" in err or "prevents" in err):
                 denied += 1
-    return {"attempts": attempts, "mentions": mentions, "denied_events": denied}
+    return {"attempts": attempts, "mentions": mentions, "denied_events": denied,
+            "da_zone": da_zone}
 
 
 def authority_stats(ws):
@@ -282,8 +301,9 @@ def main(argv=None):
     if args.condition == "C":
         cfg["mcp"] = {"design_authority": {
             "type": "local",
-            "command": [VENV_PY, os.path.join(ROOT, "tools", "da-mcp.py")],
-            "environment": {"DA_WORKSPACE": ws},
+            "command": ["/opt/py/venv/bin/python3", "/opt/da/tools/da-mcp.py"],
+            "environment": {"DA_WORKSPACE": ws,
+                            "DA_PACK": "/opt/da/packs/triage"},
             "enabled": True}}
     with open(os.path.join(ws, "opencode.json"), "w") as fh:
         json.dump(cfg, fh, indent=1)
