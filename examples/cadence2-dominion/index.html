@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — Ritual tracker · Suivi de rituels</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- Masthead · D-08: white, 2px black bottom rule, red accent bar + generic title. No Crown marks. -->
+<header class="mh">
+  <div class="wrap mh-in">
+    <i class="mh-acc" aria-hidden="true"></i>
+    <div class="mh-id">
+      <p class="mh-title">Cadence</p>
+      <p class="mh-sub">Ritual tracker · Suivi de rituels</p>
+    </div>
+    <!-- Avatar adapted: photo prohibited (prohibit/imagery-pictograms) → initials plate -->
+    <div class="mh-who" data-adapted="avatar photo → initials plate (imagery prohibited)">
+      <span class="ava" aria-hidden="true">S</span>
+      <span><span class="who-n">Sam</span><br><span class="who-role">Maintainer · Titulaire</span></span>
+    </div>
+  </div>
+</header>
+
+<!-- Tab bar · plain row nav (component/masthead doctrine; D-20 nav collapses to a plain row) -->
+<nav class="tabs" aria-label="Views · Vues">
+  <div class="wrap tabs-in" role="tablist">
+    <button class="tab is-on" role="tab" aria-selected="true" data-view="today">
+      <span class="t-en">Today</span><span class="t-fr">Aujourd'hui</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-view="history">
+      <span class="t-en">History</span><span class="t-fr">Historique</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-view="achievements">
+      <span class="t-en">Achievements</span><span class="t-fr">Réalisations</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" data-view="settings">
+      <span class="t-en">Settings</span><span class="t-fr">Paramètres</span>
+    </button>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ============================ TODAY ============================ -->
+<section class="view" id="view-today">
+  <div class="wrap pad">
+    <div class="vhead">
+      <h1 class="vtitle"><span class="bil"><span>Today</span><i class="dv" aria-hidden="true"></i><span class="fr">Aujourd'hui</span></span></h1>
+      <p class="vmeta bil"><span>Tuesday, 7 October</span><i class="dv" aria-hidden="true"></i><span class="fr">Mardi 7 octobre</span></p>
+      <p class="greet bil"><span>Good evening, Sam.</span><i class="dv" aria-hidden="true"></i><span class="fr">Bonsoir, Sam.</span></p>
+    </div>
+
+    <div class="notice-slot" data-slot="today"></div>
+
+    <!-- Hero: completion + streak.
+         adapted: circular progress ring resolved to the pack's meter device (component/meter, D-15; rectilinear per D-02). -->
+    <div class="hero" data-adapted="circular ring → square meter (component/meter; D-02 rectilinear)">
+      <div class="hero-meter">
+        <p class="hero-label bil"><span id="hero-count">3 of 5 rituals done · 60%</span><i class="dv" aria-hidden="true"></i><span class="fr" id="hero-count-fr">3 rituels sur 5 faits · 60 %</span></p>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" id="hero-meter" aria-label="Rituals done today">
+          <i id="hero-fill" style="width:60%"></i>
+        </div>
+      </div>
+      <div class="hero-streak" data-improvised="ruled stat block for the big counter; counter device undefined in pack">
+        <p class="stat-num" id="hero-streak">12</p>
+        <p class="stat-lab bil"><span>day streak</span><i class="dv" aria-hidden="true"></i><span class="fr">série</span></p>
+      </div>
+    </div>
+
+    <!-- Ritual list -->
+    <div class="list-head">
+      <h2 class="shead bil"><span>Today's rituals</span><i class="dv" aria-hidden="true"></i><span class="fr">Rituels du jour</span></h2>
+      <!-- Status label · D-10: words, never colour -->
+      <span class="status" data-improvised="status label = words in a ruled box (D-10); no status artifact in pack">On track · Dans les temps</span>
+    </div>
+    <ul class="rituals" id="ritual-list" aria-label="Rituals · Rituels"></ul>
+
+    <!-- Empty state · D-16: plain ruled statement + one action, no imagery -->
+    <div class="empty" id="today-empty" hidden data-improvised="empty-state pattern (D-16 ruled statement + one action); no imagery">
+      <p class="empty-line">No rituals yet. Add one to start today's list.</p>
+      <p class="empty-line fr">Aucun rituel pour le moment. Ajoutez-en un pour commencer.</p>
+      <button class="btn b-slate" id="empty-add">Add a ritual · Ajouter un rituel</button>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn b-slate" id="log-open">Log a ritual · Consigner un rituel</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HISTORY ============================ -->
+<section class="view" id="view-history" hidden>
+  <div class="wrap pad">
+    <div class="vhead">
+      <h1 class="vtitle"><span class="bil"><span>History</span><i class="dv" aria-hidden="true"></i><span class="fr">Historique</span></span></h1>
+    </div>
+
+    <div class="notice-slot" data-slot="history"></div>
+
+    <!-- Weekly summary banner · ruled notice vessel (D-13) -->
+    <div class="banner" data-improvised="weekly summary banner; banner pattern undefined in pack">
+      <p>This week: <strong>210 minutes</strong> across 6 days. Best day: Wednesday, 60 minutes. Streak intact.</p>
+      <p class="fr">Cette semaine : 210 minutes sur 6 jours. Meilleur jour : mercredi, 60 minutes. Série intacte.</p>
+    </div>
+
+    <!-- Weekly bars -->
+    <section class="band pad">
+      <h2 class="shead bil"><span>This week — minutes</span><i class="dv" aria-hidden="true"></i><span class="fr">Cette semaine — minutes</span></h2>
+      <div class="bars" id="bars" data-improvised="rectilinear bar chart; chart primitives undefined in pack" aria-label="Weekly minutes, Mon to Sun"></div>
+      <p class="note">Mon–Sun · Lun–dim. 210 minutes logged this week.</p>
+    </section>
+
+    <!-- Month heatmap -->
+    <section class="band pad">
+      <h2 class="shead bil"><span>October 2026</span><i class="dv" aria-hidden="true"></i><span class="fr">Octobre 2026</span></h2>
+      <div class="heat" id="heat" data-improvised="ink-density calendar grid; heatmap undefined in pack"></div>
+      <div class="heat-legend">
+        <span class="note">Ink density · minutes per day:</span>
+        <span class="lg"><i class="sw s0"></i>none · aucune</span>
+        <span class="lg"><i class="sw s1"></i>under 15</span>
+        <span class="lg"><i class="sw s2"></i>15–29</span>
+        <span class="lg"><i class="sw s3"></i>30+</span>
+      </div>
+    </section>
+
+    <!-- Logged entries -->
+    <section class="band pad">
+      <div class="shead-row">
+        <h2 class="shead bil"><span>Logged entries</span><i class="dv" aria-hidden="true"></i><span class="fr">Entrées consignées</span></h2>
+        <button class="btn b-out" id="h-export">Export CSV · Exporter CSV</button>
+      </div>
+      <div class="filter-row">
+        <div class="field">
+          <label class="lab" for="entry-search">Search entries · Rechercher</label>
+          <input type="search" id="entry-search" placeholder="Filter by ritual, category or date…" data-fallback="platform search field; selection beyond small sets (fallback/large-selection)">
+        </div>
+      </div>
+      <table class="ledger" id="entries" data-improvised="ruled register per D-17 (authored doctrine; not a pack artifact)">
+        <thead>
+          <tr><th>Date</th><th>Ritual</th><th>Category</th><th class="num">Minutes</th><th>Status</th></tr>
+        </thead>
+        <tbody id="entries-body"></tbody>
+      </table>
+      <div class="pager">
+        <p class="note" id="page-readout">Showing 1–8 of 24 entries</p>
+        <div class="pager-actions" data-improvised="pagination pattern undefined; outline button + plain readout">
+          <button class="btn b-out" id="page-newer" disabled>Newer · Récentes</button>
+          <button class="btn b-out" id="page-older">Older entries · Entrées plus anciennes</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ============================ ACHIEVEMENTS ============================ -->
+<section class="view" id="view-achievements" hidden>
+  <div class="wrap pad">
+    <div class="vhead">
+      <h1 class="vtitle"><span class="bil"><span>Achievements</span><i class="dv" aria-hidden="true"></i><span class="fr">Réalisations</span></span></h1>
+    </div>
+
+    <div class="notice-slot" data-slot="achievements"></div>
+
+    <section class="band pad">
+      <h2 class="shead">Streaks · Séries</h2>
+      <div class="tiles" id="stat-tiles" data-improvised="ruled stat plates; stat/counter device undefined in pack">
+        <div class="tile">
+          <p class="stat-num">12</p>
+          <p class="stat-lab">Current streak · Série actuelle</p>
+        </div>
+        <div class="tile">
+          <p class="stat-num">21</p>
+          <p class="stat-lab">Best streak · Meilleure série</p>
+        </div>
+        <div class="tile">
+          <p class="stat-num">240</p>
+          <p class="stat-lab">Total rituals · Total des rituels</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band pad">
+      <div class="shead-row">
+        <h2 class="shead">Badges · Insignes</h2>
+        <label class="toggle-lab"><input type="checkbox" id="empty-demo" data-fallback="demo toggle uses platform checkbox + field styling (fallback/platform-controls)"> demo: empty state</label>
+      </div>
+      <div class="badges" id="badge-grid" data-improvised="ruled badge plates, words carry status; badge device undefined in pack">
+        <div class="badge earned"><p class="b-name">First week</p><p class="b-state">Earned · Obtenu</p></div>
+        <div class="badge earned"><p class="b-name">10 days</p><p class="b-state">Earned · Obtenu</p></div>
+        <div class="badge earned"><p class="b-name">Early bird</p><p class="b-state">Earned · Obtenu</p></div>
+        <div class="badge earned"><p class="b-name">Century club</p><p class="b-state">Earned · Obtenu</p></div>
+        <div class="badge locked"><p class="b-name">21 days</p><p class="b-state">Locked · Verrouillé</p></div>
+        <div class="badge locked"><p class="b-name">Perfect month</p><p class="b-state">Locked · Verrouillé</p></div>
+      </div>
+      <div class="empty" id="ach-empty" hidden data-improvised="same empty-state pattern, demoed here">
+        <p class="empty-line">No badges yet. Your first one arrives after seven kept days.</p>
+        <p class="empty-line fr">Aucun insigne pour le moment. Le premier arrive après sept jours tenus.</p>
+        <button class="btn b-slate" id="ach-empty-go">Log a ritual · Consigner un rituel</button>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ============================ SETTINGS ============================ -->
+<section class="view" id="view-settings" hidden>
+  <div class="wrap pad">
+    <div class="vhead">
+      <h1 class="vtitle"><span class="bil"><span>Settings</span><i class="dv" aria-hidden="true"></i><span class="fr">Paramètres</span></span></h1>
+    </div>
+
+    <div class="notice-slot" data-slot="settings"></div>
+
+    <section class="band pad">
+      <h2 class="shead">Profile · Profil</h2>
+      <div class="field" id="s-name-f">
+        <label class="lab" for="s-name">Name · Nom</label>
+        <input type="text" id="s-name" value="Sam">
+        <p class="field-err" id="s-name-err" hidden>Enter a name. · Entrez un nom.</p>
+      </div>
+      <div class="field">
+        <label class="lab" for="s-cat">Default category · Catégorie par défaut</label>
+        <select id="s-cat" class="choice">
+          <option>Movement</option><option selected>Mind</option><option>Discipline</option><option>Craft</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="band pad">
+      <h2 class="shead">Preferences · Préférences</h2>
+      <fieldset class="field">
+        <legend class="lab">Week starts · Début de semaine</legend>
+        <div class="radios" data-fallback="platform radio group + field styling (fallback/platform-controls)">
+          <label><input type="radio" name="weekstart" value="mon" checked> Monday · Lundi</label>
+          <label><input type="radio" name="weekstart" value="sun"> Sunday · Dimanche</label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label class="lab" for="s-goal">Daily goal · Objectif quotidien</label>
+        <input type="range" id="s-goal" min="0" max="120" step="5" value="30" data-fallback="platform slider + field styling (fallback/platform-controls)">
+        <p class="note" id="goal-out">30 min</p>
+      </div>
+      <div class="checks" data-fallback="platform checkbox as toggle + field styling (fallback/platform-controls)">
+        <label class="toggle-lab"><input type="checkbox" id="rem-am" checked> Morning reminder · Rappel du matin (07:30)</label>
+        <label class="toggle-lab"><input type="checkbox" id="rem-pm"> Evening reminder · Rappel du soir (21:00)</label>
+        <label class="toggle-lab"><input type="checkbox" id="s-dark" data-adapted="dark theme = reversed colourway (white-on-black attested); dark mode undefined in pack"> Dark mode · Mode sombre</label>
+      </div>
+    </section>
+
+    <section class="band pad">
+      <h2 class="shead">Data · Données</h2>
+      <div class="actions-row">
+        <button class="btn b-slate" id="s-save">Save · Enregistrer</button>
+        <button class="btn b-out" id="s-export">Export CSV · Exporter CSV</button>
+        <button class="btn b-out" id="s-replay">Replay intro · Revoir l'intro</button>
+        <button class="btn b-out danger" id="s-delete">Delete all data · Supprimer toutes les données</button>
+      </div>
+      <p class="note">Everything stays on this device. No network calls, no accounts. · Tout reste sur cet appareil. Aucun appel réseau, aucun compte.</p>
+    </section>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <p class="note">Cadence — demonstration build. Fixture data, local storage only. Flat, ruled, bilingual: the dominion grammar applied.</p>
+    <p class="note wm">Wordmark placeholder · Emplacement du mot-symbole</p>
+  </div>
+</footer>
+
+<!-- Marks toggle · fixed corner ◌ -->
+<button id="marks" class="marks" aria-pressed="false" title="Show improvisation marks">◌</button>
+
+<!-- ===== Overlays (D-18: square white sheet, 2px black frame, scrim 55%, instant) ===== -->
+
+<!-- Log a ritual -->
+<div class="ovl" id="ovl-log" hidden>
+  <div class="scrim" data-close="log"></div>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="log-title" tabindex="-1" data-improvised="overlay/sheet primitive improvised from D-18 dialog doctrine">
+    <h2 class="dlg-title" id="log-title"><span class="bil"><span>Log a ritual</span><i class="dv" aria-hidden="true"></i><span class="fr">Consigner un rituel</span></span></h2>
+    <form id="log-form" novalidate>
+      <div class="field">
+        <label class="lab" for="log-ritual">Ritual · Rituel</label>
+        <select id="log-ritual" class="choice"></select>
+      </div>
+      <div class="field">
+        <label class="lab" for="log-date">Date</label>
+        <input type="date" id="log-date" value="2026-10-07" data-fallback="native date input + field styling (fallback/platform-controls)">
+      </div>
+      <div class="field" id="log-min-f">
+        <label class="lab" for="log-min">Minutes</label>
+        <div class="stepper" data-fallback="native number input + outline square buttons (fallback/platform-controls)">
+          <button type="button" class="btn b-out sq" id="log-minus" aria-label="Fewer minutes">−</button>
+          <input type="number" id="log-min" value="30" min="1" max="240" step="5">
+          <button type="button" class="btn b-out sq" id="log-plus" aria-label="More minutes">+</button>
+        </div>
+        <p class="field-err" id="log-min-err" hidden>Enter minutes between 1 and 240. · Entrez des minutes entre 1 et 240.</p>
+      </div>
+      <div class="field">
+        <label class="lab" for="log-notes">Notes</label>
+        <textarea id="log-notes" rows="3" placeholder="How did it go?" data-improvised="multi-line field variant of component/field"></textarea>
+      </div>
+      <div class="dlg-acts">
+        <button type="button" class="btn b-out" id="log-cancel">Cancel · Annuler</button>
+        <button type="submit" class="btn b-slate" id="log-save">Save entry · Enregistrer l'entrée</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Ritual detail -->
+<div class="ovl" id="ovl-detail" hidden>
+  <div class="scrim" data-close="detail"></div>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1" data-improvised="record-detail overlay; undefined in pack">
+    <h2 class="dlg-title" id="detail-title">Ritual</h2>
+    <div id="detail-body"></div>
+    <div class="dlg-acts spread">
+      <div class="link-acts">
+        <button class="link" id="detail-up">Move up · Déplacer haut</button>
+        <button class="link" id="detail-down">Move down · Déplacer bas</button>
+      </div>
+      <div class="right-acts">
+        <button class="link" id="detail-close">Close · Fermer</button>
+        <button class="btn b-out danger" id="detail-del">Delete ritual · Supprimer</button>
+      </div>
+    </div>
+    <p class="note" data-improvised="motion-free reorder controls; drag-and-drop excluded by the motion doctrine">Reorder uses text controls — nothing drags, nothing animates.</p>
+  </div>
+</div>
+
+<!-- Confirmation (recipe/retire-confirm: consequence sentence, verb button, never pre-focused) -->
+<div class="ovl" id="ovl-confirm" hidden>
+  <div class="scrim" data-close="confirm"></div>
+  <div class="dlg dlg-sm" role="alertdialog" aria-modal="true" aria-labelledby="cf-title" tabindex="-1">
+    <h2 class="dlg-title" id="cf-title">Delete?</h2>
+    <p class="cf-body" id="cf-body"></p>
+    <div class="dlg-acts">
+      <button class="btn b-out" id="cf-cancel">Cancel · Annuler</button>
+      <button class="btn b-slate" id="cf-ok">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Onboarding wizard -->
+<div class="ovl" id="ovl-intro" hidden>
+  <div class="scrim"></div>
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="in-title" tabindex="-1" data-improvised="three-step wizard; overlay + step pattern undefined in pack">
+    <h2 class="dlg-title" id="in-title"><span class="bil"><span>Welcome to Cadence</span><i class="dv" aria-hidden="true"></i><span class="fr">Bienvenue dans Cadence</span></span></h2>
+    <div class="wiz" id="wiz-body">
+      <div class="wiz-step" data-step="0">
+        <p class="wiz-line bil"><span>Small rituals, kept daily.</span><i class="dv" aria-hidden="true"></i><span class="fr">De petites habitudes, tenues chaque jour.</span></p>
+        <p class="wiz-dek">Cadence tracks five small rituals a day — move, read, sit, keep, play.</p>
+      </div>
+      <div class="wiz-step" data-step="1" hidden>
+        <p class="wiz-line bil"><span>Pick your rituals.</span><i class="dv" aria-hidden="true"></i><span class="fr">Choisissez vos rituels.</span></p>
+        <p class="wiz-dek">Start with five. Reorder them, or retire any of them, at any time.</p>
+      </div>
+      <div class="wiz-step" data-step="2" hidden>
+        <p class="wiz-line bil"><span>Set your goal.</span><i class="dv" aria-hidden="true"></i><span class="fr">Fixez votre objectif.</span></p>
+        <p class="wiz-dek">A daily goal in minutes keeps the week measurable.</p>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <div class="wiz-dots" id="wiz-dots" aria-hidden="true"><i class="dot is-on"></i><i class="dot"></i><i class="dot"></i></div>
+      <p class="note" id="wiz-count">Step 1 of 3 · Étape 1 de 3</p>
+    </div>
+    <div class="dlg-acts">
+      <button class="link" id="wiz-skip">Skip · Passer</button>
+      <div class="right-acts">
+        <button class="btn b-out" id="wiz-back" disabled>Back · Retour</button>
+        <button class="btn b-slate" id="wiz-next">Next · Suivant</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

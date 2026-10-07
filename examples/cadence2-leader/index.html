@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — a personal ritual tracker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="wordmark">Cadence</span>
+    <nav class="tabs" aria-label="Views">
+      <a class="tab on" data-view="today" href="#today" aria-current="page">Today</a>
+      <a class="tab" data-view="history" href="#history">History</a>
+      <a class="tab" data-view="achievements" href="#achievements">Achievements</a>
+      <a class="tab" data-view="settings" href="#settings">Settings</a>
+    </nav>
+    <span class="avatar" role="img" aria-label="Sam" data-adapted="avatar photo → monogram (no imagery in system)">S</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ TODAY ============ -->
+  <section class="view" id="view-today">
+    <div class="viewhead">
+      <p class="lab">Today</p>
+      <h1 class="head" id="greeting">Good evening, Sam.</h1>
+      <p class="dek">Tuesday, 7 October</p>
+    </div>
+    <div class="notice-slot" id="slot-today"></div>
+
+    <div class="hero">
+      <div class="ringbox" data-improvised="radial meter adaptation (L-16 colours; no canonical circle form)">
+        <svg width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Today 60 percent complete" id="ringSvg">
+          <circle cx="64" cy="64" r="52" fill="none" stroke="#D9D9D9" stroke-width="10"></circle>
+          <circle id="ringArc" cx="64" cy="64" r="52" fill="none" stroke="#E3120B" stroke-width="10"
+                  stroke-dasharray="196.04 326.73" stroke-linecap="butt" transform="rotate(-90 64 64)"></circle>
+        </svg>
+        <p class="ring-cap"><span id="ringPct">60%</span></p>
+        <p class="ring-cap" id="doneReadout">3 of 5 rituals done</p>
+      </div>
+      <div class="vdiv" aria-hidden="true"></div>
+      <div class="streak" data-improvised="big number in display register (L-04 big statics; L-05 display)">
+        <div class="streaknum" id="streakNum">12</div>
+        <div class="streaklab">day streak</div>
+        <div class="stamp" id="stamp" data-adapted="celebration → instant glyph stamp (L-03: no decorative motion)" aria-hidden="true"><i style="width:5px;height:5px"></i><i style="width:7px;height:7px"></i><i style="width:9px;height:9px"></i><i style="width:11px;height:11px"></i></div>
+      </div>
+    </div>
+
+    <div class="banner">
+      <div>
+        <p class="lab">This week</p>
+        <p class="b-copy" style="margin-top:6px"><b>245 minutes</b> across six days. Sunday stayed empty.</p>
+      </div>
+      <div class="tagbox"><span class="tag" id="statusTag" data-improvised="status label per deck L-13 tag language">On track</span></div>
+    </div>
+
+    <div class="listhead">
+      <p class="lab">Today's rituals</p>
+    </div>
+    <ul class="rituals" id="ritualList"></ul>
+
+    <div class="actions-row">
+      <button class="btn b-navy" id="openLog">Log a ritual</button>
+    </div>
+    <div id="panelHost"></div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="view" id="view-history" hidden>
+    <div class="viewhead">
+      <p class="lab">History</p>
+      <h1 class="head">A record of what was kept.</h1>
+      <p class="dek">The week, the month, and every logged entry.</p>
+    </div>
+    <div class="notice-slot" id="slot-history"></div>
+
+    <div class="section">
+      <p class="lab">Weekly minutes</p>
+      <p class="meta" style="margin-top:4px">245 minutes across Mon–Sun.</p>
+      <div class="chartbox" id="barChart" data-improvised="weekly bars: crisp rectangles; no canonical chart"></div>
+      <div class="days" id="barDays"></div>
+    </div>
+
+    <div class="section">
+      <p class="lab">October</p>
+      <p class="meta" style="margin-top:4px">Shaded by minutes logged.</p>
+      <div class="heat" id="heatmap" data-improvised="heat grid: London ramp steps"></div>
+      <div class="legend heat-legend">
+        <span class="meta">Less</span>
+        <i class="lv1" style="width:16px;height:16px;display:inline-block;background:#F2F2F2;border:1px solid #D9D9D9"></i>
+        <i style="width:16px;height:16px;display:inline-block;background:#D9D9D9"></i>
+        <i style="width:16px;height:16px;display:inline-block;background:#666666"></i>
+        <i style="width:16px;height:16px;display:inline-block;background:#1A1A1A"></i>
+        <span class="meta">More</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <p class="lab">Logged entries</p>
+      <div class="tools">
+        <div class="search"><input id="filterInput" type="text" placeholder="Filter entries" aria-label="Filter entries"><span class="cursor" aria-hidden="true"></span></div>
+      </div>
+      <div class="ledgerwrap">
+        <table class="ledger" id="ledger" data-improvised="editorial table per deck L-18">
+          <thead>
+            <tr><th scope="col">Date</th><th scope="col">Ritual</th><th scope="col">Category</th><th scope="col" class="num">Minutes</th></tr>
+          </thead>
+          <tbody id="ledgerBody"></tbody>
+        </table>
+      </div>
+      <div class="pagefoot">
+        <span class="pagemeta" id="pageMeta">1–8 of 24</span>
+        <button class="btn b-out sm" id="pageNewer" data-improvised="outline control + sans range readout">Newer</button>
+        <button class="btn b-out sm" id="pageOlder" data-improvised="outline control + sans range readout">Older entries</button>
+        <button class="btn b-out sm act" id="exportTable">Export CSV</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="view" id="view-achievements" hidden>
+    <div class="viewhead">
+      <p class="lab">Achievements</p>
+      <h1 class="head">What the streak has earned.</h1>
+      <p class="dek">Twelve days running. The record is twenty-one.</p>
+    </div>
+    <div class="notice-slot" id="slot-achievements"></div>
+
+    <div class="tiles" id="statTiles"></div>
+
+    <div class="section">
+      <p class="lab">Badges</p>
+      <div class="badges" id="badgeGrid"></div>
+      <div id="badgesEmpty" hidden></div>
+    </div>
+
+    <div class="empty-toggle">
+      <label class="sw" style="max-width:420px">
+        <span class="sw-lab">Demo: empty state</span>
+        <input type="checkbox" id="emptyToggle" data-improvised="fallback/platform-controls: native checkbox, switch skin">
+        <span class="track" aria-hidden="true"></span>
+      </label>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="view" id="view-settings" hidden>
+    <div class="viewhead">
+      <p class="lab">Settings</p>
+      <h1 class="head">Tune the ritual.</h1>
+      <p class="dek">What gets tracked, and when it asks.</p>
+    </div>
+    <div class="notice-slot" id="slot-settings"></div>
+
+    <div class="settings-grid">
+      <div class="sblock">
+        <h3>Profile</h3>
+        <div class="field" id="fName">
+          <label for="setName">Name</label>
+          <input type="text" id="setName" value="Sam" autocomplete="off">
+          <p class="err">Enter a name.</p>
+        </div>
+        <div class="field">
+          <label for="setCat">Default category</label>
+          <select id="setCat" data-improvised="fallback/selection: native select, field styling">
+            <option>Movement</option><option>Mind</option><option>Discipline</option><option>Craft</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sblock">
+        <h3>Week and goal</h3>
+        <div class="field">
+          <label id="weekLab">Week starts</label>
+          <div class="radios" role="radiogroup" aria-labelledby="weekLab">
+            <label><input type="radio" class="rd" name="weekstart" id="weekMon" value="mon" checked data-improvised="fallback/platform-controls: native radio, field skin">Monday</label>
+            <label><input type="radio" class="rd" name="weekstart" id="weekSun" value="sun" data-improvised="fallback/platform-controls: native radio, field skin">Sunday</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="goalRange">Daily goal</label>
+          <div class="rng-wrap">
+            <input type="range" class="rng" id="goalRange" min="5" max="120" step="5" value="30" data-improvised="fallback/platform-controls: native range, leader skin">
+            <span class="rng-readout"><span id="goalOut">30</span> min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sblock">
+        <h3>Reminders</h3>
+        <label class="sw" style="max-width:420px">
+          <span class="sw-lab"><input type="checkbox" class="cb" id="remAm" checked data-improvised="fallback/platform-controls: native checkbox, field skin"> Morning reminder</span>
+          <span></span>
+        </label>
+        <label class="sw" style="max-width:420px">
+          <span class="sw-lab">Evening reminder</span>
+          <input type="checkbox" id="remPm" data-improvised="fallback/platform-controls: native checkbox, switch skin">
+          <span class="track" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="sblock">
+        <h3>Appearance</h3>
+        <label class="sw" style="max-width:420px" data-improvised="dark mode: token inversion; colour families unchanged">
+          <span class="sw-lab">Dark mode</span>
+          <input type="checkbox" id="darkToggle">
+          <span class="track" aria-hidden="true"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions-row">
+      <button class="btn b-navy" id="saveSettings">Save settings</button>
+      <button class="btn b-out" id="exportSettings">Export CSV</button>
+      <button class="btn b-out" id="replayIntro">Replay intro</button>
+      <button class="btn b-out danger-tx" id="deleteAll">Delete all data</button>
+    </div>
+    <div id="settingsPanels"></div>
+  </section>
+
+  <!-- ============ WIZARD (fallback/ruled-panel: in-flow) ============ -->
+  <section class="view" id="view-wizard" hidden>
+    <div class="wizard" data-improvised="fallback/ruled-panel: wizard as in-flow ruled panel (no scrim, no motion)">
+      <div class="wtop">
+        <p class="lab" id="wizStep">Step 1 of 3</p>
+        <button class="btn b-txt sm act" id="wizSkip">Skip</button>
+      </div>
+      <h2 id="wizTitle">Small rituals, kept daily.</h2>
+      <p class="pdek" id="wizDek">Cadence keeps a plain record: what you did, and for how long.</p>
+      <div class="wbody" id="wizBody"></div>
+      <div class="dots" id="wizDots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="wnav">
+        <button class="btn b-out" id="wizBack" disabled>Back</button>
+        <button class="btn b-navy" id="wizNext">Next</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="tabbar" aria-label="Views">
+  <a data-view="today" class="on" href="#today">Today</a>
+  <a data-view="history" href="#history">History</a>
+  <a data-view="achievements" href="#achievements">Achievements</a>
+  <a data-view="settings" href="#settings">Settings</a>
+</nav>
+
+<button class="marks-btn" id="marksBtn" title="Toggle provenance marks" aria-pressed="false">◌</button>
+
+<script src="app.js" defer></script>
+</body>
+</html>

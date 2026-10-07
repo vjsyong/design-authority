@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — a personal ritual tracker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body data-view="today">
+
+<!-- Icon set: inline SVG symbols, no external assets (wink has no icon canon; marked where used) -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-run" viewBox="0 0 24 24"><circle cx="12.5" cy="4.6" r="2.3"/><path d="M12.5 7.2v5.2"/><path d="M12.5 12.4l-2.6 5.4"/><path d="M12.5 12.4l2.9 5.4"/><path d="M12.5 9l-3.7 2.4"/><path d="M12.5 9l3.9 1.6"/></symbol>
+  <symbol id="i-read" viewBox="0 0 24 24"><path d="M12 6.8C10.3 5.5 8.4 4.8 5 4.8v12c3.4 0 5.3.7 7 2 1.7-1.3 3.6-2 7-2v-12c-3.4 0-5.3.7-7 2z"/><path d="M12 6.8v12"/></symbol>
+  <symbol id="i-meditate" viewBox="0 0 24 24"><circle cx="12" cy="6.4" r="2.4"/><path d="M6.8 14c1.4-1 3-1.7 5.2-1.7s3.8.7 5.2 1.7"/><path d="M4.5 18.2c2.3 1.2 4.9 1.8 7.5 1.8s5.2-.6 7.5-1.8"/></symbol>
+  <symbol id="i-sugar" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2.4"/><path d="M5 19 19 5"/></symbol>
+  <symbol id="i-guitar" viewBox="0 0 24 24"><circle cx="8.6" cy="15.4" r="4.1"/><circle cx="8.6" cy="15.4" r="1.1"/><path d="M11.5 12.5 18.6 5.4"/><path d="M18.4 3.6h2.6v2.6"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3.8c1.8 3.1 4.8 5.2 4.8 9a4.8 4.8 0 1 1-9.6 0c0-2.1 1-3.8 2.2-5.2.1 1.5.7 2.5 1.7 2.9-.4-2.4 0-4.9.9-6.7z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.8 9.6 18 19.5 7"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="6" y="10.5" width="12" height="9" rx="2.2"/><path d="M8.6 10.5V8.2a3.4 3.4 0 0 1 6.8 0v2.3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M14.8 14.8 20 20"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h14"/><path d="m13 7 5 5-5 5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v10"/><path d="m7 10 5 5 5-5"/><path d="M5 19.5h14"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4.5" y="6" width="15" height="13.5" rx="2.4"/><path d="M4.5 10.5h15M8.5 4v4M15.5 4v4"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6 18 18M18 6l-1.4 1.4M7.4 16.6 6 18"/></symbol>
+  <symbol id="i-medal" viewBox="0 0 24 24"><circle cx="12" cy="9.8" r="5.6"/><path d="M8.8 14.4 7 20l5-2.6L17 20l-1.8-5.6"/></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><circle cx="9" cy="7" r="1.35"/><circle cx="15" cy="7" r="1.35"/><circle cx="9" cy="12" r="1.35"/><circle cx="15" cy="12" r="1.35"/><circle cx="9" cy="17" r="1.35"/><circle cx="15" cy="17" r="1.35"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/><path d="M12 8v4.2l3 1.8"/></symbol>
+</svg>
+
+<!-- Top bar — component/navbar: white, dark links, single row, CTA at right -->
+<header class="navbar appbar">
+  <div class="appbar-inner">
+    <span class="wordmark">Cadence</span>
+    <nav class="tabs" aria-label="Views" data-improvised="tab set: navbar chrome reused; active-state treatment improvised">
+      <button class="navitem" type="button" data-goto="today" aria-current="page">Today</button>
+      <button class="navitem" type="button" data-goto="history">History</button>
+      <button class="navitem" type="button" data-goto="achievements">Achievements</button>
+      <button class="navitem" type="button" data-goto="settings">Settings</button>
+    </nav>
+    <div class="appbar-actions">
+      <button class="cta" type="button" id="openLog">Log a ritual</button>
+      <span class="avatar" title="Sam" data-improvised="avatar: abstract bust mark (no photo asset library)">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#FFE01B"/><circle cx="20" cy="15.5" r="6.2" fill="#241C15"/><path d="M7.5 35c1.9-6.4 6.7-9.6 12.5-9.6S30.6 28.6 32.5 35z" fill="#241C15"/></svg>
+      </span>
+    </div>
+  </div>
+</header>
+
+<main class="app">
+
+  <!-- ============ TODAY ============ -->
+  <section class="view" id="view-today" aria-label="Today">
+    <div class="hero">
+      <p class="eyebrow" id="todayDate">Tuesday, 7 October</p>
+      <h1 class="display">Good evening, <em id="greetName">Sam</em>.</h1>
+    </div>
+
+    <div class="card1 card-hero">
+      <div class="ring-wrap" data-improvised="completion ring: W-18 roles in circular geometry (canon is a pill track)">
+        <svg class="ring" viewBox="0 0 140 140" role="img" aria-label="Today's completion" id="ringSvg">
+          <circle class="ring-track" cx="70" cy="70" r="60"></circle>
+          <circle class="ring-arc" id="ringArc" cx="70" cy="70" r="60"></circle>
+        </svg>
+        <div class="ring-center">
+          <span class="ring-count" id="ringCount">3 of 5</span>
+          <span class="ring-sub">rituals done</span>
+        </div>
+      </div>
+      <div class="hero-side">
+        <p class="hero-readout" id="heroReadout">3 of 5 rituals done</p>
+        <div class="streak" data-improvised="streak counter: undefined; display-number treatment per hierarchy W-10">
+          <span class="streak-num" id="streakNum">12</span>
+          <span class="streak-label">day streak</span>
+        </div>
+        <span class="pill positive" id="statusPill" data-improvised="status label per W-14 word-first roles (pack has no status artifact)">On track</span>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <p class="label">Today&rsquo;s rituals</p>
+      <p class="hint">Drag the handle to reorder. Tap a row for its story.</p>
+    </div>
+    <div class="card1 list-card">
+      <ul class="ritual-list" id="ritualList"></ul>
+    </div>
+    <div class="row-actions">
+      <button class="cta outline" type="button" id="openNew">New ritual</button>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="view" id="view-history" aria-label="History" hidden>
+    <div class="view-head">
+      <p class="eyebrow">History</p>
+      <h2 class="h2">Where the week went.</h2>
+      <p class="lede">Minutes logged, day by day — and the run behind them.</p>
+    </div>
+
+    <div class="band-ochre" data-improvised="week banner: ochre band + display numbers (no banner artifact)">
+      <p class="band-line"><span class="band-num">245</span> minutes this week</p>
+      <p class="band-sub">Across five rituals · longest day Wednesday, 60 min</p>
+    </div>
+
+    <div class="card1">
+      <p class="label">Mon&ndash;Sun minutes</p>
+      <div class="bars" id="barChart" data-improvised="bar chart: palette bars + value labels (no chart canon)"></div>
+    </div>
+
+    <div class="card1">
+      <p class="label">October</p>
+      <div class="heatmap" id="heatmap" data-improvised="month heatmap: yellow alpha levels (no chart canon)"></div>
+      <p class="legend">Less
+        <i class="hmv lv0"></i><i class="hmv lv1"></i><i class="hmv lv2"></i><i class="hmv lv3"></i><i class="hmv lv4"></i>
+      More</p>
+    </div>
+
+    <div class="card1">
+      <div class="card-head">
+        <p class="label">Logged entries</p>
+        <div class="card-head-actions">
+          <button class="cta outline small" type="button" id="exportHistory" data-improvised="CSV export: client-side blob; no export pattern in canon"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg>Export CSV</button>
+        </div>
+      </div>
+      <div class="field search-field">
+        <label for="entriesSearch">Filter entries</label>
+        <div class="search-input">
+          <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+          <input type="search" id="entriesSearch" placeholder="Ritual, notes or status — try &ldquo;run&rdquo;">
+        </div>
+      </div>
+      <table class="ledger" id="entriesTable">
+        <thead>
+          <tr><th>Date</th><th>Ritual</th><th>Minutes</th><th>Notes</th><th>Status</th></tr>
+        </thead>
+        <tbody id="entriesBody"></tbody>
+      </table>
+      <div class="table-foot">
+        <span class="count" id="entriesRange">1&ndash;8 of 24</span>
+        <button class="link" type="button" id="olderBtn" data-improvised="pagination: &lsquo;Older entries&rsquo; link + range label (no pagination canon)">Older entries <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="view" id="view-achievements" aria-label="Achievements" hidden>
+    <div class="view-head">
+      <p class="eyebrow">Achievements</p>
+      <h2 class="h2">Small wins, stacked up.</h2>
+      <p class="lede">Twelve days running — the maths is getting friendly.</p>
+    </div>
+
+    <div class="card1 stat-card">
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Current streak</span></div>
+      <div class="stat"><span class="stat-num">21</span><span class="stat-label">Best streak</span></div>
+      <div class="stat"><span class="stat-num">240</span><span class="stat-label">Total rituals</span></div>
+    </div>
+
+    <div class="card1">
+      <div class="card-head">
+        <p class="label">Badges</p>
+        <button class="cta outline small" type="button" id="emptyToggle" aria-pressed="false">demo: empty state</button>
+      </div>
+      <div class="badge-grid" id="badgeGrid" data-improvised="achievement badges: badge-form medallions + locked variant (no achievement canon)"></div>
+      <div class="empty-panel" id="emptyPanel" hidden data-improvised="empty state per W-19; illustration zone carried empty (W-23)">
+        <div class="illus-zone" data-improvised="illustration zone — empty by policy (W-23); no assets fabricated">
+          <svg class="illus-mark" viewBox="0 0 96 64" aria-hidden="true"><path d="M10 44c10-18 26-28 44-28 12 0 24 5 32 14" fill="none" stroke="#DEDDDC" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round"/><circle cx="74" cy="30" r="5" fill="none" stroke="#E7B75F" stroke-width="2" stroke-dasharray="3 4"/></svg>
+          <span>Illustration-capable zone — empty by policy, not by oversight</span>
+        </div>
+        <p class="empty-copy">No badges yet — the first one is seven days away. Is this the week?</p>
+        <button class="cta dark" type="button" data-goto="today">Log a ritual</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="view" id="view-settings" aria-label="Settings" hidden>
+    <div class="view-head">
+      <p class="eyebrow">Settings</p>
+      <h2 class="h2">Make it yours.</h2>
+      <p class="lede">Defaults you&rsquo;ll forget about, in the good way.</p>
+    </div>
+
+    <form class="card1 settings-form" id="settingsForm" novalidate>
+      <div class="field">
+        <label for="setName">Your name</label>
+        <input type="text" id="setName" value="Sam" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="setCategory">Default category</label>
+        <select id="setCategory">
+          <option>Movement</option><option>Mind</option><option>Craft</option><option>Discipline</option>
+        </select>
+      </div>
+      <fieldset class="field radio-field" data-improvised="radios: platform control + field styling (fallback/platform-controls)">
+        <legend>Week starts on</legend>
+        <label class="radio"><input type="radio" name="weekStart" value="monday" checked> Monday</label>
+        <label class="radio"><input type="radio" name="weekStart" value="sunday"> Sunday</label>
+      </fieldset>
+      <div class="field slider-field" data-improvised="slider: platform control + field styling (fallback/platform-controls)">
+        <label for="setGoal">Daily goal <output id="goalOut">30 min</output></label>
+        <input type="range" id="setGoal" min="10" max="60" step="5" value="30">
+      </div>
+      <div class="switch-row" data-improvised="switch: platform control + field styling (fallback/platform-controls)">
+        <span class="switch-copy"><b>Morning reminder</b><span>07:30 — stretch first, coffee second.</span></span>
+        <label class="switch"><input type="checkbox" id="remAM" checked><span class="track"><span class="thumb"></span></span><span class="sr-only">Morning reminder</span></label>
+      </div>
+      <div class="switch-row" data-improvised="switch: platform control + field styling (fallback/platform-controls)">
+        <span class="switch-copy"><b>Evening check-in</b><span>21:00 — a gentle &ldquo;how did it go?&rdquo;</span></span>
+        <label class="switch"><input type="checkbox" id="remPM" checked><span class="track"><span class="thumb"></span></span><span class="sr-only">Evening check-in</span></label>
+      </div>
+      <div class="switch-row" data-improvised="switch: platform control + field styling (fallback/platform-controls)">
+        <span class="switch-copy"><b>Dark mode</b><span data-improvised="dark theme: light-only fallback; ink/yellow roles kept">No dark canon — running it marked, in ink.</span></span>
+        <label class="switch"><input type="checkbox" id="darkToggle"><span class="track"><span class="thumb"></span></span><span class="sr-only">Dark mode</span></label>
+      </div>
+
+      <div class="settings-actions">
+        <button class="cta" type="submit" id="saveSettings"><span class="btn-label">Save settings</span></button>
+        <button class="cta outline" type="button" id="exportSettings"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg>Export CSV</button>
+        <button class="link" type="button" id="replayIntro">Replay intro</button>
+      </div>
+
+      <hr class="rule">
+
+      <button class="cta outline danger" type="button" id="deleteAll" data-improvised="destructive: outline pill in error ink; routes to confirm dialog (W-16)">Delete all data</button>
+      <p class="hint">Deleting removes rituals, history and streaks from this browser. It can&rsquo;t be undone.</p>
+    </form>
+  </section>
+</main>
+
+<!-- ============ OVERLAYS ============ -->
+<div class="overlay" id="overlay-detail" hidden>
+  <div class="scrim" data-close></div>
+  <div class="dialog dialog-lg" role="dialog" aria-modal="true" aria-labelledby="detailTitle" data-improvised="detail overlay: W-17 dialog vessel + mini history (undefined element)">
+    <button class="icon-btn dialog-close" type="button" data-close aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-log" hidden>
+  <div class="scrim" data-close></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="logTitle">
+    <button class="icon-btn dialog-close" type="button" data-close aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <h3 class="dialog-title" id="logTitle">Log a ritual</h3>
+    <form id="logForm" novalidate>
+      <div class="field">
+        <label for="logRitual">Ritual</label>
+        <select id="logRitual"></select>
+      </div>
+      <div class="field" data-improvised="date picker: platform control + field styling (fallback/platform-controls)">
+        <label for="logDate">Date</label>
+        <input type="date" id="logDate" value="2026-10-07">
+      </div>
+      <div class="field" data-improvised="number stepper: platform control + field styling (fallback/platform-controls)">
+        <label for="logMinutes">Minutes</label>
+        <div class="stepper">
+          <button class="stepper-btn" type="button" data-step="-5" aria-label="Fewer minutes">&minus;</button>
+          <input type="number" id="logMinutes" value="30" min="0" max="240" step="5" inputmode="numeric">
+          <button class="stepper-btn" type="button" data-step="5" aria-label="More minutes">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="logNotes">Notes <span class="opt">(optional)</span></label>
+        <textarea id="logNotes" rows="3" placeholder="What made it stick today?"></textarea>
+      </div>
+      <div class="dialog-actions">
+        <button class="cta" type="submit" id="logSave"><span class="btn-label">Save entry</span></button>
+        <button class="cta outline" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-new" hidden>
+  <div class="scrim" data-close></div>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="newTitle">
+    <button class="icon-btn dialog-close" type="button" data-close aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <h3 class="dialog-title" id="newTitle">New ritual</h3>
+    <form id="newForm" novalidate>
+      <div class="field" id="newNameField">
+        <label for="newName">Ritual name</label>
+        <input type="text" id="newName" placeholder="e.g. Stretch before bed" aria-describedby="newNameError">
+        <p class="error-text" id="newNameError" hidden>What should we call this one? A word or two is plenty.</p>
+      </div>
+      <div class="field">
+        <label for="newCategory">Category</label>
+        <select id="newCategory">
+          <option>Movement</option><option>Mind</option><option>Craft</option><option>Discipline</option>
+        </select>
+      </div>
+      <div class="field" data-improvised="photo upload: platform control + field styling (fallback/platform-controls)">
+        <label for="newPhoto">Photo <span class="opt">(optional, stays in your browser)</span></label>
+        <input type="file" id="newPhoto" accept="image/*">
+        <div class="photo-preview" id="newPhotoPreview" hidden></div>
+      </div>
+      <div class="dialog-actions">
+        <button class="cta" type="submit" id="newSave"><span class="btn-label">Add ritual</span></button>
+        <button class="cta outline" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-confirm" hidden>
+  <div class="scrim" data-close></div>
+  <div class="dialog dialog-sm" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" data-improvised="confirm dialog per W-16/W-17 primitives (no dialog artifact)">
+    <h3 class="dialog-title" id="confirmTitle">Are you sure?</h3>
+    <p class="dialog-copy" id="confirmCopy"></p>
+    <div class="dialog-actions">
+      <button class="cta dark" type="button" id="confirmYes">Delete</button>
+      <button class="cta outline" type="button" id="confirmNo">Keep it</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-wizard" hidden>
+  <div class="scrim"></div>
+  <div class="dialog dialog-lg wizard" role="dialog" aria-modal="true" aria-labelledby="wizTitle" data-improvised="onboarding wizard: dialog vessel + step dots (undefined element)">
+    <div class="wiz-steps" id="wizDots" aria-hidden="true"></div>
+    <div class="wiz-step" data-step="0">
+      <p class="eyebrow">Welcome</p>
+      <h3 class="wiz-title" id="wizTitle">Small rituals, <em>kept daily</em>.</h3>
+      <p class="lede">Five minutes counts. Cadence keeps the count — you keep the habit.</p>
+    </div>
+    <div class="wiz-step" data-step="1" hidden>
+      <p class="eyebrow">Step two</p>
+      <h3 class="wiz-title">Pick your rituals.</h3>
+      <div class="check-list" id="wizChecks" data-improvised="checkbox: platform control + field styling (fallback/platform-controls)"></div>
+    </div>
+    <div class="wiz-step" data-step="2" hidden>
+      <p class="eyebrow">Step three</p>
+      <h3 class="wiz-title">Set your goal.</h3>
+      <p class="lede">A daily target, in minutes. You can move it later.</p>
+      <div class="field slider-field" data-improvised="slider: platform control + field styling (fallback/platform-controls)">
+        <label for="wizGoal">Daily goal <output id="wizGoalOut">30 min</output></label>
+        <input type="range" id="wizGoal" min="10" max="60" step="5" value="30">
+      </div>
+    </div>
+    <div class="dialog-actions wiz-actions">
+      <button class="cta outline" type="button" id="wizBack" hidden>Back</button>
+      <button class="cta" type="button" id="wizNext">Next</button>
+      <button class="link" type="button" id="wizSkip">Skip</button>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<button class="marks-btn" id="marksToggle" type="button" aria-pressed="false" title="Show provenance marks (improvised / adapted)">&#9676;</button>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -764,9 +764,13 @@ def demo_resolve():
 
 
 # ---- proposal gate (adjudication verdicts -> kernel records) ----
+try:
+    from proposed_renders import PROPOSED_RENDERS, RENDER_CSS
+except ImportError:
+    PROPOSED_RENDERS, RENDER_CSS = {}, ""
 PROP_WS = {"cadence-wink": "wink", "cadence-leader": "leader", "cadence-dominion": "dominion"}
 PROP_DRAFTS = os.path.join(DATA, "proposal-notes.json")
-PROP_CSS = DEMO_CSS + """
+PROP_CSS = DEMO_CSS + RENDER_CSS + """
 .prop{border:1.5px solid #141414;border-radius:10px;padding:14px 16px;margin:14px 0}
 .prop .phead{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .chip.st-candidate{background:#eee;color:#333}.chip.st-accepted{background:#087830;color:#fff}
@@ -885,7 +889,12 @@ def _prop_card(entry):
                        ("Reuse case", "reuse_case"), ("Composition check", "composition_check")):
         if p.get(key):
             h.append("<p class='secl'>%s</p><p class='main'>%s</p>" % (label, _esc(p[key])))
-    h.append("<p class='secl'>Proposed</p>")
+    h.append("<p class='secl'>Proposed — rendered</p>")
+    suf = (p.get("id") or "").split("-")[-1]
+    rend = PROPOSED_RENDERS.get(suf)
+    if rend:
+        h.append("<div class='renderwrap'><p class='cap'>rendered preview — as proposed, in this authority's styling</p>%s</div>" % rend)
+    h.append("<p class='secl'>Proposed — record</p>")
     prop = p.get("proposed")
     if isinstance(prop, dict):
         h.append("<p class='main'><b>%s</b> <span class='mono'>%s</span> <span class='chip'>%s</span></p>"
