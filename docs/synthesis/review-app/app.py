@@ -50,6 +50,14 @@ FB_CSS = """
 .fb .status.err { color:#b3261e; }
 .fb .thumbs { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
 .fb .thumbs a img { width:74px; height:74px; object-fit:cover; border:1px solid #cfcfcf; border-radius:6px; }
+.fb .pending { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.fb .pchip { display:inline-flex; gap:6px; align-items:center; font:12px system-ui; background:#f3f3f3;
+  border:1px solid #ddd; border-radius:6px; padding:4px 8px; }
+.fb .pchip button { border:none; background:none; cursor:pointer; font-weight:700; color:#888; }
+.fb .thumbwrap { position:relative; display:inline-block; }
+.fb .thumbdel { position:absolute; top:-7px; right:-7px; width:21px; height:21px; border-radius:50%;
+  border:none; background:#141414; color:#fff; font:700 11px system-ui; cursor:pointer; }
+.fb .thumbdel.confirm { width:auto; border-radius:11px; padding:0 7px; height:22px; background:#b3261e; }
 .card[data-verdict] { outline:1px solid #e4e4e4; }
 .filterbar { position:sticky; top:0; z-index:9; background:#fff; border-bottom:2px solid #141414;
   padding:10px 0 10px; display:flex; gap:8px; align-items:center; width:100%; }
@@ -76,13 +84,46 @@ function counts() {
   document.querySelectorAll('.prog').forEach(p => p.textContent = done + ' / ' + tot + ' decided');
   return {tot, done};
 }
+function paintThumbs(card) {
+  const e = FB[card.dataset.did] || {};
+  const th = card.querySelector('.thumbs');
+  th.innerHTML = (e.images||[]).map(p =>
+    `<span class="thumbwrap" data-path="${p}"><a href="/${p}" target="_blank"><img src="/${p}" title="${esc(p.split('/').pop())}"></a><button class="thumbdel" title="delete image">\\u00d7</button></span>`
+  ).join('');
+  th.querySelectorAll('.thumbdel').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!btn.classList.contains('confirm')) {
+        btn.classList.add('confirm'); btn.textContent = 'delete?';
+        setTimeout(() => { btn.classList.remove('confirm'); btn.textContent = '\\u00d7'; }, 4000);
+        return;
+      }
+      const fd = new FormData();
+      fd.append('id', card.dataset.did);
+      fd.append('path', btn.closest('.thumbwrap').dataset.path);
+      btn.textContent = '\\u2026';
+      fetch('/api/image/delete', {method:'POST', body:fd}).then(r => r.json()).then(e => {
+        if (e.error) { btn.textContent = '\\u00d7'; return; }
+        FB[card.dataset.did] = e; paintThumbs(card);
+      }).catch(() => { btn.textContent = '\\u00d7'; });
+    });
+  });
+}
+function paintPending(card) {
+  const box = card.querySelector('.pending');
+  const p = card._pending || [];
+  box.innerHTML = p.map((f, i) =>
+    `<span class="pchip">${esc(f.name)} \\u00b7 ${Math.max(1, Math.round(f.size/1024))}KB <button data-i="${i}" title="remove">\\u00d7</button></span>`
+  ).join('');
+  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    card._pending.splice(+b.dataset.i, 1); paintPending(card);
+  }));
+}
 function render(card) {
-  const id = card.dataset.did, fb = card.querySelector('.fb');
-  const e = FB[id] || {};
+  const e = FB[card.dataset.did] || {};
+  const fb = card.querySelector('.fb');
   fb.querySelectorAll('.vb button').forEach(b => b.classList.toggle('sel', b.dataset.v === (e.verdict||'')));
   fb.querySelector('textarea').value = e.comment || '';
-  const th = fb.querySelector('.thumbs');
-  th.innerHTML = (e.images||[]).map(p => `<a href="/${p}" target="_blank"><img src="/${p}"></a>`).join('');
+  paintThumbs(card);
   card.dataset.verdict = e.verdict || '';
 }
 function hydrate() {
@@ -91,6 +132,13 @@ function hydrate() {
 function init() {
   document.querySelectorAll('.card').forEach(card => {
     const fb = card.querySelector('.fb');
+    card._pending = [];
+    const inp = fb.querySelector('input[type=file]');
+    inp.addEventListener('change', () => {
+      card._pending.push(...Array.from(inp.files));
+      inp.value = '';
+      paintPending(card);
+    });
     fb.querySelectorAll('.vb button').forEach(b => b.addEventListener('click', () => {
       const cur = card._sel;
       const next = (cur === b.dataset.v) ? '' : b.dataset.v;
@@ -99,18 +147,24 @@ function init() {
     }));
     card._sel = '';
     fb.querySelector('.save').addEventListener('click', () => {
+      if (card._busy) return;
       const fd = new FormData();
       fd.append('id', card.dataset.did);
       fd.append('verdict', card._sel || '');
       fd.append('comment', fb.querySelector('textarea').value);
-      fb.querySelectorAll('input[type=file]')[0].files.forEach(f => fd.append('images', f));
-      const st = fb.querySelector('.status'); st.textContent = 'saving…'; st.classList.remove('err');
+      const n = (card._pending||[]).length;
+      (card._pending||[]).forEach(f => fd.append('images', f));
+      const st = fb.querySelector('.status'); st.classList.remove('err');
+      st.textContent = n ? `uploading ${n} file(s)\\u2026` : 'saving\\u2026';
+      card._busy = true;
       fetch(API, {method:'POST', body:fd}).then(r => r.json()).then(e => {
+        card._busy = false;
         if (e.error) { st.textContent = e.error; st.classList.add('err'); return; }
-        FB[e.id] = e; render(card); counts();
-        st.textContent = 'saved ✓ ' + (new Date()).toLocaleTimeString();
-        fb.querySelector('input[type=file]').value = '';
-      }).catch(err => { st.textContent = 'save failed'; st.classList.add('err'); });
+        FB[e.id] = e;
+        card._pending = []; paintPending(card);
+        render(card); counts();
+        st.textContent = 'saved \\u2713 ' + (new Date()).toLocaleTimeString() + (n ? ` \\u00b7 ${n} image(s) attached` : '');
+      }).catch(err => { card._busy = false; st.textContent = 'save failed'; st.classList.add('err'); });
     });
   });
   document.querySelectorAll('.filterbar button').forEach(b => b.addEventListener('click', () => {
@@ -172,10 +226,11 @@ def build_page(src):
   </div>
   <textarea placeholder="Notes for this item…"></textarea>
   <div class="row2">
-    <label class="upl">Attach image(s)<input type="file" accept="image/*" multiple></label>
+    <label class="upl">Attach image(s) — camera or gallery<input type="file" accept="image/*" multiple></label>
     <button class="save">Save</button>
     <span class="status"></span>
   </div>
+  <div class="pending"></div>
   <div class="thumbs"></div>
 </div>""", "html.parser")
         card.append(fb)
@@ -279,6 +334,27 @@ def fb_post():
         fn = f"{int(time.time())}_{name}"
         f.save(os.path.join(d, fn))
         entry["images"].append(f"uploads/{cid}/{fn}")
+    m[cid] = entry
+    save_fb(m)
+    entry["id"] = cid
+    return jsonify(entry)
+
+
+@app.route("/api/image/delete", methods=["POST"])
+def img_delete():
+    cid = (request.form.get("id") or "").strip()
+    path = (request.form.get("path") or "").strip()
+    prefix = f"uploads/{cid}/"
+    if not ID_RE.match(cid) or not path.startswith(prefix) or ".." in path:
+        return jsonify({"error": "bad request"}), 400
+    fn = os.path.basename(path)
+    full = os.path.join(UPLOADS, cid, fn)
+    if os.path.exists(full):
+        os.remove(full)
+    m = load_fb()
+    entry = m.get(cid, {"images": []})
+    entry["images"] = [p for p in entry.get("images", []) if p != path]
+    entry["updated"] = time.strftime("%Y-%m-%d %H:%M:%S")
     m[cid] = entry
     save_fb(m)
     entry["id"] = cid
