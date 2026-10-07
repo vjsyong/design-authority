@@ -140,6 +140,20 @@ When the pilot (1×A/B/C) completes, inspect before freezing:
 
 Record outcomes (fixes → deviations D-n; clean → freeze stamp below).
 
+### Pilot review record
+
+- **a1 (A, naive) — 2026-10-07, ACCEPTED.** exit 0, 825.6 s, 83 tool calls; interact
+  13/13; all artifacts present; no breach attempts (audit v2 recompute: 0
+  attempts; the raw 46 were `.bench` file-read mentions + opencode scratch
+  text — see D-2); screenshots confirm a coherent, finished custom UI.
+  Measured: **154 agent-introduced lint findings** (44 error / 103 warning /
+  11 info): TDS002 raw colours ×72, TDS003 radii ×40, TDS013 physical
+  directions ×30, TDS009 token overrides ×2, plus TDS005/6/7/8/12. Drift:
+  36 unique hex colours · 27 px spacing values · 198 classes · 6 `!important`
+  · 36 inline styles. Scope: UI-only (7 files), backend untouched.
+- **b1 (B, kit) — pending.**
+- **c1 (C, authority) — pending.**
+
 ## 6 · Deviations log (append during runs)
 
 **D-1 · 2026-10-07 — Containment breach in pilot runs a1/b1; both invalidated.**
@@ -185,5 +199,17 @@ hint agents must not receive. Fix: the materials manifest is now written to
 `benchmark/runs/<id>/materials.json` (run dir) and never into the workspace;
 pilot runs that already saw it are pilot-only (`b1`/`c1` rerun if they started
 pre-fix).
+
+**D-3 · 2026-10-07 — run.sh path friction inside the sandbox; audit
+refinement.** The starter's `run.sh` defaulted to a literal
+`/home/xrim/design-authority/.venv/bin/python`; opencode's
+`external_directory: deny` blocked two `nohup env … ./run.sh` invocations
+(an inline variant with the same path was permitted). The agent worked around
+it and verified its build thoroughly (ran the app, curl'd every route, POSTed
+the flows, wrote its own Playwright checks). Fix: `run.sh` resolves the
+interpreter from PATH (`python3`), which works inside and outside the sandbox.
+The containment audit was also refined to separate protected-path **attempts**
+(tool inputs — the signal) from passive **mentions** (results / permission
+text).
 
 *(next deviations appended below)*
