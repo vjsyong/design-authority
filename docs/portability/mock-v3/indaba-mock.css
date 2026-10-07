@@ -37,18 +37,18 @@ body {
 .sheet { background: #fff; margin: 0 0 36px; padding: 0 0 40px; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
 
-/* masthead */
-.masthead { padding: 26px 0 16px; }
+/* masthead — dark grey banner (brand cool grey #333333), full-bleed */
+.masthead { background: #333333; padding: 24px 0 18px; }
 .masthead .row { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
-.masthead .id .name { font-size: 20px; font-weight: 500; color: var(--aubergine); }
-.masthead .id .descr { font-size: 13px; color: var(--muted); margin-top: 1px; }
+.masthead .id .name { font-size: 20px; font-weight: 500; color: #ffffff; }
+.masthead .id .descr { font-size: 13px; color: var(--warm-grey); margin-top: 1px; }
 .masthead nav { display: flex; gap: 8px; }
 .masthead nav a {
-  font-size: 15px; color: var(--muted); text-decoration: none;
+  font-size: 15px; color: rgba(255, 255, 255, .85); text-decoration: none;
   padding: 7px 16px; border-radius: var(--pill);
 }
-.masthead nav a:hover { background: var(--warm-tint); color: var(--text); }
-.masthead nav a.on { background: var(--warm-tint); color: var(--aubergine); font-weight: 500; }
+.masthead nav a:hover { background: rgba(255, 255, 255, .10); color: #fff; }
+.masthead nav a.on { background: var(--orange); color: #fff; font-weight: 500; }
 .dotstrip {
   height: 10px;
   background-color: var(--warm-tint);
