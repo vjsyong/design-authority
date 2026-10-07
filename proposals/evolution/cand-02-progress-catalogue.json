@@ -1,0 +1,43 @@
+{
+  "id": "cand/02-progress-catalogue",
+  "title": "Catalogue .progress as a documented component with an a11y contract",
+  "gap": "G-02",
+  "classification": "DOCUMENTATION-FIX",
+  "layer": "triage-snapshot + curation",
+  "problem": "Downstream agents (3 independent runs) needed determinate progress for a long-running job and rebuilt the same composition from scratch under fallback/plain-content; the .progress primitive ships in core/base.css and is demoed in the docs, but is unciteable (no spec entry, no a11y contract, no aliases).",
+  "evidence": [
+    "gap/...19217d (c1), gap/...e336ee (c3), gap/...0e1da7 (c4)",
+    "baseline resolves: 3x FALLBACK(plain-content), 3x UNDEFINED, 1x stray COMPOSE for progress phrasings; search 'progress' yields only spinner + index-eval (docs/evolution/data/baseline-resolves-0.12.1.json)"
+  ],
+  "existing_authority_considered": [
+    "component/spinner - indeterminate only",
+    "component/badge + recipe/status-with-text - state labels; compose, but not a meter",
+    "component/tl - history, not live progress",
+    "pattern/index-eval, pattern/dashboard - placements, not the unit"
+  ],
+  "why_insufficient": "The CSS primitive exists (core/base.css:179-180, .progress + .progress i + --dur-progress) and is demonstrated in examples, but has no states/verify contract, no documented a11y semantics (role/aria-valuenow), and no vocabulary; every run had to re-derive it as an improvisation.",
+  "proposed_change": {
+    "triage_snapshot": [
+      "spec/states.json: add component { class: 'progress', name: 'Progress bar', source: 'base.css', status: 'beta', states: ['determinate (aria-valuenow)','complete (100%)'], verify: ['.progress','.progress i'], a11y: [role=progressbar with aria-valuemin/max/now on the track; always pair with an adjacent visible text readout (n of total) - never colour alone; width transitions use --dur-progress; completion announced via toast/banner] }",
+      "site/pages_components.py: the existing .progress demo gains role=progressbar + aria-valuenow attributes in the demo markup.",
+      "VERSION bump + CHANGELOG entry (shared with cand/01)."
+    ],
+    "curation": [
+      "aliases.json: component/progress -> ['progress bar','progress meter','determinate progress','progress track']",
+      "component-notes.json: component/progress summary ('Determinate progress bar; compose with badge + text readout via recipe/job-progress; indeterminate waits use component/spinner')",
+      "docs-map.json: component/progress -> the components page section that demos it"
+    ]
+  },
+  "not_proposed": [
+    "component/progress as a new build (c3 proposal) - nothing new to build; DOWNGRADE to documentation",
+    "component/job-progress (c1 proposal) - composite worth a recipe, not a primitive; DOWNGRADE"
+  ],
+  "dependencies": ["component/badge", "component/spinner", "recipe/status-with-text"],
+  "scope": "global",
+  "compatibility": "Additive: no CSS changes at all; only a spec entry + docs attributes + vocabulary. Zero breakage risk.",
+  "validation": [
+    "triage: build.py check (states matrix 37 components, verify selector pass, strict lint)",
+    "authority: convergence for the 7 baseline progress phrasings onto recipe/job-progress; non-regression: spinner/status phrasings unchanged"
+  ],
+  "migration": "Existing .progress compositions become sanctioned when they cite component/progress + recipe/job-progress; no markup change required for the bar itself."
+}

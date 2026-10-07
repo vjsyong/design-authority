@@ -1,0 +1,48 @@
+{
+  "id": "cand/03-recipe-assign-picker",
+  "title": "recipe/assign-picker - assign one person from a small fixed set",
+  "gap": "G-01",
+  "classification": "RECIPE",
+  "layer": "curation",
+  "problem": "The sanctioned shape for assigning one person from a small fixed set (labelled native select + assign action + named feedback) is not described anywhere; agents composed it blind and could not cite it.",
+  "evidence": [
+    "4 independent runs converged on the same shape (native select + submit) under fallback/native-control (G-01)",
+    "c1 prop recipe/entity-picker and c3 prop recipe/assign-picker both requested a sanctioned composition"
+  ],
+  "existing_authority_considered": ["fallback/native-control (ingredient)", "component/btn (assign action)", "recipe/feedback-redirect + recipe/feedback-inplace (outcome feedback)", "component/select (new, cand/01)"],
+  "why_insufficient": "A fallback + free-form composition leaves the need uncitable; the recipe formalises the recurring arrangement without adding any new visual language.",
+  "proposed_change": {
+    "curation_recipe": {
+      "id": "recipe/assign-picker",
+      "title": "Assign one person from a small fixed set",
+      "summary": "A labelled single-select (native select) beside one assign action; the outcome announces the new assignee by name.",
+      "needs": [
+        "assign a reviewer to a request",
+        "assign an owner to a record",
+        "choose one reviewer from a fixed list",
+        "pick a person from a small fixed list",
+        "single select from a fixed set of options",
+        "choose an assignee for a record"
+      ],
+      "ingredients": ["component/select", "component/btn", "recipe/feedback-redirect", "recipe/feedback-inplace"],
+      "constraints": [
+        "native select for small fixed sets; component/cb only when the set is large or needs filtering",
+        "the control is always labelled and the submit announces the new value by name",
+        "degrades without JS"
+      ],
+      "evidence": {
+        "source": "docs/evolution/00-gap-evidence.md#G-01",
+        "quote": "Fallback/local solution used: fallback/native-control in all four runs - a token-conformant native <select> + submit button"
+      }
+    }
+  },
+  "dependencies": ["component/select (cand/01)", "component/btn", "recipe/feedback-redirect", "recipe/feedback-inplace"],
+  "scope": "global",
+  "compatibility": "Additive; no semantics changed; does not affect component/cb queries.",
+  "validation": [
+    "all ingredients resolve within the pack",
+    "convergence: the 8 G-01 phrasings -> recipe/assign-picker; the c2/c3/c4 exact wordings must stop mis-routing to pattern/detail",
+    "non-regression: combobox -> component/cb, date picker -> component/dp"
+  ],
+  "migration": "The c1-c4 local <select> implementations become direct citations of this recipe; no markup change needed."
+}

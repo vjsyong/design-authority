@@ -1,0 +1,47 @@
+{
+  "id": "cand/01-select-catalogue",
+  "title": "Catalogue the native select (class .select) and give the authority assignment vocabulary",
+  "gap": "G-01",
+  "classification": "DOCUMENTATION-FIX",
+  "layer": "triage-snapshot + curation",
+  "problem": "Downstream agents (4 independent runs) needed a compact single-select for a small fixed set and could not cite any canon: the styled native <select> exists in Triage (CSS + examples + a Forms demos) but is not catalogued, has no aliases, and the resolver mis-routes assignment phrasings to pattern/detail or composes unrelated recipes.",
+  "evidence": [
+    "gap/...ee7a49 (c1), gap/...0f2dcf (c2), gap/...6c928b (c3), gap/...0888c0 (c4)",
+    "all four runs fell back to fallback/native-control with a token-conformant native <select> and marked TODO(authority-undefined)",
+    "baseline resolves: 4/8 picker phrasings mis-resolve to pattern/detail; 'assign'/'owner'/'reviewer' have zero search hits (docs/evolution/data/baseline-resolves-0.12.1.json)"
+  ],
+  "existing_authority_considered": [
+    "component/cb - filterable listbox; wrong tool for 4 fixed names (drags listbox JS into a no-JS case)",
+    "component/dp - date picker; name-similar only",
+    "component/radio - fine for always-visible small choice, not a compact inline assign control",
+    "fallback/native-control - already the sanctioned shape, but a fallback is the wrong home for a first-class recurring need"
+  ],
+  "why_insufficient": "The visual layer already exists (core/base.css styles select including focus, aria-invalid, phone ergonomics) and every downstream run chose it; what is missing is addressability: no spec entry, no class contract, no aliases, resolver returns mis-routes or UNDEFINED. The need recurred in 4/4 evidence runs - systemic, not project-local.",
+  "proposed_change": {
+    "triage_snapshot": [
+      "src/core/base.css: add .select as an explicit class alias to the existing select rules (shared control rule, focus rule, phone font-size + 44px min-height, aria-invalid rules). Additive selector aliases only - no new declarations, no new visual language.",
+      "spec/states.json: add component { class: 'select', name: 'Select (native)', source: 'base.css', status: 'beta', states: ['default','focus','invalid','disabled'], verify: ['.select','.select:focus','.select[aria-invalid=\"true\"]'], a11y: [native semantics + visible label; keyboard is the platform's; 16px on phone to prevent iOS zoom; 44px min touch target (already in base.css); never replace with a JS listbox for small fixed sets] }",
+      "site/pages_components.py: show class=\"select\" in the Forms select demo + a11y note.",
+      "VERSION + package.json + spec/rules.json + spec/states.json(version) + rename-map.json -> 0.13.0-experiment; CHANGELOG entry."
+    ],
+    "curation": [
+      "aliases.json: component/select -> ['select','native select','single select','select control','assign picker','owner picker','reviewer picker','fixed list picker']",
+      "component-notes.json: component/select summary ('Native single-select for small fixed option sets; class .select for explicit citation; component/cb is the large/filtered-set option')",
+      "docs-map.json: component/select -> /components/forms"
+    ]
+  },
+  "not_proposed": [
+    "component/select as a new visual component (c3 proposal) - nothing new to build; REVISE down to documentation",
+    "recipe/entity-picker on component/cb (c1 proposal) - wrong ingredient for small fixed sets; kept as guidance inside the recipe instead"
+  ],
+  "dependencies": ["component/cb (unchanged, now cross-referenced)", "component/btn (for the assign recipe)", "fallback/native-control (unchanged)"],
+  "scope": "global",
+  "compatibility": "Additive: bare <select> keeps identical styling; new class alias only. No existing selector semantics altered. No breakage risk for existing implementations (c1-c4 fallbacks remain valid markup).",
+  "validation": [
+    "triage: python3 build.py check (core sync, DTCG, verify.py states matrix with 37 components, strict lint 100/100)",
+    "authority: pack rebuild parity, golden set + new convergence cases",
+    "convergence: the 8 baseline picker phrasings must land on one sanctioned answer (recipe/assign-picker) with no pattern/detail mis-routes",
+    "non-regression: combobox->component/cb, date picker->component/dp unchanged"
+  ],
+  "migration": "Existing implementations using a token-styled native select are already conformant; add class=\"select\" for explicit citation on next touch, or keep the bare element (visually identical). The downstream TODO(authority-undefined) markers can be replaced with a citation of recipe/assign-picker."
+}

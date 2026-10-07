@@ -1,0 +1,50 @@
+{
+  "id": "cand/04-recipe-job-progress",
+  "title": "recipe/job-progress - determinate progress for long-running background work",
+  "gap": "G-02",
+  "classification": "RECIPE",
+  "layer": "curation",
+  "problem": "The multi-state jobs surface (progress bar + state + scanned/total + stalled/failed + retry, live-updating) was rebuilt identically in 3 runs as improvisation; no sanctioned composition exists.",
+  "evidence": [
+    "3 runs composed .progress + badge + text + stall detection under fallback/plain-content (G-02)",
+    "c1 prop component/job-progress and c3 prop recipe/job-status requested the arrangement"
+  ],
+  "existing_authority_considered": ["component/progress (new, cand/02)", "component/badge", "component/spinner", "recipe/status-with-text", "pattern/index-eval / pattern/dashboard (placements)"],
+  "why_insufficient": "Pieces exist but the composition contract (states, stall detection, retry, aria semantics) does not; without it the answer stays FALLBACK.",
+  "proposed_change": {
+    "curation_recipe": {
+      "id": "recipe/job-progress",
+      "title": "Long-running background work shows determinate progress",
+      "summary": "Compose the progress bar with a state badge, a scanned/total readout and text for stalled/failed; failures name the reason and offer retry; updates arrive by JSON polling.",
+      "needs": [
+        "show the progress of a background job",
+        "determinate progress for a long-running operation",
+        "show how far a scan has come",
+        "job running stalled or failed",
+        "background job status with percent complete",
+        "show a stalled job indicator"
+      ],
+      "ingredients": ["component/progress", "component/badge", "component/spinner", "recipe/status-with-text"],
+      "constraints": [
+        "state is always text + colour (recipe/status-with-text)",
+        "stalled is detected by the count not advancing and shown as a text label",
+        "failed names the reason and offers a retry action",
+        "aria-valuenow updates on the bar; state changes announced",
+        "poll JSON; no page reloads"
+      ],
+      "evidence": {
+        "source": "docs/evolution/00-gap-evidence.md#G-02",
+        "quote": "Fallback/local solution used: fallback/plain-content in all three - composing .progress + .spinner + .badge on a system card, plus JSON polling and stall detection"
+      }
+    }
+  },
+  "dependencies": ["component/progress (cand/02)", "component/badge", "component/spinner", "recipe/status-with-text"],
+  "scope": "global",
+  "compatibility": "Additive; the existing status-with-text recipe is referenced, not modified.",
+  "validation": [
+    "all ingredients resolve",
+    "convergence: the 7 baseline progress phrasings -> recipe/job-progress; no stray COMPOSE to unrelated recipes",
+    "non-regression: spinner queries unchanged; 'show the state of an item' still status-with-text"
+  ],
+  "migration": "The c1/c3/c4 jobs pages become direct citations; the TODO(authority-undefined) markers can be replaced with the recipe citation."
+}
