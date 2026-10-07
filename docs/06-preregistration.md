@@ -159,12 +159,41 @@ Record outcomes (fixes → deviations D-n; clean → freeze stamp below).
   classes. Screenshot review: fully system-conformant (zero-radius, paper
   aesthetic, restrained status accents only). One `./run.sh` denial (the
   denylist rejected the command form; agent retried via `python3` — fine).
-- **c1 (C, authority) — RERUN under fixed environment.** First attempt:
-  exit -15 (opencode's shell-tool timeout killed the session after the
-  agent's Playwright self-test hung — browser cache was not visible in the
-  sandbox), and it read pack files raw via bash (legitimate content for C,
-  but it bypasses the MCP interface; kept as behavioral evidence). Fixes in
-  D-4; rerun in flight.
+- **c1 (C, authority) — rerun ACCEPTED (2026-10-07).** exit 0, 452 s, 96 tool
+  calls; interact 13/13; lint 0; hex 0; px 0; classes 134; backend untouched.
+  Authority usage: 43 calls — resolve ×16 (**7 RESOLVED / 6 COMPOSE / 1
+  FALLBACK / 2 UNDEFINED**), inspect ×13, search ×7, validate ×2, overview ×1,
+  **report_gap ×2, propose_extension ×2**, 1 MCP resource read. The two
+  UNDEFINED resolutions produced two structured gaps + noncanonical proposals
+  (a job-progress meter — independently rediscovering G-004; a single-entity
+  picker recipe built on the canonical combobox) — both with composition
+  checks, dependency lists, **no new primitives**, and compliance tests.
+  Containment: it probed `/home/xrim` and attempted raw pack reads at
+  `/opt/da` (da_zone 8) — denied by the permission layer (4 read denials + 1
+  bash) — then used the MCP interface throughout. The sanctioned route held.
+
+### Verdict: pilot COMPLETE — all three conditions accepted.
+
+## FREEZE — production protocol (2026-10-07)
+
+Pilot complete; deviations D-1..D-4 addressed. **Instruments frozen**: capture /
+scan / interact / report / gallery, briefs, starter, kit, pack, kernel, and the
+sandbox configuration as of this commit. No changes to instruments, materials,
+thresholds, or briefs until production analysis is complete; any fix found
+mid-production is logged as a deviation, affects no completed run retroactively,
+and if it invalidates a run that run is rerun under a new id and excluded.
+
+- **Model**: `deepseek/deepseek-flash` for every run (D-007 resolved by pilot
+  adequacy: full custom UI in ~14 min for A; system-conformant builds for B/C).
+- **Production set**: 3 fresh runs per condition (9 total): ids a2/a3/a4,
+  b2/b3/b4, c2/c3/c4; executed round-robin (A,B,C)×3 to balance temporal drift.
+- **Pilot runs are excluded from headline metrics** (a1/b1/c1 retained as
+  method evidence; `c1-broken-pilot` archive kept).
+- **Analysis**: per-dimension metrics only (§2 doc 01 / §2 doc 02), no composite
+  score; D5 blind review over production captures only; reviewers get the
+  gallery + questionnaire, mapping sealed until review completes.
+- **Reporting**: raw distributions shown alongside any aggregate; threats to
+  validity mandatory.
 
 ## 6 · Deviations log (append during runs)
 
