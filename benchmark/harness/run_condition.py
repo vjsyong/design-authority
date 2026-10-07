@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
-"""Run one benchmark condition end-to-end.
+"""Run one benchmark condition end-to-end (sandboxed).
 
     python3 run_condition.py --condition B --run-id b1 [--model M] [--timeout S]
     python3 run_condition.py --condition A --run-id atest --skip-agent   # pipeline test
 
-Pipeline: materials -> (opencode agent run) -> serve -> capture -> interact ->
-scan -> run.json.
+Pipeline: materials -> sandboxed opencode agent run -> serve -> capture ->
+interact -> scan -> run.json.
+
+Containment (learned the hard way — see docs/06 §Deviations):
+  * the workspace lives OUTSIDE the repo, under RUNS_ROOT (default /tmp/da-ws)
+  * the agent runs inside bubblewrap with a minimal filesystem: /usr, /etc,
+    /bin, /sbin, /lib*, /proc, /dev, a tmpfs /tmp with the run dir bound back,
+    ~/.opencode, ~/.local/share/opencode, ~/.hermes/tools and the project
+    .venv (+ tools/kernel/packs for condition C). The benchmark repo, other
+    home data and sibling runs are invisible; external access fails at the
+    filesystem level, not by permission policy alone.
+  * opencode gets a per-run XDG_CONFIG_HOME (no global skills/plugins/agents)
+    plus strict permissions (skill/webfetch/websearch/external_directory deny)
+  * the transcript is audited for references outside the sandbox
 """
 import argparse
 import json
 import os
+import shutil
 import socket
 import subprocess
 import sys
@@ -26,6 +39,28 @@ from materials import build  # noqa: E402
 
 OPENCODE = os.path.expanduser("~/.opencode/bin/opencode")
 VENV_PY = os.path.join(ROOT, ".venv", "bin", "python")
+RUNS_ROOT = os.environ.get("DA_BENCH_RUNS_ROOT", "/tmp/da-ws")
+HOME = os.path.expanduser("~")
+NODE_BIN = os.path.join(HOME, ".hermes/tools/node-26.7.0-linux-x64/bin")
+SANDBOX_PATH = "%s:%s:/usr/local/bin:/usr/bin:/bin" % (
+    os.path.join(ROOT, ".venv", "bin"), NODE_BIN)
+
+STRICT_PERMISSION = {
+    "external_directory": {"*": "deny"},
+    "skill": {"*": "deny"},
+    "webfetch": "deny",
+    "websearch": "deny",
+    "question": "deny",
+    "edit": {"*": "allow"},
+    "bash": {"*": "allow"},
+    "read": {"*": "allow"},
+    "glob": {"*": "allow"},
+    "grep": {"*": "allow"},
+}
+
+# condition C needs the authority server + pack reachable inside the sandbox
+SANDBOX_RO_C = [os.path.join(ROOT, "tools"), os.path.join(ROOT, "kernel"),
+                os.path.join(ROOT, "packs")]
 
 
 def now_iso():
@@ -55,6 +90,45 @@ def wait_http(url, timeout=30):
     return False
 
 
+def bwrap_cmd(run_root, ws, condition):
+    """Minimal-filesystem sandbox around the agent run."""
+    args = [
+        "bwrap",
+        "--ro-bind", "/usr", "/usr",
+        "--ro-bind", "/etc", "/etc",
+        "--ro-bind", "/bin", "/bin",
+        "--ro-bind", "/sbin", "/sbin",
+    ]
+    for lib in ("/lib", "/lib64", "/lib32", "/libx32"):
+        if os.path.exists(lib):
+            args += ["--ro-bind", lib, lib]
+    args += [
+        "--proc", "/proc",
+        "--dev", "/dev",
+        "--tmpfs", "/tmp",
+        "--bind", run_root, run_root,
+        "--ro-bind", os.path.join(HOME, ".opencode"), os.path.join(HOME, ".opencode"),
+        "--bind", os.path.join(HOME, ".local/share/opencode"),
+        os.path.join(HOME, ".local/share/opencode"),
+        "--ro-bind", os.path.join(HOME, ".hermes/tools"),
+        os.path.join(HOME, ".hermes/tools"),
+        "--ro-bind", os.path.join(ROOT, ".venv"), os.path.join(ROOT, ".venv"),
+        "--die-with-parent",
+    ]
+    if condition == "C":
+        for path in SANDBOX_RO_C:
+            args += ["--ro-bind", path, path]
+    args += [
+        "--setenv", "HOME", HOME,
+        "--setenv", "XDG_CONFIG_HOME", os.path.join(run_root, "oc-config"),
+        "--setenv", "PATH", SANDBOX_PATH,
+        "--chdir", ws,
+        "--",
+        OPENCODE, "run", "--pure",
+    ]
+    return args
+
+
 def tool_stats(transcript_path):
     types, tools = Counter(), Counter()
     if not os.path.exists(transcript_path):
@@ -70,16 +144,34 @@ def tool_stats(transcript_path):
             except ValueError:
                 continue
             n += 1
-            t = ev.get("type") or (ev.get("event") or {}).get("type") or "?"
+            t = ev.get("type") or "?"
             types[t] += 1
-            name = ev.get("tool") or ev.get("name")
-            props = ev.get("properties") or {}
-            if isinstance(props, dict):
-                name = name or props.get("tool") or props.get("name")
-            if name:
-                tools[str(name)] += 1
+            if t == "tool_use":
+                part = ev.get("part") or {}
+                tools[str(part.get("tool") or "?")] += 1
     return {"events": n, "tool_calls": sum(tools.values()), "tools": dict(tools),
             "event_types": dict(types)}
+
+
+def containment_audit(transcript_path):
+    """Count references to paths outside the sandbox in the transcript."""
+    if not os.path.exists(transcript_path):
+        return {"refs_outside": 0, "denied_events": 0}
+    outside, denied = 0, 0
+    patterns = ("/home/xrim/design-authority/benchmark",
+                "/home/xrim/design-authority/packs",
+                "/home/xrim/triage-design-system",
+                "/home/xrim/.claude", "/home/xrim/.agents",
+                "/home/xrim/.hermes/")
+    with open(transcript_path) as fh:
+        for line in fh:
+            for pat in patterns:
+                outside += line.count(pat)
+            low = line.lower()
+            if ('"status": "error"' in line or '"status":"error"' in line) and \
+                    ("denied" in low or "permission" in low):
+                denied += 1
+    return {"refs_outside": outside, "denied_events": denied}
 
 
 def authority_stats(ws):
@@ -107,11 +199,20 @@ def main(argv=None):
     ap.add_argument("--model", default="deepseek/deepseek-flash")
     ap.add_argument("--timeout", type=int, default=1800)
     ap.add_argument("--skip-agent", action="store_true")
+    ap.add_argument("--no-sandbox", action="store_true",
+                    help="debugging only — run opencode without bwrap")
+    ap.add_argument("--prompt-file", default=None,
+                    help="override the brief prompt (smoke tests)")
     args = ap.parse_args(argv)
 
     run_dir = os.path.join(ROOT, "benchmark", "runs", args.run_id)
-    ws = os.path.join(run_dir, "ws")
+    run_root = os.path.join(RUNS_ROOT, args.run_id)
+    ws = os.path.join(run_root, "ws")
     os.makedirs(run_dir, exist_ok=True)
+    if os.path.exists(run_root):
+        shutil.rmtree(run_root)
+    os.makedirs(os.path.join(run_root, "oc-config"), exist_ok=True)
+
     run = {"run_id": args.run_id, "condition": args.condition, "model": args.model,
            "started": now_iso(), "status": "running"}
     run_path = os.path.join(run_dir, "run.json")
@@ -123,15 +224,18 @@ def main(argv=None):
     manifest = build(args.condition, ws)
     run["materials"] = {"starter_commit": manifest["starter_commit"]}
 
-    prompt = open(os.path.join(ROOT, "benchmark", "briefs", "base.md")).read()
-    prompt += "\n\n" + open(os.path.join(
-        ROOT, "benchmark", "briefs", "condition-%s.md" % args.condition.lower())).read()
-    prompt_path = os.path.join(run_dir, "prompt.md")
-    with open(prompt_path, "w") as fh:
+    if args.prompt_file:
+        with open(args.prompt_file) as fh:
+            prompt = fh.read()
+    else:
+        prompt = open(os.path.join(ROOT, "benchmark", "briefs", "base.md")).read()
+        prompt += "\n\n" + open(os.path.join(
+            ROOT, "benchmark", "briefs", "condition-%s.md" % args.condition.lower())).read()
+    with open(os.path.join(run_dir, "prompt.md"), "w") as fh:
         fh.write(prompt)
-    run["prompt"] = "prompt.md"
 
-    cfg = {"$schema": "https://opencode.ai/config.json", "model": args.model}
+    cfg = {"$schema": "https://opencode.ai/config.json", "model": args.model,
+           "permission": STRICT_PERMISSION}
     if args.condition == "C":
         cfg["mcp"] = {"design_authority": {
             "type": "local",
@@ -141,13 +245,21 @@ def main(argv=None):
     with open(os.path.join(ws, "opencode.json"), "w") as fh:
         json.dump(cfg, fh, indent=1)
 
+    sandboxed = not args.no_sandbox and shutil.which("bwrap") is not None
+    run["isolation"] = {"sandbox": "bwrap" if sandboxed else "none",
+                        "runs_root": run_root,
+                        "xdg_config_home": os.path.join(run_root, "oc-config"),
+                        "permissions": "strict"}
+
     # ---- agent run ----
     if args.skip_agent:
         run["opencode"] = {"skipped": True}
     else:
         t0, timed_out, rc = time.time(), False, None
-        cmd = [OPENCODE, "run", "--pure", "-m", args.model,
-               "--title", "bench-" + args.run_id, "--format", "json", prompt]
+        cmd = (bwrap_cmd(run_root, ws, args.condition) if sandboxed
+               else [OPENCODE, "run", "--pure"])
+        cmd += ["-m", args.model, "--title", "bench-" + args.run_id,
+                "--format", "json", prompt]
         with open(os.path.join(run_dir, "transcript.jsonl"), "w") as transcript, \
                 open(os.path.join(run_dir, "opencode-stderr.log"), "w") as stderr:
             try:
@@ -157,12 +269,14 @@ def main(argv=None):
             except subprocess.TimeoutExpired:
                 rc, timed_out = "timeout", True
         run["opencode"] = {"exit": rc, "timed_out": timed_out,
-                           "duration_s": round(time.time() - t0, 1)}
+                           "duration_s": round(time.time() - t0, 1),
+                           "sandboxed": sandboxed}
         run["opencode"].update(tool_stats(os.path.join(run_dir, "transcript.jsonl")))
+        run["containment"] = containment_audit(os.path.join(run_dir, "transcript.jsonl"))
         run["authority"] = authority_stats(ws)
     save()
 
-    # ---- serve + capture + interact ----
+    # ---- serve + capture + interact (outside the sandbox) ----
     port = free_port()
     server = subprocess.Popen([VENV_PY, "app.py", "--port", str(port)], cwd=ws,
                               stdout=open(os.path.join(run_dir, "server.log"), "w"),
@@ -195,18 +309,22 @@ def main(argv=None):
         except Exception:
             server.kill()
 
-    # ---- static scan ----
+    # ---- static scan + archive copy of the workspace ----
     subprocess.run([VENV_PY, os.path.join(HERE, "scan.py"),
                     "--ws", ws, "--out", os.path.join(run_dir, "scan.json")],
                    check=False)
     run["scan"] = "scan.json"
+    archive = os.path.join(run_dir, "ws")
+    if os.path.exists(archive):
+        shutil.rmtree(archive)
+    shutil.copytree(ws, archive, symlinks=True)
     run["finished"] = now_iso()
     run["status"] = "ok"
     save()
     oc = run.get("opencode") or {}
-    print("run %s (%s): exit=%s duration=%ss interact=%s"
+    print("run %s (%s): exit=%s duration=%ss interact=%s containment=%s"
           % (args.run_id, args.condition, oc.get("exit"), oc.get("duration_s"),
-             run.get("interact")))
+             run.get("interact"), run.get("containment")))
     return 0
 
 
