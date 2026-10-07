@@ -135,7 +135,7 @@ def build_wink():
          "a11y": ["Dropdown affordances need aria-haspopup/expanded when built; single-row layout."]})
     art(S, ["W-13"],
         "component/field-select", "component", "Field & small-set select",
-        ["field", "input", "form field", "select", "dropdown", "text field"],
+        ["field", "input", "form field", "select", "dropdown", "text field", "textarea", "text area", "multiline field", "notes field"],
         {"class": "field", "group": "Forms",
          "states": ["default", "focus", "invalid"],
          "verify": [".field input", ".field select"],
@@ -174,7 +174,7 @@ def build_wink():
     fallback(S, "fallback/platform-controls",
              "Platform defaults for uncovered controls",
              "If the system defines no control for a need, use the platform's native element with the wink field styling (radius 8, warm ink text); keep native semantics.",
-             ["checkbox", "radio", "date", "time", "file", "toggle", "switch", "picker", "combobox"],
+             ["checkbox", "radio", "date", "time", "file", "toggle", "switch", "picker", "combobox", "slider", "stepper", "upload"],
              ["field styling (radius 8, 1px #DEDDDC border)", "warm ink text",
               "mark the improvisation and report a gap if the need recurs"])
     fallback(S, "fallback/light-only",
@@ -250,7 +250,7 @@ def build_leader():
          "verify": [".navbar", ".navbar .on", ".cursorbox"]})
     art(S, ["L-11"],
         "component/field", "component", "Field (rounded, sans text)",
-        ["field", "input", "form field", "text field", "textbox", "error message", "validation error"],
+        ["field", "input", "form field", "text field", "textbox", "error message", "validation error", "textarea", "text area", "multiline field"],
         {"class": "field", "group": "Forms",
          "states": ["default (1px soft ink border)", "focus adds no border highlight",
                     "invalid (small red line under)"],
@@ -258,7 +258,7 @@ def build_leader():
          "a11y": ["<label for> always; focus visible by other means if border highlight is suppressed."]})
     art(S, ["L-14"],
         "component/notice", "component", "Notice (ruled box)",
-        ["notice", "alert", "message", "banner", "notification"],
+        ["notice", "alert", "message", "banner", "notification", "weekly summary", "week summary", "week-summary"],
         {"class": "notice", "group": "Feedback"})
     art(S, ["L-16"],
         "component/meter", "component", "Progress meter",
@@ -294,7 +294,7 @@ def build_leader():
     fallback(S, "fallback/platform-controls",
              "Platform defaults for uncovered controls",
              "If the system defines no control for a need, use the platform's native element with the leader field styling; keep native semantics.",
-             ["checkbox", "radio", "date", "toggle", "switch", "slider"],
+             ["checkbox", "radio", "date", "toggle", "switch", "slider", "stepper"],
              ["field styling (rounded, 1px soft border)", "mark the improvisation and report a gap"])
     fallback(S, "fallback/selection",
              "Selection beyond small sets",
@@ -304,7 +304,7 @@ def build_leader():
     fallback(S, "fallback/ruled-panel",
              "Interstitials become ruled panels",
              "No dialog canon: interstitials render as plain ruled panels in the page flow (L-07); mark the improvisation.",
-             ["dialog", "modal", "overlay", "popup", "interstitial"],
+             ["dialog", "modal", "overlay", "popup", "interstitial", "wizard", "onboarding"],
              ["2px ink rules, hairline detail", "no scrim, no motion", "mark the improvisation"])
 
     case(S, "add a primary button to the page", "RESOLVED", "component/action",
@@ -332,7 +332,7 @@ def build_dominion():
     S = "dominion"
     art(S, ["D-01"],
         "component/action", "component", "Action (slate rounded)",
-        ["button", "cta", "primary button", "action", "submit button", "slate button", "secondary button", "outline button"],
+        ["button", "cta", "primary button", "action", "submit button", "slate button", "secondary button", "outline button", "undo"],
         {"class": "btn", "group": "Actions",
          "states": ["primary: solid slate #26374A, radius 4 (live-measured)",
                     "secondary: 2px slate outline",
@@ -386,7 +386,7 @@ def build_dominion():
 
     recipe(S, "recipe/retire-confirm", "Retire with confirmation",
            "Destructive removal of a registered item, confirmed in a dialog with the consequence sentence.",
-           ["retire an item", "remove an item", "delete from the register", "confirmation"],
+           ["retire an item", "remove an item", "delete from the register", "confirmation", "delete a ritual", "confirmation dialog"],
            ["confirm = solid slate rounded button with the verb",
             "never pre-focused",
             "bilingual titles (D-09)"],
@@ -417,13 +417,13 @@ def build_dominion():
     fallback(S, "fallback/platform-controls",
              "Platform defaults for uncovered controls",
              "If the system defines no control for a need, use the platform's native element with the field styling; keep native semantics.",
-             ["checkbox", "radio", "date", "toggle", "switch", "slider"],
+             ["checkbox", "radio", "date", "toggle", "switch", "slider", "check", "stepper"],
              ["field styling (soft border, radius 4)", "blue glow focus",
               "mark the improvisation and report a gap"])
     fallback(S, "fallback/large-selection",
              "Selection beyond small sets",
              "Small fixed sets use the select; larger or filtered selection uses the platform default, marked.",
-             ["picker", "combobox", "autocomplete", "filter", "listbox"],
+             ["picker", "combobox", "autocomplete", "filter", "listbox", "search"],
              ["keep field styling", "mark the improvisation"])
 
     case(S, "add a primary button to the page", "RESOLVED", "component/action",
@@ -485,20 +485,20 @@ def emit(src):
             continue
         dtext = {i: decisions(src)[i]["decision"] for i in ids}
         status = decisions(src)[ids[0]].get("status", "OBSERVED")
-        arts.append({
+        arts.append((src, {
             "id": a["id"], "kind": a["kind"], "title": a["title"],
             "summary": dtext[ids[0]] + ((" (%s)" % a["note"]) if a.get("note") else ""),
             "status": "beta", "aliases": a["aliases"],
             "body": a["body"],
             "source": {"repo": m["repo"], "path": "Gate 2 accepted decisions: " + ", ".join(ids)},
             "compiled_from": ids,
-        })
+        }))
 
     def w(name, key, rows):
         with open(os.path.join(outdir, name), "w") as fh:
             json.dump({key: [r for s, r in rows if s == src]}, fh, indent=2, ensure_ascii=False)
 
-    w("artifacts.json", "artifacts", [(s, a) for s, ids, a in ART])
+    w("artifacts.json", "artifacts", arts)
     w("rules.json", "rules", RULE)
     w("prohibitions.json", "prohibitions", PROHIB)
     w("fallbacks.json", "fallbacks", FALLBACK)

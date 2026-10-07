@@ -8,7 +8,9 @@
         "retire an item",
         "remove an item",
         "delete from the register",
-        "confirmation"
+        "confirmation",
+        "delete a ritual",
+        "confirmation dialog"
       ],
       "constraints": [
         "confirm = solid slate rounded button with the verb",

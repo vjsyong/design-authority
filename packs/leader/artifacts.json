@@ -4,6 +4,8 @@
       "id": "component/action",
       "kind": "component",
       "title": "Action (navy rounded)",
+      "summary": "Primary = solid navy-blue rounded rectangle (Chicago 45 #2E45B8, radius ~8px — live-observed CTA), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed). Red steps back to brand/attention duty.",
+      "status": "beta",
       "aliases": [
         "button",
         "cta",
@@ -26,12 +28,20 @@
           ".btn.b-txt"
         ]
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-01"
+      },
+      "compiled_from": [
+        "L-01"
+      ]
     },
     {
       "id": "guideline/shape-language",
       "kind": "guideline",
       "title": "Shape language (rounded product)",
+      "summary": "The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.",
+      "status": "beta",
       "aliases": [
         "shape",
         "corner",
@@ -42,12 +52,20 @@
       "body": {
         "group": "Shape"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-02"
+      },
+      "compiled_from": [
+        "L-02"
+      ]
     },
     {
       "id": "guideline/motion",
       "kind": "guideline",
       "title": "Motion",
+      "summary": "Interaction transitions are near-instant (≤0.15s colour swaps); no bounce, spring or decorative movement in UI chrome. Motion stays native to brand assets, not interface controls.",
+      "status": "beta",
       "aliases": [
         "motion",
         "transition",
@@ -57,12 +75,20 @@
       "body": {
         "group": "Motion"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-03"
+      },
+      "compiled_from": [
+        "L-03"
+      ]
     },
     {
       "id": "guideline/typography",
       "kind": "guideline",
       "title": "Typography (three registers)",
+      "summary": "Three registers by role: Serif = headlines and body text; Sans = navigation, metadata, datelines, captions; Sans Headline = display-only moments (page mastheads, big statics), used sparingly.",
+      "status": "beta",
       "aliases": [
         "typography",
         "font",
@@ -73,12 +99,20 @@
       "body": {
         "group": "Type"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-04"
+      },
+      "compiled_from": [
+        "L-04"
+      ]
     },
     {
       "id": "token-set/type-scale",
       "kind": "token-set",
       "title": "Screen type scale",
+      "summary": "Screen rhythm: serif headline 30–34/1.15; standfirst sans? no — serif standfirst 16–17 muted; body serif 17/1.55; metadata sans 12.5–13 with 0.06em caps for section labels; display 44 at tracking −1.",
+      "status": "beta",
       "aliases": [
         "type scale",
         "font size",
@@ -89,12 +123,20 @@
       "body": {
         "group": "Type"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-05"
+      },
+      "compiled_from": [
+        "L-05"
+      ]
     },
     {
       "id": "token-set/colour",
       "kind": "token-set",
       "title": "Colour roles (red + Chicago blue)",
+      "summary": "Red #E3120B = brand/editorial punctuation (labels, rules, single blocks). The Chicago blue family = the interactive layer (CTAs, active nav, links) — copious, per live review. Frame: ink, white, London grey ramp.",
+      "status": "beta",
       "aliases": [
         "palette",
         "colour",
@@ -106,12 +148,20 @@
       "body": {
         "group": "Colour"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-06"
+      },
+      "compiled_from": [
+        "L-06"
+      ]
     },
     {
       "id": "guideline/surfaces",
       "kind": "guideline",
       "title": "Surfaces & separation",
+      "summary": "White ground; separation via 2px ink rules and hairlines below (wash separation removed per review). Elevation, where needed, uses defined shadow tokens — not ambient glows.",
+      "status": "beta",
       "aliases": [
         "surfaces",
         "backgrounds",
@@ -123,12 +173,20 @@
       "body": {
         "group": "Surfaces"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-07"
+      },
+      "compiled_from": [
+        "L-07"
+      ]
     },
     {
       "id": "guideline/hierarchy",
       "kind": "guideline",
       "title": "Section rhythm",
+      "summary": "Section label (sans caps, red) → serif headline → one-line standfirst (muted serif). Repeats strictly; no decorative sub-heads.",
+      "status": "beta",
       "aliases": [
         "hierarchy",
         "section label",
@@ -139,12 +197,20 @@
       "body": {
         "group": "Structure"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-09"
+      },
+      "compiled_from": [
+        "L-09"
+      ]
     },
     {
       "id": "component/navbar",
       "kind": "component",
       "title": "Top bar",
+      "summary": "Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = blue underline (Chicago 45) per review; crisp search rectangle with typing-cursor motif right.",
+      "status": "beta",
       "aliases": [
         "navbar",
         "top bar",
@@ -168,12 +234,20 @@
           ".cursorbox"
         ]
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-10"
+      },
+      "compiled_from": [
+        "L-10"
+      ]
     },
     {
       "id": "component/field",
       "kind": "component",
       "title": "Field (rounded, sans text)",
+      "summary": "Fields: white, 1px soft border, rounded corners (radius 8), sans-serif field text (reviewer-directed); label above in caps; focus adds no border highlight; error = small red line under the field.",
+      "status": "beta",
       "aliases": [
         "field",
         "input",
@@ -181,7 +255,10 @@
         "text field",
         "textbox",
         "error message",
-        "validation error"
+        "validation error",
+        "textarea",
+        "text area",
+        "multiline field"
       ],
       "body": {
         "class": "field",
@@ -199,29 +276,48 @@
           "<label for> always; focus visible by other means if border highlight is suppressed."
         ]
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-11"
+      },
+      "compiled_from": [
+        "L-11"
+      ]
     },
     {
       "id": "component/notice",
       "kind": "component",
       "title": "Notice (ruled box)",
+      "summary": "Notices = ruled boxes (2px ink top or left rule) with terse declarative copy; no toasts (none evidenced); problem copy names the fact and the next step.",
+      "status": "beta",
       "aliases": [
         "notice",
         "alert",
         "message",
         "banner",
-        "notification"
+        "notification",
+        "weekly summary",
+        "week summary",
+        "week-summary"
       ],
       "body": {
         "class": "notice",
         "group": "Feedback"
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-14"
+      },
+      "compiled_from": [
+        "L-14"
+      ]
     },
     {
       "id": "component/meter",
       "kind": "component",
       "title": "Progress meter",
+      "summary": "Progress = crisp rectangle track (London 85) with red fill; readout as sans metadata ('7 of 10 steps'); restart = outline rectangle. Static updates only.",
+      "status": "beta",
       "aliases": [
         "meter",
         "progress",
@@ -237,7 +333,13 @@
           ".meter i"
         ]
       },
-      "note": null
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-16"
+      },
+      "compiled_from": [
+        "L-16"
+      ]
     }
   ]
 }

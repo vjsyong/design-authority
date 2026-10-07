@@ -1,0 +1,26 @@
+{
+ "problem": "Empty states for zero rituals and zero badges: resolve('empty state when no rituals exist') returns UNDEFINED (no search hits). The build improvised a ruled statement block plus one action and deliberately omitted any illustration - the move was right but derived, not resolved.",
+ "insufficiency": "No pack entry defines empty states; consumers get no resolution at all and may guess between notice/field/surfaces styling or invent an illustration, contradicting the imagery posture. Source evidence L-17 (docs/synthesis/leader/decisions.json; refs/sheet.html L-17 card, Gate 2) defines 'Empty state = ruled statement block with one action (outline or red rectangle); no illustration.' It never reached the pack.",
+ "reuse_case": "Every collection surface can reach zero items (rituals, entries, badges, records) - a system-level pattern that recurs in any data product, well beyond Cadence.",
+ "composition_check": "The ingredients exist (ruled box = surfaces/notice language; one action = component/action) but the pattern-level rules do not: which vessel, exactly one action, copy register, and the explicit no-illustration rule (L-17 + L-21). Today nothing resolves, so vessel choice and action count are guesswork; the smallest change is one pattern entry, not per-screen solutions.",
+ "proposed": {
+  "kind": "pattern",
+  "id": "pattern/empty-state",
+  "title": "Empty state (ruled statement, one action)",
+  "source_evidence": "decisions.json L-17 (empty); refs/sheet.html L-17; L-21 imagery posture; L-20 voice; guideline/surfaces for the rule treatment",
+  "body": {
+   "structure": "ruled statement block - white ground, 2px ink rule (top or frame per guideline/surfaces); terse declarative copy naming the state and the next step (L-20)",
+   "actions": "exactly one action (outline rectangle, or the screen's purpose action); never a cluster of links",
+   "illustration": "none - imagery is story-bound (L-21); absence here is honest, not a gap",
+   "in_character": "editorial: a sentence and one move, no mascots, no cheering",
+   "aliases": ["empty state", "empty", "nothing yet", "first run", "zero state", "no items", "blank state"]
+  }
+ },
+ "tests": [
+  "resolve('empty state') cites pattern/empty-state",
+  "a built empty-state block contains no <img>/illustration element (DOM check)",
+  "exactly one interactive action inside the empty-state block (DOM count check)",
+  "empty-state copy present and exclamation-free (copy lint)"
+ ],
+ "depends_on": ["guideline/surfaces", "component/action"]
+}

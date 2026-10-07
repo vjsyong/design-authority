@@ -13,7 +13,10 @@
         "toggle",
         "switch",
         "picker",
-        "combobox"
+        "combobox",
+        "slider",
+        "stepper",
+        "upload"
       ],
       "constraints": [
         "field styling (radius 8, 1px #DEDDDC border)",

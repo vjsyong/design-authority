@@ -1,0 +1,22 @@
+{
+  "problem": "A dark presentation has no resolvable colourway (gap G10: a dark mode theme). The system's reversed colourway — white on black — is an observed property of the source (docs/synthesis/dominion/00-evidence-inventory.md §1 and §6: the reversed version; gestalt 01-gestalt.md: 'Reversed colourway (white on black) exists and is recommended for large formats'; docs/synthesis/dominion/tile/tile.html: 'Reversed colourway — white on black, formal and large-format') and was composed by hand in cadence-dominion, but the pack neither declares it nor indexes it.",
+  "insufficiency": "resolve('a dark mode theme') -> UNDEFINED; resolve('a dark theme') -> UNDEFINED; search('dark mode')/'theme' -> no hits. token-set/colour carries the palette roles but declares no reversed mapping and no vocabulary for it, so a consumer cannot reach the system's own inversion; each consumer decides the band/pewter/hairline mappings themselves — invention on a canon surface.",
+  "reuse_case": "Themes recur across consumers; cadence-dominion shipped dark as 'the reversed colourway' (settings toggle, persisted), keeping red ceremonial-only and the blue focus glow intact. Declaring the mapping once keeps every consumer's inversion consistent instead of drifting per project.",
+  "composition_check": "There is no compositional path: the reversed colourway is a property of the colour token-set itself (roles inverted), not something component/action, component/field or any recipe can express. The synthesis renders it (tile) but the pack neither declares nor indexes it, so a consumer can only compose it by reading the synthesis layer directly — exactly the de-facto coupling this proposal removes.",
+  "proposed": {
+    "extend": {
+      "id": "token-set/colour",
+      "aliases_add": ["reversed colourway", "dark mode", "dark theme", "inverted colourway"],
+      "declare": "reversed colourway: ground black (#000); text, rules and structure white; band and pewter roles inverted; FIP red stays ceremonial-only (D-05); blue focus glow kept (D-21)",
+      "note": "The source recommends the reversal for large formats; applying it as a full UI ground is a declared, system-consistent interpretation — reviewers may modify or decline that step without affecting the declaration of the colourway itself."
+    }
+  },
+  "depends_on": ["token-set/colour"],
+  "new_primitives": [],
+  "tests": [
+    "resolve('a dark mode theme') -> RESOLVED token-set/colour (simulated score 22.0)",
+    "resolve('a dark theme') -> RESOLVED token-set/colour (simulated score 13.0)",
+    "Red check: the reversed colourway declares no red outside ceremony (D-05; D-R2).",
+    "Focus check: the blue focus glow is retained in the reversed colourway (D-21, 'reads on any ground')."
+  ]
+}

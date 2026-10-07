@@ -1,0 +1,34 @@
+[
+ {
+  "gap": "gap/20261007-145916-0643c3",
+  "class": "LEXICON-FIX",
+  "target": "component/notice",
+  "field": "aliases",
+  "add": ["weekly summary", "week summary", "week-summary"],
+  "evidence": "search 'banner' -> component/notice @ 9.0 (alias+phrase hit); the recorded phrases 'a banner summarizing the week' / 'a week-summary banner on Today' failed resolve at notice@4.0 (UNDEFINED). After add: RESOLVED component/notice @ 8.0 / @ 8.0; 'weekly summary' UNDEFINED -> RESOLVED @ 13.0. Golden set 10/10 unchanged."
+ },
+ {
+  "gap": "gap/20261007-145916-84338e",
+  "class": "SCOPE-FIX",
+  "target": "fallback/ruled-panel",
+  "field": "scope",
+  "add": ["wizard", "onboarding"],
+  "evidence": "'a three-step onboarding wizard' UNDEFINED (no search hits); the fallback statement 'No dialog canon: interstitials render as plain ruled panels in the page flow (L-07)' clearly covers it. After add: FALLBACK fallback/ruled-panel, matched scope ['onboarding','wizard']. (Modal and confirm-dialog sub-elements already FALLBACK via ['modal'] / ['dialog'].)"
+ },
+ {
+  "gap": "gap/20261007-145916-0b2e49",
+  "class": "SCOPE-FIX",
+  "target": "fallback/platform-controls",
+  "field": "scope",
+  "add": ["stepper"],
+  "evidence": "'a number stepper for minutes' UNDEFINED; builder's synonym search surfaced fallback/platform-controls @ 2.0 but the fallback statement 'If the system defines no control for a need, use the platform's native element with the leader field styling' should govern it. After add: FALLBACK fallback/platform-controls, matched scope ['stepper']."
+ },
+ {
+  "gap": "gap/20261007-145916-0b2e49",
+  "class": "LEXICON-FIX",
+  "target": "component/field",
+  "field": "aliases",
+  "add": ["textarea", "text area", "multiline field"],
+  "evidence": "secondary defect of the same gap. search 'multiline field' -> component/field @ 4.0 (near-miss under the 6.5 direct threshold); 'a text area for notes' UNDEFINED. After add: RESOLVED component/field @ 13.0; bare 'textarea' @ 9.0."
+ }
+]

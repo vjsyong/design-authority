@@ -1,0 +1,55 @@
+{
+ "id": "prop/20261007-151947-916eda",
+ "gap_id": "gap/20261007-145916-1ae98e",
+ "problem": "Data charts: resolve('a bar chart of weekly minutes') and resolve('a calendar heatmap of the month') return UNDEFINED (closest component/meter @ 4.0, itself only a horizontal fill). No chart marks, scales, grid treatment or data-palette mapping exist in the pack, and the circular completion ring has no register answer either.",
+ "insufficiency": "The identity exists to present 'a lot of different data. Be that facts and figures, charts and graphs' (tdc.org, quoted in docs/synthesis/leader/00-evidence-inventory.md section 2), and Marber reserves the city accent palettes 'for data & sections' (inventory addendum; tile). Yet the pack carries no chart entry: component/meter is a single determinate bar; nothing decides mark form, series colour or grid.",
+ "reuse_case": "Any data-bearing surface - bar comparisons, matrix/calendar views, series charts. This is core to the system's stated purpose (data presentation), not demo-specific, and the Cadence build needed three chart forms immediately.",
+ "composition_check": "Not composable: tokens alone (grey ramp + city accents) do not decide chart form; no mark/scale/axis/grid/legend rules exist anywhere in the pack; and the ring-vs-rectilinear geometry question itself needs a canon answer. One pattern entry is the smallest change versus per-chart components.",
+ "proposed": {
+  "kind": "pattern",
+  "id": "pattern/data-charts",
+  "title": "Data charts (rectilinear register)",
+  "source_evidence": "00-evidence-inventory.md section 2 (TDC data/charts/graphs quote) + addendum (city palettes 'for data/section use'); 01-gestalt.md 'Rectangles are the geometry' (lines 23-25, 69-74); token-set/colour; guideline/surfaces",
+  "body": {
+   "geometry": "rectilinear only - bar columns, matrix/calendar cells, ruled axes; no circular gauges or rings (rectangles are the geometry; the demo's completion ring was an app-spec extrapolation - completion readouts use the meter/readout family instead)",
+   "palette": "Chicago-blue family and the city accent palettes carry data series (the documented data/section role); Economist Red is the single attention mark (today/target), never a series colour; London grey ramp for tracks and neutral fills",
+   "grid": "hairline rules/gridlines (London 85) - rules do the separating; no zebra, no box grids, no shadows",
+   "typography": "sans for numbers and labels (metadata register); serif for chart titles",
+   "states": "static updates only (L-03, L-16)",
+   "in_character": "newspaper furniture: rules, ordered columns, one red mark per chart",
+   "aliases": [
+    "chart",
+    "bar chart",
+    "column chart",
+    "heatmap",
+    "calendar heatmap",
+    "data visualization",
+    "graph",
+    "data chart"
+   ]
+  }
+ },
+ "depends_on": [
+  "token-set/colour",
+  "guideline/typography",
+  "guideline/surfaces"
+ ],
+ "new_primitives": [],
+ "tests": [
+  "resolve('bar chart') cites pattern/data-charts",
+  "chart markup uses no rounded or circular marks (geometry check)",
+  "series colours are drawn only from the city palettes, with red appearing at most as a single attention mark (token check)",
+  "chart numerals use the sans register (type check)"
+ ],
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "leader",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:47+00:00"
+}

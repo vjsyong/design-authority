@@ -1,0 +1,32 @@
+{
+ "problem": "Permanently deleting a ritual has no canonical pattern: resolve('delete a ritual permanently') returns UNDEFINED (no search hits; 'destructive action' only surfaces component/action @ 4.0). The build improvised a solid-red verb confirm button with a consequence sentence, plus a post-delete undo notice. No delete pattern, confirmation content, or reversibility affordance exists in the pack.",
+ "insufficiency": "The pack carries no destructive flow, and component/action defines only primary (solid navy) / secondary (2px ink outline) / tertiary (underlined link) - a solid red confirm labelled with the verb is not expressible. fallback/ruled-panel covers the interstitial surface but not confirm content, colour or focus policy. Source evidence L-15 (docs/synthesis/leader/decisions.json; refs/sheet.html L-15 card, Gate 2) states the flow precisely: 'Destructive flows confirm in a square dialog: 2px ink frame, consequence sentence (terse, no euphemism), confirm = solid red rectangle labelled with the verb, cancel = outline rectangle. Destructive is never pre-focused.' It never reached the pack. (Surface corners follow the accepted L-02 v4 rounded register, not L-15/L-19's stale 'square' wording.)",
+ "reuse_case": "Any destructive operation (delete, retire, remove, revoke) in any consuming product - a recurring class that L-15 explicitly anticipated. The Cadence demo needed it for ritual deletion and its undo, and the flow recurs wherever records can be destroyed.",
+ "composition_check": "Cannot compose from existing elements: no artifact or fallback carries destructive semantics; the red action state, the consequence-copy rule and the never-pre-focused rule are decisions, not derivations. The pieces can be assembled around it (component/action secondary for cancel; fallback/ruled-panel for surface; component/notice + tertiary link for undo) but the pattern's own rules are absent, so resolve() can never answer with anything.",
+ "proposed": {
+  "kind": "pattern",
+  "id": "pattern/destructive-confirm",
+  "title": "Destructive confirmation (verb + consequence)",
+  "source_evidence": "decisions.json L-15 (destructive); refs/sheet.html L-15; L-20 voice; L-02 v4 for surface radii; pack fallback/ruled-panel for the surface constraint",
+  "body": {
+   "surface": "the interstitial surface per fallback/ruled-panel (in-flow ruled panel; 2px ink frame; hairline detail; no scrim, no motion) - the pack deliberately carries no dialog canon, and this pattern rides that",
+   "content": [
+    "consequence sentence: terse, no euphemism, fact first (L-15, L-20)",
+    "confirm = solid red rectangle labelled with the verb (L-15); red reserved for exactly this punctuation duty",
+    "cancel = ink outline rectangle (the secondary action)",
+    "destructive control is never pre-focused (L-15)",
+    "where reversibility is offered, it is a ruled notice with a tertiary Undo link (composes existing elements; marked improvisation until evidence appears)"
+   ],
+   "in_character": "editorial restraint: plain statement, one verb, no celebration and no euphemism",
+   "aliases": ["delete", "delete confirmation", "destructive", "destructive action", "destroy", "remove permanently", "confirm deletion", "danger"]
+  }
+ },
+ "tests": [
+  "resolve('delete a ritual permanently') cites pattern/destructive-confirm",
+  "in a built target, destructive confirm controls are solid red labelled with the verb, not the navy primary (class/DOM check)",
+  "the destructive control is not autofocused when the confirm opens (DOM check)",
+  "confirm copy contains no exclamation mark (copy lint)"
+ ],
+ "depends_on": ["component/action", "fallback/ruled-panel"],
+ "new_primitives": ["destructive action state (solid red fill, white label) for component/action"]
+}

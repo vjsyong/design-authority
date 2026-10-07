@@ -1,0 +1,26 @@
+{
+ "problem": "Trend and counter readouts: resolve('sparkline') returns UNDEFINED (no hits), resolve('a big streak counter') returns UNDEFINED (closest component/meter @ 4.0 via the 'readout' alias). The build needed a mini trend and a large numeral and had to improvise both.",
+ "insufficiency": "No pack entry describes mini trends or numeral statics. The display face is described only as 'display-only moments (page mastheads, big statics), used sparingly' (L-04) with 'display 44 at tracking -1' (L-05) - construction, label treatment and frequency limits are undefined, and the type-scale / typography entries in the pack are stubs with no values.",
+ "reuse_case": "Streaks, totals, scores, week-over-week trends - any product with counters or trends needs a readout; this is a recurring class (the demo needed both forms in one screen) rather than one-off chrome.",
+ "composition_check": "Not composable: token-set/type-scale and guideline/typography carry no usable values or usage rules in the pack; no entry composes a sparkline mark; the 'one display moment per screen' limit is a new usage rule. Smallest change: one readouts pattern covering both forms - not separate components per metric.",
+ "proposed": {
+  "kind": "pattern",
+  "id": "pattern/data-readouts",
+  "title": "Data readouts (sparkline trend, stat counter)",
+  "source_evidence": "decisions.json L-04 ('big statics' display moments) and L-05 (display 44, tracking -1); 00-evidence-inventory.md section 2 (data presentation purpose); guideline/motion (static updates)",
+  "body": {
+   "sparkline": "mini rectilinear columns in Chicago blue over the London ramp; no axes; static; sits at metadata scale",
+   "stat": "display-face numeral (display 44, tracking -1) + sans-caps label; used sparingly - one display moment per screen; streak counts qualify",
+   "excluded": "no rings or gauges, no motion, no emoji/sparkle",
+   "in_character": "a single loud numeral against quiet apparatus - restraint, not dashboard chrome",
+   "aliases": ["sparkline", "trend", "trend line", "mini chart", "counter", "streak", "big number", "stat", "statistic"]
+  }
+ },
+ "tests": [
+  "resolve('sparkline') cites pattern/data-readouts",
+  "resolve('streak counter') cites pattern/data-readouts",
+  "at most one display-face numeral per screen (spec check)",
+  "no radial geometry is used for trends or counters (geometry check)"
+ ],
+ "depends_on": ["token-set/type-scale", "token-set/colour", "guideline/typography"]
+}

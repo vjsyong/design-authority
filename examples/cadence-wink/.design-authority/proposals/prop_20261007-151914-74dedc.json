@@ -1,0 +1,65 @@
+{
+ "id": "prop/20261007-151914-74dedc",
+ "gap_id": "gap/20261007-145938-a9d93a",
+ "problem": "'empty state' and 'illustration' resolve UNDEFINED (no pack hits). The Cadence consumer improvised a Parsnip panel + one warm sentence + one action pill, plus simple line art for the empty state, all marked.",
+ "insufficiency": "The empty-state pattern is source-owned and accepted but unshipped: decisions.json W-19 (empty, Gate 2 accepted) - 'Empty state = tinted Parsnip panel with one warm sentence + one action pill (\"Add your first item\").' The source system also names the area as a component family (raw/04-designsystems-one-mailchimp.md line 68: 'Empty State Library - First-run, no-results, and lapsed-user states tuned for SMB onboarding'; line 54: 'Empty-state and onboarding patterns...'). W-19 explicitly defers illustration-led variants (illustration system exists per W-23 but is not reproduced - no asset library), so no illustration style can be canonized. The pack carried none of this.",
+ "reuse_case": "Zero-content moments are universal (first-run, no-results, lapsed/cleared states); the pattern and its copy register are app-independent.",
+ "composition_check": "component/card's tinted variant + component/action-pill + guideline/voice nearly compose, but nothing states the empty-state recipe (panel + one sentence + one action) and recipes.json is empty. Illustration is deliberately excluded by policy (no asset library). One pattern entry is the smallest carrier.",
+ "proposed": {
+  "id": "pattern/empty-state",
+  "kind": "pattern",
+  "title": "Empty state",
+  "group": "Feedback",
+  "aliases": [
+   "empty state",
+   "zero content",
+   "nothing yet",
+   "no items",
+   "first-run state"
+  ],
+  "body": {
+   "states": [
+    "tinted Parsnip panel",
+    "one warm sentence + one action pill ('Add your first item')"
+   ],
+   "do": [
+    "keep the copy to one warm, plain sentence",
+    "offer exactly one action"
+   ],
+   "dont": [
+    "illustration-led variants deferred - illustration system not reproduced (no asset library)"
+   ]
+  },
+  "notes": "Content per decisions.json W-19 (accepted). Illustration style deliberately not proposed (W-19 deferral + W-23 no-assets policy)."
+ },
+ "depends_on": [
+  "component/card",
+  "component/action-pill",
+  "guideline/voice"
+ ],
+ "new_primitives": [],
+ "tests": {
+  "golden": [
+   {
+    "problem": "an empty state when no rituals exist",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/empty-state",
+    "note": "Empty pattern resolves."
+   }
+  ],
+  "checks": [
+   "a request for a canonical illustration style must remain UNDEFINED/marked (no asset library)"
+  ]
+ },
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "wink",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:14+00:00"
+}

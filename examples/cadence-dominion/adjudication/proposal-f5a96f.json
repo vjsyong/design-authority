@@ -1,0 +1,51 @@
+{
+  "problem": "The status device (a word-first label such as on track / slipping) and the ledger (a table of logged entries) resolve UNDEFINED although decisions D-10 and D-17 define them exactly. In cadence-dominion both were compiled by hand from docs/synthesis/dominion/decisions.json (gap G13).",
+  "insufficiency": "resolve('a status label on track or slipping') -> UNDEFINED (closest: component/select 1.0); resolve('a table of logged entries') -> UNDEFINED (no candidates). search('ledger') -> no hits; search('table') -> no hits; search('status label') -> only component/select 1.0. Neither surface exists in the catalogue, so no direct artifact can be cited; the builder could only reach them through the decisions record.",
+  "reuse_case": "Status words appear in every register/list surface, and the ledger is the system's native form for repeated content (gestalt: documents are the system's native form). cadence-dominion used both — status labels on Today rows and in the achievements tiles; the ledger in History (16 entries, two pages). Any register-style consumer needs the same pair.",
+  "composition_check": "component/select is a form control, not a label; no table or repeated-content artifact exists; D-17's header rule and row hairlines and D-10's ruled label idiom have no composable catalogue source (the rules/bands live in decisions and tokens, not as a citable pattern). Without the entries, each consumer rebuilds the same register differently — the exact drift the authority exists to prevent.",
+  "proposed": {
+    "add": [
+      {
+        "id": "component/status",
+        "kind": "component",
+        "title": "Status label (word-first)",
+        "aliases": ["status", "status label", "state label", "on track", "slipping", "overdue", "available"],
+        "body": {
+          "class": "st",
+          "group": "Status",
+          "states": [
+            "plain word label in a ruled box",
+            "emphasis by structure (left rule / grey band), never hue",
+            "words carry meaning; structure carries emphasis"
+          ]
+        },
+        "note": "Compile of decision D-10 (docs/synthesis/dominion/decisions.json) — no new design."
+      },
+      {
+        "id": "component/ledger",
+        "kind": "component",
+        "title": "Ledger (ruled register)",
+        "aliases": ["ledger", "register", "table", "entries table", "ruled table", "log table"],
+        "body": {
+          "class": "ledger",
+          "group": "Repeated content",
+          "states": [
+            "2px black header rule over medium caps labels",
+            "1px pewter row hairlines; no zebra",
+            "row hover = #F4F4F4 band",
+            "status labels inline (component/status)"
+          ]
+        },
+        "note": "Compile of decision D-17 (docs/synthesis/dominion/decisions.json) — no new design."
+      }
+    ]
+  },
+  "depends_on": ["guideline/typography"],
+  "new_primitives": [],
+  "tests": [
+    "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
+    "resolve('a table of logged entries') -> RESOLVED component/ledger (simulated score 13.0)",
+    "resolve('a ledger of entries') -> RESOLVED component/ledger (simulated score 8.0)",
+    "Style check: no status state uses colour for meaning (red stays ceremonial; D-05/D-10/D-R2)."
+  ]
+}

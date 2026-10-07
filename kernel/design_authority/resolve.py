@@ -124,7 +124,9 @@ def resolve(pack, problem, context=None):
     qset = set(norm_tokens(problem))
     for fb in pack.fallbacks:
         scope = [s for s in fb.get("scope", []) if s != "*"]
-        overlap = qset & set(scope)
+        # Normalise scope entries through the same tokeniser as the query, so
+        # stemmed query tokens ("date" -> "dat") can match raw scope words.
+        overlap = qset & {t for s in scope for t in norm_tokens(s)}
         if scope and overlap:
             out["outcome"] = "FALLBACK"
             out["resolution"] = {"fallback": {

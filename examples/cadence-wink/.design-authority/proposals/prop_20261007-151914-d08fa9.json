@@ -1,0 +1,73 @@
+{
+ "id": "prop/20261007-151914-d08fa9",
+ "gap_id": "gap/20261007-145938-f646b2",
+ "problem": "The pack has no feedback surface: 'toast', 'notice', 'banner', 'notification', 'feedback' all resolve UNDEFINED. The Cadence app spec demanded a floating toast; the source prefers inline notices; the consumer shipped a marked toast improvisation and recorded the tension, which canon cannot currently arbitrate.",
+ "insufficiency": "Feedback representation is source-owned and accepted but unshipped: decisions.json W-15 (feedback, Gate 2 accepted) - 'Inline notices (rounded 12, tinted fill) rather than floating toasts; copy is plain, non-blaming, question-first.' The decision explicitly rejects floating toasts as unevidenced. Without the entry, a 'toast' request can only be improvised (never source-true), and consumers cannot obtain the sanctioned feedback surface.",
+ "reuse_case": "Save confirmations, validation feedback, and transient state messages are universal in products; the inline-notice shape and its copy rules are reusable across consumers.",
+ "composition_check": "Existing elements cannot compose it: guideline/voice gives tone only; component/card gives vessels, not a small tinted notice; token-set/colour gives fills, not notice semantics; nothing states the toast rejection; recipes.json is empty. A single pattern entry is the smallest carrier. (The weekly-summary banner composes from colour band + number display treatment; celebration motion stays outside canon - motion not evidenced.)",
+ "proposed": {
+  "id": "pattern/inline-notice",
+  "kind": "pattern",
+  "title": "Inline notice (feedback)",
+  "group": "Feedback",
+  "aliases": [
+   "notice",
+   "inline notice",
+   "feedback message",
+   "saved confirmation",
+   "validation notice",
+   "status message"
+  ],
+  "body": {
+   "states": [
+    "inline notice: rounded 12, tinted fill (palette roles)",
+    "copy is plain, non-blaming, question-first"
+   ],
+   "do": [
+    "prefer inline notices placed near the element or content that changed"
+   ],
+   "dont": [
+    "floating toast stacks are not canon (source: toasts unevidenced, rejected)"
+   ]
+  },
+  "notes": "Content per decisions.json W-15 (accepted). The floating toast is explicitly NOT proposed for canon; the Cadence toast remains a marked improvisation. Celebration/confetti motion likewise stays outside canon (motion not evidenced)."
+ },
+ "depends_on": [
+  "guideline/voice",
+  "token-set/colour"
+ ],
+ "new_primitives": [
+  "tinted notice surface (rounded 12)"
+ ],
+ "tests": {
+  "golden": [
+   {
+    "problem": "an inline notice confirming the save",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/inline-notice",
+    "note": "Source-true feedback surface."
+   },
+   {
+    "problem": "a floating toast notification",
+    "expect": "UNDEFINED",
+    "expect_id": null,
+    "note": "Toasts stay non-canon (W-15)."
+   }
+  ],
+  "checks": [
+   "no entry may advertise 'toast' as a resolved alias once shipped",
+   "notice copy examples must follow the non-blaming, question-first register"
+  ]
+ },
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "wink",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:14+00:00"
+}

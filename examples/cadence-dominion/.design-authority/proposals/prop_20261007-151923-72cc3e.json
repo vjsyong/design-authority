@@ -1,0 +1,55 @@
+{
+ "id": "prop/20261007-151923-72cc3e",
+ "gap_id": "gap/20261007-150031-13d338",
+ "problem": "Message vessels beyond the notice resolve UNDEFINED although D-13 defines the notice exactly: a save-confirmation toast and a weekly-summary banner (gap G14). The toast is a deviation by the pack's own reading \u2014 D-13 says 'no toasts' \u2014 and was correctly adapted to a ruled notice; the banner was composed by hand from D-06/D-13. Neither can cite a vessel because D-13 is not catalogued.",
+ "insufficiency": "resolve('a toast notification saying logged') -> UNDEFINED; resolve('a banner summarizing the week') -> UNDEFINED (no candidates); search('notice')/'toast'/'banner' -> no hits. D-13 exists only in the decisions record, so the sanctioned vessel (ruled box, 2px black top rule, grey ground, plain sentence) is unreachable \u2014 the builder could only compose it by reading decisions.json directly.",
+ "reuse_case": "Every consumer needs confirmation copy (saved / logged) and periodic summaries; the notice recurs across flows (settings save, log confirmation, history summary, dismissible notices). cadence-dominion used the vessel three ways (save confirmation, logged notice, weekly banner) and reused the same ruled-box language for the empty state (D-16).",
+ "composition_check": "No feedback artifact exists; component/field is the closest at 4.0 and does not define a message vessel. D-06's grey band and the rule/copy rules of D-13 live in decisions and tokens, so a composed banner cannot cite a vessel and each consumer rebuilds the box, the rule weight and the copy pattern on their own.",
+ "proposed": {
+  "add": [
+   {
+    "id": "component/notice",
+    "kind": "component",
+    "title": "Notice (ruled box)",
+    "aliases": [
+     "notice",
+     "message",
+     "confirmation",
+     "save confirmation",
+     "announcement",
+     "banner"
+    ],
+    "body": {
+     "class": "notice",
+     "group": "Feedback",
+     "states": [
+      "2px black top rule, grey ground (#F4F4F4)",
+      "plain sentence: what happened + what happens next",
+      "in-flow and dismissible",
+      "no toasts"
+     ]
+    },
+    "note": "Compile of decision D-13 (docs/synthesis/dominion/decisions.json) \u2014 no new design. 'Toast' deliberately gains no vocabulary: D-13 declines toasts; the notice is the sanctioned substitute, so toast requests stay visible as deviations."
+   }
+  ]
+ },
+ "depends_on": [],
+ "new_primitives": [],
+ "tests": [
+  "resolve('a save confirmation message') -> RESOLVED component/notice (simulated score 17.0)",
+  "resolve('a banner') -> RESOLVED component/notice (single-token alias + exact-phrase bonus, 9.0)",
+  "resolve('a toast notification saying logged') remains UNDEFINED (no toast vocabulary added \u2014 deviation stays visible)",
+  "Vocabulary check: no coloured-alert terms added (D-13 alternatives rejected: coloured alerts)."
+ ],
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "dominion",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:23+00:00"
+}

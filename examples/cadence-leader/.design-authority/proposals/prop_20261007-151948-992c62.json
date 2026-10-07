@@ -1,0 +1,50 @@
+{
+ "id": "prop/20261007-151948-992c62",
+ "gap_id": "gap/20261007-145916-d4706a",
+ "problem": "Status labels ('on track / slipping') and small category tags: resolve('status label') returns UNDEFINED (closest guideline/hierarchy @ 4.0), resolve('category tag') returns UNDEFINED. Tag language lives in the Gate 2 sheet but not in the pack artifacts; achievement badges have no canon at all.",
+ "insufficiency": "L-13 (docs/synthesis/leader/decisions.json; refs/sheet.html L-13 card, Gate 2) defines the mark precisely - 'Status = rectangular ink-outline tag, word inside (uppercase sans 11, 0.06em). Attention states turn the tag solid red with white word. No pills, no dots as sole signal' - but no pack entry carries it. Consumers invent pills/dots or squat on field/action styling for labels.",
+ "reuse_case": "Statuses, categories and labels on any list or record UI; the demo used both a status form (on track / slipping) and category tags - a recurring labelled-mark class, not a one-off.",
+ "composition_check": "Not composable: no entry provides a non-interactive labelled mark; action/field/notice are interactive/form/feedback vessels; colour tokens alone do not decide construction (outline weight, caps treatment, attention swap). Badges are not source-supported as a distinct object - an achievement badge composes from this tag + a rhythm glyph; no medal family should be invented.",
+ "proposed": {
+  "kind": "component",
+  "id": "component/tag",
+  "title": "Tag (status / category)",
+  "source_evidence": "decisions.json L-13 (status tags); refs/sheet.html L-13 card; L-02 v4 (rounded surfaces, radius ~8); guideline/typography (sans caps register)",
+  "body": {
+   "mark": "rounded ~8 surface (per L-02 v4 and rule L-R1) with a 2px ink outline; uppercase sans 11, 0.06em tracking; strictly one line",
+   "attention": "attention states turn the tag solid red with a white word; positive states keep the ink outline",
+   "rules": "no pills, no dots as sole signal (L-13)",
+   "in_character": "a stamped word, not a bubble; taxonomy stays quiet",
+   "aliases": [
+    "tag",
+    "status tag",
+    "status label",
+    "label",
+    "category tag",
+    "chip"
+   ]
+  }
+ },
+ "depends_on": [
+  "token-set/colour",
+  "guideline/typography"
+ ],
+ "new_primitives": [],
+ "tests": [
+  "resolve('status label') cites component/tag",
+  "tag markup is not pill or full-round (radius check against the ~8 system radius)",
+  "attention state = solid red + white word; no dot-only status variant exists (spec check)",
+  "tag type is uppercase sans at <=11px with letter-spacing present (type check)"
+ ],
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "leader",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:48+00:00"
+}

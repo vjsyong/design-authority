@@ -10,7 +10,8 @@
         "date",
         "toggle",
         "switch",
-        "slider"
+        "slider",
+        "stepper"
       ],
       "constraints": [
         "field styling (rounded, 1px soft border)",
@@ -46,7 +47,9 @@
         "modal",
         "overlay",
         "popup",
-        "interstitial"
+        "interstitial",
+        "wizard",
+        "onboarding"
       ],
       "constraints": [
         "2px ink rules, hairline detail",

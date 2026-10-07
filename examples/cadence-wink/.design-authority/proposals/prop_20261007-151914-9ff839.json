@@ -1,0 +1,72 @@
+{
+ "id": "prop/20261007-151914-9ff839",
+ "gap_id": "gap/20261007-145139-ad4b85",
+ "problem": "The wink pack carries no destructive-action pattern. resolve('delete a ritual permanently') -> UNDEFINED; searches for 'delete', 'destructive', 'undo', 'confirm', 'dialog' return no hits. The Cadence consumer improvised the entire flow (outline pill + #BF4055 ring; confirm dialog; undo) as marked improvisation.",
+ "insufficiency": "The high-consequence confirmation flow is a source-owned decision the pack never carried: docs/synthesis/wink/decisions.json W-16 (destructive, AUTHORED, Gate 2 accepted) - 'High-consequence actions route through a rounded confirm dialog (16px) with a consequence sentence in the warm voice; confirm = ink-filled pill labelled with the concrete verb (never \"OK\"); cancel = outline pill. Destructive is never the default focus.' Without it, consumers must re-invent consequence copy, verb labelling, and focus rules per app. NOTE: the undo/recovery affordance requested in the same gap is NOT part of this proposal - no source evidence for an undo pattern exists (W-16's rejected alternatives were heavier confirmations, not recovery), so undo stays a marked consumer improvisation.",
+ "reuse_case": "Any product with destructive actions (delete, cancel, disconnect, deactivate) needs the same confirmation pattern; it recurs in every consumer app and is not Cadence-specific.",
+ "composition_check": "Existing elements cannot compose it: component/card gives a vessel but no confirm semantics; component/action-pill gives pills but nothing states the concrete-verb rule ('never OK'), the consequence-sentence requirement, or the never-default-focus rule; guideline/voice gives tone but not the flow; recipes.json is empty so COMPOSE cannot fire. One pattern entry is the smallest carrier. (The dialog vessel itself is covered by a sibling proposal pattern/dialog-overlay; depends_on cites only real pack ids per kernel rules.)",
+ "proposed": {
+  "id": "pattern/destructive-confirm",
+  "kind": "pattern",
+  "title": "Destructive confirmation",
+  "group": "Destructive",
+  "aliases": [
+   "destructive action",
+   "delete confirmation",
+   "confirm dialog",
+   "are you sure",
+   "danger action",
+   "confirm before deleting",
+   "remove permanently"
+  ],
+  "body": {
+   "states": [
+    "high-consequence action -> rounded 16px dialog on warm ink scrim with a consequence sentence in the warm voice",
+    "confirm = ink-filled pill labelled with the concrete verb (never 'OK')",
+    "cancel = outline pill",
+    "destructive action never receives default focus"
+   ],
+   "do": [
+    "state the consequence plainly in the warm voice",
+    "label the confirm pill with the concrete verb"
+   ],
+   "dont": [
+    "never label the confirm 'OK'",
+    "never pre-focus the destructive action",
+    "no undo/recovery UI is canonical - not evidenced (W-16)"
+   ]
+  },
+  "notes": "Content per decisions.json W-16 (accepted). Undo deliberately excluded (no source evidence)."
+ },
+ "depends_on": [
+  "component/card",
+  "component/action-pill",
+  "guideline/voice"
+ ],
+ "new_primitives": [],
+ "tests": {
+  "golden": [
+   {
+    "problem": "confirm before deleting a project",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/destructive-confirm",
+    "note": "Destructive flow resolves to the pattern."
+   }
+  ],
+  "checks": [
+   "resolve('delete a ritual permanently') must not return UNDEFINED once shipped",
+   "a request asserting a canonical undo UI must remain UNDEFINED/marked (no evidence)"
+  ]
+ },
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "wink",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:14+00:00"
+}

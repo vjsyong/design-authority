@@ -1,0 +1,42 @@
+[
+  {
+    "gap": "gap/20261007-150030-06610b",
+    "class": "SCOPE-FIX",
+    "target": "fallback/platform-controls",
+    "field": "scope",
+    "add": ["check"],
+    "evidence": "resolve('a check control for a ritual') -> UNDEFINED (no scope token match); search('check control') -> fallback/platform-controls @ 2.0; post-fix simulation -> FALLBACK, matched_scope ['check']"
+  },
+  {
+    "gap": "gap/20261007-150030-2eb8c6",
+    "class": "SCOPE-FIX",
+    "target": "fallback/large-selection",
+    "field": "scope",
+    "add": ["search"],
+    "evidence": "resolve('a search input') -> UNDEFINED (closest component/field 4.0; no 'filter' token to trigger the fallback); search('search') -> no hits; post-fix simulation -> FALLBACK, matched_scope ['search']"
+  },
+  {
+    "gap": "gap/20261007-150031-842aa2",
+    "class": "LEXICON-FIX",
+    "target": "component/action",
+    "field": "aliases",
+    "add": ["undo"],
+    "evidence": "resolve('an undo button after deleting') -> UNDEFINED (closest component/action 4.0 — only 'button' matched); search('undo') -> no hits; post-fix simulation -> RESOLVED component/action @ 8.0 ('undo' 4.0 + 'button' 4.0)"
+  },
+  {
+    "gap": "gap/20261007-150031-f3d993",
+    "class": "SCOPE-FIX",
+    "target": "fallback/platform-controls",
+    "field": "scope",
+    "add": ["stepper"],
+    "evidence": "resolve('a number stepper for minutes') -> UNDEFINED (no candidates); search('stepper') -> no hits; post-fix simulation -> FALLBACK, matched_scope ['stepper']"
+  },
+  {
+    "gap": "gap/20261007-150031-1eb3c0",
+    "class": "LEXICON-FIX",
+    "target": "recipe/retire-confirm",
+    "field": "needs",
+    "add": ["delete a ritual", "confirmation dialog"],
+    "evidence": "resolve('delete a ritual permanently') -> UNDEFINED; search('delete a ritual') -> recipe/retire-confirm @ 3.0 (search reaches it, resolve cannot compose below COMPOSE_MIN 5.0); post-fix simulation -> COMPOSE @ 11.0 for both 'delete a ritual permanently' and 'a confirmation dialog before deleting'"
+  }
+]

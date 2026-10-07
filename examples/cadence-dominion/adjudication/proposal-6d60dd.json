@@ -1,0 +1,51 @@
+{
+  "problem": "Two recurring structural surfaces resolve UNDEFINED although the decisions record defines them exactly: the dialog vessel (a modal with ritual details) and the empty state (when no rituals exist). In cadence-dominion both were built only because the builder read docs/synthesis/dominion/decisions.json directly; a consumer working from the pack alone cannot reach either (gap G12).",
+  "insufficiency": "resolve('a modal with ritual details') -> UNDEFINED; resolve('an empty state when no rituals exist') -> UNDEFINED (closest: guideline/interaction-states 4.0). search('modal') -> no hits; search('dialog') -> only recipe/retire-confirm 1.5; search('empty state') -> only guideline/interaction-states 4.0. The catalogue (packs/dominion/artifacts.json) has no entry for either surface; decisions D-18 and D-16 exist in docs/synthesis/dominion/decisions.json but decisions are not part of the resolvable pack, so no candidate exists at the direct-match threshold.",
+  "reuse_case": "Dialogs and empty states are the two most frequent structural surfaces in any consumer app: detail overlays, confirmations, first-run and no-results states. cadence-dominion used the dialog for ritual details and for destructive confirms, and the empty state three times (no rituals, filter no-match, achievements demo toggle). The sanctioned destructive recipe (recipe/retire-confirm, D-14) already assumes a dialog vessel it cannot cite.",
+  "composition_check": "component/action (buttons) and component/field (inputs) supply the ingredients D-14 composes, but neither declares a vessel (frame, scrim, instant behaviour, focus handling) and nothing declares the ruled empty statement. No recipe composes either surface, and a full-kind search finds no candidate. Existing elements therefore cannot compose to a citable answer.",
+  "proposed": {
+    "add": [
+      {
+        "id": "component/dialog",
+        "kind": "component",
+        "title": "Dialog vessel (square sheet)",
+        "aliases": ["modal", "dialog", "sheet", "overlay", "detail overlay", "scrim", "dialog vessel"],
+        "body": {
+          "class": "dialog",
+          "group": "Overlays",
+          "states": [
+            "square white sheet, 2px black frame",
+            "black scrim at 55%",
+            "instant; no motion"
+          ],
+          "a11y": ["focus moves to the sheet; destructive confirm never pre-focused (D-14)"]
+        },
+        "note": "Compile of decision D-18 (docs/synthesis/dominion/decisions.json) — no new design."
+      },
+      {
+        "id": "component/empty-state",
+        "kind": "component",
+        "title": "Empty state (ruled statement)",
+        "aliases": ["empty state", "empty", "nothing yet", "blank", "no results", "first run"],
+        "body": {
+          "class": "empty",
+          "group": "Structure",
+          "states": [
+            "plain ruled statement + one action",
+            "no imagery — imagery absence is a system property"
+          ],
+          "quote": "Absence, honestly expressed."
+        },
+        "note": "Compile of decision D-16 (docs/synthesis/dominion/decisions.json) — no new design."
+      }
+    ]
+  },
+  "depends_on": ["component/action"],
+  "new_primitives": [],
+  "tests": [
+    "resolve('a modal with ritual details') -> RESOLVED component/dialog (simulated score 8.0 vs 6.5 direct-match threshold)",
+    "resolve('an empty state when no rituals exist') -> RESOLVED component/empty-state (simulated score 17.0)",
+    "resolve('a dialog') -> RESOLVED component/dialog (single-token alias + exact-phrase bonus)",
+    "Vocabulary check: neither entry adds imagery/pictogram terms (prohibit/imagery-pictograms unchanged)."
+  ]
+}

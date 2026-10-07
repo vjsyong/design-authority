@@ -1,0 +1,26 @@
+[
+  {
+    "gap": "gap/20261007-145939-399e5e",
+    "class": "LEXICON-FIX",
+    "target": "component/field-select",
+    "field": "aliases",
+    "add": ["textarea", "text area", "multiline field", "notes field"],
+    "evidence": "component/field-select @13.0 (search 'multiline text field'); @4.0 (searches 'notes field' and 'multiline input'). Post-fix sim: resolve('text area for notes') -> RESOLVED @17.0, resolve('textarea') -> RESOLVED @9.0."
+  },
+  {
+    "gap": "gap/20261007-145939-29cca4",
+    "class": "SCOPE-FIX",
+    "target": "fallback/platform-controls",
+    "field": "scope",
+    "add": ["slider", "stepper"],
+    "evidence": "fallback/platform-controls @5.0 (search 'date picker', matched date+picker - sibling native control already covered); 'slider'/'range slider'/'stepper' return no entry. Post-fix sim: resolve('slider for daily goal minutes') -> FALLBACK matched_scope ['slider']; resolve('number stepper for minutes') -> FALLBACK matched_scope ['stepper']."
+  },
+  {
+    "gap": "gap/20261007-145939-d651a0",
+    "class": "SCOPE-FIX",
+    "target": "fallback/platform-controls",
+    "field": "scope",
+    "add": ["upload"],
+    "evidence": "fallback/platform-controls @2.5 (search 'file'; scope token 'file' already present). Post-fix sim: resolve('upload a photo for the ritual') -> FALLBACK matched_scope ['upload']."
+  }
+]

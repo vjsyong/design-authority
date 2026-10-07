@@ -1,0 +1,27 @@
+{
+ "problem": "Repeated-content table: resolve('a table of logged entries') and resolve('ledger') return UNDEFINED (no search hits). Table styling exists only in the Gate 2 sheet layer. Tabs and pagination are also unmet - tabs were improvised in the nav register and pagination has no evidence.",
+ "insufficiency": "L-18 (docs/synthesis/leader/decisions.json; rendered in refs/sheet.html and refs/components.html, Gate 2) defines the ledger - '2px ink header rule over sans-caps labels, hairline row rules (London 85), serif names, sans numbers; row hover = red-95 wash; no zebra' - but the pack carries no repeated-content pattern and its recipes list is empty, so nothing composes or resolves a table request.",
+ "reuse_case": "Any list of records (entries, loans, issues, logs) - the system's editorial-furniture table. The Cadence History view needed it and every record-keeping consumer will.",
+ "composition_check": "The ingredients exist (rules, type registers, red-95 wash token) but the composition is itself the canon: rule weights, hover wash, alignment and the no-zebra stance are decisions, not derivations; nothing in the pack composes them today. Tabs are a nav-register composition (active-underline links, per L-10) and need no separate entry; pagination is unevidenced and stays a marked improvisation.",
+ "proposed": {
+  "kind": "pattern",
+  "id": "pattern/ledger",
+  "title": "Ledger (editorial table)",
+  "source_evidence": "decisions.json L-18 (repeated content); refs/sheet.html L-18 card; refs/components.html ledger specimen; guideline/surfaces (rules do the separating)",
+  "body": {
+   "header": "sans-caps labels over a 2px ink rule",
+   "rows": "hairline rules (London 85); serif names; sans numerals with right-aligned numeric columns",
+   "hover": "red-95 wash; no zebra, no box-grid borders, no shadows",
+   "pagination": "not canonised (out of evidence); propose separately if it recurs",
+   "in_character": "newspaper stock tables: rules and type do the work, nothing boxes",
+   "aliases": ["table", "ledger", "data table", "entries table", "log table", "records table"]
+  }
+ },
+ "tests": [
+  "resolve('a table of logged entries') cites pattern/ledger",
+  "row separators are hairlines and the header rule is 2px ink (spec check)",
+  "no zebra striping classes appear in markup (spec check)",
+  "numeric cells use the sans register (type check)"
+ ],
+ "depends_on": ["guideline/surfaces", "guideline/typography", "token-set/colour"]
+}

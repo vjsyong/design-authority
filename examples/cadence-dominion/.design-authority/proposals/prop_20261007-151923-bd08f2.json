@@ -1,0 +1,68 @@
+{
+ "id": "prop/20261007-151923-bd08f2",
+ "gap_id": "gap/20261007-150030-0a71f9",
+ "problem": "Data display over time resolves UNDEFINED: bars for weekly minutes, a month heat grid and a 7-day sparkline (gap G1). The pack has no figure grammar for series, grids or trends, so cadence-dominion composed all three monochrome forms by hand (black fills, hairlines, grey ramp) and marked the improvisation.",
+ "insufficiency": "resolve('bar chart of weekly minutes') -> UNDEFINED (closest: component/meter 4.0); resolve('calendar heatmap of the month') -> UNDEFINED; resolve('sparkline trend of the last week') -> UNDEFINED. search('chart')/'graph'/'data visualization' -> no hits. component/meter covers a single value (one track, one fill, one readout, D-15) \u2014 it cannot express series, month grids or trend lines, and no recipe composes them.",
+ "reuse_case": "Histories, dashboards and weekly summaries recur in every tracker or admin consumer; cadence-dominion needed bars, a month grid and a sparkline on one screen (history + ritual detail). Without a declared grammar, each consumer re-invents baselines, value labels and the monochrome ramp slightly differently \u2014 the drift the authority exists to prevent.",
+ "composition_check": "Rules, bands and labels compose surfaces, but no catalogue element declares a figure: no baseline, no series fill, no monochrome ramp, no trend polyline. The meter is single-value progress only. A full-kind search finds no candidate, so any in-character chart is currently uncanonical by construction \u2014 every use is an improvisation with a filed gap.",
+ "proposed": {
+  "add": [
+   {
+    "id": "pattern/plain-chart",
+    "kind": "pattern",
+    "title": "Plain chart (bars, month grid, sparkline)",
+    "aliases": [
+     "chart",
+     "bar chart",
+     "graph",
+     "plot",
+     "data figure",
+     "heatmap",
+     "month grid",
+     "sparkline",
+     "sparkline trend",
+     "trend line",
+     "data visualization"
+    ],
+    "body": {
+     "group": "Data",
+     "states": [
+      "bars: black fill on a 2px black baseline; plain value labels; period labels (Mon\u2013Sun)",
+      "month grid: monochrome ramp (white \u00b7 #F4F4F4 \u00b7 pewter \u00b7 black); today = 2px black border; plain legend",
+      "sparkline: 2px black polyline and 4px square markers over a 1px hairline baseline"
+     ],
+     "a11y": [
+      "values are written as plain text labels; nothing is encoded by hue alone"
+     ],
+     "verify": [
+      ".chart",
+      ".chart i"
+     ]
+    },
+    "note": "New pattern shaped only from attested primitives: 2px rules, fills, the grey ramp and type rhythm (D-02/D-05/D-06/D-15 doctrine). No new primitives; no hue; static."
+   }
+  ]
+ },
+ "depends_on": [
+  "token-set/colour"
+ ],
+ "new_primitives": [],
+ "tests": [
+  "resolve('bar chart of weekly minutes') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
+  "resolve('calendar heatmap of the month') -> RESOLVED pattern/plain-chart (simulated score 8.0)",
+  "resolve('sparkline trend of the last week') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
+  "Colour check: figure fills only use black / white / #F4F4F4 / pewter (D-05, D-R2; red stays ceremonial).",
+  "Motion check: no animated state defined (D-15 static doctrine)."
+ ],
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "dominion",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:23+00:00"
+}

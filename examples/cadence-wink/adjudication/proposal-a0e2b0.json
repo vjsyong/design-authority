@@ -1,0 +1,35 @@
+{
+  "problem": "The pack carries no overlay/dialog vessel and no wizard pattern. 'modal', 'dialog', 'overlay', 'wizard', 'onboarding', 'popup', 'scrim' all resolve UNDEFINED (search returns no hits). The Cadence consumer improvised a shared dialog vessel (white 16px, 35% ink scrim) and a three-step onboarding wizard, both marked.",
+  "insufficiency": "Overlays are source-owned and accepted but unshipped: decisions.json W-17 (overlays, Gate 2 accepted) - 'Dialog: white 16px card, 48px padding, warm ink scrim (rgba(35,30,21,.35)); instant appearance (no motion defined; none invented).' The multi-step flow is also named in source evidence: raw/04-designsystems-one-mailchimp.md (lines 59, 67) - 'Campaign Builder - multi-step editor pattern with live preview, save-and-resume, and async send'. The pack carried neither, so dialogs and wizards can only be improvised.",
+  "reuse_case": "Every consumer app needs dialogs (detail views, confirmations, forms) and most need a multi-step flow (onboarding, wizards); the vessel rules and instant-appearance discipline are app-independent.",
+  "composition_check": "Existing elements cannot compose it: card language gives a surface but not the scrim, not the dialog-specific interior spec, and not the instant-appearance/no-motion rule; no recipe exists to bundle them (recipes.json empty). The wizard adds step structure + progress readout + action pills, but its vessel is absent from canon. One pattern entry for the vessel is the smallest carrier; wizards compose it with the progress pattern (sibling proposal).",
+  "proposed": {
+    "id": "pattern/dialog-overlay",
+    "kind": "pattern",
+    "title": "Dialog (overlay vessel)",
+    "group": "Overlays",
+    "aliases": ["modal", "dialog", "overlay", "popup", "dialog box", "overlay vessel", "scrim"],
+    "body": {
+      "states": [
+        "white card vessel: radius 16, interior padding 48, warm-tinted shadow (card language)",
+        "warm ink scrim rgba(35,30,21,.35) behind the dialog",
+        "instant appearance - motion deliberately undefined (none invented)"
+      ],
+      "a11y": ["focus moves into the dialog on open and returns to the trigger on close; Esc and scrim-click dismissal are baseline behaviour"],
+      "do": ["reuse the content-card vessel for dialogs"],
+      "dont": ["no entrance/exit animation (motion is deliberately undefined in source)"]
+    },
+    "notes": "Content per decisions.json W-17. Multi-step wizards compose this vessel + progress readout (sibling proposal) + action pills; no wizard-specific motion is implied."
+  },
+  "depends_on": ["component/card", "component/action-pill"],
+  "new_primitives": ["warm ink scrim rgba(35,30,21,.35)"],
+  "tests": {
+    "golden": [
+      {"problem": "a modal with the ritual details", "expect": "RESOLVED", "expect_id": "pattern/dialog-overlay", "note": "Overlay vessel resolves."},
+      {"problem": "three-step onboarding wizard", "expect": "RESOLVED", "expect_id": "pattern/dialog-overlay", "note": "Wizard composes the vessel; no separate wizard entry claimed."}
+    ],
+    "checks": [
+      "resolve('animate the dialog with a spring bounce') must remain UNDEFINED (motion policy, golden case retained)"
+    ]
+  }
+}

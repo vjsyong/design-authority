@@ -10,7 +10,9 @@
         "date",
         "toggle",
         "switch",
-        "slider"
+        "slider",
+        "check",
+        "stepper"
       ],
       "constraints": [
         "field styling (soft border, radius 4)",
@@ -28,7 +30,8 @@
         "combobox",
         "autocomplete",
         "filter",
-        "listbox"
+        "listbox",
+        "search"
       ],
       "constraints": [
         "keep field styling",

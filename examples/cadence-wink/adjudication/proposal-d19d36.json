@@ -1,0 +1,31 @@
+{
+  "problem": "'spinner', 'progress', 'ring', 'meter' resolve UNDEFINED. The Cadence consumer improvised an in-flight spinner arc inside the submit button and an SVG progress ring, reusing parsnip/yellow/ink progress logic, both marked.",
+  "insufficiency": "Progress semantics are source-owned and accepted but unshipped: decisions.json W-18 (progress, Gate 2 accepted) - 'Progress = pill track (Parsnip) with yellow fill in flight, ink fill when complete, plus a text readout (\"7 of 10 steps\"). Job actions: start / restart as pills; pause-and-resume allowed (named flow in the product).' The named flow is corroborated by raw/04-designsystems-one-mailchimp.md (lines 59, 67: campaign-builder multi-step editor with save-and-resume). Indeterminate spinner visuals are NOT evidenced (loading-state visuals are UNDEFINED; illustration not reproduced), so only the readout semantics are proposed.",
+  "reuse_case": "Any long-running action or multi-step job (saves, imports, wizards, background jobs) needs the readout; semantics are app-independent.",
+  "composition_check": "token-set/colour gives hues but no progress semantics; component/action-pill gives start/restart actions; nothing states the fill transitions, the text readout, or pause/resume; recipes.json is empty. One pattern entry is the smallest carrier; shape variants (linear track / ring) are applications of the same semantics.",
+  "proposed": {
+    "id": "pattern/progress",
+    "kind": "pattern",
+    "title": "Progress readout",
+    "group": "Progress",
+    "aliases": ["progress", "progress readout", "step progress", "progress bar", "completion", "in flight"],
+    "body": {
+      "states": [
+        "Parsnip track; yellow fill in flight; ink fill when complete",
+        "text readout ('7 of 10 steps')"
+      ],
+      "do": ["job actions start/restart as pills; pause-and-resume allowed"],
+      "dont": ["no indeterminate spinner canon (unevidenced)", "no animation beyond the defined transitions"]
+    },
+    "notes": "Content per decisions.json W-18 (accepted). Ring/track shape is an application choice; the spinner and motion stay outside canon."
+  },
+  "depends_on": ["token-set/colour", "component/action-pill"],
+  "new_primitives": [],
+  "tests": {
+    "golden": [
+      {"problem": "progress readout for a long-running job", "expect": "RESOLVED", "expect_id": "pattern/progress", "note": "Progress semantics resolve."},
+      {"problem": "loading spinner while saving", "expect": "UNDEFINED", "expect_id": null, "note": "Indeterminate spinner stays uncovered."}
+    ],
+    "checks": ["states must use Parsnip/yellow/ink only (palette discipline)"]
+  }
+}

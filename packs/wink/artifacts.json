@@ -4,6 +4,8 @@
       "id": "component/action-pill",
       "kind": "component",
       "title": "Action (pill)",
+      "summary": "Primary action = pill, filled Cavendish Yellow #FFE01B with a 1px ink ring (box-shadow 0 0 0 1px #231E15 — live-measured), label in Peppercorn ink. On yellow/warm fields, primary switches to the dark variant. Secondary = outline pill (2px ink inset).",
+      "status": "beta",
       "aliases": [
         "button",
         "cta",
@@ -33,12 +35,22 @@
           "Real <button>/<a> semantics; visible label; focus must not rely on colour alone."
         ]
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-01, W-02, W-03"
+      },
+      "compiled_from": [
+        "W-01",
+        "W-02",
+        "W-03"
+      ]
     },
     {
       "id": "guideline/typography",
       "kind": "guideline",
       "title": "Typography (two registers)",
+      "summary": "Two registers: soft-serif display for hero/section headlines (with an italic emphasis fragment allowed inside a headline); grotesque sans for all body, UI, labels and metadata. Serif is the exception, never the working voice.",
+      "status": "beta",
       "aliases": [
         "typography",
         "font",
@@ -49,12 +61,20 @@
       "body": {
         "group": "Type"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-04"
+      },
+      "compiled_from": [
+        "W-04"
+      ]
     },
     {
       "id": "token-set/type-scale",
       "kind": "token-set",
       "title": "Screen type scale",
+      "summary": "Screen scale: display 48–64px w400 tight tracking (−1.2px at 64); section 35px/1.0; body 16/1.35; small 14; labels/buttons 13/500.",
+      "status": "beta",
       "aliases": [
         "type scale",
         "font size",
@@ -64,12 +84,20 @@
       "body": {
         "group": "Type"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-05"
+      },
+      "compiled_from": [
+        "W-05"
+      ]
     },
     {
       "id": "token-set/colour",
       "kind": "token-set",
       "title": "Colour roles",
+      "summary": "Roles: yellow = brand field + primary action only; peppercorn = text, ink, shadow tint; white + Parsnip = surfaces; Ochre = section band terminator; Kale = links inside content; #BF4055 = error text/fills.",
+      "status": "beta",
       "aliases": [
         "palette",
         "colour",
@@ -81,12 +109,20 @@
       "body": {
         "group": "Colour"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-06"
+      },
+      "compiled_from": [
+        "W-06"
+      ]
     },
     {
       "id": "component/card",
       "kind": "component",
       "title": "Card (soft vessel)",
+      "summary": "Content cards: white, borderless, radius 16 (24 for large), elevation via warm ink-tinted shadow rgba(35,30,21,.2) 0 8px 32px; interior padding 48. Tinted variant: Parsnip, no shadow. 1px borders (#DEDDDC) only on inputs/dividers, never as card devices.",
+      "status": "beta",
       "aliases": [
         "card",
         "surface",
@@ -105,12 +141,20 @@
           ".card2"
         ]
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-07"
+      },
+      "compiled_from": [
+        "W-07"
+      ]
     },
     {
       "id": "guideline/shape-language",
       "kind": "guideline",
       "title": "Shape classes",
+      "summary": "Shape encodes class: interactive = pill (always with the 1px ink ring); content vessel = 16/24 soft-radius; structural chrome (bands, dividers, page blocks) = square.",
+      "status": "beta",
       "aliases": [
         "shape",
         "corner",
@@ -122,12 +166,20 @@
       "body": {
         "group": "Shape"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-08"
+      },
+      "compiled_from": [
+        "W-08"
+      ]
     },
     {
       "id": "guideline/hierarchy",
       "kind": "guideline",
       "title": "Section rhythm",
+      "summary": "One page title; sections = small uppercase label → display headline → 1–2 sentence paragraph. Numbers may take display treatment for proof moments.",
+      "status": "beta",
       "aliases": [
         "hierarchy",
         "section label",
@@ -137,12 +189,20 @@
       "body": {
         "group": "Structure"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-10"
+      },
+      "compiled_from": [
+        "W-10"
+      ]
     },
     {
       "id": "component/navbar",
       "kind": "component",
       "title": "Top bar",
+      "summary": "Top bar: white background; dark links; dropdown items carry chevrons; hover = light-grey rounded-rect fill; primary CTA at right end; must stay single-row (no wrapping).",
+      "status": "beta",
       "aliases": [
         "navbar",
         "top bar",
@@ -163,19 +223,31 @@
           "Dropdown affordances need aria-haspopup/expanded when built; single-row layout."
         ]
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-11"
+      },
+      "compiled_from": [
+        "W-11"
+      ]
     },
     {
       "id": "component/field-select",
       "kind": "component",
       "title": "Field & small-set select",
+      "summary": "Native select styled as a field for small fixed sets (≤ ~12): more rounded (12px) with serif field text per Gate 2 review. Larger or filtered selection out of scope; use the platform-controls fallback and mark it.",
+      "status": "beta",
       "aliases": [
         "field",
         "input",
         "form field",
         "select",
         "dropdown",
-        "text field"
+        "text field",
+        "textarea",
+        "text area",
+        "multiline field",
+        "notes field"
       ],
       "body": {
         "class": "field",
@@ -193,12 +265,20 @@
           "<label for> always; native select for small sets."
         ]
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-13"
+      },
+      "compiled_from": [
+        "W-13"
+      ]
     },
     {
       "id": "component/ledger",
       "kind": "component",
       "title": "Ledger rows",
+      "summary": "Ledger: white surface, 16px padded rows, hairline #DEDDDC dividers (no zebra striping), header row in Parsnip with 13/500 labels; row hover = Parsnip tint; status pill inline; text links in ink with underline.",
+      "status": "beta",
       "aliases": [
         "table",
         "ledger",
@@ -210,12 +290,20 @@
         "class": "ledger",
         "group": "Repeated content"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-20"
+      },
+      "compiled_from": [
+        "W-20"
+      ]
     },
     {
       "id": "component/badge",
       "kind": "component",
       "title": "Emphasis badge",
+      "summary": "Emphasis badges: pill, yellow fill, 12/600 label (e.g. 'Most popular' on the selected plan/category).",
+      "status": "beta",
       "aliases": [
         "badge",
         "label",
@@ -226,12 +314,20 @@
         "class": "badge",
         "group": "Emphasis"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-21"
+      },
+      "compiled_from": [
+        "W-21"
+      ]
     },
     {
       "id": "guideline/voice",
       "kind": "guideline",
       "title": "Voice",
+      "summary": "Second person, question-first, plain English, non-blaming; dry wit allowed in microcopy; italic serif emphasis fragment allowed in headlines.",
+      "status": "beta",
       "aliases": [
         "voice",
         "tone",
@@ -242,7 +338,13 @@
       "body": {
         "group": "Voice"
       },
-      "note": null
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-22"
+      },
+      "compiled_from": [
+        "W-22"
+      ]
     }
   ]
 }

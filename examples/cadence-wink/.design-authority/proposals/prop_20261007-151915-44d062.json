@@ -1,0 +1,68 @@
+{
+ "id": "prop/20261007-151915-44d062",
+ "gap_id": "gap/20261007-145939-d6853d",
+ "problem": "'status label' is a resolver near-miss (badge @4.0, hierarchy @4.0 - below the 6.5 direct threshold); 'streak', 'counter', 'stat', 'locked', 'achievement' return no hits. The Cadence consumer improvised status pills on badge geometry (parsnip neutral / yellow attention), a locked badge variant, and a display-number streak counter, all marked.",
+ "insufficiency": "Status representation is source-owned and accepted but unshipped: decisions.json W-14 (status, Gate 2 accepted) - 'Status = word-first pill: neutral (Parsnip bg, ink text), attention (Ochre bg, ink text), positive (ink text, no colour - word carries it), problem (#BF4055 tint bg, dark red text). Colour supports the word; never replaces it.' The pack's badge is emphasis-yellow only; the consumer's improvised yellow 'attention' state conflicts with W-14 (attention = Ochre). The locked-badge state and the stat-counter element are NOT evidenced - excluded from this proposal.",
+ "reuse_case": "State labels recur across products (on-track/slipping, draft/live, environment, health); the word-first pill and its four tones are app-independent.",
+ "composition_check": "component/badge is emphasis-only (yellow), so it cannot express the four status tones or the word-first rule; token-set/colour gives the hues but no states; recipes.json is empty. One component entry is the smallest carrier. (The streak counter composes from display typography + hierarchy - no new element needed; the locked badge state has no evidence.)",
+ "proposed": {
+  "id": "component/status-pill",
+  "kind": "component",
+  "title": "Status pill",
+  "group": "Status",
+  "aliases": [
+   "status",
+   "status label",
+   "state label",
+   "on track",
+   "slipping",
+   "state chip"
+  ],
+  "body": {
+   "states": [
+    "neutral: Parsnip bg, ink text",
+    "attention: Ochre bg, ink text",
+    "positive: ink text, no colour - the word carries it",
+    "problem: #BF4055 tint bg, dark red text"
+   ],
+   "do": [
+    "word-first: colour supports the word, never replaces it"
+   ],
+   "dont": [
+    "no green/red dots (no green exists in the system)",
+    "never let colour alone carry state"
+   ]
+  },
+  "notes": "Content per decisions.json W-14 (accepted). Streak-counter and locked-badge elements deliberately not proposed (no evidence)."
+ },
+ "depends_on": [
+  "component/badge",
+  "token-set/colour"
+ ],
+ "new_primitives": [],
+ "tests": {
+  "golden": [
+   {
+    "problem": "a status label next to the campaign",
+    "expect": "RESOLVED",
+    "expect_id": "component/status-pill",
+    "note": "Status pill resolves."
+   }
+  ],
+  "checks": [
+   "states must match W-14 tones exactly (neutral Parsnip, attention Ochre, positive ink-only, problem #BF4055)",
+   "attention must not be implemented as yellow"
+  ]
+ },
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "wink",
+  "version": "0.1.0",
+  "commit": "n/a - derived from public sources, not a repository"
+ },
+ "created": "2026-10-07T15:19:15+00:00"
+}
