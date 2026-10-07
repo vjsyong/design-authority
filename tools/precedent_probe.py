@@ -30,6 +30,7 @@ CASES = {
     "dominion": [
         ("a progress ring for the day", "precedent/declined-progress-ring-badges", None),
         ("photo upload for the ritual", "precedent/declined-photographic-imagery", None),
+        ("tabs across the top of the view", "precedent/declined-view-tabs-paging", None),
     ],
 }
 BENIGN = ("add a primary button to the page", "a form field for the borrower email")

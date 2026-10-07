@@ -1,0 +1,66 @@
+{"query": "toast", "label": "toast", "top": [{"id": "pattern/inline-notice", "kind": "pattern", "score": 1.5}]}
+{"query": "notification", "label": "notification", "top": []}
+{"query": "announcement banner", "label": "banner", "top": []}
+{"query": "weekly summary", "label": "week summary", "top": []}
+{"query": "message", "label": "message", "top": [{"id": "pattern/inline-notice", "kind": "pattern", "score": 4.0}]}
+{"query": "error", "label": "error", "top": [{"id": "token-set/colour", "kind": "token-set", "score": 1.5}]}
+{"query": "error message", "label": "error message", "top": [{"id": "pattern/inline-notice", "kind": "pattern", "score": 4.0}, {"id": "token-set/colour", "kind": "token-set", "score": 1.5}]}
+{"query": "validation", "label": "validation", "top": [{"id": "pattern/inline-notice", "kind": "pattern", "score": 4.0}]}
+{"query": "spinner", "label": "spinner", "top": [{"id": "pattern/progress", "kind": "pattern", "score": 1.0}]}
+{"query": "loading", "label": "loading", "top": []}
+{"query": "saving", "label": "saving", "top": []}
+{"query": "chart", "label": "chart", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 9.5}]}
+{"query": "graph", "label": "graph", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 9.5}]}
+{"query": "bar chart", "label": "bar", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 14.0}, {"id": "component/navbar", "kind": "component", "score": 4.0}, {"id": "pattern/progress", "kind": "pattern", "score": 4.0}]}
+{"query": "heatmap", "label": "heatmap", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 9.5}]}
+{"query": "sparkline", "label": "sparkline", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 9.5}]}
+{"query": "trend", "label": "trend", "top": [{"id": "precedent/declined-chart-treatments", "kind": "precedent", "score": 4.5}]}
+{"query": "progress ring", "label": "ring", "top": [{"id": "pattern/progress", "kind": "pattern", "score": 4.0}, {"id": "component/action-pill", "kind": "component", "score": 1.5}, {"id": "guideline/shape-language", "kind": "guideline", "score": 1.5}]}
+{"query": "circle", "label": "circle", "top": []}
+{"query": "number", "label": "number", "top": [{"id": "guideline/hierarchy", "kind": "guideline", "score": 1.5}]}
+{"query": "counter", "label": "counter", "top": []}
+{"query": "streak", "label": "streak", "top": []}
+{"query": "badge", "label": "badge", "top": [{"id": "component/badge", "kind": "component", "score": 9.0}, {"id": "precedent/declined-neutral-tag-variant", "kind": "precedent", "score": 1.5}, {"id": "precedent/status-pill-rejected", "kind": "precedent", "score": 1.0}]}
+{"query": "achievement", "label": "achievement", "top": []}
+{"query": "milestone", "label": "milestone", "top": []}
+{"query": "status", "label": "status", "top": [{"id": "precedent/status-pill-rejected", "kind": "precedent", "score": 9.5}, {"id": "pattern/inline-notice", "kind": "pattern", "score": 4.0}, {"id": "component/ledger", "kind": "component", "score": 1.5}]}
+{"query": "on track", "label": "on track", "top": [{"id": "precedent/status-pill-rejected", "kind": "precedent", "score": 9.5}, {"id": "pattern/progress", "kind": "pattern", "score": 1.5}]}
+{"query": "avatar", "label": "avatar", "top": [{"id": "precedent/declined-photographic-avatars-glyphs", "kind": "precedent", "score": 9.5}]}
+{"query": "monogram", "label": "monogram", "top": [{"id": "precedent/declined-photographic-avatars-glyphs", "kind": "precedent", "score": 1.0}]}
+{"query": "initials", "label": "initials", "top": []}
+{"query": "icon", "label": "icon", "top": [{"id": "precedent/declined-photographic-avatars-glyphs", "kind": "precedent", "score": 9.5}]}
+{"query": "glyph", "label": "glyph", "top": [{"id": "precedent/declined-photographic-avatars-glyphs", "kind": "precedent", "score": 14.5}]}
+{"query": "select", "label": "select", "top": [{"id": "component/field-select", "kind": "component", "score": 9.0}]}
+{"query": "category", "label": "category", "top": [{"id": "component/badge", "kind": "component", "score": 1.5}]}
+{"query": "dropdown", "label": "dropdown", "top": [{"id": "component/field-select", "kind": "component", "score": 9.0}, {"id": "component/navbar", "kind": "component", "score": 1.5}]}
+{"query": "tabs", "label": "tabs", "top": []}
+{"query": "tab", "label": "tab", "top": []}
+{"query": "segmented", "label": "segmented", "top": []}
+{"query": "stepper", "label": "stepper", "top": [{"id": "fallback/platform-controls", "kind": "fallback", "score": 2.5}]}
+{"query": "date", "label": "date", "top": [{"id": "fallback/platform-controls", "kind": "fallback", "score": 2.5}]}
+{"query": "search", "label": "search", "top": []}
+{"query": "filter", "label": "filter", "top": []}
+{"query": "search box", "label": "search box", "top": [{"id": "pattern/dialog-overlay", "kind": "pattern", "score": 4.0}]}
+{"query": "table", "label": "table", "top": [{"id": "component/ledger", "kind": "component", "score": 9.0}]}
+{"query": "ledger", "label": "ledger", "top": [{"id": "component/ledger", "kind": "component", "score": 9.0}]}
+{"query": "list", "label": "list", "top": [{"id": "component/ledger", "kind": "component", "score": 4.0}]}
+{"query": "rows", "label": "rows", "top": [{"id": "component/ledger", "kind": "component", "score": 9.0}]}
+{"query": "pagination", "label": "pagination", "top": [{"id": "precedent/declined-pager-and-drag", "kind": "precedent", "score": 9.5}]}
+{"query": "pager", "label": "pager", "top": [{"id": "precedent/declined-pager-and-drag", "kind": "precedent", "score": 9.5}]}
+{"query": "older entries", "label": "older", "top": []}
+{"query": "tag", "label": "tag", "top": [{"id": "precedent/declined-neutral-tag-variant", "kind": "precedent", "score": 14.5}, {"id": "component/badge", "kind": "component", "score": 9.0}]}
+{"query": "chip", "label": "chip", "top": [{"id": "precedent/declined-neutral-tag-variant", "kind": "precedent", "score": 9.5}, {"id": "precedent/status-pill-rejected", "kind": "precedent", "score": 4.5}]}
+{"query": "label", "label": "label", "top": [{"id": "component/badge", "kind": "component", "score": 9.0}, {"id": "precedent/declined-neutral-tag-variant", "kind": "precedent", "score": 4.5}, {"id": "precedent/status-pill-rejected", "kind": "precedent", "score": 4.5}, {"id": "guideline/hierarchy", "kind": "guideline", "score": 4.0}, {"id": "component/action-pill", "kind": "component", "score": 1.5}]}
+{"query": "drag", "label": "drag", "top": [{"id": "precedent/declined-pager-and-drag", "kind": "precedent", "score": 9.5}]}
+{"query": "reorder", "label": "reorder", "top": [{"id": "precedent/declined-pager-and-drag", "kind": "precedent", "score": 9.5}]}
+{"query": "undo", "label": "undo", "top": [{"id": "pattern/destructive-confirm", "kind": "pattern", "score": 1.0}]}
+{"query": "delete", "label": "delete", "top": [{"id": "pattern/destructive-confirm", "kind": "pattern", "score": 4.0}]}
+{"query": "export", "label": "export", "top": [{"id": "precedent/declined-csv-export-affordance", "kind": "precedent", "score": 9.5}]}
+{"query": "csv", "label": "csv", "top": [{"id": "precedent/declined-csv-export-affordance", "kind": "precedent", "score": 9.5}]}
+{"query": "download", "label": "download", "top": [{"id": "precedent/declined-csv-export-affordance", "kind": "precedent", "score": 9.5}]}
+{"query": "celebration", "label": "celebration", "top": []}
+{"query": "animation", "label": "animation", "top": [{"id": "pattern/dialog-overlay", "kind": "pattern", "score": 1.0}, {"id": "pattern/progress", "kind": "pattern", "score": 1.0}]}
+{"query": "confetti", "label": "confetti", "top": []}
+{"query": "nav", "label": "nav", "top": [{"id": "component/navbar", "kind": "component", "score": 4.0}]}
+{"query": "navigation", "label": "navigation", "top": [{"id": "component/navbar", "kind": "component", "score": 9.0}]}
+{"query": "tabs nav", "label": "tab bar", "top": [{"id": "component/navbar", "kind": "component", "score": 4.0}]}

@@ -1,0 +1,108 @@
+PASS - three registers load (Gelasio/Inter/Archivo Black) | {'gelasio': True, 'inter': True, 'archivo': True}
+PASS - wizard auto-opens on first run 
+PASS - wizard shows Step 1 of 3 
+PASS - wizard step 2 shows ritual radios 
+PASS - wizard step 3 shows goal slider 
+PASS - wizard closes after finish 
+PASS - wizard added the chosen ritual 
+PASS - wizard set the goal (60) 
+PASS - setup notice shown 
+PASS - week sums = [66, 84, 37, 0, 0, 0, 0] 
+PASS - streak = 12 
+PASS - total logs = 101 
+PASS - meter readout 2 of 5 | '2 of 5 rituals · 37 minutes logged'
+PASS - week notice numbers 
+PASS - week notice is a ruled notice 
+PASS - six ritual rows | ['row-r1', 'row-r2', 'row-r3', 'row-r4', 'row-r5', 'row-r6']
+PASS - one SLIPPING tag (Piano), solid red | [{'t': 'Slipping', 'bg': 'rgb(227, 18, 11)'}]
+PASS - ON TRACK tags present | ['body', 'on track', 'mind', 'on track', 'body', 'on track', 'mind', 'on track', 'craft', 'craft', 'on track']
+PASS - glyph marks render per ritual 
+PASS - search cursor motif in navbar 
+PASS - history tab switches view 
+PASS - bar data-values exact | ['66', '84', '37', '0', '0', '0', '0']
+PASS - today bar red 
+PASS - series bars Chicago blue 
+PASS - chart baseline is 2px ink origin rule 
+PASS - month grid 35 cells 
+PASS - today cell red with 37 min | {'cls': 'mcell todayc', 'bg': 'rgb(227, 18, 11)', 'mn': '37'}
+PASS - outside-month cells dimmed (4) 
+PASS - intensity classes present (i1/i2/i3) 
+PASS - sparkline 7 columns exact | ['52', '88', '37', '39', '66', '84', '37']
+PASS - sparkline readout 403 
+PASS - ledger sub = 101 entries 
+PASS - ledger page shows 8 rows 
+PASS - pager = Page 1 of 13 | 'Page 1 of 13'
+PASS - newest entry is 7 Oct / Morning stretch / 12 | ['7 Oct 2026', 'Morning stretch', '12', '—']
+PASS - pager advances to page 2 
+PASS - streak display shows 12 
+PASS - streak note names 26 September 
+PASS - three badges render | [{'t': '7 DaysEarned 2 Oct.', 'earned': True, 'bg': 'rgb(26, 26, 26)'}, {'t': '30 Days12 of 30.', 'earned': False, 'bg': 'rgb(255, 255, 255)'}, {'t': '150 Logs101 of 150.', 'earned': False, 'bg': 'rgb(255, 255, 255)'}]
+PASS - 7 DAYS badge earned, solid ink | {'t': '7 DaysEarned 2 Oct.', 'earned': True, 'bg': 'rgb(26, 26, 26)'}
+PASS - 30 DAYS in progress (12 of 30) 
+PASS - 150 LOGS in progress (101 of 150) 
+PASS - marked nodes exist (>= 25) | 44
+PASS - toggle labels every marked node | (44, 44)
+PASS - completion label reads adapted · ring → meter | 'adapted · ring → meter + readout'
+PASS - dashed amber outline on marked node | 'dashed rgb(178, 106, 0)'
+PASS - toggle aria-pressed true 
+PASS - log panel opens 
+PASS - date prefilled today 
+PASS - minutes prefilled target 30 
+PASS - error shows under field on empty minutes 
+PASS - no save happened on error 
+PASS - saved readout shown 
+PASS - state records 34 min 
+PASS - note stored 
+PASS - meter now 3 of 5 · 71 minutes | '3 of 5 rituals · 71 minutes logged'
+PASS - bar today now 71 
+PASS - log notice ruled + copy 
+PASS - celebration static-flip node on r3 row 
+PASS - log panel closes 
+PASS - details panel opens 
+PASS - category select prefilled Mind 
+PASS - category edit persists to state 
+PASS - updated notice appears 
+PASS - frequency radios present (3) 
+PASS - frequency edit persists 
+PASS - reminders checkbox edit persists 
+PASS - details sparkline 7 cols 
+PASS - confirm zone appears inline 
+PASS - destructive control not pre-focused 
+PASS - keep hides the confirm 
+PASS - ritual removed from state 
+PASS - undo notice shows 
+PASS - details panel closed after removal 
+PASS - undo restores the ritual 
+PASS - undo notice dismissed 
+PASS - toggle checked by default 
+PASS - toggle flip persists 
+PASS - goal readout updates 
+PASS - goal persists to state 
+PASS - theme readout states Light only 
+PASS - move-up control reorders | ['r1', 'r3', 'r2', 'r4', 'r5', 'r6']
+PASS - today list follows new order | ['row-r1', 'row-r3', 'row-r2', 'row-r4', 'row-r5', 'row-r6']
+PASS - mark cycler advances glyph | (0, 1)
+PASS - CSV download fires (cadence-log.csv) 
+PASS - search filters to the walk ritual | ['row-r3']
+PASS - empty state appears when nothing matches 
+PASS - empty copy is declarative 
+PASS - clear search restores list 
+PASS - search input cleared 
+PASS - wizard stays closed after first run 
+PASS - log persisted (34) 
+PASS - note persisted 
+PASS - goal persisted (75) 
+PASS - order persisted 
+PASS - category edit persisted 
+PASS - streak still 12 
+PASS - bars persisted (today 71) 
+PASS - mobile: ledger head hides (stacked rows) 
+PASS - mobile: nav row still visible 
+PASS - empty block covers the no-rituals case 
+PASS - empty action becomes Run setup 
+PASS - Run setup reopens the wizard 
+PASS - wizard dismisses again 
+PASS - zero console errors | []
+PASS - zero failed requests | []
+
+106 checks, 106 passed, 0 failed

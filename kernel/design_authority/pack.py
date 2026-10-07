@@ -213,14 +213,18 @@ class Pack(object):
         toks = set(norm_tokens(text))
         hits = []
         for p in self.precedents:
-            singles, phrases = set(), []
+            singles, phrases = {}, []
             for m in p.get("matches", []):
                 nm = norm_tokens(m)
                 if len(nm) == 1:
-                    singles.add(nm[0])
+                    s = nm[0]
+                    # record the ORIGINAL word length: stems can shrink below
+                    # the strong-token bar ("tabs" -> "tab"), which must not
+                    # silently disqualify a legitimate single-word match.
+                    singles[s] = max(singles.get(s, 0), len(str(m).strip()))
                 elif nm:
                     phrases.append(set(nm))
-            strong = [t for t in (toks & singles) if len(t) >= 4]
+            strong = [t for t in toks if t in singles and singles[t] >= 4]
             ph_hits = [x for x in phrases if x <= toks]
             score = len(strong) + 2 * len(ph_hits)
             if score >= 1:
