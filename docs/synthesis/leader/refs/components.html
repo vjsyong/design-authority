@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>leader · derived interpretation · Gate 2 components</title>
+<style>
+@font-face { font-family: 'Gelasio'; src: url('../tile/fonts/Gelasio-VF.ttf'); font-weight: 400 700; }
+@font-face { font-family: 'Inter'; src: url('../tile/fonts/Inter-VF.ttf'); font-weight: 100 900; }
+@font-face { font-family: 'Archivo Black'; src: url('../tile/fonts/ArchivoBlack-Regular.ttf'); }
+:root { --red:#E3120B; --red95:#FEE7E7; --ink:#1A1A1A; --l40:#666; --l85:#D9D9D9; --l95:#F2F2F2; }
+* { box-sizing: border-box; margin: 0; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 36px 40px; }
+h1 { font-family: 'Gelasio', serif; font-size: 30px; font-weight: 700; }
+.sub { font-size: 13px; color: var(--l40); margin: 6px 0 22px; max-width: 95ch; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cell { border: 1px solid var(--l85); padding: 18px 20px; }
+.cell .tag { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--l40); margin-bottom: 12px; }
+.rowline { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; border: none; padding: 11px 20px; cursor: pointer; }
+.b-red { background: var(--red); color: #fff; }
+.b-out { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+.b-txt { background: none; text-decoration: underline; padding: 11px 4px; }
+.field label { display: block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--l40); margin-bottom: 6px; }
+.field input { font-family: 'Gelasio', serif; font-size: 16px; width: 100%; padding: 10px 12px; border: 2px solid var(--ink); background: #fff; }
+.field input.focus { outline: 1px solid var(--ink); outline-offset: 2px; }
+.field .err { font-family: 'Gelasio', serif; font-size: 13px; color: var(--red); margin-top: 6px; }
+.tag2 { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 11px; border: 2px solid var(--ink); }
+.tag2.red { background: var(--red); border-color: var(--red); color: #fff; }
+.notice { border-top: 2px solid var(--ink); background: var(--l95); padding: 14px 16px; font-size: 14px; }
+.dialog-cell { position: relative; min-height: 250px; background: var(--l95); overflow: hidden; }
+.scrim { position: absolute; inset: 0; background: rgba(26,26,26,.62); }
+.dialog { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 80%; background: #fff; border: 2px solid var(--ink); padding: 26px 28px; }
+.dialog h3 { font-family: 'Gelasio', serif; font-size: 20px; margin-bottom: 8px; }
+.dialog p { font-size: 13.5px; margin-bottom: 16px; color: #333; }
+.meter { height: 14px; background: var(--l85); }
+.meter i { display: block; height: 100%; width: 70%; background: var(--red); }
+.mread { font-size: 13px; color: var(--l40); margin: 8px 0 12px; }
+.ledger { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ledger th { font-size: 11px; letter-spacing: .07em; text-transform: uppercase; text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--ink); font-weight: 700; }
+.ledger td { padding: 11px 10px; border-bottom: 1px solid var(--l85); font-family: 'Gelasio', serif; }
+.ledger td.num { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--l40); }
+.ledger tr.hov td { background: var(--red95); }
+.ledger a { color: var(--ink); }
+.cues { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+.thread { height: 3px; background: var(--red); width: 160px; }
+.glyphs i { display: inline-block; background: var(--ink); margin-right: 8px; }
+.cursorbox { border: 2px solid var(--ink); padding: 9px 14px; font-size: 13.5px; }
+.cursorbox .cur { display: inline-block; width: 2px; height: 15px; background: var(--red); margin-left: 6px; vertical-align: middle; }
+.display { font-family: 'Gelasio', serif; font-size: 34px; line-height: 1.12; }
+.standf { font-family: 'Gelasio', serif; font-size: 16px; color: #444; margin-top: 8px; }
+.footnote { font-size: 12px; color: var(--l40); margin-top: 18px; max-width: 100ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>leader · derived interpretation — Gate 2 reference</h1>
+  <p class="sub">Judgment items rendered in interface form. IDs = decision IDs (L-nn). Fonts: declared fallback-class stand-ins (Gelasio ≈ Georgia; Inter ≈ Helvetica stack; Archivo Black ≈ Arial Black display).</p>
+
+  <div class="grid">
+    <div class="cell">
+      <p class="tag">L-01 · L-03 · actions — rect controls, near-instant swaps</p>
+      <div class="rowline"><button class="btn b-red">Retire item</button><button class="btn b-out">Cancel</button><button class="btn b-txt">Read the full entry</button></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-05 · display + standfirst cadence</p>
+      <p class="display">A deeply unfashionable idea is quietly winning</p>
+      <p class="standf">Policymakers are learning to love industrial policy again.</p>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-11 · L-23 · forms — square field, double-line focus, red error</p>
+      <div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="err">That name isn’t on the member list.</p></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-13 · status — rectangular tags, word inside</p>
+      <div class="rowline"><span class="tag2">Available</span><span class="tag2">On loan</span><span class="tag2 red">Overdue</span></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-14 · feedback — ruled statement box</p>
+      <div class="notice">Two loans are due this week. Borrowers have been emailed; no action needed yet.</div>
+    </div>
+
+    <div class="cell dialog-cell">
+      <div class="scrim"></div>
+      <div class="dialog">
+        <p class="tag" style="margin-bottom:8px">L-15 · L-19 · destructive confirm</p>
+        <h3>Retire “Cordless drill 18V”?</h3>
+        <p>It leaves the register permanently. Existing loan records stand.</p>
+        <div class="rowline"><button class="btn b-red">Retire</button><button class="btn b-out">Cancel</button></div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-16 · progress — rectangle track, red fill, sans readout</p>
+      <div class="meter"><i></i></div>
+      <p class="mread">7 of 10 steps · reconciling loan dates…</p>
+      <div class="rowline"><button class="btn b-out">Restart import</button></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">L-08 · L-10 · motifs — red thread, glyphs, typing cursor</p>
+      <div class="cues">
+        <div class="thread"></div>
+        <div class="glyphs"><i style="width:10px;height:10px"></i><i style="width:15px;height:15px"></i><i style="width:20px;height:20px"></i></div>
+        <div class="cursorbox">Search the register<span class="cur"></span></div>
+      </div>
+    </div>
+
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">L-18 · repeated content — editorial ledger (rules do the separating; hover = red wash)</p>
+      <table class="ledger">
+        <tr><th>Item</th><th>Category</th><th>Status</th><th class="num">Borrower</th><th></th></tr>
+        <tr><td>Torque wrench 200Nm</td><td class="num">Hand tools</td><td><span class="tag2">Available</span></td><td class="num">—</td><td><a href="#">View</a></td></tr>
+        <tr class="hov"><td>Cordless drill 18V</td><td class="num">Power tools</td><td><span class="tag2">On loan</span></td><td class="num">S. Ho</td><td><a href="#">View</a></td></tr>
+        <tr><td>Heat gun</td><td class="num">Power tools</td><td><span class="tag2 red">Overdue</span></td><td class="num">M. Chan</td><td><a href="#">View</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <p class="footnote">Also in this batch but not visual here: L-12 selection (small sets only), L-22 responsive collapse, L-24 prohibitions (no radius, no shadows, no pills, no decorative colour, no exclamation marks). L-17 empty state = ruled statement + one action; L-21 imagery: none in this build.</p>
+</div>
+</body>
+</html>

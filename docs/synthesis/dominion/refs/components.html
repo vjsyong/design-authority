@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>dominion · derived interpretation · Gate 2 components</title>
+<style>
+@font-face { font-family: 'Arimo'; src: url('../tile/fonts/Arimo-VF.ttf'); font-weight: 400 700; }
+:root { --red:#EB2D37; --pewter:#969696; --band:#F4F4F4; --line:#C9C9C9; }
+* { box-sizing: border-box; margin: 0; }
+body { font-family: 'Arimo', 'Helvetica', sans-serif; color: #000; background: #fff; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 36px 40px; }
+h1 { font-size: 30px; font-weight: 400; }
+.sub { font-size: 13px; color: #444; margin: 6px 0 22px; max-width: 95ch; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cell { border: 1px solid var(--line); padding: 18px 20px; }
+.cell .tag { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #555; margin-bottom: 12px; }
+.rowline { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn { font-family: 'Arimo', sans-serif; font-size: 14px; border: none; padding: 11px 20px; cursor: pointer; }
+.b-red { background: var(--red); color: #fff; }
+.b-out { background: #fff; box-shadow: inset 0 0 0 2px #000; }
+.b-txt { background: none; text-decoration: underline; padding: 11px 4px; }
+.bil { font-size: 24px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.bil .div { width: 1px; height: 24px; background: #000; }
+.bilstack { display: grid; gap: 4px; font-size: 20px; margin-top: 10px; }
+.blab { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #555; margin-bottom: 10px; }
+.statusline { display: grid; gap: 10px; font-size: 14px; }
+.st { padding: 7px 12px; display: inline-block; }
+.st-a { border: 1px solid #000; }
+.st-b { background: var(--band); border: 1px solid var(--line); }
+.st-c { border-left: 4px solid #000; background: var(--band); font-weight: 700; }
+.field label { display: block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
+.field input { font-family: 'Arimo', sans-serif; font-size: 16px; width: 100%; padding: 10px 12px; border: 1.5px solid #000; }
+.field input.focus { border-width: 2px; outline: 1px solid #000; outline-offset: 2px; }
+.field .hint2 { font-size: 12px; color: #555; margin-top: 5px; }
+.notice { border-top: 2px solid #000; background: var(--band); padding: 14px 16px; font-size: 14px; }
+.dialog-cell { position: relative; min-height: 250px; background: var(--band); overflow: hidden; }
+.scrim { position: absolute; inset: 0; background: rgba(0,0,0,.55); }
+.dialog { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 80%; background: #fff; border: 2px solid #000; padding: 26px 28px; }
+.dialog h3 { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
+.dialog p { font-size: 13.5px; margin-bottom: 16px; color: #333; }
+.meter { height: 14px; background: var(--band); border: 1px solid var(--line); }
+.meter i { display: block; height: 100%; width: 70%; background: #000; }
+.mread { font-size: 13px; color: #555; margin: 8px 0 12px; }
+.ledger { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ledger th { font-size: 11px; letter-spacing: .07em; text-transform: uppercase; text-align: left; padding: 8px 10px; border-bottom: 2px solid #000; font-weight: 500; }
+.ledger td { padding: 11px 10px; border-bottom: 1px solid var(--line); }
+.ledger tr.hov td { background: var(--band); }
+.ledger a { color: #000; }
+.masthead { border-bottom: 2px solid #000; padding: 12px 0; display: flex; align-items: center; gap: 12px; }
+.mh-accent { width: 10px; height: 30px; background: var(--red); }
+.mh-title { font-size: 17px; font-weight: 500; }
+.mh-nav { margin-left: auto; font-size: 13px; display: flex; gap: 14px; color: #333; }
+.mh-nav .on { font-weight: 700; text-decoration: underline; }
+.footnote { font-size: 12px; color: #555; margin-top: 18px; max-width: 100ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>dominion · derived interpretation — Gate 2 reference</h1>
+  <p class="sub">Judgment items rendered in interface form. IDs = decision IDs (D-nn). Font: declared Helvetica-class stand-in (Arimo). No Crown marks anywhere — placeholders only.</p>
+
+  <div class="grid">
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">D-08 · masthead (identity zone) — bookend discipline, generic placeholders</p>
+      <div class="masthead">
+        <div class="mh-accent"></div>
+        <div class="mh-title">Tool register</div>
+        <div class="mh-nav"><span class="on">Items</span><span>Activity</span></div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-01 · actions — square, one ceremonial red</p>
+      <div class="rowline"><button class="btn b-red">Retire item</button><button class="btn b-out">Cancel</button><button class="btn b-txt">Read details</button></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-09 · bilingual structure — EN | FR side-by-side, over-under fallback</p>
+      <p class="blab">Side by side</p>
+      <div class="bil"><span>Tool register</span><span class="div"></span><span>Registre des outils</span></div>
+      <p class="blab" style="margin-top:16px">Over &amp; under (width-limited)</p>
+      <div class="bilstack"><span>Tool register</span><span>Registre des outils</span></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-10 · status — words carry meaning; structure carries emphasis (no colour coding)</p>
+      <div class="statusline">
+        <span class="st st-a">Available</span>
+        <span class="st st-b">On loan — S. Ho</span>
+        <span class="st st-c">Overdue — due back 3 days ago</span>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-11 · D-21 · forms — square field, double-line focus</p>
+      <div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="hint2">Focused: border thickens, outer line offset 2. No colour used.</p></div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-13 · feedback — ruled plain-language notice</p>
+      <div class="notice">Two loans are due this week. The borrowers have been contacted. Nothing needs your attention yet.</div>
+    </div>
+
+    <div class="cell dialog-cell">
+      <div class="scrim"></div>
+      <div class="dialog">
+        <p class="tag" style="margin-bottom:8px">D-14 · D-18 · destructive confirm</p>
+        <h3>Retire “Cordless drill 18V”?</h3>
+        <p>It will be removed from the register and cannot be restored. Loan records remain intact.</p>
+        <div class="rowline"><button class="btn b-out" style="background:#000;color:#fff;box-shadow:none">Retire item</button><button class="btn b-out">Cancel</button></div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">D-15 · progress — square meter, black fill, plain readout</p>
+      <div class="meter"><i></i></div>
+      <p class="mread">7 of 10 steps · reconciling loan dates…</p>
+      <div class="rowline"><button class="btn b-out">Restart import</button></div>
+    </div>
+
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">D-17 · repeated content — ruled register (2px header rule, pewter hairlines, no zebra)</p>
+      <table class="ledger">
+        <tr><th>Item</th><th>Category</th><th>Status</th><th>Borrower</th><th></th></tr>
+        <tr><td>Torque wrench 200Nm</td><td>Hand tools</td><td><span class="st st-a" style="padding:3px 8px">Available</span></td><td>—</td><td><a href="#">View</a></td></tr>
+        <tr class="hov"><td>Cordless drill 18V</td><td>Power tools</td><td><span class="st st-b" style="padding:3px 8px">On loan</span></td><td>S. Ho</td><td><a href="#">View</a></td></tr>
+        <tr><td>Heat gun</td><td>Power tools</td><td><span class="st st-c" style="padding:3px 8px">Overdue</span></td><td>M. Chan</td><td><a href="#">View</a></td></tr>
+      </table>
+    </div>
+
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">D-16 · empty state — plain statement, one action, no imagery</p>
+      <div class="notice" style="text-align:left">Nothing is registered yet. Add the first item to begin the register.<br><br><button class="btn b-out">Add an item</button></div>
+    </div>
+  </div>
+
+  <p class="footnote">Also in this batch but not visual here: D-12 selection (small sets only), D-20 responsive (bilingual collapses over-under; nav to a plain row). D-22 prohibitions: no radius, no shadows, no decorative colour, red never for status/errors, no imagery, no pictograms.</p>
+</div>
+</body>
+</html>

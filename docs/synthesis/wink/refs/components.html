@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>wink · derived interpretation · Gate 2 components</title>
+<style>
+@font-face { font-family: 'Fraunces'; src: url('../tile/fonts/Fraunces-VF.ttf'); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: 'Fraunces'; src: url('../tile/fonts/Fraunces-Italic-VF.ttf'); font-weight: 100 900; font-style: italic; }
+@font-face { font-family: 'Inter'; src: url('../tile/fonts/Inter-VF.ttf'); font-weight: 100 900; font-style: normal; }
+:root { --yellow:#FFE01B; --ink:#241C15; --parsnip:#F6F6F4; --border:#DEDDDC; --ochre:#E7B75F; --err:#BF4055; }
+* { box-sizing: border-box; margin: 0; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 36px 40px; }
+h1 { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; }
+.sub { font-size: 13px; color: #5d5245; margin: 6px 0 22px; max-width: 95ch; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cell { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.cell .tag { font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: #5d5245; margin-bottom: 12px; }
+.rowline { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.cta { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink); background: var(--yellow); border: none; border-radius: 26px; padding: 12px 22px; }
+.cta.dark { background: var(--ink); color: #fff; }
+.cta.outline { background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
+.cta.lift { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(35,30,21,.2); }
+.field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+.field input, .field select { font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink); width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
+.field input.focus { outline: 3px solid var(--yellow); outline-offset: 2px; border-color: var(--ink); }
+.field .hint { font-size: 12px; color: #5d5245; margin-top: 5px; }
+.pill { display: inline-block; font-size: 12.5px; font-weight: 500; border-radius: 999px; padding: 6px 14px; }
+.p-avail { background: var(--parsnip); box-shadow: inset 0 0 0 1px var(--border); }
+.p-loan { background: var(--ink); color: #fff; }
+.p-over { background: var(--yellow); }
+.p-att { background: #f7dfe2; color: #7c1f2e; }
+.notice { border-radius: 12px; padding: 14px 16px; font-size: 14px; }
+.n-info { background: var(--parsnip); }
+.n-warn { background: #fdf3d1; }
+.dialog-cell { position: relative; min-height: 240px; background: var(--parsnip); overflow: hidden; border-radius: 12px; }
+.scrim { position: absolute; inset: 0; background: rgba(35,30,21,.35); }
+.dialog { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 78%; background: #fff; border-radius: 16px; padding: 26px 28px; box-shadow: 0 8px 32px rgba(35,30,21,.2); }
+.dialog h3 { font-family: 'Fraunces', serif; font-size: 19px; margin-bottom: 8px; }
+.dialog p { font-size: 13.5px; margin-bottom: 16px; }
+.meter { height: 12px; border-radius: 999px; background: var(--parsnip); overflow: hidden; box-shadow: inset 0 0 0 1px var(--border); }
+.meter i { display: block; height: 100%; width: 70%; background: var(--yellow); border-radius: 999px; }
+.mread { font-size: 13px; color: #5d5245; margin: 8px 0 12px; }
+.ledger { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.ledger th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; text-align: left; background: var(--parsnip); padding: 8px 10px; font-weight: 500; }
+.ledger td { padding: 10px; border-bottom: 1px solid var(--border); }
+.ledger tr:hover td { background: var(--parsnip); }
+.ledger a { color: var(--ink); }
+.empty { background: var(--parsnip); border-radius: 12px; padding: 22px; text-align: center; }
+.empty p { font-size: 14px; margin-bottom: 12px; }
+.footnote { font-size: 12px; color: #5d5245; margin-top: 18px; max-width: 100ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>wink · derived interpretation — Gate 2 reference</h1>
+  <p class="sub">Every judgment item rendered as it would appear in the interface. Items labelled with their decision IDs (W-nn). Fonts: declared stand-ins (Fraunces ≈ soft serif; Inter ≈ grotesque).</p>
+
+  <div class="grid">
+    <div class="cell">
+      <p class="tag">W-01 · W-03 · actions — variants + hover end-state</p>
+      <div class="rowline">
+        <button class="cta">Primary pill</button>
+        <button class="cta dark">On yellow / inverse</button>
+        <button class="cta outline">Secondary</button>
+        <button class="cta lift">Hover: spring lift</button>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">W-12 · W-13 · W-25 · forms — field, focus ring, small-set select</p>
+      <div class="grid" style="gap:14px">
+        <div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="hint">Focused: 3px yellow ring, offset 2</p></div>
+        <div class="field"><label>Loan days</label><select><option>7 days</option><option>14 days</option></select><p class="hint">Small sets only — larger selection is out of scope (W-13)</p></div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">W-14 · status — word-first pills</p>
+      <div class="rowline">
+        <span class="pill p-avail">Available</span>
+        <span class="pill p-loan">On loan</span>
+        <span class="pill p-over">Overdue</span>
+        <span class="pill p-att">Limit reached</span>
+      </div>
+      <p class="hint" style="font-size:12px;color:#5d5245;margin-top:10px">The word carries the state; colour supports it.</p>
+    </div>
+
+    <div class="cell">
+      <p class="tag">W-15 · feedback — inline notices, non-blaming copy</p>
+      <div style="display:grid;gap:10px">
+        <div class="notice n-info">Heads up — two items are due back this week. We’ll email the borrowers for you.</div>
+        <div class="notice n-warn">You’ve selected more members than this plan shows at once. Narrow the list, or keep typing — we’ve got your back.</div>
+      </div>
+    </div>
+
+    <div class="cell dialog-cell">
+      <div class="scrim"></div>
+      <div class="dialog">
+        <p class="tag" style="margin-bottom:8px">W-16 · W-17 · destructive confirm</p>
+        <h3>Retire “Cordless drill 18V”?</h3>
+        <p>It leaves the register and can’t be restored. Loans already out will stay recorded.</p>
+        <div class="rowline"><button class="cta dark">Retire item</button><button class="cta outline">Keep it</button></div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <p class="tag">W-18 · progress — meter with readout (no motion)</p>
+      <div class="meter"><i></i></div>
+      <p class="mread">7 of 10 steps · reconciling loan dates…</p>
+      <div class="rowline"><button class="cta dark">Restart import</button><button class="cta outline">View log</button></div>
+    </div>
+
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">W-20 · repeated content — ledger (hairlines, hover tint, inline status)</p>
+      <table class="ledger">
+        <tr><th>Item</th><th>Category</th><th>Status</th><th>Borrower</th><th></th></tr>
+        <tr><td>Torque wrench 200Nm</td><td><span class="pill p-avail">Hand tools</span></td><td><span class="pill p-avail">Available</span></td><td>—</td><td><a href="#">View</a></td></tr>
+        <tr><td>Cordless drill 18V</td><td><span class="pill p-avail">Power tools</span></td><td><span class="pill p-loan">On loan</span></td><td>S. Ho</td><td><a href="#">View</a></td></tr>
+        <tr><td>Heat gun</td><td><span class="pill p-avail">Power tools</span></td><td><span class="pill p-over">Overdue</span></td><td>M. Chan</td><td><a href="#">View</a></td></tr>
+      </table>
+    </div>
+
+    <div class="cell" style="grid-column: 1 / -1">
+      <p class="tag">W-19 · empty state — tinted panel, one action</p>
+      <div class="empty">
+        <p>Nothing here yet. Add your first item and it starts showing up for the whole group.</p>
+        <button class="cta dark">Add an item</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="footnote">Also in this batch but not visual here: W-24 responsive collapse (single column), W-26 prohibitions (no pure black, no clinical greys, no square buttons, no card borders, no decorative yellow). W-23 imagery: illustration-capable, not reproduced.</p>
+</div>
+</body>
+</html>

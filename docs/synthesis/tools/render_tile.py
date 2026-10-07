@@ -17,16 +17,18 @@ import os
 from playwright.sync_api import sync_playwright
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--dir", required=True, help="folder containing tile.html")
+ap.add_argument("--dir", required=True, help="folder containing the HTML file")
+ap.add_argument("--html", default="tile.html", help="html file to render (default tile.html)")
 ap.add_argument("--expect-font", default=None)
 ap.add_argument("--width", type=int, default=1280)
 ap.add_argument("--out", default=None)
+ap.add_argument("--out-name", default="style-tile.png")
 args = ap.parse_args()
 
 BASE = os.path.abspath(args.dir)
 OUT = args.out or os.path.join(BASE, "out")
 os.makedirs(OUT, exist_ok=True)
-URL = "file://" + os.path.join(BASE, "tile.html")
+URL = "file://" + os.path.join(BASE, args.html)
 
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -37,7 +39,7 @@ with sync_playwright() as p:
         ok = pg.evaluate("document.fonts.check('16px %s')" % args.expect_font)
         print("font check (%s):" % args.expect_font, ok)
         assert ok, "expected font failed to load - aborting render"
-    out = os.path.join(OUT, "style-tile.png")
+    out = os.path.join(OUT, args.out_name)
     pg.screenshot(path=out, full_page=True)
     print("rendered", out)
     b.close()
