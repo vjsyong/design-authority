@@ -28,7 +28,7 @@
       "confidence": "high",
       "reasoning": "The shape vocabulary is explicitly rectilinear across static and animated assets.",
       "alternatives": "hairline-radius softening (rejected: unevidenced and against the crisp register)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "L-03",
@@ -127,7 +127,7 @@
       "confidence": "low",
       "reasoning": "Squared-off bureaucratic honesty; keeps red for emphasis only.",
       "alternatives": "red focus border; background tint on focus",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "L-12",
@@ -273,5 +273,5 @@
       "review": "confirm"
     }
   ],
-  "revised": "2026-10-07 — Gate 2 v4: L-02 example corner fixed; L-11 revised (sans + no border highlight); awaiting re-check"
+  "revised": "2026-10-07 — Gate 2 CLOSED: all leader revisions accepted (L-02 accepted; L-11 marked accepted to match reviewer sign-off)"
 }
