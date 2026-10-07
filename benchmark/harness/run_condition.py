@@ -171,6 +171,38 @@ def tool_stats(transcript_path):
             "event_types": dict(types)}
 
 
+def token_stats(transcript_path):
+    """Aggregate opencode `step_finish` usage events into session token totals,
+    peak context, and provider-billed cost. Recorded into run.json for every
+    future run so token economics are tracked by default (baseline:
+    docs/token-economics.md; cross-run view: benchmark/harness/token_report.py)."""
+    out = {"steps": 0, "total": 0, "input": 0, "output": 0, "reasoning": 0,
+           "cache_read": 0, "cache_write": 0, "peak": 0, "cost": 0.0}
+    if not os.path.exists(transcript_path):
+        return out
+    with open(transcript_path) as fh:
+        for line in fh:
+            try:
+                ev = json.loads(line)
+            except ValueError:
+                continue
+            if ev.get("type") != "step_finish":
+                continue
+            part = ev.get("part") or {}
+            t = part.get("tokens") or {}
+            out["steps"] += 1
+            out["input"] += t.get("input", 0)
+            out["output"] += t.get("output", 0)
+            out["reasoning"] += t.get("reasoning", 0)
+            out["cache_read"] += (t.get("cache") or {}).get("read", 0)
+            out["cache_write"] += (t.get("cache") or {}).get("write", 0)
+            tot = t.get("total", 0)
+            out["total"] += tot
+            out["peak"] = max(out["peak"], tot)
+            out["cost"] = round(out["cost"] + (part.get("cost") or 0.0), 6)
+    return out
+
+
 SANDBOX_TRIPWIRES = ("/home/xrim/design-authority",
                      "/home/xrim/triage-design-system",
                      "/home/xrim/.claude/skills",
@@ -338,6 +370,7 @@ def main(argv=None):
                            "duration_s": round(time.time() - t0, 1),
                            "sandboxed": sandboxed}
         run["opencode"].update(tool_stats(os.path.join(run_dir, "transcript.jsonl")))
+        run["opencode"]["tokens"] = token_stats(os.path.join(run_dir, "transcript.jsonl"))
         run["containment"] = containment_audit(os.path.join(run_dir, "transcript.jsonl"))
         run["authority"] = authority_stats(ws)
         run["cleanup_agent_procs"] = kill_ws_processes(ws)
