@@ -727,6 +727,26 @@ def stress_file(name, fn):
     return send_from_directory(d, fn)
 
 
+@app.route("/stress2/<name>/")
+def stress2_index(name):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, "index.html")
+
+
+@app.route("/stress2/<name>/<path:fn>")
+def stress2_file(name, fn):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, fn)
+
+
 @app.route("/api/demo/resolve", methods=["POST"])
 def demo_resolve():
     data = request.get_json(silent=True) or {}
