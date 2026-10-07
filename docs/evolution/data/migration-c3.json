@@ -1,0 +1,61 @@
+{
+ "workspace": "benchmark/runs/c3/ws",
+ "pack": "packs/triage-evolution",
+ "usages": [
+  {
+   "file": "DESIGN.md",
+   "line": 14,
+   "snippet": "improvisation in a comment (`TODO(authority-undefined): ...`), and then",
+   "group": "G-?? unrecognised"
+  },
+  {
+   "file": "templates/request_detail.html",
+   "line": 67,
+   "snippet": "{# TODO(authority-undefined): the reason-bearing irreversible decision form has no",
+   "group": "G-03 reason-bearing decision",
+   "authority_answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/high-stakes-confirm"
+   }
+  },
+  {
+   "file": "templates/request_detail.html",
+   "line": 86,
+   "snippet": "{# TODO(authority-undefined): \"compact picker for assigning a reviewer\" is",
+   "group": "G-01 reviewer/entity assignment",
+   "authority_answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  }
+ ],
+ "summary": {
+  "G-?? unrecognised": {
+   "count": 1,
+   "files": [
+    "DESIGN.md"
+   ],
+   "answer": null
+  },
+  "G-03 reason-bearing decision": {
+   "count": 1,
+   "files": [
+    "templates/request_detail.html"
+   ],
+   "answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/high-stakes-confirm"
+   }
+  },
+  "G-01 reviewer/entity assignment": {
+   "count": 1,
+   "files": [
+    "templates/request_detail.html"
+   ],
+   "answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  }
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "workspace": "benchmark/runs/c1/ws",
+ "pack": "packs/triage-evolution",
+ "usages": [
+  {
+   "file": "DESIGN.md",
+   "line": 14,
+   "snippet": "improvisation in a comment (`TODO(authority-undefined): ...`), and then",
+   "group": "G-?? unrecognised"
+  },
+  {
+   "file": "templates/request_detail.html",
+   "line": 75,
+   "snippet": "{# TODO(authority-undefined): compact reviewer picker. resolve_design_problem",
+   "group": "G-01 reviewer/entity assignment",
+   "authority_answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  },
+  {
+   "file": "templates/jobs.html",
+   "line": 5,
+   "snippet": "TODO(authority-undefined): long-running background operation progress.",
+   "group": "G-02 background-job progress",
+   "authority_answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress"
+   }
+  },
+  {
+   "file": "static/app.js",
+   "line": 67,
+   "snippet": "TODO(authority-undefined): long-running background operation. There is no",
+   "group": "G-02 background-job progress",
+   "authority_answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress"
+   }
+  }
+ ],
+ "summary": {
+  "G-?? unrecognised": {
+   "count": 1,
+   "files": [
+    "DESIGN.md"
+   ],
+   "answer": null
+  },
+  "G-01 reviewer/entity assignment": {
+   "count": 1,
+   "files": [
+    "templates/request_detail.html"
+   ],
+   "answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  },
+  "G-02 background-job progress": {
+   "count": 2,
+   "files": [
+    "templates/jobs.html",
+    "static/app.js"
+   ],
+   "answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress"
+   }
+  }
+ }
+}

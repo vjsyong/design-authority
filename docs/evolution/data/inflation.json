@@ -1,0 +1,92 @@
+{
+ "counts": {
+  "artifacts": [
+   73,
+   75
+  ],
+  "rules": [
+   15,
+   15
+  ],
+  "recipes": [
+   15,
+   17
+  ],
+  "fallbacks": [
+   3,
+   3
+  ],
+  "prohibitions": [
+   9,
+   9
+  ],
+  "components": [
+   35,
+   37
+  ],
+  "patterns": [
+   7,
+   7
+  ],
+  "guidelines": [
+   13,
+   13
+  ],
+  "examples": [
+   7,
+   7
+  ],
+  "token_sets": [
+   6,
+   6
+  ],
+  "references": [
+   5,
+   5
+  ]
+ },
+ "new_artifacts": [
+  "component/progress",
+  "component/select"
+ ],
+ "new_recipes": [
+  "recipe/assign-picker",
+  "recipe/job-progress"
+ ],
+ "modified_recipes": [
+  "recipe/high-stakes-confirm"
+ ],
+ "modified_guidelines": [
+  "guideline/high-stakes-confirm"
+ ],
+ "modified_components": [
+  "component/cb"
+ ],
+ "aliases": {
+  "keys": [
+   48,
+   50
+  ],
+  "terms": [
+   214,
+   226
+  ]
+ },
+ "recipe_needs": [
+  54,
+  72
+ ],
+ "new_css_declarations": 0,
+ "new_primitives": 0,
+ "new_patterns": 0,
+ "new_tokens": 0,
+ "modified_artifacts_commit_normalized": [
+  "component/cb",
+  "guideline/high-stakes-confirm"
+ ],
+ "modified_notes": {
+  "component/cb": "alias-only addition (\"searchable picker\"); no semantic/visual change",
+  "guideline/high-stakes-confirm": "one do-line added (reason-bearing decisions); quote restored to canonical text",
+  "recipe/high-stakes-confirm": "needs +4, ingredients +2, constraints +1 (reason-bearing coverage)"
+ }
+}

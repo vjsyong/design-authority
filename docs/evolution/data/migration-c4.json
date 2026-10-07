@@ -1,0 +1,68 @@
+{
+ "workspace": "benchmark/runs/c4/ws",
+ "pack": "packs/triage-evolution",
+ "usages": [
+  {
+   "file": "DESIGN.md",
+   "line": 14,
+   "snippet": "improvisation in a comment (`TODO(authority-undefined): ...`), and then",
+   "group": "G-?? unrecognised"
+  },
+  {
+   "file": "templates/request_detail.html",
+   "line": 93,
+   "snippet": "{# TODO(authority-undefined): the authority defines no \"compact picker\"",
+   "group": "G-01 reviewer/entity assignment",
+   "authority_answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  },
+  {
+   "file": "static/app.js",
+   "line": 5,
+   "snippet": "Improvisations (no authority artifact) are marked with TODO(authority-undefined).",
+   "group": "G-?? unrecognised"
+  },
+  {
+   "file": "static/app.js",
+   "line": 58,
+   "snippet": "TODO(authority-undefined): the authority defines no artifact for a live",
+   "group": "G-02 background-job progress",
+   "authority_answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress"
+   }
+  }
+ ],
+ "summary": {
+  "G-?? unrecognised": {
+   "count": 2,
+   "files": [
+    "DESIGN.md",
+    "static/app.js"
+   ],
+   "answer": null
+  },
+  "G-01 reviewer/entity assignment": {
+   "count": 1,
+   "files": [
+    "templates/request_detail.html"
+   ],
+   "answer": {
+    "outcome": "RESOLVED",
+    "id": "component/select"
+   }
+  },
+  "G-02 background-job progress": {
+   "count": 1,
+   "files": [
+    "static/app.js"
+   ],
+   "answer": {
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress"
+   }
+  }
+ }
+}
