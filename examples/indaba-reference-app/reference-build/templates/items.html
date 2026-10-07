@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block view %}register{% endblock %}
+{% block title %}Depot — Items{% endblock %}
+{% block content %}
+<div class="register-view">
+  <div class="page-head">
+    <div>
+      <h1>Items</h1>
+      <p class="subline">
+        {{ items|length }} item{{ '' if items|length == 1 else 's' }} on the register.
+      </p>
+    </div>
+    <a class="action primary" href="{{ url_for('item_new') }}">New item</a>
+  </div>
+
+  {% if items %}
+  <table class="ledger ledger--cards" data-list="items">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Borrower</th>
+        <th scope="col" class="col-action"><span class="visually-hidden">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for it in items %}
+      <tr data-item="{{ it.id }}">
+        <td data-label="Name">
+          <a href="{{ url_for('item_detail', iid=it.id) }}">{{ it.name }}</a>
+        </td>
+        <td data-label="Category"><span class="label">{{ it.category }}</span></td>
+        <td data-label="Status" data-status="{{ it.status }}">
+          <span class="status {{ 'loan' if it.status == 'on_loan' else it.status }}">{{ status_labels[it.status] }}</span>
+        </td>
+        <td data-label="Borrower">{{ it.borrower or '—' }}</td>
+        <td class="col-action"><a href="{{ url_for('item_detail', iid=it.id) }}">View</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="notice info" role="status">
+    <p>No items yet. Add the first tool to the register.</p>
+    <p><a class="action primary" href="{{ url_for('item_new') }}">New item</a></p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

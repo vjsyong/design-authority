@@ -138,7 +138,8 @@ def main(argv=None):
 
     sandboxed = not args.no_sandbox and shutil.which("bwrap") is not None
     run["isolation"] = {"sandbox": "bwrap" if sandboxed else "none",
-                        "mounts": "orbit pack only (no triage)", "permissions": "strict"}
+                        "mounts": "%s pack only (no other authority)" % args.pack,
+                        "permissions": "strict"}
 
     # ---- agent run ----
     t0, timed_out, rc = time.time(), False, None
@@ -181,9 +182,10 @@ def main(argv=None):
                             "--url", url, "--out", os.path.join(run_dir, "capture")],
                            check=False)
             run["capture"] = "capture/"
-            subprocess.run([VENV_PY, os.path.join(HERE, "orbit_interact.py"),
-                            "--url", url, "--out", os.path.join(run_dir, "interact.json")],
-                           check=False)
+            with open(os.path.join(run_dir, "interact-stderr.log"), "w") as ierr:
+                subprocess.run([VENV_PY, os.path.join(HERE, "orbit_interact.py"),
+                                "--url", url, "--out", os.path.join(run_dir, "interact.json")],
+                               check=False, stderr=ierr, stdout=ierr)
             interact_out = os.path.join(run_dir, "interact.json")
             if os.path.exists(interact_out):
                 with open(interact_out) as fh:

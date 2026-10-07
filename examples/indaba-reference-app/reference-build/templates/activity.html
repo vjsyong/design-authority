@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block view %}activity{% endblock %}
+{% block title %}Depot — Activity{% endblock %}
+{% block head %}{% if job.state == "running" %}<meta http-equiv="refresh" content="2">{% endif %}{% endblock %}
+{% block content %}
+{% if job.state == "running" %}
+  {% set job_tone = "overdue" %}{% set job_label = "Running" %}
+{% elif job.state == "complete" %}
+  {% set job_tone = "loan" %}{% set job_label = "Complete" %}
+{% elif job.state == "failed" %}
+  {% set job_tone = "overdue" %}{% set job_label = "Failed" %}
+{% else %}
+  {% set job_tone = "available" %}{% set job_label = "Idle" %}
+{% endif %}
+
+<div class="activity-view">
+  <div class="page-head">
+    <div>
+      <h1>Activity</h1>
+      <p class="subline">Import the workshop ledger and follow each step.</p>
+    </div>
+  </div>
+
+  <section class="surface" data-activity-job aria-labelledby="job-heading">
+    <h2 id="job-heading">Import job</h2>
+
+    <div class="job-status">
+      <span class="status {{ job_tone }}" data-job-state="{{ job.state }}">{{ job_label }}</span>
+      <span class="job-message" data-job-message>{{ job.message or "Not started." }}</span>
+    </div>
+
+    {% if job.state != "idle" %}
+    <div class="meter {{ 'complete' if job.state == 'complete' else 'running' }}"
+         role="progressbar"
+         aria-valuemin="0"
+         aria-valuemax="{{ job.total }}"
+         aria-valuenow="{{ job.done }}"
+         aria-valuetext="{{ job.done }} of {{ job.total }} steps"
+         data-job-done="{{ job.done }}" data-job-total="{{ job.total }}">
+      <i style="--value: {{ (job.done / job.total * 100) | round(0, 'floor') | int }}%"></i>
+    </div>
+    <p class="meter-readout" data-job-readout>{{ job.done }} of {{ job.total }} steps</p>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('activity_import') }}" class="actions">
+      <button type="submit" class="action primary"
+              {% if job.state == "running" %}disabled{% endif %} data-job-button>
+        {% if job.state == "running" %}Importing…{% elif job.state == "complete" %}Run import again{% else %}Start import{% endif %}
+      </button>
+    </form>
+  </section>
+
+  <section class="log" aria-labelledby="log-heading">
+    <h2 id="log-heading">Log</h2>
+    <table class="ledger" data-list="activity">
+      <thead>
+        <tr><th scope="col">When</th><th scope="col">Event</th></tr>
+      </thead>
+      <tbody data-job-log>
+        {% for e in entries %}
+        <tr><td class="meta">{{ e.at }}</td><td>{{ e.message }}</td></tr>
+        {% else %}
+        <tr><td class="row-empty" colspan="2">Nothing logged yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+{% endblock %}

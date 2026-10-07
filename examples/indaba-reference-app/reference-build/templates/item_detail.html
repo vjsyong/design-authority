@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block view %}detail{% endblock %}
+{% block title %}Depot — {{ item.name }}{% endblock %}
+{% block content %}
+<div class="detail-view">
+  <div class="page-head">
+    <div>
+      <p class="subline"><a href="{{ url_for('items_view') }}">Items</a> / {{ item.category }}</p>
+      <h1>{{ item.name }}</h1>
+    </div>
+    <span class="status {{ 'loan' if item.status == 'on_loan' else item.status }}">{{ status_labels[item.status] }}</span>
+  </div>
+
+  <div class="detail-grid">
+    <section class="surface" aria-labelledby="edit-heading">
+      <h2 id="edit-heading">Edit item</h2>
+      <form method="post" action="{{ url_for('item_update', iid=item.id) }}">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" value="{{ item.name }}" required>
+        </div>
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category" name="category" class="choice">
+            {% for c in ["Hand tools", "Power tools", "Measuring", "Safety"] %}
+            <option value="{{ c }}" {% if c == item.category %}selected{% endif %}>{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label for="note">Note</label>
+          <input id="note" name="note" type="text" value="{{ item.note }}">
+        </div>
+        <div class="actions">
+          <button type="submit" class="action primary">Save changes</button>
+          <a class="action secondary" href="{{ url_for('item_detail', iid=item.id) }}">Cancel</a>
+        </div>
+      </form>
+    </section>
+
+    <section class="surface" aria-labelledby="loan-heading">
+      <h2 id="loan-heading">Loan</h2>
+      {% if item.status == "available" %}
+        <form method="post" action="{{ url_for('item_checkout', iid=item.id) }}">
+          <div class="field">
+            <label for="borrower">Borrower</label>
+            {# The authority defines component/choice only for small fixed sets
+               (<= ~12) and puts larger/filtered selection out of scope. For a
+               growing member list we follow fallback/platform-controls: a native
+               control with the system's field styling, marked as an improvisation. #}
+            <input id="borrower" name="borrower" type="text"
+                   list="member-options" autocomplete="off"
+                   placeholder="Start typing a name" required
+                   aria-describedby="borrower-hint"
+                   data-fallback="platform-controls">
+            <datalist id="member-options">
+              {% for m in members %}<option value="{{ m }}"></option>{% endfor %}
+            </datalist>
+            <p class="hint" id="borrower-hint">Type to narrow the member list.</p>
+          </div>
+          <div class="field">
+            <label for="days">Loan days</label>
+            {# No numeric control is defined; fallback/platform-controls applies. #}
+            <input id="days" name="days" type="number" value="14" min="1" max="90"
+                   inputmode="numeric" data-fallback="platform-controls">
+          </div>
+          <div class="actions">
+            <button type="submit" class="action primary">Check out</button>
+          </div>
+        </form>
+      {% else %}
+        <dl class="facts">
+          <dt>Borrower</dt><dd>{{ item.borrower or '—' }}</dd>
+          <dt>Due</dt><dd>{{ item.due or '—' }}</dd>
+        </dl>
+        <form method="post" action="{{ url_for('item_return', iid=item.id) }}">
+          <div class="actions">
+            <button type="submit" class="action primary">Return</button>
+          </div>
+        </form>
+      {% endif %}
+      {% if item.note %}<p class="meta">{{ item.note }}</p>{% endif %}
+    </section>
+  </div>
+
+  <section class="surface tinted destructive-zone" aria-labelledby="retire-heading">
+    <h2 id="retire-heading">Retire item</h2>
+    <p>Retiring removes this item from the register for good. It cannot be restored.</p>
+    <button type="button" class="action destructive" data-action="retire">Retire item</button>
+    <noscript>
+      <p class="notice warning">Retiring is permanent. “{{ item.name }}” will be removed from the register and cannot be restored.</p>
+      <form method="post" action="{{ url_for('item_retire', iid=item.id) }}">
+        <button type="submit" class="action destructive">Retire {{ item.name }} permanently</button>
+      </form>
+    </noscript>
+  </section>
+</div>
+
+<dialog class="dialog" id="retire-dialog" aria-labelledby="retire-dialog-heading">
+  <h2 id="retire-dialog-heading">Retire this item permanently?</h2>
+  <p>Retire “{{ item.name }}” permanently? It will be removed from the register and cannot be restored.</p>
+  <form method="post" action="{{ url_for('item_retire', iid=item.id) }}" class="dialog-actions">
+    <button type="submit" class="action destructive">Retire permanently</button>
+    <button type="button" class="action secondary" data-cancel autofocus>Keep item</button>
+  </form>
+</dialog>
+{% endblock %}

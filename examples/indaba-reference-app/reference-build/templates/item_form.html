@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block view %}form{% endblock %}
+{% block title %}Depot — New item{% endblock %}
+{% block content %}
+<div class="form-flow">
+  <div class="page-head">
+    <div>
+      <h1>New item</h1>
+      <p class="subline">Catalogue a tool so it can be lent out.</p>
+    </div>
+  </div>
+
+  <form method="post" action="{{ url_for('item_create') }}">
+    <div class="surface">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required autocomplete="off"
+               placeholder="e.g. Torque wrench 200Nm">
+      </div>
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category" name="category" class="choice">
+          {% for c in categories %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label for="note">Note</label>
+        <input id="note" name="note" type="text" autocomplete="off"
+               placeholder="Optional — condition, accessories, calibration…">
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="action primary">Add to register</button>
+      <a class="action secondary" href="{{ url_for('items_view') }}">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

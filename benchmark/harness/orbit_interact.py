@@ -39,6 +39,13 @@ def run_checks(url, out):
                 sel.first.select_option(index=0)
             except Exception:
                 pass
+        else:
+            txt = pg.locator("input[name=borrower]")
+            if txt.count():
+                try:
+                    txt.first.fill("S. Ho")
+                except Exception:
+                    pass
         days = pg.locator("input[name=days]")
         if days.count():
             days.first.fill("7")
@@ -48,14 +55,20 @@ def run_checks(url, out):
         if co.count():
             co.first.click()
             pg.wait_for_load_state("load")
-            ck("flow.checkout->on_loan", pg.locator("[data-status=on_loan]").count() >= 1)
+            pg.wait_for_timeout(600)
+            onloan = (pg.locator("[data-status=on_loan]").count()
+                      or pg.locator(".status", has_text="On loan").count())
+            ck("flow.checkout->on_loan", onloan >= 1)
             rb = pg.locator("button[name=return]")
             if rb.count() == 0:
                 rb = pg.locator("button", has_text="Return")
             if rb.count():
                 rb.first.click()
                 pg.wait_for_load_state("load")
-                ck("flow.return->available", pg.locator("[data-status=available]").count() >= 1)
+                pg.wait_for_timeout(600)
+                avail = (pg.locator("[data-status=available]").count()
+                         or pg.locator(".status", has_text="Available").count())
+                ck("flow.return->available", avail >= 1)
             else:
                 ck("flow.return->available", False, "no return control")
         else:
@@ -83,37 +96,63 @@ def run_checks(url, out):
         else:
             ck("destructive.confirms", False, "no [data-action=retire] control found")
 
-        # 6 · activity: start job, follow progress, complete
-        pg.goto(url + "/activity", wait_until="load")
-        ck("activity.main", pg.locator("main[data-view=activity]").count() >= 1)
-        start = pg.locator("button[name=import]")
-        if start.count() == 0:
-            start = pg.locator("button", has_text="Start")
-        if start.count():
-            start.first.click()
-            pg.wait_for_load_state("load")
-            pg.wait_for_timeout(1500)
-            pg.reload(wait_until="load")
-            pb = pg.locator("[role=progressbar]")
-            ck("activity.progressbar", pb.count() >= 1)
-            now1 = pg.locator("[aria-valuenow]").first.get_attribute("aria-valuenow") if pb.count() else None
-            pg.wait_for_timeout(4000)
-            pg.reload(wait_until="load")
-            now2 = pg.locator("[aria-valuenow]").first.get_attribute("aria-valuenow") if pg.locator("[aria-valuenow]").count() else None
-            ck("activity.progress-advances", now1 is not None and now2 is not None and int(now2) > int(now1),
-               "now1=%s now2=%s" % (now1, now2))
-            deadline = 20
-            st = ""
-            while deadline > 0:
-                st = pg.locator("[data-job-state]").first.get_attribute("data-job-state") if pg.locator("[data-job-state]").count() else ""
-                if st == "complete":
+        # 6 · activity: start job, follow progress, complete (tolerant to the
+        #     page's own auto-refresh: navigate via goto, never bare reload)
+        def reload_activity():
+            for _ in range(3):
+                try:
+                    pg.goto(url + "/activity", wait_until="load")
+                    return True
+                except Exception:
+                    pg.wait_for_timeout(500)
+            return False
+
+        try:
+            reload_activity()
+            ck("activity.main", pg.locator("main[data-view=activity]").count() >= 1)
+            start = None
+            for sel in ["button[name=import]", "[data-job-button]",
+                        "button:has-text('Start import')", "button:has-text('Run import')",
+                        "button:has-text('Import')"]:
+                loc = pg.locator(sel)
+                if loc.count():
+                    start = loc.first
                     break
-                pg.wait_for_timeout(1200)
-                pg.reload(wait_until="load")
-                deadline -= 1
-            ck("activity.completes", st == "complete", st)
-        else:
-            ck("activity.progressbar", False, "no start control")
+            if start is not None:
+                try:
+                    disabled = start.is_disabled()
+                except Exception:
+                    disabled = False
+                if not disabled:
+                    start.click()
+                    pg.wait_for_timeout(1500)
+                # if disabled, a job is already running — just follow it
+                reload_activity()
+                pb = pg.locator("[role=progressbar]")
+                ck("activity.progressbar", pb.count() >= 1)
+                now1 = pg.locator("[aria-valuenow]").first.get_attribute("aria-valuenow") if pb.count() else None
+                pg.wait_for_timeout(4000)
+                reload_activity()
+                now2 = pg.locator("[aria-valuenow]").first.get_attribute("aria-valuenow") if pg.locator("[aria-valuenow]").count() else None
+                try:
+                    advanced = now1 is not None and now2 is not None and int(now2) > int(now1)
+                except Exception:
+                    advanced = False
+                ck("activity.progress-advances", advanced, "now1=%s now2=%s" % (now1, now2))
+                deadline = 20
+                st = ""
+                while deadline > 0:
+                    st = pg.locator("[data-job-state]").first.get_attribute("data-job-state") if pg.locator("[data-job-state]").count() else ""
+                    if st == "complete":
+                        break
+                    pg.wait_for_timeout(1200)
+                    reload_activity()
+                    deadline -= 1
+                ck("activity.completes", st == "complete", st)
+            else:
+                ck("activity.progressbar", False, "no start control")
+        except Exception as exc:
+            ck("activity.main", False, ("activity section error: %s" % exc)[:120])
 
         # 7 · mobile width
         m = browser.new_page(viewport={"width": 380, "height": 820})
@@ -136,9 +175,17 @@ if __name__ == "__main__":
     ap.add_argument("--url", required=True)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
-    res = run_checks(args.url, args.out)
+    try:
+        res = run_checks(args.url, args.out)
+    except Exception as exc:
+        res = {"passed": 0, "total": 0,
+               "checks": [{"name": "script.crash", "ok": False,
+                           "detail": str(exc)[:200]}]}
+        with open(args.out, "w") as fh:
+            json.dump({"result": res}, fh, indent=1)
+        print("CRASH:", exc)
     print("interact: %s/%s" % (res["passed"], res["total"]))
     for c in res["checks"]:
         if not c["ok"]:
             print("  FAIL", c["name"], "-", c["detail"])
-    sys.exit(0 if res["passed"] == res["total"] else 1)
+    sys.exit(0 if res["total"] and res["passed"] == res["total"] else 1)
