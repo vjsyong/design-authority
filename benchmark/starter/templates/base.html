@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Procura{% endblock %}</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header>
+  <strong>Procura</strong>
+  <nav>
+    <a href="/">Dashboard</a>
+    <a href="/requests">Requests</a>
+    <a href="/jobs">Jobs</a>
+    <a href="/settings">Settings</a>
+  </nav>
+</header>
+{% if request.args.get('flash') %}<p class="flash">Action completed: {{ request.args.get('flash') }}</p>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+</body>
+</html>

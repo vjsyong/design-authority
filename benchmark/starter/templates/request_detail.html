@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ r.title }} — Procura{% endblock %}
+{% block content %}
+<h1>{{ r.title }}</h1>
+<dl>
+  <dt>Requester</dt><dd>{{ r.requester }} ({{ r.dept }})</dd>
+  <dt>Category</dt><dd>{{ r.cat }}</dd>
+  <dt>Amount</dt><dd>{{ r.amount|money }}</dd>
+  <dt>Status</dt><dd>{{ r.status }}</dd>
+  <dt>Reviewer</dt><dd>{{ r.reviewer or "Unassigned" }}</dd>
+  {% if r.note %}<dt>Note</dt><dd>{{ r.note }}</dd>{% endif %}
+  <dt>Submitted</dt><dd>{{ r.created_at|dt }}</dd>
+</dl>
+
+<h2>Approval history</h2>
+<ol>
+{% for s in steps %}
+  <li>{{ s.actor }} {{ s.action }} — {{ s.ts|ago }}{% if s.note %} ({{ s.note }}){% endif %}</li>
+{% endfor %}
+</ol>
+
+{% if r.status == "pending" %}
+<section>
+  <h2>Decision</h2>
+  <form method="post" action="/requests/{{ r.id }}/approve">
+    <input type="hidden" name="back" value="/requests/{{ r.id }}">
+    <button type="submit">Approve</button>
+  </form>
+  <form method="post" action="/requests/{{ r.id }}/reject">
+    <input type="hidden" name="back" value="/requests/{{ r.id }}">
+    <label>Reason <textarea name="reason"></textarea></label>
+    <button type="submit">Reject</button>
+  </form>
+</section>
+{% endif %}
+
+<form method="post" action="/requests/{{ r.id }}/assign">
+  <input type="hidden" name="back" value="/requests/{{ r.id }}">
+  <label>Assign reviewer
+    <select name="reviewer">
+      {% for name in reviewers %}<option value="{{ name }}" {% if r.reviewer == name %}selected{% endif %}>{{ name }}</option>{% endfor %}
+    </select>
+  </label>
+  <button type="submit">Assign</button>
+</form>
+
+<p><a href="/requests">Back to requests</a></p>
+{% endblock %}

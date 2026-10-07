@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Requests — Procura{% endblock %}
+{% block content %}
+<h1>Requests</h1>
+<form method="get" action="/requests">
+  <label>Status
+    <select name="status">
+      <option value="" {% if not status %}selected{% endif %}>All</option>
+      {% for s in ["pending", "approved", "rejected"] %}
+      <option value="{{ s }}" {% if status == s %}selected{% endif %}>{{ s|capitalize }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Category
+    <select name="category">
+      <option value="" {% if not category %}selected{% endif %}>All</option>
+      {% for c in categories %}<option value="{{ c }}" {% if category == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Search <input type="text" name="q" value="{{ q }}"></label>
+  <button type="submit">Apply</button>
+</form>
+
+{% if empty %}
+<p class="empty">No requests yet.</p>
+{% else %}
+<form method="post" action="/requests/bulk">
+  <input type="hidden" name="back" value="{{ request.full_path }}">
+  <table border="1">
+    <thead>
+      <tr><th></th><th>Title</th><th>Requester</th><th>Category</th><th>Amount</th><th>Status</th><th>Created</th></tr>
+    </thead>
+    <tbody>
+    {% for r in requests %}
+    <tr>
+      <td><input type="checkbox" name="ids" value="{{ r.id }}"></td>
+      <td><a href="/requests/{{ r.id }}">{{ r.title }}</a></td>
+      <td>{{ r.requester }}</td>
+      <td>{{ r.cat }}</td>
+      <td>{{ r.amount|money }}</td>
+      <td>{{ r.status }}</td>
+      <td>{{ r.created_at|ago }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="7">No matching requests.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p>
+    <button type="submit" name="action" value="approve">Approve selected</button>
+    <button type="submit" name="action" value="reject">Reject selected</button>
+  </p>
+</form>
+<p>Page {{ page }} of {{ pages }} — {{ total }} requests.
+{% if page > 1 %}<a href="/requests?page={{ page - 1 }}">Previous</a>{% endif %}
+{% if page < pages %}<a href="/requests?page={{ page + 1 }}">Next</a>{% endif %}</p>
+{% endif %}
+{% endblock %}

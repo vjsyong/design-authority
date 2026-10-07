@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Procura{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+{% if error %}<p class="error">The {{ connector_name }} connector is unreachable. Numbers below may be stale.</p>{% endif %}
+{% if empty %}
+<p class="empty">Nothing to show yet.</p>
+{% else %}
+<section>
+  <h2>Overview</h2>
+  <ul>
+    <li>Pending requests: {{ stats.pending_count }} ({{ stats.pending_amount|money }})</li>
+    <li>Approved (30 days): {{ stats.approved_amount|money }}</li>
+    <li>Rejected: {{ stats.rejected_count }}</li>
+  </ul>
+</section>
+<section>
+  <h2>Background jobs</h2>
+  <ul>
+  {% for j in jobs %}
+    <li data-job-id="{{ j.id }}" data-state="{{ j.state }}">{{ j.kind }} — {{ j.state }}{% if j.state == 'running' %} {{ j.scanned }}/{{ j.total }}{% endif %}{% if j.note %} ({{ j.note }}){% endif %}</li>
+  {% else %}
+    <li>No jobs yet.</li>
+  {% endfor %}
+  </ul>
+  <p><a href="/jobs">All jobs</a></p>
+</section>
+{% if recent %}
+<section>
+  <h2>Recent activity</h2>
+  <ol>
+  {% for s in recent %}
+    <li>{{ s.actor }} {{ s.action }} "{{ s.title }}" — {{ s.ts|ago }}</li>
+  {% endfor %}
+  </ol>
+</section>
+{% endif %}
+{% endif %}
+{% endblock %}

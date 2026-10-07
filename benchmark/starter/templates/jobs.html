@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Jobs — Procura{% endblock %}
+{% block content %}
+<h1>Jobs</h1>
+<form method="post" action="/jobs/triage/start">
+  <button type="submit">Run AI triage scan</button>
+</form>
+
+{% if active_job %}
+<section id="active-job" data-job-id="{{ active_job.id }}" data-state="{{ active_job.state }}">
+  <h2>Running: {{ active_job.kind }}</h2>
+  <p>Progress: {{ active_job.scanned }} of {{ active_job.total }} ({{ active_job.percent }}%) — started {{ active_job.started_at|ago }}</p>
+</section>
+{% endif %}
+
+<h2>History</h2>
+<ul>
+{% for j in jobs %}
+  {% if j.state != "running" %}
+  <li>{{ j.kind }} — {{ j.state }} — {{ j.scanned }}/{{ j.total }}{% if j.note %} ({{ j.note }}){% endif %} — {{ j.started_at|ago }}</li>
+  {% endif %}
+{% endfor %}
+</ul>
+<p>The live state is also available as JSON at <a href="/api/jobs">/api/jobs</a>.</p>
+{% endblock %}

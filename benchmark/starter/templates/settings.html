@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Settings — Procura{% endblock %}
+{% block content %}
+<h1>Settings</h1>
+<form method="post" action="/settings">
+  <p><label><input type="checkbox" name="notify_email" {% if notify_email %}checked{% endif %}> Email me about approvals</label></p>
+  <p><label>Digest
+    <select name="digest">
+      {% for d in ["daily", "weekly", "off"] %}<option value="{{ d }}" {% if digest == d %}selected{% endif %}>{{ d|capitalize }}</option>{% endfor %}
+    </select>
+  </label></p>
+  <p><label>Auto-approve under <input type="number" name="auto_approve_threshold" value="{{ threshold }}" min="0" step="50"></label> (USD)</p>
+  <button type="submit">Save settings</button>
+</form>
+{% endblock %}
