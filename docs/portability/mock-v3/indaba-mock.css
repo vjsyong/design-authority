@@ -49,13 +49,8 @@ body {
 }
 .masthead nav a:hover { background: rgba(255, 255, 255, .10); color: #fff; }
 .masthead nav a.on { background: var(--orange); color: #fff; font-weight: 500; }
-.dotstrip {
-  height: 10px;
-  background-color: var(--warm-tint);
-  background-image: radial-gradient(var(--warm-grey) 1.6px, transparent 1.8px);
-  background-size: 12px 12px;
-  background-position: 50% 50%;
-}
+/* (dot pattern remains available as a brand graphic device for backgrounds;
+   not used as a stripe under the banner) */
 
 /* page head */
 .page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin: 30px 0 22px; }
