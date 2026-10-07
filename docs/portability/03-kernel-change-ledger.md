@@ -38,11 +38,20 @@ failure unless explicitly documented and justified.
   code, no branching.
 - **Impact on Triage:** none (its validators use `{snapshot}`, unchanged
   behaviour; the substitution is added alongside).
-- **Decision:** `DEFER` to Phase 8 — the finding is recorded at encode time
-  (Phase 3/4); it will be exercised and adjudicated when the Orbit validator
-  is actually wired (Phase 8). If the minimal substitution proves sufficient,
-  it becomes a `GENERIC-KERNEL-DEFICIENCY` resolved as proposed; if anything
-  deeper surfaces, it is re-adjudicated here.
+- **Decision:** `GENERIC-KERNEL-DEFICIENCY` — **implemented** as proposed, in the
+  minimal additive form: `{pack}` (pack directory) is now substituted in
+  validator `workdir` and `command` args, alongside `{snapshot}` and
+  `{target}`. No authority-specific branching; Triage's `{snapshot}` path is
+  byte-identical in behaviour. A second, smaller generic fix rode along: the
+  parser name `"lint-json"` is now accepted as the shape name (the legacy
+  name `"triage-lint-json"` still works — it describes the same report
+  shape, which is SARIF-aligned and produced by both authorities' linters).
+  Evidence: kernel unit tests 10/10 after the change; Orbit validator runs
+  end-to-end through `da validate` (`packs/orbit/validators/orbit_lint.py`,
+  workdir `{pack}`), and the Triage path is unaffected (same substitution
+  semantics; its validators still use `{snapshot}`).
+- **Ledger ref:** this entry is the spike's only required kernel change so
+  far; both edits live in `kernel/design_authority/validate.py`.
 
 ## KCL-002 · Required `kind` fields hidden by the curation pipeline
 

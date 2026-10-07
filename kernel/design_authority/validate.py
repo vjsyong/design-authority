@@ -34,14 +34,22 @@ def _normalize_lint_report(report):
 
 def _run_one(pack, v, target, snap, timeout):
     name = v["name"]
-    workdir = os.path.expanduser(str(v.get("workdir", "{snapshot}")).replace("{snapshot}", snap))
+    # Substitutions available to validators: {snapshot} = pinned source
+    # checkout (when the authority has one), {pack} = the authority's own
+    # directory (for pack-local validator scripts), {target} = path under
+    # validation. All three are generic; none is authority-specific.
+    workdir = os.path.expanduser(
+        str(v.get("workdir", "{snapshot}"))
+        .replace("{snapshot}", snap).replace("{pack}", pack.path))
     if not workdir or not os.path.isdir(workdir):
         return {"validator": name, "status": "error",
                 "message": "validator workdir not found: %r" % workdir,
-                "hint": ("Set DA_SNAPSHOT to a checkout of the pinned snapshot, or fix "
-                         "snapshot.path_hint in the pack manifest."),
+                "hint": ("Set DA_SNAPSHOT to a checkout of the pinned snapshot, fix "
+                         "snapshot.path_hint in the pack manifest, or use {pack} for "
+                         "pack-local validator scripts."),
                 "findings": []}
-    cmd = [str(a).replace("{target}", os.path.abspath(target)) for a in v["command"]]
+    cmd = [str(a).replace("{snapshot}", snap).replace("{pack}", pack.path)
+           .replace("{target}", os.path.abspath(target)) for a in v["command"]]
     try:
         proc = subprocess.run(cmd, cwd=workdir, capture_output=True,
                               text=True, timeout=timeout)
@@ -49,7 +57,9 @@ def _run_one(pack, v, target, snap, timeout):
         return {"validator": name, "status": "error",
                 "message": "failed to run: %s" % exc, "findings": []}
 
-    if v.get("parser") == "triage-lint-json":
+    # "lint-json" is the shape name; "triage-lint-json" remains accepted as
+    # the legacy name for the same report shape (first authority to ship it).
+    if v.get("parser") in ("lint-json", "triage-lint-json"):
         try:
             report = json.loads(proc.stdout)
         except ValueError:

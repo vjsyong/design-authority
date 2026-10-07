@@ -1,0 +1,86 @@
+[
+ {
+  "query": "delete a record with confirmation",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/entity-delete-armed",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/entity-delete-armed",
+  "orbit 0.1": "COMPOSE \u00b7 recipe/destructive-confirm"
+ },
+ {
+  "query": "a searchable picker for choosing an assignee",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/cb",
+  "evolution 0.13": "RESOLVED \u00b7 component/cb",
+  "orbit 0.1": "UNDEFINED \u00b7 ~component/chooser"
+ },
+ {
+  "query": "show the progress of a background job",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~guideline/page-hierarchy",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/job-progress",
+  "orbit 0.1": "RESOLVED \u00b7 pattern/job-view"
+ },
+ {
+  "query": "rounded corners on a card",
+  "pinned 0.12.1": "CONFLICT \u00b7 prohibit/rounded-corners",
+  "evolution 0.13": "CONFLICT \u00b7 prohibit/rounded-corners",
+  "orbit 0.1": "CONFLICT \u00b7 prohibit/rounded-forms"
+ },
+ {
+  "query": "animate the dialog opening",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/dlg",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/dlg",
+  "orbit 0.1": "UNDEFINED \u00b7 ~component/dialog"
+ },
+ {
+  "query": "color-code the categories with different colors",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~token-set/color",
+  "evolution 0.13": "UNDEFINED \u00b7 ~token-set/color",
+  "orbit 0.1": "UNDEFINED \u00b7 ~guideline/accent-discipline"
+ },
+ {
+  "query": "a table of activity entries",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/tl",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/tl",
+  "orbit 0.1": "UNDEFINED \u00b7 ~component/register"
+ },
+ {
+  "query": "primary button for saving",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/btn",
+  "evolution 0.13": "RESOLVED \u00b7 component/btn",
+  "orbit 0.1": "RESOLVED \u00b7 component/command"
+ },
+ {
+  "query": "use the btn class for the save control",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/savebar",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/select",
+  "orbit 0.1": "UNDEFINED \u00b7 ~component/chooser"
+ },
+ {
+  "query": "status with text for a running job",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/status-with-text",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/status-with-text",
+  "orbit 0.1": "RESOLVED \u00b7 pattern/job-view"
+ },
+ {
+  "query": "empty state for the items list",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/empty",
+  "evolution 0.13": "RESOLVED \u00b7 component/empty",
+  "orbit 0.1": "RESOLVED \u00b7 pattern/register-view"
+ },
+ {
+  "query": "add a checkbox for newsletter opt-in",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/px-sw",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/px-sw",
+  "orbit 0.1": "FALLBACK \u00b7 fallback/platform-controls"
+ },
+ {
+  "query": "settings form",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/editor-savebar",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/editor-savebar",
+  "orbit 0.1": "RESOLVED \u00b7 pattern/form-flow"
+ },
+ {
+  "query": "a numbered field for phone",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/dp",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/dp",
+  "orbit 0.1": "UNDEFINED \u00b7 ~component/entry"
+ }
+]
