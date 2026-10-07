@@ -1,0 +1,340 @@
+{
+ "artifacts": [
+  {
+   "id": "component/command",
+   "kind": "component",
+   "title": "Command (action control)",
+   "summary": "Square action control; primary (solid accent), secondary (ink border), destructive (accent border, reserved for high-consequence actions).",
+   "status": "beta",
+   "aliases": ["button", "action", "submit", "cta", "primary button"],
+   "body": {
+    "class": "command",
+    "group": "Actions",
+    "states": ["default", "hover (border emphasis, no motion)", "focus (2px ink outline)", "active (inverted)", "disabled"],
+    "verify": [".command", ".command[data-variant=\"primary\"]", ".command[data-variant=\"destructive\"]"],
+    "a11y": ["Real <button> semantics; visible label is the accessible name; focus ring required (authored, no source basis).", "Destructive variant must not be the default action in a form."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p8 color-use rules; p45 signage principles"}
+  },
+  {
+   "id": "component/entry",
+   "kind": "component",
+   "title": "Entry (text field)",
+   "summary": "Single-line text input: label above, 1px ink border, error line below in accent; square.",
+   "status": "beta",
+   "aliases": ["input", "text field", "form field", "textbox"],
+   "body": {
+    "class": "entry",
+    "group": "Forms",
+    "states": ["default", "focus", "invalid (accent border + concise error line)", "disabled", "readonly"],
+    "verify": [".entry", ".entry input", ".entry .entry__error"],
+    "a11y": ["<label for> association always; error text linked via aria-describedby (authored).", "Error copy is one concise sentence naming the problem."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p30 typographic style; p45-46 message clarity"}
+  },
+  {
+   "id": "component/chooser",
+   "kind": "component",
+   "title": "Chooser (small-set select)",
+   "summary": "Labelled native select for small fixed sets (about 12 options or fewer); larger or filtered selection is out of scope by design.",
+   "status": "beta",
+   "aliases": ["select", "dropdown", "picker", "assignment control"],
+   "body": {
+    "class": "chooser",
+    "group": "Forms",
+    "states": ["default", "focus", "invalid", "disabled"],
+    "verify": [".chooser", ".chooser select"],
+    "a11y": ["Native semantics; visible label; never replace with a custom listbox for small sets."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "form language inferred from p41-44 formats (authored limit rule)"}
+  },
+  {
+   "id": "component/panel",
+   "kind": "component",
+   "title": "Panel (bordered technical region)",
+   "summary": "1px ink bordered region reserved for technical or diagrammatic content; ordinary prose uses sections and rules instead.",
+   "status": "beta",
+   "aliases": ["card", "box", "surface", "technical block"],
+   "body": {
+    "class": "panel",
+    "group": "Structure",
+    "states": ["default"],
+    "verify": [".panel"],
+    "a11y": ["Titles are real headings; do not use panels nested more than one level deep."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p41 outline boxes rule"}
+  },
+  {
+   "id": "component/band",
+   "kind": "component",
+   "title": "Band (identity, navigation, status)",
+   "summary": "Full-width white band with a 1px ink bottom rule: identity left, navigation (current item = 2px accent underline), environment/status text right; inverted variant uses ink background with white text.",
+   "status": "beta",
+   "aliases": ["header", "navbar", "top bar", "navigation bar"],
+   "body": {
+    "class": "band",
+    "group": "Structure",
+    "states": ["default (paper)", "inverted (ink background, white text)"],
+    "verify": [".band", ".band--inverted"],
+    "a11y": ["Navigation is a <nav> list; current item marked with aria-current plus the underline."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p41 white band for folios/headlines; p8/p47 inversions"}
+  },
+  {
+   "id": "component/register",
+   "kind": "component",
+   "title": "Register (ruled data list)",
+   "summary": "Data list or table: header row in Medium, rows separated by 1px gray hairlines, top-aligned cells, row actions right as text commands; no zebra striping, no elevation.",
+   "status": "beta",
+   "aliases": ["table", "list", "rows", "data list"],
+   "body": {
+    "class": "register",
+    "group": "Data",
+    "states": ["default", "empty (use the standby notice pattern)"],
+    "verify": [".register", ".register th", ".register td"],
+    "a11y": ["Real table semantics where tabular; top-aligned text; row action labels are specific verbs."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p41-44 rules and format families"}
+  },
+  {
+   "id": "component/indicator",
+   "kind": "component",
+   "title": "Indicator (status marker)",
+   "summary": "Status shown as a 6x6 square marker plus text label; tones neutral (gray), ok (ink), alert (accent); text always readable alone.",
+   "status": "beta",
+   "aliases": ["status", "state marker", "status label"],
+   "body": {
+    "class": "indicator",
+    "group": "Feedback",
+    "states": ["neutral", "ok", "alert"],
+    "verify": [".indicator", ".indicator[data-tone=\"alert\"]"],
+    "a11y": ["Never color alone: the text label carries the status; marker is decorative for AT."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "semantics authored; accent discipline from p8"}
+  },
+  {
+   "id": "component/tag",
+   "kind": "component",
+   "title": "Tag (square micro-label)",
+   "summary": "Square 1px gray-bordered micro-label for classification and metadata; tags keep their own visual space and never compete with status.",
+   "status": "beta",
+   "aliases": ["badge", "label", "marker tag"],
+   "body": {
+    "class": "tag",
+    "group": "Data",
+    "states": ["default"],
+    "verify": [".tag"],
+    "a11y": ["Tag text is plain text; do not encode meaning only in tag color (no color coding defined)."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p12 patches own visual space (inferred)"}
+  },
+  {
+   "id": "component/gauge",
+   "kind": "component",
+   "title": "Gauge (determinate progress)",
+   "summary": "Square determinate progress bar: paper track with 1px gray border, ink fill (accent fill when attention needed), mandatory text readout 'n of m'; static updates, no animation.",
+   "status": "experimental",
+   "aliases": ["progress", "progress bar", "meter", "completion"],
+   "body": {
+    "class": "gauge",
+    "group": "Feedback",
+    "states": ["determinate (with readout)", "alert (accent fill)"],
+    "verify": [".gauge", ".gauge .gauge__fill"],
+    "a11y": ["role=progressbar with aria-valuenow/min/max; the visible readout is the same words. Motion is undefined in this system (no transitions)."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "authored element (no source basis)"}
+  },
+  {
+   "id": "component/notice",
+   "kind": "component",
+   "title": "Notice (inline feedback block)",
+   "summary": "Square inline message block: info (gray border), warning (ink border), alert (accent border + accent heading); one concise sentence of copy; top of its region.",
+   "status": "beta",
+   "aliases": ["alert", "banner", "message", "feedback block"],
+   "body": {
+    "class": "notice",
+    "group": "Feedback",
+    "states": ["info", "warning", "alert"],
+    "verify": [".notice", ".notice[data-kind=\"alert\"]"],
+    "a11y": ["Role per kind (status vs alert); copy names the object and what happens next."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p45-46 signage classes"}
+  },
+  {
+   "id": "component/section",
+   "kind": "component",
+   "title": "Section (grouping)",
+   "summary": "Form or content grouping: Medium heading, 1px ink rule, stacked entries; form column max-width 560px; top-aligned.",
+   "status": "beta",
+   "aliases": ["fieldset", "form group", "grouping", "form section"],
+   "body": {
+    "class": "section",
+    "group": "Forms",
+    "states": ["default"],
+    "verify": [".section", ".section > h2"],
+    "a11y": ["fieldset/legend semantics for form groups."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p41-44 format logic (inferred)"}
+  },
+  {
+   "id": "component/dialog",
+   "kind": "component",
+   "title": "Dialog (modal confirm or editor)",
+   "summary": "Square modal: 1px ink border, ink band header with title and Close, body, right-aligned footer commands; page overlay is ink at 40% opacity; state appears and disappears instantly (no motion).",
+   "status": "experimental",
+   "aliases": ["modal", "confirm", "popup", "overlay"],
+   "body": {
+    "class": "dialog",
+    "group": "Feedback",
+    "states": ["open", "closed"],
+    "verify": [".dialog", ".dialog .dialog__header"],
+    "a11y": ["Focus trapped; Escape closes; confirm copy names the object and the consequence in the sentence."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "authored structure; overlay value from p47 40% rule"}
+  },
+  {
+   "id": "pattern/shell",
+   "kind": "pattern",
+   "title": "Application shell",
+   "summary": "Band on top, main region (max-width 1080, padding 24/32), footer folio line 'Orbit . section' in small gray type.",
+   "status": "beta",
+   "aliases": ["app shell", "page layout", "application frame"],
+   "body": {
+    "class": "shell",
+    "group": "Patterns",
+    "states": ["default"],
+    "verify": [".shell", ".shell main"],
+    "a11y": ["One <main> landmark; the band is <header>."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p41 band and folios"}
+  },
+  {
+   "id": "pattern/register-view",
+   "kind": "pattern",
+   "title": "Register view (list screen)",
+   "summary": "Shell plus page head (h1 and a primary command) plus register; empty state is a centered standby notice with one secondary command.",
+   "status": "beta",
+   "aliases": ["list screen", "index screen", "table view"],
+   "body": {
+    "class": "register-view",
+    "group": "Patterns",
+    "states": ["default", "empty (standby notice)"],
+    "verify": [".register-view"],
+    "a11y": ["Empty state must be announced; standby copy says what to do next (one command)."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "assembly inferred from p41-44"}
+  },
+  {
+   "id": "pattern/form-flow",
+   "kind": "pattern",
+   "title": "Form flow (create or edit)",
+   "summary": "Shell, sections of entries and choosers, validation notices above fields, footer row with a primary submit and a secondary cancel; destructive actions route through a dialog naming the object and consequence.",
+   "status": "beta",
+   "aliases": ["settings form", "create form", "edit form", "settings screen"],
+   "body": {
+    "class": "form-flow",
+    "group": "Patterns",
+    "states": ["default", "invalid (field notices)", "destructive confirm (dialog)"],
+    "verify": [".form-flow"],
+    "a11y": ["Validation summary notice is announced; destructive confirm is keyboard reachable."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "assembly inferred; destructive semantics authored"}
+  },
+  {
+   "id": "pattern/job-view",
+   "kind": "pattern",
+   "title": "Job view (status console)",
+   "summary": "Shell plus indicator plus gauge plus a log register (time and message rows); status is always text plus marker; no animation anywhere.",
+   "status": "experimental",
+   "aliases": ["status screen", "job progress", "progress screen", "runtime status"],
+   "body": {
+    "class": "job-view",
+    "group": "Patterns",
+    "states": ["running", "complete", "stalled (text label)", "failed (alert tone)"],
+    "verify": [".job-view"],
+    "a11y": ["State changes announced politely (aria-live on the status line); gauge readout text matches aria-valuetext."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "authored (no source analogue)"}
+  },
+  {
+   "id": "token-set/palette",
+   "kind": "token-set",
+   "title": "Orbit palette",
+   "summary": "Paper (white), ink (near-black), gray-mid (middle warm gray), accent (warm NASA-derived red), accent-ink (white). Accent is identification and action only, never a reading surface.",
+   "status": "beta",
+   "aliases": ["colors", "colour palette", "palette", "color roles"],
+   "body": {
+    "class": "palette",
+    "group": "Foundations",
+    "states": [],
+    "verify": ["--paper", "--ink", "--gray-mid", "--accent"],
+    "a11y": ["Contrast: ink on paper and accent-ink on accent meet 4.5:1 (to be verified by orbit-lint); accent text on paper allowed only at large sizes or bold weights."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p8-9 color standards and use rules"}
+  },
+  {
+   "id": "token-set/type",
+   "kind": "token-set",
+   "title": "Orbit type roles",
+   "summary": "Helvetica-register sans only in controls; scale 24/18/15/13/12; flush-left ragged-right; normal letterspacing; line-height 1.4; serif voice reserved for long-form content.",
+   "status": "beta",
+   "aliases": ["typography", "type scale", "fonts"],
+   "body": {
+    "class": "type",
+    "group": "Foundations",
+    "states": [],
+    "verify": ["--font-sans", "--text-xl", "--text-base"],
+    "a11y": ["Body text at least 15px on screens; no justified text; never tighten letterspacing."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p27-30 typography program"}
+  },
+  {
+   "id": "guideline/voice",
+   "kind": "guideline",
+   "title": "Voice: clear and concise",
+   "summary": "UI copy is short, declarative, and names the object and the consequence; no ornament, no filler.",
+   "status": "beta",
+   "aliases": ["copy", "wording", "tone", "tone and voice"],
+   "body": {
+    "class": "voice",
+    "group": "Foundations",
+    "states": [],
+    "verify": [],
+    "a11y": ["Error and confirm copy states what happened and what happens next in one sentence."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p45 'clear and concise'; p46 'Keep the signs simple'"}
+  },
+  {
+   "id": "guideline/accent-discipline",
+   "kind": "guideline",
+   "title": "Accent discipline",
+   "summary": "The red accent marks identity and actions only; it never becomes a background behind reading text, never sits on mid-value surfaces, and is never the only signal.",
+   "status": "beta",
+   "aliases": ["accent rules", "red usage", "color usage"],
+   "body": {
+    "class": "accent-discipline",
+    "group": "Foundations",
+    "states": [],
+    "verify": [],
+    "a11y": ["Status never relies on accent color alone (see component/indicator)."]
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "p8 logotype color rules"}
+  },
+  {
+   "id": "reference/manual",
+   "kind": "reference",
+   "title": "Source: NASA Graphics Standards Manual (NHB 1430.2, 1976)",
+   "summary": "Public-domain source document (US Government work) from which this system was derived; full provenance and extraction log in docs/portability/01-source-audit.md.",
+   "status": "stable",
+   "aliases": ["source document", "nasa manual"],
+   "body": {
+    "class": "reference",
+    "group": "Provenance",
+    "states": [],
+    "verify": [],
+    "a11y": []
+   },
+   "source": {"repo": "NASA GSM NHB 1430.2", "path": "nasa.gov PDF (2015 release)"}
+  }
+ ]
+}

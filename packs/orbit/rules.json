@@ -1,0 +1,41 @@
+{
+ "rules": [
+  {
+   "id": "ORB-1",
+   "name": "radius-always-zero",
+   "severity": "error",
+   "applies_to": ["css", "html"],
+   "summary": "Corner radius is always 0 — square form is the system's language.",
+   "why": "The source system is rectilinear; no rounded form appears in any application (docs/portability/02-derived-system.md, §F1).",
+   "fix": "Remove border-radius or set it to 0 on the offending element.",
+   "enforcement": {"mode": "orbit-lint"}
+  },
+  {
+   "id": "ORB-2",
+   "name": "accent-not-a-surface",
+   "severity": "error",
+   "applies_to": ["css", "html"],
+   "summary": "The accent red is never a reading surface and never carries meaning alone.",
+   "why": "Source color rules restrict red to identification and actions on paper; never behind reading text (manual p8).",
+   "fix": "Move content off the accent surface; use ink on paper for reading text."
+  },
+  {
+   "id": "ORB-3",
+   "name": "no-elevation",
+   "severity": "warning",
+   "applies_to": ["css"],
+   "summary": "No drop shadows or elevation; hierarchy uses rules, bands, and inversion.",
+   "why": "Print-derived system with no elevation concept (§F3).",
+   "fix": "Replace box-shadow with a 1px border or a rule."
+  },
+  {
+   "id": "ORB-4",
+   "name": "status-needs-text",
+   "severity": "error",
+   "applies_to": ["html"],
+   "summary": "Status must include a text label; the square marker never carries meaning alone.",
+   "why": "Accent discipline plus accessibility (§8.7).",
+   "fix": "Add the status word next to the marker."
+  }
+ ]
+}

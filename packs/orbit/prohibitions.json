@@ -1,0 +1,24 @@
+{
+ "prohibitions": [
+  {
+   "id": "prohibit/rounded-forms",
+   "statement": "Rounded corners anywhere — square is a system rule (ORB-1).",
+   "signals": ["rounded corner", "rounded corners", "rounded", "border-radius", "pill-shaped", "soft corners"],
+   "rule": "ORB-1",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/drop-shadows",
+   "statement": "Drop shadows and elevation are not part of this system (ORB-3).",
+   "signals": ["drop shadow", "box-shadow", "box shadow", "shadow", "elevated surface", "elevation"],
+   "rule": "ORB-3",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/pastels",
+   "statement": "Pale, pastel colors are discouraged system-wide (manual p30).",
+   "signals": ["pastel", "pale pastel"],
+   "kind": "prohibition"
+  }
+ ]
+}

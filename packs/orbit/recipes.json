@@ -1,0 +1,85 @@
+{
+ "recipes": [
+  {
+   "id": "recipe/destructive-confirm",
+   "title": "High-consequence action confirms by name",
+   "summary": "Route the destructive command through a dialog whose sentence names the object and the consequence; the destructive action is never the default.",
+   "needs": [
+    "delete a record with confirmation",
+    "destructive action confirm",
+    "remove an item irreversibly",
+    "high consequence action"
+   ],
+   "ingredients": [
+    "component/dialog",
+    "component/command",
+    "guideline/voice"
+   ],
+   "constraints": [
+    "the sentence names the object and the consequence",
+    "no default focus on the destructive control",
+    "instant appearance \u2014 no motion"
+   ],
+   "evidence": {
+    "source": "docs/portability/02-derived-system.md#8.12",
+    "quote": "Destructive confirms state the object and consequence in the sentence. (authored)"
+   },
+   "kind": "recipe"
+  },
+  {
+   "id": "recipe/status-console",
+   "title": "Long-running work shows text status",
+   "summary": "Indicator for state, gauge for determinate progress with a text readout, and a log register for events; no animation.",
+   "needs": [
+    "show the progress of a background job",
+    "running stalled or failed",
+    "long operation status",
+    "job progress readout"
+   ],
+   "ingredients": [
+    "component/indicator",
+    "component/gauge",
+    "component/register",
+    "pattern/job-view"
+   ],
+   "constraints": [
+    "state is always text plus marker",
+    "gauge readout text matches aria-valuetext",
+    "no transitions"
+   ],
+   "evidence": {
+    "source": "docs/portability/02-derived-system.md#9.4",
+    "quote": "status is always text plus marker; no animation anywhere. (authored)"
+   },
+   "kind": "recipe"
+  },
+  {
+   "id": "recipe/form-section",
+   "title": "Grouped form submission",
+   "summary": "Sections of labelled entries and choosers with a footer command row; validation notices sit above the fields they concern.",
+   "needs": [
+    "settings form",
+    "edit a record",
+    "create a new item form",
+    "short intake form"
+   ],
+   "ingredients": [
+    "component/section",
+    "component/entry",
+    "component/chooser",
+    "component/notice",
+    "pattern/form-flow"
+   ],
+   "constraints": [
+    "labels always visible",
+    "one concise error sentence per field",
+    "submit is primary; cancel is secondary"
+   ],
+   "evidence": {
+    "source": "docs/portability/02-derived-system.md#9.3",
+    "quote": "sections of entries and choosers... footer row: primary submit, secondary cancel (inferred)"
+   },
+   "kind": "recipe"
+  }
+ ]
+}
