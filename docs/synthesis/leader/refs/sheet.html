@@ -36,9 +36,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .l .tag2 { display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:5px 10px; border:2px solid var(--ink); }
 .l .tag2.red { background:var(--red); border-color:var(--red); color:#fff; }
 .l .field label { display:block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--l40); margin-bottom:5px; font-family:'Inter'; }
-.l .field input { font-family:'Gelasio'; font-size:15px; width:100%; padding:9px 11px; border:2px solid var(--ink); background:#fff; border-radius:8px; }
-.l .field input.focus { outline:1px solid var(--ink); outline-offset:2px; }
-.l .field .err { font-family:'Gelasio'; font-size:12.5px; color:var(--red); margin-top:5px; }
+.l .field input { font-family:'Inter'; font-size:15px; width:100%; padding:9px 11px; border:1px solid var(--ink); background:#fff; border-radius:8px; }
+.l .field input.focus { outline:none; }
+.l .field .err { font-family:'Inter'; font-size:12.5px; color:var(--red); margin-top:5px; }
 .l .notice { border-top:2px solid var(--ink); background:var(--l95); padding:12px 14px; font-size:13px; }
 .l .meter { height:13px; background:var(--l85); } .l .meter i { display:block; height:100%; width:70%; background:var(--red); }
 .l .ledger { width:100%; border-collapse:collapse; font-size:13px; }
@@ -69,9 +69,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Primary = solid navy-blue rounded rectangle (live-observed: deep navy CTA, soft radius ~8), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed #2E45B8-class). Red steps back to brand/attention duty.</p>
   <div class="cex"><button class="btn b-navy">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read the full entry</button></div></div>
 
-  <div class="card rev"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span><span class="chip rev">v3 · broadened per review</span></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span><span class="chip rev">v4 · corner fixed</span></div>
   <p class="ctext">The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.</p>
-  <div class="cex" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn b-navy" style="font-size:12px;padding:8px 14px">Rounded action</button><span style="display:inline-block;background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:10px 14px;font-size:12px">Rounded card surface</span><span class="tag2" style="padding:5px 9px;font-size:9.5px">Rounded toggle</span><span style="flex-basis:100%;font-size:11px;color:#666">Crisp only: <span style="display:inline-block;width:70px;height:0;border-top:2px solid #1A1A1A;vertical-align:middle"></span> rules / glyph marks</span></div></div>
+  <div class="cex" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn b-navy" style="font-size:12px;padding:8px 14px">Rounded action</button><span style="display:inline-block;background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:10px 14px;font-size:12px">Rounded card surface</span><span class="tag2" style="padding:5px 9px;font-size:9.5px;border-radius:8px">Rounded toggle</span><span style="flex-basis:100%;font-size:11px;color:#666">Crisp only: <span style="display:inline-block;width:70px;height:0;border-top:2px solid #1A1A1A;vertical-align:middle"></span> rules / glyph marks</span></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-03</span><span class="chip">events</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
   <p class="ctext">Near-instant interaction transitions (≤0.15s colour swaps); no spring, bounce or decorative motion in UI chrome.</p>
@@ -105,8 +105,8 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = blue underline (Chicago 45) per review; crisp search rectangle with typing-cursor motif right.</p>
   <div class="cex"><div class="navbar"><span class="name">The Register</span><span class="on">Items</span><span>Activity</span><span class="cursorbox" style="margin-left:auto">Search<span class="cur"></span></span></div></div></div>
 
-  <div class="card att rev"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip rev">v3 · rounded + serif (as directed)</span></div>
-  <p class="ctext">Fields: white, soft rounded corners (radius 8), serif field text; label above in caps; focus = offset outline; error = small red serif under the field. (If this still misses, say what the field should look like differently.)</p>
+  <div class="card att rev"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip rev">v4 · sans + no border highlight</span></div>
+  <p class="ctext">Fields: white, 1px soft border, rounded corners (radius 8), sans-serif field text; label above in caps; focus adds no border highlight (per review); error = small red line under the field.</p>
   <div class="cex"><div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="err">That name isn’t on the member list.</p></div></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-12</span><span class="chip">selection</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>

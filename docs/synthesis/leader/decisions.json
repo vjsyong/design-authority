@@ -24,7 +24,7 @@
       "area": "shape",
       "decision": "The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.",
       "status": "OBSERVED",
-      "evidence": "rectangle motif native to the identity; no radius ever mentioned; crisp-lines language",
+      "evidence": "rectangle motif native to the identity; no radius ever mentioned; crisp-lines language | Gate 2: reviewer caught a sharp-cornered example element (styling slip, fixed)",
       "confidence": "high",
       "reasoning": "The shape vocabulary is explicitly rectilinear across static and animated assets.",
       "alternatives": "hairline-radius softening (rejected: unevidenced and against the crisp register)",
@@ -121,7 +121,7 @@
     {
       "id": "L-11",
       "area": "forms",
-      "decision": "Fields: white, soft rounded corners (radius 8), serif field text (reviewer-directed); label above in caps; focus = offset outline; error = small red serif under the field.",
+      "decision": "Fields: white, 1px soft border, rounded corners (radius 8), sans-serif field text (reviewer-directed); label above in caps; focus adds no border highlight; error = small red line under the field.",
       "status": "AUTHORED",
       "evidence": "no form evidence; register derived",
       "confidence": "low",
@@ -273,5 +273,5 @@
       "review": "confirm"
     }
   ],
-  "revised": "2026-10-07 — Gate 2 v3: L-01/02/11/24 second-pass revisions (rounded surfaces canon, blue links); awaiting re-check"
+  "revised": "2026-10-07 — Gate 2 v4: L-02 example corner fixed; L-11 revised (sans + no border highlight); awaiting re-check"
 }

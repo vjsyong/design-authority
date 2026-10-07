@@ -9,11 +9,11 @@
  },
  "L-02": {
   "images": [
-   "uploads/L-02/1791379883_Screenshot_2026-10-07_213117.png"
+   "uploads/L-02/1791383171_Screenshot_2026-10-07_222602.png"
   ],
-  "verdict": "reject",
-  "comment": "That is incorrect. The economist uses rounded corners ",
-  "updated": "2026-10-07 14:19:43"
+  "verdict": "",
+  "comment": "Still shows a sharp corner in \"rounded toggle\"",
+  "updated": "2026-10-07 14:26:22"
  },
  "L-03": {
   "images": [],
@@ -69,9 +69,9 @@
   "images": [
    "uploads/L-11/1791380096_Screenshot_2026-10-07_213437.png"
   ],
-  "verdict": "reject",
-  "comment": "That is incorrect. Rounded corners, serif font",
-  "updated": "2026-10-07 13:34:56"
+  "verdict": "",
+  "comment": "That is incorrect. Rounded corners, san-serif font no border highlighting",
+  "updated": "2026-10-07 14:27:04"
  },
  "L-12": {
   "images": [],
@@ -149,7 +149,7 @@
   "images": [],
   "verdict": "accept",
   "comment": "That is incorrect. there are rounded corners",
-  "updated": "2026-10-07 14:21:33"
+  "updated": "2026-10-07 14:27:10"
  },
  "D-01": {
   "images": [
