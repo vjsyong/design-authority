@@ -1,0 +1,11 @@
+{
+  "_note": "Token sets point at groups inside the pinned snapshot's tokens/tokens.json. Values are not duplicated into the pack; the pack cites the source.",
+  "token_sets": [
+    {"id": "token-set/color", "title": "Colour tokens", "summary": "Primitives plus semantic aliases (surface-*, text-*, status-*, interactive-*, ink), tints and solid status surfaces; both themes.", "group": "color", "source": "tokens/tokens.json#color"},
+    {"id": "token-set/typography", "title": "Typography tokens", "summary": "Geist / Geist Mono families, relative --base-size root, --fs-* scale, weights and line-heights.", "group": "typography", "source": "tokens/tokens.json#typography"},
+    {"id": "token-set/spacing", "title": "Spacing tokens", "summary": "Preferred scale 2/4/8/12/16/24/32/48 + semantic roles --space-page/card/field/control + legacy steps (compatibility).", "group": "spacing", "source": "tokens/tokens.json#spacing"},
+    {"id": "token-set/motion", "title": "Motion tokens", "summary": "Duration set (100–400ms) and easings; ad-hoc durations are off-token.", "group": "motion", "source": "tokens/tokens.json#motion"},
+    {"id": "token-set/misc", "title": "System constants", "summary": "Radius policy 0, breakpoint set, z-index ladder, fixed layout widths (--layout-sidebar/content-max/dock).", "group": "misc", "source": "tokens/tokens.json#misc"},
+    {"id": "token-set/dataviz", "title": "Dataviz palette", "summary": "Eight categorical series (Okabe-Ito derived), CVD-checked, for downstream chart code.", "group": "dataviz", "source": "tokens/tokens.json#dataviz"}
+  ]
+}

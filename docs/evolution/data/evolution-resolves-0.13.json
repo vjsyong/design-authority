@@ -1,0 +1,425 @@
+{
+ "pack": "packs/triage-evolution",
+ "report": [
+  {
+   "group": "G-01",
+   "problem": "A compact picker to assign one reviewer (a person) from a fixed list on a record page",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "A compact picker for assigning a reviewer to a request (choose one of a small fixed set of reviewers and submit)",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "A compact picker for assigning a reviewer to a request from a small fixed list, inline in a detail page",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "A compact picker for assigning a reviewer to a request from the request detail page",
+   "outcome": "COMPOSE",
+   "id": "recipe/assign-picker",
+   "expected": [
+    "COMPOSE",
+    "recipe/assign-picker"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "Choose one owner from a list of people",
+   "outcome": "COMPOSE",
+   "id": "recipe/assign-picker",
+   "expected": [
+    "COMPOSE",
+    "recipe/assign-picker"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "Single select from a short fixed set of options",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "Entity picker for assigning a record to a person",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-01",
+   "problem": "Assign a reviewer to a request",
+   "outcome": "RESOLVED",
+   "id": "component/select",
+   "expected": [
+    "RESOLVED",
+    "component/select"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Show the status and progress of a long-running background operation (running with percent complete, potentially stalled/stuck, or failed) and let the user re-run it",
+   "outcome": "COMPOSE",
+   "id": "recipe/job-progress",
+   "expected": [
+    "COMPOSE",
+    "recipe/job-progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "A determinate long-running background-operation status: show how far an AI triage scan has come and whether it is stuck or failed, with a live progress readout",
+   "outcome": "RESOLVED",
+   "id": "component/progress",
+   "expected": [
+    "RESOLVED",
+    "component/progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Show the status and determinate progress of a long-running background triage scan, including running / done / failed and a stalled indication, with live updates",
+   "outcome": "COMPOSE",
+   "id": "recipe/job-progress",
+   "expected": [
+    "COMPOSE",
+    "recipe/job-progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Determinate progress for a long-running background job",
+   "outcome": "COMPOSE",
+   "id": "recipe/job-progress",
+   "expected": [
+    "COMPOSE",
+    "recipe/job-progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Progress bar showing percent complete with a stalled state",
+   "outcome": "RESOLVED",
+   "id": "component/progress",
+   "expected": [
+    "RESOLVED",
+    "component/progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Background job status card with progress",
+   "outcome": "COMPOSE",
+   "id": "recipe/job-progress",
+   "expected": [
+    "COMPOSE",
+    "recipe/job-progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-02",
+   "problem": "Show how far a background scan has come and whether it is stuck",
+   "outcome": "COMPOSE",
+   "id": "recipe/job-progress",
+   "expected": [
+    "COMPOSE",
+    "recipe/job-progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-03",
+   "problem": "An irreversible approval decision that requires a typed reason at the point of action (reject a purchase request with a reason the requester sees)",
+   "outcome": "COMPOSE",
+   "id": "recipe/high-stakes-confirm",
+   "expected": [
+    "COMPOSE",
+    "recipe/high-stakes-confirm"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-03",
+   "problem": "One-way decision with a reason field and a confirmation",
+   "outcome": "COMPOSE",
+   "id": "recipe/high-stakes-confirm",
+   "expected": [
+    "COMPOSE",
+    "recipe/high-stakes-confirm"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-03",
+   "problem": "Rejecting a request requires typing a reason",
+   "outcome": "COMPOSE",
+   "id": "recipe/high-stakes-confirm",
+   "expected": [
+    "COMPOSE",
+    "recipe/high-stakes-confirm"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "G-03",
+   "problem": "High stakes confirmation with a required reason",
+   "outcome": "COMPOSE",
+   "id": "recipe/high-stakes-confirm",
+   "expected": [
+    "COMPOSE",
+    "recipe/high-stakes-confirm"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "combobox",
+   "outcome": "RESOLVED",
+   "id": "component/cb",
+   "expected": [
+    "RESOLVED",
+    "component/cb"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "date picker",
+   "outcome": "RESOLVED",
+   "id": "component/dp",
+   "expected": [
+    "RESOLVED",
+    "component/dp"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "loading spinner",
+   "outcome": "RESOLVED",
+   "id": "component/spinner",
+   "expected": [
+    "RESOLVED",
+    "component/spinner"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "toast message",
+   "outcome": "RESOLVED",
+   "id": "component/toast2",
+   "expected": [
+    "RESOLVED",
+    "component/toast2"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "empty state with a call to action",
+   "outcome": "RESOLVED",
+   "id": "component/empty",
+   "expected": [
+    "RESOLVED",
+    "component/empty"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "banner after redirect",
+   "outcome": "COMPOSE",
+   "id": "recipe/feedback-redirect",
+   "expected": [
+    "COMPOSE",
+    "recipe/feedback-redirect"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "delete a rule from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "regr",
+   "problem": "pagination for a long list",
+   "outcome": "COMPOSE",
+   "id": "recipe/paginated-list",
+   "expected": [
+    "COMPOSE",
+    "recipe/paginated-list"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "del",
+   "problem": "remove a reviewer from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "del",
+   "problem": "remove a person from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "del",
+   "problem": "delete a person from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "del",
+   "problem": "remove an owner from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "del",
+   "problem": "delete an entity from a list",
+   "outcome": "COMPOSE",
+   "id": "recipe/entity-delete-armed",
+   "expected": [
+    "COMPOSE",
+    "recipe/entity-delete-armed"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "lock",
+   "problem": "assign a reviewer with a searchable picker",
+   "outcome": "RESOLVED",
+   "id": "component/cb",
+   "expected": [
+    "RESOLVED",
+    "component/cb"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "lock",
+   "problem": "add a progress bar for a long-running background job",
+   "outcome": "RESOLVED",
+   "id": "component/progress",
+   "expected": [
+    "RESOLVED",
+    "component/progress"
+   ],
+   "ok": true,
+   "hard": true
+  },
+  {
+   "group": "watch",
+   "problem": "remove a reviewer",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "expected": [
+    null,
+    null
+   ],
+   "ok": false,
+   "hard": false
+  }
+ ]
+}

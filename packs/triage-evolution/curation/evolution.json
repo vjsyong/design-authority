@@ -1,0 +1,58 @@
+{
+  "_note": "Authority-evolution experiment overlay (Phase 5-6). Read by tools/build_pack_triage.py when present: attaches provenance to accepted changes and records the release metadata in BUILD.json. Absent from the pinned 0.12.1 pack, where the same code path is a no-op.",
+  "release": {
+    "label": "0.13.0-experiment",
+    "kind": "experimental authority release",
+    "experiment": "authority-evolution",
+    "based_on": "0.12.1 @ e374f38",
+    "source_branch": "evolution/0.13-experiment (triage-design-system)",
+    "evidence": "design-authority docs/evolution/00-gap-evidence.md .. 04-authority-ci.md + benchmark/runs archives",
+    "review": "docs/evolution/03-review.md — adversarial review, all five candidates REVISE; required actions applied before build"
+  },
+  "provenance": {
+    "component/select": {
+      "introduced_in": "0.13.0-experiment",
+      "triggering_gaps": [
+        "G-01 / gap/20261007-034623-ee7a49 (c1)",
+        "G-01 / gap/20261007-042135-0f2dcf (c2)",
+        "G-01 / gap/20261007-054849-6c928b (c3)",
+        "G-01 / gap/20261007-063434-0888c0 (c4)"
+      ],
+      "review_decision": "cand/01-select-catalogue REVISE -> applied (03-review required actions 1-4)",
+      "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+      "tests": ["triage build.py check (37-component matrix)", "strict lint 100/100", "browser suite 248/248 (no baseline drift)", "authority convergence G-01 battery"]
+    },
+    "component/progress": {
+      "introduced_in": "0.13.0-experiment",
+      "triggering_gaps": [
+        "G-02 / gap/20261007-034622-19217d (c1)",
+        "G-02 / gap/20261007-054850-e336ee (c3)",
+        "G-02 / gap/20261007-063435-0e1da7 (c4)"
+      ],
+      "review_decision": "cand/02-progress-catalogue REVISE -> applied (03-review required actions 1-3)",
+      "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+      "tests": ["triage build.py check (37-component matrix)", "strict lint 100/100", "browser suite 248/248 (no baseline drift)", "authority convergence G-02 battery"]
+    },
+    "recipe/assign-picker": {
+      "introduced_in": "0.13.0-experiment",
+      "triggering_gaps": ["G-01 (c1-c4, see component/select)"],
+      "review_decision": "cand/03-recipe-assign-picker REVISE -> applied (03-review required actions 1-4: single feedback ingredient, from-leak removed, criterion rewritten)",
+      "source_commit": "evolution/0.13-experiment",
+      "tests": ["ingredient resolution", "convergence mapping (7 select + 1 recipe, 0 mis-routes)", "delete-probe battery unchanged"]
+    },
+    "recipe/job-progress": {
+      "introduced_in": "0.13.0-experiment",
+      "triggering_gaps": ["G-02 (c1, c3, c4, see component/progress)"],
+      "review_decision": "cand/04-recipe-job-progress REVISE -> applied (03-review required actions 1-4: btn ingredient, re-run need, queued/done coverage, criterion rewritten)",
+      "source_commit": "evolution/0.13-experiment",
+      "tests": ["ingredient resolution", "convergence mapping (5 recipe + 2 component)", "regression battery unchanged"]
+    },
+    "recipe/high-stakes-confirm": {
+      "extended_in": "0.13.0-experiment",
+      "triggering_gaps": ["G-03 / gap/20261007-054849-b66012 (c3)"],
+      "review_decision": "cand/05-confirm-reason-extension REVISE -> applied, Option A (03-review required actions 1-4: 5th need, ingredients, guideline reconciliation)",
+      "source_commit": "evolution/0.13-experiment",
+      "tests": ["4/4 decision phrasings compose", "'delete a rule' + 'modal task' non-regression"]
+    }
+  }
+}

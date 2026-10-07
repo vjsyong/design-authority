@@ -222,6 +222,20 @@ def main(argv=None):
     fallbacks = [dict(f, kind="fallback") for f in fallbacks_in]
     prohibitions = [dict(p, kind="prohibition") for p in prohibitions_in]
 
+    # -- evolution provenance overlay (experimental; absent in the pinned pack,
+    #    where this is a no-op) --------------------------------------------------
+    prov_path = os.path.join(cur, "evolution.json")
+    release_meta = None
+    if os.path.exists(prov_path):
+        prov = load_json(prov_path)
+        release_meta = prov.get("release")
+        by_id = {it["id"]: it for it in (artifacts + recipes + fallbacks + prohibitions)}
+        for aid, block in prov.get("provenance", {}).items():
+            if aid in by_id:
+                by_id[aid]["provenance"] = block
+            else:
+                warnings.append("provenance references unknown id: %s" % aid)
+
     # -- cross-validation --------------------------------------------------------
     ids = [a["id"] for a in artifacts] + [r["id"] for r in recipes] + \
           [f["id"] for f in fallbacks] + [p["id"] for p in prohibitions]
@@ -317,6 +331,7 @@ def main(argv=None):
         "curation_sha256": {f: sha256(os.path.join(cur, f))
                              for f in sorted(os.listdir(cur)) if f.endswith(".json")},
         "warnings": warnings,
+        **({"release": release_meta} if release_meta is not None else {}),
         "notes": [
             "DTCG full-schema conformance check pending (D-015); structural sanity only.",
             "docs-map.json is approximate (site group pages).",
