@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block view %}detail{% endblock %}
+{% block title %}Depot — {{ item.name }}{% endblock %}
+{% block folio %}Depot · Item detail{% endblock %}
+{% block content %}
+{% set tones = {'available': 'ok', 'on_loan': 'neutral', 'overdue': 'alert'} %}
+<div class="detail">
+  <div class="page-head">
+    <div>
+      <h1>{{ item.name }}</h1>
+      <p class="page-head__meta">
+        <span class="tag">{{ item.category }}</span>
+        <span class="indicator" data-tone="{{ tones[item.status] }}" data-status="{{ item.status }}">{{ status_labels[item.status] }}</span>
+      </p>
+    </div>
+    <a class="command" href="{{ url_for('items_view') }}">Back to items</a>
+  </div>
+
+  <section class="section">
+    <h2>Details</h2>
+    <dl class="facts">
+      <dt>Category</dt><dd>{{ item.category }}</dd>
+      <dt>Status</dt><dd><span class="indicator" data-tone="{{ tones[item.status] }}">{{ status_labels[item.status] }}</span></dd>
+      <dt>Borrower</dt><dd>{{ item.borrower or '—' }}</dd>
+      <dt>Due</dt><dd>{{ item.due or '—' }}</dd>
+      {% if item.note %}<dt>Note</dt><dd>{{ item.note }}</dd>{% endif %}
+    </dl>
+  </section>
+
+  <section class="section">
+    <h2>Edit</h2>
+    <form method="post" action="{{ url_for('item_update', iid=item.id) }}">
+      <div class="entry">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" value="{{ item.name }}" required>
+      </div>
+      <div class="chooser">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          {% for c in ["Hand tools", "Power tools", "Measuring", "Safety"] %}
+          <option value="{{ c }}"{% if c == item.category %} selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="entry">
+        <label for="note">Note</label>
+        <input id="note" name="note" type="text" value="{{ item.note }}">
+      </div>
+      <div class="form-actions">
+        <button class="command" data-variant="primary" type="submit" name="save">Save changes</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="section">
+    <h2>Lending</h2>
+    {% if item.status not in ['on_loan', 'overdue'] %}
+    <form method="post" action="{{ url_for('item_checkout', iid=item.id) }}">
+      {# Borrower: the authority's chooser covers small fixed sets only (about
+         12 options or fewer); larger/growing selection is out of scope by
+         design, so this uses the native input + datalist platform control
+         (fallback/platform-controls) to stay quick as the member list grows.
+         Recorded as a gap against the authority. #}
+      <div class="entry">
+        <label for="borrower">Borrower</label>
+        <input id="borrower" name="borrower" type="text" list="member-list"
+               autocomplete="off" data-fallback="platform-controls">
+        <datalist id="member-list">
+          {% for m in members %}<option value="{{ m }}"></option>{% endfor %}
+        </datalist>
+      </div>
+      {# Loan length: no numeric control is defined by the authority; native
+         number input per fallback/platform-controls. Recorded as a gap. #}
+      <div class="entry entry--short">
+        <label for="days">Loan length (days)</label>
+        <input id="days" name="days" type="number" value="14" min="1" max="90" required
+               data-fallback="platform-controls">
+      </div>
+      <div class="form-actions">
+        <button class="command" data-variant="primary" type="submit" name="checkout">Check out</button>
+      </div>
+    </form>
+    {% else %}
+    <p>On loan to <strong>{{ item.borrower }}</strong>{% if item.due %}, due {{ item.due }}{% endif %}.</p>
+    <form method="post" action="{{ url_for('item_return', iid=item.id) }}">
+      <div class="form-actions">
+        <button class="command" type="submit" name="return">Return</button>
+      </div>
+    </form>
+    {% endif %}
+  </section>
+
+  <section class="section">
+    <h2>Retire</h2>
+    <p>Retiring removes the item from the register permanently.</p>
+    <button class="command" data-variant="destructive" type="button" data-action="retire" id="retire-open">Retire item</button>
+
+    <dialog class="dialog" id="retire-dialog" aria-labelledby="retire-title">
+      <div class="dialog__header">
+        <h2 id="retire-title">Retire item</h2>
+      </div>
+      <div class="dialog__body">
+        <p>Retire “{{ item.name }}” permanently? It will be removed from the register and cannot be restored.</p>
+      </div>
+      <div class="dialog__actions">
+        <button class="command" type="button" data-close autofocus>Cancel</button>
+        <form method="post" action="{{ url_for('item_retire', iid=item.id) }}">
+          <button class="command" data-variant="destructive" type="submit">Retire permanently</button>
+        </form>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="notice" data-kind="alert">
+        <h2>Retire permanently</h2>
+        <p>Retire “{{ item.name }}” permanently? It will be removed from the register and cannot be restored.</p>
+        <form method="post" action="{{ url_for('item_retire', iid=item.id) }}">
+          <button class="command" data-variant="destructive" type="submit">Retire permanently</button>
+        </form>
+      </div>
+    </noscript>
+  </section>
+</div>
+
+<script>
+(function () {
+  var dialog = document.getElementById("retire-dialog");
+  var opener = document.getElementById("retire-open");
+  if (!dialog || !opener || typeof dialog.showModal !== "function") { return; }
+  opener.addEventListener("click", function () { dialog.showModal(); });
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) { dialog.close(); }
+  });
+  Array.prototype.forEach.call(dialog.querySelectorAll("[data-close]"), function (button) {
+    button.addEventListener("click", function () { dialog.close(); });
+  });
+})();
+</script>
+{% endblock %}

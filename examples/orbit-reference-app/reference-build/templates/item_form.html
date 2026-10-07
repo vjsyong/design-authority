@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block view %}form{% endblock %}
+{% block title %}Depot — New item{% endblock %}
+{% block folio %}Depot · New item{% endblock %}
+{% block content %}
+<div class="form-flow">
+  <div class="page-head">
+    <h1>New item</h1>
+  </div>
+
+  <form method="post" action="{{ url_for('item_create') }}">
+    <section class="section">
+      <h2>Item</h2>
+
+      <div class="entry">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+
+      <div class="chooser">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          {% for c in categories %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+        </select>
+      </div>
+
+      <div class="entry">
+        <label for="note">Note</label>
+        <input id="note" name="note" type="text">
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <button class="command" data-variant="primary" type="submit" name="submit">Create item</button>
+      <a class="command" href="{{ url_for('items_view') }}">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

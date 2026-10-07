@@ -1,0 +1,11 @@
+{
+ "items": [
+  {"id": 1, "name": "Torque wrench 200Nm", "category": "Hand tools", "note": "Calibration due yearly.", "status": "available", "borrower": null, "due": null},
+  {"id": 2, "name": "Digital caliper 150mm", "category": "Measuring", "note": "", "status": "on_loan", "borrower": "M. Chen", "due": "2026-10-12"},
+  {"id": 3, "name": "Cordless drill 18V", "category": "Power tools", "note": "Two batteries.", "status": "on_loan", "borrower": "R. Ali", "due": "2026-10-01"},
+  {"id": 4, "name": "Safety goggles (pair)", "category": "Safety", "note": "", "status": "available", "borrower": null, "due": null},
+  {"id": 5, "name": "Multimeter", "category": "Measuring", "note": "Fuse replaced Sept.", "status": "available", "borrower": null, "due": null},
+  {"id": 6, "name": "Heat gun", "category": "Power tools", "note": "", "status": "on_loan", "borrower": "J. Wong", "due": "2026-10-20"}
+ ],
+ "next_id": 7
+}

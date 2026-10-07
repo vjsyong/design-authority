@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block view %}register{% endblock %}
+{% block title %}Depot — Items{% endblock %}
+{% block folio %}Depot · Register{% endblock %}
+{% block content %}
+{% set tones = {'available': 'ok', 'on_loan': 'neutral', 'overdue': 'alert'} %}
+<div class="register-view">
+  <div class="page-head">
+    <h1>Items</h1>
+    <a class="command" data-variant="primary" href="{{ url_for('item_new') }}">New item</a>
+  </div>
+
+  {% if items %}
+  <div class="register-wrap">
+    <table class="register" data-list="items">
+      <caption class="visually-hidden">Equipment register</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Status</th>
+          <th scope="col">Borrower</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for it in items %}
+        <tr data-item="{{ it.id }}">
+          <td data-label="Name"><a class="link" href="{{ url_for('item_detail', iid=it.id) }}">{{ it.name }}</a></td>
+          <td data-label="Category"><span class="tag">{{ it.category }}</span></td>
+          <td data-label="Status" data-status="{{ it.status }}">
+            <span class="indicator" data-tone="{{ tones[it.status] }}">{{ status_labels[it.status] }}</span>
+          </td>
+          <td data-label="Borrower">
+            {{ it.borrower or '—' }}
+            {% if it.status != 'available' and it.due %}<span class="meta">due {{ it.due }}</span>{% endif %}
+          </td>
+          <td data-label="Actions" class="register__actions">
+            <a class="link" href="{{ url_for('item_detail', iid=it.id) }}">Open</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="notice" data-kind="info" role="status">
+    <h2>No items yet</h2>
+    <p>The register is empty. Add the first item to begin lending.</p>
+    <a class="command" data-variant="secondary" href="{{ url_for('item_new') }}">New item</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

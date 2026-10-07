@@ -17,8 +17,7 @@ data/               seed data: items, members, activity log
 templates/          starter templates (unstyled; the agent refines these)
 static/orbit.css    interface layer (empty in the starter; implemented from the authority)
 brief.md            the build brief handed to the agent in the Phase 6 run
-reference-build/    the agent's finished interface from run orbit-a1 (transcript,
-                    screenshots and validation in benchmark/runs/orbit-a1/)
+reference-build/    (added after the run) the agent's finished interface, archived for comparison
 ```
 
 ## Run
