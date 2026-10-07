@@ -1,0 +1,62 @@
+[
+ {
+  "query": "delete a record with confirmation",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/entity-delete-armed",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/entity-delete-armed",
+  "indaba 0.1": "COMPOSE \u00b7 recipe/retire-confirm"
+ },
+ {
+  "query": "a searchable picker for choosing an assignee",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/cb",
+  "evolution 0.13": "RESOLVED \u00b7 component/cb",
+  "indaba 0.1": "UNDEFINED \u00b7 ~component/choice"
+ },
+ {
+  "query": "show the progress of a background job",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~guideline/page-hierarchy",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/job-progress",
+  "indaba 0.1": "RESOLVED \u00b7 pattern/activity-view"
+ },
+ {
+  "query": "rounded corners on a card",
+  "pinned 0.12.1": "CONFLICT \u00b7 prohibit/rounded-corners",
+  "evolution 0.13": "CONFLICT \u00b7 prohibit/rounded-corners",
+  "indaba 0.1": "UNDEFINED \u00b7 ~guideline/roundness"
+ },
+ {
+  "query": "primary button for saving",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/btn",
+  "evolution 0.13": "RESOLVED \u00b7 component/btn",
+  "indaba 0.1": "RESOLVED \u00b7 component/action"
+ },
+ {
+  "query": "status with text for a running job",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/status-with-text",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/status-with-text",
+  "indaba 0.1": "RESOLVED \u00b7 pattern/activity-view"
+ },
+ {
+  "query": "empty state for the items list",
+  "pinned 0.12.1": "RESOLVED \u00b7 component/empty",
+  "evolution 0.13": "RESOLVED \u00b7 component/empty",
+  "indaba 0.1": "RESOLVED \u00b7 pattern/register-view"
+ },
+ {
+  "query": "add a checkbox for newsletter opt-in",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/px-sw",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/px-sw",
+  "indaba 0.1": "FALLBACK \u00b7 fallback/platform-controls"
+ },
+ {
+  "query": "settings form",
+  "pinned 0.12.1": "COMPOSE \u00b7 recipe/editor-savebar",
+  "evolution 0.13": "COMPOSE \u00b7 recipe/editor-savebar",
+  "indaba 0.1": "RESOLVED \u00b7 pattern/form-flow"
+ },
+ {
+  "query": "make it sharp, serious, square and black-and-white",
+  "pinned 0.12.1": "UNDEFINED \u00b7 ~component/avatar-sq",
+  "evolution 0.13": "UNDEFINED \u00b7 ~component/avatar-sq",
+  "indaba 0.1": "CONFLICT \u00b7 prohibit/square-corners"
+ }
+]
