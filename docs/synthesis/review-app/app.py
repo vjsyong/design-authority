@@ -178,6 +178,10 @@ were resolved against each authority first; improvised/adapted elements are mark
 <p class="sub">Same spec, rebuilt after the adjudication pass (12 fixes applied + kernel/compiler fixes).
 Result: fewer pure improvisations, more sanctioned fallbacks — and the first recipes composing.</p>
 <div class="src-grid">__STRESS2__</div>
+<h2 style="margin-top:26px">Stress test v3 — rebuilt on the codified authorities</h2>
+<p class="sub">Third build, same spec: packs at 0.2.0 (the 11 accepted proposals are now canon) and the 25
+negative precedents steering declined asks toward their sanctioned alternatives.</p>
+<div class="src-grid">__STRESS3__</div>
 <h2 style="margin-top:26px">Proposal gate</h2>
 <p class="sub">The adjudication pass filed proposals for canon changes — inspect and rule on each.
 Accepted proposals are codified into the packs; rejected ones are filed as negative precedents (reasons + guidance for future asks).</p>
@@ -646,10 +650,24 @@ def demo():
                 "<p>rebuilt on the updated authority</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
+    stress3 = []
+    for name in PACK_META:
+        d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
+        if os.path.isdir(d):
+            gaps = 0
+            gp = os.path.join(d, ".design-authority", "gaps.jsonl")
+            if os.path.exists(gp):
+                gaps = sum(1 for _ in open(gp))
+            stress3.append(
+                "<a class='src' href='/stress3/%s/'><b>Cadence v3 · %s</b>"
+                "<p>rebuilt on the codified authority (0.2.0 + precedents)</p>"
+                "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
+                % (name, name, gaps))
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
             .replace("__STRESS__", "".join(stress))
-            .replace("__STRESS2__", "".join(stress2)))
+            .replace("__STRESS2__", "".join(stress2))
+            .replace("__STRESS3__", "".join(stress3)))
 
 
 @app.route("/demo/<name>")
@@ -765,6 +783,26 @@ def stress2_file(name, fn):
     if name not in PACK_META:
         abort(404)
     d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, fn)
+
+
+@app.route("/stress3/<name>/")
+def stress3_index(name):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, "index.html")
+
+
+@app.route("/stress3/<name>/<path:fn>")
+def stress3_file(name, fn):
+    if name not in PACK_META:
+        abort(404)
+    d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
     if not os.path.isdir(d):
         abort(404)
     return send_from_directory(d, fn)
