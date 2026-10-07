@@ -336,4 +336,18 @@ are retained as flagged reps (c2, c2b: full builds, 0 lint, 13/13; truncation
 affected wrap-up only); the final report must list per-run status and treat
 host instability as a documented threat to validity.
 
+**D-9 · 2026-10-07 — host-level VM restart killed run c4 mid-flight; rerun on
+fresh boot.** At ~05:55–06:02 the Proxmox host node restarted all VMs
+("startall" task at ~05:58; this guest booted 06:02:22). Run c4 (started
+05:50:15) lost its transcript at 05:55:06; its processes and its /tmp
+workspace were lost to the restart, and the partial artifacts were discarded
+(c4 rerun on the fresh boot). The earlier unexplained opencode SIGTERM events
+(03:38, 04:22, 04:42, 05:06) predate this restart and remain formally
+unexplained; they occurred during a night in which the host proved unstable
+(mass VM restart), so the most defensible reading is environmental host/VM
+instability rather than an instrument bug. Per-run statuses (clean / flagged /
+rerun) will be listed in the production report; tonight's instability is a
+documented threat to *wrap-up completeness* only — all measurements come from
+completed workspaces.
+
 *(next deviations appended below)*
