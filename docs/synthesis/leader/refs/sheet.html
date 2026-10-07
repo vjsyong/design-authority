@@ -27,7 +27,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
 .l .btn { font-family:'Inter'; font-size:13.5px; font-weight:500; border:none; padding:10px 18px; border-radius:8px; }
 .l .b-red { background:var(--red); color:#fff; } .l .b-out { background:#fff; box-shadow: inset 0 0 0 2px var(--ink); }
 .l .b-navy { background:#2E45B8; color:#fff; }
-.l .b-txt { background:none; text-decoration:underline; padding:10px 4px; }
+.l .b-txt { background:none; text-decoration:underline; padding:10px 4px; color:#2E45B8; }
 .l .serif { font-family:'Gelasio', serif; }
 .l .display { font-family:'Gelasio'; font-size:34px; line-height:1.12; font-weight:700; }
 .l .stand { font-family:'Gelasio'; font-size:15px; color:#444; margin-top:6px; }
@@ -65,13 +65,13 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p>Every semantic decision, rendered as it would appear if accepted. Dark left edge = your call; the rest are settled from evidence. Part 1: L-01 … L-12.</p></div>
   <div class="grid">
 
-  <div class="card att rev"><div class="chead"><span class="cid">L-01</span><span class="chip">actions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
-  <p class="ctext">Primary = solid navy-blue rounded rectangle (live-observed: deep navy CTA, soft radius ~8); secondary = 2px ink outline; tertiary = underlined text link. Red steps back to brand/attention duty.</p>
+  <div class="card att rev"><div class="chead"><span class="cid">L-01</span><span class="chip">actions</span><span class="chip st">OBSERVED</span><span class="chip rev">v3 · second pass</span></div>
+  <p class="ctext">Primary = solid navy-blue rounded rectangle (live-observed: deep navy CTA, soft radius ~8), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed #2E45B8-class). Red steps back to brand/attention duty.</p>
   <div class="cex"><button class="btn b-navy">Retire item</button> <button class="btn b-out">Cancel</button> <button class="btn b-txt">Read the full entry</button></div></div>
 
-  <div class="card rev"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · your note applied</span></div>
-  <p class="ctext">Soft rounded corners on interactive components (radius ~8px; the live product is NOT square-only); rectangles, rules and glyph marks remain the brand geometry for editorial surfaces.</p>
-  <div class="cex"><span style="display:inline-block;background:#2E45B8;color:#fff;padding:9px 16px;font-size:12.5px;border-radius:8px">Rounded action</span> <span style="display:inline-block;border:2px solid #1A1A1A;padding:7px 14px;font-size:12.5px">Rectilinear mark</span> <span style="display:inline-block;background:#E3120B;color:#fff;padding:9px 16px;font-size:12.5px">Red accent block</span> <span class="meta" style="margin-left:10px">radius: interactive 8 · editorial marks stay crisp</span></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-02</span><span class="chip">shape</span><span class="chip st">OBSERVED</span><span class="chip rev">v3 · broadened per review</span></div>
+  <p class="ctext">The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.</p>
+  <div class="cex" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn b-navy" style="font-size:12px;padding:8px 14px">Rounded action</button><span style="display:inline-block;background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:10px 14px;font-size:12px">Rounded card surface</span><span class="tag2" style="padding:5px 9px;font-size:9.5px">Rounded toggle</span><span style="flex-basis:100%;font-size:11px;color:#666">Crisp only: <span style="display:inline-block;width:70px;height:0;border-top:2px solid #1A1A1A;vertical-align:middle"></span> rules / glyph marks</span></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-03</span><span class="chip">events</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
   <p class="ctext">Near-instant interaction transitions (≤0.15s colour swaps); no spring, bounce or decorative motion in UI chrome.</p>
@@ -105,8 +105,8 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Top bar: white, 2px ink bottom rule; name in serif left; sans links; active = blue underline (Chicago 45) per review; crisp search rectangle with typing-cursor motif right.</p>
   <div class="cex"><div class="navbar"><span class="name">The Register</span><span class="on">Items</span><span>Activity</span><span class="cursorbox" style="margin-left:auto">Search<span class="cur"></span></span></div></div></div>
 
-  <div class="card att rev"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip rev">v2 · applied per review</span></div>
-  <p class="ctext">Fields: white, 2px ink border, soft radius 8, serif field text (reviewer-directed); label above in caps; focus = offset outline; error = small red serif under the field.</p>
+  <div class="card att rev"><div class="chead"><span class="cid">L-11</span><span class="chip">forms</span><span class="chip st">AUTHORED</span><span class="chip rev">v3 · rounded + serif (as directed)</span></div>
+  <p class="ctext">Fields: white, soft rounded corners (radius 8), serif field text; label above in caps; focus = offset outline; error = small red serif under the field. (If this still misses, say what the field should look like differently.)</p>
   <div class="cex"><div class="field"><label>Borrower</label><input value="S. Ho" class="focus"><p class="err">That name isn’t on the member list.</p></div></div></div>
 
   <div class="card att"><div class="chead"><span class="cid">L-12</span><span class="chip">selection</span><span class="chip st">AUTHORED</span><span class="chip att">your call</span></div>
@@ -165,9 +165,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color:#141414; backgro
   <p class="ctext">Focus ring = 2px red outline, offset 2, on white; on red fills switch to white inner + ink outer ring.</p>
   <div class="cex" style="display:flex;gap:14px;align-items:center"><button class="btn b-out" style="outline:2px solid #E3120B;outline-offset:2px">Focused on white</button><button class="btn b-red" style="outline:2px solid #fff;box-shadow:0 0 0 4px #1A1A1A inset, inset 0 0 0 100px transparent">Focused on red</button></div></div>
 
-  <div class="card rev"><div class="chead"><span class="cid">L-24</span><span class="chip">prohibitions</span><span class="chip st">OBSERVED</span><span class="chip rev">v2 · rewrite per review</span></div>
-  <p class="ctext">Never: decorating with colour outside the defined families · red as a reading background · invented hues · emoji · exclamation marks · ambient glow shadows. (Rounded interactives and defined shadow tokens are permitted — per live review.)</p>
-  <div class="cex" style="display:flex;gap:18px;align-items:center;font-size:12px"><span style="color:#999">✗ <s>soft-glow pill with invented teal</s></span><span>✓ <button class="btn b-navy" style="padding:7px 12px;font-size:11.5px">rounded action</button></span><span>✓ <span class="tag2 red" style="padding:3px 7px;font-size:9.5px">red stays attention-only</span></span></div></div>
+  <div class="card rev"><div class="chead"><span class="cid">L-24</span><span class="chip">prohibitions</span><span class="chip st">OBSERVED</span><span class="chip rev">v3 · second pass</span></div>
+  <p class="ctext">Never: square-cornered interactive components or cards (buttons/inputs/surfaces are rounded) · colour outside the defined families · red as a reading background · invented hues · emoji · exclamation marks · ambient glow shadows. (Rounded surfaces and defined shadow tokens are part of the live system.)</p>
+  <div class="cex" style="display:flex;gap:16px;align-items:center;font-size:12px;flex-wrap:wrap"><span style="color:#999">✗ <s>square button</s></span><span>✓ <button class="btn b-navy" style="padding:7px 12px;font-size:11.5px">rounded action</button></span><span>✓ <span class="tag2 red" style="padding:3px 7px;font-size:9.5px">red stays attention-only</span></span></div></div>
 
   </div>
 </section>

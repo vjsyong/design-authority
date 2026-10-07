@@ -127,7 +127,7 @@
       "confidence": "high",
       "reasoning": "Directly measured.",
       "alternatives": "solid bar (rejected for hero pages; may be needed on content pages — flagged)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "W-12",
@@ -295,5 +295,5 @@
       "review": "none"
     }
   ],
-  "revised": "2026-10-07 — Gate 2 v2: W-01/02/03/08/13 revised and accepted; W-11 revised (single-row fix) pending re-check"
+  "revised": "2026-10-07 — Gate 2 CLOSED: all revisions accepted (wink acceptable)"
 }

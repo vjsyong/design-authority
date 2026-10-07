@@ -17,7 +17,7 @@
       "confidence": "medium",
       "reasoning": "Squares from the standard's geometry; red for the single ceremonial action keeps 'one red' discipline visible.",
       "alternatives": "black-fill primary with red reserved for identity only (still live option)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "D-02",
@@ -127,7 +127,7 @@
       "confidence": "medium",
       "reasoning": "High-contrast structural focus (no colour), consistent with D-05.",
       "alternatives": "red focus ring (rejected: ceremony spill)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "D-12",
@@ -160,7 +160,7 @@
       "confidence": "medium",
       "reasoning": "Black severity keeps red ceremonial; structural emphasis.",
       "alternatives": "red confirm (rejected: red purity)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "D-15",
@@ -237,7 +237,7 @@
       "confidence": "medium",
       "reasoning": "Structural, colour-free focus matches the doctrine.",
       "alternatives": "red ring (rejected: ceremony purity)",
-      "review": "confirm"
+      "review": "none"
     },
     {
       "id": "D-22",
@@ -248,8 +248,8 @@
       "confidence": "high",
       "reasoning": "Codifies the closed grammar.",
       "alternatives": "none",
-      "review": "confirm"
+      "review": "none"
     }
   ],
-  "revised": "2026-10-07 — Gate 2 v2: D-01/11/14/21/22 revised per review (live-measured on Canada.ca); awaiting re-check"
+  "revised": "2026-10-07 — Gate 2 CLOSED: all revisions accepted (dominion acceptable)"
 }

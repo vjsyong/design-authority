@@ -3,9 +3,9 @@
   "images": [
    "uploads/L-01/1791379867_Screenshot_2026-10-07_213101.png"
   ],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "The buttons are rounded rectangles in blue",
-  "updated": "2026-10-07 13:31:15"
+  "updated": "2026-10-07 14:21:20"
  },
  "L-02": {
   "images": [
@@ -13,7 +13,7 @@
   ],
   "verdict": "reject",
   "comment": "That is incorrect. The economist uses rounded corners ",
-  "updated": "2026-10-07 13:31:38"
+  "updated": "2026-10-07 14:19:43"
  },
  "L-03": {
   "images": [],
@@ -37,15 +37,15 @@
   "images": [
    "uploads/L-06/1791379961_Screenshot_2026-10-07_213234.png"
   ],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "That is incorrect. there is copious use of clue as a secondary colour",
-  "updated": "2026-10-07 13:33:11"
+  "updated": "2026-10-07 14:19:53"
  },
  "L-07": {
   "images": [],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "Yes to ruled seperation, hairline below but no to wash separation",
-  "updated": "2026-10-07 13:33:26"
+  "updated": "2026-10-07 14:20:01"
  },
  "L-08": {
   "images": [],
@@ -61,9 +61,9 @@
  },
  "L-10": {
   "images": [],
-  "verdict": "modify",
+  "verdict": "accept",
   "comment": "The highlight line is blue not red",
-  "updated": "2026-10-07 13:34:41"
+  "updated": "2026-10-07 14:20:01"
  },
  "L-11": {
   "images": [
@@ -147,17 +147,17 @@
  },
  "L-24": {
   "images": [],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "That is incorrect. there are rounded corners",
-  "updated": "2026-10-07 13:36:49"
+  "updated": "2026-10-07 14:21:33"
  },
  "D-01": {
   "images": [
    "uploads/D-01/1791380367_Screenshot_2026-10-07_213919.png"
   ],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "That is incorrect. Rounded buttons in grey",
-  "updated": "2026-10-07 13:39:27"
+  "updated": "2026-10-07 14:20:57"
  },
  "D-02": {
   "images": [],
@@ -241,9 +241,9 @@
  },
  "D-14": {
   "images": [],
-  "verdict": "reject",
+  "verdict": "accept",
   "comment": "Rounded buttons, grey button",
-  "updated": "2026-10-07 13:41:02"
+  "updated": "2026-10-07 14:20:44"
  },
  "D-16": {
   "images": [],
@@ -355,9 +355,9 @@
   "images": [
    "uploads/W-11/1791382574_Screenshot_2026-10-07_221608.png"
   ],
-  "verdict": "",
+  "verdict": "accept",
   "comment": "Should not become two rows",
-  "updated": "2026-10-07 14:16:17"
+  "updated": "2026-10-07 14:19:19"
  },
  "W-12": {
   "images": [],

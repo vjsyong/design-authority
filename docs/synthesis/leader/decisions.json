@@ -11,7 +11,7 @@
     {
       "id": "L-01",
       "area": "actions",
-      "decision": "Primary = solid navy-blue rounded rectangle (Chicago 45 #2E45B8, radius ~8px — live-observed CTA), white label; secondary = 2px ink outline; tertiary = underlined text link. Red steps back to brand/attention duty.",
+      "decision": "Primary = solid navy-blue rounded rectangle (Chicago 45 #2E45B8, radius ~8px — live-observed CTA), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed). Red steps back to brand/attention duty.",
       "status": "OBSERVED",
       "evidence": "Gate 2 screenshots: navy CTA buttons + pill toggles on live checkout; Marber Chicago family",
       "confidence": "medium",
@@ -22,7 +22,7 @@
     {
       "id": "L-02",
       "area": "shape",
-      "decision": "Soft rounded corners on interactive components (radius ~8px; the live product is not square-only). Rectangles, rules and glyph marks remain the brand geometry for editorial surfaces.",
+      "decision": "The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.",
       "status": "OBSERVED",
       "evidence": "rectangle motif native to the identity; no radius ever mentioned; crisp-lines language",
       "confidence": "high",
@@ -121,7 +121,7 @@
     {
       "id": "L-11",
       "area": "forms",
-      "decision": "Fields: white, 2px ink border, soft radius 8, serif field text (reviewer-directed); label above in caps; focus = offset outline; error = small red serif under the field.",
+      "decision": "Fields: white, soft rounded corners (radius 8), serif field text (reviewer-directed); label above in caps; focus = offset outline; error = small red serif under the field.",
       "status": "AUTHORED",
       "evidence": "no form evidence; register derived",
       "confidence": "low",
@@ -264,7 +264,7 @@
     {
       "id": "L-24",
       "area": "prohibitions",
-      "decision": "Never: decorating with colour outside the defined families; red as a reading background; invented hues; emoji; exclamation marks; ambient glow shadows. Rounded interactives and defined shadow tokens are permitted (per live review).",
+      "decision": "Never: square-cornered interactive components or cards; colour outside the defined families; red as a reading background; invented hues; emoji; exclamation marks; ambient glow shadows. Rounded surfaces and defined shadow tokens are part of the live system.",
       "status": "INFERRED",
       "evidence": "absences across all fetched material + stated 'less is more' principles",
       "confidence": "high",
@@ -273,5 +273,5 @@
       "review": "confirm"
     }
   ],
-  "revised": "2026-10-07 — Gate 2 v2: L-01/02/06/07/10/11/24 revised per review (live-observed + Marber web layer); awaiting re-check"
+  "revised": "2026-10-07 — Gate 2 v3: L-01/02/11/24 second-pass revisions (rounded surfaces canon, blue links); awaiting re-check"
 }
