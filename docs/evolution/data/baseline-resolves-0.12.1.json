@@ -1,0 +1,199 @@
+{
+ "authority": "triage 0.12.1 @ e374f38",
+ "at": "EVO-phase2-baseline",
+ "results": {
+  "picker": [
+   {
+    "query": "A compact picker to assign one reviewer (a person) from a fixed list on a record page",
+    "outcome": "RESOLVED",
+    "artifact": "pattern/detail",
+    "closest": []
+   },
+   {
+    "query": "A compact picker for assigning a reviewer to a request (choose one of a small fixed set of reviewers and submit)",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "A compact picker for assigning a reviewer to a request from a small fixed list, inline in a detail page",
+    "outcome": "RESOLVED",
+    "artifact": "pattern/detail",
+    "closest": []
+   },
+   {
+    "query": "A compact picker for assigning a reviewer to a request from the request detail page",
+    "outcome": "RESOLVED",
+    "artifact": "pattern/detail",
+    "closest": []
+   },
+   {
+    "query": "Choose one owner from a list of people",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "Single select from a short fixed set of options",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "4.0  component/menu-item",
+     "4.0  component/radio",
+     "4.0  pattern/settings"
+    ]
+   },
+   {
+    "query": "Entity picker for assigning a record to a person",
+    "outcome": "RESOLVED",
+    "artifact": "pattern/detail",
+    "closest": []
+   },
+   {
+    "query": "Assign a reviewer to a request",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": []
+   }
+  ],
+  "progress": [
+   {
+    "query": "Show the status and progress of a long-running background operation (running with percent complete, potentially stalled/stuck, or failed) and let the user re-run it",
+    "outcome": "FALLBACK",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "A determinate long-running background-operation status: show how far an AI triage scan has come and whether it is stuck or failed, with a live progress readout",
+    "outcome": "FALLBACK",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "Show the status and determinate progress of a long-running background triage scan, including running / done / failed and a stalled indication, with live updates",
+    "outcome": "FALLBACK",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "Determinate progress for a long-running background job",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "1.5  guideline/page-hierarchy",
+     "1.5  pattern/index-eval",
+     "1.0  component/diff"
+    ]
+   },
+   {
+    "query": "Progress bar showing percent complete with a stalled state",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "5.0  component/bulkbar",
+     "5.0  component/cmd",
+     "5.0  component/empty"
+    ]
+   },
+   {
+    "query": "Background job status card with progress",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "Show how far a background scan has come and whether it is stuck",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "1.0  component/diff",
+     "1.0  component/dlg",
+     "1.0  component/notif"
+    ]
+   }
+  ],
+  "decision": [
+   {
+    "query": "An irreversible approval decision that requires a typed reason at the point of action (reject a purchase request with a reason the requester sees)",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "One-way decision with a reason field and a confirmation",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "Rejecting a request requires typing a reason",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "1.5  component/empty",
+     "1.5  guideline/empty-anatomy"
+    ]
+   },
+   {
+    "query": "High stakes confirmation with a required reason",
+    "outcome": "UNDEFINED",
+    "artifact": "",
+    "closest": [
+     "3.0  guideline/high-stakes-confirm",
+     "1.5  component/empty",
+     "1.5  guideline/copy-helper"
+    ]
+   }
+  ],
+  "regression": [
+   {
+    "query": "combobox",
+    "outcome": "RESOLVED",
+    "artifact": "component/cb",
+    "closest": []
+   },
+   {
+    "query": "date picker",
+    "outcome": "RESOLVED",
+    "artifact": "component/dp",
+    "closest": []
+   },
+   {
+    "query": "loading spinner",
+    "outcome": "RESOLVED",
+    "artifact": "component/spinner",
+    "closest": []
+   },
+   {
+    "query": "toast message",
+    "outcome": "RESOLVED",
+    "artifact": "component/toast2",
+    "closest": []
+   },
+   {
+    "query": "banner after redirect",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "delete a rule from a list",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   },
+   {
+    "query": "empty state with a call to action",
+    "outcome": "RESOLVED",
+    "artifact": "component/empty",
+    "closest": []
+   },
+   {
+    "query": "pagination for a long list",
+    "outcome": "COMPOSE",
+    "artifact": "",
+    "closest": []
+   }
+  ]
+ }
+}
