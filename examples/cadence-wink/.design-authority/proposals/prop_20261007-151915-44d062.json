@@ -54,10 +54,12 @@
    "attention must not be implemented as yellow"
   ]
  },
- "status": "candidate",
+ "status": "rejected",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "reject",
+  "notes": null,
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:42:03+00:00"
  },
  "authority": {
   "authority": "wink",

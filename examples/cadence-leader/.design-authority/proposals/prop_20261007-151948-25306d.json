@@ -38,10 +38,12 @@
   "no zebra striping classes appear in markup (spec check)",
   "numeric cells use the sans register (type check)"
  ],
- "status": "candidate",
+ "status": "rejected",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "reject",
+  "notes": null,
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:45:32+00:00"
  },
  "authority": {
   "authority": "leader",

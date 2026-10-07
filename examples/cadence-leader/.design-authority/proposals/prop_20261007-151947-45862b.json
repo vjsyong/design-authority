@@ -45,10 +45,12 @@
   "the destructive control is not autofocused when the confirm opens (DOM check)",
   "confirm copy contains no exclamation mark (copy lint)"
  ],
- "status": "candidate",
+ "status": "rejected",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "reject",
+  "notes": "I think it should be registered as a reusable confirmation modal. Doesn't necessarily need a destructive action model right away",
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:43:38+00:00"
  },
  "authority": {
   "authority": "leader",

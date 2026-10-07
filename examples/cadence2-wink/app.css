@@ -364,7 +364,7 @@ body.dark .field input[type="number"], body.dark .field textarea, body.dark .fie
 body.dark .check, body.dark .stepper-btn, body.dark .switch .thumb { background: rgba(246, 246, 244, .1); color: var(--parsnip); }
 body.dark .cta.outline { color: var(--parsnip); box-shadow: inset 0 0 0 2px var(--parsnip); }
 body.dark .cta.outline:hover { box-shadow: inset 0 0 0 2px var(--parsnip), 0 4.875px 0 0 rgba(246, 246, 244, .35); }
-body.dark .cta.danger { color: #E58A9C; box-shadow: inset 0 0 0 2px #E58A9C; }
+body.dark .cta.danger { color: var(--err); box-shadow: inset 0 0 0 2px var(--err); } /* exact token: no invented hues (W-R2/W-26) */
 body.dark .navitem { color: var(--parsnip); }
 body.dark .navitem:hover { background: rgba(246, 246, 244, .12); }
 body.dark .navitem[aria-current="page"] { background: rgba(246, 246, 244, .14); }

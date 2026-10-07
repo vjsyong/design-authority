@@ -97,6 +97,7 @@ with sync_playwright() as p:
     ok("log dialog opens", page.locator("#ovl-log").is_visible())
     ok("ritual select has 5", page.locator("#log-ritual option").count() == 5)
     ok("date picker type=date", page.eval_on_selector("#log-date", "el => el.type") == "date")
+    page.select_option("#log-ritual", "guitar")
     # invalid minutes -> error under field
     page.fill("#log-min", "0")
     page.click("#log-save")
@@ -112,18 +113,19 @@ with sync_playwright() as p:
     # --- History ---
     page.click('.tab[data-view="history"]')
     ok("history visible", page.locator("#view-history").is_visible())
-    ok("banner (weekly summary)", "210 minutes" in page.locator(".banner").inner_text())
+    ok("banner (weekly summary)", "245 minutes" in page.locator(".banner").inner_text())
     ok("bar chart 7 bars", page.locator("#bars .btrack").count() == 7)
     vals = [e.inner_text() for e in page.locator("#bars .bval").all()]
     ok("bar values Mon–Sun", vals == ["45","30","60","25","50","0","35"], str(vals))
     ok("heatmap 31 day cells", page.locator("#heat .hc:not(.out)").count() == 31)
     ok("heatmap ink density cells", page.locator("#heat .hc.l1, #heat .hc.l2, #heat .hc.l3").count() == 6)
     ok("ledger 8 rows", page.locator("#entries-body tr").count() == 8)
-    ok("pagination readout", "Showing 1–8 of 24" in page.locator("#page-readout").inner_text())
+    ok("logged entry joined the register", "7 Oct" in page.locator("#entries-body tr").first.inner_text() and "Practice guitar" in page.locator("#entries-body tr").first.inner_text())
+    ok("pagination readout", "Showing 1–8 of 28" in page.locator("#page-readout").inner_text(), page.locator("#page-readout").inner_text())
     page.click("#page-older")
-    ok("older entries -> page 2", "Showing 9–16 of 24" in page.locator("#page-readout").inner_text())
+    ok("older entries -> page 2", "Showing 9–16 of 28" in page.locator("#page-readout").inner_text())
     page.fill("#entry-search", "guitar")
-    ok("search filters", page.locator("#entries-body tr").count() == 3, str(page.locator("#entries-body tr").count()))
+    ok("search filters", page.locator("#entries-body tr").count() == 4, str(page.locator("#entries-body tr").count()))
     page.fill("#entry-search", "")
     # CSV export triggers a download
     with page.expect_download() as dl:

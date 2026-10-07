@@ -103,7 +103,7 @@
     slot.innerHTML = '';
     var el = document.createElement('div');
     el.className = 'notice';
-    el.setAttribute('data-adapted', 'toast → ruled notice (component/notice: no toasts in system)');
+    el.setAttribute('data-adapted', 'toast → ruled notice');
     var p = document.createElement('p');
     p.textContent = text;
     el.appendChild(p);
@@ -111,7 +111,7 @@
       var b = document.createElement('button');
       b.className = 'btn b-txt sm act';
       b.textContent = action.label;
-      b.setAttribute('data-improvised', 'undo = ruled notice + tertiary link');
+      b.setAttribute('data-improvised', 'notice + tertiary link');
       b.addEventListener('click', function () { action.fn(); });
       el.appendChild(b);
     }
@@ -125,7 +125,7 @@
     return new Promise(function (resolve) {
       var el = document.createElement('div');
       el.className = 'loading';
-      el.setAttribute('data-improvised', 'spinner → stepped meter (L-16 static register; no motion)');
+      el.setAttribute('data-improvised', 'stepped meter (L-16)');
       el.innerHTML = '<span class="track"><i style="width:25%"></i></span><span class="meta">' + (label || 'Saving') + '</span>';
       host.appendChild(el);
       var fill = $('i', el);
@@ -180,11 +180,14 @@
       li.className = 'ritual';
       li.draggable = true;
       li.setAttribute('data-id', r.id);
+      var mHandle = i === 0 ? ' data-improvised="drag reorder"' : '';
+      var mGlyph = i === 1 ? ' data-improvised="rhythm glyphs (L-08)"' : '';
+      var mTag = i === 2 ? ' data-improvised="category tag (L-13)"' : '';
       li.innerHTML =
-        '<button class="handle" aria-label="Drag to reorder ' + esc(r.name) + '" data-improvised="native drag; red insertion rule"><i></i><i></i></button>' +
-        glyphHTML(r.glyph, 'mark') .replace('class="glyph mark"', 'class="glyph mark" data-improvised="rhythm glyphs (deck L-08) as ritual marks"') +
+        '<button class="handle" aria-label="Drag to reorder ' + esc(r.name) + '"' + mHandle + '><i></i><i></i></button>' +
+        glyphHTML(r.glyph, 'mark').replace('class="glyph mark"', 'class="glyph mark"' + mGlyph) +
         '<span class="rbody"><span class="name">' + esc(r.name) + '</span>' +
-        '<span class="sub"><span class="tag" data-improvised="tag per deck L-13">' + esc(r.cat) + '</span>' +
+        '<span class="sub"><span class="tag"' + mTag + '>' + esc(r.cat) + '</span>' +
         (r.min ? '<span class="meta">' + r.min + ' min</span>' : '') + '</span></span>' +
         '<span class="tags"><span class="tag">' + r.streak + 'D</span></span>' +
         '<button class="check' + (r.done ? ' on' : '') + '" aria-pressed="' + r.done + '" aria-label="' + (r.done ? 'Unmark ' : 'Mark ') + esc(r.name) + ' done">' +
@@ -234,8 +237,8 @@
     $('#todayEmpty').hidden = !empty;
     if (empty) {
       $('#todayEmpty').innerHTML =
-        '<div class="empty" data-improvised="empty state: ruled statement block, one action (deck L-17)">' +
-        '<div class="eglyph" data-adapted="illustration → glyph mark (no imagery: deck L-17/L-21)">' + glyphHTML([6, 9, 13, 8]) + '</div>' +
+        '<div class="empty" data-improvised="deck L-17 ruled block">' +
+        '<div class="eglyph" data-adapted="glyph mark (no imagery)">' + glyphHTML([6, 9, 13, 8]) + '</div>' +
         '<h3>No rituals yet.</h3>' +
         '<p class="pdek">One small thing, kept daily, is enough to begin.</p>' +
         '<button class="btn b-out" id="restoreDemo">Restore demo data</button></div>';
@@ -262,13 +265,13 @@
     var wrap = document.createElement('div');
     wrap.className = 'panel';
     wrap.id = 'detailPanel';
-    wrap.setAttribute('data-improvised', 'fallback/ruled-panel: in-flow detail panel (no scrim, no motion)');
+    wrap.setAttribute('data-improvised', 'ruled panel; fallback');
     wrap.innerHTML =
       '<div class="phead"><p class="lab">Ritual detail</p><button class="btn b-txt sm act" id="closeDetail">Close</button></div>' +
       '<h2>' + esc(r.name) + '</h2>' +
       '<p class="meta">' + esc(r.cat) + (r.min ? ' · ' + r.min + ' min' : '') + ' · ' + r.streak + '-day streak</p>' +
       '<p class="lab" style="margin-top:18px">Last seven days</p>' +
-      '<div class="spark" data-improvised="mini bar trend (no canonical sparkline)">' + sparkHTML(r.spark) + '</div>' +
+      '<div class="spark" data-improvised="mini bar trend">' + sparkHTML(r.spark) + '</div>' +
       '<p class="meta">Minutes logged per day. Today ' + (r.done ? 'is checked.' : 'is open.') + '</p>' +
       '<p class="lab" style="margin-top:18px">History</p>' +
       '<div>' + (tabRows.length ? tabRows.map(function (e) {
@@ -276,14 +279,14 @@
           '<span class="meta" style="margin:0">' + esc(e.date) + '</span>' +
           '<span class="meta" style="margin:0">' + (e.min ? e.min + ' min' : 'kept') + '</span></div>';
       }).join('') : '<p class="meta">No entries yet.</p>') + '</div>' +
-      '<div class="pact"><button class="btn b-out danger-tx" id="askDelete" data-improvised="destructive: red verb rect per deck L-15 (no canonical pattern)">Delete ritual</button></div>' +
+      '<div class="pact"><button class="btn b-out danger-tx" id="askDelete" data-improvised="red verb rect (L-15)">Delete ritual</button></div>' +
       '<div id="confirmHost"></div>';
     host.appendChild(wrap);
     $('#closeDetail').addEventListener('click', closeDetail);
     $('#askDelete').addEventListener('click', function () {
       var ch = $('#confirmHost');
       ch.innerHTML =
-        '<div class="panel confirm" data-improvised="fallback/ruled-panel: inline confirmation (no scrim, no motion)">' +
+        '<div class="panel confirm" data-improvised="ruled confirm; fallback">' +
         '<p class="pdek">Delete "' + esc(r.name) + '"? Its log history is removed.</p>' +
         '<div class="pact"><button class="btn b-red" id="confirmDelete">Delete</button>' +
         '<button class="btn b-out" id="cancelDelete">Keep</button></div></div>';
@@ -333,22 +336,22 @@
     var form = document.createElement('div');
     form.className = 'panel';
     form.id = 'logPanel';
-    form.setAttribute('data-improvised', 'form expands as ruled panel in flow (no dialog canon)');
+    form.setAttribute('data-improvised', 'form panel in flow');
     form.innerHTML =
       '<div class="phead"><p class="lab">Log a ritual</p><button class="btn b-txt sm act" id="closeLog">Close</button></div>' +
       '<div class="field" id="fRitual"><label for="logRitual">Ritual</label>' +
       '<select id="logRitual"><option value="">Choose…</option>' + opts + '</select>' +
       '<p class="err">Choose a ritual.</p></div>' +
       '<div class="row2">' +
-      '<div class="field"><label for="logDate">Date</label><input type="date" id="logDate" value="2026-10-07" data-improvised="fallback/platform-controls: native date, field styling"></div>' +
+      '<div class="field"><label for="logDate">Date</label><input type="date" id="logDate" value="2026-10-07" data-improvised="native date; fallback"></div>' +
       '<div class="field" id="fMinutes"><label for="logMinutes">Minutes</label>' +
       '<div class="stepper"><button class="sbtn" id="minMinus" type="button" aria-label="Fewer minutes">−</button>' +
-      '<input type="number" id="logMinutes" min="0" step="5" value="30" data-improvised="fallback/platform-controls: native number + stepper buttons">' +
+      '<input type="number" id="logMinutes" min="0" step="5" value="30" data-improvised="native number; fallback">' +
       '<button class="sbtn" id="minPlus" type="button" aria-label="More minutes">+</button></div>' +
       '<p class="err">Enter minutes above zero.</p></div>' +
       '</div>' +
       '<div class="field"><label for="logNotes">Notes</label><textarea id="logNotes" placeholder="How did it go?"></textarea></div>' +
-      '<div class="field" data-adapted="photo upload → ritual mark picker (no imagery in system)"><label>Ritual mark</label>' +
+      '<div class="field" data-adapted="mark picker (no imagery)"><label>Ritual mark</label>' +
       '<div class="markpicker" id="markPicker">' + MARK_SET.map(function (m, i) {
         return '<button type="button" class="markbtn' + (i === 0 ? ' on' : '') + '" data-mark="' + i + '">' + glyphHTML(m) + '</button>';
       }).join('') + '</div></div>' +
@@ -361,9 +364,11 @@
     $('#minMinus').addEventListener('click', function () { stepMin(-5); });
     $('#minPlus').addEventListener('click', function () { stepMin(5); });
     $('#logRitual').addEventListener('change', function () {
+      $('#fRitual').classList.remove('invalid');
       var r = S.rituals.find(function (x) { return x.id === $('#logRitual').value; });
       if (r && r.min) $('#logMinutes').value = r.min;
     });
+    $('#logMinutes').addEventListener('input', function () { $('#fMinutes').classList.remove('invalid'); });
     $$('.markbtn', form).forEach(function (b) {
       b.addEventListener('click', function () {
         $$('.markbtn', form).forEach(function (x) { x.classList.remove('on'); });
@@ -520,18 +525,18 @@
     $('#statTiles').innerHTML = [
       { v: 12, l: 'Current streak' }, { v: 21, l: 'Best streak' }, { v: 240, l: 'Total logged' }
     ].map(function (t) {
-      return '<div class="tile" data-improvised="stat tile: display register for big statics (L-04)">' +
+      return '<div class="tile" data-improvised="display register (L-04)">' +
         '<div class="tval">' + t.v + '</div><div class="tlab">' + t.l + '</div></div>';
     }).join('');
     $('#badgeGrid').innerHTML = BADGES.map(function (b) {
-      return '<div class="badge ' + (b.earned ? '' : 'locked') + '" data-improvised="badge tile composition; no canonical trophy">' +
+      return '<div class="badge ' + (b.earned ? '' : 'locked') + '" data-improvised="no canonical trophy">' +
         glyphHTML(b.glyph) +
         '<div class="bname">' + esc(b.name) + '</div>' +
         '<div class="btag"><span class="tag' + (b.earned ? '' : ' mute') + '">' + (b.earned ? 'Earned' : 'Locked') + '</span></div></div>';
     }).join('');
     $('#badgesEmpty').innerHTML =
-      '<div class="empty" data-improvised="empty state: ruled statement block, one action (deck L-17)">' +
-      '<div class="eglyph" data-adapted="illustration → glyph mark (no imagery: deck L-17/L-21)">' + glyphHTML([5, 8, 12]) + '</div>' +
+      '<div class="empty" data-improvised="deck L-17 ruled block">' +
+      '<div class="eglyph" data-adapted="glyph mark (no imagery)">' + glyphHTML([5, 8, 12]) + '</div>' +
       '<h3>No badges yet.</h3>' +
       '<p class="pdek">One kept week earns the first.</p>' +
       '<button class="btn b-out" id="emptyGoToday">Go to Today</button></div>';
@@ -556,6 +561,7 @@
     $('#darkToggle').checked = document.documentElement.getAttribute('data-theme') === 'dark';
   }
   $('#goalRange').addEventListener('input', function () { $('#goalOut').textContent = this.value; });
+  $('#setName').addEventListener('input', function () { $('#fName').classList.remove('invalid'); });
   $('#darkToggle').addEventListener('change', function () {
     document.documentElement.setAttribute('data-theme', this.checked ? 'dark' : '');
     S.settings.dark = this.checked;
@@ -590,7 +596,7 @@
   $('#deleteAll').addEventListener('click', function () {
     var ch = $('#settingsPanels');
     ch.innerHTML =
-      '<div class="panel confirm" data-improvised="fallback/ruled-panel: inline confirmation (no scrim, no motion)">' +
+      '<div class="panel confirm" data-improvised="ruled confirm; fallback">' +
       '<p class="pdek">Delete all data? Every ritual, entry and setting is removed.</p>' +
       '<div class="pact"><button class="btn b-red" id="confirmAll">Delete all</button>' +
       '<button class="btn b-out" id="cancelAll">Keep</button></div></div>';

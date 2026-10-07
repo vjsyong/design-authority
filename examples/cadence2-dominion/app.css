@@ -341,7 +341,7 @@ body.dark .ftr { background: transparent; border-top: 2px solid var(--ink); }
 .marks {
   position: fixed; left: 18px; bottom: 18px; z-index: 70; width: 46px; height: 46px;
   border: 2px solid var(--ink); background: var(--ground); color: var(--ink);
-  font-size: 20px; line-height: 1; cursor: pointer; border-radius: 0;
+  font-family: inherit; font-size: 20px; line-height: 1; cursor: pointer; border-radius: 0;
 }
 body.show-marks .marks { background: var(--ink); color: var(--ground); }
 

@@ -63,10 +63,12 @@
    "resolve('animate the dialog with a spring bounce') must remain UNDEFINED (motion policy, golden case retained)"
   ]
  },
- "status": "candidate",
+ "status": "accepted",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "accept",
+  "notes": null,
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:39:43+00:00"
  },
  "authority": {
   "authority": "wink",

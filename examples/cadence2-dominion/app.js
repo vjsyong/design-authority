@@ -28,6 +28,7 @@ const WEEK = [
 const HEAT = { 1: 10, 2: 0, 3: 25, 4: 45, 5: 30, 6: 20, 7: 60 };
 
 const ENTRIES = [
+  ['7 Oct', 'Morning run', 'Movement', 30], ['7 Oct', 'Read 20 pages', 'Mind', 20], ['7 Oct', 'Meditate', 'Mind', 10],
   ['6 Oct', 'Morning run', 'Movement', 30], ['6 Oct', 'Meditate', 'Mind', 10],
   ['5 Oct', 'Read 20 pages', 'Mind', 20], ['5 Oct', 'Practice guitar', 'Craft', 25],
   ['4 Oct', 'Morning run', 'Movement', 30], ['4 Oct', 'Meditate', 'Mind', 10],
@@ -41,6 +42,13 @@ const ENTRIES = [
   ['26 Sep', 'Morning run', 'Movement', 30], ['26 Sep', 'Read 20 pages', 'Mind', 20],
   ['25 Sep', 'Morning run', 'Movement', 30], ['25 Sep', 'No sugar', 'Discipline', 0],
 ];
+let entries = ENTRIES.slice();
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function fmtDate(iso) {
+  const [, m, d] = iso.split('-');
+  return `${Number(d)} ${MONTHS[Number(m) - 1]}`;
+}
 
 /* ---------------- state ---------------- */
 
@@ -225,6 +233,7 @@ function moveRitual(id, dir) {
 
 function deleteRitual(id) {
   const r = byId(id);
+  const wasChecked = state.checked.includes(id);
   state.deleted.push(id);
   state.checked = state.checked.filter(x => x !== id);
   save();
@@ -233,6 +242,7 @@ function deleteRitual(id) {
   showNotice('today', `Deleted — ${r.name} removed from the list. | Supprimé — ${r.name} retiré de la liste.`, {
     undo: () => {
       state.deleted = state.deleted.filter(x => x !== id);
+      if (wasChecked && !state.checked.includes(id)) state.checked.push(id);
       save();
       renderToday();
       showNotice('today', `Restored ✓ — ${r.name} is back. | Rétabli ✓ — ${r.name} est de retour.`, { ceremony: true });
@@ -311,7 +321,7 @@ const PER_PAGE = 8;
 
 function filteredEntries() {
   const f = entryFilter.toLowerCase();
-  return ENTRIES.filter(e => !f || (e[0] + ' ' + e[1] + ' ' + e[2]).toLowerCase().includes(f));
+  return entries.filter(e => !f || (e[0] + ' ' + e[1] + ' ' + e[2]).toLowerCase().includes(f));
 }
 
 function renderEntries() {
@@ -333,7 +343,7 @@ function renderEntries() {
 
 function exportCSV() {
   const rows = [['Date', 'Ritual', 'Category', 'Minutes', 'Status'],
-    ...ENTRIES.map(e => [e[0], e[1], e[2], String(e[3]), 'Logged'])];
+    ...entries.map(e => [e[0], e[1], e[2], String(e[3]), 'Logged'])];
   const csv = rows.map(r => r.map(c => `"${c.replace(/"/g, '""')}"`).join(',')).join('\r\n');
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
   const a = document.createElement('a');
@@ -404,6 +414,7 @@ $$('.tab').forEach(tab => tab.addEventListener('click', () => {
     x.setAttribute('aria-selected', on ? 'true' : 'false');
   });
   $$('.view').forEach(sec => { sec.hidden = sec.id !== 'view-' + v; });
+  if (v === 'history') renderEntries();
   window.scrollTo(0, 0);
 }));
 
@@ -477,6 +488,10 @@ $('#log-form').addEventListener('submit', e => {
   withSaving($('#log-save'), 'Saving… · Enregistrement…', () => {
     const r = byId(id);
     closeOvl('ovl-log');
+    /* the logged entry joins the register */
+    entries.unshift([fmtDate(date), r.name, r.cat, v]);
+    entryPage = 0;
+    if (!$('#view-history').hidden) renderEntries();
     let ringChanged = false;
     if (date === TODAY && !state.checked.includes(id)) {
       state.checked.push(id);

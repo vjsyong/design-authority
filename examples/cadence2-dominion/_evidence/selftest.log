@@ -1,0 +1,96 @@
+PASS - title 
+PASS - masthead red accent bar 
+PASS - footer wordmark placeholder (bottom-right) 
+PASS - 4 tabs 
+PASS - font loaded (Arimo) 
+PASS - wizard opens on first visit 
+PASS - wizard step 1 line 
+PASS - wizard step 3 (Set your goal) 
+PASS - wizard closes on Start 
+PASS - date line (Tuesday, 7 October
+Mardi 7 octobre)
+PASS - greeting 
+PASS - hero count 
+PASS - hero meter 60% 
+PASS - streak counter 12 
+PASS - 5 ritual rows 
+PASS - 3 checked 
+PASS - ordinal markers (01..05) 
+PASS - category tags 
+PASS - streak chips 
+PASS - status label (words) 
+PASS - ring updates to 4 of 5 
+PASS - notice 'Logged ✓' 
+PASS - notice is ruled box (no toast) 
+PASS - ceremony accent present 
+PASS - check persists (4 of 5 after reload) 
+PASS - wizard NOT shown again 
+PASS - detail overlay opens 
+PASS - detail has sparkline (7 bars) 
+PASS - detail has mini history (5) 
+PASS - detail has delete 
+PASS - move down reorders (['run', 'read', 'med', 'sugar', 'guitar'] -> ['read', 'run', 'med', 'sugar', 'guitar'])
+PASS - confirm dialog appears 
+PASS - confirm title bilingual 
+PASS - confirm not pre-focused 
+PASS - consequence sentence 
+PASS - cancel closes confirm 
+PASS - detail still open after cancel 
+PASS - ritual deleted (4 rows) 
+PASS - undo offered 
+PASS - undo restores (5 rows) 
+PASS - log dialog opens 
+PASS - ritual select has 5 
+PASS - date picker type=date 
+PASS - error under field shown 
+PASS - left rule on field 
+PASS - saving state ran (~750ms) then closed 
+PASS - logged notice after save 
+PASS - ring still 4 of 5 
+PASS - history visible 
+PASS - banner (weekly summary) 
+PASS - bar chart 7 bars 
+PASS - bar values Mon–Sun (['45', '30', '60', '25', '50', '0', '35'])
+PASS - heatmap 31 day cells 
+PASS - heatmap ink density cells 
+PASS - ledger 8 rows 
+PASS - logged entry joined the register 
+PASS - pagination readout (Showing 1–8 of 28 entries · Entrées 1–8 sur 28)
+PASS - older entries -> page 2 
+PASS - search filters (4)
+PASS - CSV export downloads 
+PASS - export notice 
+PASS - stat tiles 
+PASS - badge grid 6 
+PASS - 4 earned / 2 locked 
+PASS - empty state shows (demo) 
+PASS - empty state = ruled statement + one action 
+PASS - name field Sam 
+PASS - week radio Monday checked 
+PASS - goal slider 30 
+PASS - goal readout updates 
+PASS - settings name error 
+PASS - Saved notice 
+PASS - dark mode toggles body.dark 
+PASS - dark ground is black (rgb(0, 0, 0))
+PASS - replay intro opens wizard 
+PASS - skip closes wizard 
+PASS - delete-all confirm 
+PASS - all data deleted notice 
+PASS - today back to 3 of 5 (reset) 
+PASS - body.show-marks on 
+PASS - marks counts (imp=17 ad=10 fb=12)
+PASS - dashed amber outline present 
+PASS - body.show-marks off 
+PASS - no external network requests ([])
+PASS - no console errors ([])
+PASS - ground white 
+PASS - primary = slate #26374A 
+PASS - primary radius 4 
+PASS - 2px black rules 
+PASS - no box-shadow anywhere on cards 
+PASS - focus glow blue (#66AFE9) (rgb(102, 175, 233))
+PASS - heading medium 500 
+PASS - bilingual thin divider 
+
+93/93 checks passed

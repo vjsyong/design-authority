@@ -266,8 +266,8 @@ html[data-theme="dark"] .field select { background-image: url("data:image/svg+xm
 
 /* ---------- ledger table (deck L-18) ---------- */
 .tools { display: flex; align-items: center; gap: 14px; margin: 14px 0 4px; flex-wrap: wrap; }
-.search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--r); padding: 7px 10px; width: 250px; background: var(--ground); }
-.search input { border: 0; outline: none; background: none; color: var(--ink); font: 500 13px/1.4 var(--sans); flex: 1; min-width: 0; }
+.search { display: flex; align-items: center; gap: 8px; border: 1px solid var(--ink); border-radius: var(--r); padding: 8px 12px; width: 260px; background: var(--ground); }
+.search input { border: 0; outline: none; background: none; color: var(--ink); font: 500 13.5px/1.4 var(--sans); flex: 1; min-width: 0; }
 .search input:focus-visible { outline: none; }
 .search .cursor { width: 2px; height: 15px; background: var(--ink); flex: 0 0 auto; }
 .ledger { width: 100%; border-collapse: collapse; margin-top: 8px; }
@@ -350,8 +350,8 @@ html[data-theme="dark"] .field select { background-image: url("data:image/svg+xm
 
 .marks-btn {
   position: fixed; right: 14px; bottom: 14px; z-index: 140;
-  width: 36px; height: 36px; border: 2px solid var(--ink); border-radius: var(--r);
-  background: var(--ground); color: var(--ink); font: 600 16px/1 var(--sans); cursor: pointer;
+  width: 38px; height: 38px; border: 2px solid var(--ink); border-radius: var(--r);
+  background: var(--ground); color: var(--ink); font: 600 17px/1 var(--sans); cursor: pointer;
   display: flex; align-items: center; justify-content: center; transition: var(--t);
 }
 .marks-btn:hover { background: var(--wash); }
@@ -366,6 +366,7 @@ body.show-marks [data-improvised]::before, body.show-marks [data-adapted]::befor
 }
 body.show-marks [data-improvised]::before { content: "improvised · " attr(data-improvised); }
 body.show-marks [data-adapted]::before { content: "adapted · " attr(data-adapted); }
+body.show-marks .topbar [data-improvised]::before, body.show-marks .topbar [data-adapted]::before { top: calc(100% + 8px); left: auto; right: 0; }
 
 /* ---------- responsive (deck L-22: single-column collapse) ---------- */
 @media (max-width: 720px) {

@@ -18,7 +18,7 @@
       <a class="tab" data-view="achievements" href="#achievements">Achievements</a>
       <a class="tab" data-view="settings" href="#settings">Settings</a>
     </nav>
-    <span class="avatar" role="img" aria-label="Sam" data-adapted="avatar photo → monogram (no imagery in system)">S</span>
+    <span class="avatar" role="img" aria-label="Sam" data-adapted="monogram (no imagery)">S</span>
   </div>
 </header>
 
@@ -35,7 +35,7 @@
 
     <div id="todayMain">
     <div class="hero">
-      <div class="ringbox" data-improvised="radial meter adaptation (L-16 colours; no canonical circle form)">
+      <div class="ringbox" data-improvised="radial meter (L-16 colours)">
         <svg width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Today 60 percent complete" id="ringSvg">
           <circle cx="64" cy="64" r="52" fill="none" stroke="#D9D9D9" stroke-width="10"></circle>
           <circle id="ringArc" cx="64" cy="64" r="52" fill="none" stroke="#E3120B" stroke-width="10"
@@ -45,10 +45,10 @@
         <p class="ring-cap" id="doneReadout">3 of 5 rituals done</p>
       </div>
       <div class="vdiv" aria-hidden="true"></div>
-      <div class="streak" data-improvised="big number in display register (L-04 big statics; L-05 display)">
+      <div class="streak" data-improvised="display register (L-04)">
         <div class="streaknum" id="streakNum">12</div>
         <div class="streaklab">day streak</div>
-        <div class="stamp" id="stamp" data-adapted="celebration → instant glyph stamp (L-03: no decorative motion)" aria-hidden="true"><i style="width:5px;height:5px"></i><i style="width:7px;height:7px"></i><i style="width:9px;height:9px"></i><i style="width:11px;height:11px"></i></div>
+        <div class="stamp" id="stamp" data-adapted="instant stamp (no motion, L-03)" aria-hidden="true"><i style="width:5px;height:5px"></i><i style="width:7px;height:7px"></i><i style="width:9px;height:9px"></i><i style="width:11px;height:11px"></i></div>
       </div>
     </div>
 
@@ -57,7 +57,7 @@
         <p class="lab">This week</p>
         <p class="b-copy" style="margin-top:6px"><b>245 minutes</b> across six days. Sunday stayed empty.</p>
       </div>
-      <div class="tagbox"><span class="tag" id="statusTag" data-improvised="status label per deck L-13 tag language">On track</span></div>
+      <div class="tagbox"><span class="tag" id="statusTag" data-improvised="L-13 tag language">On track</span></div>
     </div>
 
     <div class="listhead">
@@ -85,14 +85,14 @@
     <div class="section">
       <p class="lab">Weekly minutes</p>
       <p class="meta" style="margin-top:4px">245 minutes across Mon–Sun.</p>
-      <div class="chartbox" id="barChart" data-improvised="weekly bars: crisp rectangles; no canonical chart"></div>
+      <div class="chartbox" id="barChart" data-improvised="crisp rect bars"></div>
       <div class="days" id="barDays"></div>
     </div>
 
     <div class="section">
       <p class="lab">October</p>
       <p class="meta" style="margin-top:4px">Shaded by minutes logged.</p>
-      <div class="heat" id="heatmap" data-improvised="heat grid: London ramp steps"></div>
+      <div class="heat" id="heatmap" data-improvised="London ramp steps"></div>
       <div class="legend">
         <span class="meta">Less</span>
         <i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i>
@@ -106,7 +106,7 @@
         <div class="search"><input id="filterInput" type="text" placeholder="Filter entries" aria-label="Filter entries"><span class="cursor" aria-hidden="true"></span></div>
       </div>
       <div class="ledgerwrap">
-        <table class="ledger" id="ledger" data-improvised="editorial table per deck L-18">
+        <table class="ledger" id="ledger" data-improvised="editorial table (L-18)">
           <thead>
             <tr><th scope="col">Date</th><th scope="col">Ritual</th><th scope="col">Category</th><th scope="col" class="num">Minutes</th></tr>
           </thead>
@@ -115,8 +115,8 @@
       </div>
       <div class="pagefoot">
         <span class="pagemeta" id="pageMeta">1–8 of 24</span>
-        <button class="btn b-out sm" id="pageNewer" data-improvised="outline control + sans range readout">Newer</button>
-        <button class="btn b-out sm" id="pageOlder" data-improvised="outline control + sans range readout">Older entries</button>
+        <button class="btn b-out sm" id="pageNewer" data-improvised="outline control">Newer</button>
+        <button class="btn b-out sm" id="pageOlder" data-improvised="outline control">Older entries</button>
         <button class="btn b-out sm act" id="exportTable">Export CSV</button>
       </div>
     </div>
@@ -142,7 +142,7 @@
     <div class="empty-toggle">
       <label class="sw" style="max-width:420px">
         <span class="sw-lab">Demo: empty state</span>
-        <input type="checkbox" id="emptyToggle" data-improvised="fallback/platform-controls: native checkbox, switch skin">
+        <input type="checkbox" id="emptyToggle" data-improvised="fallback: switch skin">
         <span class="track" aria-hidden="true"></span>
       </label>
     </div>
@@ -167,7 +167,7 @@
         </div>
         <div class="field">
           <label for="setCat">Default category</label>
-          <select id="setCat" data-improvised="fallback/selection: native select, field styling">
+          <select id="setCat" data-improvised="fallback: select, field skin">
             <option>Movement</option><option>Mind</option><option>Discipline</option><option>Craft</option>
           </select>
         </div>
@@ -178,14 +178,14 @@
         <div class="field">
           <label id="weekLab">Week starts</label>
           <div class="radios" role="radiogroup" aria-labelledby="weekLab">
-            <label><input type="radio" class="rd" name="weekstart" id="weekMon" value="mon" checked data-improvised="fallback/platform-controls: native radio, field skin">Monday</label>
-            <label><input type="radio" class="rd" name="weekstart" id="weekSun" value="sun" data-improvised="fallback/platform-controls: native radio, field skin">Sunday</label>
+            <label><input type="radio" class="rd" name="weekstart" id="weekMon" value="mon" checked data-improvised="fallback: radio skin">Monday</label>
+            <label><input type="radio" class="rd" name="weekstart" id="weekSun" value="sun" data-improvised="fallback: radio skin">Sunday</label>
           </div>
         </div>
         <div class="field">
           <label for="goalRange">Daily goal</label>
           <div class="rng-wrap">
-            <input type="range" class="rng" id="goalRange" min="5" max="120" step="5" value="30" data-improvised="fallback/platform-controls: native range, leader skin">
+            <input type="range" class="rng" id="goalRange" min="5" max="120" step="5" value="30" data-improvised="fallback: range skin">
             <span class="rng-readout"><span id="goalOut">30</span> min</span>
           </div>
         </div>
@@ -194,18 +194,18 @@
       <div class="sblock">
         <h3>Reminders</h3>
         <div class="cbrow">
-          <label><input type="checkbox" class="cb" id="remAm" checked data-improvised="fallback/platform-controls: native checkbox, field skin"> Morning reminder</label>
+          <label><input type="checkbox" class="cb" id="remAm" checked data-improvised="fallback: checkbox skin"> Morning reminder</label>
         </div>
         <label class="sw" style="max-width:420px">
           <span class="sw-lab">Evening reminder</span>
-          <input type="checkbox" id="remPm" data-improvised="fallback/platform-controls: native checkbox, switch skin">
+          <input type="checkbox" id="remPm" data-improvised="fallback: switch skin">
           <span class="track" aria-hidden="true"></span>
         </label>
       </div>
 
       <div class="sblock">
         <h3>Appearance</h3>
-        <label class="sw" style="max-width:420px" data-improvised="dark mode: token inversion; colour families unchanged">
+        <label class="sw" style="max-width:420px" data-improvised="token inversion">
           <span class="sw-lab">Dark mode</span>
           <input type="checkbox" id="darkToggle">
           <span class="track" aria-hidden="true"></span>
@@ -224,7 +224,7 @@
 
   <!-- ============ WIZARD (fallback/ruled-panel: in-flow) ============ -->
   <section class="view" id="view-wizard" hidden>
-    <div class="wizard" data-improvised="fallback/ruled-panel: wizard as in-flow ruled panel (no scrim, no motion)">
+    <div class="wizard" data-improvised="ruled panel; fallback">
       <div class="wtop">
         <p class="lab" id="wizStep">Step 1 of 3</p>
         <button class="btn b-txt sm act" id="wizSkip">Skip</button>
@@ -242,7 +242,7 @@
 
 </main>
 
-<nav class="tabbar" aria-label="Views">
+<nav class="tabbar" aria-label="Views" data-adapted="navbar language at bottom edge (mobile)">
   <a data-view="today" class="on" href="#today">Today</a>
   <a data-view="history" href="#history">History</a>
   <a data-view="achievements" href="#achievements">Achievements</a>

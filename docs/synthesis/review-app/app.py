@@ -174,6 +174,10 @@ frozen kernel. Open a candidate and ask it anything — each one answers in its 
 <p class="sub">Same habit-tracker spec, built three times under quarantine. 42 required elements
 were resolved against each authority first; improvised/adapted elements are marked in-app (tap ◌).</p>
 <div class="src-grid">__STRESS__</div>
+<h2 style="margin-top:26px">Stress test v2 — rebuilt on the updated authorities</h2>
+<p class="sub">Same spec, rebuilt after the adjudication pass (12 fixes applied + kernel/compiler fixes).
+Result: fewer pure improvisations, more sanctioned fallbacks — and the first recipes composing.</p>
+<div class="src-grid">__STRESS2__</div>
 <h2 style="margin-top:26px">Proposal gate</h2>
 <p class="sub">The adjudication pass filed proposals for canon changes — inspect and rule on each.</p>
 <p><a class="src" style="max-width:420px" href="/proposals"><b>Proposal gate &rarr;</b><p>verdicts write to the kernel records</p></a></p>
@@ -628,9 +632,23 @@ def demo():
                 "<p>the same tracker, rendered by the %s authority</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, name, gaps))
+    stress2 = []
+    for name in PACK_META:
+        d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
+        if os.path.isdir(d):
+            gaps = 0
+            gp = os.path.join(d, ".design-authority", "gaps.jsonl")
+            if os.path.exists(gp):
+                gaps = sum(1 for _ in open(gp))
+            stress2.append(
+                "<a class='src' href='/stress2/%s/'><b>Cadence v2 · %s</b>"
+                "<p>rebuilt on the updated authority</p>"
+                "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
+                % (name, name, gaps))
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
-            .replace("__STRESS__", "".join(stress)))
+            .replace("__STRESS__", "".join(stress))
+            .replace("__STRESS2__", "".join(stress2)))
 
 
 @app.route("/demo/<name>")
