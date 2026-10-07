@@ -275,4 +275,15 @@ c1 run is archived as `runs/c1-broken-pilot/`; c1 was rerun. Kit review for
 meta-leaks: `PARITY.md` (rendered-from-pack receipt) retained — it documents
 the same-information guarantee and reveals no mechanism.
 
+**D-5 · 2026-10-07 — production execution switched from sequential round-robin
+to parallel (user request, wall-clock).** Runs a2, b2, c2, a3 completed
+sequentially; the remaining five (b3, c3, a4, b4, c4) were launched as one
+parallel batch (5 concurrent). Threats to validity considered: shared host and
+model-API contention could slow individual runs (timeout risk), but contention
+is symmetric across conditions and, if anything, temporal-drift balance
+improves because all conditions' remaining repetitions execute in the same
+wall-clock window. The partial sequential b3 (≈11 s in) was discarded and
+relaunched fresh in the batch. No run that completes (in either mode) is
+rerun; any timeout- or contention-marked run is flagged in the report.
+
 *(next deviations appended below)*
