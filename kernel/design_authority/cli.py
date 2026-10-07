@@ -165,6 +165,24 @@ def cmd_propose(pack, args):
     _dump(record)
 
 
+def cmd_review(pack, args):
+    ws = args.workspace or os.getcwd()
+    notes = None
+    if args.notes:
+        with open(args.notes) as fh:
+            notes = fh.read()
+    elif args.note:
+        notes = args.note
+    try:
+        record = records.set_proposal_review(ws, args.proposal, args.verdict,
+                                             notes=notes)
+    except ValueError as exc:
+        print("review failed: %s" % exc, file=sys.stderr)
+        return 2
+    _dump({"id": record["id"], "status": record["status"],
+           "review": record["review"]})
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="da", description=__doc__)
     ap.add_argument("--pack", default=None)
@@ -200,6 +218,13 @@ def main(argv=None):
     p.add_argument("--gap", required=True); p.add_argument("--file", required=True)
     p.add_argument("--workspace", default=None)
 
+    p = sub.add_parser("review")
+    p.add_argument("--proposal", required=True)
+    p.add_argument("--verdict", required=True, choices=["accept", "reject", "needs-info"])
+    p.add_argument("--note", default=None)
+    p.add_argument("--notes", default=None, help="file with the full review notes")
+    p.add_argument("--workspace", default=None)
+
     args = ap.parse_args(argv)
     try:
         pack = _load_pack(args)
@@ -209,7 +234,8 @@ def main(argv=None):
 
     handler = {"overview": cmd_overview, "search": cmd_search, "inspect": cmd_inspect,
                "resolve": cmd_resolve, "validate": cmd_validate, "golden": cmd_golden,
-               "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose}[args.cmd]
+               "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose,
+               "review": cmd_review}[args.cmd]
     return handler(pack, args) or 0
 
 

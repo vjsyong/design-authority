@@ -97,6 +97,12 @@ log; thresholds (6.5 / 5.0 / margin 2.0) live in `resolve.py` as named
 constants. Golden-set edits require a note here; the unit test enforces 100%
 agreement so precision regressions cannot land silently.
 
+**D-019 · Review verdicts are recorded records, not vibes.** `da review
+--proposal … --verdict accept|reject|needs-info` (backed by
+`records.set_proposal_review`) transitions the proposal status and stores the
+review notes + timestamp. The agent does the judging; the kernel does the
+bookkeeping. First use: the P2 e2e demo (docs/05) → `needs-info`.
+
 ---
 
 ## Assumptions to verify

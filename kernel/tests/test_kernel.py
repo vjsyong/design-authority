@@ -117,5 +117,22 @@ class TestRecords(unittest.TestCase):
                 })
 
 
+    def test_proposal_review_transitions(self):
+        with tempfile.TemporaryDirectory() as ws:
+            gap = records.add_gap(self.pack, ws, "x")
+            prop = records.add_proposal(self.pack, ws, gap["id"], {
+                "problem": "p", "insufficiency": "i", "reuse_case": "r",
+                "composition_check": "c",
+                "proposed": [{"kind": "component", "name": "n"}],
+                "tests": [{}],
+            })
+            reviewed = records.set_proposal_review(ws, prop["id"], "needs-info",
+                                                   notes="more evidence required")
+            self.assertEqual(reviewed["status"], "needs-info")
+            self.assertEqual(reviewed["review"]["verdict"], "needs-info")
+            with self.assertRaises(ValueError):
+                records.set_proposal_review(ws, prop["id"], "maybe")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -63,6 +63,16 @@ by an accepted extension.
 - **[pack] Prohibitions use bare signals + `signals_all` groups**
   (e.g. "confirm dialog" + "delete"); false-positive/negative rates measured
   only against the goldens so far — quantified properly in P3.
+- **[loop] Extension-loop e2e exercised (2026-10-07, docs/05):** synthetic
+  G-004 proposal reviewed by a second clean agent → verdict **needs-info** with
+  four required changes; reviewer found the sanctioned composition covering the
+  indeterminate half (spinner + recipe/status-with-text). G-004 stays open.
+- **[loop→pack] Resolver precision observation:** `resolve("percent-complete
+  progress …")` returned COMPOSE citing `recipe/status-with-text` — a recipe
+  matched a need it cannot express (no numeric percent). Candidate mitigations
+  for P3: a `disqualifiers` field on recipes, or outcome-level confidence split
+  (COMPOSE-strong vs COMPOSE-weak) kept internal to the pack notes; decide with
+  benchmark data before adding machinery.
 
-*(more appended as P1 continues — MCP + e2e loop)*
+*(more appended as P2/P3 continue — MCP smoke + benchmark scaffold)*
 

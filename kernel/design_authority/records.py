@@ -114,3 +114,29 @@ def list_proposals(workspace):
             with open(os.path.join(d, name)) as fh:
                 out.append(json.load(fh))
     return out
+
+
+VERDICT_STATUS = {"accept": "accepted", "reject": "rejected",
+                  "needs-info": "needs-info", "needs_info": "needs-info"}
+
+
+def set_proposal_review(workspace, proposal_id, verdict, notes=None,
+                        evidence=None):
+    """Record a review verdict on a candidate proposal (D-016: explicit
+    accept/reject/needs-info, nothing auto-applied)."""
+    v = verdict.strip().lower()
+    if v not in VERDICT_STATUS:
+        raise ValueError("verdict must be accept|reject|needs-info, got %r" % verdict)
+    safe = proposal_id.replace("/", "_")
+    path = os.path.join(_ws(workspace), "proposals", safe + ".json")
+    if not os.path.exists(path):
+        raise ValueError("unknown proposal %s" % proposal_id)
+    with open(path) as fh:
+        record = json.load(fh)
+    record["review"] = {"verdict": v, "notes": notes, "evidence": evidence,
+                        "reviewed_at": _now()}
+    record["status"] = VERDICT_STATUS[v]
+    with open(path, "w") as fh:
+        json.dump(record, fh, indent=1)
+    record["stored_at"] = path
+    return record
