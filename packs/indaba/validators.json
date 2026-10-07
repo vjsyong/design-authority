@@ -1,0 +1,22 @@
+{
+ "validators": [
+  {
+   "name": "indaba-lint",
+   "title": "Indaba authority lint (IND-1..4 + palette discipline)",
+   "kind": "command",
+   "workdir": "{pack}",
+   "command": [
+    "python3",
+    "validators/indaba_lint.py",
+    "{target}"
+   ],
+   "parser": "lint-json",
+   "applies_to": [
+    "css",
+    "html"
+   ],
+   "rules_source": "rules.json",
+   "notes": "Pack-local validator (no snapshot repo). Scans .css/.html for square corners (IND-1), off-palette colours and pure black (IND-2/3), and status pills without text (IND-4). Report shape: findings[{rule,severity,file,line,message,excerpt,fix}], counts, by_rule, score."
+  }
+ ]
+}

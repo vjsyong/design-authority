@@ -28,13 +28,14 @@ from run_condition import (  # noqa: E402
     authority_stats, kill_ws_processes,
 )
 
-STARTER = os.path.join(ROOT, "examples", "orbit-reference-app")
+STARTER = os.path.join(ROOT, "examples", "indaba-reference-app")
 RUNS_STAGE = "/tmp/da-orbit"
 
 
-def bwrap_cmd(run_root, ws):
-    """Sandbox: only the Orbit pack, a filtered da-tools dir and the kernel
-    are visible under /opt/da — Triage exists nowhere in this sandbox."""
+def bwrap_cmd(run_root, ws, pack):
+    """Sandbox: only the target authority pack, a filtered da-tools dir and
+    the kernel are visible under /opt/da — no other authority exists in this
+    sandbox."""
     args = [
         "bwrap",
         "--ro-bind", "/usr", "/usr",
@@ -60,7 +61,7 @@ def bwrap_cmd(run_root, ws):
     args += [
         "--ro-bind", os.path.join(ROOT, "kernel"), "/opt/da/kernel",
         "--ro-bind", os.path.join(run_root, "da-tools"), "/opt/da/tools",
-        "--ro-bind", os.path.join(ROOT, "packs", "orbit"), "/opt/da/packs/orbit",
+        "--ro-bind", os.path.join(ROOT, "packs", pack), "/opt/da/packs/%s" % pack,
         "--clearenv",
         "--setenv", "HOME", HOME,
         "--setenv", "PATH", SANDBOX_PATH,
@@ -93,6 +94,8 @@ def main(argv=None):
     ap.add_argument("--model", default="deepseek/deepseek-flash")
     ap.add_argument("--timeout", type=int, default=2400)
     ap.add_argument("--no-sandbox", action="store_true")
+    ap.add_argument("--pack", default="orbit",
+                    help="authority pack under packs/ mounted at /opt/da/packs")
     args = ap.parse_args(argv)
 
     run_dir = os.path.join(ROOT, "benchmark", "runs", args.run_id)
@@ -103,8 +106,8 @@ def main(argv=None):
         shutil.rmtree(run_root)
     os.makedirs(os.path.join(run_root, "oc-config"), exist_ok=True)
 
-    run = {"run_id": args.run_id, "kind": "orbit-build", "model": args.model,
-           "started": now_iso(), "status": "running"}
+    run = {"run_id": args.run_id, "kind": "authority-build", "pack": args.pack,
+           "model": args.model, "started": now_iso(), "status": "running"}
     run_path = os.path.join(run_dir, "run.json")
 
     def save():
@@ -128,7 +131,7 @@ def main(argv=None):
            "mcp": {"design_authority": {
                "type": "local",
                "command": ["/opt/py/venv/bin/python3", "/opt/da/tools/da-mcp.py"],
-               "environment": {"DA_WORKSPACE": ws, "DA_PACK": "/opt/da/packs/orbit"},
+               "environment": {"DA_WORKSPACE": ws, "DA_PACK": "/opt/da/packs/%s" % args.pack},
                "enabled": True}}}
     with open(os.path.join(ws, "opencode.json"), "w") as fh:
         json.dump(cfg, fh, indent=1)
@@ -139,9 +142,9 @@ def main(argv=None):
 
     # ---- agent run ----
     t0, timed_out, rc = time.time(), False, None
-    cmd = (bwrap_cmd(run_root, ws) if sandboxed
+    cmd = (bwrap_cmd(run_root, ws, args.pack) if sandboxed
            else [OPENCODE, "run", "--pure"])
-    cmd += ["-m", args.model, "--title", "orbit-" + args.run_id,
+    cmd += ["-m", args.model, "--title", "da-" + args.run_id,
             "--format", "json", prompt]
     transcript = os.path.join(run_dir, "transcript.jsonl")
     with open(transcript, "w") as fh_out, \

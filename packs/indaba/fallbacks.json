@@ -1,0 +1,20 @@
+{
+ "fallbacks": [
+  {
+   "id": "fallback/platform-controls",
+   "title": "Platform defaults for uncovered controls",
+   "statement": "If the system defines no control for a need, use the platform's native element with the system's rounded field styling and warm colours; keep native semantics.",
+   "scope": ["checkbox", "radio", "date", "time", "file", "toggle", "switch"],
+   "constraints": ["rounded field-like styling (IND-1 still applies)", "orange focus ring", "mark the improvisation and report a gap if the need recurs"],
+   "kind": "fallback"
+  },
+  {
+   "id": "fallback/plain-region",
+   "title": "Plain content region",
+   "statement": "Content without a defined composition sits in the shell as plain regions separated by generous spacing — softly, never in boxes.",
+   "scope": ["prose", "content page", "about", "help text", "static page"],
+   "constraints": ["spacing and soft tints, not hard rules", "generous margins"],
+   "kind": "fallback"
+  }
+ ]
+}

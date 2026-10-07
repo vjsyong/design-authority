@@ -1,0 +1,18 @@
+{
+ "prohibitions": [
+  {
+   "id": "prohibit/square-corners",
+   "statement": "Square or sharp corners anywhere — this language is rounded (IND-1).",
+   "signals": ["square corners", "square", "sharp corners", "sharp edges", "border-radius: 0", "hard corners", "right angles"],
+   "rule": "IND-1",
+   "kind": "prohibition"
+  },
+  {
+   "id": "prohibit/off-palette-colours",
+   "statement": "Colours outside the Ubuntu palette and its tints — including pure black, neon accents and off-brand reds (IND-2, IND-3).",
+   "signals": ["pure black", "neon", "bright red", "electric blue", "off-brand", "off brand colour", "not in the palette"],
+   "rule": "IND-2",
+   "kind": "prohibition"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "indaba",
+  "name": "Indaba Interface System",
+  "format_version": "0.1",
+  "version": "0.1.0",
+  "snapshot": {
+    "repo": "Ubuntu brand guidelines (Canonical), design.ubuntu.com",
+    "commit": "n/a - derived document source, not a repository",
+    "branch": "n/a",
+    "version": "brand guidelines as published 2026",
+    "path_hint": ""
+  },
+  "description": "A minimal interface system derived from the Ubuntu brand guidelines for the Design Authority portability spike. Warm, rounded, grey-balanced. No Ubuntu marks reproduced.",
+  "kinds": [
+    "component",
+    "pattern",
+    "token-set",
+    "guideline",
+    "recipe",
+    "reference"
+  ],
+  "capabilities": {
+    "search": true,
+    "resolve": true,
+    "validators": [
+      "indaba-lint"
+    ],
+    "gap_reporting": true,
+    "extension_proposals": true,
+    "resolution_assist": "off"
+  },
+  "policy": {
+    "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+    "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+    "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+  },
+  "entrypoints": {
+    "artifacts": "artifacts.json",
+    "rules": "rules.json",
+    "recipes": "recipes.json",
+    "fallbacks": "fallbacks.json",
+    "prohibitions": "prohibitions.json",
+    "validators": "validators.json",
+    "scoring": "scoring.json"
+  }
+}

@@ -1,0 +1,340 @@
+{
+ "artifacts": [
+  {
+   "id": "component/masthead",
+   "kind": "component",
+   "title": "Masthead (dark grey banner)",
+   "summary": "Full-width dark grey banner (cool grey #333333): white identity with a warm-grey descriptor, navigation as rounded pills (active item = orange pill).",
+   "status": "beta",
+   "aliases": ["header", "top bar", "banner", "navbar", "navigation bar"],
+   "body": {
+    "class": "masthead",
+    "group": "Structure",
+    "states": ["default", "nav hover (subtle light fill)", "nav active (orange pill)"],
+    "verify": [".masthead", ".masthead nav a.on"],
+    "a11y": ["Navigation is a <nav> list; the active item is a link state, not colour alone (pill shape carries it)."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "ubuntu.com header practice; cool grey #333333"}
+  },
+  {
+   "id": "component/action",
+   "kind": "component",
+   "title": "Action (pill control)",
+   "summary": "Pill-shaped action: primary = solid orange; secondary = ghost with warm-grey outline; destructive = solid deep aubergine. Rounded language, generous padding.",
+   "status": "beta",
+   "aliases": ["button", "cta", "submit", "primary button", "register button"],
+   "body": {
+    "class": "action",
+    "group": "Actions",
+    "states": ["default", "hover (deeper fill / darker outline)", "focus (orange ring)", "disabled (warm tint, grey text)"],
+    "verify": [".action.primary", ".action.secondary", ".action.destructive"],
+    "a11y": ["Real <button> semantics; visible label is the accessible name; focus ring required."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "orange = actions/community; deep aubergine for heaviest surfaces"}
+  },
+  {
+   "id": "component/field",
+   "kind": "component",
+   "title": "Field (text input)",
+   "summary": "Rounded text field: 1.5px warm border, radius 12, orange focus ring; label above in Medium; error note below in deep orange.",
+   "status": "beta",
+   "aliases": ["input", "text field", "form field", "textbox"],
+   "body": {
+    "class": "field",
+    "group": "Forms",
+    "states": ["default", "focus (orange ring)", "invalid", "disabled"],
+    "verify": [".field input", ".field .error"],
+    "a11y": ["<label for> association always; error text linked via aria-describedby; never remove the visible label."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "warm tint surfaces; rounded forms (inferred)"}
+  },
+  {
+   "id": "component/choice",
+   "kind": "component",
+   "title": "Choice (small-set select)",
+   "summary": "Rounded select styled like a field, for small fixed sets (about 12 options or fewer); larger or filtered selection is out of scope by design.",
+   "status": "beta",
+   "aliases": ["select", "dropdown", "picker"],
+   "body": {
+    "class": "choice",
+    "group": "Forms",
+    "states": ["default", "focus", "invalid", "disabled"],
+    "verify": [".field select"],
+    "a11y": ["Native semantics; visible label; never replace with a custom listbox for small sets."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "authored limit rule; field language inferred"}
+  },
+  {
+   "id": "component/status",
+   "kind": "component",
+   "title": "Status (word-first pill)",
+   "summary": "Status as a pill containing the word: Available = warm tint with warm outline; On loan = solid aubergine; Overdue = solid orange. The word carries the status; colour supports it.",
+   "status": "beta",
+   "aliases": ["status", "state", "status pill", "status label"],
+   "body": {
+    "class": "status",
+    "group": "Feedback",
+    "states": ["available", "loan", "overdue"],
+    "verify": [".status.available", ".status.loan", ".status.overdue"],
+    "a11y": ["Status text is always present; never encode state by colour alone."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "word-first rule; palette roles for tones"}
+  },
+  {
+   "id": "component/label",
+   "kind": "component",
+   "title": "Label (soft pill for metadata)",
+   "summary": "Category and metadata as a soft pill: warm-tint background, muted text, fully rounded. No border, no heavy fill — a gentle label, not a chip.",
+   "status": "beta",
+   "aliases": ["tag", "category", "category label", "metadata label"],
+   "body": {
+    "class": "label",
+    "group": "Data",
+    "states": ["default"],
+    "verify": [".label"],
+    "a11y": ["Plain text content; no meaning carried by colour."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "soft rounded forms (inferred)"}
+  },
+  {
+   "id": "component/surface",
+   "kind": "component",
+   "title": "Surface (soft card)",
+   "summary": "Rounded white card with a soft warm shadow and generous padding; tinted variant uses the warm tint with no shadow. Used to group content gently — no hard borders.",
+   "status": "beta",
+   "aliases": ["card", "panel", "container", "box"],
+   "body": {
+    "class": "surface",
+    "group": "Structure",
+    "states": ["default (white + soft shadow)", "tinted (warm tint, no shadow)"],
+    "verify": [".surface", ".surface.tinted"],
+    "a11y": ["Headings inside surfaces stay real headings."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "tints for backgrounds; soft shadow authored"}
+  },
+  {
+   "id": "component/ledger",
+   "kind": "component",
+   "title": "Ledger (soft register list)",
+   "summary": "Data list with a pill-filled header row, airy rows separated by a very subtle alternating warm tint (no hard rules), hover row tint, status pills and labels inline, right-aligned text links.",
+   "status": "beta",
+   "aliases": ["table", "list", "register", "ledger", "rows", "data list"],
+   "body": {
+    "class": "ledger",
+    "group": "Data",
+    "states": ["default", "hover row", "empty (use a notice inside the view)"],
+    "verify": [".ledger th", ".ledger td"],
+    "a11y": ["Real table semantics; generous row height; row action labels are specific verbs."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "soft separation authored; no-hard-rules per warm language"}
+  },
+  {
+   "id": "component/meter",
+   "kind": "component",
+   "title": "Meter (rounded progress)",
+   "summary": "Rounded progress bar: pill track in the warm tint with a solid fill (orange when in flight, aubergine when complete), always with a text readout like '7 of 10 steps'.",
+   "status": "experimental",
+   "aliases": ["progress", "progress bar", "meter", "completion"],
+   "body": {
+    "class": "meter",
+    "group": "Feedback",
+    "states": ["in-flight (orange fill)", "complete (aubergine fill)", "attention (text readout changes)"],
+    "verify": [".meter", ".meter i"],
+    "a11y": ["role=progressbar with aria-valuenow/min/max; visible readout matches aria-valuetext; updates are static — no motion is defined in this system."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "roundness inferred; motion undefined by design"}
+  },
+  {
+   "id": "component/notice",
+   "kind": "component",
+   "title": "Notice (soft banner)",
+   "summary": "Rounded inline message: info = warm tint; warning = light orange tint; one or two plain sentences. No floating toasts, no left-edge stripes.",
+   "status": "beta",
+   "aliases": ["alert", "banner", "message", "feedback block"],
+   "body": {
+    "class": "notice",
+    "group": "Feedback",
+    "states": ["info", "warning"],
+    "verify": [".notice.info", ".notice.warning"],
+    "a11y": ["Role per kind (status vs alert); copy states what happened and what happens next."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "orange tints for backgrounds (brand rule); warmth authored"}
+  },
+  {
+   "id": "component/dialog",
+   "kind": "component",
+   "title": "Dialog (rounded confirm)",
+   "summary": "Rounded white modal over a full-page warm scrim (deep aubergine at 35%): title in aubergine, a consequence sentence, pill actions (destructive = deep aubergine; cancel = outline).",
+   "status": "experimental",
+   "aliases": ["modal", "confirm", "popup", "overlay"],
+   "body": {
+    "class": "dialog",
+    "group": "Feedback",
+    "states": ["open", "closed (instant, no motion)"],
+    "verify": [".dialog", ".scrim"],
+    "a11y": ["Focus trapped; Escape closes; the confirm sentence names the object and the consequence."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "scrim colour is a deep-aubergine tint; structure authored"}
+  },
+  {
+   "id": "component/section",
+   "kind": "component",
+   "title": "Section (grouping)",
+   "summary": "Content grouping: Medium aubergine heading, then generous spacing or a surface. No fieldset boxes; breathing room is the separator.",
+   "status": "beta",
+   "aliases": ["grouping", "form group", "fieldset", "settings section"],
+   "body": {
+    "class": "section",
+    "group": "Forms",
+    "states": ["default"],
+    "verify": [".section h2"],
+    "a11y": ["fieldset/legend semantics where the group is a form."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "authored; soft language"}
+  },
+  {
+   "id": "pattern/shell",
+   "kind": "pattern",
+   "title": "Application shell",
+   "summary": "Dark grey masthead banner on top, white content column (max-width 1040, generous margins), a small footline at the column bottom.",
+   "status": "beta",
+   "aliases": ["app shell", "page layout", "application frame"],
+   "body": {
+    "class": "shell",
+    "group": "Patterns",
+    "states": ["default"],
+    "verify": [".masthead", ".foot"],
+    "a11y": ["One <main> landmark; the masthead is <header>."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "banner practice; composition authored"}
+  },
+  {
+   "id": "pattern/register-view",
+   "kind": "pattern",
+   "title": "Register view (list screen)",
+   "summary": "Shell plus page head (title, subline, primary action) plus optional notice, a search field, and the ledger; empty state is a notice inside the view with one action.",
+   "status": "beta",
+   "aliases": ["list screen", "index screen", "table view"],
+   "body": {
+    "class": "register-view",
+    "group": "Patterns",
+    "states": ["default", "empty (notice)"],
+    "verify": [".register-view"],
+    "a11y": ["Empty state announced; its copy offers exactly one next step."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "assembly authored"}
+  },
+  {
+   "id": "pattern/form-flow",
+   "kind": "pattern",
+   "title": "Form flow (create or edit)",
+   "summary": "Shell, a surface holding rounded fields and choices with labels above, then an actions row: primary pill and a secondary cancel; destructive actions route through the confirm dialog.",
+   "status": "beta",
+   "aliases": ["settings form", "create form", "edit form", "settings screen", "new item form"],
+   "body": {
+     "class": "form-flow",
+     "group": "Patterns",
+     "states": ["default", "invalid (error notes)", "destructive confirm (dialog)"],
+     "verify": [".form-flow"],
+     "a11y": ["Validation summary is announced; the destructive confirm is keyboard reachable."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "assembly authored"}
+  },
+  {
+   "id": "pattern/activity-view",
+   "kind": "pattern",
+   "title": "Activity view (status and log)",
+   "summary": "Shell, a surface with a status pill and rounded meter with 'n of m' readout, an action to (re)start the job, and the event log as soft rows with muted timestamps.",
+   "status": "beta",
+   "aliases": ["status screen", "job progress", "progress screen", "activity log", "import progress", "import job"],
+   "body": {
+    "class": "activity-view",
+    "group": "Patterns",
+    "states": ["running", "complete", "failed (warning notice)"],
+    "verify": [".activity-view"],
+    "a11y": ["State changes announced politely; meter readout text matches aria-valuetext."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "assembly authored"}
+  },
+  {
+   "id": "token-set/palette",
+   "kind": "token-set",
+   "title": "Indaba palette",
+   "summary": "Ubuntu palette with UI roles: orange #E95420 (actions), aubergine #77216F (identity/headings), deep aubergine #2C001E (destructive/heaviest), warm grey #AEA79F (balance), warm tint #F6F4F2 (surfaces), cool grey #333333 (banner), text #111111 (never pure black).",
+   "status": "beta",
+   "aliases": ["colors", "colour palette", "palette", "color roles"],
+   "body": {
+    "class": "palette",
+    "group": "Foundations",
+    "states": [],
+    "verify": ["--orange", "--aubergine", "--warm-tint", "--text"],
+    "a11y": ["White text on orange and deep aubergine meets 4.5:1 (to be verified by indaba-lint); text uses #111111 rather than black."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "colour palette page (verified values)"}
+  },
+  {
+   "id": "token-set/type",
+   "kind": "token-set",
+   "title": "Indaba type roles",
+   "summary": "Ubuntu font family: display 28-30 Light in aubergine; headings 17-20 Medium in aubergine; body 16 Regular in #111111; labels 14 Medium; meta 13 muted; line-height 1.5.",
+   "status": "beta",
+   "aliases": ["typography", "type scale", "fonts"],
+   "body": {
+    "class": "type",
+    "group": "Foundations",
+    "states": [],
+    "verify": ["--font: Ubuntu", "h1 300", "body 16"],
+    "a11y": ["Body at 16px or more; generous line-height; Ubuntu font is freely licensed (Ubuntu Font Licence 1.0)."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "font page; sizes authored for screen"}
+  },
+  {
+   "id": "guideline/roundness",
+   "kind": "guideline",
+   "title": "Rounded, warm, grey-balanced",
+   "summary": "The house language: everything is softly rounded (surfaces 12-16, controls and status as pills); separation comes from spacing, soft tints, and gentle shadows — not hard rules or heavy borders; colours are warm and balanced, never harsh.",
+   "status": "beta",
+   "aliases": ["shape language", "roundness", "corners", "soft style"],
+   "body": {
+    "class": "roundness",
+    "group": "Foundations",
+    "states": [],
+    "verify": [],
+    "a11y": ["Focus states use the orange ring; never remove the visible rounded affordance cues."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "logo circles, typeface terminals, dot patterns; approved tile"}
+  },
+  {
+   "id": "guideline/voice",
+   "kind": "guideline",
+   "title": "Voice: warm and plain",
+   "summary": "Copy is warm, plain and human — 'humanity towards others'. Short sentences; name the object and the consequence; no jargon, no filler.",
+   "status": "beta",
+   "aliases": ["copy", "wording", "tone", "tone of voice"],
+   "body": {
+    "class": "voice",
+     "group": "Foundations",
+    "states": [],
+    "verify": [],
+    "a11y": ["Error and confirm copy states what happened and what happens next in one or two sentences."]
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "brand values page"}
+  },
+  {
+   "id": "reference/ubuntu-brand",
+   "kind": "reference",
+   "title": "Source: Ubuntu brand guidelines (Canonical)",
+   "summary": "Public brand guidelines at design.ubuntu.com from which this system was derived; palette, font and values verified 2026-10-07. Provenance: docs/portability/09-ubuntu-source-audit.md. No Ubuntu marks are reproduced.",
+   "status": "stable",
+   "aliases": ["source document", "ubuntu brand", "brand guidelines"],
+   "body": {
+    "class": "reference",
+    "group": "Provenance",
+    "states": [],
+    "verify": [],
+    "a11y": []
+   },
+   "source": {"repo": "Ubuntu brand guidelines", "path": "design.ubuntu.com/brand, /colour-palette, /font"}
+  }
+ ]
+}

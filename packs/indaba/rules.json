@@ -1,0 +1,41 @@
+{
+ "rules": [
+  {
+   "id": "IND-1",
+   "name": "rounded-language",
+   "severity": "error",
+   "applies_to": ["css", "html"],
+   "summary": "Corners are always rounded — surfaces at 12-16px radius, controls and status as pills. Square corners are not part of this language.",
+   "why": "The brand's forms are circular and soft (logo circles, round-terminalled Ubuntu type, dot patterns); the approved tile and screens use radius 12/16 and pill controls.",
+   "fix": "Replace border-radius: 0 (or sharp corners) with the system radius or a pill.",
+   "enforcement": {"mode": "indaba-lint"}
+  },
+  {
+   "id": "IND-2",
+   "name": "palette-only-colours",
+   "severity": "warning",
+   "applies_to": ["css", "html"],
+   "summary": "Colours come from the Ubuntu palette and its tints: orange #E95420 (actions), aubergine #77216F (identity), deep aubergine #2C001E (destructive/heaviest), warm grey #AEA79F, warm tint #F6F4F2, cool grey #333333 (banner), text #111111.",
+   "why": "Palette values and usage are brand-observed (design.ubuntu.com colour palette page).",
+   "fix": "Map the colour to the nearest palette token."
+  },
+  {
+   "id": "IND-3",
+   "name": "text-not-pure-black",
+   "severity": "warning",
+   "applies_to": ["css", "html"],
+   "summary": "Body text is #111111, never pure black — black is harsh with aubergine, grey delivers balance.",
+   "why": "Brand guidance: 'black can be quite harsh in combination with aubergine, but grey delivers more balance while still being legible.'",
+   "fix": "Use #111111 (or a warmer grey) for text."
+  },
+  {
+   "id": "IND-4",
+   "name": "status-word-first",
+   "severity": "error",
+   "applies_to": ["html"],
+   "summary": "Status is a word first (pill with readable text); colour supports it, never replaces it.",
+   "why": "Approved approach: 'status reads as a word first; colour is support.'",
+   "fix": "Put the status word inside the pill; do not signal status by colour alone."
+  }
+ ]
+}

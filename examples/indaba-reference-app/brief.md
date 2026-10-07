@@ -6,7 +6,7 @@ volunteers catalogue tools, lend them to members, and record returns.
 This workspace contains a Flask starter whose backend is complete and must
 keep working end to end (you may make small backend adjustments only if
 strictly needed). The interface layer is intentionally unstyled:
-`templates/` and `static/orbit.css`.
+`templates/` and `static/app.css`.
 
 ## Your task
 
@@ -34,7 +34,7 @@ inventing any pattern, and do not invent design material that contradicts it.
 
 ## Requirements
 
-- Style everything through `static/orbit.css` following the authority. No
+- Style everything through `static/app.css` following the authority. No
   libraries, frameworks, or CDNs; no JavaScript beyond what is strictly
   needed (progressive enhancement only).
 - **Borrower selection must stay quick as the member list grows** (small in
