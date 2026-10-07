@@ -1,0 +1,87 @@
+/* leader — derived style tile. Stand-ins: Gelasio (serif), Inter (sans), Archivo Black (display). */
+@font-face { font-family: 'Gelasio'; src: url('fonts/Gelasio-VF.ttf'); font-weight: 400 700; font-style: normal; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-VF.ttf'); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: 'Archivo Black'; src: url('fonts/ArchivoBlack-Regular.ttf'); font-weight: 400; font-style: normal; }
+
+:root {
+  --red: #E3120B;
+  --red60: #F6423C;
+  --red95: #FEE7E7;
+  --ink: #1A1A1A;
+  --l20: #333333;
+  --l85: #D9D9D9;
+  --l95: #F2F2F2;
+}
+
+* { box-sizing: border-box; margin: 0; }
+body { font-family: 'Inter', sans-serif; color: var(--ink); background: #fff; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 40px; }
+.pad { padding-top: 56px; padding-bottom: 56px; }
+.band { width: 100%; }
+
+.tile-head { padding: 48px 0 24px; border-bottom: 2px solid var(--ink); }
+.kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--l20); }
+.title { font-family: 'Gelasio', serif; font-size: 54px; font-weight: 700; letter-spacing: -1px; margin: 6px 0 10px; }
+.sub { font-size: 17px; max-width: 64ch; color: var(--l20); }
+
+/* red block */
+.redblock { background: var(--red); padding: 64px 0; }
+.blockline { font-family: 'Gelasio', serif; color: #fff; font-size: 48px; line-height: 1.15; letter-spacing: -.5px; max-width: 24ch; }
+.blockdek { color: #fff; font-size: 17px; margin-top: 16px; opacity: .95; }
+
+/* sections */
+.sec { font-family: 'Gelasio', serif; font-size: 26px; font-weight: 600; margin-bottom: 24px; }
+.note { font-size: 13px; color: var(--l20); margin-top: 20px; max-width: 88ch; }
+.note b { color: var(--ink); }
+.grey95 { background: var(--l95); }
+
+/* registers */
+.regs { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; }
+.tlabel { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--l20); margin-bottom: 10px; }
+.t-serif { font-family: 'Gelasio', serif; font-size: 26px; line-height: 1.3; }
+.t-sans { font-size: 14px; color: var(--l20); font-weight: 500; }
+.t-display { font-family: 'Archivo Black', sans-serif; font-size: 28px; letter-spacing: 0; line-height: 1.05; }
+
+/* swatches */
+.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.sw { font-size: 12px; }
+.sw i { display: block; height: 64px; margin-bottom: 8px; }
+.sw b { display: block; font-size: 13px; font-family: 'Inter', sans-serif; }
+.sw span { color: var(--l20); }
+.cityrow { margin-top: 26px; display: flex; align-items: center; gap: 8px; }
+.cityrow .clab { font-size: 12px; color: var(--l20); margin-right: 8px; }
+.cityrow i { width: 34px; height: 20px; }
+
+/* rectangles */
+.rects { display: flex; gap: 56px; }
+.rect i { display: inline-block; vertical-align: bottom; background: var(--ink); margin-right: 6px; }
+.rect i.hollow { background: none; border: 2px solid var(--ink); }
+.rect .rlab { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; color: var(--l20); }
+
+/* red thread */
+.redthread { background: #fff; padding: 10px 0 34px; }
+.threadline { height: 3px; background: linear-gradient(90deg, var(--red) 0 18%, var(--ink) 18% 22%, var(--red) 22% 60%, var(--l85) 60% 100%); }
+.threadcap { font-size: 13px; color: var(--l20); margin-top: 12px; }
+
+/* cadence */
+.cadence { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 22px 0; }
+.slabel { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.chead { font-family: 'Gelasio', serif; font-size: 32px; line-height: 1.15; }
+.cdek { font-size: 15px; color: var(--l20); margin-top: 8px; }
+.cues { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin-top: 34px; align-items: center; }
+.cursor-demo { border: 2px solid var(--ink); padding: 10px 16px; font-size: 14px; width: fit-content; }
+.cursor-demo .cursor { display: inline-block; width: 2px; height: 16px; background: var(--ink); margin-left: 6px; vertical-align: middle; }
+.glyphs { display: flex; align-items: baseline; gap: 10px; }
+.glyphs i { display: inline-block; background: var(--ink); }
+.glab { font-size: 12px; color: var(--l20); }
+.blurrow { display: flex; align-items: center; gap: 10px; }
+.blurrow .blur { display: inline-block; background: #B9B9B9; filter: blur(2px); }
+.blurrow .sharp { display: inline-block; background: var(--ink); }
+.blurrow .barrow { color: var(--l20); }
+
+/* axes */
+.axes { display: grid; gap: 8px; font-size: 14px; }
+.axes b { display: inline-block; min-width: 170px; }
+
+.tile-foot { background: var(--l95); border-top: 1px solid var(--l85); padding: 28px 0 40px; }
+.tile-foot p { font-size: 12px; color: var(--l20); max-width: 92ch; }

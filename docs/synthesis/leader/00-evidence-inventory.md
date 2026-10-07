@@ -147,3 +147,9 @@ Date: 2026-10-07 · Authority Synthesis workstream, source 'leader' = The Econom
 - raw/brandingstyleguides-teg.md
 - raw/economistgroup-home.md
 - raw/wayback-economist-home-2026.md
+
+## Addendum (post-inventory follow-up fetches, 2026-10-07)
+
+- [OBSERVED] **Marber colour values page** (fetched: `marber.economist.com/8e1dcf0b8/p/543b0f-colour` + subpage b/37fc5e): Economist Red **#E3120B** (RGB 227,18,11; CMYK 0,100,100,0); Red 42 #CC100A · Red 60 #F6423C · Red 95 #FEE7E7; greyscale ramp "London" #0D0D0D → #FFFFFF (9 steps); canvas tints (Chicago/Los Angeles/Paris/Singapore/Economist Red 85/90/95); accent city palettes (Chicago blue · Hong Kong teal · New York yellow · Shanghai green · Singapore orange · Tokyo pink) for data/section use; 1843 Red #B30000 + Zurich #FFBB1A; token namespace `--mb-colour-*`. **This closes the red-value gap.**
+- [OBSERVED] **Marber principles page**: six design principles quoted verbatim — "Less is more / Deliberate typography / Visual harmony / Clear wayfinding / Intelligence and wit / Recognisable consistency" (raw/marber-ds-principles.md).
+- Raw extracts: raw/marber-ds-colour-values.md · raw/marber-ds-principles.md
