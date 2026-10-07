@@ -5,7 +5,9 @@ authority under `proposals/evolution/`. None of them touches the pinned 0.12.1
 pack; implementation happens on a candidate branch/version (Phase 5) and only
 what survives review (Phase 4) gets built. **Update: all five candidates were
 independently reviewed (`docs/evolution/03-review.md`; verdict REVISE ×5) and
-every required action was applied — see each candidate's `review` block.**
+every required action was applied — see each candidate's `review` block — plus
+a post-build convergence second pass that tightened two vocabulary collisions
+(`docs/evolution/04-authority-ci.md` §3).**
 
 | # | candidate | gap | classification | layer |
 |---|---|---|---|---|

@@ -43,7 +43,7 @@
   "compatibility": "Additive; no semantics changed; does not affect component/cb queries; delete phrasings verified unchanged (title/needs de-leaked).",
   "validation": {
     "criterion": "verified contract (same mapping as cand/01):",
-    "g01_mapping": "7 -> component/select; #5 ('Choose one owner from a list of people') -> COMPOSE recipe/assign-picker; zero pattern/detail mis-routes",
+    "g01_mapping": "FINAL (second-pass verified): 6 (#1,#2,#3,#6,#7,#8) -> component/select; #4 + #5 -> COMPOSE recipe/assign-picker; zero pattern/detail mis-routes",
     "ingredients": "all ingredients resolve within the pack",
     "non_regression": "combobox -> component/cb, date picker -> component/dp; delete battery (6 probes) -> entity-delete-armed"
   },

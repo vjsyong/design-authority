@@ -26,7 +26,7 @@
       "VERSION + package.json + spec/rules.json + spec/states.json(version) + rename-map.json -> 0.13.0-experiment; CHANGELOG entry."
     ],
     "curation": [
-      "aliases.json: component/select -> ['select','native select','single select','select control','assign picker','reviewer picker','owner picker','record picker'] (dropped 'fixed list picker' - list/fixed tokens flipped delete probes; added 'record picker' - without it the 4th baseline mis-route survives; 'entity picker' deliberately excluded - verified hijack of 'delete an entity from a list')",
+      "aliases.json: component/select -> ['select','native select','single select','select control','owner picker','record picker','assign','reviewer'] (evolution of the review list: dropped 'fixed list picker' (delete-probe flips) and 'entity picker' (verified hijack); kept 'record picker' (closes the 4th mis-route); second pass: 'assign picker'/'reviewer picker' phrases de-phrased to single tokens so 'searchable picker' stays with component/cb)",
       "component-notes.json: component/select summary + cross-reference 'for the labelled assign flow (action + outcome) compose recipe/assign-picker'",
       "docs-map.json: component/select -> /components/forms"
     ]
@@ -40,7 +40,7 @@
   "compatibility": "Additive: bare <select> keeps identical styling; new class alias only. No existing selector semantics altered. No breakage risk for existing implementations (c1-c4 fallbacks remain valid markup).",
   "validation": {
     "criterion": "achievable contract under the frozen kernel (artifacts take precedence over recipes):",
-    "g01_mapping": "7 of 8 baseline picker phrasings -> RESOLVED component/select; phrasing #5 ('Choose one owner from a list of people') -> COMPOSE recipe/assign-picker; zero pattern/detail mis-routes; zero unrelated-recipe composes",
+    "g01_mapping": "FINAL (second-pass verified): 6 baseline picker phrasings (#1,#2,#3,#6,#7,#8) -> RESOLVED component/select; #4 ('...from the request detail page') and #5 ('Choose one owner from a list of people') -> COMPOSE recipe/assign-picker; zero pattern/detail mis-routes; zero unrelated-recipe composes; semantics lock: 'searchable picker' phrasing stays with component/cb",
     "triage_gates": "build.py check (states matrix at 37 components), strict lint 100/100, additive CSS diff shown explicitly (verify.py's substring check alone is insufficient - .select matches .select-inline)",
     "non_regression": "combobox->cb, date picker->dp, loading spinner->spinner, toast->toast2 unchanged; delete battery: 'remove a reviewer from a list', 'remove a person from a list', 'delete a person from a list', 'remove an owner from a list', 'delete an entity from a list', 'remove a reviewer' -> all entity-delete-armed"
   },

@@ -262,7 +262,9 @@ def main(argv=None):
     ap.add_argument("--no-sandbox", action="store_true",
                     help="debugging only — run opencode without bwrap")
     ap.add_argument("--prompt-file", default=None,
-                    help="override the brief prompt (smoke tests)")
+                    help="use a specific prompt file instead of base+condition briefs")
+    ap.add_argument("--pack", default="triage",
+                    help="authority pack under packs/ mounted at /opt/da/packs (condition C only)")
     args = ap.parse_args(argv)
 
     run_dir = os.path.join(ROOT, "benchmark", "runs", args.run_id)
@@ -299,11 +301,12 @@ def main(argv=None):
     cfg = {"$schema": "https://opencode.ai/config.json", "model": args.model,
            "permission": STRICT_PERMISSION}
     if args.condition == "C":
+        run["pack"] = args.pack
         cfg["mcp"] = {"design_authority": {
             "type": "local",
             "command": ["/opt/py/venv/bin/python3", "/opt/da/tools/da-mcp.py"],
             "environment": {"DA_WORKSPACE": ws,
-                            "DA_PACK": "/opt/da/packs/triage"},
+                            "DA_PACK": "/opt/da/packs/%s" % args.pack},
             "enabled": True}}
     with open(os.path.join(ws, "opencode.json"), "w") as fh:
         json.dump(cfg, fh, indent=1)

@@ -22,7 +22,7 @@
           "constraint_amend": "'only the listed set' -> 'the listed set plus reason-bearing reject/decline decisions'"
         },
         "curation/guidelines.json#guideline/high-stakes-confirm": {
-          "edit": "extend the representative set (quote) to include the reason-bearing reject/decline case, so the recipe and guideline stay consistent"
+          "edit": "carry the reason-bearing case in the guideline's normative `do` list; keep `quote` as the canonical INTERACTION.md representative set (second-pass finding: extending the quote pushed the guideline past DIRECT_MIN and starved the recipe — reverted, see 04-authority-ci.md §3)"
         }
       }
     },
