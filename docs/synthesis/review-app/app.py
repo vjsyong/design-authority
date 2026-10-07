@@ -788,6 +788,14 @@ PROP_CSS = DEMO_CSS + RENDER_CSS + """
 .fbar button.sel{background:#141414;color:#fff}
 .rec{border:1px solid #e4e4e4;border-radius:8px;padding:10px 12px;margin:8px 0}
 .chip.cl-p{background:#087830;color:#fff}.chip.cl-f{background:#2E45B8;color:#fff}.chip.cl-n{background:#666;color:#fff}
+.mddoc{margin:6px 0 14px}
+.mddoc h1{font-size:17px;margin:12px 0 6px}.mddoc h2{font-size:14.5px;margin:12px 0 5px;border-bottom:1px solid #ddd;padding-bottom:4px}
+.mddoc h3{font-size:13.5px;margin:10px 0 4px}
+.mddoc p{margin:6px 0;font:13px/1.55 system-ui}.mddoc li{font:13px/1.55 system-ui;margin:3px 0}
+.mddoc code{font:12px ui-monospace,monospace;background:#f6f6f6;padding:1px 4px;border-radius:3px}
+.mddoc table{border-collapse:collapse;font:12.5px system-ui;margin:8px 0;width:100%}
+.mddoc td,.mddoc th{border-bottom:1px solid #e4e4e4;padding:6px 8px;text-align:left;vertical-align:top}
+.mddoc ul,.mddoc ol{margin:6px 0;padding-left:22px}
 """
 
 PROV_PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -809,6 +817,9 @@ compiled into the pack (versioned) with goldens + the stress sweep re-run.</p>
 <details id="record"><summary style="cursor:pointer;font:600 13.5px system-ui;padding:10px 0">
 The adjudicator's record — all __TOTAL__ dispositions · __REC_SUM__ <span style="color:#2E45B8">(tap to audit every call, including the declines)</span></summary>
 <div id="recbody">__RECORD__</div></details>
+<h2 style="margin-top:22px">The full adjudication reports — the reasoning behind every call</h2>
+<p class="sub">The complete documents the adjudicators wrote: method, per-gap re-verification, fix simulations, proposals, and the policy citations behind each decline.</p>
+__REPORTS__
 <div id="list">__CARDS__</div>
 </div>
 <script>
@@ -885,6 +896,69 @@ def load_adjudication():
     return []
 
 
+def _md_inline(s):
+    s = _esc(s)
+    s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
+    s = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", s)
+    s = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<i>\1</i>", s)
+    return s
+
+
+def render_md(text):
+    lines = text.split("\n")
+    out, i = [], 0
+    while i < len(lines):
+        ln = lines[i]
+        if ln.startswith("|") and i + 1 < len(lines) and re.match(r"^\|[\s:|-]+\|$", lines[i + 1].strip()):
+            rows = [ln]
+            i += 2
+            while i < len(lines) and lines[i].startswith("|"):
+                rows.append(lines[i])
+                i += 1
+            t = ["<table>"]
+            for k, r in enumerate(rows):
+                cellsr = [c.strip() for c in r.strip().strip("|").split("|")]
+                tag = "th" if k == 0 else "td"
+                t.append("<tr>" + "".join("<%s>%s</%s>" % (tag, _md_inline(c), tag) for c in cellsr) + "</tr>")
+            t.append("</table>")
+            out.append("".join(t))
+            continue
+        if ln.startswith("# "):
+            out.append("<h1>%s</h1>" % _md_inline(ln[2:]))
+        elif ln.startswith("## "):
+            out.append("<h2>%s</h2>" % _md_inline(ln[3:]))
+        elif ln.startswith("### "):
+            out.append("<h3>%s</h3>" % _md_inline(ln[4:]))
+        elif re.match(r"^\s*[-*] ", ln):
+            items = []
+            while i < len(lines) and re.match(r"^\s*[-*] ", lines[i]):
+                items.append("<li>%s</li>" % _md_inline(re.sub(r"^\s*[-*] ", "", lines[i])))
+                i += 1
+            out.append("<ul>%s</ul>" % "".join(items))
+            continue
+        elif re.match(r"^\s*\d+\. ", ln):
+            items = []
+            while i < len(lines) and re.match(r"^\s*\d+\. ", lines[i]):
+                items.append("<li>%s</li>" % _md_inline(re.sub(r"^\s*\d+\. ", "", lines[i])))
+                i += 1
+            out.append("<ol>%s</ol>" % "".join(items))
+            continue
+        elif ln.strip():
+            out.append("<p>%s</p>" % _md_inline(ln))
+        i += 1
+    return "".join(out)
+
+
+def load_reports():
+    docs = {}
+    for src in ("wink", "leader", "dominion"):
+        p = os.path.join(_REPO, "examples", "cadence-%s" % src, "ADJUDICATION.md")
+        if os.path.exists(p):
+            with open(p) as fh:
+                docs[src] = fh.read()
+    return docs
+
+
 def _rec_row(r):
     ccls = {"PROPOSAL": "cl-p", "LEXICON-FIX": "cl-f", "SCOPE-FIX": "cl-f",
             "NO-ACTION": "cl-n", "INVALID": "cl-n"}.get(r["class"], "cl-n")
@@ -900,9 +974,9 @@ def _rec_row(r):
     return ("<div class='rec'><span class='chip src'>%s</span> <span class='mono'>%s</span> "
             "<span class='chip %s'>%s</span> <b style='font-size:12.5px'>%s</b>"
             "<p class='dim' style='margin:5px 0 0'>%s</p>"
-            "<p class='sts' style='margin-top:4px'>%s</p></div>"
+            "<p class='sts' style='margin-top:4px'>%s &nbsp; <a class='back' href='#adj-%s'>full reasoning &darr;</a></p></div>"
             % (_esc(r["src"]), _esc(r["suffix"]), ccls, _esc(r["class"]),
-               _esc(r["need"]), _esc(r["rationale"]), oc))
+               _esc(r["need"]), _esc(r["rationale"]), oc, _esc(r["src"])))
 
 
 def _prop_card(entry, adj=None):
@@ -922,6 +996,7 @@ def _prop_card(entry, adj=None):
         h.append("<p class='secl'>Adjudicator's rationale</p><p class='main'>%s</p>" % _esc(adj["rationale"]))
         if adj.get("evidence"):
             h.append("<p class='dim'>re-verified: %s</p>" % _esc(adj["evidence"]))
+        h.append("<p class='dim'><a class='back' href='#adj-%s'>read the full adjudication report &darr;</a></p>" % _esc(src))
     for label, key in (("Problem", "problem"), ("Insufficiency", "insufficiency"),
                        ("Reuse case", "reuse_case"), ("Composition check", "composition_check")):
         if p.get(key):
@@ -1034,6 +1109,12 @@ def proposals_page():
         rec.append("<h3 style='margin:16px 0 6px;font-size:14px'>%s — %d dispositions</h3>" % (srcc, len(rows)))
         rec.extend(_rec_row(r) for r in rows)
     rec_html = "".join(rec)
+    reps = load_reports()
+    rep_html = "".join(
+        "<details id='adj-%s'><summary style='cursor:pointer;font:600 13px system-ui;padding:8px 0'>"
+        "%s — full adjudication report (%d lines, every method, simulation and policy citation)</summary>"
+        "<div class='mddoc'>%s</div></details>"
+        % (s, s, len(reps[s].split("\n")), render_md(reps[s])) for s in reps)
     n_p = sum(1 for r in adj if r["class"] == "PROPOSAL")
     n_f = sum(1 for r in adj if r["class"] in ("LEXICON-FIX", "SCOPE-FIX"))
     n_n = sum(1 for r in adj if r["class"] == "NO-ACTION")
@@ -1042,6 +1123,7 @@ def proposals_page():
             .replace("__TOTAL__", str(len(adj)))
             .replace("__RECORD__", rec_html)
             .replace("__REC_SUM__", "%d promoted · %d fixes applied · %d declined" % (n_p, n_f, n_n))
+            .replace("__REPORTS__", rep_html)
             .replace("__CARDS__", cards))
     return page
 
