@@ -151,8 +151,20 @@ Record outcomes (fixes → deviations D-n; clean → freeze stamp below).
   directions ×30, TDS009 token overrides ×2, plus TDS005/6/7/8/12. Drift:
   36 unique hex colours · 27 px spacing values · 198 classes · 6 `!important`
   · 36 inline styles. Scope: UI-only (7 files), backend untouched.
-- **b1 (B, kit) — pending.**
-- **c1 (C, authority) — pending.**
+- **b1 (B, kit) — 2026-10-07, ACCEPTED.** exit 0, 649 s, 91 tool calls
+  (43 read / 32 bash / 9 write / 5 edit); interact 13/13. Lint: **0 findings
+  in the entire workspace** — it eliminated even the pristine starter's
+  baseline 10 (scan reports authored=0 / delta=0). Drift: 1 hex · 0 px
+  spacing values · 0 border radii · 0 `!important` · 18 inline styles · 150
+  classes. Screenshot review: fully system-conformant (zero-radius, paper
+  aesthetic, restrained status accents only). One `./run.sh` denial (the
+  denylist rejected the command form; agent retried via `python3` — fine).
+- **c1 (C, authority) — RERUN under fixed environment.** First attempt:
+  exit -15 (opencode's shell-tool timeout killed the session after the
+  agent's Playwright self-test hung — browser cache was not visible in the
+  sandbox), and it read pack files raw via bash (legitimate content for C,
+  but it bypasses the MCP interface; kept as behavioral evidence). Fixes in
+  D-4; rerun in flight.
 
 ## 6 · Deviations log (append during runs)
 
@@ -211,5 +223,25 @@ interpreter from PATH (`python3`), which works inside and outside the sandbox.
 The containment audit was also refined to separate protected-path **attempts**
 (tool inputs — the signal) from passive **mentions** (results / permission
 text).
+
+**D-4 · 2026-10-07 — sandbox mounts moved to opaque /opt paths; clean env;
+Playwright cache bound; c1 rerun.** Findings from the first c1 attempt:
+(a) the agent read the authority pack files raw via bash (`cat rules.json`,
+copying `prohibitions.json` into its workspace for a self-lint) — C's content
+sphere, but it bypasses the MCP interface and went unmonitored; (b) its
+Playwright self-test hung because the browser cache was invisible in the
+sandbox → opencode's shell-tool timeout fired → opencode terminated its own
+session (exit -15). Fixes (all conditions): every non-system mount now lives
+at an opaque `/opt` path (`/opt/py/venv`, `/opt/node`, `/opt/playwright`;
+condition C adds `/opt/da/{tools,kernel,packs}`), so the project tree cannot
+be probed (`ls /home/xrim` shows none of it). The sandbox environment is
+constructed with `--clearenv` + explicit vars (kills inherited `TMPDIR`
+leakage — the root cause of the Playwright hang class). Browsers bound
+read-only via `PLAYWRIGHT_BROWSERS_PATH=/opt/playwright`. Containment audit
+gains a `da_zone` counter: raw `/opt/da` reads from tool inputs vs MCP calls
+(recorded per run; expected interpretation: interface adoption). The first
+c1 run is archived as `runs/c1-broken-pilot/`; c1 was rerun. Kit review for
+meta-leaks: `PARITY.md` (rendered-from-pack receipt) retained — it documents
+the same-information guarantee and reveals no mechanism.
 
 *(next deviations appended below)*
