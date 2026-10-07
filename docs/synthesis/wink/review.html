@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>wink — semantic review (Gate 2)</title>
+<style>
+ :root { --ink:#141414; --mut:#5a5a5a; --line:#dcdcdc; --bg:#ffffff; --soft:#f6f6f6; }
+ * { box-sizing:border-box; }
+ body { font:15px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif; color:var(--ink); background:var(--bg);
+        max-width:860px; margin:0 auto; padding:40px 24px 80px; }
+ h1 { font-size:26px; font-weight:650; margin:0 0 6px; }
+ .sub { color:var(--mut); margin:0 0 26px; }
+ h2 { font-size:18px; margin:38px 0 4px; border-top:2px solid var(--ink); padding-top:14px; }
+ .count { color:var(--mut); font-weight:400; }
+ .hint { color:var(--mut); font-size:13px; margin:0 0 14px; }
+ .card { border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:0 0 12px; background:#fff; }
+ .card.judgment { border-left:4px solid var(--ink); }
+ .card header { margin-bottom:8px; }
+ .id { font-weight:700; margin-right:8px; }
+ .chip { display:inline-block; font-size:11.5px; background:var(--soft); border-radius:4px; padding:2px 7px; margin-right:6px; color:var(--mut); }
+ .chip.st { color:var(--ink); }
+ .decision { margin:0 0 8px; }
+ dl { margin:0; } dt { font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin-top:6px; }
+ dd { margin:2px 0 0; }
+ .outcome { margin:10px 0 0; font-size:12.5px; color:var(--mut); border-top:1px dashed var(--line); padding-top:8px; }
+ footer { margin-top:44px; color:var(--mut); font-size:12.5px; }
+</style></head><body>
+<h1>wink — semantic review</h1>
+<p class="sub">Authority Synthesis · Gate 2 · 2026-10-07 ·
+ 26 decisions: 12 needing judgment · 14 settled · 0 open.<br>
+ Reply in chat with ACCEPT / MODIFY / REJECT / LEAVE UNDEFINED per item (by ID). No forms to fill.</p>
+<h2>Needing judgment <span class='count'>12</span></h2><p class='hint'>ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+<article class="card judgment">
+  <header><span class="id">W-03</span><span class="chip">events</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Hover end-state for pills: lift (-3px translate, slight scale) + warm ink-tinted shadow, on the spring curve cubic-bezier(0.5,2.5,0.7,0.7) at 0.3s. Other interactive elements get fast feedback (~0.15s).</p>
+  <dl><dt>Evidence</dt><dd>transition declarations observed; end-state values not captured (probe failed)</dd>
+      <dt>Reasoning</dt><dd>Transition targets (transform, box-shadow) imply a lift+shadow response; magnitude authored to stay gentle.</dd>
+      <dt>Alternatives</dt><dd>scale-only; glow highlight (rejected: not in evidence)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-12</span><span class="chip">forms</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Inputs: white fill, 1px #DEDDDC border, radius 8, 16px text, label above in 14/500; focus = 3px yellow ring (outer, offset 2). Error = border+message in #BF4055.</p>
+  <dl><dt>Evidence</dt><dd>border token + 8px radius documented; focus treatment not evidenced</dd>
+      <dt>Reasoning</dt><dd>Extends the documented field language; yellow ring is the only on-brand focus signal.</dd>
+      <dt>Alternatives</dt><dd>2px ink focus border; double-ring</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-13</span><span class="chip">selection</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Native select styled as a field for small fixed sets (≤ ~12). Larger or filtered selection is out of scope by design; use the platform-controls fallback and mark it.</p>
+  <dl><dt>Evidence</dt><dd>no picker evidence captured; product shows list-based interactions at scale</dd>
+      <dt>Reasoning</dt><dd>Keeping the pledge honest: no invented searchable picker canon.</dd>
+      <dt>Alternatives</dt><dd>invent a combobox pattern (rejected: no evidence)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-14</span><span class="chip">status</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Status = word-first pill: neutral (Parsnip bg, ink text), attention (Ochre bg, ink text), positive (ink text, no colour — word carries it), problem (#BF4055 tint bg, dark red text). Colour supports the word; never replaces it.</p>
+  <dl><dt>Evidence</dt><dd>no status component observed; error colour indicative; ochre/parsnip surfaces observed</dd>
+      <dt>Reasoning</dt><dd>Derived from the warm neutral + single-accent discipline; avoids inventing new hues.</dd>
+      <dt>Alternatives</dt><dd>green/red dots (rejected: no green exists in the system)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-15</span><span class="chip">feedback</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Inline notices (rounded 12, tinted fill) rather than floating toasts; copy is plain, non-blaming, question-first.</p>
+  <dl><dt>Evidence</dt><dd>validation copy observed (non-blaming, plain); no toast pattern observed anywhere</dd>
+      <dt>Reasoning</dt><dd>Follows observed copy+tone; toasts use a component that does not exist in evidence.</dd>
+      <dt>Alternatives</dt><dd>toast stack (rejected: unevidenced)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-16</span><span class="chip">destructive</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">High-consequence actions route through a rounded confirm dialog (16px) with a consequence sentence in the warm voice; confirm = ink-filled pill labelled with the concrete verb (never &#x27;OK&#x27;); cancel = outline pill. Destructive is never the default focus.</p>
+  <dl><dt>Evidence</dt><dd>no destructive pattern captured; dialog styling inferred from card language</dd>
+      <dt>Reasoning</dt><dd>Uses only observed primitives (card, pill, voice).</dd>
+      <dt>Alternatives</dt><dd>inline two-step reveal; typed confirmation (both rejected as heavier than the brand&#x27;s register)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-17</span><span class="chip">overlays</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Dialog: white 16px card, 48px padding, warm ink scrim (rgba(35,30,21,.35)); instant appearance (no motion defined; none invented).</p>
+  <dl><dt>Evidence</dt><dd>shadow/card language observed; motion undefined</dd>
+      <dt>Reasoning</dt><dd>Same vessel as content cards; motion gap carried, not filled.</dd>
+      <dt>Alternatives</dt><dd>fade/slide entrance (rejected: motion undefined in source)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-18</span><span class="chip">progress</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Progress = pill track (Parsnip) with yellow fill in flight, ink fill when complete, plus a text readout (&#x27;7 of 10 steps&#x27;). Job actions: start / restart as pills; pause-and-resume allowed (named flow in the product).</p>
+  <dl><dt>Evidence</dt><dd>multi-step editor with pause-and-resume named in product notes; no visual captured</dd>
+      <dt>Reasoning</dt><dd>Tracks observed primitives; readout keeps it honest without animation.</dd>
+      <dt>Alternatives</dt><dd>spinner-only (rejected: steps are the point)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-19</span><span class="chip">empty</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Empty state = tinted Parsnip panel with one warm sentence + one action pill (&#x27;Add your first item&#x27;).</p>
+  <dl><dt>Evidence</dt><dd>no empty state captured; voice + tinted surface observed</dd>
+      <dt>Reasoning</dt><dd>Composes observed primitives; copy follows the observed warm-plain register.</dd>
+      <dt>Alternatives</dt><dd>illustration-led empty state (deferred: illustration system exists but is not reproduced)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-20</span><span class="chip">repeated-content</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Ledger: white surface, 16px padded rows, hairline #DEDDDC dividers (no zebra striping), header row in Parsnip with 13/500 labels; row hover = Parsnip tint; status pill inline; text links in ink with underline.</p>
+  <dl><dt>Evidence</dt><dd>pricing comparison table observed; hairline border token; link treatment observed</dd>
+      <dt>Reasoning</dt><dd>Extends the observed table language to the register list.</dd>
+      <dt>Alternatives</dt><dd>zebra rows (rejected: borderless/warm pattern)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-24</span><span class="chip">responsive</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Single-column collapse; hero display scales 64→40; sticky bar keeps height; no evidence of mobile-specific patterns — carried UNSPECIFIED beyond collapse.</p>
+  <dl><dt>Evidence</dt><dd>no responsive evidence captured (single viewport probe)</dd>
+      <dt>Reasoning</dt><dd>Minimal, honest collapse rather than invented responsive canon.</dd>
+      <dt>Alternatives</dt><dd>full responsive system (rejected: unevidenced)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">W-25</span><span class="chip">focus</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Focus = 3px yellow ring (outer). On yellow surfaces, focus switches to the ink ring.</p>
+  <dl><dt>Evidence</dt><dd>focus treatment not evidenced anywhere</dd>
+      <dt>Reasoning</dt><dd>Yellow is the natural focus signal; the on-yellow switch follows the CTA contrast rule (W-01).</dd>
+      <dt>Alternatives</dt><dd>ink-only ring; blue default</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article><h2>Settled <span class='count'>14</span></h2><p class='hint'>No action needed — shown for context</p>
+<article class="card settled">
+  <header><span class="id">W-01</span><span class="chip">actions</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Primary action = pill, filled Cavendish Yellow #FFE01B, label in Peppercorn ink. On yellow or warm fields, primary switches to the dark variant (ink fill, white label). Secondary = outline pill (2px ink inset).</p>
+  <dl><dt>Evidence</dt><dd>live DOM: CTA fill rgb(255,224,27) + dark inverse variant observed; pill radius 26px on ~44px height</dd>
+      <dt>Reasoning</dt><dd>The two variants were both observed live; contrast switching follows from the yellow-on-yellow failure mode.</dd>
+      <dt>Alternatives</dt><dd>single flat hierarchy (rejected: two variants observed)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-02</span><span class="chip">actions</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">All buttons are pills (radius = half height, ~26px); labels 13px/500 sans; no square buttons anywhere.</p>
+  <dl><dt>Evidence</dt><dd>live computed styles: border-radius 26px; label 13px/500</dd>
+      <dt>Reasoning</dt><dd>Directly measured.</dd>
+      <dt>Alternatives</dt><dd>8px default radius (documented but not the CTA reality)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-04</span><span class="chip">typography</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Two registers: soft-serif display for hero/section headlines (with an italic emphasis fragment allowed inside a headline); grotesque sans for all body, UI, labels and metadata. Serif is the exception, never the working voice.</p>
+  <dl><dt>Evidence</dt><dd>font histogram ~5% serif vs ~95% sans; italic emphasis pattern in live headlines</dd>
+      <dt>Reasoning</dt><dd>Measured distribution + recurring headline pattern.</dd>
+      <dt>Alternatives</dt><dd>serif body text (rejected: not observed)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-05</span><span class="chip">typography</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Screen scale: display 48–64px w400 tight tracking (−1.2px at 64); section 35px/1.0; body 16/1.35; small 14; labels/buttons 13/500.</p>
+  <dl><dt>Evidence</dt><dd>live computed styles; indicative scale 14→48</dd>
+      <dt>Reasoning</dt><dd>Directly measured; marketing vs product ramps reconciled.</dd>
+      <dt>Alternatives</dt><dd>flat scale (rejected)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-06</span><span class="chip">colour</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high (yellow/ink/ochre) · medium (kale/error roles)</span></header>
+  <p class="decision">Roles: yellow = brand field + primary action only; peppercorn = text, ink, shadow tint; white + Parsnip = surfaces; Ochre = section band terminator; Kale = links inside content; #BF4055 = error text/fills.</p>
+  <dl><dt>Evidence</dt><dd>brand-assets names; live surfaces; indicative tokens for kale/error</dd>
+      <dt>Reasoning</dt><dd>Core roles observed live; link/error roles from indicative source, flagged for confirmation.</dd>
+      <dt>Alternatives</dt><dd>peppercorn links (also live in some spots — conflict noted in evidence)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-07</span><span class="chip">surfaces</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Content cards: white, borderless, radius 16 (24 for large), elevation via warm ink-tinted shadow rgba(35,30,21,.2) 0 8px 32px; interior padding 48. Tinted variant: Parsnip, no shadow. 1px borders (#DEDDDC) only on inputs/dividers, never as card devices.</p>
+  <dl><dt>Evidence</dt><dd>live computed styles (shadow string, radii, 48px padding, border token)</dd>
+      <dt>Reasoning</dt><dd>Directly measured across elements.</dd>
+      <dt>Alternatives</dt><dd>bordered cards (contradicts observed borderless + shadow pattern)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-08</span><span class="chip">shape</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">high</span></header>
+  <p class="decision">Shape encodes class: interactive = pill; content vessel = 16/24 soft-radius; structural chrome (bands, dividers, page blocks) = square.</p>
+  <dl><dt>Evidence</dt><dd>radius histogram (0px dominant + pills + 16/24 cards)</dd>
+      <dt>Reasoning</dt><dd>The mixed histogram reads as a deliberate class system, not noise.</dd>
+      <dt>Alternatives</dt><dd>global soft rounding (rejected: 0px dominant)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-09</span><span class="chip">spacing</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">8px base scale (8/16/24/32/48); section padding 56–72; card interior 48; button padding 12/24.</p>
+  <dl><dt>Evidence</dt><dd>live paddings (40/68/60/48/12×24) + indicative 8px base</dd>
+      <dt>Reasoning</dt><dd>All observed values are multiples of 8 or half-steps.</dd>
+      <dt>Alternatives</dt><dd>4px base (rejected: no evidence)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-10</span><span class="chip">hierarchy</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">One page title; sections = small uppercase label → display headline → 1–2 sentence paragraph. Numbers may take display treatment for proof moments.</p>
+  <dl><dt>Evidence</dt><dd>live section pattern; 1×h1 vs 25×h2 counts; number-led proof</dd>
+      <dt>Reasoning</dt><dd>Recurring observed pattern.</dd>
+      <dt>Alternatives</dt><dd>multi-h1 (rejected)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-11</span><span class="chip">navigation</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Top bar: sticky, transparent over the opening band, ≤68px tall; text links in sans; primary CTA at the right end; no bottom border.</p>
+  <dl><dt>Evidence</dt><dd>live computed header (position sticky, 68px, transparent, no border)</dd>
+      <dt>Reasoning</dt><dd>Directly measured.</dd>
+      <dt>Alternatives</dt><dd>solid bar (rejected for hero pages; may be needed on content pages — flagged)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-21</span><span class="chip">badges</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Emphasis badges: pill, yellow fill, 12/600 label (e.g. &#x27;Most popular&#x27; on the selected plan/category).</p>
+  <dl><dt>Evidence</dt><dd>live &#x27;Most Popular&#x27; badge</dd>
+      <dt>Reasoning</dt><dd>Direct observation.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-22</span><span class="chip">voice</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Second person, question-first, plain English, non-blaming; dry wit allowed in microcopy; italic serif emphasis fragment allowed in headlines.</p>
+  <dl><dt>Evidence</dt><dd>multiple live samples + brand voice descriptions</dd>
+      <dt>Reasoning</dt><dd>Quoted register across sources.</dd>
+      <dt>Alternatives</dt><dd>neutral corporate (rejected)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-23</span><span class="chip">imagery</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Illustration is a real system capability but treated as optional garnish: allowed in empty/loading moments, restrained, never over functional content. Not reproduced in the reference build (no asset library).</p>
+  <dl><dt>Evidence</dt><dd>illustration system named and described as restrained; no assets reproduced by policy</dd>
+      <dt>Reasoning</dt><dd>Matches the observed restraint rule; keeps the build free of cloned art.</dd>
+      <dt>Alternatives</dt><dd>placeholder illustrations (rejected: would fabricate the asset library)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">W-26</span><span class="chip">prohibitions</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">high</span></header>
+  <p class="decision">Never: pure black text/shadows; clinical neutral greys as the palette; square primary buttons; 1px borders as card devices; decorative use of yellow; invented hues beyond the palette.</p>
+  <dl><dt>Evidence</dt><dd>absence of these across all observed material + stated warm-ink discipline</dd>
+      <dt>Reasoning</dt><dd>The prohibitions codify what the evidence never does.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<footer>Generated from decisions.json (single source of truth). Status tags: OBSERVED · INFERRED · AUTHORED · UNDEFINED.</footer>
+</body></html>

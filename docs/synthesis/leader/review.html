@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>leader — semantic review (Gate 2)</title>
+<style>
+ :root { --ink:#141414; --mut:#5a5a5a; --line:#dcdcdc; --bg:#ffffff; --soft:#f6f6f6; }
+ * { box-sizing:border-box; }
+ body { font:15px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif; color:var(--ink); background:var(--bg);
+        max-width:860px; margin:0 auto; padding:40px 24px 80px; }
+ h1 { font-size:26px; font-weight:650; margin:0 0 6px; }
+ .sub { color:var(--mut); margin:0 0 26px; }
+ h2 { font-size:18px; margin:38px 0 4px; border-top:2px solid var(--ink); padding-top:14px; }
+ .count { color:var(--mut); font-weight:400; }
+ .hint { color:var(--mut); font-size:13px; margin:0 0 14px; }
+ .card { border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:0 0 12px; background:#fff; }
+ .card.judgment { border-left:4px solid var(--ink); }
+ .card header { margin-bottom:8px; }
+ .id { font-weight:700; margin-right:8px; }
+ .chip { display:inline-block; font-size:11.5px; background:var(--soft); border-radius:4px; padding:2px 7px; margin-right:6px; color:var(--mut); }
+ .chip.st { color:var(--ink); }
+ .decision { margin:0 0 8px; }
+ dl { margin:0; } dt { font-size:11.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin-top:6px; }
+ dd { margin:2px 0 0; }
+ .outcome { margin:10px 0 0; font-size:12.5px; color:var(--mut); border-top:1px dashed var(--line); padding-top:8px; }
+ footer { margin-top:44px; color:var(--mut); font-size:12.5px; }
+</style></head><body>
+<h1>leader — semantic review</h1>
+<p class="sub">Authority Synthesis · Gate 2 · 2026-10-07 ·
+ 24 decisions: 16 needing judgment · 8 settled · 0 open.<br>
+ Reply in chat with ACCEPT / MODIFY / REJECT / LEAVE UNDEFINED per item (by ID). No forms to fill.</p>
+<h2>Needing judgment <span class='count'>16</span></h2><p class='hint'>ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+<article class="card judgment">
+  <header><span class="id">L-01</span><span class="chip">actions</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Primary action = solid Economist Red #E3120B rectangle with white label; secondary = 2px ink outline rectangle; tertiary = underlined text link. Labels sentence-case, sans, 14/500.</p>
+  <dl><dt>Evidence</dt><dd>red block + white text observed (covers/logo contexts); no live buttons observable (site blocked)</dd>
+      <dt>Reasoning</dt><dd>Red is punctuation; a solid red control is the strongest on-brand expression of a primary action without inventing shapes.</dd>
+      <dt>Alternatives</dt><dd>ink-fill primary with red only as accent; underlined red text-actions</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-03</span><span class="chip">events</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Interaction transitions are near-instant (≤0.15s colour swaps); no bounce, spring or decorative movement in UI chrome. Motion stays native to brand assets, not interface controls.</p>
+  <dl><dt>Evidence</dt><dd>motion is identity-native (animated rectangles) but UI timings are UNDEFINED</dd>
+      <dt>Reasoning</dt><dd>&#x27;Less is more&#x27; + restraint suggest crisp swaps; springs would contradict the register.</dd>
+      <dt>Alternatives</dt><dd>subtle 0.2s fades; hold everything instant</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-05</span><span class="chip">typography</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Screen rhythm: serif headline 30–34/1.15; standfirst sans? no — serif standfirst 16–17 muted; body serif 17/1.55; metadata sans 12.5–13 with 0.06em caps for section labels; display 44 at tracking −1.</p>
+  <dl><dt>Evidence</dt><dd>cadence observed (headline + one-line dek); numeric scale UNDEFINED in sources</dd>
+      <dt>Reasoning</dt><dd>Plain editorial rhythm; values kept modest to avoid inventing a scale with false precision.</dd>
+      <dt>Alternatives</dt><dd>larger display scale; all-sans metadata weight games</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-08</span><span class="chip">motifs</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">The red thread appears as a hairline red rule device (headers/footers/section breaks) — a connective mark, never a border for content blocks. Rhythm glyphs (small black squares of graded size) may punctuate list ends or step markers.</p>
+  <dl><dt>Evidence</dt><dd>red thread named as connective theme; glyphs &#x27;reborn as a visual language&#x27; (rhythm, emphasis)</dd>
+      <dt>Reasoning</dt><dd>Direct application of the two documented motifs to interface chrome, kept minimal.</dd>
+      <dt>Alternatives</dt><dd>rule-only (no glyphs); glyphs in body copy (rejected)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-10</span><span class="chip">navigation</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Top bar: white, 2px ink bottom rule; wordless-brand zone left (name in serif), nav links sans 13/500, active = red underline; a crisp search rectangle with a static typing-cursor motif at the right.</p>
+  <dl><dt>Evidence</dt><dd>nav + search bar + typing cursor all named in identity coverage; live layout unobservable</dd>
+      <dt>Reasoning</dt><dd>Composes documented cues; search is a signature cue of the identity.</dd>
+      <dt>Alternatives</dt><dd>no search in reference app</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-11</span><span class="chip">forms</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Fields: white, 2px ink border, square, label above in sans caps 11; focus = 2px ink border plus a 1px offset outer ink line; error message set small in red beneath the field.</p>
+  <dl><dt>Evidence</dt><dd>no form evidence; register derived</dd>
+      <dt>Reasoning</dt><dd>Squared-off bureaucratic honesty; keeps red for emphasis only.</dd>
+      <dt>Alternatives</dt><dd>red focus border; background tint on focus</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-12</span><span class="chip">selection</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Small sets (≤ ~12) = native select squared like a field. Larger/filtered = out of scope; platform fallback, marked.</p>
+  <dl><dt>Evidence</dt><dd>none captured</dd>
+      <dt>Reasoning</dt><dd>Same honesty rule as elsewhere: no invented combobox.</dd>
+      <dt>Alternatives</dt><dd>invent a searchable listbox (rejected)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-13</span><span class="chip">status</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Status = rectangular ink-outline tag, word inside (uppercase sans 11, 0.06em). Attention states turn the tag solid red with white word. No pills, no dots as sole signal.</p>
+  <dl><dt>Evidence</dt><dd>no status component observed; rectangle + caps languages observed</dd>
+      <dt>Reasoning</dt><dd>Rectangular tags extend the geometry; red-for-attention matches red-as-punctuation.</dd>
+      <dt>Alternatives</dt><dd>text-only status; coloured left rules</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-14</span><span class="chip">feedback</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Notices = ruled boxes (2px ink top or left rule) with terse declarative copy; no toasts (none evidenced); problem copy names the fact and the next step.</p>
+  <dl><dt>Evidence</dt><dd>no feedback observed; declarative voice observed</dd>
+      <dt>Reasoning</dt><dd>Ruled box is the natural vessel of a ruled system.</dd>
+      <dt>Alternatives</dt><dd>tinted wash box; floating banner</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-15</span><span class="chip">destructive</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Destructive flows confirm in a square dialog: 2px ink frame, consequence sentence (terse, no euphemism), confirm = solid red rectangle labelled with the verb, cancel = outline rectangle. Destructive is never pre-focused.</p>
+  <dl><dt>Evidence</dt><dd>no destructive pattern; register derived</dd>
+      <dt>Reasoning</dt><dd>Seriousness via plain statement + solid red verb button.</dd>
+      <dt>Alternatives</dt><dd>ink-black confirm (considered); two-step inline reveal</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-16</span><span class="chip">progress</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Progress = crisp rectangle track (London 85) with red fill; readout as sans metadata (&#x27;7 of 10 steps&#x27;); restart = outline rectangle. Static updates only.</p>
+  <dl><dt>Evidence</dt><dd>no meter observed; rectangle/grey/red primitives attested</dd>
+      <dt>Reasoning</dt><dd>Composes attested primitives; animation stays out of UI.</dd>
+      <dt>Alternatives</dt><dd>striped fill; percentage-only</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-17</span><span class="chip">empty</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Empty state = ruled statement block with one action (outline or red rectangle); no illustration.</p>
+  <dl><dt>Evidence</dt><dd>no imagery needed per &#x27;purposeful imagery&#x27; rule; register derived</dd>
+      <dt>Reasoning</dt><dd>Imagery is purposeful; an empty list has no story to illustrate.</dd>
+      <dt>Alternatives</dt><dd>photographic hero (rejected)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-18</span><span class="chip">repeated-content</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Ledger = editorial table: 2px ink header rule over sans-caps labels, hairline row rules (London 85), serif names, sans numbers; row hover = red-95 wash; no zebra; right-aligned numeric column feel.</p>
+  <dl><dt>Evidence</dt><dd>editorial rules + type registers; comparison-table structure implied by register</dd>
+      <dt>Reasoning</dt><dd>Table as newspaper furniture: rules do the separating.</dd>
+      <dt>Alternatives</dt><dd>bordered box grid; zebra rows</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-19</span><span class="chip">overlays</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">medium</span></header>
+  <p class="decision">Dialog = square white sheet with 2px ink frame; scrim = ink at 62%; instant appearance; no entrance motion.</p>
+  <dl><dt>Evidence</dt><dd>no dialog studied; flat ruled language attested</dd>
+      <dt>Reasoning</dt><dd>Consistent with flat surfaces + instant transitions (L-03).</dd>
+      <dt>Alternatives</dt><dd>slide/fade (rejected: motion undefined)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-22</span><span class="chip">responsive</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Single-column collapse; display scale steps down (44→34); table becomes stacked rows with sans labels; nav collapses to a text row. Minimal, honest.</p>
+  <dl><dt>Evidence</dt><dd>no responsive evidence (live site blocked)</dd>
+      <dt>Reasoning</dt><dd>Least-invention collapse.</dd>
+      <dt>Alternatives</dt><dd>full responsive canon (rejected)</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article>
+<article class="card judgment">
+  <header><span class="id">L-23</span><span class="chip">focus</span>
+    <span class="chip st">AUTHORED</span><span class="chip conf">low</span></header>
+  <p class="decision">Focus ring = 2px red outline offset 2px on white; on red fills, switch to white inner + ink outer ring.</p>
+  <dl><dt>Evidence</dt><dd>none captured</dd>
+      <dt>Reasoning</dt><dd>Red punctuation makes focus legible; switch rule mirrors contrast logic.</dd>
+      <dt>Alternatives</dt><dd>ink-only double ring</dd></dl>
+  <p class='outcome'>Review: ACCEPT · MODIFY · REJECT · LEAVE UNDEFINED</p>
+</article><h2>Settled <span class='count'>8</span></h2><p class='hint'>No action needed — shown for context</p>
+<article class="card settled">
+  <header><span class="id">L-02</span><span class="chip">shape</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Zero radius everywhere. Controls, cards, fields, dialogs are strict rectangles; the only shapes are rectangles, rules and glyph marks.</p>
+  <dl><dt>Evidence</dt><dd>rectangle motif native to the identity; no radius ever mentioned; crisp-lines language</dd>
+      <dt>Reasoning</dt><dd>The shape vocabulary is explicitly rectilinear across static and animated assets.</dd>
+      <dt>Alternatives</dt><dd>hairline-radius softening (rejected: unevidenced and against the crisp register)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-04</span><span class="chip">typography</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Three registers by role: Serif = headlines and body text; Sans = navigation, metadata, datelines, captions; Sans Headline = display-only moments (page mastheads, big statics), used sparingly.</p>
+  <dl><dt>Evidence</dt><dd>Marber typography roles, verbatim</dd>
+      <dt>Reasoning</dt><dd>Directly documented roles.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-06</span><span class="chip">colour</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Red #E3120B is punctuation: section labels, active nav underline, single solid blocks, emphasis rules, primary controls. Everything else is ink (#1A1A1A/#333), white, or the London grey ramp. City palettes stay in reserve (data/sections only; not core chrome).</p>
+  <dl><dt>Evidence</dt><dd>Marber colour tokens; &#x27;red thread&#x27; theme; red retained through refreshes</dd>
+      <dt>Reasoning</dt><dd>Token-level evidence.</dd>
+      <dt>Alternatives</dt><dd>red as large background fields (reserved for very few moments only)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-07</span><span class="chip">surfaces</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">high</span></header>
+  <p class="decision">White ground; section separation via 2px ink rules, hairlines (London 85), and red-95/grey-95 canvas washes. No shadows, no elevation, no soft chrome.</p>
+  <dl><dt>Evidence</dt><dd>crisp lines/typing cursors/search bars language; no shadow evidence anywhere</dd>
+      <dt>Reasoning</dt><dd>The surface discipline is flat and ruled.</dd>
+      <dt>Alternatives</dt><dd>subtle card elevation (rejected: unevidenced)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-09</span><span class="chip">hierarchy</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Section label (sans caps, red) → serif headline → one-line standfirst (muted serif). Repeats strictly; no decorative sub-heads.</p>
+  <dl><dt>Evidence</dt><dd>homepage module pattern; standfirst cadence</dd>
+      <dt>Reasoning</dt><dd>Recurring observed unit.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-20</span><span class="chip">voice</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">Terse, declarative, fact-forward; dry wit allowed in one clause, never exclamatory; headline + one-line standfirst cadence in UI copy too.</p>
+  <dl><dt>Evidence</dt><dd>standfirst samples; &#x27;sharp writing style&#x27; named as identity</dd>
+      <dt>Reasoning</dt><dd>Quoted register.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-21</span><span class="chip">imagery</span>
+    <span class="chip st">OBSERVED</span><span class="chip conf">high</span></header>
+  <p class="decision">No imagery in the reference build. Blur→focus is a documented device but belongs to story layouts; absence here is honest, not a gap.</p>
+  <dl><dt>Evidence</dt><dd>imagery described as purposeful/story-bound</dd>
+      <dt>Reasoning</dt><dd>Scoped to what a data register needs.</dd>
+      <dt>Alternatives</dt><dd>decorative imagery (rejected)</dd></dl>
+  
+</article>
+<article class="card settled">
+  <header><span class="id">L-24</span><span class="chip">prohibitions</span>
+    <span class="chip st">INFERRED</span><span class="chip conf">high</span></header>
+  <p class="decision">Never: rounded corners; soft shadows; pills; decorative colour; red as large background for reading content; invented hues; emoji; exclamation marks.</p>
+  <dl><dt>Evidence</dt><dd>absences across all fetched material + stated &#x27;less is more&#x27; principles</dd>
+      <dt>Reasoning</dt><dd>Codifies what the system never does.</dd>
+      <dt>Alternatives</dt><dd>none</dd></dl>
+  
+</article>
+<footer>Generated from decisions.json (single source of truth). Status tags: OBSERVED · INFERRED · AUTHORED · UNDEFINED.</footer>
+</body></html>
