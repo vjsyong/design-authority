@@ -118,6 +118,28 @@ outcome vocabulary; "incorrect resolution audit" is manual and marked as such.
 9. Agent may modify backend despite instructions — measured (scope) not
    prevented.
 
+## 5 · Pilot review checklist (post-pilot, pre-freeze)
+
+When the pilot (1×A/B/C) completes, inspect before freezing:
+
+1. `containment.refs_outside == 0` and `denied_events == 0` for every run; any
+   breach → rerun (per D-020) and log a deviation.
+2. Every run produced: `transcript.jsonl`, `run.json` with `interact` counts,
+   `scan.json`, `capture/` (24 screenshots), archived `ws/`.
+3. Instrument sanity: interact checks sensible for each condition (baseline
+   13/13 expected pre-edit; expect A/B/C to differ only by *their* work);
+   scan baseline delta ≈ 0 for a fresh workspace; DOM probes parse.
+4. Agent sanity: `opencode.exit == 0` (or recorded timeout), tool mix shows
+   real building work (writes/edits), no unfinished runaway loop.
+5. C only: `authority.calls` > 0 and `resolve_outcomes` look coherent;
+   decision log exists in archived ws.
+6. Screenshots: open two or three per condition (vision check) — pages render,
+   fonts load (B/C should show Geist if they adopted the system), states exist.
+7. Model adequacy (D-007): if the pilot model fails sanity 3–4, probe an
+   alternative model on one condition before freezing.
+
+Record outcomes (fixes → deviations D-n; clean → freeze stamp below).
+
 ## 6 · Deviations log (append during runs)
 
 **D-1 · 2026-10-07 — Containment breach in pilot runs a1/b1; both invalidated.**

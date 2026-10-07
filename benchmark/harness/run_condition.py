@@ -192,6 +192,31 @@ def authority_stats(ws):
             "total": sum(calls.values())}
 
 
+def kill_ws_processes(ws):
+    """Kill stray processes whose cwd is inside the workspace (agent servers)."""
+    victims = []
+    for pid in os.listdir("/proc"):
+        if not pid.isdigit() or int(pid) == os.getpid():
+            continue
+        try:
+            cwd = os.readlink("/proc/%s/cwd" % pid)
+        except Exception:
+            continue
+        if cwd == ws or cwd.startswith(ws + os.sep):
+            victims.append(int(pid))
+    for sig in (15, 9):
+        for pid in list(victims):
+            try:
+                os.kill(pid, sig)
+            except Exception:
+                victims.remove(pid)
+                continue
+        if not victims:
+            break
+        time.sleep(0.5)
+    return len(victims)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--condition", required=True, choices=["A", "B", "C"])
@@ -276,6 +301,7 @@ def main(argv=None):
         run["opencode"].update(tool_stats(os.path.join(run_dir, "transcript.jsonl")))
         run["containment"] = containment_audit(os.path.join(run_dir, "transcript.jsonl"))
         run["authority"] = authority_stats(ws)
+        run["cleanup_agent_procs"] = kill_ws_processes(ws)
     save()
 
     # ---- serve + capture + interact (outside the sandbox) ----
@@ -310,6 +336,7 @@ def main(argv=None):
             server.wait(timeout=10)
         except Exception:
             server.kill()
+        run["cleanup_serve_procs"] = kill_ws_processes(ws)
 
     # ---- static scan + archive copy of the workspace ----
     subprocess.run([VENV_PY, os.path.join(HERE, "scan.py"),
