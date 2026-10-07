@@ -236,11 +236,15 @@ def forced_job(which):
 
 def effective_jobs():
     forced = request.args.get("job")
+    if forced in ("running", "done", "failed"):
+        job = forced_job(forced)
+        rows = db().execute("select * from jobs order by started_at desc").fetchall()
+        history = [job_view(r) for r in rows if r["state"] != "running"][:3]
+        active = job if job["state"] == "running" else None
+        return ([job] + history), active
     rows = db().execute("select * from jobs order by started_at desc").fetchall()
     views = [job_view(r) for r in rows]
     active = next((v for v in views if v["state"] == "running"), None)
-    if forced in ("running", "done", "failed"):
-        return [forced_job(forced)], None
     history = [v for v in views if v["state"] != "running"][:3]
     return (([active] if active else []) + history), active
 
