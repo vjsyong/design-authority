@@ -318,4 +318,22 @@ per-session cap sized for one run cannot host N.** The OOM'd batch's partial
 transcripts were discarded (no measurement value) and the runs restarted
 fresh under the frozen protocol.
 
+**D-8 · 2026-10-07 — parallel batch #2 partially terminated again (~167 s in);
+return to sequential execution; c2/c2b retained as flagged-but-complete C
+reps.** Batch #2 (five systemd units + c2b) reproduced a mass termination:
+b3/c3/a4/c4 lost their opencode sessions at ~167 s (exit −15), b4 at 154 s
+(exit 0 — same truncation, none of the four built anything beyond the
+starter), c2b at 350 s (exit −15 — but its build is complete: 150 classes,
+0 lint, 13/13). Forensics: no OOM (memcg clean), no systemd scope stops, no
+agent-issued `pkill` in any transcript, kanban/cron worker-kill paths are
+fingerprint-guarded and cannot signal recycled/unverified PIDs, and opencode
+logs record nothing at the moment of death. Root cause UNIDENTIFIED; all six
+deaths land within one ~25 s window, suggesting an unidentified periodic host
+actor interacting with parallel runs. Empirical pattern: sequential ≈ 3/4
+survival, parallel ≈ 0/6. Mitigation: the remaining reps (a4, b3, b4, c3, c4)
+run **sequentially** as one systemd chain unit. Complete-but-truncated runs
+are retained as flagged reps (c2, c2b: full builds, 0 lint, 13/13; truncation
+affected wrap-up only); the final report must list per-run status and treat
+host instability as a documented threat to validity.
+
 *(next deviations appended below)*
