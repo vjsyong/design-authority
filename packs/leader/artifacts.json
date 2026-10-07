@@ -4,7 +4,7 @@
       "id": "component/action",
       "kind": "component",
       "title": "Action (navy rounded)",
-      "summary": "Primary = solid navy-blue rounded rectangle (Chicago 45 #2E45B8, radius ~8px — live-observed CTA), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed). Red steps back to brand/attention duty.",
+      "summary": "Primary = solid navy-blue rounded rectangle (Chicago 45 #2E45B8, radius ~8px \u2014 live-observed CTA), white label; secondary = 2px ink outline; tertiary = underlined blue link (live-observed). Red steps back to brand/attention duty.",
       "status": "beta",
       "aliases": [
         "button",
@@ -40,7 +40,7 @@
       "id": "guideline/shape-language",
       "kind": "guideline",
       "title": "Shape language (rounded product)",
-      "summary": "The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp — no square buttons, no square cards.",
+      "summary": "The live product uses soft rounded corners throughout: interactive components (buttons, toggles, inputs) and container surfaces (cards, panels) all carry radius ~8. Only rules, hairlines and editorial glyph marks stay crisp \u2014 no square buttons, no square cards.",
       "status": "beta",
       "aliases": [
         "shape",
@@ -64,7 +64,7 @@
       "id": "guideline/motion",
       "kind": "guideline",
       "title": "Motion",
-      "summary": "Interaction transitions are near-instant (≤0.15s colour swaps); no bounce, spring or decorative movement in UI chrome. Motion stays native to brand assets, not interface controls.",
+      "summary": "Interaction transitions are near-instant (\u22640.15s colour swaps); no bounce, spring or decorative movement in UI chrome. Motion stays native to brand assets, not interface controls.",
       "status": "beta",
       "aliases": [
         "motion",
@@ -111,7 +111,7 @@
       "id": "token-set/type-scale",
       "kind": "token-set",
       "title": "Screen type scale",
-      "summary": "Screen rhythm: serif headline 30–34/1.15; standfirst sans? no — serif standfirst 16–17 muted; body serif 17/1.55; metadata sans 12.5–13 with 0.06em caps for section labels; display 44 at tracking −1.",
+      "summary": "Screen rhythm: serif headline 30\u201334/1.15; standfirst sans? no \u2014 serif standfirst 16\u201317 muted; body serif 17/1.55; metadata sans 12.5\u201313 with 0.06em caps for section labels; display 44 at tracking \u22121.",
       "status": "beta",
       "aliases": [
         "type scale",
@@ -135,7 +135,7 @@
       "id": "token-set/colour",
       "kind": "token-set",
       "title": "Colour roles (red + Chicago blue)",
-      "summary": "Red #E3120B = brand/editorial punctuation (labels, rules, single blocks). The Chicago blue family = the interactive layer (CTAs, active nav, links) — copious, per live review. Frame: ink, white, London grey ramp.",
+      "summary": "Red #E3120B = brand/editorial punctuation (labels, rules, single blocks). The Chicago blue family = the interactive layer (CTAs, active nav, links) \u2014 copious, per live review. Frame: ink, white, London grey ramp.",
       "status": "beta",
       "aliases": [
         "palette",
@@ -160,7 +160,7 @@
       "id": "guideline/surfaces",
       "kind": "guideline",
       "title": "Surfaces & separation",
-      "summary": "White ground; separation via 2px ink rules and hairlines below (wash separation removed per review). Elevation, where needed, uses defined shadow tokens — not ambient glows.",
+      "summary": "White ground; separation via 2px ink rules and hairlines below (wash separation removed per review). Elevation, where needed, uses defined shadow tokens \u2014 not ambient glows.",
       "status": "beta",
       "aliases": [
         "surfaces",
@@ -185,7 +185,7 @@
       "id": "guideline/hierarchy",
       "kind": "guideline",
       "title": "Section rhythm",
-      "summary": "Section label (sans caps, red) → serif headline → one-line standfirst (muted serif). Repeats strictly; no decorative sub-heads.",
+      "summary": "Section label (sans caps, red) \u2192 serif headline \u2192 one-line standfirst (muted serif). Repeats strictly; no decorative sub-heads.",
       "status": "beta",
       "aliases": [
         "hierarchy",
@@ -339,6 +339,162 @@
       },
       "compiled_from": [
         "L-16"
+      ]
+    },
+    {
+      "id": "pattern/data-charts",
+      "kind": "pattern",
+      "title": "Data charts (rectilinear register)",
+      "summary": "Charts are rectilinear and editorial: ink bars on hairline baselines (2px ink origin rule, grey/ink gridlines), a month grid of square cells, and a hairline sparkline. Red appears only as a single accent; no rings, no decorative chart styling.",
+      "status": "beta",
+      "aliases": [
+        "bar chart",
+        "chart",
+        "month grid",
+        "heatmap",
+        "graph",
+        "plot",
+        "data visualization",
+        "weekly chart"
+      ],
+      "body": {
+        "geometry": "rectilinear only - bar columns, matrix/calendar cells, ruled axes; no circular gauges or rings (rectangles are the geometry; the demo's completion ring was an app-spec extrapolation - completion readouts use the meter/readout family instead)",
+        "palette": "Chicago-blue family and the city accent palettes carry data series (the documented data/section role); Economist Red is the single attention mark (today/target), never a series colour; London grey ramp for tracks and neutral fills",
+        "grid": "hairline rules/gridlines (London 85) - rules do the separating; no zebra, no box grids, no shadows",
+        "typography": "sans for numbers and labels (metadata register); serif for chart titles",
+        "states": "static updates only (L-03, L-16)",
+        "in_character": "newspaper furniture: rules, ordered columns, one red mark per chart",
+        "aliases": [
+          "chart",
+          "bar chart",
+          "column chart",
+          "heatmap",
+          "calendar heatmap",
+          "data visualization",
+          "graph",
+          "data chart"
+        ]
+      },
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Reviewer-accepted proposal prop/20261007-151947-916eda (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151947-916eda"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151947-916eda",
+        "gap": "gap/20261007-145916-1ae98e",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:45:28+00:00",
+        "codified_at": "2026-10-07T15:52:26+00:00"
+      },
+      "checks": [
+        "resolve('bar chart') cites pattern/data-charts",
+        "chart markup uses no rounded or circular marks (geometry check)",
+        "series colours are drawn only from the city palettes, with red appearing at most as a single attention mark (token check)",
+        "chart numerals use the sans register (type check)"
+      ]
+    },
+    {
+      "id": "pattern/data-readouts",
+      "kind": "pattern",
+      "title": "Data readouts (sparkline trend, stat counter)",
+      "summary": "Big statics: an Archivo (display) numeral with a sans-caps label beneath; reserved for year-to-date totals and headline counts.",
+      "status": "beta",
+      "aliases": [
+        "sparkline",
+        "streak counter",
+        "stat counter",
+        "big number",
+        "statistic",
+        "streak",
+        "counter"
+      ],
+      "body": {
+        "sparkline": "mini rectilinear columns in Chicago blue over the London ramp; no axes; static; sits at metadata scale",
+        "stat": "display-face numeral (display 44, tracking -1) + sans-caps label; used sparingly - one display moment per screen; streak counts qualify",
+        "excluded": "no rings or gauges, no motion, no emoji/sparkle",
+        "in_character": "a single loud numeral against quiet apparatus - restraint, not dashboard chrome",
+        "aliases": [
+          "sparkline",
+          "trend",
+          "trend line",
+          "mini chart",
+          "counter",
+          "streak",
+          "big number",
+          "stat",
+          "statistic"
+        ]
+      },
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Reviewer-accepted proposal prop/20261007-151948-91ef4b (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151948-91ef4b"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151948-91ef4b",
+        "gap": "gap/20261007-145916-878f7a",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:47:11+00:00",
+        "codified_at": "2026-10-07T15:52:26+00:00"
+      },
+      "checks": [
+        "resolve('sparkline') cites pattern/data-readouts",
+        "resolve('streak counter') cites pattern/data-readouts",
+        "at most one display-face numeral per screen (spec check)",
+        "no radial geometry is used for trends or counters (geometry check)"
+      ]
+    },
+    {
+      "id": "component/tag",
+      "kind": "component",
+      "title": "Tag (status / category)",
+      "summary": "Tags: ink-outline caps rectangle (8px radius); attention flips it solid red; never a pill, never colour-alone.",
+      "status": "beta",
+      "aliases": [
+        "tag",
+        "status label",
+        "status tag",
+        "category tag",
+        "chip"
+      ],
+      "body": {
+        "mark": "rounded ~8 surface (per L-02 v4 and rule L-R1) with a 2px ink outline; uppercase sans 11, 0.06em tracking; strictly one line",
+        "attention": "attention states turn the tag solid red with a white word; positive states keep the ink outline",
+        "rules": "no pills, no dots as sole signal (L-13)",
+        "in_character": "a stamped word, not a bubble; taxonomy stays quiet",
+        "aliases": [
+          "tag",
+          "status tag",
+          "status label",
+          "label",
+          "category tag",
+          "chip"
+        ]
+      },
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Reviewer-accepted proposal prop/20261007-151948-992c62 (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151948-992c62"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151948-992c62",
+        "gap": "gap/20261007-145916-d4706a",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:47:23+00:00",
+        "codified_at": "2026-10-07T15:52:26+00:00"
+      },
+      "checks": [
+        "resolve('status label') cites component/tag",
+        "tag markup is not pill or full-round (radius check against the ~8 system radius)",
+        "attention state = solid red + white word; no dot-only status variant exists (spec check)",
+        "tag type is uppercase sans at <=11px with letter-spacing present (type check)"
       ]
     }
   ]

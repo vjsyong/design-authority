@@ -74,6 +74,9 @@ class Pack(object):
                                      "prohibitions")
         self.validators = load_opt(ep.get("validators", "validators.json"), "validators")
         self.scoring = load(ep.get("scoring", "scoring.json"))
+        # Negative precedents (generic): declined requests with reasons and
+        # suggested alternatives. Optional; absent file -> [].
+        self.precedents = load_opt(ep.get("precedents", "precedents.json"), "precedents")
 
         self.by_id = {}
         for entry in (self.artifacts + self.recipes + self.fallbacks
@@ -155,6 +158,15 @@ class Pack(object):
                 fields.append((sc, 2.5))
             add(f, fields)
 
+        for p in self.precedents:
+            fields = [(p.get("title", ""), 3.0), (p.get("request", ""), 3.0),
+                      (p.get("reason", ""), 1.5)]
+            for m in p.get("matches", []):
+                fields.append((m, 4.5))
+            for t in p.get("try", []):
+                fields.append((t, 1.0))
+            add(p, fields, phrases=p.get("matches", []))
+
         self._docs = out
         return out
 
@@ -188,3 +200,30 @@ class Pack(object):
                                 "matched": matched})
         results.sort(key=lambda r: (-r["score"], r["id"]))
         return results[:limit]
+
+    def precedent_matches(self, text, limit=2):
+        """Negative precedents whose vocabulary overlaps `text`.
+
+        Generic matching: single-word entries in `matches` contribute stemmed
+        tokens (a shared token of length >= 4 is required); multi-word entries
+        contribute only as phrases (all their tokens present in the query).
+        This keeps generic phrase-internal words ("…button") from matching
+        on their own. Returns full precedent records, best first.
+        """
+        toks = set(norm_tokens(text))
+        hits = []
+        for p in self.precedents:
+            singles, phrases = set(), []
+            for m in p.get("matches", []):
+                nm = norm_tokens(m)
+                if len(nm) == 1:
+                    singles.add(nm[0])
+                elif nm:
+                    phrases.append(set(nm))
+            strong = [t for t in (toks & singles) if len(t) >= 4]
+            ph_hits = [x for x in phrases if x <= toks]
+            score = len(strong) + 2 * len(ph_hits)
+            if score >= 1:
+                hits.append((score, p))
+        hits.sort(key=lambda kv: (-kv[0], kv[1].get("id", "")))
+        return [h[1] for h in hits[:limit]]

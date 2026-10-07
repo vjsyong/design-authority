@@ -40,6 +40,11 @@ def add_gap(pack, workspace, need, context=None, attempted_resolution=None,
         "status": "open",
         "created": _now(),
     }
+    matches = pack.precedent_matches(need, limit=2)
+    if matches:
+        gap["precedent_warnings"] = [
+            {k: p.get(k) for k in ("id", "title", "decision", "reason", "try", "citation")}
+            for p in matches]
     path = os.path.join(_ws(workspace), "gaps.jsonl")
     with open(path, "a") as fh:
         fh.write(json.dumps(gap) + "\n")
@@ -89,6 +94,18 @@ def add_proposal(pack, workspace, gap_id, proposal):
         "authority": pack.identity(),
         "created": _now(),
     }
+    proposed = proposal.get("proposed")
+    if isinstance(proposed, dict) and "add" in proposed:
+        titles = [e.get("title", "") for e in proposed["add"] if isinstance(e, dict)]
+    elif isinstance(proposed, dict):
+        titles = [proposed.get("title", "")]
+    else:
+        titles = []
+    matches = pack.precedent_matches(" ".join([proposal["problem"]] + titles), limit=2)
+    if matches:
+        record["precedent_warnings"] = [
+            {k: p.get(k) for k in ("id", "title", "decision", "reason", "try", "citation")}
+            for p in matches]
     safe = pid.replace("/", "_")
     path = os.path.join(_ws(workspace), "proposals", safe + ".json")
     with open(path, "w") as fh:
@@ -103,6 +120,10 @@ def add_proposal(pack, workspace, gap_id, proposal):
         "Compliance tests: at least one deterministic check proposed?",
         "Deterministic checks pass (shape, citations, tests present)",
     ]
+    if record.get("precedent_warnings"):
+        record["review_checklist"].append(
+            "Prior declines exist for this area — justify against the recorded "
+            "precedent(s): " + ", ".join(w["id"] for w in record["precedent_warnings"]))
     return record
 
 

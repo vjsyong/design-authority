@@ -1,0 +1,113 @@
+{
+  "version": "0.1",
+  "pack_version": "dominion 0.2.0",
+  "note": "Negative precedents — requests this authority has declined, with the reason and the routes to try instead. Maintained via adjudication (2026-10-07) and reviewer verdicts. Kernel-generic: any authority may carry this file.",
+  "precedents": [
+    {
+      "id": "precedent/declined-progress-ring-badges",
+      "kind": "precedent",
+      "title": "Progress ring, streak counter & badge tiles",
+      "request": "progress ring · streak counter · badge tiles",
+      "matches": ["ring", "progress ring", "circular progress", "streak", "streak counter", "badge", "badge tile", "badge tiles", "trophy"],
+      "decision": "declined",
+      "reason": "The ring is off-grammar (D-02 rectilinear); streak and badges compose from catalogued primitives; the square meter is the progress element (D-15).",
+      "try": [
+        "Use the square meter for progress (D-15).",
+        "Compose streaks and counts from display numerals plus the ruled register; keep rectangles."
+      ],
+      "citation": "gap/20261007-150030-05534a (adjudicated 2026-10-07)",
+      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-150030-05534a", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/declined-saving-and-celebration",
+      "kind": "precedent",
+      "title": "Saving indicator, celebration motion & toasts",
+      "request": "saving indicator · check-off celebration · toast notification",
+      "matches": ["spinner", "saving", "saving indicator", "celebration", "confetti", "animation", "animated", "motion", "toast", "toast notification"],
+      "decision": "declined",
+      "reason": "Motion is gated by doctrine (D-15/D-22); the golden set keeps motion deliberately UNDEFINED; the saving state is a meter composition, and the notice declines toast vocabulary (D-13).",
+      "try": [
+        "Use the meter for advancing work.",
+        "Keep things still; a brief static red ceremony accent is the sanctioned adaptation.",
+        "For transient feedback, use the ruled notice (D-13) — no toasts."
+      ],
+      "citation": "gap/20261007-150030-b20a90 (adjudicated 2026-10-07)",
+      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-150030-b20a90", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/declined-view-tabs-paging",
+      "kind": "precedent",
+      "title": "View tabs & paging control",
+      "request": "view tabs · paging control",
+      "matches": ["tabs", "view tabs", "tab bar", "paging", "pagination", "pager", "page controls"],
+      "decision": "declined",
+      "reason": "The nav idiom is already decided (D-08; carried in component/masthead active state); paging composes from outline actions + a plain readout.",
+      "try": [
+        "Use the masthead active state for view switching.",
+        "Compose paging from outline buttons plus a readout."
+      ],
+      "citation": "gap/20261007-150030-e4273f (adjudicated 2026-10-07)",
+      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-150030-e4273f", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/declined-pictograms-and-tags",
+      "kind": "precedent",
+      "title": "Pictograms & category tags",
+      "request": "per-ritual marker · category tag",
+      "matches": ["icon", "icons", "pictogram", "pictograms", "marker", "ritual marker", "category tag", "tag", "tags"],
+      "decision": "declined",
+      "reason": "Pictograms are prohibited (D-22) — the adaptation to ordinals was correct; markers and tags are ruled-register compositions (D-10 label idiom).",
+      "try": [
+        "Use ordinals (01–05) or word labels in the ruled register.",
+        "Never add pictograms; keep bilingual word pairs."
+      ],
+      "citation": "gap/20261007-150031-19b53c (adjudicated 2026-10-07)",
+      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-150031-19b53c", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/declined-photographic-imagery",
+      "kind": "precedent",
+      "title": "Photographic imagery & uploads",
+      "request": "avatar photo · empty-state illustration · photo upload",
+      "matches": ["avatar", "avatar photo", "photo", "photo upload", "illustration", "image", "imagery", "picture", "upload"],
+      "decision": "declined",
+      "reason": "Imagery is unlicensed (D-22; D-16: imagery absence is a system property); the adaptations (initials plate, ruled statement, written note) are correct.",
+      "try": [
+        "Use initials plates, ruled statements, and written notes.",
+        "No photos or illustrations on any surface."
+      ],
+      "citation": "gap/20261007-150031-b18038 (adjudicated 2026-10-07)",
+      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-150031-b18038", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/reversed-colourway-rejected",
+      "kind": "precedent",
+      "title": "Reversed colourway / dark mode (proposal rejected at review)",
+      "request": "token-set/colour extension — reversed colourway (white on black) for dark presentation",
+      "matches": ["dark mode", "dark theme", "reversed colourway", "reversed colorway", "dark presentation", "inverted theme"],
+      "decision": "declined",
+      "reason": "Rejected at gate review (no reviewer note recorded); the proposed dark token mapping was declined and the light canon stands.",
+      "try": [
+        "Dark mode rides the light-only fallback as a marked improvisation.",
+        "Do not extend token-set/colour with a reversed mapping without evidence."
+      ],
+      "citation": "prop/20261007-151923-0cf7b9 (reviewer verdict 2026-10-07; gap/20261007-150031-0d3443)",
+      "provenance": {"source": "reviewer-rejection", "gap_id": "gap/20261007-150031-0d3443", "proposal_id": "prop/20261007-151923-0cf7b9", "date": "2026-10-07"}
+    },
+    {
+      "id": "precedent/dialog-empty-state-rejected",
+      "kind": "precedent",
+      "title": "Dialog vessel & empty state (proposal rejected at review)",
+      "request": "component/dialog + component/empty-state — modal vessel for ritual details and the empty state",
+      "matches": ["dialog", "modal", "popup", "overlay", "empty state", "nothing yet", "no items", "first run"],
+      "decision": "declined",
+      "reason": "Rejected at gate review (no reviewer note recorded); the proposal would have canonised overlay vessels and empty states the register does not evidence.",
+      "try": [
+        "Keep flows in-page: ruled statements and in-flow blocks.",
+        "An empty state composes from a ruled statement plus one outline action; no overlay vessels without evidence."
+      ],
+      "citation": "prop/20261007-151923-e09f12 (reviewer verdict 2026-10-07; gap/20261007-150031-6d60dd)",
+      "provenance": {"source": "reviewer-rejection", "gap_id": "gap/20261007-150031-6d60dd", "proposal_id": "prop/20261007-151923-e09f12", "date": "2026-10-07"}
+    }
+  ]
+}

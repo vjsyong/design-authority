@@ -81,7 +81,8 @@ def authority_overview() -> dict:
         "policy": pack.manifest.get("policy"),
         "how_to_use": [
             "search_authority(query) to find artifacts; inspect_artifact(id) for detail.",
-            "resolve_design_problem(problem) returns one of CONFLICT / RESOLVED / COMPOSE / FALLBACK / UNDEFINED with citations.",
+            "resolve_design_problem(problem) returns one of CONFLICT / RESOLVED / COMPOSE / FALLBACK / UNDEFINED with citations; matching negative precedents are attached when present.",
+            "list_precedents() surfaces declined requests with reasons and alternatives — consult it before coining something new.",
             "validate_implementation(target) runs the authority's validators over a path.",
             "UNDEFINED is a useful answer: implement per the fallback policy, mark the improvisation, then report_gap(...).",
             "Never present improvisation as canonical; never modify the authority.",
@@ -145,6 +146,23 @@ def resolve_design_problem(problem: str, context: Optional[dict] = None) -> dict
           or (result.get("resolution") or {}).get("prohibition", {}).get("id")},
          t0)
     return result
+
+
+@mcp.tool()
+def list_precedents(query: str = "") -> dict:
+    """List the authority's negative precedents: requests previously declined,
+    each with the reason and the routes to try instead. Optional `query`
+    filters by keyword overlap. Consult before coining something new — a
+    decline is guidance, not a dead end."""
+    t0 = time.time()
+    pack = get_pack()
+    if query:
+        recs = pack.precedent_matches(query, limit=25)
+    else:
+        recs = pack.precedents
+    _log("list_precedents", {"query": query}, {"count": len(recs)}, t0)
+    return {"status": "ok", "authority": pack.identity(),
+            "count": len(recs), "precedents": recs}
 
 
 @mcp.tool()

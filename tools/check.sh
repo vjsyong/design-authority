@@ -10,6 +10,8 @@ echo "== golden set"
 python3 tools/da.py golden | tail -1
 echo "== synthesis pack goldens"
 for p in wink leader dominion; do python3 tools/da.py --pack packs/$p golden --file packs/$p/golden.json | tail -1; done
+echo "== synthesis precedents"
+python3 tools/precedent_probe.py | tail -1
 if [ -x .venv/bin/python ]; then
   echo "== MCP smoke"
   python3 tools/mcp_smoke.py | tail -1

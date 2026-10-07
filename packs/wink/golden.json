@@ -1,60 +1,114 @@
 {
- "version": "0.1",
- "pack_version": "wink 0.1.0",
- "cases": [
-  {
-   "problem": "add a primary button to the page",
-   "expect": "RESOLVED",
-   "expect_id": "component/action-pill",
-   "note": "Pill action resolves directly."
-  },
-  {
-   "problem": "the top navigation bar",
-   "expect": "RESOLVED",
-   "expect_id": "component/navbar",
-   "note": "White bar with chevron items."
-  },
-  {
-   "problem": "show a \"most popular\" badge on the plan",
-   "expect": "RESOLVED",
-   "expect_id": "component/badge",
-   "note": "Yellow pill badge."
-  },
-  {
-   "problem": "a form field for the borrower email",
-   "expect": "RESOLVED",
-   "expect_id": "component/field-select",
-   "note": "Field language answers."
-  },
-  {
-   "problem": "square buttons for a serious look",
-   "expect": "CONFLICT",
-   "expect_id": "prohibit/square-buttons",
-   "note": "Pills only (W-R1)."
-  },
-  {
-   "problem": "use pure black for the headline text",
-   "expect": "CONFLICT",
-   "expect_id": "prohibit/off-palette-colours",
-   "note": "Warm ink, not pure black."
-  },
-  {
-   "problem": "add a checkbox for the opt-in",
-   "expect": "FALLBACK",
-   "expect_id": "fallback/platform-controls",
-   "note": "Uncovered control -> platform default with field styling."
-  },
-  {
-   "problem": "animate the dialog with a spring bounce",
-   "expect": "UNDEFINED",
-   "expect_id": null,
-   "note": "Deliberate: motion is undefined; gap over guess."
-  },
-  {
-   "problem": "a dark mode theme",
-   "expect": "FALLBACK",
-   "expect_id": "fallback/light-only",
-   "note": "No dark canon; marked improvisation."
-  }
- ]
+  "version": "0.1",
+  "pack_version": "wink 0.2.0",
+  "cases": [
+    {
+      "problem": "add a primary button to the page",
+      "expect": "RESOLVED",
+      "expect_id": "component/action-pill",
+      "note": "Pill action resolves directly."
+    },
+    {
+      "problem": "the top navigation bar",
+      "expect": "RESOLVED",
+      "expect_id": "component/navbar",
+      "note": "White bar with chevron items."
+    },
+    {
+      "problem": "show a \"most popular\" badge on the plan",
+      "expect": "RESOLVED",
+      "expect_id": "component/badge",
+      "note": "Yellow pill badge."
+    },
+    {
+      "problem": "a form field for the borrower email",
+      "expect": "RESOLVED",
+      "expect_id": "component/field-select",
+      "note": "Field language answers."
+    },
+    {
+      "problem": "square buttons for a serious look",
+      "expect": "CONFLICT",
+      "expect_id": "prohibit/square-buttons",
+      "note": "Pills only (W-R1)."
+    },
+    {
+      "problem": "use pure black for the headline text",
+      "expect": "CONFLICT",
+      "expect_id": "prohibit/off-palette-colours",
+      "note": "Warm ink, not pure black."
+    },
+    {
+      "problem": "add a checkbox for the opt-in",
+      "expect": "FALLBACK",
+      "expect_id": "fallback/platform-controls",
+      "note": "Uncovered control -> platform default with field styling."
+    },
+    {
+      "problem": "animate the dialog with a spring bounce",
+      "expect": "UNDEFINED",
+      "expect_id": null,
+      "note": "Deliberate: motion is undefined; gap over guess."
+    },
+    {
+      "problem": "a dark mode theme",
+      "expect": "FALLBACK",
+      "expect_id": "fallback/light-only",
+      "note": "No dark canon; marked improvisation."
+    },
+    {
+      "problem": "a modal with the ritual details",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/dialog-overlay",
+      "note": "Overlay vessel resolves."
+    },
+    {
+      "problem": "three-step onboarding wizard",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/dialog-overlay",
+      "note": "Wizard composes the vessel; no separate wizard entry claimed."
+    },
+    {
+      "problem": "an empty state when no rituals exist",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/empty-state",
+      "note": "Empty pattern resolves."
+    },
+    {
+      "problem": "confirm before deleting a project",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/destructive-confirm",
+      "note": "Destructive flow resolves to the pattern."
+    },
+    {
+      "problem": "an inline notice confirming the save",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/inline-notice",
+      "note": "Source-true feedback surface."
+    },
+    {
+      "problem": "a floating toast notification",
+      "expect": "UNDEFINED",
+      "expect_id": null,
+      "note": "Toasts stay non-canon (W-15)."
+    },
+    {
+      "problem": "progress readout for a long-running job",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/progress",
+      "note": "Progress semantics resolve."
+    },
+    {
+      "problem": "loading spinner while saving",
+      "expect": "UNDEFINED",
+      "expect_id": null,
+      "note": "Indeterminate spinner stays uncovered."
+    },
+    {
+      "problem": "delete a ritual permanently",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/destructive-confirm",
+      "note": "Proposal check: must not be UNDEFINED once shipped."
+    }
+  ]
 }

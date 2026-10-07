@@ -2,7 +2,7 @@
   "id": "wink",
   "name": "Wink Interface System",
   "format_version": "0.1",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "snapshot": {
     "repo": "mailchimp.com live product + Mailchimp brand resources",
     "commit": "n/a - derived from public sources, not a repository",
@@ -39,6 +39,7 @@
     "fallbacks": "fallbacks.json",
     "prohibitions": "prohibitions.json",
     "validators": "validators.json",
-    "scoring": "scoring.json"
+    "scoring": "scoring.json",
+    "precedents": "precedents.json"
   }
 }

@@ -69,10 +69,12 @@
   "resolve('a dialog') -> RESOLVED component/dialog (single-token alias + exact-phrase bonus)",
   "Vocabulary check: neither entry adds imagery/pictogram terms (prohibit/imagery-pictograms unchanged)."
  ],
- "status": "candidate",
+ "status": "rejected",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "reject",
+  "notes": null,
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:48:28+00:00"
  },
  "authority": {
   "authority": "dominion",

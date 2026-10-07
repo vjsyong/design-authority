@@ -4,7 +4,7 @@
       "id": "component/action-pill",
       "kind": "component",
       "title": "Action (pill)",
-      "summary": "Primary action = pill, filled Cavendish Yellow #FFE01B with a 1px ink ring (box-shadow 0 0 0 1px #231E15 — live-measured), label in Peppercorn ink. On yellow/warm fields, primary switches to the dark variant. Secondary = outline pill (2px ink inset).",
+      "summary": "Primary action = pill, filled Cavendish Yellow #FFE01B with a 1px ink ring (box-shadow 0 0 0 1px #231E15 \u2014 live-measured), label in Peppercorn ink. On yellow/warm fields, primary switches to the dark variant. Secondary = outline pill (2px ink inset).",
       "status": "beta",
       "aliases": [
         "button",
@@ -73,7 +73,7 @@
       "id": "token-set/type-scale",
       "kind": "token-set",
       "title": "Screen type scale",
-      "summary": "Screen scale: display 48–64px w400 tight tracking (−1.2px at 64); section 35px/1.0; body 16/1.35; small 14; labels/buttons 13/500.",
+      "summary": "Screen scale: display 48\u201364px w400 tight tracking (\u22121.2px at 64); section 35px/1.0; body 16/1.35; small 14; labels/buttons 13/500.",
       "status": "beta",
       "aliases": [
         "type scale",
@@ -178,7 +178,7 @@
       "id": "guideline/hierarchy",
       "kind": "guideline",
       "title": "Section rhythm",
-      "summary": "One page title; sections = small uppercase label → display headline → 1–2 sentence paragraph. Numbers may take display treatment for proof moments.",
+      "summary": "One page title; sections = small uppercase label \u2192 display headline \u2192 1\u20132 sentence paragraph. Numbers may take display treatment for proof moments.",
       "status": "beta",
       "aliases": [
         "hierarchy",
@@ -235,7 +235,7 @@
       "id": "component/field-select",
       "kind": "component",
       "title": "Field & small-set select",
-      "summary": "Native select styled as a field for small fixed sets (≤ ~12): more rounded (12px) with serif field text per Gate 2 review. Larger or filtered selection out of scope; use the platform-controls fallback and mark it.",
+      "summary": "Native select styled as a field for small fixed sets (\u2264 ~12): more rounded (12px) with serif field text per Gate 2 review. Larger or filtered selection out of scope; use the platform-controls fallback and mark it.",
       "status": "beta",
       "aliases": [
         "field",
@@ -344,6 +344,250 @@
       },
       "compiled_from": [
         "W-22"
+      ]
+    },
+    {
+      "id": "pattern/dialog-overlay",
+      "kind": "pattern",
+      "title": "Dialog (overlay vessel)",
+      "summary": "Dialog/overlay vessel: white 16px-rounded card on a warm ink scrim, instant appearance (no motion invented), content composed from existing primitives.",
+      "status": "beta",
+      "aliases": [
+        "modal",
+        "dialog",
+        "overlay",
+        "popup",
+        "dialog box",
+        "overlay vessel",
+        "scrim",
+        "details modal",
+        "onboarding wizard",
+        "wizard",
+        "step wizard",
+        "modal dialog"
+      ],
+      "body": {
+        "states": [
+          "white card vessel: radius 16, interior padding 48, warm-tinted shadow (card language)",
+          "warm ink scrim rgba(35,30,21,.35) behind the dialog",
+          "instant appearance - motion deliberately undefined (none invented)"
+        ],
+        "a11y": [
+          "focus moves into the dialog on open and returns to the trigger on close; Esc and scrim-click dismissal are baseline behaviour"
+        ],
+        "do": [
+          "reuse the content-card vessel for dialogs"
+        ],
+        "dont": [
+          "no entrance/exit animation (motion is deliberately undefined in source)"
+        ],
+        "group": "Overlays"
+      },
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Reviewer-accepted proposal prop/20261007-151914-0510d7 (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151914-0510d7"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151914-0510d7",
+        "gap": "gap/20261007-145938-a0e2b0",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:39:43+00:00",
+        "codified_at": "2026-10-07T15:52:02+00:00"
+      },
+      "checks": [
+        "resolve('animate the dialog with a spring bounce') must remain UNDEFINED (motion policy, golden case retained)"
+      ]
+    },
+    {
+      "id": "pattern/empty-state",
+      "kind": "pattern",
+      "title": "Empty state",
+      "summary": "Empty states are a centered notice card: serif headline, one plain warm sentence, one primary pill action.",
+      "status": "beta",
+      "aliases": [
+        "empty state",
+        "zero content",
+        "nothing yet",
+        "no items",
+        "first-run state"
+      ],
+      "body": {
+        "states": [
+          "tinted Parsnip panel",
+          "one warm sentence + one action pill ('Add your first item')"
+        ],
+        "do": [
+          "keep the copy to one warm, plain sentence",
+          "offer exactly one action"
+        ],
+        "dont": [
+          "illustration-led variants deferred - illustration system not reproduced (no asset library)"
+        ],
+        "group": "Feedback"
+      },
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Reviewer-accepted proposal prop/20261007-151914-74dedc (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151914-74dedc"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151914-74dedc",
+        "gap": "gap/20261007-145938-a9d93a",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:39:54+00:00",
+        "codified_at": "2026-10-07T15:52:02+00:00"
+      },
+      "checks": [
+        "a request for a canonical illustration style must remain UNDEFINED/marked (no asset library)"
+      ]
+    },
+    {
+      "id": "pattern/destructive-confirm",
+      "kind": "pattern",
+      "title": "Destructive confirmation",
+      "summary": "High-consequence actions route through a rounded 16px confirm dialog with a consequence sentence in the warm voice; confirm = ink-filled pill labelled with the concrete verb (never 'OK'); cancel = outline pill; the destructive action never receives default focus.",
+      "status": "beta",
+      "aliases": [
+        "destructive action",
+        "delete confirmation",
+        "confirm dialog",
+        "are you sure",
+        "danger action",
+        "confirm before deleting",
+        "remove permanently"
+      ],
+      "body": {
+        "states": [
+          "high-consequence action -> rounded 16px dialog on warm ink scrim with a consequence sentence in the warm voice",
+          "confirm = ink-filled pill labelled with the concrete verb (never 'OK')",
+          "cancel = outline pill",
+          "destructive action never receives default focus"
+        ],
+        "do": [
+          "state the consequence plainly in the warm voice",
+          "label the confirm pill with the concrete verb"
+        ],
+        "dont": [
+          "never label the confirm 'OK'",
+          "never pre-focus the destructive action",
+          "no undo/recovery UI is canonical - not evidenced (W-16)"
+        ],
+        "group": "Destructive"
+      },
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Reviewer-accepted proposal prop/20261007-151914-9ff839 (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151914-9ff839"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151914-9ff839",
+        "gap": "gap/20261007-145139-ad4b85",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:40:03+00:00",
+        "codified_at": "2026-10-07T15:52:02+00:00"
+      },
+      "checks": [
+        "resolve('delete a ritual permanently') must not return UNDEFINED once shipped",
+        "a request asserting a canonical undo UI must remain UNDEFINED/marked (no evidence)"
+      ]
+    },
+    {
+      "id": "pattern/inline-notice",
+      "kind": "pattern",
+      "title": "Inline notice (feedback)",
+      "summary": "Inline notices: parsnip-filled rounded block with a bold lead sentence and a plain supporting line; no toast pattern observed.",
+      "status": "beta",
+      "aliases": [
+        "notice",
+        "inline notice",
+        "feedback message",
+        "saved confirmation",
+        "validation notice",
+        "status message"
+      ],
+      "body": {
+        "states": [
+          "inline notice: rounded 12, tinted fill (palette roles)",
+          "copy is plain, non-blaming, question-first"
+        ],
+        "do": [
+          "prefer inline notices placed near the element or content that changed"
+        ],
+        "dont": [
+          "floating toast stacks are not canon (source: toasts unevidenced, rejected)"
+        ],
+        "group": "Feedback"
+      },
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Reviewer-accepted proposal prop/20261007-151914-d08fa9 (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151914-d08fa9"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151914-d08fa9",
+        "gap": "gap/20261007-145938-f646b2",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:41:43+00:00",
+        "codified_at": "2026-10-07T15:52:02+00:00"
+      },
+      "checks": [
+        "no entry may advertise 'toast' as a resolved alias once shipped",
+        "notice copy examples must follow the non-blaming, question-first register"
+      ]
+    },
+    {
+      "id": "pattern/progress",
+      "kind": "pattern",
+      "title": "Progress readout",
+      "summary": "Progress: yellow fill (#FFE01B) on a parsnip track, fully rounded; pair with a short step caption; no indeterminate motion.",
+      "status": "beta",
+      "aliases": [
+        "progress",
+        "progress readout",
+        "step progress",
+        "progress bar",
+        "completion",
+        "in flight"
+      ],
+      "body": {
+        "states": [
+          "Parsnip track; yellow fill in flight; ink fill when complete",
+          "text readout ('7 of 10 steps')"
+        ],
+        "do": [
+          "job actions start/restart as pills; pause-and-resume allowed"
+        ],
+        "dont": [
+          "no indeterminate spinner canon (unevidenced)",
+          "no animation beyond the defined transitions"
+        ],
+        "group": "Progress"
+      },
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Reviewer-accepted proposal prop/20261007-151915-58de37 (adjudicated 2026-10-07)"
+      },
+      "compiled_from": [
+        "prop/20261007-151915-58de37"
+      ],
+      "provenance": {
+        "proposal": "prop/20261007-151915-58de37",
+        "gap": "gap/20261007-145939-d19d36",
+        "verdict": "accept",
+        "reviewed_at": "2026-10-07T15:42:53+00:00",
+        "codified_at": "2026-10-07T15:52:02+00:00"
+      },
+      "checks": [
+        "states must use Parsnip/yellow/ink only (palette discipline)"
       ]
     }
   ]

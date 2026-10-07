@@ -86,6 +86,12 @@ def cmd_resolve(pack, args):
     res = result.get("resolution")
     if res:
         print(json.dumps(res, indent=1))
+    if result.get("precedents"):
+        print("precedents (negative — previously declined):")
+        for p in result["precedents"]:
+            print("  DECLINED: %s — %s" % (p.get("title"), (p.get("reason") or "")[:140]))
+            for t in p.get("try", []):
+                print("    try: %s" % t)
     if result.get("closest"):
         print("closest:")
         for c in result["closest"]:
@@ -165,6 +171,21 @@ def cmd_propose(pack, args):
     _dump(record)
 
 
+def cmd_precedents(pack, args):
+    if args.query:
+        recs = pack.precedent_matches(args.query, limit=25)
+    else:
+        recs = pack.precedents
+    data = {"authority": pack.identity(), "count": len(recs), "precedents": recs}
+    if args.json:
+        return _dump(data)
+    print("%s — %d negative precedent(s)" % (pack.identity()["authority"], len(recs)))
+    for p in recs:
+        print("  %-18s %s" % (p.get("decision", "?"), p.get("id")))
+        print("      request: %s" % (p.get("request", "")[:100]))
+        print("      why:     %s" % (p.get("reason", "")[:100]))
+
+
 def cmd_review(pack, args):
     ws = args.workspace or os.getcwd()
     notes = None
@@ -225,6 +246,10 @@ def main(argv=None):
     p.add_argument("--notes", default=None, help="file with the full review notes")
     p.add_argument("--workspace", default=None)
 
+    p = sub.add_parser("precedents")
+    p.add_argument("--query", default="")
+    p.add_argument("--json", action="store_true")
+
     args = ap.parse_args(argv)
     try:
         pack = _load_pack(args)
@@ -235,7 +260,7 @@ def main(argv=None):
     handler = {"overview": cmd_overview, "search": cmd_search, "inspect": cmd_inspect,
                "resolve": cmd_resolve, "validate": cmd_validate, "golden": cmd_golden,
                "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose,
-               "review": cmd_review}[args.cmd]
+               "review": cmd_review, "precedents": cmd_precedents}[args.cmd]
     return handler(pack, args) or 0
 
 

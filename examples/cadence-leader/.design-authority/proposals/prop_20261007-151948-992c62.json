@@ -36,10 +36,12 @@
   "attention state = solid red + white word; no dot-only status variant exists (spec check)",
   "tag type is uppercase sans at <=11px with letter-spacing present (type check)"
  ],
- "status": "candidate",
+ "status": "accepted",
  "review": {
-  "verdict": null,
-  "notes": null
+  "verdict": "accept",
+  "notes": null,
+  "evidence": null,
+  "reviewed_at": "2026-10-07T15:47:23+00:00"
  },
  "authority": {
   "authority": "leader",

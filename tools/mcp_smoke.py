@@ -159,10 +159,15 @@ def main():
             "depends_on": ["component/ghost"], "tests": [{}]}}, 20)
         check("propose_extension rejects unknown dep", bad.get("status") == "error")
 
+        # precedents (generic; triage carries none — empty is valid)
+        prec = call(proc, "list_precedents", {}, 21)
+        check("list_precedents (empty ok)", prec.get("status") == "ok"
+              and prec.get("count") == 0, "count=%s" % prec.get("count"))
+
         # resource
-        send(proc, {"jsonrpc": "2.0", "id": 21, "method": "resources/read",
+        send(proc, {"jsonrpc": "2.0", "id": 22, "method": "resources/read",
                     "params": {"uri": "authority://overview"}})
-        res = recv(proc, 21)["result"]
+        res = recv(proc, 22)["result"]
         check("resource authority://overview", len(res["contents"][0]["text"]) > 100)
 
         # decision log

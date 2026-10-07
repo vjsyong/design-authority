@@ -179,7 +179,8 @@ were resolved against each authority first; improvised/adapted elements are mark
 Result: fewer pure improvisations, more sanctioned fallbacks — and the first recipes composing.</p>
 <div class="src-grid">__STRESS2__</div>
 <h2 style="margin-top:26px">Proposal gate</h2>
-<p class="sub">The adjudication pass filed proposals for canon changes — inspect and rule on each.</p>
+<p class="sub">The adjudication pass filed proposals for canon changes — inspect and rule on each.
+Accepted proposals are codified into the packs; rejected ones are filed as negative precedents (reasons + guidance for future asks).</p>
 <p><a class="src" style="max-width:420px" href="/proposals"><b>Proposal gate &rarr;</b><p>verdicts write to the kernel records</p></a></p>
 <p class="sub" style="margin-top:22px">Review sheets: <a class="back" href="/">Gate 2 review</a></p>
 </div></body></html>"""
@@ -914,6 +915,27 @@ def load_adjudication():
     return []
 
 
+def load_codified():
+    p = os.path.join(SYN, "data", "codified.json")
+    if os.path.exists(p):
+        with open(p) as fh:
+            return json.load(fh)
+    return {}
+
+
+def precedents_by_gap(src):
+    """Map gap suffix -> precedent id, from the pack's precedents.json."""
+    p = os.path.join(_REPO, "packs", src, "precedents.json")
+    out = {}
+    if os.path.exists(p):
+        with open(p) as fh:
+            for prec in (json.load(fh) or {}).get("precedents", []):
+                gap = ((prec.get("provenance") or {}).get("gap_id") or "")
+                if gap:
+                    out[gap.split("-")[-1]] = prec.get("id")
+    return out
+
+
 def _md_inline(s):
     s = _esc(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
@@ -977,7 +999,7 @@ def load_reports():
     return docs
 
 
-def _rec_row(r):
+def _rec_row(r, prec=None):
     ccls = {"PROPOSAL": "cl-p", "LEXICON-FIX": "cl-f", "SCOPE-FIX": "cl-f",
             "NO-ACTION": "cl-n", "INVALID": "cl-n"}.get(r["class"], "cl-n")
     if r.get("prop_id"):
@@ -987,6 +1009,9 @@ def _rec_row(r):
         oc = "<span style='color:#087830;font-weight:700'>fix applied &check; (verified)</span>"
     elif r.get("outcome") == "declined":
         oc = "<span style='color:#666;font-weight:600'>declined &mdash; policy, not canon</span>"
+        if prec:
+            oc += (" <span style='color:#2E45B8'>&rarr; filed as <code>%s</code> (negative precedent)</span>"
+                   % _esc(prec))
     else:
         oc = _esc(r.get("outcome"))
     return ("<div class='rec'><span class='chip src'>%s</span> <span class='mono'>%s</span> "
@@ -997,7 +1022,7 @@ def _rec_row(r):
                _esc(r["need"]), _esc(r["rationale"]), oc, _esc(r["src"])))
 
 
-def _prop_card(entry, adj=None):
+def _prop_card(entry, adj=None, cod=None):
     ws, src, p = entry["ws"], entry["src"], entry["prop"]
     gap = entry.get("gap") or {}
     st = p.get("status") or "candidate"
@@ -1010,6 +1035,16 @@ def _prop_card(entry, adj=None):
     if gap.get("need"):
         h.append("<p class='dim'>from gap: %s — %s</p>"
                  % (_esc((p.get("gap_id") or "").split("/")[-1]), _esc(gap["need"])))
+    if cod:
+        if cod.get("outcome") == "codified":
+            h.append("<p class='sts'><b style='color:#087830'>codified &#10003;</b> &rarr; pack <code>%s %s</code> &mdash; entries: %s</p>"
+                     % (_esc(cod.get("pack")), _esc(cod.get("version")),
+                        ", ".join("<code>%s</code>" % _esc(x) for x in cod.get("entries", []))))
+        elif cod.get("outcome") == "precedent":
+            h.append("<p class='sts'><b>rejected</b> &rarr; filed as <code>%s</code> (negative precedent — reaches agents via resolve, search and gap warnings)</p>"
+                     % _esc(cod.get("precedent_id")))
+        elif cod.get("outcome") == "pending":
+            h.append("<p class='sts'><b>needs-info</b> — pending review; not codified</p>")
     if adj and adj.get("rationale"):
         h.append("<p class='secl'>Adjudicator's rationale</p><p class='main'>%s</p>" % _esc(adj["rationale"]))
         if adj.get("evidence"):
@@ -1117,15 +1152,20 @@ def load_proposals():
 def proposals_page():
     entries = load_proposals()
     adj = load_adjudication()
+    codified = load_codified()
+    prec_maps = {s: precedents_by_gap(s) for s in ("wink", "leader", "dominion")}
     adj_by_key = {(r["src"], r["suffix"]): r for r in adj}
-    cards = "".join(_prop_card(e, adj_by_key.get((e["src"], (e["prop"].get("gap_id") or "").split("/")[-1].split("-")[-1]))) for e in entries)
+    cards = "".join(
+        _prop_card(e, adj_by_key.get((e["src"], (e["prop"].get("gap_id") or "").split("/")[-1].split("-")[-1])),
+                   codified.get(e["prop"].get("id")))
+        for e in entries)
     rec = []
     for srcc in ("wink", "leader", "dominion"):
         rows = [r for r in adj if r["src"] == srcc]
         if not rows:
             continue
         rec.append("<h3 style='margin:16px 0 6px;font-size:14px'>%s — %d dispositions</h3>" % (srcc, len(rows)))
-        rec.extend(_rec_row(r) for r in rows)
+        rec.extend(_rec_row(r, prec_maps[srcc].get(r["suffix"])) for r in rows)
     rec_html = "".join(rec)
     reps = load_reports()
     rep_html = "".join(

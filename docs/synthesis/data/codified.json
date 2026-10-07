@@ -1,0 +1,165 @@
+{
+ "prop/20261007-151923-0cf7b9": {
+  "status": "rejected",
+  "verdict": "reject",
+  "reviewed_at": "2026-10-07T15:47:36+00:00",
+  "outcome": "precedent",
+  "precedent_id": "precedent/reversed-colourway-rejected"
+ },
+ "prop/20261007-151923-522030": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:48:02+00:00",
+  "outcome": "codified",
+  "pack": "dominion",
+  "version": "0.2.0",
+  "entries": [
+   "component/status",
+   "component/ledger"
+  ]
+ },
+ "prop/20261007-151923-72cc3e": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:48:06+00:00",
+  "outcome": "codified",
+  "pack": "dominion",
+  "version": "0.2.0",
+  "entries": [
+   "component/notice"
+  ]
+ },
+ "prop/20261007-151923-bd08f2": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:48:18+00:00",
+  "outcome": "codified",
+  "pack": "dominion",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/plain-chart"
+  ]
+ },
+ "prop/20261007-151923-e09f12": {
+  "status": "rejected",
+  "verdict": "reject",
+  "reviewed_at": "2026-10-07T15:48:28+00:00",
+  "outcome": "precedent",
+  "precedent_id": "precedent/dialog-empty-state-rejected"
+ },
+ "prop/20261007-151947-45862b": {
+  "status": "rejected",
+  "verdict": "reject",
+  "reviewed_at": "2026-10-07T15:43:38+00:00",
+  "outcome": "precedent",
+  "precedent_id": "precedent/destructive-confirm-rejected"
+ },
+ "prop/20261007-151947-81e020": {
+  "status": "needs-info",
+  "verdict": "needs-info",
+  "reviewed_at": "2026-10-07T15:44:24+00:00",
+  "outcome": "pending"
+ },
+ "prop/20261007-151947-916eda": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:45:28+00:00",
+  "outcome": "codified",
+  "pack": "leader",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/data-charts"
+  ]
+ },
+ "prop/20261007-151948-25306d": {
+  "status": "rejected",
+  "verdict": "reject",
+  "reviewed_at": "2026-10-07T15:45:32+00:00",
+  "outcome": "precedent",
+  "precedent_id": "precedent/ledger-rejected"
+ },
+ "prop/20261007-151948-91ef4b": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:47:11+00:00",
+  "outcome": "codified",
+  "pack": "leader",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/data-readouts"
+  ]
+ },
+ "prop/20261007-151948-992c62": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:47:23+00:00",
+  "outcome": "codified",
+  "pack": "leader",
+  "version": "0.2.0",
+  "entries": [
+   "component/tag"
+  ]
+ },
+ "prop/20261007-151914-0510d7": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:39:43+00:00",
+  "outcome": "codified",
+  "pack": "wink",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/dialog-overlay"
+  ]
+ },
+ "prop/20261007-151914-74dedc": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:39:54+00:00",
+  "outcome": "codified",
+  "pack": "wink",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/empty-state"
+  ]
+ },
+ "prop/20261007-151914-9ff839": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:40:03+00:00",
+  "outcome": "codified",
+  "pack": "wink",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/destructive-confirm"
+  ]
+ },
+ "prop/20261007-151914-d08fa9": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:41:43+00:00",
+  "outcome": "codified",
+  "pack": "wink",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/inline-notice"
+  ]
+ },
+ "prop/20261007-151915-44d062": {
+  "status": "rejected",
+  "verdict": "reject",
+  "reviewed_at": "2026-10-07T15:42:03+00:00",
+  "outcome": "precedent",
+  "precedent_id": "precedent/status-pill-rejected"
+ },
+ "prop/20261007-151915-58de37": {
+  "status": "accepted",
+  "verdict": "accept",
+  "reviewed_at": "2026-10-07T15:42:53+00:00",
+  "outcome": "codified",
+  "pack": "wink",
+  "version": "0.2.0",
+  "entries": [
+   "pattern/progress"
+  ]
+ }
+}

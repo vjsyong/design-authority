@@ -134,5 +134,37 @@ class TestRecords(unittest.TestCase):
                 records.set_proposal_review(ws, prop["id"], "maybe")
 
 
+class TestPrecedents(unittest.TestCase):
+    """Negative precedents: optional per pack, attached on vocabulary overlap."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.pack = Pack(os.path.join(ROOT, "packs", "wink"))
+        cls.triage = Pack(PACK_DIR)
+
+    def test_pack_without_precedents_loads_empty(self):
+        self.assertEqual(self.triage.precedents, [])
+
+    def test_resolve_attaches_precedent_on_declined_ask(self):
+        r = resolve(self.pack, "add a bar chart of activity")
+        ids = [p["id"] for p in r.get("precedents", [])]
+        self.assertIn("precedent/declined-chart-treatments", ids)
+
+    def test_precedent_coexists_with_fallback_outcome(self):
+        r = resolve(self.pack, "add a dark mode theme")
+        self.assertEqual(r["outcome"], "FALLBACK")
+        self.assertIn("precedent/declined-dark-mode",
+                      [p["id"] for p in r.get("precedents", [])])
+
+    def test_benign_ask_has_no_precedents(self):
+        r = resolve(self.pack, "add a primary button to the page")
+        self.assertNotIn("precedents", r)
+
+    def test_gap_carries_precedent_warnings(self):
+        with tempfile.TemporaryDirectory() as ws:
+            gap = records.add_gap(self.pack, ws, "a dark mode toggle for settings")
+            self.assertTrue(gap.get("precedent_warnings"))
+
+
 if __name__ == "__main__":
     unittest.main()
