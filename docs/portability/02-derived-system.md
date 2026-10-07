@@ -1,6 +1,10 @@
-# SPIKE · 01 · Derived system foundations — “Orbit”
+# Portability Spike · 02 · Derived system — “Orbit”
 
-*Working name; carries no NASA marks. Derived from the NASA Graphics Standards
+**Parts:** A · Foundations (§1–7, below) · B · Core UI elements (§8) · C · Compositions (§9).
+Every decision carries a ledger status per the spike protocol §Phase 2:
+OBSERVED · INFERRED · AUTHORED · UNDEFINED.
+
+*Working name; carries no NASA marks.* Derived from the NASA Graphics Standards
 Manual (NHB 1430.2, January 1976), public domain, verified live at
 `nasa.gov/.../nasa_graphics_manual_nhb_1430-2_jan_1976.pdf`.*
 
@@ -86,8 +90,154 @@ plus a `surface-dark` (= ink) for inverted regions per C3/C8.
 | I1 | Symbols | prefer standard symbol signs (DOT library) over bespoke icons; arrows for direction | OBSERVED | p45: “‘P’ is from D.O.T. Symbol/Signs library”; p46: “DOT Symbol/Signs employed rather than unnecessary words” |
 | I2 | Icon rendering | flat, single-color, inherits text color; no outlines beyond the letterform register | INFERRED | source usage of solid marks only |
 
+## 8 · Core UI elements (12)
+
+Orbit's own vocabulary — deliberately not Triage's codes (`btn`, `tbl`, `dlg`
+…). Each element below: purpose · anatomy · states · rules with provenance ·
+ledger status.
+
+### 8.1 `command` — action control
+- **Purpose:** trigger an action. Variants `primary` (solid accent, white
+  text, allowed only on paper per C7), `secondary` (paper bg, 1px ink border),
+  `destructive` (paper bg, 1px accent border + accent text — reserved).
+- **States:** hover (border emphasis only — no motion, M1), focus (2px ink
+  outline, offset 1px; white on inverted regions), active (inverted: ink bg /
+  paper text), disabled (gray-mid text + border). `busy` is **UNDEFINED**.
+- **Ledger:** primary/secondary INFERRED (accent-as-action, C7; rectilinear
+  form, F1); destructive AUTHORED (no source semantics — flagged for the
+  probe); focus treatment AUTHORED (accessibility, no source basis).
+- **Provenance:** p8 color-use rules; p45 “simple, functional”.
+
+### 8.2 `entry` — single-line text field
+- **Anatomy:** `label` above (sentence case, Medium 13) + `input` + `error`
+  line below (accent text, concise message).
+- **States:** default (1px ink border), focus (same ring as 8.1), invalid
+  (accent border + error line), disabled, readonly.
+- **Ledger:** label/error placement INFERRED (top-alignment §S6; signage
+  brevity p45–46); aria wiring AUTHORED (no source basis).
+- **Provenance:** p30 typographic style; p45 “language clear and concise”.
+
+### 8.3 `chooser` — small-set single select
+- **Anatomy:** labelled native `<select>`; small fixed sets only (≈ ≤12
+  options). Larger or filtered selection is deliberately **out of scope** —
+  the app must file a gap if it needs one (an intentional probe surface).
+- **States:** default, focus, invalid, disabled.
+- **Ledger:** INFERRED (form language from §4 forms + rectilinear base);
+  the size limit and the out-of-scope rule AUTHORED.
+
+### 8.4 `panel` — bordered technical region
+- **Anatomy:** `panel` (1px ink border) + optional title (Medium, top
+  aligned) + body; optional footer row above a rule.
+- **Rule:** boxes are reserved for technical/diagrammatic content (S5) —
+  ordinary prose lives in `section` regions separated by rules, not boxes.
+- **Ledger:** OBSERVED basis (S5, “outline boxes … around all technical
+  diagrams”), INFERRED as the UI analogue.
+- **Provenance:** p41.
+
+### 8.5 `band` — identity, navigation, status
+- **Anatomy:** full-width white band (S3), 1px ink bottom rule; left:
+  identity placeholder (no NASA marks); center/right: nav links (Medium
+  text); current item = 2px accent underline; far right: environment/status
+  text (gray-mid). Variant `band--inverted` (ink bg, white text, F4).
+- **Ledger:** band OBSERVED (S3, folios/headline band); nav semantics
+  AUTHORED (publication/signage systems have no nav component); inverted
+  variant INFERRED (observed dark/white inversions p8, p47).
+
+### 8.6 `register` — ruled data list
+- **Anatomy:** header row (Medium 12, upper-lower, top aligned) + rows
+  separated by 1px gray-mid hairlines; cells top-aligned (S6); actions sit
+  right as text `command`s; optional outer border only when the table is
+  “technical content” (S5). No zebra striping, no elevation.
+- **States:** default; empty → replaced by `notice` standby pattern (§9.2).
+- **Ledger:** INFERRED (rules-over-decoration S4; top alignment S6; compact
+  print tabular register tradition).
+- **Provenance:** p41–44 formats; p46 signage clarity.
+
+### 8.7 `indicator` — status marker
+- **Anatomy:** 6×6px **square** marker + text label; tones: `neutral`
+  (gray-mid), `ok` (ink), `alert` (accent). Status is always readable as
+  text; the marker never carries meaning alone.
+- **Ledger:** marker+text INFERRED (C7 accent discipline; “message formats”
+  p46); tone semantics AUTHORED (source has no status model — flagged for
+  the probe).
+
+### 8.8 `tag` — square micro-label
+- **Anatomy:** 1px gray-mid border, square, 11–12px Medium text, padding
+  4×8; grouped tags separated by 8 (patches occupy “their own visual space”,
+  non-competing, p12 — INFERRED analogue).
+- **Ledger:** INFERRED.
+
+### 8.9 `gauge` — determinate progress
+- **Anatomy:** track (paper, 1px gray-mid border, 8–10px tall) + fill
+  (ink; `alert` fill in accent for failed/attention) + mandatory text
+  readout (“n of m”) beside or beneath. Updates are static; **no
+  animation** (M1).
+- **Ledger:** AUTHORED (no source basis — the largest consciously authored
+  element; flagged in the probe set).
+
+### 8.10 `notice` — inline feedback
+- **Anatomy:** square block, 1px border, kind variant: `info` (gray-mid
+  border, ink text), `warning` (ink border + ink heading), `alert` (accent
+  border + accent heading); concise sentence copy; top-aligned at the head
+  of its region.
+- **Ledger:** INFERRED from signage classes (informational / warning /
+  regulatory, p45–46) + “clear and concise” language; exact UI mapping
+  AUTHORED.
+- **Provenance:** p45–46.
+
+### 8.11 `section` — form and content grouping
+- **Anatomy:** heading (Medium) + 1px ink rule + stacked `entry`s or
+  content; form column max-width 560px (S7 wide-margin logic); top-aligned.
+- **Ledger:** INFERRED (publication format logic: bands, rules, columns).
+
+### 8.12 `dialog` — modal confirm / editor
+- **Anatomy:** square panel, 1px ink border, ink band header (title +
+  `Close` text command), body, footer commands right-aligned; page overlay
+  = ink at **40%** opacity (the documented value threshold, C8, reused).
+  Destructive confirms state the object and consequence in the sentence.
+  No shadow, no motion — appears/disappears instantly.
+- **States:** open / closed (no animation); focus trapped inside (AUTHORED).
+- **Ledger:** structure **AUTHORED** (source has no dialogs anywhere);
+  overlay value INFERRED from C8; sentence rule INFERRED from signage
+  clarity. Flagged for the probe set.
+
+## 9 · Compositions (4)
+
+### 9.1 `shell` — application shell
+Band (§8.5) + main region (max-width 1080, padding 24/32 per S2) + footer
+folio line (“Orbit · <section>”, 12px gray-mid — folios from the white-band
+role, p41). **Ledger:** band/folios OBSERVED basis; assembly INFERRED.
+
+### 9.2 `register-view` — list screen
+Shell + page head (h1 Medium + primary `command` right-aligned) + `register`
++ empty variant: centered `notice` “standby” block with one secondary
+command. **Ledger:** assembly INFERRED; empty-state copy AUTHORED.
+
+### 9.3 `form-flow` — create / edit
+Shell + `section`s of `entry`/`chooser` + validation `notice`s above fields
++ footer row: primary submit, secondary cancel; destructive variant routes
+through `dialog` (§8.12) naming object + consequence. **Ledger:** assembly
+INFERRED; destructive-flow semantics AUTHORED (probe target).
+
+### 9.4 `job-view` — status console
+Shell + `indicator` + `gauge` + log `register` (time + message rows).
+**Ledger:** AUTHORED (no source analogue); inherits element rules above.
+
+## 10 · Bridging notes for Phase 3 (encoding)
+
+- **Candidate rules:** ORB-1 radius always 0 (F1); ORB-2 accent never a
+  reading surface and never alone (C7/C8); ORB-3 no shadows/elevation (F3);
+  ORB-4 status always text + marker (8.7).
+- **Candidate prohibitions:** rounded forms; drop shadows; pastel colors
+  (C10).
+- **Carried UNDEFINEDs (intentional):** motion (M1); busy states (8.1);
+  searchable selection (8.3); multi-color data coding (C9). The test app is
+  expected to touch at least two of these — gaps over guesses.
+- **Naming:** element ids will be `component/command`, `component/entry`, …
+  under a fully separate authority identity (no Triage inheritance).
+
 ---
 
-**Next (Phase 1 continued):** core UI elements (~8–12) and 2–4 compositions
-derived on these foundations, same ledger discipline; then the pack build and
-the kernel portability test.
+**Next:** Phase 3 — encode as the Orbit Authority Pack (`packs/orbit/`) in
+the existing pack format; kernel stays untouched except via
+`docs/portability/03-kernel-change-ledger.md`.

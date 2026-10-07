@@ -1,4 +1,4 @@
-# SPIKE · 00 · Candidate research — public brand kits for the portability spike
+# Portability Spike · 00 · Brand kit candidates
 
 **Purpose:** select an external, non-Triage source for the second Design
 Authority. Criteria per the spike brief: publicly accessible; reasonable
