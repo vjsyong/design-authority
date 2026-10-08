@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Triage</title>
+<!--
+  Settings page — built under the Triage design authority (v0.12.1), workspace ab/s-b1.
+  Every UI decision traces to a record inspected through ./run-authority:
+    component/shell      — page skeleton (.app / .side / .main), sidebar chrome
+    component/nav-item   — sidebar links (aria-current="page" on the active item)
+    component/topbar     — tablet/phone header (menu + title; hidden on desktop)
+    component/bottom-nav — persistent phone tab bar
+    pattern/settings     — settings grid, sticky section nav, setting rows
+    component/px-sw      — the one boolean control; hidden twin carries the "off" value
+    component/badge      — FALLBACK state readout (no artifact covers a bare state
+                           label beside a control; gap filed; improvisation marked)
+    INT003               — three-channel feedback rule: no ad-hoc alerts added
+  Styling: only assets/tokens/tokens.css, assets/core/base.css, assets/core/patterns.css.
+-->
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<div class="app">
+  <!-- component/shell — fixed sidebar carrying brand + primary nav -->
+  <aside class="side" id="side">
+    <div class="side-top">
+      <a class="brand" href="#content">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Mail</div>
+      <a class="nav-item" href="#content">Inbox</a>
+      <a class="nav-item" href="#content">Digest</a>
+      <a class="nav-item" href="#content">Log</a>
+      <div class="nav-label">System</div>
+      <a class="nav-item active" href="#content" aria-current="page">Settings</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <!-- component/topbar — tablet/phone chrome (menu + title); display:none on desktop -->
+    <header class="topbar">
+      <button class="btn small" type="button" id="menuBtn" aria-controls="side" aria-expanded="false">Menu</button>
+      <span class="tb-title">Settings</span>
+    </header>
+
+    <div class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <div class="page-desc">Preferences for this mailbox.</div>
+        </div>
+      </div>
+
+      <!-- pattern/settings — sticky section nav + scoped setting rows -->
+      <div class="settings-grid">
+        <nav class="settings-nav" aria-label="Settings sections">
+          <div class="settings-nav-head">Preferences</div>
+          <a class="on" href="#notifications" aria-current="true">Notifications</a>
+        </nav>
+
+        <div class="settings-body">
+          <section id="notifications">
+            <h2>Notifications</h2>
+            <div class="setting-row">
+              <div class="setting-label">
+                <b>Release notes</b>
+                <span class="sub">Get a summary whenever Triage ships an update.</span>
+              </div>
+              <div class="setting-control">
+                <div class="row">
+                  <form class="px-swf">
+                    <!-- component/px-sw — checkbox wrapped by its visible label; hidden twin carries "off" -->
+                    <label class="px-sw">
+                      <input type="hidden" name="release_notes" value="off">
+                      <input type="checkbox" id="release-notes" name="release_notes" value="on" checked aria-label="Disable Release notes">
+                      <span class="px-tr"></span>
+                    </label>
+                  </form>
+                  <!-- FALLBACK (gap filed: no recorded state readout for a control):
+                       a compact on/off display is not recorded as an artifact. Nearest recorded
+                       piece adopted — component/badge (text micro-label) beside component/px-sw;
+                       kept as text so state is never colour-only. Improvisation marked below. -->
+                  <span class="badge ok" id="release-notes-state" aria-live="polite" data-improv="state-readout">On</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- component/bottom-nav — persistent phone tab bar (shown at ≤767px) -->
+<nav class="bottom-nav" aria-label="Primary">
+  <a href="#content">Inbox</a>
+  <a href="#content">Digest</a>
+  <a href="#content">Log</a>
+  <a href="#content" class="on" aria-current="page">Settings</a>
+</nav>
+
+<div class="scrim hidden" id="scrim"></div>
+
+<script>
+(function () {
+  // Release notes readout: the state display is an improvised fallback (gap filed),
+  // synced from the switch so it always says the same thing as the control.
+  var sw = document.getElementById('release-notes');
+  var state = document.getElementById('release-notes-state');
+
+  function renderState() {
+    state.textContent = sw.checked ? 'On' : 'Off';
+    state.classList.toggle('ok', sw.checked);
+    sw.setAttribute('aria-label', (sw.checked ? 'Disable' : 'Enable') + ' Release notes');
+  }
+  sw.addEventListener('change', renderState);
+  renderState();
+
+  // component/shell — sidebar drawer behaviour below 1024px (.side.open / .scrim)
+  var side = document.getElementById('side');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  var wide = window.matchMedia('(min-width: 1024px)');
+
+  function setDrawer(open) {
+    side.classList.toggle('open', open);
+    scrim.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    applyMode();
+  }
+  function applyMode() {
+    side.inert = !wide.matches && !side.classList.contains('open');
+  }
+
+  menuBtn.addEventListener('click', function () {
+    setDrawer(!side.classList.contains('open'));
+  });
+  scrim.addEventListener('click', function () { setDrawer(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setDrawer(false);
+  });
+  wide.addEventListener('change', function () { setDrawer(false); });
+  window.addEventListener('resize', applyMode);
+  setDrawer(false);
+})();
+</script>
+</body>
+</html>

@@ -210,10 +210,9 @@ self-test OK (wired into `tools/check.sh`) · concept-site gate green.
 
 Stated plainly, because they matter more than the headline numbers:
 
-- **n is small.** D3 has 22 formal cases; the traces are single runs. The
-  next round widens the paraphrase set (more authors, blind labeling) and
-  runs a counterfactual A/B: same task battery with the assist on and off,
-  scoring adoption quality and final artifacts.
+- **n is small.** D3 has 22 formal cases, and the agent-level A/B
+  (section 10) ran 8 builds. The paraphrase set still wants widening (more
+  authors, blind labeling) before any public claims about recall.
 - **The paraphrase ceiling is real.** Small embedding models do not close
   purpose-language to canonical-vocabulary gaps at this scale. Discovery
   mitigates; it does not solve.
@@ -252,3 +251,33 @@ with Sean, 2026-10-08. The 0.4.0 release followed the project's own
 governance: pre-registered experiments, a fresh freeze manifest, a recorded
 decision (D-025), and every claim in this report traceable to committed
 evidence.
+
+---
+
+## 10 · Update: the agent-level A/B (experiment 04)
+
+Run after the review's directive to freeze retrieval development and answer
+the question this report could not: does semantic discovery make agents
+actually better under authority?
+
+**Design** (pre-registered in `04-agent-ab.md`): 2 briefs x 2 conditions
+(lexical only; lexical plus semantic) x 2 runs, fresh agents, isolated
+workspaces, condition-enforcing audited wrappers, and one independent blind
+reviewer with a fixed rubric over anonymized artifacts.
+
+**Result**: A 14/14 needs correct, B 13/14; false authority 0 in both arms;
+unnecessary gaps 0 in both arms; corrections 0.75 per artifact (B) vs 1.25
+(A), directional only at n=4. B used discovery in every run (8 calls); A
+never attempted it. Against the frozen rules: H1 failed, H3 tied, only H4
+favored B, which is below the two-of-three bar.
+
+**Decision**: the feature stays frozen exactly as shipped, optional and off
+by default, with no further retrieval investment. The experiment also
+sharpened the finding: the battery's binding failures were codification
+failures (needs with no records at all), which no retrieval layer can fix,
+and the workflow absorbed the retrieval misses in both arms. The next
+investments are record descriptions, aliases, resolver applicability, and
+disputed-resolution handling.
+
+Full record: `docs/experiments/04-agent-ab.md` and the raw workspaces under
+`docs/experiments/ab/`.

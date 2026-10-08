@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings — Triage</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="side-top">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-label">Workspace</div>
+      <a class="nav-item" href="#">Dashboard</a>
+      <a class="nav-item" href="#">Records</a>
+      <a class="nav-item" href="#">Learning</a>
+      <div class="nav-label">System</div>
+      <a class="nav-item active" href="#" aria-current="page">Settings</a>
+    </nav>
+    <div class="side-foot">Triage v0.12.1</div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="side" aria-expanded="false">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <span class="tb-title">Settings</span>
+    </header>
+    <main class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <div class="page-desc">Manage how Triage works for your account.</div>
+        </div>
+      </div>
+      <div class="settings-grid">
+        <nav class="settings-nav" aria-label="Settings sections">
+          <div class="settings-nav-head">Sections</div>
+          <a class="on" href="#preferences" aria-current="true">Preferences</a>
+        </nav>
+        <div class="settings-body">
+          <section id="preferences" aria-labelledby="preferences-title">
+            <h2 class="sec-h" id="preferences-title">Preferences</h2>
+            <p class="sec-desc">Everyday options for how Triage behaves on your account.</p>
+            <div class="card">
+              <!-- IMPROVISED COMPOSITION (gap reported): a compact "current state of a
+                   preference" display is NOT a recorded artifact. Composed from the
+                   nearest recorded pieces: component/badge (stable) placed with the
+                   component/px-sw switch; state vocabulary per guideline/voice
+                   (Enable/Disable - never On/Off). Marked, never presented as canonical. -->
+              <div class="setting-row">
+                <div class="setting-label">
+                  <b>Release notes</b>
+                  <span class="sub">See a short summary of what changed after each update.</span>
+                </div>
+                <div class="setting-control">
+                  <div class="row">
+                    <label class="px-sw">
+                      <input type="checkbox" id="release-notes" checked aria-label="Disable Release notes">
+                      <span class="px-tr"></span>
+                    </label>
+                    <span class="badge ok" id="release-notes-state">Enabled</span>
+                  </div>
+                  <p class="vh" role="status" id="release-notes-live"></p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="scrim hidden" id="scrim"></div>
+</div>
+<script>
+(function () {
+  var sw = document.getElementById('release-notes');
+  var state = document.getElementById('release-notes-state');
+  var live = document.getElementById('release-notes-live');
+  if (sw && state) {
+    sw.addEventListener('change', function () {
+      var on = sw.checked;
+      state.textContent = on ? 'Enabled' : 'Disabled';
+      state.className = on ? 'badge ok' : 'badge';
+      sw.setAttribute('aria-label', on ? 'Disable Release notes' : 'Enable Release notes');
+      if (live) { live.textContent = on ? 'Release notes enabled' : 'Release notes disabled'; }
+    });
+  }
+  var btn = document.getElementById('menuBtn');
+  var side = document.getElementById('side');
+  var scrim = document.getElementById('scrim');
+  if (btn && side) {
+    btn.addEventListener('click', function () {
+      var open = side.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (scrim) { scrim.classList.toggle('hidden', !open); }
+    });
+    if (scrim) {
+      scrim.addEventListener('click', function () {
+        side.classList.remove('open');
+        scrim.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

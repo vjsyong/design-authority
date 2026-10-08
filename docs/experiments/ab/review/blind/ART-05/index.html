@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Triage</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="side" id="sideNav">
+    <div class="side-top">
+      <a class="brand" href="#main">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-label">Mail</div>
+      <a class="nav-item" href="#main">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+        Inbox
+      </a>
+      <a class="nav-item" href="#main">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Digest
+      </a>
+      <div class="nav-label">Workspace</div>
+      <a class="nav-item active" href="#main" aria-current="page">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row"><span class="dot ok"></span> Synced</div>
+      <div class="sf-row">triage 0.12.1</div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sideNav">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+      </button>
+      <div class="tb-title">Settings</div>
+      <div class="tb-status"><span class="dot ok"></span><span>Synced</span></div>
+    </header>
+    <main class="content" id="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <div class="page-desc">Choose what Triage sends you and how it behaves.</div>
+        </div>
+      </div>
+      <div class="settings-grid">
+        <nav class="settings-nav" aria-label="Settings sections">
+          <div class="settings-nav-head">Preferences</div>
+          <a class="on" href="#updates" aria-current="true">Updates</a>
+        </nav>
+        <div class="settings-body">
+          <section id="updates">
+            <h2>Updates</h2>
+            <div class="setting-row">
+              <div class="setting-label">
+                <b>Release notes</b>
+                <span class="sub">Email me when a new version of Triage ships.</span>
+              </div>
+              <div class="setting-control">
+                <div class="row">
+                  <!-- px-sw contract: the visible label wraps the real checkbox; the
+                       hidden twin carries the off value so a state is always submitted. -->
+                  <form class="px-swf" method="post" action="#">
+                    <input type="hidden" name="release_notes" value="off">
+                    <label class="px-sw">
+                      <input type="checkbox" id="rel-sw" name="release_notes" value="on" checked aria-label="Disable Release notes">
+                      <span class="px-tr" aria-hidden="true"></span>
+                    </label>
+                  </form>
+                  <!-- Noncanonical — authority has no recorded artifact for a compact
+                       readout of a preference's current state placed with its control
+                       (resolve returned UNDEFINED; gap filed). Composed from the nearest
+                       recorded piece: .badge (spec/states.json). -->
+                  <span class="badge ok" id="rel-state">On</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div class="scrim hidden" id="scrim" aria-hidden="true"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script>
+(function () {
+  "use strict";
+
+  var sw = document.getElementById("rel-sw");
+  var state = document.getElementById("rel-state");
+  var toasts = document.getElementById("toasts");
+  var timer = null;
+
+  function render() {
+    var on = sw.checked;
+    state.textContent = on ? "On" : "Off";
+    state.className = on ? "badge ok" : "badge";
+    sw.setAttribute("aria-label", (on ? "Disable" : "Enable") + " Release notes");
+  }
+
+  function dismissToast() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    toasts.innerHTML = "";
+  }
+
+  // One toast at a time; auto-dismiss; undo is the show-the-reverse affordance
+  // required by the interaction standard for reversible mutations.
+  function showToast(message, undo) {
+    dismissToast();
+    var t = document.createElement("div");
+    t.className = "toast2 ok";
+    var row = document.createElement("div");
+    row.className = "row";
+    var span = document.createElement("span");
+    span.textContent = message;
+    row.appendChild(span);
+    if (undo) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn small";
+      b.textContent = "Undo";
+      b.addEventListener("click", undo);
+      row.appendChild(b);
+    }
+    t.appendChild(row);
+    toasts.appendChild(t);
+    timer = setTimeout(function () { toasts.innerHTML = ""; }, 6000);
+  }
+
+  function apply(on) {
+    sw.checked = on;
+    render();
+    showToast(on ? "Release notes turned on." : "Release notes turned off.", function () {
+      var back = !on;
+      sw.checked = back;
+      render();
+      sw.focus();
+      showToast(back ? "Release notes turned back on." : "Release notes turned back off.");
+    });
+  }
+
+  sw.addEventListener("change", function () { apply(sw.checked); });
+
+  // Tablet chrome: the topbar menu button opens the sidebar drawer.
+  var menuBtn = document.getElementById("menuBtn");
+  var side = document.getElementById("sideNav");
+  var scrim = document.getElementById("scrim");
+
+  function setDrawer(open) {
+    side.classList.toggle("open", open);
+    scrim.classList.toggle("hidden", !open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  menuBtn.addEventListener("click", function () {
+    setDrawer(!side.classList.contains("open"));
+  });
+  scrim.addEventListener("click", function () { setDrawer(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { setDrawer(false); }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

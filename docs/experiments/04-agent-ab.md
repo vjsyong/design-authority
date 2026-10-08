@@ -99,5 +99,85 @@ rewording, which is precisely the counterfactual being measured.
 
 ## 7 · Results
 
-(Appended after the builds and the blind review; see the experiment record
-files under `ab/`.)
+Runs of 2026-10-08. All 8 builds completed; all 8 artifacts validate at
+0 errors / 0 warnings / score 100. The blind reviewer (independent context,
+fixed rubric, 222 authority calls of verification) scored anonymized copies.
+The mapping, revealed only after scoring:
+ART-01=s-b1 · ART-02=r-b1 · ART-03=r-a2 · ART-04=r-b2 · ART-05=s-a2 ·
+ART-06=s-b2 · ART-07=s-a1 · ART-08=r-a1.
+
+Blind scores (post-unblinding):
+
+| cell | condition | brief | needs correct | false authority | unnecessary gaps | corrections |
+|---|---|---|---|---|---|---|
+| s-a1 | A | S | 3/3 | 0 | 0 | 3 |
+| s-a2 | A | S | 3/3 | 0 | 0 | 1 |
+| s-b1 | B | S | 3/3 | 0 | 0 | 1 |
+| s-b2 | B | S | 3/3 | 0 | 0 | 1 |
+| r-a1 | A | R | 4/4 | 0 | 0 | 0 |
+| r-a2 | A | R | 4/4 | 0 | 0 | 1 |
+| r-b1 | B | R | 3/4 | 0 | 0 | 1 |
+| r-b2 | B | R | 4/4 | 0 | 0 | 0 |
+
+Aggregates: **A: 14/14 needs correct (100%), 0 false authority, 0
+unnecessary gaps, 5 corrections (1.25 per artifact). B: 13/14 (93%), 0 false
+authority, 0 unnecessary gaps, 3 corrections (0.75 per artifact).**
+
+Process (from the audits): B used discovery in every run (1, 3, 1, 3 calls,
+8 total); A made zero attempts and the wrapper had nothing to block (the
+feature was absent, not advertised). Total authority calls: 316 across the 8
+builds, ranging 33 to 52 per build (several agents exceeded the ~30 cap with
+exploration and said so in their logs).
+
+### Hypothesis verdicts, against the frozen rules
+
+- **H1 (adoption) fails.** A beats B (14/14 vs 13/14). There is no
+  paraphrase need where B outperformed A: the settings readout need was
+  handled correctly in all four runs by both conditions (improvised per the
+  fallback policy), and on channel narrowing A was perfect (2/2) while B
+  missed the marking-and-gap step once (r-b1).
+- **H2 (safety) holds.** Zero false authority adoptions in both conditions.
+  B's extra candidates introduced nothing wrong.
+- **H3 (gaps) ties.** Zero unnecessary gaps in both conditions.
+- **H4 (corrections) favors B, weakly.** 0.75 vs 1.25 corrections per
+  artifact, driven by one A artifact with a three-item tail (missing
+  aria-label verb, a readout that never syncs, copy vocabulary). With n=4,
+  this is directional at best.
+- **H5 (process).** Discovery did not change any differential outcome. The
+  needs it was expected to rescue did not need rescuing (both conditions'
+  agents recovered the recorded elements by rewording and search), and the
+  needs that did bind were outside retrieval's reach.
+
+### The finding behind the flat result
+
+The battery's hard needs turned out to be **codification failures**, not
+retrieval failures: there is no record at all for a preference state readout
+or for channel narrowing, so no discovery layer over existing records can
+close them. The retrieval-side paraphrases did not bind either, because both
+conditions' agents worked around them with search, canonical rewording, and
+the golden sets. The workflow absorbed imperfect retrieval in both arms, and
+agents improvised visibly, marked the improvisations, and filed gaps in both
+arms. That repeats the pattern of experiments 02 and 03 and extends it: the
+authority process is the robust part; retrieval assistance is not the
+bottleneck.
+
+### Decision (per the frozen rule)
+
+B fails H1, ties H3, wins only H4: below the two-of-three bar. **The feature
+is frozen exactly as shipped** (optional, off by default, no further
+retrieval investment). The redirect named in the pre-registration stands:
+record descriptions, aliases, resolver applicability, and disputed-resolution
+handling, not more retrieval machinery.
+
+### Threats to validity
+
+n = 4 artifacts per condition; one model; one reviewer; briefs hard by
+design; discovery used only 8 times in total, so the experiment has weak
+power to show a benefit even if one exists at larger scale. The A-condition
+also cannot reveal demand for discovery because the feature was absent rather
+than refused.
+
+Raw evidence: the 8 cell workspaces (`ab/<cell>/`: audit.jsonl, log.md,
+index.html, gap records), `ab/review/` (rubric, blind copies, reviewer audit,
+score.json), `ab/process-metrics.json`, `ab/score-summary.json`,
+`ab/aggregate_scores.py`, `ab/_mapping.json`.

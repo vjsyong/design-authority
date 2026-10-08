@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Triage</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <!-- chrome: component/shell (.app / .side / .main) + component/nav-item.
+       Nav items other than Settings are placeholders for this demo. -->
+  <aside class="side">
+    <div class="side-top">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a class="nav-item" href="#">Dashboard</a>
+      <a class="nav-item" href="#">Messages</a>
+      <a class="nav-item active" href="#" aria-current="page">Settings</a>
+    </nav>
+  </aside>
+  <main class="main" id="main">
+    <!-- component/topbar: tablet and phone chrome; hidden on desktop -->
+    <div class="topbar"><span class="tb-title">Settings</span></div>
+    <div class="content">
+      <!-- component/page-head -->
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Settings</h1>
+          <div class="page-desc">Manage your preferences.</div>
+        </div>
+      </div>
+      <!-- pattern/settings applied at section level: this screen has a single
+           section, so the settings-nav column is omitted. -->
+      <div class="settings-body">
+        <section id="release-notes" aria-labelledby="release-notes-head">
+          <h2 class="sec-h" id="release-notes-head">Preferences</h2>
+          <p class="sec-desc">Choose which product updates you receive.</p>
+          <div class="setting-row">
+            <div class="setting-label">
+              <b>Release notes</b>
+              <span class="sub">Get a summary of what changed in each release.</span>
+            </div>
+            <div class="setting-control stack">
+              <!-- component/px-sw: visible label wraps a real checkbox; hidden
+                   twin carries the off value; no-JS per fallback/no-js. -->
+              <form class="px-swf" action="#" method="post">
+                <input type="hidden" name="release_notes" value="off">
+                <label class="px-sw">
+                  <input type="checkbox" name="release_notes" value="on" checked aria-label="Enable release notes">
+                  <span class="px-tr"></span>
+                </label>
+              </form>
+              <!-- fallback composition (gap filed): current-state readout —
+                   no recorded component pairs a state readout with a switch;
+                   composed from nearest recorded pieces: component/dot + text. -->
+              <div class="sub"><span class="dot ok"></span> On</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

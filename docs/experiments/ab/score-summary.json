@@ -1,0 +1,154 @@
+{
+ "per_artifact": [
+  {
+   "art": "ART-01",
+   "cell": "s-b1",
+   "cond": "B (lexical+semantic)",
+   "brief": "S",
+   "needs_total": 3,
+   "needs_correct": 3,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 1,
+   "gap_filed": 1,
+   "gap_missed": 0,
+   "corrections_list": [
+    "State readout copy: use guideline/voice vocabulary (Enabled/Disabled) rather than 'On/Off'"
+   ]
+  },
+  {
+   "art": "ART-05",
+   "cell": "s-a2",
+   "cond": "A (lexical)",
+   "brief": "S",
+   "needs_total": 3,
+   "needs_correct": 3,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 1,
+   "gap_filed": 1,
+   "gap_missed": 0,
+   "corrections_list": [
+    "Toggle copy: use Enable/Disable vocabulary per guideline/voice (readout says 'On/Off'; toast says 'turned on/off')"
+   ]
+  },
+  {
+   "art": "ART-06",
+   "cell": "s-b2",
+   "cond": "B (lexical+semantic)",
+   "brief": "S",
+   "needs_total": 3,
+   "needs_correct": 3,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 1,
+   "gap_filed": 1,
+   "gap_missed": 0,
+   "corrections_list": [
+    "Restore the hidden off-value twin input (with its form context) per the component/px-sw contract"
+   ]
+  },
+  {
+   "art": "ART-07",
+   "cell": "s-a1",
+   "cond": "A (lexical)",
+   "brief": "S",
+   "needs_total": 3,
+   "needs_correct": 3,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 3,
+   "gap_filed": 1,
+   "gap_missed": 0,
+   "corrections_list": [
+    "Switch aria-label: carry the verb of the available action ('Disable Release notes' while checked) per px-sw a11y",
+    "State readout never updates: sync it with the switch (additive behaviour layer)",
+    "State readout copy: Enable/Disable vocabulary per guideline/voice, not 'On'"
+   ]
+  },
+  {
+   "art": "ART-02",
+   "cell": "r-b1",
+   "cond": "B (lexical+semantic)",
+   "brief": "R",
+   "needs_total": 4,
+   "needs_correct": 3,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 1,
+   "gap_filed": 1,
+   "gap_missed": 1,
+   "corrections_list": [
+    "Mark the channel-narrowing fallback (chips + inline filter script) as an improvisation and report a gap for it per the fallback policy"
+   ]
+  },
+  {
+   "art": "ART-03",
+   "cell": "r-a2",
+   "cond": "A (lexical)",
+   "brief": "R",
+   "needs_total": 4,
+   "needs_correct": 4,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 1,
+   "gap_filed": 1,
+   "gap_missed": 1,
+   "corrections_list": [
+    "Name the channel -> ok/warn status-colour mapping as an unrecorded improvisation and include it in the gap report"
+   ]
+  },
+  {
+   "art": "ART-04",
+   "cell": "r-b2",
+   "cond": "B (lexical+semantic)",
+   "brief": "R",
+   "needs_total": 4,
+   "needs_correct": 4,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 0,
+   "gap_filed": 2,
+   "gap_missed": 0,
+   "corrections_list": []
+  },
+  {
+   "art": "ART-08",
+   "cell": "r-a1",
+   "cond": "A (lexical)",
+   "brief": "R",
+   "needs_total": 4,
+   "needs_correct": 4,
+   "false_authority": 0,
+   "unnecessary_gaps": 0,
+   "corrections": 0,
+   "gap_filed": 1,
+   "gap_missed": 0,
+   "corrections_list": []
+  }
+ ],
+ "A": {
+  "artifacts": 4,
+  "needs_correct": 14,
+  "needs_total": 14,
+  "correct_rate": 1.0,
+  "false_authority": 0,
+  "unnecessary_gaps": 0,
+  "corrections": 5,
+  "corrections_per_artifact": 1.25,
+  "gap_filed": 4,
+  "gap_missed": 1
+ },
+ "B": {
+  "artifacts": 4,
+  "needs_correct": 13,
+  "needs_total": 14,
+  "correct_rate": 0.929,
+  "false_authority": 0,
+  "unnecessary_gaps": 0,
+  "corrections": 3,
+  "corrections_per_artifact": 0.75,
+  "gap_filed": 5,
+  "gap_missed": 1
+ }
+}

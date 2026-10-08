@@ -1,0 +1,367 @@
+{
+ "artifacts": [
+  {
+   "id": "ART-01",
+   "brief": "S",
+   "needs": [
+    {
+     "need": "Preference control (toggle 'Release notes' on/off)",
+     "implemented_as": "component/px-sw: visible label wraps a real checkbox, hidden 'off' twin, verb aria-label, inline .px-swf form",
+     "record_id": "component/px-sw",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Right record; px-sw contract followed (hidden twin, Enable/Disable verb); flips immediately."
+    },
+    {
+     "need": "Current-state display placed with the control",
+     "implemented_as": "span.badge.ok + text ('On'/'Off') synced by aria-live script; marked as fallback improvisation (data-improv='state-readout')",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "No record governs a compact readout of a preference's state (resolve UNDEFINED on 'state' phrasings); badge is the nearest piece, improvisation visible, gap claimed filed. Copy 'On/Off' ignores guideline/voice."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell (.app/.side/.main) + nav-item sidebar (aria-current) + topbar + bottom-nav + drawer script",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Chrome covered by shell/nav-item/topbar/bottom-nav records; all used as documented."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "current-state display (no recorded readout for a control)"
+    ],
+    "missed": []
+   },
+   "corrections_required": [
+    "State readout copy: use guideline/voice vocabulary (Enabled/Disabled) rather than 'On/Off'"
+   ]
+  },
+  {
+   "id": "ART-05",
+   "brief": "S",
+   "needs": [
+    {
+     "need": "Preference control (toggle 'Release notes' on/off)",
+     "implemented_as": "component/px-sw in a form: label wraps checkbox, hidden 'off' twin, verb aria-label",
+     "record_id": "component/px-sw",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Right record; contract followed; toast2 + Undo gives the show-the-reverse affordance for the mutation."
+    },
+    {
+     "need": "Current-state display placed with the control",
+     "implemented_as": "span.badge + 'On'/'Off' text synced from the switch; marked 'Noncanonical' improvisation with gap claim",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Uncovered need (resolve UNDEFINED); badge nearest piece, improvisation visible, gap claimed. Readout and toast copy ('turned on/off') drift from guideline/voice."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar + drawer/scrim; no bottom-nav",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Sidebar chrome per records; bottom-nav not required by the brief."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "current-state display (no recorded readout for a control)"
+    ],
+    "missed": []
+   },
+   "corrections_required": [
+    "Toggle copy: use Enable/Disable vocabulary per guideline/voice (readout says 'On/Off'; toast says 'turned on/off')"
+   ]
+  },
+  {
+   "id": "ART-06",
+   "brief": "S",
+   "needs": [
+    {
+     "need": "Preference control (toggle 'Release notes' on/off)",
+     "implemented_as": "px-sw label + checkbox + track, but no hidden 'off' twin and no form context",
+     "record_id": "component/px-sw",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Right record used, but the documented 'hidden twin carries the off value' part of the contract is missing -> correction."
+    },
+    {
+     "need": "Current-state display placed with the control",
+     "implemented_as": "span.badge + 'Enabled'/'Disabled' text + role=status live region; marked 'IMPROVISED COMPOSITION (gap reported)'",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Uncovered need; badge nearest piece; improvisation visible; vocabulary correctly follows guideline/voice (Enable/Disable, never On/Off)."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar; no bottom-nav",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Sidebar chrome per records."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "current-state display (no recorded readout for a control)"
+    ],
+    "missed": []
+   },
+   "corrections_required": [
+    "Restore the hidden off-value twin input (with its form context) per the component/px-sw contract"
+   ]
+  },
+  {
+   "id": "ART-07",
+   "brief": "S",
+   "needs": [
+    {
+     "need": "Preference control (toggle 'Release notes' on/off)",
+     "implemented_as": "px-sw + hidden twin in a form; static aria-label 'Enable release notes' while the switch is checked",
+     "record_id": "component/px-sw",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Right record and twin present; aria-label verb is inverted for the checked state (elsewhere read as 'Disable ...') -> correction."
+    },
+    {
+     "need": "Current-state display placed with the control",
+     "implemented_as": ".dot.ok + text 'On' (never updates; no script), marked fallback composition with gap claim",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Uncovered need; dot+text nearest pieces, improvisation visible, gap claimed; readout is static and 'On' ignores guideline/voice -> corrections."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar (title only); settings-nav column omitted for a single-section screen",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Sidebar chrome per records; static sidebar acceptable under fallback/no-js."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "current-state display (no recorded readout for a control)"
+    ],
+    "missed": []
+   },
+   "corrections_required": [
+    "Switch aria-label: carry the verb of the available action ('Disable Release notes' while checked) per px-sw a11y",
+    "State readout never updates: sync it with the switch (additive behaviour layer)",
+    "State readout copy: Enable/Disable vocabulary per guideline/voice, not 'On'"
+   ]
+  },
+  {
+   "id": "ART-02",
+   "brief": "R",
+   "needs": [
+    {
+     "need": "Release list (version, date, one-line summary)",
+     "implemented_as": "ol.tl with .tl-item/.tl-time/<time datetime>/badge; status dots aria-hidden",
+     "record_id": "component/tl",
+     "record_covers": true,
+     "correct": true,
+     "notes": "tl is the version timeline (aliases 'version timeline'/'version history'); list structure per record."
+    },
+    {
+     "need": "Stable/beta marker",
+     "implemented_as": ".badge warn/ok + .tl-dot with 'beta'/'stable' text; channel->colour mapping marked as improvisation and reported via gap-add",
+     "record_id": "component/badge",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Badge covers status labels; the unrecorded channel->ok/warn mapping is marked and reported."
+    },
+    {
+     "need": "Channel narrowing",
+     "implemented_as": "filter chips (a.chip with .active, .n counts, aria-current) + inline filter script",
+     "record_id": null,
+     "record_covers": false,
+     "correct": false,
+     "notes": "No recorded pattern for narrowing a list to one channel (resolve UNDEFINED); chip is the right nearest piece, but the fallback is neither marked nor gap-filed for the filter itself (only the colour mapping is)."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar + bottom-nav + drawer script",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Chrome per records."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "channel -> status-colour mapping (stable=ok, beta=warn)"
+    ],
+    "missed": [
+     "channel narrowing (filter interaction unmarked; no gap reported for it)"
+    ]
+   },
+   "corrections_required": [
+    "Mark the channel-narrowing fallback (chips + inline filter script) as an improvisation and report a gap for it per the fallback policy"
+   ]
+  },
+  {
+   "id": "ART-03",
+   "brief": "R",
+   "needs": [
+    {
+     "need": "Release list (version, date, one-line summary)",
+     "implemented_as": "ol.tl with .tl-item/.tl-time/.tl-t/.tl-d; status dots aria-hidden",
+     "record_id": "component/tl",
+     "record_covers": true,
+     "correct": true,
+     "notes": "tl is the version timeline; list structure per record."
+    },
+    {
+     "need": "Stable/beta marker",
+     "implemented_as": ".badge warn/ok + .tl-dot with 'Beta'/'Stable' text",
+     "record_id": "component/badge",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Badge covers the marker; the channel->ok/warn colour mapping is used without being marked or reported -> correction."
+    },
+    {
+     "need": "Channel narrowing",
+     "implemented_as": "filter chips (button.chip, aria-pressed, .n counts) + small inline script; full fallback marking; gap reported via gap-add",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Genuinely uncovered (resolve UNDEFINED for the quoted problem - verified); handled per fallback policy: nearest pieces (chip 'filter chip' over tl), improvisation visible, gap reported."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar + bottom-nav + drawer script",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Chrome per records."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "channel narrowing (filtering a list down to one channel)"
+    ],
+    "missed": [
+     "channel -> status-colour mapping (not marked or reported)"
+    ]
+   },
+   "corrections_required": [
+    "Name the channel -> ok/warn status-colour mapping as an unrecorded improvisation and include it in the gap report"
+   ]
+  },
+  {
+   "id": "ART-04",
+   "brief": "R",
+   "needs": [
+    {
+     "need": "Release list (version, date, one-line summary)",
+     "implemented_as": "ol.tl with .tl-item/<time datetime>/badge; status dots aria-hidden",
+     "record_id": "component/tl",
+     "record_covers": true,
+     "correct": true,
+     "notes": "tl is the version timeline; used as documented."
+    },
+    {
+     "need": "Stable/beta marker",
+     "implemented_as": ".badge/.tl-dot with 'Beta'/'Stable'; mapping marked as improvisation, reported in gap/20261008-131712-22e533",
+     "record_id": "component/badge",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Badge covers the marker; the unrecorded channel->colour mapping is marked and reported."
+    },
+    {
+     "need": "Channel narrowing",
+     "implemented_as": "filter chips ('filter chip' alias cited) + behaviour re-delegation marked as improvisation; page-level gap filed",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Uncovered interaction; nearest piece chip used; wiring improvisation visible; gap reported for the release-notes page composition. Inline font-family:inherit is a marked, TDS008-compliant improvisation."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + page-head + nav-item + topbar + bottom-nav + drawer script",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Chrome per records."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "release-notes page composition incl. chip-filter behaviour",
+     "channel -> status-colour mapping"
+    ],
+    "missed": []
+   },
+   "corrections_required": []
+  },
+  {
+   "id": "ART-08",
+   "brief": "R",
+   "needs": [
+    {
+     "need": "Release list (version, date, one-line summary)",
+     "implemented_as": "ol.tl with .tl-item/.tl-time/<time datetime>/badge; status dots aria-hidden",
+     "record_id": "component/tl",
+     "record_covers": true,
+     "correct": true,
+     "notes": "tl resolved from 'version history' as the artifact notes; list structure per record."
+    },
+    {
+     "need": "Stable/beta marker",
+     "implemented_as": ".badge warn/ok + .tl-dot with 'Beta'/'Stable' text",
+     "record_id": "component/badge",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Badge covers the marker; the channel->colour mapping falls under the stated 'release-list composition' improvisation (not named explicitly)."
+    },
+    {
+     "need": "Channel narrowing",
+     "implemented_as": "component/seg segmented control + .btn/.btn.primary selected state + filter script; marked 'Fallback composition (not canonical)'",
+     "record_id": null,
+     "record_covers": false,
+     "correct": true,
+     "notes": "Uncovered interaction; seg (mutually exclusive views) is a defensible nearest piece - chip/'filter chip' is the closer-named piece; wiring marked, gap reported."
+    },
+    {
+     "need": "Page chrome (sidebar / top navigation)",
+     "implemented_as": "component/shell + nav-item + topbar + bottom-nav + drawer script",
+     "record_id": "component/shell",
+     "record_covers": true,
+     "correct": true,
+     "notes": "Chrome per records."
+    }
+   ],
+   "false_authority": [],
+   "unnecessary_gaps": [],
+   "gap_detection": {
+    "filed_correctly": [
+     "release-notes page composition incl. filter-to-list wiring"
+    ],
+    "missed": []
+   },
+   "corrections_required": []
+  }
+ ]
+}
