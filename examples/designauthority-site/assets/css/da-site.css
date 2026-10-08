@@ -49,6 +49,7 @@
 .da-appshot img{display:block;inline-size:100%;block-size:190px;object-fit:cover;
   object-position:50% 0;border-block-end:1px solid var(--border-default)}
 .da-appshot-body{padding:var(--space-12) var(--space-card) var(--space-card)}
+.da-appshot-links{display:flex;flex-wrap:wrap;gap:var(--space-8);margin-top:var(--space-10)}
 
 /* ---- three-column step strip ---- */
 .da-steps.da-steps3{grid-template-columns:repeat(3,1fr)}
