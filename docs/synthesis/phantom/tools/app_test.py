@@ -40,13 +40,13 @@ with sync_playwright() as p:
     check("fonts loaded (300 body)", pg.evaluate("document.fonts.check('300 16px \"Source Sans Pro\"')"))
 
     # explainer accordion
-    check("top graphic present (hero)", pg.evaluate("!!document.querySelector('.top-graphic img') && document.querySelector('.top-graphic img').getAttribute('src').indexOf('design-authority-hero.png') > -1"))
+    check("at-a-glance block is live elements", pg.evaluate("document.querySelectorAll('.aglance .fstep').length") == 5 and pg.evaluate("document.querySelectorAll('.aglance .filelist .cnt').length") >= 4)
     check("explainer starts collapsed", pg.evaluate("!document.querySelector('details.explainer').open"))
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(150)
     exp_txt = pg.evaluate("document.querySelector('details.explainer').innerText")
     check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "machine-readable" in exp_txt and "Extraction" in exp_txt)
-    check("explainer poster embedded", pg.evaluate("!!document.querySelector('details.explainer img') && document.querySelector('details.explainer img').getAttribute('src').indexOf('design-authority.png') > -1"))
+    check("worked example is live (timeline + rules)", pg.evaluate("document.querySelectorAll('.expl-timeline li').length") == 3 and pg.evaluate("document.querySelectorAll('.expl-rules .r').length") == 6)
     pg.screenshot(path=os.path.join(T, "_evidence", "screens", "audit2-explainer.png"))
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(80)

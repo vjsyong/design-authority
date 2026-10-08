@@ -64,10 +64,42 @@
 								against the <strong>Jennu authority</strong>: the interface system her site actually deploys — Source Sans Pro,
 								pink reading ink, neon links, the lime rail — codified as <em>packs/phantom</em> 0.2.0.</p>
 							</header>
-							<figure class="expl-figure top-graphic" data-improvised data-mk="top graphic (console kit)">
-								<a href="assets/explainer/design-authority.png" target="_blank" rel="noopener"><img src="assets/explainer/design-authority-hero.png" alt="Design authority at a glance — the contract, its two consumers, how it versions and evolves" /></a>
-								<figcaption>The whole idea on one page — <em>click for the full-size poster</em>. The expandable section below carries the written version.</figcaption>
-							</figure>
+							<section class="aglance" data-improvised data-mk="explainer at a glance (console kit)">
+								<div class="ag-kicker">Design authority — at a glance</div>
+								<h2>The system that builds the system</h2>
+								<div class="ag-cols">
+									<div class="ag-col">
+										<h3>01 · The contract</h3>
+										<p>A versioned, machine-readable description of an interface system — components, rules, fallbacks. Written for tools as much as for people. <strong>A contract, not a style guide.</strong></p>
+										<div class="filelist">
+<code>packs/phantom/</code> <span class="c">— plain JSON, no database</span><br/>
+artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
+rules.json <span class="cnt">8</span> <span class="c">· prohibitions <span class="cnt">2</span> · fallbacks <span class="cnt">4</span></span><br/>
+precedents.json <span class="cnt">1</span> <span class="c">· candidates.json <span class="cnt">3</span></span><br/>
+golden.json <span class="cnt">21</span> <span class="c">ask → expected outcome</span><br/>
+verification.json <span class="cnt">15</span> <span class="c">conformance checks</span>
+										</div>
+									</div>
+									<div class="ag-col">
+										<h3>02 · Two consumers</h3>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Authority</b>the pack — one contract</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Agent</b>resolves every ask; builds</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built interface — silences become marked improvisations + filed gaps</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>inspects the artifact — never the agent's claims</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15/15 checks · published with hash-covers</div></div>
+									</div>
+									<div class="ag-col">
+										<h3>03 · How it evolves</h3>
+										<ul class="evol">
+											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> frozen and verified, but extracted from the wrong layer — rendered evidence overruled it; the reversal is recorded as a precedent, not hidden.</li>
+											<li><span class="chip">rule</span> editorial edit → patch bump; semantic change → minor bump + fresh freeze (all files re-hashed).</li>
+											<li><span class="chip">rule</span> precedents persist — settled decisions are never relitigated.</li>
+											<li><span class="chip">rule</span> ambitions become candidates with an explicit promote-when bar; friction becomes filed gaps.</li>
+										</ul>
+									</div>
+								</div>
+								<p class="ag-link muted">Prefer a poster for a talk? <a href="assets/explainer/design-authority.png" target="_blank" rel="noopener">Open the rendered one-page version ↗</a></p>
+							</section>
 							<details class="explainer" data-improvised data-mk="explainer (console kit)">
 								<summary>What is a Design Authority — and what is this page?</summary>
 								<div class="expl-body">
@@ -81,10 +113,23 @@
 									<p><strong>3 — Verification.</strong> A separate verifier (<em>da_verify</em>, 15 checks) inspects this rendered page — never its own claims — and the results are linked in the footer.</p>
 									<h3>Why it looks like this</h3>
 									<p>An authority is best judged by what it produces, so this audit wears the extracted language it reviews. Where that language has problems, the ledger records them — measured — instead of hiding them.</p>
-									<figure class="expl-figure">
-										<a href="assets/explainer/design-authority.png" target="_blank" rel="noopener"><img src="assets/explainer/design-authority.png" alt="One-page poster: what a design authority is, and how it versions and evolves" loading="lazy" /></a>
-										<figcaption>The whole thing on one page — <em>open full size</em>, or save it for a talk.</figcaption>
-									</figure>
+									<h3>The worked example — one revision, live</h3>
+									<ul class="expl-timeline">
+										<li><span class="ver">v0.1.0</span> <span class="muted">initial freeze — hashed, git-tagged</span><p>Extracted from the template's stylesheet: grey ink canon, the site's pink type misfiled as "deviations". Verified mechanically (its contract re-run clean: 17/17) — but extracted from the wrong layer.</p></li>
+										<li class="bad"><span class="ver">rejected</span> <span class="muted">owner review of the rendered result</span><p>"The site that exists runs pink type — extract what IS." A version can be internally consistent and still describe the wrong thing; only rendered evidence settles it.</p></li>
+										<li class="v2"><span class="ver">v0.2.0</span> <span class="muted">fresh freeze — all pack files re-hashed</span><p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language. The reversal became <code>precedent/pink-ink-canonised</code> — superseded, not deleted. Goldens re-run 21/21; the verification contract rewritten (15 checks), re-run 15/15.</p></li>
+									</ul>
+									<h3>The standing rules</h3>
+									<div class="expl-rules">
+										<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
+										<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New or changed records, pipeline order, thresholds, tool contracts, taxonomies.</span></div>
+										<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist so agents never relitigate them.</span></div>
+										<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit promote-when bar — no silent canonisation.</span></div>
+										<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
+										<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
+									</div>
+									<p>The evolution loop: <strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) → <strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) → <strong>adjudicate</strong> (precedent · gap · candidate) → next version. Nothing moves the pack except an adjudicated decision.</p>
+									<p class="ag-link muted"><a href="assets/explainer/design-authority.png" target="_blank" rel="noopener">Rendered poster (PNG) for talks / printing ↗</a></p>
 								</div>
 							</details>
 							<ul class="snav" data-improvised data-mk="section nav (console kit)">
