@@ -663,7 +663,7 @@ def demo():
                 "<p>rebuilt on the codified authority (0.2.0 + precedents)</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
-    audit = ("<a class='src' href='/designAuthority/jenmu/'><b>System Review &middot; Jennu</b>"
+    audit = ("<a class='src' href='/designAuthority/jennu/'><b>System Review &middot; Jennu</b>"
              "<p>the design authority of zhenyoyo.github.io (deployed language) — 36 ledger items &amp; the screens behind them</p>"
              "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
@@ -835,27 +835,39 @@ def audit_file(name, fn):
     return send_from_directory(d, fn)
 
 
-# ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jenmu/) ----
-@app.route("/designAuthority/jenmu/")
-def jenmu_index():
+# ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jennu/) ----
+@app.route("/designAuthority/jennu/")
+def jennu_index():
     return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "index.html")
 
 
-@app.route("/designAuthority/jenmu")
-def jenmu_index_noslash():
+@app.route("/designAuthority/jennu")
+def jennu_index_noslash():
     # the trailing slash matters: relative asset paths resolve against the directory URL
-    return redirect("/designAuthority/jenmu/", code=308)
+    return redirect("/designAuthority/jennu/", code=308)
+
+
+@app.route("/designAuthority/jennu/<path:fn>")
+def jennu_file(fn):
+    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), fn)
+
+
+# legacy spelling (jenmu) — keep old links working
+@app.route("/designAuthority/jenmu/")
+@app.route("/designAuthority/jenmu")
+def jennu_legacy():
+    return redirect("/designAuthority/jennu/", code=308)
 
 
 @app.route("/designAuthority/jenmu/<path:fn>")
-def jenmu_file(fn):
-    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), fn)
+def jennu_legacy_file(fn):
+    return redirect("/designAuthority/jennu/" + fn, code=308)
 
 
 @app.route("/designAuthority/")
 @app.route("/designAuthority")
-def jenmu_redirect():
-    return redirect("/designAuthority/jenmu/", code=302)
+def jennu_redirect():
+    return redirect("/designAuthority/jennu/", code=302)
 
 
 @app.route("/robots.txt")

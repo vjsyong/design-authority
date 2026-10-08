@@ -71,8 +71,8 @@ Source Sans Pro: SIL OFL. The reviewed site remains its author's; this review
 is constructive commentary from public sources; no site imagery is
 redistributed beyond the captured evidence shots.
 
-**Serve.** `/designAuthority/jenmu/` on the synthesis review app (tailnet:
-https://gpu-vm1.bigscale-snapper.ts.net:8420/designAuthority/jenmu/; public once the
-tunnel lands: https://audit.seanyong.xyz/designAuthority/jenmu). The host serves
+**Serve.** `/designAuthority/jennu/` on the synthesis review app (tailnet:
+https://gpu-vm1.bigscale-snapper.ts.net:8420/designAuthority/jennu/; public:
+https://audit.seanyong.xyz/designAuthority/jennu/ — old jenmu links 308-redirect). The host serves
 `X-Robots-Tag: noindex` on everything and a disallow-all robots.txt. Named **Jennu**
 2026-10-08.
