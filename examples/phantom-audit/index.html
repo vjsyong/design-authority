@@ -64,6 +64,21 @@
 								against the <strong>Jennu authority</strong>: the interface system her site actually deploys — Source Sans Pro,
 								pink reading ink, neon links, the lime rail — codified as <em>packs/phantom</em> 0.2.0.</p>
 							</header>
+							<details class="explainer" data-improvised data-mk="explainer (console kit)">
+								<summary>What is a Design Authority — and what is this page?</summary>
+								<div class="expl-body">
+									<h3>What it is</h3>
+									<p>A design authority is a versioned, machine-readable description of an interface system: its components (buttons, fields, menus), its rules (colours, type, spacing, voice), and its fallbacks for what it does not define yet. It is written for two different readers — a coding agent that builds with it, and a verifier that independently checks whether the result actually conforms. It is a contract, not a style guide.</p>
+									<h3>Why it exists</h3>
+									<p>Interfaces drift. Every page, edit and feature makes slightly different choices, until “follow the design” stops meaning anything. An authority makes those choices explicit and testable: builds can be checked against it, and gaps become visible instead of silent.</p>
+									<h3>How this page fits in</h3>
+									<p><strong>1 — Extraction.</strong> The deployed language of zhenyoyo.github.io was measured from the rendered site (64 screenshots, computed styles) into <em>packs/phantom</em> 0.2.0 — named <strong>Jennu</strong>. Every value is tagged <em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
+									<p><strong>2 — Consumption.</strong> This page is built from that authority. Covered elements are used as defined; where the authority is silent, the result is improvised in character, marked (◌, bottom-right) and filed as a gap record.</p>
+									<p><strong>3 — Verification.</strong> A separate verifier (<em>da_verify</em>, 15 checks) inspects this rendered page — never its own claims — and the results are linked in the footer.</p>
+									<h3>Why it looks like this</h3>
+									<p>An authority is best judged by what it produces, so this audit wears the extracted language it reviews. Where that language has problems, the ledger records them — measured — instead of hiding them.</p>
+								</div>
+							</details>
 							<ul class="snav" data-improvised data-mk="section nav (console kit)">
 								<li><a href="#system">The system</a></li>
 								<li><a href="#gaps">The ledger</a></li>

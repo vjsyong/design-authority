@@ -47,7 +47,7 @@ findings cite. The full 64-shot set lives in
 
 **Console kit = improvisations** (all marked; console-kit gap records carried
 from pass 1 in the review workspace, copy in `_evidence/gaps.jsonl`): stat row,
-chips, filters, ledger chrome, provenance panel, override toggle ("view as
+chips, filters, ledger chrome, provenance panel, explainer accordion, override toggle ("view as
 project page" applies the deployment's own black-body override to this app —
 the P-R7 demo), marks layer (◌ bottom-right), evidence gallery, JS-only
 rendering.

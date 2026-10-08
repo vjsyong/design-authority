@@ -1,5 +1,5 @@
 # da_verify — phantom on examples/phantom-audit
-generated 2026-10-08 06:28:43
+generated 2026-10-08 06:30:58
 TOTALS: 15 checks — PASS 15 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 0
 
 PASS  [error  ] phantom/app-body-pink-ink — color: rgb(255, 107, 188); font-weight: 300
@@ -15,5 +15,5 @@ PASS  [warning] phantom/app-wordmark — text-transform: uppercase; font-weight:
 PASS  [error  ] phantom/app-no-blurred-shadows — 
 PASS  [warning] phantom/app-no-keyframes — 
 PASS  [info   ] phantom/app-svg-census — 
-PASS  [warning] phantom/app-palette-console — 61 literals, all allowlisted
+PASS  [warning] phantom/app-palette-console — 64 literals, all allowlisted
 PASS  [info   ] phantom/app-footer-ground — background-color: rgb(246, 246, 246)

@@ -39,6 +39,17 @@ with sync_playwright() as p:
     check("AA rows rendered", pg.evaluate("document.querySelectorAll('.aa').length") >= 6)
     check("fonts loaded (300 body)", pg.evaluate("document.fonts.check('300 16px \"Source Sans Pro\"')"))
 
+    # explainer accordion
+    check("explainer starts collapsed", pg.evaluate("!document.querySelector('details.explainer').open"))
+    pg.click("details.explainer > summary")
+    pg.wait_for_timeout(150)
+    exp_txt = pg.evaluate("document.querySelector('details.explainer').innerText")
+    check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "machine-readable" in exp_txt and "Extraction" in exp_txt)
+    pg.screenshot(path=os.path.join(T, "_evidence", "screens", "audit2-explainer.png"))
+    pg.click("details.explainer > summary")
+    pg.wait_for_timeout(80)
+    check("explainer collapses back", pg.evaluate("!document.querySelector('details.explainer').open"))
+
     # --- the deployed language, as rendered by the app itself ---
     check("body ink is pink #ff6bbc", pg.evaluate("getComputedStyle(document.querySelector('#overview p')).color") == "rgb(255, 107, 188)")
     check("h1 is pink", pg.evaluate("getComputedStyle(document.querySelector('h1')).color") == "rgb(255, 107, 188)")

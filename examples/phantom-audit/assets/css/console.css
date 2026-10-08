@@ -136,3 +136,14 @@ p code { font-size: 0.85em; }
    override itself is canon (shared style block of the project pages). */
 body.alt-override { background: #fbfbfb; color: #000000; }
 body.alt-override a { color: #6bff2c; border-bottom-color: #20a3f5; }
+
+/* ---- explainer accordion (console kit) ---- */
+details.explainer { border-top: solid 2px #c9c9c9; border-bottom: solid 1px #c9c9c9; margin: 0 0 2em 0; }
+details.explainer > summary { cursor: pointer; list-style: none; font-size: 0.68em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; padding: 1.2em 0; }
+details.explainer > summary::-webkit-details-marker { display: none; }
+details.explainer > summary::before { content: "\25B8"; margin-right: 0.9em; }
+details.explainer[open] > summary::before { content: "\25BE"; }
+details.explainer > summary:hover { color: #f2849e; }
+details.explainer .expl-body { padding: 0 0 1.2em 0; }
+details.explainer .expl-body h3 { font-size: 0.7em; margin: 1.2em 0 0.5em 0; }
+details.explainer .expl-body p { font-size: 0.9em; margin: 0 0 0.8em 0; }
