@@ -1,4 +1,4 @@
-# 05 · Governance, versioning, and the 0.1.0 freeze
+# 05 · Governance, versioning, and the freezes
 
 ## 1 · The evolution loop (normative process)
 
@@ -32,6 +32,26 @@ MUST NOT be classified above the smallest rung that can close it.
 proposal one rung down the abstraction ladder. (Distinct from the consumer
 proposal verdicts `accept|reject|needs-info` of `04-interfaces.md`.)
 
+### Lenient adjudication (0.2)
+
+Owner doctrine, adopted with 0.2: **be lenient with denies.** Three rungs
+replace the blunt decline:
+
+| rung | when | what happens |
+|---|---|---|
+| **Candidate** | partial evidence; a direction exists but is not canon | recorded provisional (`candidates.json`, mandatory `promote_when`); NOT authority; promotion requires the named evidence, then proposal → owner verdict → codification |
+| **Undefined deferral** | insufficient evidence | the ask stays UNDEFINED; no negative precedent; improvise in character, mark it; a gap remains open |
+| **Decline** | grounded policy only (asset law, motion doctrine, prohibitions, off-grammar geometry) AND a sanctioned alternative exists | a precedent with `grounds`, scope domains, a mandatory **boundary**, and the try-list |
+
+Hard requirements (enforced by `tools/precedent_probe.py`): every precedent
+carries non-empty `grounds` + `scope.domains` + `scope.boundary`; every
+candidate carries `promote_when`. Reviewer rejections are owner decisions and
+are never re-classified by this leniency. Precedent matching is
+scope-verdict'd (`governs` | `outside` | `ambiguous`, see `03`), so a decline
+cannot silently cover asks outside its declared scope — the boundary makes
+each decline's edge explicit, and `outside` means *proceed as an ordinary
+marked improvisation*.
+
 ### Provenance requirements
 
 Every pack entry introduced or modified by the loop MUST carry a provenance
@@ -57,8 +77,8 @@ answer, from the pack alone: *why does this artifact exist?*
 
 | layer | example | changes when |
 |---|---|---|
-| **System** (this spec) | `0.1.0` | the frozen semantics/interfaces change |
-| **Format** (pack schema) | `0.1` | the data model changes (manifest `format_version`) |
+| **System** (this spec) | `0.2.0` | the frozen semantics/interfaces change |
+| **Format** (pack schema) | `0.1` | the data model changes (manifest `format_version`; 0.2 adds only optional additions under it) |
 | **Authority** (pack content) | `0.12.1` → `0.13.0-experiment` | content/governance releases |
 | **Snapshot** (reference system pin) | `e374f38` / v0.12.1 | never within one pack version |
 
@@ -66,11 +86,18 @@ Consumers MUST ignore unknown keys. A kernel SHOULD refuse packs whose
 `format_version` it does not support; a pack version is immutable once tagged
 or released — corrections ship as a new version.
 
-## 3 · The 0.1.0 freeze
+**Version history:** `0.1.0` — 2026-10-07, initial freeze. `0.2.0` —
+2026-10-08, first minor bump under the change-control rule (negative
+precedents + candidates, scope verdicts, lenient adjudication, tool-contract
+additions; justified in D-023).
 
-**Design Authority 0.1.0** is frozen by this declaration, effective
-2026-10-07, carried by the repository tag **`v0.1.0`** and the checksum
-manifest `docs/spec/freeze-0.1.0.sha256` (SHA-256 of every frozen file at the
+## 3 · The freezes
+
+### 3.1 · The 0.2.0 freeze (current)
+
+**Design Authority 0.2.0** is frozen by this declaration, effective
+2026-10-08, carried by the repository tag **`v0.2.0`** and the checksum
+manifest `docs/spec/freeze-0.2.0.sha256` (SHA-256 of every frozen file at the
 tagged commit).
 
 **Frozen surface:**
@@ -82,32 +109,65 @@ tagged commit).
 - `tools/build_pack_triage.py` (reference pack builder, incl. the provenance
   overlay semantics).
 
+**Changes from 0.1.0 (why this bump).** All are semantic additions under the
+change-control rule below:
+
+1. **Negative precedents** (`precedents.json`): policy declines with mandatory
+   grounds + scope + boundary, matched with scope verdicts
+   (`governs`/`outside`/`ambiguous`) and attached to resolutions and to
+   gap/proposal records (`precedent_warnings`).
+2. **Candidates** (`candidates.json`): provisional directions with a mandatory
+   `promote_when` evidence bar; attached to UNDEFINED resolutions
+   (`candidate_hints` on records); lifecycle in §1.
+3. **Lenient adjudication doctrine** (§1): declines reserved for grounded
+   policy; the incumbent decline set re-classified (recorded in
+   `docs/synthesis/16-lenient-adjudication.md`).
+4. **Tool-contract additions:** CLI `precedents` / `precedent-check` /
+   `candidates`; MCP `list_precedents` / `check_precedent` / `list_candidates`
+   (10 tools); validator `{pack}` substitution and the `lint-json` parser
+   name; MCP resources under the `authority://` scheme.
+
+Thresholds, pipeline order and the outcome taxonomy are **unchanged** from
+0.1.0.
+
 **Remains evolvable without a spec change:** pack contents and new packs;
 curation layers; new validators declared per pack; golden/convergence test
 additions; benchmark, experiments, and documentation; bug fixes that preserve
-the frozen semantics (patch releases `0.1.x`).
+the frozen semantics (patch releases `0.2.x`).
 
 **Change control:**
 
-- *Editorial* clarifications to this spec → patch release (`0.1.x`),
-  noted in the repo changelog.
+- *Editorial* clarifications to this spec → patch release (`0.2.x`), noted in
+  the repo changelog.
 - *Semantic* changes (pipeline order, thresholds, record formats, tool
-  contracts, governance taxonomies) → new minor version (`0.2`) justified in
-  the decision log (`docs/02-decisions.md`), with a fresh freeze and manifest.
+  contracts, governance taxonomies) → new minor version, justified in the
+  decision log (`docs/02-decisions.md`), with a fresh freeze and manifest.
+  (The 0.1.0 → 0.2.0 bump is the first application of this rule — D-023.)
 - The frozen reference implementation MUST keep passing the conformance
-  evidence of `00-index.md` (unit tests, golden suites, convergence battery)
-  for as long as the freeze is claimed.
+  evidence of `00-index.md` (unit tests, golden suites, convergence battery,
+  precedent probe, MCP smoke) for as long as the freeze is claimed.
 
-**Evidence base (informative):** the freeze crowns two completed experiments —
-the A/B/C authority benchmark (`docs/08`–`docs/10`) and the authority-evolution
-loop (`docs/evolution/00`–`06`), which produced the reference 0.13-experiment
-pack with provenance intact.
+**Evidence base (informative):** the freeze crowns four completed episodes —
+the A/B/C authority benchmark (`docs/08`–`docs/10`), the authority-evolution
+loop (`docs/evolution/`), the second-authority portability spike
+(`docs/portability/` — Ubuntu "Indaba", PORTABLE-WITH-GENERIC-CHANGES on the
+unmodified kernel, one additive kernel change, KCL-001), and the authority
+synthesis experiment (`docs/synthesis/` — three candidate authorities, Gates
+1–2 reviewed in-browser, Cadence stress v1–v3, adjudication + codification).
+The post-freeze record is consolidated in `docs/11-consolidation-since-0.1.0.md`.
 
-## 4 · Non-goals for 0.1
+### 3.2 · The 0.1.0 freeze (historical)
+
+**Design Authority 0.1.0** was frozen 2026-10-07, carried by tag `v0.1.0` and
+the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.1. It
+was superseded by 0.2.0 on 2026-10-08. The 0.1.0 manifest preserves the exact
+frozen bytes of that release.
+
+## 4 · Non-goals (0.1–0.2)
 
 Explicitly out of scope: public catalogue/marketplace; authority authoring
 studios or GUIs; Figma or design-tool integrations; multi-user collaboration;
 generic Git governance UI; site reverse engineering; authority inheritance;
 theme swapping; organisation/RBAC models; multi-authority arbitration; a
 universal design ontology. These MAY be proposed in future versions; they MUST
-NOT be silently folded into 0.1 semantics.
+NOT be silently folded into 0.1 or 0.2 semantics.

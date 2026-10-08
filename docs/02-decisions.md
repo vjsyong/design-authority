@@ -152,3 +152,34 @@ before the condition mapping was unsealed; scores archived at
 `benchmark/runs/_gallery-mapping-SEALED.json`. Condition totals (of 25):
 A 10/18/17 · B 22/19/23 · C 25/21/19. Full analysis in
 `docs/09-final-synthesis.md`.
+
+## D-022 · Post-0.1.0 consolidation compiled (2026-10-08)
+
+Everything after the freeze is gathered in
+`docs/11-consolidation-since-0.1.0.md` (53 commits + the uncommitted
+review-window tail — portability · synthesis Gates 1–2 · Cadence stress
+v1–v3 · adjudication + codification · lenient doctrine · decision-review
+window). Flagged for owner ruling: the frozen surface has drifted — 6/16
+manifest files (all kernel, +731/−13) carry post-freeze semantic deltas
+including tool contracts (`precedent-check` · `precedents` · `candidates` ·
+`check_precedent` · `list_candidates`) and record-format extensions; per
+`docs/spec/05` these want a 0.2 bump + fresh freeze (the conformance battery
+is green either way). Recommendation: schedule the 0.2 freeze; alternative:
+a logged editorial waiver.
+
+## D-023 · Freeze Design Authority 0.2.0 (2026-10-08)
+
+Owner ruling: *"formalise everything now as 0.2."* Executed the §3 freeze
+procedure of `docs/spec/05`: the spec set was updated to document the
+post-freeze semantics — negative precedents + candidates as optional
+format-0.1 records · precedent scope verdicts `governs`/`outside`/`ambiguous`
+· the lenient adjudication doctrine · tool-contract additions (CLI
+`precedents` / `precedent-check` / `candidates`; MCP `list_precedents` /
+`check_precedent` / `list_candidates` — 10 tools; validator `{pack}`
+substitution + `lint-json` parser name; `authority://` resources; record
+`precedent_warnings` / `candidate_hints`). VERSION → `0.2.0`; fresh manifest
+`docs/spec/freeze-0.2.0.sha256`; tag `v0.2.0`. Conformance at freeze: kernel
+17/17 · triage goldens 19/19 · evolution 23/23 · synthesis 18/18 · 14/14 ·
+17/17 · convergence battery 34/34 · precedent probe 31/31 · MCP smoke 20/20.
+Thresholds, pipeline order and the outcome taxonomy are unchanged between
+0.1.0 and 0.2.0; the 0.1.0 frozen bytes remain in `freeze-0.1.0.sha256`.

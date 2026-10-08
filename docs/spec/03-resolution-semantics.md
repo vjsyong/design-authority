@@ -1,9 +1,9 @@
 # 03 · Resolution semantics
 
 Normative algorithm of `resolve(pack, problem, context)`. Thresholds and
-ordering are **frozen** in 0.1. The kernel MUST be deterministic: no network,
-no time/locale dependence, stable ordering, and every cited id validated
-against the pack before the answer is returned.
+ordering are **frozen** in 0.2 (unchanged from 0.1). The kernel MUST be
+deterministic: no network, no time/locale dependence, stable ordering, and
+every cited id validated against the pack before the answer is returned.
 
 ## Tokenization and stemming
 
@@ -39,11 +39,19 @@ Per entry, the index weights fields as follows (maximum weight wins per token):
 | fallback | title | 2.0 |
 | fallback | statement | 1.5 |
 | fallback | scope token | 2.5 |
+| precedent | title / request | 3.0 |
+| precedent | matches (vocabulary) | 4.5 |
+| precedent | reason / try | 1.5 / 1.0 |
+| candidate | title | 3.0 |
+| candidate | summary / request | 2.0 / 2.0 |
+| candidate | matches (vocabulary) | 4.0 |
 
 `score = Σ token weights + 5.0 × (number of phrases whose all tokens occur in
 the query)`. Single-token phrases match only by exact query equality. Scores
 are rounded to 2 decimals; results sort by `(−score, id)` — **id is the tie
-breaker**, giving byte-stable output.
+breaker**, giving byte-stable output. Precedent and candidate entries are
+indexed and searchable (kind filters `precedent` / `candidate`); the RESOLVED
+stage excludes them from artifact hits.
 
 ## Outcome pipeline (evaluated strictly in order)
 
@@ -56,9 +64,9 @@ detection reason, and the manifest's `policy.on_conflict`. Stop.
 
 ### 2 · RESOLVED
 
-Search all entries (limit 8). **Artifact hits** exclude recipes, fallbacks and
-prohibitions. Let `a_best` be the top artifact hit and `runner` the second.
-RESOLVED requires:
+Search all entries (limit 8). **Artifact hits** exclude recipes, fallbacks,
+prohibitions, precedents and candidates. Let `a_best` be the top artifact hit
+and `runner` the second. RESOLVED requires:
 
 ```
 a_best.score >= DIRECT_MIN (6.5)  AND
@@ -94,6 +102,34 @@ Otherwise the outcome is UNDEFINED — a structured success. The answer carries:
 - `fallback_policy`: allowed fallbacks + the manifest's `policy.on_undefined`;
 - `next`: implement per policy, mark the improvisation, report a gap.
 
+## Precedent and candidate attachments (0.2)
+
+After the outcome is computed, two optional annotations attach. They NEVER
+change the outcome — they record the precedent guidance and provisional
+direction surrounding it.
+
+**Precedents** (`precedents`). Scope-aware matching runs over the problem
+text. A precedent matches when its `matches` vocabulary scores ≥1 under the
+alias rules (single tokens ≥4 authored characters, measured before stemming;
+multi-word entries only as phrases) OR when any `scope.boundary` entry hits by
+the same rules. The per-ask **scope verdict** is:
+
+- `outside` — boundary hits, no scope-domain hits: explicitly NOT governed;
+  proceed as an ordinary marked improvisation;
+- `ambiguous` — boundary and domain both hit: treat as improvisation unless a
+  human rules;
+- `governs` — otherwise (inside the decline's scope): may be treated as
+  declined; follow the try-list.
+
+Up to 2 precedents attach, ordered governs → ambiguous → outside, then by
+score, then by id, briefed as `{id, verdict, title, grounds, reason, try,
+boundary, citation?}`. Precedents are guidance, never a block.
+
+**Candidates** (`candidates`). Attached on UNDEFINED only: up to 2 matching
+candidates ordered by score then id, briefed as `{id, title, summary, status,
+promote_when, emerges_from?}`. A candidate is provisional — consumers may
+adopt it only as a marked starting point, never as canonical.
+
 ## Output shape
 
 All outcomes return: `outcome`, `problem`, `context` (echoed), `resolution`,
@@ -101,8 +137,9 @@ All outcomes return: `outcome`, `problem`, `context` (echoed), `resolution`,
 `evidence`, `authority` (`{authority, version, commit}` identity), and `next`
 guidance. `resolution` holds exactly one primary key: `artifact`, `recipe`
 (+`ingredients`), `fallback`, or `prohibition` (+`rule`, `detected`), except
-UNDEFINED which holds `closest` instead. Every id in an answer MUST exist in
-the pack.
+UNDEFINED which holds `closest` instead. Resolutions MAY additionally carry
+`precedents` and (on UNDEFINED) `candidates` attachment arrays. Every id in
+an answer MUST exist in the pack.
 
 ## Golden sets
 
@@ -110,7 +147,7 @@ the pack.
 cases and reports agreement (rate + per-row detail). Golden sets are
 conformance evidence, not part of the algorithm; they live with the pack.
 
-## Frozen constants (0.1)
+## Frozen constants (0.2)
 
 ```
 DIRECT_MIN    = 6.5   direct artifact hit threshold

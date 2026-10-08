@@ -39,6 +39,8 @@ rename them):
 | `recipes.json` | `recipes` | opt | sanctioned compositions |
 | `fallbacks.json` | `fallbacks` | opt | scoped fallbacks |
 | `prohibitions.json` | `prohibitions` | opt | explicit prohibitions |
+| `precedents.json` | `precedents` | opt | negative precedents — policy declines (0.2) |
+| `candidates.json` | `candidates` | opt | provisional directions — not authority (0.2) |
 | `validators.json` | `validators` | opt | declared validator commands |
 | `golden.json` | — | opt | golden set (conformance evidence) |
 | `BUILD.json` | — | opt | build receipt (volatile; excluded from drift checks) |
@@ -55,7 +57,7 @@ rename them):
 | `snapshot` | object | ✓ | `{repo, commit, branch, version, path_hint}` of the reference system |
 | `description` | string | opt | one-line purpose |
 | `kinds` | string[] | opt | declared artifact kinds |
-| `capabilities` | object | opt | `{search, resolve, validators[], gap_reporting, extension_proposals, resolution_assist}` — `resolution_assist` MUST be `"off"` in 0.1 |
+| `capabilities` | object | opt | `{search, resolve, validators[], gap_reporting, extension_proposals, resolution_assist}` — `resolution_assist` MUST be `"off"` in 0.1 and 0.2 |
 | `policy` | object | opt | `{on_undefined, on_conflict, proposals}` — human-readable policy strings surfaced with the respective outcomes |
 | `entrypoints` | object | opt | file overrides for the standard entrypoint names |
 
@@ -74,6 +76,7 @@ rename them):
 | `body` | object | opt | kind-specific payload: `class`, `states`, `verify`, `a11y`, `do`, `dont`, `quote`, `statement`, `group`, … |
 | `relations` | object | opt | links to other ids |
 | `source` | object | opt | `{repo, commit, path}` — where in the snapshot it comes from |
+| `compiled_from` | string[] | opt | decisions/proposals this entry was compiled from (e.g. `W-01`, `prop/…`) |
 | `provenance` | object | opt | provenance block (governance; see `05`) |
 
 Rules — `rules.json`: `{id, name, severity (error|warning|info), applies_to[],
@@ -94,13 +97,34 @@ signals_all[]?, detect?, rule?}`. `detect` supports `color_literal`; `signals`
 are substring-matched against the lowercased problem; `signals_all` entries
 are token-groups that must all be present.
 
+Negative precedents — `precedents.json`: `{id, kind: "precedent", title,
+request, matches[], decision, grounds, reason, scope{domains[], boundary[]},
+try[], citation?, provenance?}`. `grounds`, `scope.domains` and
+`scope.boundary` are required and MUST be non-empty — a decline without a
+boundary is invalid (enforced by `tools/precedent_probe.py`). `matches` is
+the retrieval vocabulary, matched with the same rules as aliases: single
+tokens count only at ≥4 characters (measured on the authored word, before
+stemming), multi-word entries match only as phrases (all their tokens present
+in the query). Precedent scopes are matched the same way and yield a **scope
+verdict** per ask — see `03-resolution-semantics.md`.
+
+Candidates — `candidates.json`: `{id, kind: "candidate", title, request,
+matches[], status: "candidate", summary, promote_when[], evidence_present?,
+emerges_from?, provenance?}`. `promote_when` (the evidence bar) is required
+and MUST be non-empty. Candidates are explicitly NOT authority; adoption and
+promotion rules are in `05-governance-and-freeze.md`.
+
 Validators — `validators.json`: `{name, title, kind, workdir, command[],
-parser, applies_to[], rules_source, notes}`; `{snapshot}` and `{target}` are
-substituted at run time (see `04-interfaces.md`).
+parser, applies_to[], rules_source, notes}`; `{snapshot}`, `{pack}` and
+`{target}` are substituted at run time, and the parser name `lint-json` is
+accepted (`triage-lint-json` remains accepted as its legacy alias) — see
+`04-interfaces.md`.
 
-## Provenance extension (format 0.1, additive)
+## Additive extensions of format 0.1
 
-`0.1` permits two additive extensions used by the governance process:
+`format_version` remains **`0.1`** by design: every extension below is an
+optional file or annotation, and 0.1-era packs load unchanged. Four additive
+extensions exist:
 
 1. **Provenance block** on any pack entry (usually attached by the pack
    builder from the curation overlay `curation/evolution.json`):
@@ -108,9 +132,15 @@ substituted at run time (see `04-interfaces.md`).
    source_commit, tests[]}`.
 2. **Release metadata** in `BUILD.json`: `release: {label, kind, experiment,
    based_on, source_branch, evidence, review}`.
+3. **Negative precedents** (`precedents.json`, 0.2): policy declines with
+   mandatory grounds + scope + boundary and a try-list; attached to
+   resolutions and warnings with scope verdicts, never changing an outcome.
+4. **Candidates** (`candidates.json`, 0.2): provisional directions with a
+   mandatory `promote_when` evidence bar; attached on UNDEFINED.
 
 Consumers MUST ignore unknown keys in pack files; they MUST NOT require
-provenance blocks for resolution.
+provenance blocks, precedent files, or candidate files for resolution — each
+extension is optional and degrades cleanly when absent.
 
 ## Build and drift
 
