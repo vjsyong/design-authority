@@ -1,0 +1,89 @@
+{
+ "build": "leader",
+ "authority": {
+  "pack": "packs/leader",
+  "version": "0.2.0"
+ },
+ "generated_at": "2026-10-08T17:07:39+00:00",
+ "checks": {
+  "external_references": 0,
+  "css_extracted": true,
+  "fonts_verified": {
+   "fonts/ArchivoBlack-Regular.ttf": {
+    "source": "docs/synthesis/leader/tile/fonts/ArchivoBlack-Regular.ttf",
+    "match": true
+   },
+   "fonts/Inter-VF.ttf": {
+    "source": "docs/synthesis/leader/tile/fonts/Inter-VF.ttf",
+    "match": true
+   },
+   "fonts/Gelasio-VF.ttf": {
+    "source": "docs/synthesis/leader/tile/fonts/Gelasio-VF.ttf",
+    "match": true
+   }
+  }
+ },
+ "files": [
+  {
+   "path": "audit.jsonl",
+   "sha256": "f7da1d1de4e6142ff23f5bda7b4f1b57a7536b732fde9d707b458d7b91c820b6",
+   "size": 59041,
+   "role": "machine-recorded authority call trace"
+  },
+  {
+   "path": "brief.md",
+   "sha256": "df3478fd0113ece0e063b86db122c429ee938e8b435648178333e44c300cbfac",
+   "size": 2259,
+   "role": "build brief"
+  },
+  {
+   "path": "index.html",
+   "sha256": "14737a4bcc31c506d7d8e00fd39f1d4c2735c74f9f5fc78933771a6a3f4cec7e",
+   "size": 15605,
+   "role": "page"
+  },
+  {
+   "path": "log.md",
+   "sha256": "fc60e498bf67f5f8c762f7217523aa7b3fd98fa006214ae5c234ffe5325bb130",
+   "size": 30662,
+   "role": "build log (agent, 1:1 with audit.jsonl)"
+  },
+  {
+   "path": "run-authority",
+   "sha256": "8c8eb36c2f2b22d7a005331067bc7812816c9ded2e6c47a3b193f8afa9e4393d",
+   "size": 1033,
+   "role": "audited runner (build-time tool)"
+  },
+  {
+   "path": "styles.css",
+   "sha256": "7e38f8c4bc588758c2630bb3db323fc323e19bddabe9fbae830ff9d6569a1c2d",
+   "size": 8799,
+   "role": "stylesheet"
+  },
+  {
+   "path": "fonts/ArchivoBlack-Regular.ttf",
+   "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+   "size": 90988,
+   "role": "brand font file"
+  },
+  {
+   "path": "fonts/Gelasio-VF.ttf",
+   "sha256": "4daecea457258c9ebeb8bc99ed3fd24353618bfad3ea4b93fa0b5d0468fc04e4",
+   "size": 168556,
+   "role": "brand font file"
+  },
+  {
+   "path": "fonts/Inter-VF.ttf",
+   "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+   "size": 876576,
+   "role": "brand font file"
+  },
+  {
+   "path": ".design-authority/gaps.jsonl",
+   "sha256": "cbf4c571d4c0c687e3b92151ddd87b420245be8ae17f873d0ab3ecf7b9101775",
+   "size": 1915,
+   "role": "gap store (filed gaps)"
+  }
+ ],
+ "verify": "python3 tools/archive_authority_assets.py --verify leader"
+}

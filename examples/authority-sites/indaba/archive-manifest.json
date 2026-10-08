@@ -1,0 +1,58 @@
+{
+ "build": "indaba",
+ "authority": {
+  "pack": "packs/indaba",
+  "version": "0.1.0"
+ },
+ "generated_at": "2026-10-08T17:07:39+00:00",
+ "checks": {
+  "external_references": 0,
+  "css_extracted": true,
+  "fonts_verified": {}
+ },
+ "files": [
+  {
+   "path": "audit.jsonl",
+   "sha256": "7323866f1d482d8b033adf62ddb1ebd4995379296eacc1a4b853e31ddcd275fb",
+   "size": 75235,
+   "role": "machine-recorded authority call trace"
+  },
+  {
+   "path": "brief.md",
+   "sha256": "931327d447f25d720d9f797df5764177de077f25471cd219cc037274f06f3c24",
+   "size": 2265,
+   "role": "build brief"
+  },
+  {
+   "path": "index.html",
+   "sha256": "004d9206a10f1593fd2ca7b36e62a7ed717337c53d9c84ef573120ad078ee76f",
+   "size": 17733,
+   "role": "page"
+  },
+  {
+   "path": "log.md",
+   "sha256": "6e40af137226d2a13d582195fca9c45bd1c62a8cac8bebca140c9812bd5c5301",
+   "size": 56176,
+   "role": "build log (agent, 1:1 with audit.jsonl)"
+  },
+  {
+   "path": "run-authority",
+   "sha256": "15ae6227c5f323dc71dba9e4f7e217b5f8dde2e82a84ac5aad90f501dd4189de",
+   "size": 1033,
+   "role": "audited runner (build-time tool)"
+  },
+  {
+   "path": "styles.css",
+   "sha256": "4893438c30b1265c892a459bbdb0baf214b3dbc6af57648331b26d4d2a053f4a",
+   "size": 5486,
+   "role": "stylesheet"
+  },
+  {
+   "path": ".design-authority/gaps.jsonl",
+   "sha256": "a23e332fddfe93a507a1e7a7b115e390113caf7bbf0f88faa93b3632bcfb8a1a",
+   "size": 1726,
+   "role": "gap store (filed gaps)"
+  }
+ ],
+ "verify": "python3 tools/archive_authority_assets.py --verify indaba"
+}

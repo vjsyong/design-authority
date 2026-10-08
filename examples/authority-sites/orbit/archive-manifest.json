@@ -1,0 +1,58 @@
+{
+ "build": "orbit",
+ "authority": {
+  "pack": "packs/orbit",
+  "version": "0.1.0"
+ },
+ "generated_at": "2026-10-08T17:07:39+00:00",
+ "checks": {
+  "external_references": 0,
+  "css_extracted": true,
+  "fonts_verified": {}
+ },
+ "files": [
+  {
+   "path": "audit.jsonl",
+   "sha256": "1fb633c5722cb391d500402a7f12764e01378206897e887554ca122d8e2e1615",
+   "size": 39692,
+   "role": "machine-recorded authority call trace"
+  },
+  {
+   "path": "brief.md",
+   "sha256": "6c6d5d4122ee3d9de24070f140025c0a5e64af62a18d27ae8bd73950e5a46041",
+   "size": 2289,
+   "role": "build brief"
+  },
+  {
+   "path": "index.html",
+   "sha256": "6d9adf3a0688e52d7ab310742371d92ecddb62ba8f93e14db23adb3f5d904d15",
+   "size": 22294,
+   "role": "page"
+  },
+  {
+   "path": "log.md",
+   "sha256": "f8a8dc335ddbaef6b6dd2c425b148ac4eb9582bef9fb455683d2f4ca901a2855",
+   "size": 30455,
+   "role": "build log (agent, 1:1 with audit.jsonl)"
+  },
+  {
+   "path": "run-authority",
+   "sha256": "6820fc2e2533a95ee5a1699172b423a35f6b1aedfab2d557659949a5ae69a950",
+   "size": 1030,
+   "role": "audited runner (build-time tool)"
+  },
+  {
+   "path": "styles.css",
+   "sha256": "2d744b18b1a461cf2108283382271b69c077dc4bc4440cdf86149666a8cefa3a",
+   "size": 6631,
+   "role": "stylesheet"
+  },
+  {
+   "path": ".design-authority/gaps.jsonl",
+   "sha256": "ff3c62d888d6c0eede993dbc2a678d354beab2346dce31b9d601e2be7f5892b7",
+   "size": 1576,
+   "role": "gap store (filed gaps)"
+  }
+ ],
+ "verify": "python3 tools/archive_authority_assets.py --verify orbit"
+}

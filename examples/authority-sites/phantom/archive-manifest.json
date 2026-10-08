@@ -1,0 +1,89 @@
+{
+ "build": "phantom",
+ "authority": {
+  "pack": "packs/phantom",
+  "version": "0.2.0"
+ },
+ "generated_at": "2026-10-08T17:07:39+00:00",
+ "checks": {
+  "external_references": 0,
+  "css_extracted": true,
+  "fonts_verified": {
+   "source-sans-pro-700-latin.woff2": {
+    "source": "examples/phantom-audit/assets/fonts/source-sans-pro-700-latin.woff2",
+    "match": true
+   },
+   "source-sans-pro-300-latin.woff2": {
+    "source": "examples/phantom-audit/assets/fonts/source-sans-pro-300-latin.woff2",
+    "match": true
+   },
+   "source-sans-pro-900-latin.woff2": {
+    "source": "examples/phantom-audit/assets/fonts/source-sans-pro-900-latin.woff2",
+    "match": true
+   }
+  }
+ },
+ "files": [
+  {
+   "path": "audit.jsonl",
+   "sha256": "80a3ab40fc318868ebea512783fd3e9512a717bbbfc821b296b9d6ce69cbf417",
+   "size": 91708,
+   "role": "machine-recorded authority call trace"
+  },
+  {
+   "path": "brief.md",
+   "sha256": "480a1d1e37f09ad02bdfb5b1b4335a8bd567827cf3b38f67449335a50cb1707e",
+   "size": 2276,
+   "role": "build brief"
+  },
+  {
+   "path": "index.html",
+   "sha256": "f10e23f46feaa9de4f472244b59a19f5b881d84bfa8700dd7ad984076e2d2212",
+   "size": 28692,
+   "role": "page"
+  },
+  {
+   "path": "log.md",
+   "sha256": "fb51b6ca4707501473d7deca479beb778e3068ecb6cdd3e4985a945cf24fdd86",
+   "size": 22753,
+   "role": "build log (agent, 1:1 with audit.jsonl)"
+  },
+  {
+   "path": "run-authority",
+   "sha256": "e0ee73c745af26bef96d73d0532a35bc0e02689a1a5287464b01b51490f63a55",
+   "size": 1036,
+   "role": "audited runner (build-time tool)"
+  },
+  {
+   "path": "source-sans-pro-300-latin.woff2",
+   "sha256": "a327a082ad3f8b9d4691d019a8a825df5951f9e0b6fa3e416e711dbe7574dfd4",
+   "size": 14692,
+   "role": "brand font file"
+  },
+  {
+   "path": "source-sans-pro-700-latin.woff2",
+   "sha256": "45c6a51457cd1a536fcbf11d51ecdc225daf9635073cf6bc95381f57e87f6f46",
+   "size": 14628,
+   "role": "brand font file"
+  },
+  {
+   "path": "source-sans-pro-900-latin.woff2",
+   "sha256": "2eaf3ae2fe28e9aa1d369cd338e08c60809e9e99a9ce935e8cc7fc0fe3550f39",
+   "size": 14092,
+   "role": "brand font file"
+  },
+  {
+   "path": "styles.css",
+   "sha256": "6e84edba12d66d46a70b4e0a07f40eb983dd853c2beda5e925925a556b6f9948",
+   "size": 10182,
+   "role": "stylesheet"
+  },
+  {
+   "path": ".design-authority/gaps.jsonl",
+   "sha256": "eda32cd8002b1e31692e8aa1594bfcc80523e8e9c5b307e92cb35369919af5e4",
+   "size": 1277,
+   "role": "gap store (filed gaps)"
+  }
+ ],
+ "verify": "python3 tools/archive_authority_assets.py --verify phantom"
+}

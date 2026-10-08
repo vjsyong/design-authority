@@ -1,0 +1,153 @@
+/* styles.css - extracted verbatim from index.html by
+   tools/archive_authority_assets.py so the stylesheet is an
+   auditable artifact (see archive-manifest.json). */
+
+/* ============================================================
+   TYPE — guideline/typography (W-04) + token-set/type-scale (W-05)
+   Two registers: soft-serif display for hero/section headlines (italic
+   emphasis fragment allowed); grotesque sans for everything else.
+   Scale: display 48–64px w400 tight tracking (−1.2px at 64);
+   section 35px/1.0; body 16/1.35; small 14; labels/buttons 13/500.
+   ============================================================ */
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-Italic-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* ============================================================
+   COLOUR — token-set/colour (W-06), quoted exactly:
+   yellow = brand field + primary action only; peppercorn = text, ink,
+   shadow tint; white + Parsnip = surfaces; #BF4055 = error text/fills
+   (Kale and Ochre are recorded for roles this page does not use).
+   ============================================================ */
+:root{
+  --yellow:#FFE01B;      /* Cavendish Yellow — brand field + primary action only */
+  --ink:#231E15;         /* Peppercorn — text, ink, shadow tint (ring + rgba(35,30,21)) */
+  --white:#FFFFFF;       /* surfaces */
+  --hairline:#DEDDDC;    /* 1px borders on inputs/dividers only, never as card devices */
+  /* Parsnip tint — CONSTRUCTED, hex unrecorded: the recorded warm ink tint
+     mechanism (rgba(35,30,21,.2) shadow / .35 scrim) at low alpha.
+     gap/20261008-165711-89f9be */
+  --parsnip:rgba(35,30,21,.05);
+  /* component/card (W-07) — elevation via warm ink-tinted shadow */
+  --cardshadow:rgba(35,30,21,.2) 0 8px 32px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  margin:0;
+  background:var(--white);
+  color:var(--ink);
+  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.35;font-weight:400;
+}
+/* page shell width: conventional single-column document measure — page-level
+   composition is unrecorded in the pack (gap/20261008-165711-5f8d96) */
+.wrap{max-width:1140px;margin-inline:auto;padding-inline:24px}
+
+a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+/* focus must not rely on colour alone (component/action-pill a11y note); the
+   2px ink inset is the system's own outline weight (secondary outline pill) */
+
+/* ============================================================
+   TOP BAR — component/navbar (W-11): white background; dark links; hover =
+   light-grey rounded-rect fill; primary CTA at right end; must stay
+   single-row (no wrapping).
+   ============================================================ */
+.topbar{background:var(--white)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px;flex-wrap:nowrap;white-space:nowrap}
+.brand{font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0}
+.topbar-right{display:flex;align-items:center;gap:4px;flex-wrap:nowrap}
+.navlinks{list-style:none;display:flex;gap:4px;margin:0;padding:0}
+.navlinks a{display:inline-block;padding:8px 12px;font-size:13px;font-weight:500;text-decoration:none;border-radius:12px}
+/* hover fill: "light-grey rounded-rect fill" per the record; the warm tint is a
+   construction (--parsnip) and the rect radius takes the field's recorded 12px */
+.navlinks a:hover{background:var(--parsnip)}
+
+/* CTA — component/action-pill (W-01..03): pill, Cavendish Yellow #FFE01B fill,
+   1px ink ring (box-shadow 0 0 0 1px #231E15), label in Peppercorn ink;
+   hover: translateY(-4.875px) + hard ink shadow 0 4.875px 0 0 (zero blur).
+   Padding 12px/20px is a construction (unrecorded). */
+.cta{display:inline-block;background:var(--yellow);color:var(--ink);border-radius:999px;
+  box-shadow:0 0 0 1px var(--ink);padding:12px 20px;font-size:13px;font-weight:500;
+  line-height:1;text-decoration:none}
+.cta:hover{transform:translateY(-4.875px);box-shadow:0 0 0 1px var(--ink),0 4.875px 0 0 var(--ink)}
+.cta-short{display:none}
+
+/* ============================================================
+   MASTHEAD — yellow is recorded as the brand field (token-set/colour);
+   structural chrome (page blocks) is square (guideline/shape-language, W-08).
+   ============================================================ */
+.masthead{background:var(--yellow)}
+.masthead .wrap{padding-block:64px 56px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:clamp(48px,7vw,64px);
+  line-height:1.0;letter-spacing:-0.019em;margin:0 0 20px;max-width:22ch} /* tight tracking, −1.2px at 64 */
+h1 em{font-style:italic} /* italic emphasis fragment allowed inside a headline (W-04) */
+.meta{font-size:14px;margin:0 0 16px}
+.lede{font-size:16px;margin:0;max-width:58ch}
+
+/* ============================================================
+   SECTIONS — guideline/hierarchy (W-10): one page title; sections = small
+   uppercase label → display headline → 1–2 sentence paragraph.
+   ============================================================ */
+.sect{margin-top:96px}
+.slabel{font-size:13px;font-weight:500;text-transform:uppercase;margin:0 0 8px}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:35px;line-height:1.0;margin:0 0 16px}
+.sint{font-size:16px;margin:0 0 48px;max-width:64ch}
+.glabel{font-size:13px;font-weight:500;text-transform:uppercase;margin:48px 0 16px;
+  padding-bottom:12px;border-bottom:1px solid var(--hairline)} /* dividers carry the 1px #DEDDDC */
+
+/* ============================================================
+   CATALOGUE CARDS — component/card (W-07): white, borderless, radius 16,
+   elevation via warm ink-tinted shadow rgba(35,30,21,.2) 0 8px 32px;
+   interior padding 48. Never a border on a card device.
+   ============================================================ */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.card{background:var(--white);border-radius:16px;box-shadow:var(--cardshadow);padding:48px;border:0}
+.rid{font-size:13px;font-weight:500;margin:0 0 6px;overflow-wrap:break-word}
+.card h4{font-size:16px;font-weight:500;margin:0 0 8px}
+.csum{font-size:14px;margin:0}
+
+/* ============================================================
+   SPECIFICATION LEDGER — component/ledger (W-20): white surface, 16px
+   padded rows, hairline #DEDDDC dividers (no zebra striping), header row in
+   Parsnip with 13/500 labels; row hover = Parsnip tint; links ink w/ underline.
+   ============================================================ */
+.ledger{width:100%;border-collapse:collapse}
+.ledger th{background:var(--parsnip);text-align:start;font-size:13px;font-weight:500;
+  padding:16px;border:0}
+.ledger td{padding:16px;border-top:1px solid var(--hairline);vertical-align:top;
+  font-size:14px;overflow-wrap:break-word}
+.ledger tbody tr:hover td{background:var(--parsnip)} /* no zebra striping — only the hover tint */
+.ledger .rid{font-size:13px;font-weight:500;margin:0}
+.ledger .kind{font-size:13px;font-weight:500;margin:0}
+.ledger .fix{display:block;margin-top:8px;font-size:13px;font-weight:500}
+.tablenote{margin-top:16px}
+.small{font-size:14px}
+
+/* ============================================================
+   FOOTER — unrecorded page furniture: built from the nearest recorded pieces
+   (type/colour + a 1px divider); improvisation, marked. See footer data-improv.
+   ============================================================ */
+.colophon{border-top:1px solid var(--hairline);margin-top:96px}
+.colophon .wrap{padding-block:24px 48px}
+.colophon p{margin:0 0 8px}
+
+/* ---- narrow screens (unrecorded responsive behaviour; improvisation,
+   gap/20261008-165711-5f8d96): the top bar must stay single-row, so the brand
+   compacts and the CTA label shortens; grids stack to one column ---- */
+@media (max-width:920px){
+  .brand-long{display:none}
+}
+@media (max-width:760px){
+  .wrap{padding-inline:16px}
+  .masthead .wrap{padding-block:48px 40px}
+  .sect{margin-top:64px}
+  .card{padding:32px} /* recorded padding 48 scales down (improvisation) */
+  .colophon{margin-top:64px}
+}
+@media (max-width:640px){
+  .cta-long{display:none}
+  .cta-short{display:inline}
+}

@@ -115,6 +115,15 @@ pack update is visible without hand edits.**
   2-3 gaps each; pages reviewed at desktop. The earlier variable-override
   retheme (S1c) stands only as the generated records view; these builds are
   the authority-conformant sites.
+- **S1e · Static-asset archives — DONE (2026-10-08).** Every authority
+  build's CSS is extracted to a first-class `styles.css` (linked from the
+  page) and each build carries `archive-manifest.json` + `MANIFEST.md`:
+  sha256 of every file (page, stylesheet, fonts, log, audit.jsonl, gap
+  store) with roles, font provenance (byte-identical checks against known
+  sources), and the external-reference count. Tool:
+  `tools/archive_authority_assets.py` (idempotent; `--verify NAME` re-hashes
+  and compares). Manifests serve alongside the builds under
+  `/authorities/<name>/site/`.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,

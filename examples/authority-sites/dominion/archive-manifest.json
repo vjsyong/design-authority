@@ -1,0 +1,69 @@
+{
+ "build": "dominion",
+ "authority": {
+  "pack": "packs/dominion",
+  "version": "0.2.0"
+ },
+ "generated_at": "2026-10-08T17:07:39+00:00",
+ "checks": {
+  "external_references": 0,
+  "css_extracted": true,
+  "fonts_verified": {
+   "fonts/Arimo-VF.ttf": {
+    "source": "docs/synthesis/dominion/tile/fonts/Arimo-VF.ttf",
+    "match": true
+   }
+  }
+ },
+ "files": [
+  {
+   "path": "audit.jsonl",
+   "sha256": "7d48d3ccc4215654c09016c461766fa314ada3f8a925dbf8847f943a6155db21",
+   "size": 45467,
+   "role": "machine-recorded authority call trace"
+  },
+  {
+   "path": "brief.md",
+   "sha256": "5dc7fad11d7f981bf5b17aea6e705ed3022698e2661ffe60546dad5e6cf4edd3",
+   "size": 2223,
+   "role": "build brief"
+  },
+  {
+   "path": "index.html",
+   "sha256": "bd3f456889a23970cb70cc8d3ae22b524c01bcdb40e522cc3c7c0552f4a58a55",
+   "size": 17186,
+   "role": "page"
+  },
+  {
+   "path": "log.md",
+   "sha256": "948345edc036543f17e286ec6c73f7ff20aa864bb00b2bd2f455535d9a05f81d",
+   "size": 33797,
+   "role": "build log (agent, 1:1 with audit.jsonl)"
+  },
+  {
+   "path": "run-authority",
+   "sha256": "e22276930fe7da678132c1079db53d198ad657489c1e0930f2cc84f73cebeeba",
+   "size": 1039,
+   "role": "audited runner (build-time tool)"
+  },
+  {
+   "path": "styles.css",
+   "sha256": "847fd3102d51359e3833372593a83e3ed89b43a890073b101df897598a349f03",
+   "size": 9482,
+   "role": "stylesheet"
+  },
+  {
+   "path": "fonts/Arimo-VF.ttf",
+   "sha256": "e43898b143ec826ac8cb4034816458a7047fbe0836558de2a1f8c6223ae3e0ca",
+   "size": 496268,
+   "role": "brand font file"
+  },
+  {
+   "path": ".design-authority/gaps.jsonl",
+   "sha256": "ff7688dd4c575f0d4829ee9163df2c07bd829fdac40e608ba44279ff964f6f5f",
+   "size": 2441,
+   "role": "gap store (filed gaps)"
+  }
+ ],
+ "verify": "python3 tools/archive_authority_assets.py --verify dominion"
+}
