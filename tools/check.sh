@@ -24,4 +24,10 @@ else
 fi
 echo "== concept-site gate (designauthority.seanyong.xyz)"
 python3 tools/check_concept_site.py
+echo "== semantic self-test (optional extras)"
+if [ -x .venv/bin/python ] && .venv/bin/python -c "import fastembed" 2>/dev/null; then
+  .venv/bin/python tools/sem_selftest.py | tail -1
+else
+  echo "skip: semantic extras not installed (pip install fastembed numpy)"
+fi
 echo "gates: OK"

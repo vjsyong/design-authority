@@ -1,0 +1,245 @@
+{
+ "note": "D3 per-case detail (recomputed deterministically; probe cases flagged)",
+ "cases": [
+  {
+   "query": "the control people press to send a completed form",
+   "want": "component/btn",
+   "probe": true,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "let someone flip a single preference on or off right away",
+   "want": "component/px-sw",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "a small marker showing whether a nightly job finished well",
+   "want": "component/dot",
+   "probe": true,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "a bar that keeps warning you about changes you have not saved yet",
+   "want": "component/savebar",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "RESOLVED",
+   "resolved_id": "component/savebar",
+   "rescue": false
+  },
+  {
+   "query": "the screen shown when a query returns nothing",
+   "want": "component/empty",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "confirm before a record is wiped for good",
+   "want": "component/arm-del",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "grey blocks in place of numbers while data is loading",
+   "want": "component/skeleton",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "a tiny explainer that appears when hovering over an element",
+   "want": "component/tip",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "who changed what and when, listed chronologically",
+   "want": "component/audit-row",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "a compact number tile at the top of a metrics page",
+   "want": "component/stat",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "RESOLVED",
+   "resolved_id": "component/stat",
+   "rescue": false
+  },
+  {
+   "query": "suggests matching entries while someone types into a text box",
+   "want": "component/cb",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "a placeholder for somebody's profile picture",
+   "want": "component/avatar-sq",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "the rail tracking where you are in a multi-step flow",
+   "want": "pattern/learning",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "the container around each turn in a chat",
+   "want": "component/bubble",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "RESOLVED",
+   "resolved_id": "component/bubble",
+   "rescue": false
+  },
+  {
+   "query": "a panel sliding in from the edge with a record's details",
+   "want": "component/sheet-end",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "RESOLVED",
+   "resolved_id": "pattern/viewer",
+   "rescue": false
+  },
+  {
+   "query": "the mobile bar with the screen title and back affordance",
+   "want": "component/topbar",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "compare two versions of a file line by line",
+   "want": "component/diff",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "show which keys to press next to a menu entry",
+   "want": "component/kbd",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "drag a file from the desktop to attach it",
+   "want": "component/drop",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "a meter that fills while an upload is running",
+   "want": "component/progress",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "a small label showing a record's state such as Draft",
+   "want": "component/badge",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "RESOLVED",
+   "resolved_id": "guideline/voice",
+   "rescue": false
+  },
+  {
+   "query": "a quick overlay for jumping to any screen from the keyboard",
+   "want": "component/cmd",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": false
+  },
+  {
+   "query": "a three-way selector for switching between list views",
+   "want": "component/seg",
+   "probe": false,
+   "e0_top3": true,
+   "e2_top3": true,
+   "outcome": "UNDEFINED",
+   "resolved_id": null,
+   "rescue": true
+  },
+  {
+   "query": "the chevron that reveals actions for a single row",
+   "want": "component/menu-pop",
+   "probe": false,
+   "e0_top3": false,
+   "e2_top3": false,
+   "outcome": "RESOLVED",
+   "resolved_id": "component/menu-item",
+   "rescue": false
+  }
+ ]
+}

@@ -57,7 +57,7 @@ rename them):
 | `snapshot` | object | ✓ | `{repo, commit, branch, version, path_hint}` of the reference system |
 | `description` | string | opt | one-line purpose |
 | `kinds` | string[] | opt | declared artifact kinds |
-| `capabilities` | object | opt | `{search, resolve, validators[], gap_reporting, extension_proposals, resolution_assist}` — `resolution_assist` MUST be `"off"` in 0.1 and 0.2 |
+| `capabilities` | object | opt | `{search, resolve, validators[], gap_reporting, extension_proposals, resolution_assist}` — `resolution_assist` MUST be `"off"` in 0.1 and 0.2; from 0.4 a consumer MAY enable the optional retrieval assist per session (value `"optional"`), off by default, never changing outcome classes (see `03`, Retrieval assist) |
 | `policy` | object | opt | `{on_undefined, on_conflict, proposals}` — human-readable policy strings surfaced with the respective outcomes |
 | `entrypoints` | object | opt | file overrides for the standard entrypoint names |
 

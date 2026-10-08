@@ -1,10 +1,12 @@
-# Design Authority — Specification, version 0.3
+# Design Authority — Specification, version 0.4
 
-**Status: FROZEN.** This document set declares **Design Authority 0.3.0**
-(repository tag `v0.3.0`). It supersedes **0.2.0** (tag `v0.2.0`, frozen
-2026-10-08) and **0.1.0** (tag `v0.1.0`, frozen 2026-10-07); the changes
+**Status: FROZEN.** This document set declares **Design Authority 0.4.0**
+(repository tag `v0.4.0`). It supersedes **0.3.0** (tag `v0.3.0`, frozen
+2026-10-08), **0.2.0** (tag `v0.2.0`, frozen 2026-10-08) and **0.1.0**
+(tag `v0.1.0`, frozen 2026-10-07); the changes
 between each pair of freezes are recorded in `05-governance-and-freeze.md` §3
-and justified in the decision log (`docs/02-decisions.md`, D-023, D-024). The
+and justified in the decision log (`docs/02-decisions.md`, D-023, D-024,
+D-025). The
 semantics defined here are the normative contract; changes follow the
 change-control rules in `05-governance-and-freeze.md`.
 
@@ -51,7 +53,8 @@ only as a **pack**.
 | `03-resolution-semantics.md` | the resolution pipeline, scoring, outcomes, determinism |
 | `04-interfaces.md` | MCP tools, CLI, records, validator runner |
 | `05-governance-and-freeze.md` | the evolution process, versioning, the freeze declarations |
-| `freeze-0.3.0.sha256` | SHA-256 of every file in the frozen surface at tag `v0.3.0` (current) |
+| `freeze-0.4.0.sha256` | SHA-256 of every file in the frozen surface at tag `v0.4.0` (current) |
+| `freeze-0.3.0.sha256` | the same manifest for tag `v0.3.0` (historical) |
 | `freeze-0.2.0.sha256` | the same manifest for tag `v0.2.0` (historical) |
 | `freeze-0.1.0.sha256` | the same manifest for tag `v0.1.0` (historical) |
 

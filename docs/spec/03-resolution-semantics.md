@@ -171,3 +171,27 @@ DIRECT_MARGIN = 2.0   lead over the runner-up required for RESOLVED
 COMPOSE_MIN   = 5.0   recipe threshold for COMPOSE
 PHRASE_BONUS  = 5.0   per fully-matched phrase
 ```
+
+## Retrieval assist (0.4, optional)
+
+0.4 adds an OPTIONAL retrieval-side assist. It is off by default and it never
+establishes authority.
+
+- `discover` (CLI) and `discover_candidates` (MCP) return candidate ids from a
+  fused retrieval index (SQLite FTS5 BM25 + a local embedding model, RRF
+  fusion). Candidates carry retrieval evidence only (ranks, similarity,
+  fusion score). They are NOT outcomes: a similarity of 0.9 means "inspect
+  this candidate", never RESOLVED.
+- `resolve --assist semantic` attaches a `retrieval_assist` block when the
+  outcome is UNDEFINED. The block carries the same retrieval candidates and
+  an inspect-first note. The outcome, its class, its evidence and every
+  citation are computed exactly as without the assist; enabling the assist
+  MUST NOT change outcome classes (verified end-to-end in
+  `docs/experiments/01-semantic-retrieval.md`).
+- The assist searches canonical records by default; precedents and candidates
+  are searched separately (`--class history`) and are never binding.
+- The index is derived data: rebuilt from the pack, keyed by pack version and
+  content hash, stored in the consumer's cache, never in the pack. The kernel
+  itself stays stdlib-only; the assist requires optional extras (`fastembed`,
+  `numpy`), and every lexical surface is unchanged without them.
+

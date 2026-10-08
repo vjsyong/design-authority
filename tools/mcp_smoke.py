@@ -179,6 +179,19 @@ def main():
         check("list_candidates", lc.get("status") == "ok"
               and lc.get("count") == 5, "count=%s" % lc.get("count"))
 
+        # optional semantic layer — must degrade cleanly when unavailable
+        d = call(proc, "discover_candidates", {"query": "a small status marker"}, 25)
+        check("discover_candidates retrieval-only envelope",
+              d.get("status") in ("ok", "unavailable")
+              and ("note" in d or "detail" in d), d.get("status"))
+        ra = call(proc, "resolve_design_problem",
+                  {"problem": "add a carousel of screenshots to the homepage",
+                   "assist": "semantic"}, 26)
+        check("resolve assist never changes the outcome",
+              ra["outcome"] == "UNDEFINED"
+              and (ra.get("retrieval_assist") or {}).get("status") in ("ok", "unavailable"),
+              (ra.get("retrieval_assist") or {}).get("status"))
+
         # resource
         send(proc, {"jsonrpc": "2.0", "id": 24, "method": "resources/read",
                     "params": {"uri": "authority://overview"}})

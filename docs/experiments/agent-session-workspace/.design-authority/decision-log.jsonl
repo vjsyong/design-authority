@@ -1,0 +1,11 @@
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "authority_overview", "params": {}, "latency_ms": 2, "summary": {"counts": {"artifacts": {"token-set": 7, "guideline": 10, "component": 56, "pattern": 7}, "rules": 19, "recipes": 0, "fallbacks": 3, "prohibitions": 6}}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "resolve_design_problem", "params": {"problem": "let people flip one preference on or off right away"}, "latency_ms": 8, "summary": {"outcome": "UNDEFINED", "resolution": null}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "discover_candidates", "params": {"query": "let people flip one preference on or off right away", "k": 8}, "latency_ms": 669, "summary": {"status": "ok", "top": "component/px-sw"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "inspect_artifact", "params": {"id": "component/px-sw"}, "latency_ms": 0, "summary": {"kind": "component"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "resolve_design_problem", "params": {"problem": "a switch"}, "latency_ms": 1, "summary": {"outcome": "RESOLVED", "resolution": "component/px-sw"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "resolve_design_problem", "params": {"problem": "a filterable status field"}, "latency_ms": 14, "summary": {"outcome": "UNDEFINED", "resolution": null}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "discover_candidates", "params": {"query": "labels that show a record's state", "k": 8}, "latency_ms": 13, "summary": {"status": "ok", "top": "component/badge"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "search_authority", "params": {"query": "filter chip", "kinds": ""}, "latency_ms": 1, "summary": {"hits": 4, "top": "component/chip"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "inspect_artifact", "params": {"id": "component/chip"}, "latency_ms": 0, "summary": {"kind": "component"}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "resolve_design_problem", "params": {"problem": "a status chip with text padding"}, "latency_ms": 1, "summary": {"outcome": "UNDEFINED", "resolution": null}}
+{"ts": "2026-10-08T12:22:56+00:00", "tool": "report_gap", "params": {"need": "a settings-page convention for preference rows"}, "latency_ms": 1, "summary": {"gap": "gap/20261008-122256-74707e"}}

@@ -1,0 +1,324 @@
+{
+ "generated": "2026-10-08T12:20:37Z",
+ "pack": {
+  "authority": "triage",
+  "version": "0.12.1",
+  "commit": "ec490bb7f336b8105698f7f92a1be8cbce97d7ff"
+ },
+ "index": {
+  "format": "da-sem/1",
+  "pack_id": "triage",
+  "pack_version": "0.12.1",
+  "pack_hash": "ea50c2ddbbe4d8f6429352fee7d670b6edf5a421ca3be71fdf9d35a66ad1729a",
+  "model": "BAAI/bge-small-en-v1.5",
+  "dim": "384",
+  "fastembed": "0.9.0",
+  "built_at": "2026-10-08T12:20:06Z",
+  "counts": "{\"canonical\": 108, \"history\": 6}"
+ },
+ "warm_model_load_s": 0.79,
+ "top3_recall": {
+  "D1": {
+   "n": 53,
+   "counts": {
+    "E0": 53,
+    "E1": 53,
+    "E2": 53
+   }
+  },
+  "D2": {
+   "n": 134,
+   "counts": {
+    "E0": 134,
+    "E1": 133,
+    "E2": 134
+   }
+  },
+  "D3": {
+   "n": 24,
+   "counts": {
+    "E0": 13,
+    "E1": 10,
+    "E2": 11
+   }
+  }
+ },
+ "d3_formal": {
+  "n": 22,
+  "E0": 13,
+  "E2": 11,
+  "E1": 10
+ },
+ "assist_safety": {
+  "checked": 24,
+  "class_changes": [],
+  "undef_total": 19,
+  "false_resolved": [
+   {
+    "query": "a panel sliding in from the edge with a record's details",
+    "got": "pattern/viewer",
+    "want": "component/sheet-end",
+    "arm": "E0"
+   },
+   {
+    "query": "a small label showing a record's state such as Draft",
+    "got": "guideline/voice",
+    "want": "component/badge",
+    "arm": "E0"
+   },
+   {
+    "query": "the chevron that reveals actions for a single row",
+    "got": "component/menu-item",
+    "want": "component/menu-pop",
+    "arm": "E0"
+   },
+   {
+    "query": "a panel sliding in from the edge with a record's details",
+    "arm": "E2+",
+    "got": "pattern/viewer",
+    "want": "component/sheet-end"
+   },
+   {
+    "query": "a small label showing a record's state such as Draft",
+    "arm": "E2+",
+    "got": "guideline/voice",
+    "want": "component/badge"
+   },
+   {
+    "query": "the chevron that reveals actions for a single row",
+    "arm": "E2+",
+    "got": "component/menu-item",
+    "want": "component/menu-pop"
+   }
+  ]
+ },
+ "rescuable_undef": [
+  {
+   "query": "let someone flip a single preference on or off right away",
+   "want": "component/px-sw",
+   "top3": [
+    "fallback/motion-reduction",
+    "component/px-sw",
+    "pattern/settings"
+   ]
+  },
+  {
+   "query": "confirm before a record is wiped for good",
+   "want": "component/arm-del",
+   "top3": [
+    "INT002",
+    "component/arm-del",
+    "guideline/voice"
+   ]
+  },
+  {
+   "query": "suggests matching entries while someone types into a text box",
+   "want": "component/cb",
+   "top3": [
+    "TDS004",
+    "TDS011",
+    "component/cb"
+   ]
+  },
+  {
+   "query": "a placeholder for somebody's profile picture",
+   "want": "component/avatar-sq",
+   "top3": [
+    "component/skeleton",
+    "token-set/breakpoints",
+    "guideline/localisation"
+   ]
+  },
+  {
+   "query": "the rail tracking where you are in a multi-step flow",
+   "want": "pattern/learning",
+   "top3": [
+    "pattern/learning",
+    "pattern/flows",
+    "token-set/elevation"
+   ]
+  },
+  {
+   "query": "the mobile bar with the screen title and back affordance",
+   "want": "component/topbar",
+   "top3": [
+    "component/topbar",
+    "component/bottom-nav",
+    "component/savebar"
+   ]
+  },
+  {
+   "query": "compare two versions of a file line by line",
+   "want": "component/diff",
+   "top3": [
+    "component/diff",
+    "TDS001",
+    "guideline/consumption"
+   ]
+  },
+  {
+   "query": "show which keys to press next to a menu entry",
+   "want": "component/kbd",
+   "top3": [
+    "component/menu-item",
+    "component/menu-pop",
+    "component/cmd"
+   ]
+  },
+  {
+   "query": "drag a file from the desktop to attach it",
+   "want": "component/drop",
+   "top3": [
+    "component/drop",
+    "guideline/platform",
+    "component/topbar"
+   ]
+  },
+  {
+   "query": "a three-way selector for switching between list views",
+   "want": "component/seg",
+   "top3": [
+    "component/seg",
+    "component/bottom-nav",
+    "component/crumbs"
+   ]
+  }
+ ],
+ "negatives": [
+  {
+   "query": "make the save button pulse until the user clicks it",
+   "forbid": [
+    "token-set/motion"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [],
+   "e2_top3": [
+    "INT004",
+    "component/savebar",
+    "pattern/settings"
+   ]
+  },
+  {
+   "query": "a confetti burst when a checklist completes",
+   "forbid": [
+    "token-set/motion"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [],
+   "e2_top3": [
+    "component/menu-pop",
+    "component/notif",
+    "component/field-err"
+   ]
+  },
+  {
+   "query": "pick a reviewer from the team directory",
+   "forbid": [
+    "component/arm-del",
+    "component/bulkbar"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [
+    "component/bulkbar"
+   ],
+   "e2_top3": [
+    "TDS001",
+    "component/bulkbar",
+    "component/diff"
+   ]
+  },
+  {
+   "query": "schedule a message to send at midnight",
+   "forbid": [
+    "component/toast2",
+    "component/msg"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [
+    "component/msg"
+   ],
+   "e2_top3": [
+    "component/composer",
+    "component/msg",
+    "INT003"
+   ]
+  },
+  {
+   "query": "auto-save changes without asking",
+   "forbid": [
+    "component/savebar"
+   ],
+   "viol_e0": [
+    "component/savebar"
+   ],
+   "viol_e1": [],
+   "viol_e2": [],
+   "e2_top3": [
+    "INT004",
+    "prohibit/focus-removal",
+    "TDS004"
+   ]
+  },
+  {
+   "query": "a carousel of marketing images",
+   "forbid": [
+    "component/img"
+   ],
+   "viol_e0": [
+    "component/img"
+   ],
+   "viol_e1": [
+    "component/img"
+   ],
+   "viol_e2": [
+    "component/img"
+   ],
+   "e2_top3": [
+    "component/img",
+    "TDS014",
+    "component/avatar-sq"
+   ]
+  },
+  {
+   "query": "export the full audit trail to a spreadsheet",
+   "forbid": [
+    "component/drop"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [],
+   "e2_top3": [
+    "component/audit-row",
+    "pattern/viewer",
+    "pattern/simulator"
+   ]
+  },
+  {
+   "query": "notify the whole team by email when a record changes",
+   "forbid": [
+    "component/notif",
+    "component/toast2"
+   ],
+   "viol_e0": [],
+   "viol_e1": [],
+   "viol_e2": [],
+   "e2_top3": [
+    "INT004",
+    "pattern/viewer",
+    "prohibit/token-override"
+   ]
+  }
+ ],
+ "latency": {
+  "e0_search_ms_avg_all": 0.37,
+  "e2_warm_ms_p50": 12.6,
+  "e2_warm_ms_p95": 17.7,
+  "e2_cold_query_s": 1.02,
+  "build_s": 3.6,
+  "index_mb": 0.56
+ }
+}

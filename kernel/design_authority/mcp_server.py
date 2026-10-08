@@ -24,6 +24,7 @@ from .validate import validate
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 DEFAULT_PACK = os.path.join(ROOT, "packs", "triage")
+SEM_TOOLS = os.path.join(ROOT, "tools")
 
 mcp = FastMCP("design-authority")
 
@@ -35,6 +36,42 @@ def get_pack() -> Pack:
     if _pack is None:
         _pack = Pack(os.environ.get("DA_PACK") or DEFAULT_PACK)
     return _pack
+
+
+def _sem_state():
+    """Optional semantic layer: (module, reason). Absent extras are fine."""
+    try:
+        if SEM_TOOLS not in sys.path:
+            sys.path.insert(0, SEM_TOOLS)
+        import da_sem  # noqa: WPS433 (optional dependency by design)
+    except Exception as exc:  # pragma: no cover
+        return None, "da_sem not importable: %s" % exc
+    if not da_sem._deps():
+        return None, ("semantic extras not installed; "
+                      "python3 -m pip install fastembed numpy")
+    return da_sem, None
+
+
+def _sem_discover(query: str, k: int = 8, cls: str = "canonical") -> dict:
+    """Hybrid retrieval helper. Retrieval signal only; never an outcome."""
+    sem, reason = _sem_state()
+    if sem is None:
+        return {"status": "unavailable", "detail": reason,
+                "fallback": "search_authority / resolve_design_problem are unchanged"}
+    pack = get_pack()
+    idx = (os.environ.get("DA_SEARCH_INDEX")
+           or sem.default_index_path(pack.path))
+    if not os.path.exists(idx):
+        return {"status": "unavailable", "detail": "index not found: %s" % idx,
+                "hint": "build it: python3 tools/da_sem.py build --pack %s" % pack.path}
+    try:
+        out = sem.query_index(idx, query, k=k, cls=cls)
+    except ImportError as exc:
+        return {"status": "unavailable", "detail": str(exc)}
+    out["status"] = "ok"
+    out["note"] = ("retrieval signal only; it cannot establish authority; "
+                   "inspect candidates before adopting")
+    return out
 
 
 def workspace() -> str:
@@ -128,16 +165,40 @@ def inspect_artifact(id: str) -> dict:
 
 
 @mcp.tool()
-def resolve_design_problem(problem: str, context: Optional[dict] = None) -> dict:
+def discover_candidates(query: str, k: int = 8, include_history: bool = False) -> dict:
+    """Semantic discovery over the authority records (optional extension).
+    Ranks candidate ids by fused retrieval (lexical BM25 + a small embedding
+    model). This is a retrieval signal, NOT an outcome: a high similarity
+    means "inspect this candidate", never RESOLVED. Searches canonical
+    records only; set include_history=true to also search precedents and
+    candidates (history is never canon). If unavailable, the lexical
+    search_authority works exactly as before."""
+    t0 = time.time()
+    out = _sem_discover(query, k=max(1, min(k, 25)),
+                        cls="all" if include_history else "canonical")
+    out["authority"] = get_pack().identity()
+    out["query"] = query
+    _log("discover_candidates", {"query": query, "k": k},
+         {"status": out["status"],
+          "top": ((out.get("candidates") or [{}])[0]).get("id")}, t0)
+    return out
+
+
+@mcp.tool()
+def resolve_design_problem(problem: str, context: Optional[dict] = None,
+                           assist: str = "") -> dict:
     """Resolve a design problem against the authority. Returns an outcome:
     CONFLICT (contradicts an explicit constraint), RESOLVED (an artifact
     defines it), COMPOSE (a sanctioned recipe composes it), FALLBACK (a
     sanctioned generic fallback applies) or UNDEFINED (no adequate answer —
     legitimate; follow the fallback policy and report a gap). Every citation
-    is validated against the pack."""
+    is validated against the pack. `assist="semantic"` optionally attaches a
+    retrieval-candidate block on UNDEFINED; it never changes the outcome."""
     t0 = time.time()
     pack = get_pack()
     result = resolve(pack, problem, context or {})
+    if assist == "semantic" and result.get("outcome") == "UNDEFINED":
+        result["retrieval_assist"] = _sem_discover(problem, k=5, cls="canonical")
     result["status"] = "ok"
     _log("resolve_design_problem", {"problem": problem},
          {"outcome": result["outcome"],

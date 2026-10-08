@@ -7,14 +7,15 @@ Environment: `DA_PACK` (pack directory; required), `DA_WORKSPACE` (consumer
 workspace for records; defaults to the pack-adjacent workspace). Transport:
 stdio, JSON-RPC via the MCP SDK (`mcp<2`).
 
-### Tools (10)
+### Tools (11)
 
 | tool | parameters | returns |
 |---|---|---|
 | `authority_overview` | — | identity, counts, capabilities, policy, entrypoints, usage guide |
 | `search_authority` | `query: str`, `kinds: str = ""` (comma list), `limit: int = 12` | ranked `{id, kind, title, score, matched}` |
+| `discover_candidates` | `query: str`, `k: int = 8`, `include_history: bool = false` | fused-retrieval candidates `{id, kind, class, title, lex_rank, bm25, sem_rank, cos, rrf}` — a retrieval signal, NOT an outcome; canonical by default (0.4, optional; degrades to `status: unavailable` without the extras) |
 | `inspect_artifact` | `id: str` | full artifact entry (body, aliases, source, relations) or structured not-found |
-| `resolve_design_problem` | `problem: str`, `context: dict?` | the resolution output of `03-resolution-semantics.md`, incl. precedent/candidate attachments |
+| `resolve_design_problem` | `problem: str`, `context: dict?`, `assist: str = ""` | the resolution output of `03-resolution-semantics.md`, incl. precedent/candidate attachments; `assist="semantic"` adds a `retrieval_assist` block on UNDEFINED (retrieval only, outcome classes unchanged) |
 | `list_precedents` | `query: str = ""` | negative precedents (policy declines) with grounds, scope boundary and try-list; a `query` filters with scope verdicts |
 | `check_precedent` | `ask: str`, `precedent_id: str = ""` | how the precedents apply to an ask **before deviating**: per-ask verdicts (`governs`/`outside`/`ambiguous`) + boundary hits + matching candidates |
 | `list_candidates` | `query: str = ""` | provisional directions with `promote_when`; NOT authority |
@@ -39,6 +40,9 @@ catalogue), and `authority://artifact/{artifact_id}` (artifact detail).
   every tool call: entries carry timestamp, tool name, parameters, and a
   summary. It is best-effort audit data — **never load-bearing**, failures are
   swallowed, and no logic may depend on it.
+- The retrieval assist (0.4) is optional and off by default: it adds retrieval
+  candidates only, never outcomes; enabling it MUST NOT change outcome
+  classes, and every returned id is still validated against the pack.
 
 ## 2 · CLI (`da`)
 
@@ -49,8 +53,9 @@ default: the repository's `packs/triage`).
 |---|---|---|
 | `overview` | `[--json]` | manifest + counts |
 | `search` | `QUERY [--kinds] [--limit] [--json]` | ranked search (incl. precedent/candidate kinds) |
+| `discover` | `QUERY [--k] [--class canonical\|history\|all] [--index] [--legs] [--json]` | optional semantic discovery (retrieval signal only; needs the extras + a built index) |
 | `inspect` | `ID` | full artifact |
-| `resolve` | `PROBLEM… [--context] [--json]` | resolution (+ attachments) |
+| `resolve` | `PROBLEM… [--context] [--assist off\|semantic] [--assist-k] [--assist-index] [--json]` | resolution (+ attachments; optional retrieval hint on UNDEFINED) |
 | `validate` | `TARGET [--snapshot PATH] [--json]` | run declared validators |
 | `golden` | `[--file PATH] [--json]` | run the pack's golden set (defaults to the repository-pinned golden file) |
 | `gaps` | `[--workspace] [--json]` | list gap records |

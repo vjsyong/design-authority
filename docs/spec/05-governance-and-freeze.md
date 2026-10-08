@@ -94,12 +94,45 @@ lexical normalisation layer; justified in D-024).
 
 ## 3 · The freezes
 
-### 3.1 · The 0.3.0 freeze (current)
+### 3.1 · The 0.4.0 freeze (current)
+
+**Design Authority 0.4.0** is frozen by this declaration, effective
+2026-10-08, carried by the repository tag **`v0.4.0`** and the checksum
+manifest `docs/spec/freeze-0.4.0.sha256` (SHA-256 of every frozen file at the
+tagged commit). Frozen surface: the same set as 3.3, plus
+`kernel/design_authority/lex.py` (carried from 0.3.0) and the new
+`tools/da_sem.py` / `tools/sem_selftest.py`.
+
+**Changes from 0.3.0 (why this bump).** One semantic addition under the
+change-control rule below, the optional retrieval assist (justified in D-025,
+measured in `docs/experiments/01-semantic-retrieval.md`):
+
+1. **Discovery surface.** `da discover` (CLI) and `discover_candidates`
+   (MCP, the 11th tool) return fused-retrieval candidates (SQLite FTS5 BM25 +
+   local embeddings, RRF fusion) with retrieval evidence only. No outcome
+   classes are produced; ids are validated; canonical records only by
+   default, history separately.
+2. **Resolve assist (off by default).** `resolve --assist semantic` and the
+   `assist` parameter on `resolve_design_problem` attach a `retrieval_assist`
+   block on UNDEFINED. Outcome, evidence, citations and class are computed
+   exactly as without the assist; end-to-end runs show zero class changes on
+   24 paraphrase asks.
+3. **Derived index.** The index is rebuildable from the pack, keyed by pack
+   version + content hash, stored outside the pack. The kernel remains
+   stdlib-only; the assist requires optional extras (`fastembed`, `numpy`)
+   and every lexical surface is unchanged without them.
+4. **Measured limits.** On the held-out paraphrase set the assist does not
+   lift raw top-3 recall over lexical (11 vs 13 of 22), rescues 56% of
+   resolve-level UNDEFINED cases, adds no false outcomes, and can surface
+   plausible-but-wrong neighbours on hard negatives; it ships off by default
+   and documented as such.
+
+### 3.2 · The 0.3.0 freeze (historical)
 
 **Design Authority 0.3.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.3.0`** and the checksum
 manifest `docs/spec/freeze-0.3.0.sha256` (SHA-256 of every frozen file at the
-tagged commit). Frozen surface: the same set as 3.2, plus
+tagged commit). Frozen surface: the same set as 3.3, plus
 `kernel/design_authority/lex.py`.
 
 **Changes from 0.2.0 (why this bump).** One semantic addition under the
@@ -114,7 +147,7 @@ change-control rule below:
    conflict-validated at import; every query rewrite is reported in the
    `normalized` output field. Justified in D-024.
 
-### 3.2 · The 0.2.0 freeze (historical)
+### 3.3 · The 0.2.0 freeze (historical)
 
 **Design Authority 0.2.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.2.0`** and the checksum
@@ -177,10 +210,10 @@ synthesis experiment (`docs/synthesis/` — three candidate authorities, Gates
 1–2 reviewed in-browser, Cadence stress v1–v3, adjudication + codification).
 The post-freeze record is consolidated in `docs/11-consolidation-since-0.1.0.md`.
 
-### 3.3 · The 0.1.0 freeze (historical)
+### 3.4 · The 0.1.0 freeze (historical)
 
 **Design Authority 0.1.0** was frozen 2026-10-07, carried by tag `v0.1.0` and
-the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.2. It
+the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.3. It
 was superseded by 0.2.0 on 2026-10-08. The 0.1.0 manifest preserves the exact
 frozen bytes of that release.
 

@@ -1,0 +1,238 @@
+{
+ "session": "trace A: scripted agent session via MCP stdio",
+ "workspace": "/home/xrim/design-authority/docs/experiments/agent-session-workspace",
+ "calls": [
+  {
+   "step": 1,
+   "tool": "authority_overview",
+   "args": {},
+   "note": "orient",
+   "latency_ms": 4.3,
+   "got": {
+    "authority": {
+     "authority": "triage",
+     "version": "0.12.1",
+     "commit": "ec490bb7f336b8105698f7f92a1be8cbce97d7ff"
+    },
+    "counts": {
+     "artifacts": {
+      "token-set": 7,
+      "guideline": 10,
+      "component": 56,
+      "pattern": 7
+     },
+     "rules": 19,
+     "recipes": 0,
+     "fallbacks": 3,
+     "prohibitions": 6
+    }
+   }
+  },
+  {
+   "step": 2,
+   "tool": "resolve_design_problem",
+   "args": {
+    "problem": "let people flip one preference on or off right away"
+   },
+   "note": "approximate wording, expect UNDEFINED",
+   "latency_ms": 9.8,
+   "got": {
+    "outcome": "UNDEFINED",
+    "resolution_id": null,
+    "assist": null,
+    "assist_top": []
+   }
+  },
+  {
+   "step": 3,
+   "tool": "discover_candidates",
+   "args": {
+    "query": "let people flip one preference on or off right away"
+   },
+   "note": "semantic discovery",
+   "latency_ms": 673.6,
+   "got": {
+    "status": "ok",
+    "top": [
+     [
+      "component/px-sw",
+      6,
+      0.6161
+     ],
+     [
+      "fallback/motion-reduction",
+      5,
+      0.5982
+     ],
+     [
+      "pattern/settings",
+      3,
+      0.5751
+     ],
+     [
+      "INT002",
+      19,
+      0.6124
+     ]
+    ]
+   }
+  },
+  {
+   "step": 4,
+   "tool": "inspect_artifact",
+   "args": {
+    "id": "component/px-sw"
+   },
+   "note": "inspect the top candidate",
+   "latency_ms": 3.6,
+   "got": {
+    "status": "ok",
+    "id": "component/px-sw",
+    "title": "Switch",
+    "class": "px-sw"
+   }
+  },
+  {
+   "step": 5,
+   "tool": "resolve_design_problem",
+   "args": {
+    "problem": "a switch"
+   },
+   "note": "adopt with canonical vocabulary",
+   "latency_ms": 2.6,
+   "got": {
+    "outcome": "RESOLVED",
+    "resolution_id": "component/px-sw",
+    "assist": null,
+    "assist_top": []
+   }
+  },
+  {
+   "step": 6,
+   "tool": "resolve_design_problem",
+   "args": {
+    "problem": "a filterable status field",
+    "assist": "semantic"
+   },
+   "note": "second ask with assist block",
+   "latency_ms": 16.2,
+   "got": {
+    "outcome": "UNDEFINED",
+    "resolution_id": null,
+    "assist": "ok",
+    "assist_top": [
+     "component/dot",
+     "component/field-err",
+     "component/tl"
+    ]
+   }
+  },
+  {
+   "step": 7,
+   "tool": "discover_candidates",
+   "args": {
+    "query": "labels that show a record's state"
+   },
+   "note": "discovery for the chip part",
+   "latency_ms": 15.4,
+   "got": {
+    "status": "ok",
+    "top": [
+     [
+      "component/badge",
+      4,
+      0.666
+     ],
+     [
+      "guideline/voice",
+      6,
+      0.6823
+     ],
+     [
+      "component/chip",
+      7,
+      0.6187
+     ],
+     [
+      "prohibit/label-less-controls",
+      9,
+      0.6187
+     ]
+    ]
+   }
+  },
+  {
+   "step": 8,
+   "tool": "search_authority",
+   "args": {
+    "query": "filter chip"
+   },
+   "note": "lexical search",
+   "latency_ms": 2.9,
+   "got": {
+    "hits": [
+     [
+      "component/chip",
+      13.0
+     ],
+     [
+      "component/cb",
+      5.0
+     ],
+     [
+      "guideline/brand",
+      1.5
+     ]
+    ]
+   }
+  },
+  {
+   "step": 9,
+   "tool": "inspect_artifact",
+   "args": {
+    "id": "component/chip"
+   },
+   "note": "confirm the chip record",
+   "latency_ms": 3.4,
+   "got": {
+    "status": "ok",
+    "id": "component/chip",
+    "title": "Chip",
+    "class": "chip"
+   }
+  },
+  {
+   "step": 10,
+   "tool": "resolve_design_problem",
+   "args": {
+    "problem": "a status chip with text padding"
+   },
+   "note": "composition question",
+   "latency_ms": 3.3,
+   "got": {
+    "outcome": "UNDEFINED",
+    "resolution_id": null,
+    "assist": null,
+    "assist_top": []
+   }
+  },
+  {
+   "step": 11,
+   "tool": "report_gap",
+   "args": {
+    "need": "a settings-page convention for preference rows",
+    "context": {
+     "page": "settings",
+     "observed": "no pattern record for preference rows"
+    },
+    "scope_hint": "settings-pages"
+   },
+   "note": "what stays undefined",
+   "latency_ms": 3.6,
+   "got": {
+    "status": "ok",
+    "gap": "gap/20261008-122256-74707e"
+   }
+  }
+ ]
+}

@@ -1,7 +1,12 @@
 """da — Design Authority CLI. Same library the MCP server exposes.
 
-    da overview | search Q | inspect ID | resolve PROBLEM | validate TARGET
+    da overview | search Q | discover Q | inspect ID | resolve PROBLEM | validate TARGET
     da golden | gaps | gap-add | propose
+
+`discover` and `resolve --assist semantic` are optional retrieval extensions
+(install extras: pip install fastembed numpy; build the index once with
+tools/da_sem.py build). Retrieval only proposes; it never establishes
+authority. Without the extras every lexical surface is unchanged.
 """
 import argparse
 import json
@@ -15,6 +20,7 @@ from .validate import validate
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DEFAULT_PACK = os.path.join(ROOT, "packs", "triage")
+SEM_TOOLS = os.path.join(ROOT, "tools")
 
 
 def _load_pack(args):
@@ -24,6 +30,43 @@ def _load_pack(args):
 
 def _dump(obj):
     print(json.dumps(obj, indent=1))
+
+
+def _sem_state():
+    """Optional semantic layer: (module, reason). Absent extras are fine."""
+    try:
+        if SEM_TOOLS not in sys.path:
+            sys.path.insert(0, SEM_TOOLS)
+        import da_sem  # noqa: WPS433 (optional dependency by design)
+    except Exception as exc:  # pragma: no cover
+        return None, "da_sem not importable: %s" % exc
+    if not da_sem._deps():
+        return None, ("semantic extras not installed; "
+                      "python3 -m pip install fastembed numpy")
+    return da_sem, None
+
+
+def _sem_index(sem, pack, explicit=None):
+    return (explicit or os.environ.get("DA_SEARCH_INDEX")
+            or sem.default_index_path(pack.path))
+
+
+def _sem_query(pack, query, k=8, cls="canonical", explicit_index=None, legs=False):
+    """Hybrid retrieval, retrieval-signal only. Never raises; always a dict."""
+    sem, reason = _sem_state()
+    if sem is None:
+        return {"status": "unavailable", "detail": reason,
+                "fallback": "the lexical tools (search / resolve) are unchanged"}
+    idx = _sem_index(sem, pack, explicit_index)
+    if not os.path.exists(idx):
+        return {"status": "unavailable", "detail": "index not found: %s" % idx,
+                "hint": "build it: python3 tools/da_sem.py build --pack %s" % pack.path}
+    try:
+        out = sem.query_index(idx, query, k=k, cls=cls, legs=legs)
+    except ImportError as exc:
+        return {"status": "unavailable", "detail": str(exc)}
+    out["status"] = "ok"
+    return out
 
 
 def cmd_overview(pack, args):
@@ -69,6 +112,27 @@ def cmd_search(pack, args):
         print("%6.1f  %-12s %-28s %s" % (h["score"], h["kind"], h["id"], h["title"]))
 
 
+def cmd_discover(pack, args):
+    result = _sem_query(pack, args.query, k=args.k, cls=args.cls,
+                        explicit_index=args.index, legs=args.legs)
+    if result.get("status") != "ok":
+        if args.json:
+            return _dump(result)
+        print("semantic discovery unavailable: %s" % result.get("detail"), file=sys.stderr)
+        if result.get("hint"):
+            print(result["hint"], file=sys.stderr)
+        return 4
+    if args.json:
+        return _dump(result)
+    print("candidates (retrieval signal only; NOT authority):")
+    for c in result["candidates"]:
+        cos = "%.3f" % c["cos"] if c.get("cos") is not None else "  -  "
+        print("  rrf %.5f  %-22s %-12s %-34s lex#%-3s sem#%-3s cos %s"
+              % (c["rrf"], c["id"], c["kind"], (c["title"] or "")[:34],
+                 c["lex_rank"] or "-", c["sem_rank"] or "-", cos))
+    print("next: inspect each candidate; authority outcomes still come from `da resolve`.")
+
+
 def cmd_inspect(pack, args):
     entry = pack.by_id.get(args.id)
     if not entry:
@@ -80,6 +144,14 @@ def cmd_inspect(pack, args):
 def cmd_resolve(pack, args):
     context = json.loads(args.context) if args.context else {}
     result = resolve(pack, " ".join(args.problem), context)
+    # Optional retrieval assist: attaches only on UNDEFINED, and only as a
+    # clearly-labelled retrieval signal. It can never change the outcome.
+    if getattr(args, "assist", "off") == "semantic" and result.get("outcome") == "UNDEFINED":
+        blk = _sem_query(pack, " ".join(args.problem), k=args.assist_k,
+                         explicit_index=args.assist_index)
+        blk["note"] = ("retrieval signal only; it cannot establish authority; "
+                       "inspect candidates before adopting")
+        result["retrieval_assist"] = blk
     if args.json:
         return _dump(result)
     print("OUTCOME: %s" % result["outcome"])
@@ -111,6 +183,17 @@ def cmd_resolve(pack, args):
         print("why: %s" % result["why"])
     if result.get("next"):
         print("next: %s" % result["next"])
+    if result.get("retrieval_assist"):
+        blk = result["retrieval_assist"]
+        print("retrieval assist (semantic; NOT authority):")
+        if blk.get("status") != "ok":
+            print("  unavailable: %s" % blk.get("detail"))
+        else:
+            for c in blk["candidates"]:
+                cos = "%.3f" % c["cos"] if c.get("cos") is not None else "  -  "
+                print("  rrf %.5f  %-22s cos %s  %s" % (c["rrf"], c["id"], cos,
+                                                        c["title"] or ""))
+            print("  the outcome above stands; inspect candidates before use")
 
 
 def cmd_validate(pack, args):
@@ -277,11 +360,23 @@ def main(argv=None):
     p.add_argument("query"); p.add_argument("--kinds", default="")
     p.add_argument("--limit", type=int, default=10); p.add_argument("--json", action="store_true")
 
+    p = sub.add_parser("discover")
+    p.add_argument("query"); p.add_argument("--index", default=None)
+    p.add_argument("--k", type=int, default=8)
+    p.add_argument("--class", dest="cls", default="canonical",
+                   choices=["canonical", "history", "all"])
+    p.add_argument("--legs", action="store_true", help="include both retrieval legs (debug)")
+    p.add_argument("--json", action="store_true")
+
     p = sub.add_parser("inspect"); p.add_argument("id")
 
     p = sub.add_parser("resolve")
     p.add_argument("problem", nargs="+")
     p.add_argument("--context", default=""); p.add_argument("--json", action="store_true")
+    p.add_argument("--assist", default="off", choices=["off", "semantic"],
+                   help="optional retrieval assist (attaches candidates on UNDEFINED; never changes outcomes)")
+    p.add_argument("--assist-k", type=int, default=5)
+    p.add_argument("--assist-index", default=None)
 
     p = sub.add_parser("validate")
     p.add_argument("target"); p.add_argument("--snapshot", default=None)
@@ -327,7 +422,8 @@ def main(argv=None):
         print("pack error: %s" % exc, file=sys.stderr)
         return 2
 
-    handler = {"overview": cmd_overview, "search": cmd_search, "inspect": cmd_inspect,
+    handler = {"overview": cmd_overview, "search": cmd_search, "discover": cmd_discover,
+               "inspect": cmd_inspect,
                "resolve": cmd_resolve, "validate": cmd_validate, "golden": cmd_golden,
                "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose,
                "review": cmd_review, "precedents": cmd_precedents,

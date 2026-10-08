@@ -203,3 +203,35 @@ MCP smoke 20/20 at the freeze. Per `docs/spec/05` this is a semantic change →
 0.3.0 with a fresh freeze and manifest (`docs/spec/freeze-0.3.0.sha256`),
 tag `v0.3.0`.
 
+## D-025 · Optional semantic discovery (retrieval assist); freeze Design Authority 0.4.0 (2026-10-08)
+
+Reviewer proposal adopted as doctrine: *"Retrieval can be probabilistic. The
+authority's normative claims must remain grounded in the published record."*
+Implemented as an optional, off-by-default retrieval extension: `tools/da_sem.py`
+(build / query / info / stale / serve; SQLite FTS5 BM25 + FastEmbed
+`bge-small-en-v1.5` + NumPy cosine, RRF fusion, brute force at pack scale),
+kernel surfaces `da discover`, `resolve --assist semantic`, MCP
+`discover_candidates` (11th tool) and the `assist` parameter on
+`resolve_design_problem`. Hard invariants: retrieval never establishes
+authority (candidates carry retrieval evidence only, never an outcome class);
+ids are validated before return; canonical records are the default scope and
+history (precedents, candidates) is searched separately; the assist attaches
+only on UNDEFINED; enabling it never changes outcome classes; the kernel
+stays stdlib-only and every lexical surface is unchanged without the extras.
+Pre-registered experiment (plan, held-out paraphrase set, hard negatives,
+decision rules, then results): `docs/experiments/01-semantic-retrieval.md`.
+H1 failed honestly (no raw top-3 recall lift on paraphrase, 11 vs 13 of 22);
+H3 held (56% of resolve-level UNDEFINED cases have the wanted record among the
+candidates); H2 held end-to-end (zero class changes on 24 live runs; the metric
+surfaced three pre-existing frozen-resolver over-resolutions on new wording,
+none assist-induced); H4 met (warm p50 12.6 ms, p95 17.7 ms; cold 1.02 s;
+build 3.6 s; 0.56 MB). Two hard negatives gain plausible-but-wrong neighbours
+under the semantic leg and are documented as the shipped failure mode. Agent
+interaction traced in `docs/experiments/02-agent-trace.md` (session through
+the real MCP server; every call recorded, decision log and gap shipped as
+evidence). Conformance at freeze: kernel 30/30 · triage goldens 56/56 · sweep
+134/134 · synthesis goldens 18/18 · 14/14 · 17/17 · precedent probe 31/31 ·
+MCP smoke 22/22 · semantic self-test OK · concept-site gate green. Per
+`docs/spec/05` this is a semantic change → 0.4.0 with a fresh freeze and
+manifest (`docs/spec/freeze-0.4.0.sha256`), tag `v0.4.0`.
+
