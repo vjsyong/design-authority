@@ -94,12 +94,38 @@ lexical normalisation layer; justified in D-024).
 
 ## 3 · The freezes
 
-### 3.1 · The 0.4.0 freeze (current)
+### 3.1 · The 0.5.0 freeze (current)
+
+**Design Authority 0.5.0** is frozen by this declaration, effective
+2026-10-08, carried by the repository tag **`v0.5.0`** and the checksum
+manifest `docs/spec/freeze-0.5.0.sha256` (SHA-256 of every frozen file at the
+tagged commit). Frozen surface: the same set as 3.4, extended by the
+additions carried since 0.3.0 and 0.4.0 (`kernel/design_authority/lex.py`,
+`tools/da_sem.py`, `tools/sem_selftest.py`).
+
+**Changes from 0.4.0 (why this bump).** One semantic addition under the
+change-control rule below, disputed resolutions (justified in D-026,
+motivated by `docs/experiments/01` and `03`):
+
+1. **A new consumer record**: `disputes.jsonl` in the workspace
+   (`kind: disputed-resolution`): query, the id the resolver claimed, reason,
+   optional suggested fix, context, status. Distinct from a gap: no answer
+   versus a wrong answer.
+2. **Surfaces**: CLI `dispute-add` / `disputes` / `dispute-replay`; MCP
+   `report_dispute` / `list_disputes` / `replay_disputes` (tools 11 to 14).
+3. **Replay as the regression fixture**: re-running the resolver over open
+   disputes reports `still_stands` / `cleared` per dispute, with
+   `--expect-standing N` gating; the repository pins four observed
+   misresolutions under `docs/experiments/disputes/`.
+4. **No behavior change**: resolution semantics, thresholds, precedence and
+   citations are untouched. Disputes are evidence, never instructions.
+
+### 3.2 · The 0.4.0 freeze (historical)
 
 **Design Authority 0.4.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.4.0`** and the checksum
 manifest `docs/spec/freeze-0.4.0.sha256` (SHA-256 of every frozen file at the
-tagged commit). Frozen surface: the same set as 3.3, plus
+tagged commit). Frozen surface: the same set as 3.4, plus
 `kernel/design_authority/lex.py` (carried from 0.3.0) and the new
 `tools/da_sem.py` / `tools/sem_selftest.py`.
 
@@ -127,12 +153,12 @@ measured in `docs/experiments/01-semantic-retrieval.md`):
    plausible-but-wrong neighbours on hard negatives; it ships off by default
    and documented as such.
 
-### 3.2 · The 0.3.0 freeze (historical)
+### 3.3 · The 0.3.0 freeze (historical)
 
 **Design Authority 0.3.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.3.0`** and the checksum
 manifest `docs/spec/freeze-0.3.0.sha256` (SHA-256 of every frozen file at the
-tagged commit). Frozen surface: the same set as 3.3, plus
+tagged commit). Frozen surface: the same set as 3.4, plus
 `kernel/design_authority/lex.py`.
 
 **Changes from 0.2.0 (why this bump).** One semantic addition under the
@@ -147,7 +173,7 @@ change-control rule below:
    conflict-validated at import; every query rewrite is reported in the
    `normalized` output field. Justified in D-024.
 
-### 3.3 · The 0.2.0 freeze (historical)
+### 3.4 · The 0.2.0 freeze (historical)
 
 **Design Authority 0.2.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.2.0`** and the checksum
@@ -210,10 +236,10 @@ synthesis experiment (`docs/synthesis/` — three candidate authorities, Gates
 1–2 reviewed in-browser, Cadence stress v1–v3, adjudication + codification).
 The post-freeze record is consolidated in `docs/11-consolidation-since-0.1.0.md`.
 
-### 3.4 · The 0.1.0 freeze (historical)
+### 3.5 · The 0.1.0 freeze (historical)
 
 **Design Authority 0.1.0** was frozen 2026-10-07, carried by tag `v0.1.0` and
-the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.3. It
+the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.4. It
 was superseded by 0.2.0 on 2026-10-08. The 0.1.0 manifest preserves the exact
 frozen bytes of that release.
 

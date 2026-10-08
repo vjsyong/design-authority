@@ -1,0 +1,45 @@
+{
+ "total": 4,
+ "standing": 4,
+ "cleared": 0,
+ "rows": [
+  {
+   "id": "dispute/20261008-134355-5a90bd",
+   "query": "a skip link to jump past the navigation",
+   "disputed": "component/nav-item",
+   "outcome": "RESOLVED",
+   "resolution_id": "component/nav-item",
+   "still_stands": true
+  },
+  {
+   "id": "dispute/20261008-134400-bcea20",
+   "query": "a panel sliding in from the edge with a record's details",
+   "disputed": "pattern/viewer",
+   "outcome": "RESOLVED",
+   "resolution_id": "pattern/viewer",
+   "still_stands": true
+  },
+  {
+   "id": "dispute/20261008-134400-193be0",
+   "query": "a small label showing a record's state such as Draft",
+   "disputed": "guideline/voice",
+   "outcome": "RESOLVED",
+   "resolution_id": "guideline/voice",
+   "still_stands": true
+  },
+  {
+   "id": "dispute/20261008-134400-9b284e",
+   "query": "the chevron that reveals actions for a single row",
+   "disputed": "component/menu-item",
+   "outcome": "RESOLVED",
+   "resolution_id": "component/menu-item",
+   "still_stands": true
+  }
+ ],
+ "authority": {
+  "authority": "triage",
+  "version": "0.12.1",
+  "commit": "ec490bb7f336b8105698f7f92a1be8cbce97d7ff"
+ },
+ "workspace": "disputes"
+}

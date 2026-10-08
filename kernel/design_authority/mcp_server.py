@@ -18,7 +18,7 @@ from mcp.server.fastmcp import FastMCP
 
 from . import records
 from .pack import Pack, PackError
-from .resolve import resolve
+from .resolve import resolve, replay_disputes as replay_disputes_core
 from .validate import validate
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -323,6 +323,57 @@ def propose_extension(gap_id: str, proposal: dict) -> dict:
                     "(depends_on targets must exist in the pack).")
     _log("propose_extension", {"gap_id": gap_id}, {"proposal": record["id"]}, t0)
     return {"status": "ok", "authority": pack.identity(), "proposal": record}
+
+
+@mcp.tool()
+def report_dispute(query: str, resolved_to: str, reason: str,
+                   context: Optional[dict] = None,
+                   suggested_fix: str = "") -> dict:
+    """Report that a RESOLVED outcome did not govern the actual need (a wrong
+    authoritative-looking answer). Distinct from a gap: a gap means no answer
+    existed; a dispute means the resolver claimed one that does not apply.
+    Disputes are consumer-side, noncanonical records; they never change
+    resolution behavior; they are replayable as regression fixtures and feed
+    upstream calibration."""
+    t0 = time.time()
+    pack = get_pack()
+    try:
+        record = records.add_dispute(pack, workspace(), query, resolved_to,
+                                     reason, context=context,
+                                     suggested_fix=suggested_fix or None)
+    except ValueError as exc:
+        return _err(str(exc), "resolved_to must cite an existing pack id; "
+                              "query and reason are required.")
+    _log("report_dispute", {"query": query, "resolved_to": resolved_to},
+         {"dispute": record["id"]}, t0)
+    return {"status": "ok", "authority": pack.identity(), "dispute": record}
+
+
+@mcp.tool()
+def list_disputes(status: str = "") -> dict:
+    """List recorded disputed resolutions, optionally filtered by status
+    (open | accepted | rejected)."""
+    t0 = time.time()
+    recs = records.list_disputes(workspace(), status=status or None)
+    _log("list_disputes", {"status": status}, {"count": len(recs)}, t0)
+    return {"status": "ok", "authority": get_pack().identity(),
+            "count": len(recs), "disputes": recs}
+
+
+@mcp.tool()
+def replay_disputes() -> dict:
+    """Re-run the resolver over open disputes: standing = the resolver still
+    returns the disputed id; cleared = it no longer claims it. The regression
+    fixture for resolver applicability."""
+    t0 = time.time()
+    pack = get_pack()
+    recs = records.list_disputes(workspace(), status="open")
+    rep = replay_disputes_core(pack, recs)
+    _log("replay_disputes", {},
+         {"standing": rep["standing"], "total": rep["total"]}, t0)
+    rep["status"] = "ok"
+    rep["authority"] = pack.identity()
+    return rep
 
 
 # -- read-only resources ------------------------------------------------------

@@ -7,7 +7,7 @@ Environment: `DA_PACK` (pack directory; required), `DA_WORKSPACE` (consumer
 workspace for records; defaults to the pack-adjacent workspace). Transport:
 stdio, JSON-RPC via the MCP SDK (`mcp<2`).
 
-### Tools (11)
+### Tools (14)
 
 | tool | parameters | returns |
 |---|---|---|
@@ -19,6 +19,9 @@ stdio, JSON-RPC via the MCP SDK (`mcp<2`).
 | `list_precedents` | `query: str = ""` | negative precedents (policy declines) with grounds, scope boundary and try-list; a `query` filters with scope verdicts |
 | `check_precedent` | `ask: str`, `precedent_id: str = ""` | how the precedents apply to an ask **before deviating**: per-ask verdicts (`governs`/`outside`/`ambiguous`) + boundary hits + matching candidates |
 | `list_candidates` | `query: str = ""` | provisional directions with `promote_when`; NOT authority |
+| `report_dispute` | `query: str`, `resolved_to: str`, `reason: str`, `context: dict?`, `suggested_fix: str = ""` | the stored dispute record (0.5): a RESOLVED claim that did not govern the need; distinct from a gap; never changes resolution |
+| `list_disputes` | `status: str = ""` | recorded disputes, optionally by status (open / accepted / rejected) |
+| `replay_disputes` | — | re-run the resolver over open disputes: `still_stands` / `cleared` per dispute (the regression fixture) |
 | `validate_implementation` | `target: str`, `validators: str = ""` | findings + counts + score + per-validator meta |
 | `report_gap` | `need: str`, `context: dict?`, `attempted_resolution: dict?`, `fallback_used: str = ""`, `evidence: list?`, `scope_hint: str = "unknown"` | the stored gap record (+ `precedent_warnings` / `candidate_hints` when matched) |
 | `propose_extension` | `gap_id: str`, `proposal: dict` | the stored proposal record (+ review checklist, + `precedent_warnings` / `candidate_hints` when matched) |
@@ -43,6 +46,8 @@ catalogue), and `authority://artifact/{artifact_id}` (artifact detail).
 - The retrieval assist (0.4) is optional and off by default: it adds retrieval
   candidates only, never outcomes; enabling it MUST NOT change outcome
   classes, and every returned id is still validated against the pack.
+- Disputes (0.5) MUST NOT change resolution behavior; they are consumer-side
+  records whose `resolved_to` cites a pack-validated id.
 
 ## 2 · CLI (`da`)
 
@@ -65,6 +70,9 @@ default: the repository's `packs/triage`).
 | `precedents` | `[--query Q] [--json]` | list negative precedents (with scope verdicts when filtering) |
 | `precedent-check` | `--ask TEXT [--json]` | the pre-deviation check: verdicts + boundary hits + candidates |
 | `candidates` | `[--query Q] [--json]` | list provisional candidates |
+| `dispute-add` | `--query Q --resolved-to ID --reason R [--context] [--suggested-fix S] [--workspace]` | record a disputed resolution (0.5) |
+| `disputes` | `[--workspace] [--json]` | list disputed resolutions |
+| `dispute-replay` | `[--workspace] [--json] [--expect-standing N]` | replay open disputes against the resolver; exit 5 when the standing count differs from `--expect-standing` |
 
 The CLI and MCP server MUST share one library (`kernel/design_authority/`).
 
@@ -99,6 +107,20 @@ pack), `new_primitives[]`, `status` (`candidate` → `accepted` | `rejected` |
 Each stored proposal receives a 7-item review checklist (necessity, reuse,
 composition, dependencies, new primitives, compliance tests, deterministic
 checks) as review scaffolding.
+
+### Dispute record (`disputes.jsonl`, one JSON object per line, since 0.5)
+
+```
+{ id: "dispute/<utcstamp>-<hex6>", kind: "disputed-resolution", query,
+  resolved_to (a pack-validated id the resolver claimed), reason,
+  suggested_fix?, context{}, evidence[], authority{authority,version,commit},
+  status: "open" | "accepted" | "rejected", status_note?, status_at?, created }
+```
+
+Creation validates `resolved_to` against the pack. A dispute records that a
+RESOLVED outcome did not govern the requesting need; it is distinct from a
+gap and it never changes resolution behavior. Replay (`dispute-replay`) is
+the regression fixture.
 
 ### Consumer review verdicts
 

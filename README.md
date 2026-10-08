@@ -4,7 +4,7 @@
 
 A versioned, machine-readable design contract that lets coding agents work under a real design system instead of guessing at it. Agents resolve design problems against the authority (RESOLVED · COMPOSE · FALLBACK · UNDEFINED · CONFLICT), build against cited rules, check their work with explicit validators, and report gaps upstream instead of silently inventing canon. The kernel is completely kit-agnostic: it knows artifacts, rules, recipes, fallbacks, precedents, candidates, resolutions, gaps and proposals, and nothing about buttons or colours. A design system enters only as a pack.
 
-**Status:** the specification is frozen at 0.4.0 (tag `v0.4.0`).
+**Status:** the specification is frozen at 0.5.0 (tag `v0.5.0`).
 
 **For humans:** click **Use now** (or scroll to the block below) and copy it into your coding agent on the machine that will do the work. The agent installs everything, proves it works, and validates what it builds.
 **For agents:** the Use now block below is your task. Do it in order, verify every expected output, and stop to report if one of them fails. The long-form reference for each step follows under "Install (for agents)".
@@ -179,7 +179,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 
 | # | Component | Status | Where |
 |---|-----------|--------|-------|
-| 1 | Frozen specification, 0.4.0 (tag `v0.4.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.4.0.sha256) |
+| 1 | Frozen specification, 0.5.0 (tag `v0.5.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.5.0.sha256) |
 | 2 | Kit-agnostic kernel, CLI and MCP server | stable | `kernel/`, `tools/da.py`, `tools/da-mcp.py` |
 | 3 | Reference authority: Triage 0.12.1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 54/54 | `packs/triage/` |
 | 4 | A/B/C authority benchmark | complete | `docs/08`–`docs/11`, `benchmark/` |
@@ -203,7 +203,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 
 **Limits.** Level 2 of the four-level verification contract is partial and declared per component; levels 3 and 4 are proposed. And nobody has yet shown that compliant builds behave better in users' hands. That experiment is next.
 
-## Specification (0.4, frozen)
+## Specification (0.5, frozen)
 
 | file | contents |
 |---|---|
@@ -213,7 +213,8 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 | [`docs/spec/03-resolution-semantics.md`](docs/spec/03-resolution-semantics.md) | resolution pipeline, scoring, outcomes |
 | [`docs/spec/04-interfaces.md`](docs/spec/04-interfaces.md) | MCP tools, CLI, records, validator runner |
 | [`docs/spec/05-governance-and-freeze.md`](docs/spec/05-governance-and-freeze.md) | evolution loop, versioning, the freeze declarations |
-| [`docs/spec/freeze-0.4.0.sha256`](docs/spec/freeze-0.4.0.sha256) | checksums of the frozen surface (current) |
+| [`docs/spec/freeze-0.5.0.sha256`](docs/spec/freeze-0.5.0.sha256) | checksums of the frozen surface (current) |
+| [`docs/spec/freeze-0.4.0.sha256`](docs/spec/freeze-0.4.0.sha256) | the 0.4.0 manifest (historical) |
 | [`docs/spec/freeze-0.3.0.sha256`](docs/spec/freeze-0.3.0.sha256) | the 0.3.0 manifest (historical) |
 | [`docs/spec/freeze-0.2.0.sha256`](docs/spec/freeze-0.2.0.sha256) | the 0.2.0 manifest (historical) |
 | [`docs/spec/freeze-0.1.0.sha256`](docs/spec/freeze-0.1.0.sha256) | the 0.1.0 manifest (historical) |
@@ -250,7 +251,7 @@ workspaces/                consumer workspaces; the concept site's ledger record
 
 ## Provenance
 
-Completed experiments document this system: the A/B/C authority benchmark (`docs/08`–`docs/11`), the authority-evolution loop (`docs/evolution/`), the second-authority portability spike (`docs/portability/`), the authority synthesis experiment (`docs/synthesis/`), and the independent verification experiment (`docs/verification/`). The **0.1.0 freeze** (2026-10-07) crowned the first two; the **0.2.0 freeze** (2026-10-08) formalizes the post-freeze era (negative precedents + candidates as optional records, precedent scope verdicts, lenient adjudication); the **0.3.0 freeze** adds the lexical normalisation layer; the **0.4.0 freeze** adds the optional semantic discovery assist (experiments 01/02). Full record: [`docs/11-consolidation-since-0.1.0.md`](docs/11-consolidation-since-0.1.0.md).
+Completed experiments document this system: the A/B/C authority benchmark (`docs/08`–`docs/11`), the authority-evolution loop (`docs/evolution/`), the second-authority portability spike (`docs/portability/`), the authority synthesis experiment (`docs/synthesis/`), and the independent verification experiment (`docs/verification/`). The **0.1.0 freeze** (2026-10-07) crowned the first two; the **0.2.0 freeze** (2026-10-08) formalizes the post-freeze era (negative precedents + candidates as optional records, precedent scope verdicts, lenient adjudication); the **0.3.0 freeze** adds the lexical normalisation layer; the **0.4.0 freeze** adds the optional semantic discovery assist (experiments 01/02); the **0.5.0 freeze** adds disputed resolutions (a wrong RESOLVED is its own record class, replayable as regression fixtures; experiments 01/03/04). Full record: [`docs/11-consolidation-since-0.1.0.md`](docs/11-consolidation-since-0.1.0.md).
 
 Authority packs compile from their source systems with recorded provenance: the Triage pack from the `triage-design-system` repository's own spec files (the compiled pack is included here; rebuilding it needs that repository), and the phantom, wink, leader and dominion authorities from screenshot-first extraction and synthesis. The concept site consumes Triage's token and core styles byte-identical; its Authority ledger, gaps and proposal live under `workspaces/designauthority-site/`.
 

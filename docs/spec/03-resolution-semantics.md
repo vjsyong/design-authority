@@ -195,3 +195,25 @@ establishes authority.
   itself stays stdlib-only; the assist requires optional extras (`fastembed`,
   `numpy`), and every lexical surface is unchanged without them.
 
+## Disputed resolutions (0.5)
+
+A RESOLVED outcome is a claim that a record governs the request. When it does
+not, the consumer records a **disputed resolution** (`disputes.jsonl` in the
+consumer workspace, `kind: disputed-resolution`): the query, the id the
+resolver claimed, the reason, an optional suggested fix, and context.
+
+- A dispute is distinct from a gap. A gap means the authority had no answer;
+  a dispute means it gave a wrong one. They are recorded and surfaced
+  separately, and a rejected RESOLVED must be distinguishable from an
+  ordinary gap.
+- Disputes never change resolution behavior. Semantics, thresholds,
+  precedence and citations are untouched; a dispute is evidence attached to
+  the workspace, never an instruction to the resolver.
+- Replay is the regression fixture: re-running the resolver over open
+  disputes reports `still_stands` (the resolver still makes the disputed
+  claim) or `cleared` per dispute. A fixture set that changes unintentionally
+  is a resolver change worth noticing; `--expect-standing N` makes it a gate.
+- Disputes feed upstream calibration (record descriptions, aliases,
+  applicability) under the governance loop; a reviewer can mark each
+  `accepted` or `rejected`.
+

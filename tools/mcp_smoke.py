@@ -91,7 +91,8 @@ def main():
         tools = [t["name"] for t in recv(proc, 2)["result"]["tools"]]
         expected = {"authority_overview", "search_authority", "inspect_artifact",
                     "resolve_design_problem", "validate_implementation",
-                    "report_gap", "propose_extension"}
+                    "report_gap", "propose_extension",
+                    "report_dispute", "list_disputes", "replay_disputes"}
         check("tools/list has all 7 tools", expected.issubset(set(tools)),
               ",".join(sorted(tools)))
 
@@ -191,6 +192,19 @@ def main():
               ra["outcome"] == "UNDEFINED"
               and (ra.get("retrieval_assist") or {}).get("status") in ("ok", "unavailable"),
               (ra.get("retrieval_assist") or {}).get("status"))
+
+        # disputes — a wrong RESOLVED is its own record class
+        dp = call(proc, "report_dispute",
+                  {"query": "a carousel of screenshots", "resolved_to": "component/img",
+                   "reason": "smoke: carousel is not a sanctioned pattern"}, 27)
+        check("report_dispute stores record",
+              dp.get("status") == "ok" and dp["dispute"]["id"].startswith("dispute/"))
+        dl = call(proc, "list_disputes", {}, 28)
+        check("list_disputes", dl.get("status") == "ok" and dl.get("count") == 1)
+        dr = call(proc, "replay_disputes", {}, 29)
+        check("replay_disputes clears the bogus claim",
+              dr.get("status") == "ok" and dr.get("standing") == 0
+              and dr["rows"][0]["still_stands"] is False)
 
         # resource
         send(proc, {"jsonrpc": "2.0", "id": 24, "method": "resources/read",

@@ -1,7 +1,7 @@
 """da — Design Authority CLI. Same library the MCP server exposes.
 
     da overview | search Q | discover Q | inspect ID | resolve PROBLEM | validate TARGET
-    da golden | gaps | gap-add | propose
+    da golden | gaps | gap-add | propose | dispute-add | disputes | dispute-replay
 
 `discover` and `resolve --assist semantic` are optional retrieval extensions
 (install extras: pip install fastembed numpy; build the index once with
@@ -15,7 +15,7 @@ import sys
 
 from . import records
 from .pack import Pack, PackError
-from .resolve import resolve, resolve_golden
+from .resolve import resolve, resolve_golden, replay_disputes
 from .validate import validate
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -331,6 +331,55 @@ def cmd_candidates(pack, args):
         print("      %s" % (c.get("summary", "")[:110]))
 
 
+def cmd_dispute_add(pack, args):
+    ws = args.workspace or os.getcwd()
+    context = json.loads(args.context) if args.context else {}
+    try:
+        record = records.add_dispute(pack, ws, args.query, args.resolved_to,
+                                     args.reason, context=context,
+                                     suggested_fix=args.suggested_fix)
+    except ValueError as exc:
+        print("dispute rejected: %s" % exc, file=sys.stderr)
+        return 2
+    _dump(record)
+    return 0
+
+
+def cmd_disputes(pack, args):
+    ws = args.workspace or os.getcwd()
+    recs = records.list_disputes(ws)
+    data = {"authority": pack.identity(), "count": len(recs), "disputes": recs}
+    if args.json:
+        return _dump(data)
+    print("%s — %d disputed resolution(s)" % (pack.identity()["authority"], len(recs)))
+    for d in recs:
+        print("  [%s] %s -> %s" % (d.get("status"), d.get("query", "")[:64],
+                                   d.get("resolved_to")))
+    return 0
+
+
+def cmd_dispute_replay(pack, args):
+    """Re-run the resolver over recorded disputes: standing = still claimed."""
+    ws = args.workspace or os.getcwd()
+    recs = records.list_disputes(ws, status="open")
+    rep = replay_disputes(pack, recs)
+    rep["authority"] = pack.identity()
+    rep["workspace"] = ws
+    if args.json:
+        _dump(rep)
+    else:
+        for r in rep["rows"]:
+            print("%-7s %-26s %s" % ("STANDS" if r["still_stands"] else "cleared",
+                                     r.get("disputed"), r.get("query", "")[:56]))
+        print("standing %d / %d (cleared %d)" % (rep["standing"], rep["total"],
+                                                 rep["cleared"]))
+    if args.expect_standing is not None and rep["standing"] != args.expect_standing:
+        print("dispute-replay: expected %d standing, got %d"
+              % (args.expect_standing, rep["standing"]), file=sys.stderr)
+        return 5
+    return 0
+
+
 def cmd_review(pack, args):
     ws = args.workspace or os.getcwd()
     notes = None
@@ -396,6 +445,21 @@ def main(argv=None):
     p.add_argument("--gap", required=True); p.add_argument("--file", required=True)
     p.add_argument("--workspace", default=None)
 
+    p = sub.add_parser("dispute-add")
+    p.add_argument("--query", required=True)
+    p.add_argument("--resolved-to", required=True)
+    p.add_argument("--reason", required=True)
+    p.add_argument("--context", default="")
+    p.add_argument("--suggested-fix", default=None)
+    p.add_argument("--workspace", default=None)
+
+    p = sub.add_parser("disputes")
+    p.add_argument("--workspace", default=None); p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("dispute-replay")
+    p.add_argument("--workspace", default=None); p.add_argument("--json", action="store_true")
+    p.add_argument("--expect-standing", type=int, default=None)
+
     p = sub.add_parser("review")
     p.add_argument("--proposal", required=True)
     p.add_argument("--verdict", required=True, choices=["accept", "reject", "needs-info"])
@@ -426,7 +490,10 @@ def main(argv=None):
                "inspect": cmd_inspect,
                "resolve": cmd_resolve, "validate": cmd_validate, "golden": cmd_golden,
                "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose,
-               "review": cmd_review, "precedents": cmd_precedents,
+               "review": cmd_review,
+               "dispute-add": cmd_dispute_add, "disputes": cmd_disputes,
+               "dispute-replay": cmd_dispute_replay,
+               "precedents": cmd_precedents,
                "precedent-check": cmd_precedent_check,
                "candidates": cmd_candidates}[args.cmd]
     return handler(pack, args) or 0

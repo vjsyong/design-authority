@@ -235,3 +235,26 @@ MCP smoke 22/22 · semantic self-test OK · concept-site gate green. Per
 `docs/spec/05` this is a semantic change → 0.4.0 with a fresh freeze and
 manifest (`docs/spec/freeze-0.4.0.sha256`), tag `v0.4.0`.
 
+## D-026 · Disputed resolutions; freeze Design Authority 0.5.0 (2026-10-08)
+
+Reviewer direction adopted: a false RESOLVED is more dangerous than an
+UNDEFINED, because a blindly trusting agent builds from it, and agent
+scepticism must not be the safeguard. Implemented as a first-class consumer
+record (`disputes.jsonl`, kind `disputed-resolution`): query, the id the
+resolver claimed, reason, optional suggested fix, context, status — distinct
+from a gap (no answer) because a dispute is a wrong answer. Surfaces: CLI
+`dispute-add` / `disputes` / `dispute-replay`; MCP `report_dispute` /
+`list_disputes` / `replay_disputes` (tools 11 to 14). Replay re-runs the
+resolver over open disputes (`still_stands` / `cleared`; `--expect-standing`
+gating), making the fixture set the regression harness for resolver
+applicability. Resolution semantics are untouched; disputes are evidence,
+never instructions. Seeded fixture set: `docs/experiments/disputes/` (four
+observed misresolutions: skip link, slide-in panel, state label, row
+chevron; all four stand at this freeze and the gate pins that count).
+Conformance at freeze: kernel 34/34 · triage goldens 56/56 · sweep 134/134 ·
+synthesis goldens 18/18 · 14/14 · 17/17 · precedent probe 31/31 · MCP smoke
+25/25 · semantic self-test OK · concept-site gate green · dispute replay
+4 standing (expected). Per `docs/spec/05` this is a semantic change → 0.5.0
+with a fresh freeze and manifest (`docs/spec/freeze-0.5.0.sha256`), tag
+`v0.5.0`.
+

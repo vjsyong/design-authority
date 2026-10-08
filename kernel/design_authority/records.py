@@ -1,5 +1,6 @@
-"""Gap + proposal records. Noncanonical by construction: they live in the
-consuming workspace under .design-authority/ and never touch the published pack.
+"""Gap, proposal and dispute records. Noncanonical by construction: they live
+in the consuming workspace under .design-authority/ and never touch the
+published pack.
 """
 import json
 import os
@@ -182,3 +183,76 @@ def set_proposal_review(workspace, proposal_id, verdict, notes=None,
         json.dump(record, fh, indent=1)
     record["stored_at"] = path
     return record
+
+
+# -- disputed resolutions (0.5) ------------------------------------------------
+
+def add_dispute(pack, workspace, query, resolved_to, reason, context=None,
+                suggested_fix=None, evidence=None):
+    """Record that a RESOLVED outcome did not govern the requesting need.
+
+    Distinct from a gap: a gap means the authority had no answer; a dispute
+    means it gave a wrong one. Disputes are consumer-side and noncanonical,
+    they never change resolution behavior, and they are replayable as
+    regression fixtures.
+    """
+    if not query or not reason:
+        raise ValueError("dispute requires query and reason")
+    if not resolved_to:
+        raise ValueError("dispute requires resolved_to (the id the resolver claimed)")
+    if resolved_to not in pack.by_id:
+        raise ValueError("resolved_to cites unknown id: %s" % resolved_to)
+    record = {
+        "id": _rid("dispute"),
+        "kind": "disputed-resolution",
+        "query": query,
+        "resolved_to": resolved_to,
+        "reason": reason,
+        "suggested_fix": suggested_fix,
+        "context": dict(context or {}),
+        "evidence": list(evidence or []),
+        "authority": pack.identity(),
+        "status": "open",
+        "created": _now(),
+    }
+    path = os.path.join(_ws(workspace), "disputes.jsonl")
+    with open(path, "a") as fh:
+        fh.write(json.dumps(record) + "\n")
+    record["stored_at"] = path
+    return record
+
+
+def list_disputes(workspace, status=None):
+    path = os.path.join(_ws(workspace), "disputes.jsonl")
+    if not os.path.exists(path):
+        return []
+    with open(path) as fh:
+        records = [json.loads(line) for line in fh if line.strip()]
+    if status:
+        records = [r for r in records if r.get("status") == status]
+    return records
+
+
+DISPUTE_STATUS = ("open", "accepted", "rejected")
+
+
+def set_dispute_status(workspace, dispute_id, status, note=None):
+    """Reviewer-side ruling on a dispute: accepted (the record does not
+    govern), rejected (the resolution holds), or back to open."""
+    if status not in DISPUTE_STATUS:
+        raise ValueError("status must be open|accepted|rejected, got %r" % status)
+    records = list_disputes(workspace)
+    found = None
+    for r in records:
+        if r["id"] == dispute_id:
+            r["status"] = status
+            r["status_note"] = note
+            r["status_at"] = _now()
+            found = r
+    if found is None:
+        raise ValueError("unknown dispute %s" % dispute_id)
+    path = os.path.join(_ws(workspace), "disputes.jsonl")
+    with open(path, "w") as fh:
+        for r in records:
+            fh.write(json.dumps(r) + "\n")
+    return found

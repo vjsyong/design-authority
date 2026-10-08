@@ -214,3 +214,32 @@ def resolve_golden(pack, cases):
     passed = sum(1 for row in rows if row["ok"])
     return {"total": len(rows), "passed": passed,
             "rate": round(passed / len(rows), 3) if rows else 0.0, "rows": rows}
+
+
+def replay_disputes(pack, disputes):
+    """Re-run the resolver over recorded disputes (the regression fixture).
+
+    A dispute still stands while resolving its query again yields the disputed
+    id (RESOLVED matching resolved_to); it is cleared when the resolver no
+    longer makes that claim. Deterministic: same pack, same rows.
+    """
+    def _outcome_id(out):
+        res = out.get("resolution") or {}
+        for key in ("artifact", "recipe", "fallback", "prohibition"):
+            v = res.get(key)
+            if isinstance(v, dict) and v.get("id"):
+                return v["id"]
+        return None
+
+    rows = []
+    for d in disputes:
+        out = resolve(pack, d["query"])
+        oid = _outcome_id(out)
+        still = out.get("outcome") == "RESOLVED" and oid == d.get("resolved_to")
+        rows.append({"id": d.get("id"), "query": d["query"],
+                     "disputed": d.get("resolved_to"),
+                     "outcome": out.get("outcome"), "resolution_id": oid,
+                     "still_stands": still})
+    standing = sum(1 for r in rows if r["still_stands"])
+    return {"total": len(rows), "standing": standing,
+            "cleared": len(rows) - standing, "rows": rows}
