@@ -623,9 +623,8 @@ def demo():
         for a in pack.artifacts:
             kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
         ktxt = " · ".join("%d %s" % (v, k) for k, v in sorted(kinds.items()))
-        # triage's audit lives on the concept site
-        href = ("https://designauthority.seanyong.xyz/authorities/%s/audit" % name
-                if name == "triage" else "/demo/%s" % name)
+        # every authority page lives on the concept site
+        href = "https://designauthority.seanyong.xyz/authorities/%s/audit" % name
         cards.append(
             "<a class='src' href='%s'><b>%s</b><p>%s</p>"
             "<p><span class='chip src'>%s</span> <span class='chip gold'>golden %d/%d</span></p></a>"
@@ -639,7 +638,7 @@ def demo():
             if os.path.exists(gp):
                 gaps = sum(1 for _ in open(gp))
             stress.append(
-                "<a class='src' href='/stress/%s/'><b>Cadence · %s</b>"
+                "<a class='src' href='https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v1/'><b>Cadence · %s</b>"
                 "<p>the same tracker, rendered by the %s authority</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, name, gaps))
@@ -652,7 +651,7 @@ def demo():
             if os.path.exists(gp):
                 gaps = sum(1 for _ in open(gp))
             stress2.append(
-                "<a class='src' href='/stress2/%s/'><b>Cadence v2 · %s</b>"
+                "<a class='src' href='https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v2/'><b>Cadence v2 · %s</b>"
                 "<p>rebuilt on the updated authority</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
@@ -665,11 +664,11 @@ def demo():
             if os.path.exists(gp):
                 gaps = sum(1 for _ in open(gp))
             stress3.append(
-                "<a class='src' href='/stress3/%s/'><b>Cadence v3 · %s</b>"
+                "<a class='src' href='https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v3/'><b>Cadence v3 · %s</b>"
                 "<p>rebuilt on the codified authority (0.2.0 + precedents)</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
-    audit = ("<a class='src' href='/designAuthority/jennu/'><b>System Review &middot; Jennu</b>"
+    audit = ("<a class='src' href='https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/'><b>System Review &middot; Jennu</b>"
              "<p>the design authority of zhenyoyo.github.io (deployed language) — 36 ledger items &amp; the screens behind them</p>"
              "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
     audit += ("<a class='src' href='https://designauthority.seanyong.xyz/'><b>Design Authority &middot; the concept</b>"
@@ -775,10 +774,9 @@ def _demo_page(name):
 
 @app.route("/demo/<name>")
 def demo_pack(name):
-    if name == "triage":
-        # the triage authority audit lives on the concept site now
-        return redirect("https://designauthority.seanyong.xyz/authorities/triage/audit", code=308)
-    return _demo_page(name)
+    if name not in PACK_META:
+        abort(404)
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/audit" % name, code=308)
 
 
 @app.route("/authorities/<name>/audit")
@@ -794,64 +792,95 @@ def authority_audit(name):
     return Response(page, mimetype="text/html")
 
 
-@app.route("/stress/<name>/")
-def stress_index(name):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence-%s" % name)
-    if not os.path.isdir(d):
+# ---- every authority's demo apps, one taxonomy: /authorities/<authority>/demo/<app> ----
+AUTHORITY_APPS = {
+    "phantom": {"jennu": os.path.join(_REPO, "examples", "phantom-audit")},
+    "wink": {"cadence-v1": os.path.join(_REPO, "examples", "cadence-wink"),
+             "cadence-v2": os.path.join(_REPO, "examples", "cadence2-wink"),
+             "cadence-v3": os.path.join(_REPO, "examples", "cadence3-wink")},
+    "leader": {"cadence-v1": os.path.join(_REPO, "examples", "cadence-leader"),
+               "cadence-v2": os.path.join(_REPO, "examples", "cadence2-leader"),
+               "cadence-v3": os.path.join(_REPO, "examples", "cadence3-leader")},
+    "dominion": {"cadence-v1": os.path.join(_REPO, "examples", "cadence-dominion"),
+                 "cadence-v2": os.path.join(_REPO, "examples", "cadence2-dominion"),
+                 "cadence-v3": os.path.join(_REPO, "examples", "cadence3-dominion")},
+}
+
+
+def _concept_redirect():
+    return redirect("https://designauthority.seanyong.xyz" + request.path, code=308)
+
+
+@app.route("/authorities/<name>/demo/<app>/")
+def authority_demo_index(name, app):
+    if not _is_designauthority_host():
+        return _concept_redirect()
+    d = AUTHORITY_APPS.get(name, {}).get(app)
+    if not d or not os.path.isdir(d):
         abort(404)
     return send_from_directory(d, "index.html")
+
+
+@app.route("/authorities/<name>/demo/<app>")
+def authority_demo_noslash(name, app):
+    if not _is_designauthority_host():
+        return _concept_redirect()
+    if app not in AUTHORITY_APPS.get(name, {}):
+        abort(404)
+    return redirect("/authorities/%s/demo/%s/" % (name, app), code=308)
+
+
+@app.route("/authorities/<name>/demo/<app>/<path:fn>")
+def authority_demo_file(name, app, fn):
+    if not _is_designauthority_host():
+        return _concept_redirect()
+    d = AUTHORITY_APPS.get(name, {}).get(app)
+    if not d or not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, fn)
+
+
+# jennu's learn page: a file page, no trailing-slash home
+@app.route("/authorities/phantom/demo/jennu/learn")
+def authority_jennu_learn():
+    if not _is_designauthority_host():
+        return _concept_redirect()
+    return send_from_directory(AUTHORITY_APPS["phantom"]["jennu"], "learn.html")
+
+
+@app.route("/authorities/phantom/demo/jennu/learn/")
+def authority_jennu_learn_slash():
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/learn", code=308)
+
+
+@app.route("/stress/<name>/")
+def stress_index(name):
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v1/" % name, code=308)
 
 
 @app.route("/stress/<name>/<path:fn>")
 def stress_file(name, fn):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence-%s" % name)
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, fn)
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v1/%s" % (name, fn), code=308)
 
 
 @app.route("/stress2/<name>/")
 def stress2_index(name):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, "index.html")
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v2/" % name, code=308)
 
 
 @app.route("/stress2/<name>/<path:fn>")
 def stress2_file(name, fn):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, fn)
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v2/%s" % (name, fn), code=308)
 
 
 @app.route("/stress3/<name>/")
 def stress3_index(name):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, "index.html")
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v3/" % name, code=308)
 
 
 @app.route("/stress3/<name>/<path:fn>")
 def stress3_file(name, fn):
-    if name not in PACK_META:
-        abort(404)
-    d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, fn)
+    return redirect("https://designauthority.seanyong.xyz/authorities/%s/demo/cadence-v3/%s" % (name, fn), code=308)
 
 
 # ---- phantom audit review surface ----
@@ -860,22 +889,16 @@ AUDIT_WS = {"phantom": "phantom-audit"}
 
 @app.route("/audit/<name>/")
 def audit_index(name):
-    if name not in AUDIT_WS:
+    if name != "phantom":
         abort(404)
-    d = os.path.join(_REPO, "examples", AUDIT_WS[name])
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, "index.html")
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/", code=308)
 
 
 @app.route("/audit/<name>/<path:fn>")
 def audit_file(name, fn):
-    if name not in AUDIT_WS:
+    if name != "phantom":
         abort(404)
-    d = os.path.join(_REPO, "examples", AUDIT_WS[name])
-    if not os.path.isdir(d):
-        abort(404)
-    return send_from_directory(d, fn)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/" + fn, code=308)
 
 
 # ---- designauthority.seanyong.xyz: the concept site (own hostname, same server) ----
@@ -890,47 +913,45 @@ def _is_designauthority_host():
 # ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jennu/) ----
 @app.route("/designAuthority/jennu/")
 def jennu_index():
-    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "index.html")
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/", code=308)
 
 
 @app.route("/designAuthority/jennu")
 def jennu_index_noslash():
-    # the trailing slash matters: relative asset paths resolve against the directory URL
-    return redirect("/designAuthority/jennu/", code=308)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/", code=308)
 
 
 @app.route("/designAuthority/jennu/<path:fn>")
 def jennu_file(fn):
-    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), fn)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/" + fn, code=308)
 
 
 @app.route("/designAuthority/jennu/learn")
 def jennu_learn():
-    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "learn.html")
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/learn", code=308)
 
 
 @app.route("/designAuthority/jennu/learn/")
 def jennu_learn_slash():
-    # the page has no trailing-slash home; keep relative assets anchored to /jennu/
-    return redirect("/designAuthority/jennu/learn", code=308)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/learn", code=308)
 
 
 # legacy spelling (jenmu) — keep old links working
 @app.route("/designAuthority/jenmu/")
 @app.route("/designAuthority/jenmu")
 def jennu_legacy():
-    return redirect("/designAuthority/jennu/", code=308)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/", code=308)
 
 
 @app.route("/designAuthority/jenmu/<path:fn>")
 def jennu_legacy_file(fn):
-    return redirect("/designAuthority/jennu/" + fn, code=308)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/" + fn, code=308)
 
 
 @app.route("/designAuthority/")
 @app.route("/designAuthority")
 def jennu_redirect():
-    return redirect("/designAuthority/jennu/", code=302)
+    return redirect("https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/", code=308)
 
 
 @app.route("/robots.txt")
@@ -944,7 +965,11 @@ def robots_txt():
 def _noindex_everything(resp):
     """The review host is noindex; the concept site (designauthority.) is its own public page."""
     if _is_designauthority_host():
-        resp.headers["X-Robots-Tag"] = "index, follow"
+        # jennu stays noindex: it is commentary about a third party's site
+        if request.path.startswith("/authorities/phantom/demo/jennu"):
+            resp.headers["X-Robots-Tag"] = "noindex, nofollow"
+        else:
+            resp.headers["X-Robots-Tag"] = "index, follow"
         return resp
     resp.headers["X-Robots-Tag"] = "noindex, nofollow"
     return resp
