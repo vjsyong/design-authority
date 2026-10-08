@@ -155,10 +155,19 @@ a wrapper (`run-authority`) that records the call, output and timing to
 `audit.jsonl`, so the trace is machine-recorded rather than self-reported.
 
 - **37 authority calls, 0 failures**, 5.7 s total. Breakdown: 1 overview,
-  15 resolve, 3 discover, 12 inspect, 3 gap-add, 2 validate. The agent's
-  narrative log matches the audit 37 for 37, in order.
+  1 flag check (`--help`), 15 resolve, 3 discover, 12 inspect, 3 gap-add,
+  2 validate (sums to 37). The agent's narrative log matches the audit 37
+  for 37, in order. Completeness note: the wrapper records what passes
+  through it, so the agent's full live transcript was scanned afterwards;
+  it contains no authority invocation outside the wrapper (every `da.py`
+  mention in it is a read of the tool file). Guaranteeing exclusivity for
+  future runs is a containment problem, not an instruction problem, and is
+  listed under next steps.
 - **12 records adopted**, all inspected first. Both pages validate at
-  **0 errors / 0 warnings / score 100 on the first run**.
+  **0 errors / 0 warnings / score 100 on the first run**. Scope note: the
+  validator checks the configured lint rules (tokens, prohibitions,
+  structure). It does not establish that every semantic or perceptual
+  requirement was met; that stays a human review question.
 - Discovery carried exactly the three blind spots, including a new failure
   flavor: **composite ties** (chip vs index-row at 13.0 each; the margin
   rule correctly refuses to pick, so UNDEFINED).
@@ -211,10 +220,25 @@ Stated plainly, because they matter more than the headline numbers:
 - **Hard negatives need red-teaming.** The battery grows with adversarial
   near-neighbours across jurisdictions (destructive controls, outbound
   messaging, scheduling).
-- **The metric found resolver edges.** Composite ties, the skip-link
-  misfire, and the three D3 over-resolutions are all candidate material for
-  future calibration work under the governance process, not silent
-  threshold changes.
+- **Resolver edges are now first-class work items.** The metric found
+  composite ties, the skip-link misfire, and three over-resolutions on new
+  wording. The skip-link case is the sharpest: a false RESOLVED is more
+  dangerous than an UNDEFINED, because a blindly trusting agent would build
+  a canonically wrong implementation. Next, in priority order: (1) a
+  disputed-resolution case type with regression fixtures (query plus the
+  record it must not resolve to), distinguishable from an ordinary gap;
+  (2) a ranking experiment that preserves strong lexical hits and treats
+  semantic matches as supplementary discovery, without changing the stack;
+  (3) the agent-level A/B over the same task battery, scoring correct
+  canonical adoption, false authority adoption, unnecessary gaps, and
+  human corrections.
+- **The skip link is not in the catalogue.** Checked: `.skip` ships in
+  `core/base.css` and appears in the Triage site's own layout, but no pack
+  record exists. The Duty agent's gap stands, and recording it upstream is
+  a candidate.
+- **Exclusivity is containment.** For future audited runs the wrapper
+  should be the only reachable route to the authority (sandbox or path
+  control), not merely the instructed one.
 - **One operational habit.** The index is derived data, keyed by pack
   version and content hash. Rebuild it after any pack change; `da_sem.py
   stale` exits 3 when it is out of date.

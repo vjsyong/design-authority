@@ -32,6 +32,10 @@ wrapper that runs the real CLI and appends the call, its output and timing to
 
 The narrative log (`log.md`) reproduces the audit exactly: 37 numbered
 sections against 37 audit entries, in order, no omissions and no additions.
+The agent's full live transcript was also scanned afterwards: it contains no
+authority invocation outside the wrapper (every mention of the tool file is
+a read). The wrapper records what passes through it; exclusivity for future
+runs needs containment, not instructions.
 
 ## 2 · How the agent worked
 
