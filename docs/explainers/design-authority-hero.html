@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Design authority — at a glance</title>
+<style>
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 300; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-300-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 400; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-400-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 700; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-700-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 900; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-900-latin.woff2") format("woff2"); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Source Sans Pro", Helvetica, sans-serif; font-weight: 300; color: #585858;
+         width: 1240px; background: #fff; line-height: 1.5; }
+  .wrap { padding: 44px 56px 40px 56px; }
+  code { font-family: "Courier New", monospace; font-size: 12.5px; background: rgba(46,90,249,0.986); color: #ff6bbc; padding: 1px 6px; border-radius: 4px; }
+  .mono { font-family: "Courier New", monospace; font-size: 12.5px; }
+  strong { font-weight: 900; }
+
+  .kicker { font-size: 12.5px; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: #ff6bbc; }
+  .sub { font-size: 13px; color: rgba(88,88,88,0.8); }
+  h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; color: #ff6bbc; margin: 6px 0 4px 0; line-height: 1.12; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: solid 2px #c9c9c9; padding-bottom: 16px; margin-bottom: 24px; }
+
+  .cols { display: flex; gap: 38px; }
+  .col { flex: 1 1 0; min-width: 0; }
+  h2 { font-size: 13px; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; color: #585858; margin: 0 0 12px 0; }
+  h2 .n { color: #ff6bbc; margin-right: 8px; }
+
+  p.lead { font-size: 14px; margin-bottom: 12px; }
+
+  .filelist { font-family: "Courier New", monospace; font-size: 12px; line-height: 1.85; }
+  .filelist .cnt { color: #ff6bbc; font-weight: 700; }
+  .filelist .c { color: rgba(88,88,88,0.7); }
+
+  .fstep { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .fstep .box { flex: 1; border: solid 1px #c9c9c9; padding: 5px 10px; font-size: 12.5px; }
+  .fstep .box b { font-weight: 900; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 6px; }
+  .fstep .arr { color: #ff6bbc; font-weight: 900; font-size: 14px; width: 14px; text-align: center; }
+  .fstep.split .box.l { border-left: solid 3px #ff6bbc; }
+  .fstep.split .box.r { border-left: solid 3px #20a3f5; }
+  .fstep .box.report { border-left: solid 3px #3ef900; background: rgba(62,249,0,0.12); }
+
+  .evol li { list-style: none; font-size: 13px; margin-bottom: 8px; padding-left: 18px; position: relative; }
+  .evol li::before { content: "—"; position: absolute; left: 0; color: #ff6bbc; font-weight: 900; }
+  .chip { display: inline-block; font-size: 10.5px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
+          border: solid 1px #585858; padding: 1px 7px; margin-right: 6px; }
+  .chip.p { border-color: #ff6bbc; color: #ff6bbc; }
+  .chip.b { border-color: #20a3f5; color: #315df9; }
+  .chip.g { border-color: #3ef900; background: rgba(62,249,0,0.16); }
+  .chip.v { border-color: #8833e3; color: #8833e3; }
+
+  .footer { margin-top: 26px; border-top: solid 1px #c9c9c9; padding-top: 12px; font-size: 12px; color: rgba(88,88,88,0.85); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div>
+      <div class="kicker">Design authority &middot; at a glance</div>
+      <h1>The system that builds the system</h1>
+      <div class="sub">a versioned contract that a coding agent builds from — and a verifier checks, independently</div>
+    </div>
+    <div class="sub" style="text-align:right;">worked example: <strong>Jennu</strong><br/><span class="mono">packs/phantom</span> 0.2.0 &middot; zhenyoyo.github.io</div>
+  </div>
+
+  <div class="cols">
+    <!-- 1 -->
+    <div class="col">
+      <h2><span class="n">01</span>The contract</h2>
+      <p class="lead">A design authority is a versioned, machine-readable description of an interface system: components, rules, fallbacks — written to be read by tools, not just people. <strong>A contract, not a style guide.</strong></p>
+      <div class="filelist">
+<span class="c">packs/phantom/</span> <span class="c">— plain JSON, no database</span><br/>
+artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
+rules.json <span class="cnt">8</span> <span class="c">· prohibitions <span class="cnt">2</span> · fallbacks <span class="cnt">4</span></span><br/>
+precedents.json <span class="cnt">1</span> <span class="c"> · candidates.json <span class="cnt">3</span></span><br/>
+golden.json <span class="cnt">21</span> <span class="c">ask → expected outcome</span><br/>
+verification.json <span class="cnt">15</span> <span class="c">conformance checks</span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="col">
+      <h2><span class="n">02</span>Two consumers</h2>
+      <div class="fstep"><span class="arr">▸</span><div class="box"><b>Authority</b>the pack — one contract</div></div>
+      <div class="fstep split"><span class="arr">▸</span>
+        <div class="box l"><b>Agent</b>resolves every ask; builds</div></div>
+      <div class="fstep"><span class="arr">▸</span><div class="box"><b>Artifact</b>the built interface<br/><span class="c mono" style="font-size:11.5px;">silences → marked improvisation + filed gap</span></div></div>
+      <div class="fstep split"><span class="arr">▸</span>
+        <div class="box r"><b>Verifier</b>inspects the artifact — never the agent's claims</div></div>
+      <div class="fstep"><span class="arr">▸</span><div class="box report"><b>Report</b>15/15 checks · published with hash-covers</div></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="col">
+      <h2><span class="n">03</span>How it evolves</h2>
+      <ul class="evol">
+        <li><span class="chip">v0.1.0</span><span class="chip" style="border-color:#f51616;color:#f51616;">rejected</span><span class="chip p">v0.2.0</span><br/>
+        frozen, verified — but extracted from the wrong layer. Rendered evidence overruled it; the reversal is recorded as a <strong>precedent</strong>, not hidden.</li>
+        <li><span class="chip v">rule</span> editorial edit → patch bump &middot; semantic change → minor bump + <strong>fresh freeze</strong> (all files re-hashed).</li>
+        <li><span class="chip g">rule</span> precedents persist across versions — agents never relitigate a settled decision.</li>
+        <li><span class="chip b">rule</span> ambitions become candidates with an explicit <strong>promote-when</strong> bar; friction becomes filed gaps.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <strong>Worked example</strong> — Jennu: the design authority of zhenyoyo.github.io, extracted from the deployed site (screenshots + computed styles), version 0.2.0.
+    Full poster &amp; written explainer in the review below. &nbsp;·&nbsp; <span class="mono">audit.seanyong.xyz/designAuthority/jennu/</span>
+  </div>
+
+</div>
+</body>
+</html>

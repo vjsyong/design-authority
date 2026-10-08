@@ -40,6 +40,7 @@ with sync_playwright() as p:
     check("fonts loaded (300 body)", pg.evaluate("document.fonts.check('300 16px \"Source Sans Pro\"')"))
 
     # explainer accordion
+    check("top graphic present (hero)", pg.evaluate("!!document.querySelector('.top-graphic img') && document.querySelector('.top-graphic img').getAttribute('src').indexOf('design-authority-hero.png') > -1"))
     check("explainer starts collapsed", pg.evaluate("!document.querySelector('details.explainer').open"))
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(150)
