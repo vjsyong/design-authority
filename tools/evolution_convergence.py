@@ -108,7 +108,7 @@ def run(pack, cases, group, report, hard=True):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--pack", default="packs/triage-evolution")
+    ap.add_argument("--pack", default="authorities/triage-evolution")
     args = ap.parse_args()
     pack = Pack(os.path.join(ROOT, args.pack))
     print("pack:", pack.identity().get("version"), os.path.join(ROOT, args.pack))

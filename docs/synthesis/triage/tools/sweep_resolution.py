@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.join(ROOT, "kernel"))
 from design_authority.pack import Pack  # noqa: E402
 from design_authority.resolve import resolve  # noqa: E402
 
-PACK = os.path.join(ROOT, "packs", "triage")
+PACK = os.path.join(ROOT, "authorities", "triage")
 CASES = os.path.join(ROOT, "docs", "synthesis", "triage", "coverage.json")
 REPORT = os.path.join(ROOT, "docs", "synthesis", "triage", "coverage-report.json")
 

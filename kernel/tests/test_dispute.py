@@ -12,7 +12,7 @@ from design_authority.pack import Pack  # noqa: E402
 from design_authority import records  # noqa: E402
 from design_authority.resolve import replay_disputes  # noqa: E402
 
-PACK = os.path.join(ROOT, "packs", "triage")
+PACK = os.path.join(ROOT, "authorities", "triage")
 
 
 class TestDisputes(unittest.TestCase):

@@ -46,7 +46,7 @@ from design_authority.pack import Pack, PackError          # noqa: E402
 from design_authority.resolve import resolve, resolve_golden  # noqa: E402
 from design_authority import records as da_records         # noqa: E402
 
-PACKS_DIR = os.path.join(_REPO, "packs")
+PACKS_DIR = os.path.join(_REPO, "authorities")
 import authority_gallery as _gal          # discovery + mtime freshness (docs/12)
 
 
@@ -751,7 +751,7 @@ def _demo_page(name):
         prompt_html = (
             "<h2>Implement with this authority — agent prompt</h2>"
             "<p class='sub'>A ready-to-send brief for coding agents building on this pack. "
-            "Source: <span class='mono'>packs/%s/AGENT-PROMPT.md</span></p>"
+            "Source: <span class='mono'>authorities/%s/AGENT-PROMPT.md</span></p>"
             "<pre style=\"white-space:pre-wrap; background:#fff; border:1px solid #ddd; border-radius:0; "
             "padding:14px 16px; max-height:520px; overflow:auto; font-size:12px; line-height:1.55;\">%s</pre>"
             % (_esc(name), _esc(prompt_md)))
@@ -826,7 +826,7 @@ def gallery_root_noslash():
     return redirect("/authorities/", code=308)
 
 
-SITES_DIR = os.path.join(_REPO, "examples", "authority-sites")
+SITES_DIR = os.path.join(_REPO, "authorities")
 
 
 @app.route("/authorities/<name>/site/")
@@ -836,7 +836,7 @@ def authority_site(name):
         abort(404)
     if not _is_designauthority_host():
         return redirect("https://designauthority.seanyong.xyz/authorities/%s/site/" % name, code=308)
-    d = os.path.join(SITES_DIR, name)
+    d = os.path.join(SITES_DIR, name, "site")
     if not os.path.isfile(os.path.join(d, "index.html")):
         abort(404)
     resp = send_from_directory(d, "index.html")
@@ -850,7 +850,7 @@ def authority_site_file(name, fn):
         abort(404)
     if not _is_designauthority_host():
         return redirect("https://designauthority.seanyong.xyz/authorities/%s/site/%s" % (name, fn), code=308)
-    d = os.path.join(SITES_DIR, name)
+    d = os.path.join(SITES_DIR, name, "site")
     if not os.path.isfile(os.path.join(d, fn)):
         abort(404)
     resp = send_from_directory(d, fn)
@@ -1224,7 +1224,7 @@ def load_lenient():
 
 def precedents_by_gap(src):
     """Map gap suffix -> precedent id, from the pack's precedents.json."""
-    p = os.path.join(_REPO, "packs", src, "precedents.json")
+    p = os.path.join(_REPO, "authorities", src, "precedents.json")
     out = {}
     if os.path.exists(p):
         with open(p) as fh:

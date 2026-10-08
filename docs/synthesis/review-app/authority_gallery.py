@@ -23,7 +23,7 @@ from html import escape as _esc
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _REPO = os.path.dirname(os.path.dirname(os.path.dirname(_HERE)))
-PACKS_DIR = os.path.join(_REPO, "packs")
+PACKS_DIR = os.path.join(_REPO, "authorities")
 sys.path.insert(0, os.path.join(_REPO, "kernel"))
 
 from design_authority.pack import Pack, PackError  # noqa: E402
@@ -297,9 +297,9 @@ def _kind_nav(pack, name, current):
         out.append('<a class="nav-item%s" href="%s/spec">Rules &amp; prohibitions<span class="gal-navcount">%d</span></a>'
                    % (act, base, n))
     out.append('<div class="nav-label">Source</div>')
-    if os.path.isfile(os.path.join(_REPO, "examples", "authority-sites", name, "index.html")):
+    if os.path.isfile(os.path.join(_REPO, "authorities", name, "site", "index.html")):
         out.append('<a class="nav-item" href="/authorities/%s/site/">Authority-built site</a>' % name)
-        if os.path.isfile(os.path.join(_REPO, "examples", "authority-sites", name, "download", name + "-site.zip")):
+        if os.path.isfile(os.path.join(_REPO, "authorities", name, "site", "download", name + "-site.zip")):
             out.append('<a class="nav-item" href="/authorities/%s/site/download/%s-site.zip">Download everything (.zip)</a>' % (name, name))
     out.append('<a class="nav-item" href="/authorities/%s/audit">Audit &amp; provenance</a>' % name)
     out.append('<a class="nav-item" href="/authorities/">All authorities</a>')
@@ -350,7 +350,7 @@ def _shell(entry, name, current, body):
     </header>
     <main id="main" class="content">
 %s
-      <div class="foot">%s · design authority v%s — rendered live from <span class="mono">packs/%s</span>; updates when the pack updates.</div>
+      <div class="foot">%s · design authority v%s — rendered live from <span class="mono">authorities/%s</span>; updates when the pack updates.</div>
     </main>
   </div>
 </div>

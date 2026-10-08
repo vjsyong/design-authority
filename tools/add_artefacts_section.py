@@ -3,7 +3,7 @@
 
 Owner feedback: a visitor could see prose about the pack but had to guess where
 the actual usable stuff was. This inserts, into each build at
-examples/authority-sites/<auth>/:
+authorities/<auth>/site/ (each authority's own repo):
 
   - a `section#artefacts` (before the Specification section) listing EVERY
     artifact in the pack, grouped by kind: title, id, status, summary, and a
@@ -28,7 +28,7 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITES = os.path.join(ROOT, "examples", "authority-sites")
+AUTHORITIES = os.path.join(ROOT, "authorities")
 
 MARK_S = "<!-- artefacts-directory:start -->"
 MARK_E = "<!-- artefacts-directory:end -->"
@@ -355,14 +355,14 @@ def build_section(auth, pack, notice=None):
 
 
 def inject(auth, notice=None):
-    build = os.path.join(SITES, auth)
+    build = os.path.join(AUTHORITIES, auth, "site")
     page_p = os.path.join(build, "index.html")
     if not os.path.isfile(page_p):
         print("skip %s (no build)" % auth)
         return False
     html = open(page_p).read()
-    pack = json.load(open(os.path.join(ROOT, "packs", auth, "authority.json")))
-    pack["artifacts"] = json.load(open(os.path.join(ROOT, "packs", auth, "artifacts.json")))
+    pack = json.load(open(os.path.join(AUTHORITIES, auth, "authority.json")))
+    pack["artifacts"] = json.load(open(os.path.join(AUTHORITIES, auth, "artifacts.json")))
     section, css = build_section(auth, pack, notice=notice)
 
     # idempotency: strip previous block(s)
@@ -411,8 +411,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--auth", nargs="*", default=None)
     args = ap.parse_args()
-    auths = args.auth or [d for d in sorted(os.listdir(SITES))
-                          if os.path.isfile(os.path.join(SITES, d, "index.html"))]
+    auths = args.auth or [d for d in sorted(os.listdir(AUTHORITIES))
+                          if os.path.isfile(os.path.join(AUTHORITIES, d, "site", "index.html"))]
     for a in auths:
         inject(a)
 

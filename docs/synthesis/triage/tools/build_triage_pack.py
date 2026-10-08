@@ -20,9 +20,9 @@ from datetime import datetime, timezone
 REPO = "/home/xrim/design-authority"
 TR = "/home/xrim/triage-design-system"
 _ap = argparse.ArgumentParser(description="build packs/triage from the triage repo")
-_ap.add_argument("--out", default=None, help="output directory (default: packs/triage)")
+_ap.add_argument("--out", default=None, help="output directory (default: authorities/triage)")
 _args = _ap.parse_args()
-OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "packs", "triage")
+OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "authorities", "triage")
 os.makedirs(OUT, exist_ok=True)
 
 V = "0.12.1"
@@ -52,7 +52,7 @@ def A(aid, kind, title, summary, aliases, body, source, compiled_from, status="s
             "compiled_from": compiled_from}
 
 # ------------------------------------------------------------- authority ----
-auth = json.load(open(os.path.join(REPO, "packs", "wink", "authority.json")))
+auth = json.load(open(os.path.join(REPO, "authorities", "wink", "authority.json")))
 auth.update({
     "id": "triage", "name": "Triage", "version": V,
     "snapshot": {"repo": "triage-design-system (local; published at triage.seanyong.xyz)",
@@ -66,7 +66,7 @@ auth.update({
 })
 json.dump(auth, open(os.path.join(OUT, "authority.json"), "w"), indent=1, ensure_ascii=False)
 
-sl = json.load(open(os.path.join(REPO, "packs", "wink", "scoring.json")))
+sl = json.load(open(os.path.join(REPO, "authorities", "wink", "scoring.json")))
 sl["source"] = "triage-design-system spec/ + INTERACTION.md"
 json.dump(sl, open(os.path.join(OUT, "scoring.json"), "w"), indent=1)
 
@@ -709,5 +709,5 @@ build = {
 }
 json.dump(build, open(os.path.join(OUT, "BUILD.json"), "w"), indent=1)
 
-print("emitted packs/triage: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases"
+print("emitted authority pack: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases"
       % (len(artifacts), len(rules), len(prohibitions), len(fallbacks), len(precedents), len(candidates), len(golden["cases"])))

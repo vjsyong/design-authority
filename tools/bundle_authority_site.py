@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bundle an authority-built site into ONE download, and write its agent brief.
 
-Per build (examples/authority-sites/<auth>/):
+Per build (authorities/<auth>/site/):
 
   - agent-brief.md: a paste-ready brief for a coding agent ("build my app under
     the <Name> authority"), served next to the site and inside the bundle;
@@ -25,8 +25,8 @@ import zipfile
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITES = os.path.join(ROOT, "examples", "authority-sites")
-PACKS = os.path.join(ROOT, "packs")
+SITES = os.path.join(ROOT, "authorities")
+PACKS = os.path.join(ROOT, "authorities")
 
 SITE_FILES = [
     "index.html", "styles.css", "MANIFEST.md", "archive-manifest.json",
@@ -35,7 +35,7 @@ SITE_FILES = [
 
 AGENT_BRIEF = """# Agent brief: build under the {name} authority
 
-Authority: `packs/{auth}` v{version} (format {fmt}). {desc}
+Authority repo: `authority-{auth}` (v{version}, format {fmt}). {desc}
 
 Reference build (what "look like this" means for this authority):
   https://designauthority.seanyong.xyz/authorities/{auth}/site/
@@ -57,7 +57,7 @@ Build an interface that conforms to THIS authority alone.
    python3 tools/da.py --pack packs/{auth} resolve "primary button" --json
 3. Inspect every record before adopting it:
    python3 tools/da.py --pack packs/{auth} inspect <id>
-4. Adopt only records from packs/{auth}. Never borrow another authority's
+4. Adopt only records shipped by this authority. Never borrow another's
    components, values or classes.
 5. When the authority is silent: build from the nearest recorded pieces, keep
    the improvisation visible (an HTML comment plus data-improv="<reason>"),
@@ -95,7 +95,7 @@ def agent_brief(auth):
 
 
 def build_bundle(auth):
-    build = os.path.join(SITES, auth)
+    build = os.path.join(SITES, auth, "site")
     if not os.path.isfile(os.path.join(build, "index.html")):
         return None
     pack = json.load(open(os.path.join(PACKS, auth, "authority.json")))
@@ -111,7 +111,7 @@ def build_bundle(auth):
 
     readme = (
         "%s authority site bundle\n"
-        "Built from packs/%s v%s - %s UTC\n\n"
+        "Built from the authority-%s repo v%s - %s UTC\n\n"
         "Contents\n"
         "  site/            the reference build as shipped: index.html, styles.css,\n"
         "                   fonts/, MANIFEST.md (sha256 of everything), build log,\n"

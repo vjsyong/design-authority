@@ -24,8 +24,8 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITES = os.path.join(ROOT, "examples", "authority-sites")
-PACKS = os.path.join(ROOT, "packs")
+SITES = os.path.join(ROOT, "authorities")
+PACKS = os.path.join(ROOT, "authorities")
 
 MARK_S = "/* artefacts-directory:start */"
 MARK_E = "/* artefacts-directory:end */"
@@ -69,7 +69,7 @@ def pack_text(auth):
 
 
 def check(auth):
-    build = os.path.join(SITES, auth)
+    build = os.path.join(SITES, auth, "site") if os.path.isdir(os.path.join(SITES, auth, "site")) else os.path.join(SITES, auth)
     css_p = os.path.join(build, "styles.css")
     if not os.path.isfile(css_p):
         print("%s: no styles.css" % auth)
@@ -121,7 +121,7 @@ def main():
     ap.add_argument("--auth", nargs="*", default=None)
     args = ap.parse_args()
     auths = args.auth or [d for d in sorted(os.listdir(SITES))
-                          if os.path.isfile(os.path.join(SITES, d, "index.html"))]
+                          if os.path.isfile(os.path.join(SITES, d, "site", "index.html"))]
     bad = 0
     for a in auths:
         bad += len(check(a))

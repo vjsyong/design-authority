@@ -1,0 +1,31 @@
+name: design-authority-ci
+
+on: [push, pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch the authority repos (public)
+        run: bash authorities/bootstrap.sh
+      - name: kernel unit tests
+        run: python3 -m unittest discover -s kernel/tests -t . -q
+      - name: pack overviews and goldens
+        run: |
+          for a in triage triage-evolution wink leader dominion phantom indaba orbit; do
+            python3 tools/da.py --pack authorities/$a overview > /dev/null
+            if [ -f authorities/$a/golden.json ]; then
+              python3 tools/da.py --pack authorities/$a golden --file authorities/$a/golden.json | tail -1
+            fi
+          done
+      - name: disputed-resolution regression fixtures
+        run: python3 tools/da.py dispute-replay --workspace docs/experiments/disputes --expect-standing 4 | tail -1
+      - name: site manifests and traceability gates
+        run: |
+          for a in wink leader dominion phantom indaba orbit; do
+            if [ -d authorities/$a/site ]; then
+              python3 tools/verify_build_manifest.py authorities/$a/site
+              python3 tools/check_artefacts_css.py --auth $a
+            fi
+          done

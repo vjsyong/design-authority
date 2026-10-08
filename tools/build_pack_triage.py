@@ -23,7 +23,7 @@ from typing import NoReturn
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DEFAULT_SNAPSHOT = os.path.expanduser("~/triage-design-system-demo")
-DEFAULT_OUT = os.path.join(ROOT, "packs", "triage")
+DEFAULT_OUT = os.path.join(ROOT, "authorities", "triage")
 EXPECTED_COMMIT = "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b"
 
 GENERATED = ["authority.json", "artifacts.json", "rules.json", "recipes.json",

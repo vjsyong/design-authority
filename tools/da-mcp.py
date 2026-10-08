@@ -2,7 +2,7 @@
 """Stdio launcher for the Design Authority MCP server.
 
 Run with the project venv: .venv/bin/python tools/da-mcp.py
-Env: DA_PACK (pack dir, default packs/triage), DA_WORKSPACE (gap/proposal +
+Env: DA_PACK (pack dir, default authorities/triage), DA_WORKSPACE (gap/proposal +
 decision-log location, default cwd).
 """
 import os

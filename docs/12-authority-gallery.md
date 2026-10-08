@@ -216,3 +216,30 @@ pack update is visible without hand edits.**
   agents' rc updates live); the pinned 0.12.1 pack remains frozen for
   experiments.
 - rc numbering per change batch: `-rc1`, `-rc2`, ...
+
+
+## Authority repos (2026-10-08 refactor)
+
+Each authority is now its own folder under `authorities/` and its own git
+repository: pack records at the repo root, the reference site under `site/`,
+CHANGELOG.md, LICENSE, and `.github/workflows/ci.yml`. The meta repo keeps
+the kernel, tools, docs and the review app, and ignores `authorities/*/` so
+the two layers version independently (`authorities/bootstrap.sh` clones the
+eight repos). The review app, refresh/bundle/archive/gate tools, tests,
+benchmark harness, the triage-site container mount (now
+`design-authority/authorities`) and `CURRENT.json` (moved to
+`authorities/CURRENT.json`) all read the new layout.
+
+Versioning: `authority.json` carries the version; releases are tagged
+(`git tag vX.Y.Z`); `CHANGELOG.md` records each bump; site refreshes are
+committed into the authority repo by `tools/refresh_authority_sites.py`
+("site: refresh to pack X"), so both the records and the served page have
+complete git history and `git checkout vX.Y.Z` is the rollback. CI is real:
+per-authority workflows run pack overview + goldens + site manifest
+verification + the traceability gate; the meta repo's CI clones all
+authorities and runs the integration gates.
+
+Phase 2 (open): move the remaining per-authority evidence out of the meta
+repo (synthesis tiles, cadence builds, the phantom audit console, portability
+docs, font sources served by `/authority-fonts`) - it needs review-app route
+rewiring first.

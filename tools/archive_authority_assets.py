@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Archive an authority-built site's static assets and emit its audit manifest.
 
-For each build under examples/authority-sites/<auth>/:
+For each build under authorities/<auth>/site/:
   1. Extracts inline <style> blocks into a first-class styles.css (so the CSS
      is an auditable artifact, not bytes buried in HTML) and links it.
   2. Verifies every font file byte-for-byte against its known source.
@@ -23,7 +23,7 @@ import sys
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITES = os.path.join(ROOT, "examples", "authority-sites")
+SITES = os.path.join(ROOT, "authorities")
 PACKS = os.path.join(ROOT, "packs")
 
 # known font sources per authority (name -> [candidate dirs])
@@ -115,7 +115,7 @@ def verify_fonts(auth, build):
 
 
 def archive(auth):
-    build = os.path.join(SITES, auth)
+    build = os.path.join(SITES, auth, "site")
     if not os.path.isfile(os.path.join(build, "index.html")):
         print("skip %s (no build)" % auth)
         return None
@@ -153,7 +153,7 @@ def archive(auth):
 
     manifest = {
         "build": auth,
-        "authority": {"pack": "packs/%s" % auth, "version": pack_version},
+        "authority": {"pack": "authorities/%s" % auth, "version": pack_version},
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "checks": {
             "external_references": external,
@@ -191,7 +191,7 @@ def archive(auth):
 
 def verify(auth):
     """Recompute and compare every hash in the manifest."""
-    build = os.path.join(SITES, auth)
+    build = os.path.join(SITES, auth, "site")
     mp = os.path.join(build, "archive-manifest.json")
     if not os.path.isfile(mp):
         print("no manifest for %s" % auth)
@@ -221,7 +221,7 @@ def main():
             ok = verify(a) and ok
         sys.exit(0 if ok else 1)
     auths = args.auth or [d for d in sorted(os.listdir(SITES))
-                          if os.path.isfile(os.path.join(SITES, d, "index.html"))]
+                          if os.path.isfile(os.path.join(SITES, d, "site", "index.html"))]
     for a in auths:
         archive(a)
 

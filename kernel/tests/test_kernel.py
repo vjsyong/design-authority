@@ -17,7 +17,7 @@ from design_authority.lex import canonicalize  # noqa: E402
 from design_authority.resolve import resolve, resolve_golden  # noqa: E402
 from design_authority import records  # noqa: E402
 
-PACK_DIR = os.path.join(ROOT, "packs", "triage")
+PACK_DIR = os.path.join(ROOT, "authorities", "triage")
 
 
 class TestPack(unittest.TestCase):
@@ -150,8 +150,8 @@ class TestPrecedents(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.pack = Pack(os.path.join(ROOT, "packs", "wink"))
-        cls.dom = Pack(os.path.join(ROOT, "packs", "dominion"))
+        cls.pack = Pack(os.path.join(ROOT, "authorities", "wink"))
+        cls.dom = Pack(os.path.join(ROOT, "authorities", "dominion"))
 
     def test_pack_without_precedents_loads_empty(self):
         # a pack whose precedents/candidates files are absent loads with empties

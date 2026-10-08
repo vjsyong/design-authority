@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keep every authority-built site's generated layers current with its pack.
 
-Built sites (examples/authority-sites/<auth>/) are agent-authored pages plus
+Built sites (authorities/<auth>/site/) are agent-authored pages plus
 generated layers. This tool re-runs the generated layers whenever the pack's
 authority.json / artifacts.json change:
 
@@ -22,12 +22,13 @@ on the next request.
 import argparse
 import hashlib
 import importlib.util
+import subprocess
 import json
 import os
 from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITES = os.path.join(ROOT, "examples", "authority-sites")
+SITES = os.path.join(ROOT, "authorities")
 TOOLS = os.path.join(ROOT, "tools")
 
 HASH_FILES = ["authority.json", "artifacts.json"]
@@ -48,7 +49,7 @@ gate = _load("check_artefacts_css", "check_artefacts_css.py")
 
 def pack_state(auth):
     """(content hash, version, sorted artifact ids) for the generated layers."""
-    base = os.path.join(ROOT, "packs", auth)
+    base = os.path.join(SITES, auth)
     h = hashlib.sha256()
     for f in HASH_FILES:
         p = os.path.join(base, f)
@@ -84,7 +85,7 @@ def notice_for(authored, ids):
 
 
 def refresh(auth, force=False):
-    build = os.path.join(SITES, auth)
+    build = os.path.join(SITES, auth, "site")
     page = os.path.join(build, "index.html")
     if not os.path.isfile(page):
         return "skip (no build)"
@@ -105,6 +106,10 @@ def refresh(auth, force=False):
     notice = notice_for(authored, ids)
     aas.inject(auth, notice=notice)
     ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    # WRITE ORDER MATTERS: every writer runs before the archive, so the
+    # manifest hashes the final state (the CI verifier recomputes it).
+    open(os.path.join(build, "agent-brief.md"), "w").write(bnd.agent_brief(auth))
     logp = os.path.join(build, "refresh-log.md")
     with open(logp, "a") as fh:
         fh.write("- %s UTC: pack %s -> %s; artefacts %d -> %d; version stamps updated: %d; "
@@ -112,25 +117,49 @@ def refresh(auth, force=False):
                  % (ts, (state or {}).get("version") or "-", version,
                     len(authored.get("ids") or []), len(ids), replaced,
                     "shown" if notice else "none/cleared"))
-    aaa.archive(auth)
     gate_violations = gate.check(auth)
     if gate_violations:
         print("%s: WARNING %d traceability violation(s) in the generated block"
               % (auth, len(gate_violations)))
-    binfo = bnd.build_bundle(auth)
-    if binfo:
-        with open(logp, "a") as fh:
-            fh.write("- %s UTC: bundle %s (%d files, %d bytes, sha256 %s)\n"
-                     % (ts, os.path.basename(binfo["path"]), binfo["files"],
-                        binfo["bytes"], binfo["sha256"]))
     with open(logp, "a") as fh:
         fh.write("- %s UTC: traceability gate: %s\n"
                  % (ts, "clean" if not gate_violations
                     else "%d violation(s)" % len(gate_violations)))
     json.dump({"pack_hash": h, "version": version, "ids": ids,
-               "authored_for": authored,
-               "refreshed_at": datetime.now(timezone.utc).isoformat(timespec="seconds")},
+               "authored_for": authored, "refreshed_at": ts},
               open(sp, "w"), indent=1)
+    aaa.archive(auth)          # manifest last among writers
+    bnd.build_bundle(auth)     # zip carries the fresh manifest; brief bytes identical
+    vcheck = _load("verify_build_manifest", "verify_build_manifest.py")
+    import io as _io
+    import contextlib as _ctx
+    buf = _io.StringIO()
+    with _ctx.redirect_stdout(buf):
+        try:
+            vcheck.main.__wrapped__ if False else None
+        except Exception:
+            pass
+    # simple inline verification (keep the tool the single checker in CI)
+    import hashlib as _hl
+    man = json.load(open(os.path.join(build, "archive-manifest.json")))
+    bad = [f["path"] for f in man["files"]
+           if not os.path.isfile(os.path.join(build, f["path"]))
+           or _hl.sha256(open(os.path.join(build, f["path"]), "rb").read()).hexdigest() != f["sha256"]]
+    if bad:
+        print("%s: WARNING manifest mismatch after refresh: %s" % (auth, ", ".join(bad)))
+
+    # versioning infrastructure: every site refresh lands as a commit in the
+    # authority's own repo (guarded; a non-repo folder is left alone).
+    repo = os.path.join(SITES, auth)
+    if os.path.isdir(os.path.join(repo, ".git")):
+        subprocess.run(["git", "-C", repo, "add", "site"], capture_output=True)
+        msg = ("site: refresh to pack %s (%d artefacts%s; gate %s)"
+               % (version, len(ids), ", notice shown" if notice else "",
+                  "clean" if not gate_violations else "%d violations" % len(gate_violations)))
+        rc = subprocess.run(["git", "-C", repo, "commit", "-q", "-m", msg],
+                            capture_output=True, text=True)
+        if rc.returncode == 0:
+            print("%s: site refresh committed" % auth)
     return "refreshed (v%s, %d artefacts%s)" % (version, len(ids),
                                                 ", notice shown" if notice else "")
 
@@ -144,7 +173,7 @@ def main():
                          "written for the CURRENT pack (resets the stale notice)")
     args = ap.parse_args()
     auths = args.auth or [d for d in sorted(os.listdir(SITES))
-                          if os.path.isfile(os.path.join(SITES, d, "index.html"))]
+                          if os.path.isfile(os.path.join(SITES, d, "site", "index.html"))]
     for a in auths:
         if args.mark_authored:
             sp = os.path.join(SITES, a, ".site-state.json")

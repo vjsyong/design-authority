@@ -55,7 +55,7 @@ def rid(result):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("workspace")
-    ap.add_argument("--pack", default="packs/triage-evolution")
+    ap.add_argument("--pack", default="authorities/triage-evolution")
     ap.add_argument("--json", default=None)
     args = ap.parse_args()
 

@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.join(ROOT, "kernel"))
 from design_authority.pack import Pack          # noqa: E402
 from design_authority.resolve import resolve    # noqa: E402
 
-PACK = os.path.join(ROOT, "packs/triage")
+PACK = os.path.join(ROOT, "authorities/triage")
 
 
 def ns():
@@ -152,7 +152,7 @@ vj = json.load(open(os.path.join(PACK, "validators.json")))
 print()
 print("validators.json:", json.dumps(vj)[:400])
 t = ns()
-subprocess.run([sys.executable, "tools/da.py", "--pack", "packs/triage", "validate",
+subprocess.run([sys.executable, "tools/da.py", "--pack", "authorities/triage", "validate",
                 "examples/designauthority-site"], cwd=ROOT, capture_output=True, text=True)
 print("validate (concept site, end to end): %.0f ms" % ms(ns() - t))
 

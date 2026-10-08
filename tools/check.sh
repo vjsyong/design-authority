@@ -13,7 +13,7 @@ python3 -m unittest discover -s kernel/tests -t . -q
 echo "== golden set"
 python3 tools/da.py golden | tail -1
 echo "== synthesis pack goldens"
-for p in wink leader dominion; do python3 tools/da.py --pack packs/$p golden --file packs/$p/golden.json | tail -1; done
+for p in wink leader dominion; do python3 tools/da.py --pack authorities/$p golden --file authorities/$p/golden.json | tail -1; done
 echo "== synthesis precedents"
 python3 tools/precedent_probe.py | tail -1
 echo "== disputed-resolution regression fixtures"

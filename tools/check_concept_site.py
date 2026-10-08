@@ -33,7 +33,7 @@ def run(*args):
     return (r.stdout or "") + (r.stderr or "")
 
 # 1) lint
-out = run("--pack", "packs/triage", "validate", SITE)
+out = run("--pack", "authorities/triage", "validate", SITE)
 ck("lint 0 errors / 0 warnings / score 100",
    "errors=0" in out and "warnings=0" in out and "spec score=100" in out)
 
@@ -97,7 +97,7 @@ else:
 
 # 6) recorded usage resolves
 bad = [q for q in ["a button", "a chip", "a status dot", "a table", "a version timeline"]
-       if "OUTCOME: UNDEFINED" in run("--pack", "packs/triage", "resolve", q)]
+       if "OUTCOME: UNDEFINED" in run("--pack", "authorities/triage", "resolve", q)]
 ck("recorded usage probes resolve (5/5)", not bad, ", ".join(bad) if bad else "all resolve")
 
 props = os.path.join(WS, ".design-authority", "proposals")

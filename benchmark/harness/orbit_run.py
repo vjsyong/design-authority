@@ -61,7 +61,7 @@ def bwrap_cmd(run_root, ws, pack):
     args += [
         "--ro-bind", os.path.join(ROOT, "kernel"), "/opt/da/kernel",
         "--ro-bind", os.path.join(run_root, "da-tools"), "/opt/da/tools",
-        "--ro-bind", os.path.join(ROOT, "packs", pack), "/opt/da/packs/%s" % pack,
+        "--ro-bind", os.path.join(ROOT, "authorities", pack), "/opt/da/packs/%s" % pack,
         "--clearenv",
         "--setenv", "HOME", HOME,
         "--setenv", "PATH", SANDBOX_PATH,

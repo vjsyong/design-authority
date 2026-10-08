@@ -51,7 +51,7 @@ class TestSemanticLayer(unittest.TestCase):
         self.assertIn("Name: Thing", text)
 
     def test_collect_docs_classes_and_ids(self):
-        pack_dir = os.path.join(ROOT, "packs", "triage")
+        pack_dir = os.path.join(ROOT, "authorities", "triage")
         if not os.path.exists(pack_dir):
             self.skipTest("triage pack not present")
         _, entries = da_sem.collect_docs(pack_dir)

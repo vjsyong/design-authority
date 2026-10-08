@@ -71,7 +71,7 @@ def build(condition, dest):
         from render_kit_triage import render
         from design_authority.pack import Pack
         out = os.path.join(dest, "design-docs")
-        result = render(Pack(os.path.join(ROOT, "packs", "triage")), out)
+        result = render(Pack(os.path.join(ROOT, "authorities", "triage")), out)
         manifest["kit"] = result
     if condition == "C":
         shutil.copy(os.path.join(ROOT, "benchmark", "materials", "DESIGN.md"),

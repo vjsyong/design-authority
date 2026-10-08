@@ -10,3 +10,4 @@ workspaces/*
 
 # local working mirror of the reviewed site (evidence cache, not source)
 docs/synthesis/phantom/_raw/site/
+authorities/*/

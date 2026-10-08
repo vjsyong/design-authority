@@ -18,7 +18,7 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GEN = os.path.join(ROOT, "docs", "synthesis", "triage", "tools", "build_triage_pack.py")
-PACK = os.path.join(ROOT, "packs", "triage")
+PACK = os.path.join(ROOT, "authorities", "triage")
 
 FILES = ["authority.json", "scoring.json", "artifacts.json", "rules.json",
          "prohibitions.json", "fallbacks.json", "precedents.json",
