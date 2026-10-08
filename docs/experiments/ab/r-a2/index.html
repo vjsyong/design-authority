@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release notes · Mail Triage</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="side-top">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">MT</span>
+        <span class="brand-name">Mail Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Workspace</div>
+      <a class="nav-item" href="#">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+        Inbox</a>
+      <a class="nav-item" href="#">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        Triage</a>
+      <a class="nav-item" href="#">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Rules</a>
+      <a class="nav-item active" href="#" aria-current="page">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Release notes</a>
+      <div class="nav-label">Account</div>
+      <a class="nav-item" href="#">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/></svg>
+        Settings</a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row">Latest stable: v2.7.1</div>
+      <div class="sf-row">Preview: v2.8.0-beta.2</div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="side" aria-expanded="false">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
+      <span class="tb-title">Release notes</span>
+      <span class="tb-status">Latest stable v2.7.1</span>
+    </header>
+    <main class="content" id="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Release notes</h1>
+          <div class="page-desc">Every shipped version of Mail Triage, newest first. Use the channel filter to view just the stable releases or the preview builds.</div>
+        </div>
+      </div>
+      <!-- Fallback (unrecorded): filtering a list down to one channel has no recorded pattern
+           (resolve returned UNDEFINED for "filter a list down to one channel"). Built from the
+           nearest recorded pieces - component/chip (filter chip) over component/tl - with a small
+           inline script. Marked per the fallback policy; gap reported via gap-add. -->
+      <div class="stack">
+        <div class="row chiprow" id="channelFilter" role="group" aria-label="Filter releases by channel">
+          <button class="chip active" type="button" data-filter="all" aria-pressed="true">All <span class="n">9</span></button>
+          <button class="chip" type="button" data-filter="stable" aria-pressed="false">Stable <span class="n">7</span></button>
+          <button class="chip" type="button" data-filter="beta" aria-pressed="false">Beta <span class="n">2</span></button>
+        </div>
+        <ol class="tl" id="releaseList">
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <div class="tl-time">2026-10-06</div>
+            <div class="tl-t">v2.8.0-beta.2 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">Snooze presets land in the toolbar, and search is re-indexed for speed.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-09-24</div>
+            <div class="tl-t">v2.7.1 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Fixes duplicate unread counts after archiving from split view.</div>
+          </li>
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <div class="tl-time">2026-09-17</div>
+            <div class="tl-t">v2.8.0-beta.1 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">First preview of the v2.8 rules engine with priority scoring.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-09-10</div>
+            <div class="tl-t">v2.7.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Chained rules: a matched rule can hand a message to the next filter pass.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-08-27</div>
+            <div class="tl-t">v2.6.3 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Keyboard shortcuts work again inside the message viewer.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-08-13</div>
+            <div class="tl-t">v2.6.2 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Faster first load on large mailboxes, with lighter background sync.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-07-30</div>
+            <div class="tl-t">v2.6.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Daily digests summarise what the agents filed overnight.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-07-09</div>
+            <div class="tl-t">v2.5.2 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Sender insights now show reply latency alongside message volume.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time">2026-06-18</div>
+            <div class="tl-t">v2.4.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">IMAP sessions reconnect cleanly after long drops.</div>
+          </li>
+        </ol>
+      </div>
+    </main>
+  </div>
+</div>
+<nav class="bottom-nav" aria-label="Mobile">
+  <a href="#">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+    Inbox</a>
+  <a href="#" class="on" aria-current="page">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+    Releases</a>
+  <a href="#">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/></svg>
+    Settings</a>
+</nav>
+<div class="scrim hidden" id="scrim"></div>
+<script>
+(function () {
+  var side = document.getElementById('side');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+  function setMenu(open) {
+    side.classList.toggle('open', open);
+    scrim.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    setMenu(!side.classList.contains('open'));
+  });
+  scrim.addEventListener('click', function () { setMenu(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { setMenu(false); }
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1023) { setMenu(false); }
+  });
+
+  var chips = document.querySelectorAll('#channelFilter .chip');
+  var items = document.querySelectorAll('#releaseList .tl-item');
+  function setFilter(value) {
+    chips.forEach(function (chip) {
+      var on = chip.getAttribute('data-filter') === value;
+      chip.classList.toggle('active', on);
+      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    items.forEach(function (item) {
+      var show = value === 'all' || item.getAttribute('data-channel') === value;
+      item.hidden = !show;
+    });
+  }
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      setFilter(chip.getAttribute('data-filter'));
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release notes · Triage</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="side" id="sideNav">
+    <div class="side-top">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+      <div class="brand-sub">Mail triage workspace</div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Workspace</div>
+      <a class="nav-item" href="#">Inbox</a>
+      <a class="nav-item" href="#">Queue</a>
+      <a class="nav-item" href="#">Rules</a>
+      <div class="nav-label">System</div>
+      <a class="nav-item" href="#">Activity log</a>
+      <a class="nav-item" href="#">Settings</a>
+      <div class="nav-label">About</div>
+      <a class="nav-item active" href="#" aria-current="page">Release notes</a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row">Latest stable 2.4.1</div>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-label="Open navigation" aria-controls="sideNav" aria-expanded="false">
+        <svg class="icon icon-16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+      <span class="tb-title">Release notes</span>
+      <span class="tb-status">Latest v2.5.0-beta.2</span>
+    </header>
+    <main class="content" id="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Release notes</h1>
+          <div class="page-desc">Every released version of the app, newest first. Filter by channel to narrow the list.</div>
+        </div>
+        <div class="seg" role="group" aria-label="Release channels" id="channelFilter">
+          <button class="btn primary" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="btn" type="button" data-filter="stable" aria-pressed="false">Stable</button>
+          <button class="btn" type="button" data-filter="beta" aria-pressed="false">Beta</button>
+        </div>
+      </div>
+      <div class="sub" id="releaseCount" role="status">Showing all 7 releases.</div>
+      <!-- Fallback composition (not canonical): the authority records no release-notes
+           page pattern, so this list is composed from the nearest recorded pieces per
+           its fallback policy — component/tl (resolved for "version history"),
+           component/badge for channel labels, component/seg as the channel filter,
+           component/shell + nav-item + topbar + bottom-nav for the chrome. Improvised
+           here: the release-list composition itself and the filter-to-list wiring
+           (behaviour layer, additive; all releases render without JavaScript).
+           Gap reported via gap-add on 2026-10-08. -->
+      <div class="card">
+        <h2 class="vh">Releases</h2>
+        <ol class="tl" id="releaseList">
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-10-06">2026-10-06</time></div>
+            <div class="tl-t">Version 2.5.0-beta.2 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">Live previews in the rule editor, plus a new sender-domain condition.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-09-18">2026-09-18</time></div>
+            <div class="tl-t">Version 2.4.1 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Faster queue sync and a clearer warning when rules conflict.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-09-04">2026-09-04</time></div>
+            <div class="tl-t">Version 2.4.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Bulk archive, per-sender mute, and snooze presets.</div>
+          </li>
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-08-20">2026-08-20</time></div>
+            <div class="tl-t">Version 2.5.0-beta.1 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">First beta of the redesigned rule editor — feedback welcome.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-08-07">2026-08-07</time></div>
+            <div class="tl-t">Version 2.3.2 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Fixes duplicate alerts after reconnecting an IMAP account.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-07-24">2026-07-24</time></div>
+            <div class="tl-t">Version 2.3.1 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Queue refresh stays responsive on very large mailboxes.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <div class="tl-time"><time datetime="2026-07-10">2026-07-10</time></div>
+            <div class="tl-t">Version 2.3.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Digest emails, faster search, and clearer rate-limit errors.</div>
+          </li>
+        </ol>
+      </div>
+    </main>
+  </div>
+</div>
+<nav class="bottom-nav" aria-label="Primary phone">
+  <a href="#">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+    Inbox
+  </a>
+  <a class="on" href="#" aria-current="page">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 8v4l2.5 2.5"/><circle cx="12" cy="12" r="9"/></svg>
+    Releases
+  </a>
+  <a href="#">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    Settings
+  </a>
+</nav>
+<div class="scrim hidden" id="scrim" aria-hidden="true"></div>
+<script>
+(function () {
+  var seg = document.getElementById('channelFilter');
+  var list = document.getElementById('releaseList');
+  var count = document.getElementById('releaseCount');
+  var items = list ? Array.prototype.slice.call(list.querySelectorAll('.tl-item')) : [];
+  function applyFilter(filter) {
+    var shown = 0;
+    items.forEach(function (li) {
+      var match = filter === 'all' || li.getAttribute('data-channel') === filter;
+      li.classList.toggle('hidden', !match);
+      if (match) shown++;
+    });
+    if (seg) {
+      Array.prototype.forEach.call(seg.querySelectorAll('button[data-filter]'), function (b) {
+        var on = b.getAttribute('data-filter') === filter;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.classList.toggle('primary', on);
+      });
+    }
+    if (count) {
+      count.textContent = filter === 'all'
+        ? 'Showing all ' + items.length + ' releases.'
+        : 'Showing ' + shown + ' ' + filter + ' release' + (shown === 1 ? '' : 's') + '.';
+    }
+  }
+  if (seg) {
+    seg.addEventListener('click', function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('button[data-filter]') : null;
+      if (btn) applyFilter(btn.getAttribute('data-filter'));
+    });
+  }
+  var menuBtn = document.getElementById('menuBtn');
+  var side = document.getElementById('sideNav');
+  var scrim = document.getElementById('scrim');
+  function setDrawer(open) {
+    if (!side) return;
+    side.classList.toggle('open', open);
+    if (scrim) scrim.classList.toggle('hidden', !open);
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      setDrawer(!side.classList.contains('open'));
+    });
+  }
+  if (scrim) {
+    scrim.addEventListener('click', function () { setDrawer(false); });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setDrawer(false);
+  });
+})();
+</script>
+</body>
+</html>

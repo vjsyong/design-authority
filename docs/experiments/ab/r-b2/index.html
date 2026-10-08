@@ -1,0 +1,199 @@
+<!doctype html>
+<!-- Release notes page (Brief R). Built against the Triage design authority v0.12.1 (ec490bb7).
+     Adopted artifacts: component/shell (.app/.side/.main), component/page-head, component/nav-item,
+     component/topbar, component/bottom-nav, component/tl (version timeline, status-dots),
+     component/chip (filter chips + .active), component/badge (.ok/.warn).
+     Fallback policy: no release-notes pattern is recorded (resolve -> UNDEFINED; gap/20261008-131712-22e533),
+     so the page composes the nearest recorded pieces; marked improvisations are flagged with comments below. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Release notes · Triage</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="app">
+  <aside class="side" id="sideNav">
+    <div class="side-top">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span class="brand-name">Triage</span>
+      </a>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-label">Product</div>
+      <a class="nav-item" href="#">Overview</a>
+      <a class="nav-item active" href="#" aria-current="page">Release notes</a>
+      <a class="nav-item" href="#">Guides</a>
+      <a class="nav-item" href="#">Settings</a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row"><span class="dot ok" aria-hidden="true"></span> All systems operational</div>
+      <div class="sf-row">Latest stable v2.8.0</div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="iconbtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="sideNav" aria-label="Open navigation">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <span class="tb-title">Release notes</span>
+    </header>
+
+    <main class="content" id="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Release notes</h1>
+          <p class="page-desc">Every shipped release, newest first. Filter by channel to see what is on stable and what is still in beta.</p>
+        </div>
+      </div>
+
+      <section class="card" aria-labelledby="releases-head">
+        <h2 class="vh" id="releases-head">All releases</h2>
+
+        <!-- Filter chips: component/chip (aliases include "filter chip"; active(selected) state is .active;
+             counts live in .n). The style="font-family:inherit" is a marked improvisation: core/base.css has no
+             global button font reset, and this workspace ships no page stylesheet to add one (the system's own
+             idiom for button-as-class is font:inherit, cf. .index-list button.index-row; TDS008 allows "inherit"). -->
+        <div class="row chiprow" role="group" aria-label="Filter releases by channel">
+          <button class="chip active" type="button" data-channel="all" aria-pressed="true" style="font-family:inherit">All <span class="n">8</span></button>
+          <button class="chip" type="button" data-channel="stable" aria-pressed="false" style="font-family:inherit">Stable <span class="n">4</span></button>
+          <button class="chip" type="button" data-channel="beta" aria-pressed="false" style="font-family:inherit">Beta <span class="n">4</span></button>
+        </div>
+        <p class="vh" id="filter-status" role="status" aria-live="polite"></p>
+
+        <div class="hr"></div>
+
+        <!-- Release list: component/tl (timeline; aliases "version timeline"/"version history"; state: status-dots).
+             Channel -> status colour mapping (stable = ok, beta = warn on badge and .tl-dot) is NOT recorded:
+             marked improvisation, reported in gap/20261008-131712-22e533. Dots are decorative (aria-hidden);
+             the badge text carries the meaning. -->
+        <ol class="tl">
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-10-06">2026-10-06</time>
+            <div class="tl-t">v2.9.0-beta.1 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">Opens the 2.9 beta line: a bulk-triage queue and a rewritten rule editor.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-09-18">2026-09-18</time>
+            <div class="tl-t">v2.8.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Saved views reach the stable channel, and inbox sync gets up to 40% faster.</div>
+          </li>
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-09-04">2026-09-04</time>
+            <div class="tl-t">v2.8.0-beta.2 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">Second 2.8 beta: calendar invites, smarter snooze and one crash fix.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-08-22">2026-08-22</time>
+            <div class="tl-t">v2.7.2 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Maintenance for the 2.7 line: forwarding and IMAP reconnect fixes.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-08-15">2026-08-15</time>
+            <div class="tl-t">v2.7.1 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Patch release: composer focus order, attachment previews and locale fixes.</div>
+          </li>
+          <li class="tl-item" data-channel="stable">
+            <span class="tl-dot ok" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-08-01">2026-08-01</time>
+            <div class="tl-t">v2.7.0 <span class="badge ok">Stable</span></div>
+            <div class="tl-d">Rule previews reach the stable channel: see every match before enabling a rule.</div>
+          </li>
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-07-25">2026-07-25</time>
+            <div class="tl-t">v2.7.0-beta.2 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">Second 2.7 beta: rule-preview fixes and per-account signatures.</div>
+          </li>
+          <li class="tl-item" data-channel="beta">
+            <span class="tl-dot warn" aria-hidden="true"></span>
+            <time class="tl-time" datetime="2026-07-18">2026-07-18</time>
+            <div class="tl-t">v2.7.0-beta.1 <span class="badge warn">Beta</span></div>
+            <div class="tl-d">First beta of the 2.7 line: rule previews in the rule editor.</div>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="foot">Triage · latest stable v2.8.0, latest beta v2.9.0-beta.1</footer>
+    </main>
+  </div>
+</div>
+
+<nav class="bottom-nav" aria-label="Primary">
+  <a href="#">Overview</a>
+  <a class="on" href="#" aria-current="page">Release notes</a>
+  <a href="#">Guides</a>
+  <a href="#">Settings</a>
+</nav>
+
+<div class="scrim hidden" id="scrim"></div>
+
+<!-- Behaviour layer: additive only (fallback/no-js: "the behaviour layer is additive; never require JS for
+     content"). core/components.js and core/shell.js are not shipped in this workspace's assets, so the shell
+     drawer and the chip filter are re-delegated here; marked improvisation. Without JS the full, unfiltered
+     list and the static chips remain (All shows as selected). -->
+<script>
+(function () {
+  var side = document.getElementById('sideNav');
+  var scrim = document.getElementById('scrim');
+  var menuBtn = document.getElementById('menuBtn');
+
+  function drawer(open) {
+    side.classList.toggle('open', open);
+    scrim.classList.toggle('hidden', !open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      var first = side.querySelector('.nav-item');
+      if (first) first.focus();
+    }
+  }
+  menuBtn.addEventListener('click', function () { drawer(!side.classList.contains('open')); });
+  scrim.addEventListener('click', function () { drawer(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && side.classList.contains('open')) {
+      drawer(false);
+      menuBtn.focus();
+    }
+  });
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chiprow .chip'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('.tl-item'));
+  var status = document.getElementById('filter-status');
+
+  function apply(channel) {
+    var shown = 0;
+    items.forEach(function (li) {
+      var show = channel === 'all' || li.getAttribute('data-channel') === channel;
+      li.hidden = !show;
+      if (show) shown++;
+    });
+    chips.forEach(function (chip) {
+      var on = chip.getAttribute('data-channel') === channel;
+      chip.classList.toggle('active', on);
+      chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (status) {
+      status.textContent = 'Showing ' + shown + ' of ' + items.length + ' releases.' +
+        (channel === 'all' ? '' : ' Channel: ' + channel + '.');
+    }
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () { apply(chip.getAttribute('data-channel')); });
+  });
+})();
+</script>
+</body>
+</html>

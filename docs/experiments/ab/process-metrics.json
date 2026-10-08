@@ -1,0 +1,158 @@
+{
+ "s-a1": {
+  "calls": 41,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "search": 10,
+   "inspect": 10,
+   "resolve": 11,
+   "validate": 3,
+   "gap-add": 3,
+   "golden": 1,
+   "precedents": 1
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "e286ecc65e8d",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 3044
+ },
+ "s-a2": {
+  "calls": 40,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "search": 8,
+   "inspect": 12,
+   "resolve": 7,
+   "precedents": 1,
+   "gaps": 3,
+   "gap-add": 5,
+   "validate": 2
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "36452aa4301c",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 6932
+ },
+ "s-b1": {
+  "calls": 38,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "resolve": 5,
+   "inspect": 10,
+   "search": 10,
+   "discover": 1,
+   "golden": 1,
+   "precedents": 1,
+   "gaps": 2,
+   "gap-add": 3,
+   "validate": 3
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "155fd572ccfd",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 6499
+ },
+ "s-b2": {
+  "calls": 37,
+  "kinds": {
+   "overview": 1,
+   "resolve": 8,
+   "inspect": 10,
+   "discover": 3,
+   "--help": 1,
+   "search": 5,
+   "gaps": 3,
+   "precedents": 1,
+   "golden": 1,
+   "validate": 1,
+   "gap-add": 3
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "64e3f050203c",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 4821
+ },
+ "r-a1": {
+  "calls": 41,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "search": 11,
+   "resolve": 7,
+   "inspect": 13,
+   "gaps": 1,
+   "precedents": 1,
+   "validate": 3,
+   "gap-add": 3
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "1713865e1235",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 9589
+ },
+ "r-a2": {
+  "calls": 34,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "search": 7,
+   "resolve": 10,
+   "validate": 3,
+   "gap-add": 3,
+   "inspect": 8,
+   "golden": 1
+  },
+  "blocked": 0,
+  "log_sections": 1,
+  "artifact_sha": "bad19f1f975a",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 10197
+ },
+ "r-b1": {
+  "calls": 33,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "resolve": 7,
+   "discover": 1,
+   "search": 6,
+   "inspect": 9,
+   "precedents": 1,
+   "golden": 1,
+   "validate": 1,
+   "gap-add": 5
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "5c2757330b1b",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 11916
+ },
+ "r-b2": {
+  "calls": 52,
+  "kinds": {
+   "overview": 1,
+   "--help": 1,
+   "resolve": 13,
+   "discover": 3,
+   "inspect": 20,
+   "search": 9,
+   "gaps": 1,
+   "gap-add": 3,
+   "validate": 1
+  },
+  "blocked": 0,
+  "log_sections": 0,
+  "artifact_sha": "7e8e088dee19",
+  "validate": "findings: 0  errors=0 warnings=0 info=0  spec score=100",
+  "size": 9876
+ }
+}
