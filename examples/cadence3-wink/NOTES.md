@@ -180,3 +180,140 @@ GAP id shorthand: `…e5e7ac` = `gap/20261007-161103-e5e7ac`, `…0511da` = `gap
 - **Composition is the main verb at 0.2.0**: 20 of 42 rows are marked improvisations/adaptations —
   but 14 of those follow a cited route (fallback/precedent/pattern), so the un-routed remainder is
   just the 6 filed gaps.
+
+---
+
+## Revision v3.1 — lenient doctrine applied
+
+**Trigger.** The authority adopted a lenient doctrine with *scope-verdicts*. v3 had dropped the
+row check-off tick (worded `Log`/`Logged` buttons) because the imagery decline was over-applied.
+Re-asked 2026-10-08:
+
+```
+$ python3 tools/da.py --pack packs/wink precedent-check --ask "a check control to log a ritual"
+ask: a check control to log a ritual
+  [outside] precedent/declined-photographic-imagery — Photographic imagery & illustration (asset policy)
+      outside this decline's scope (boundary: check control, log control) — go ahead and mark it
+```
+
+The resolve carries the same scope-verdict (`precedents[0].verdict = "outside"`, `boundary_hits`:
+check control · log control · log a ritual): the decline governs *photographic imagery and
+illustration*, not functional state controls. A check control to log a ritual is therefore an
+ordinary **marked improvisation** — no precedent constraint applies.
+
+### What changed
+
+- **Row log control → check/tick restored (marked improvisation).** The worded buttons are gone;
+  each ritual row now carries a round 28px check control in wink idiom — 1px ink ring `#231E15`
+  on white when unlogged; `#FFE01B` fill + ink ring + inline-SVG check (stroke `#241C15`) when
+  logged. Real `<button>`, `aria-pressed`, `aria-label="Mark <ritual> done"`. Click toggles:
+  logging keeps the exact previous side effects (entry · lastLog · streak · ring arc ·
+  "N of M" readout · inline notice; 320ms save window, no motion); clicking again unlogs
+  (today's entry removed, prior lastLog restored, streak stepped back, notice "Unlogged.").
+  Carries `data-improvised="functional state control; boundary-exempt from the glyph/imagery
+  precedent (outside verdict)"` — revealed by the ◌ marks layer like every other marked node.
+- **The word "Logged" lives only in the feedback notice text** ("Logged. That's 4 of 5 today.");
+  the row control no longer carries any word.
+- Nothing else restyled — rings, ledger, dialogs, fallbacks, marks all unchanged. Marks census
+  moves only by the ticks: **25 improvised · 35 adapted · 19 fallback = 79** (was 74).
+
+### Candidates layer — pager alignment
+
+`resolve "pagination for older entries" --json` now attaches **`candidate/pager-composition`**
+(provisional; "compose the pager from an outline pill action plus a plain readout"; emerges from
+the lenient re-classification of the pager/drag decline — `gap/20261007-145939-f88682`). The
+app's existing pager already matches that composition — outline pill "Load older entries" +
+readout "Showing 8 of 17" — so it is annotated in place with a `data-note` on `.pager`; no
+structural change. (Promote-when for the candidate: a live-product pager capture + a second
+consumer.)
+
+### Asks now deferring to undefined (summary)
+
+- **check control to log a ritual** → UNDEFINED, precedent `outside` (boundary-exempt): improvise
+  + mark → built as the tick.
+- **pagination for older entries (#32)** → UNDEFINED with `candidate/pager-composition` attached:
+  build follows the candidate composition, annotated with its alignment.
+
+No other ask was re-adjudicated here; the v3 record above stands as-is.
+
+### v3.1 self-test (Playwright, real Chromium, ×2 runs)
+
+**43/43 checks, 0 failures** — tick per row (5 × 28px, round, visible); unlogged = white + 1px ink
+ring, no glyph; logged = yellow `#FFE01B` + ink ring + check stroke `#241C15`; `aria-pressed`
+flips true/false; toggle ON moves ring arc (148.28 → 74.14), readout "3 of 5" → "4 of 5", list
+meta, notice "Logged."; toggle OFF reverts everything (lastLog 2026-10-05, streak 0, entry
+removed, notice "Unlogged."); ◌ marks layer lists the tick as `improvised` with the note (dashed
+amber); zero console/page errors; zero failed or external requests; all six assets curl 200.
+Evidence: `_evidence/v31-revision.jsonl` · screenshots `_evidence/screens/v31-*.png`. Port 8481
+released after the run.
+
+---
+
+## Revision v3.1b — click-to-provenance on the marks layer
+
+**Ask (S, 2026-10-08):** clicking a mark should open *the proposal / the provenance for the decision*.
+
+**Built.**
+- Every marked node carries `data-decision` → a generated registry (`provenance.js`, `const PROV`)
+  made by `_evidence/make_provenance_js.py` from this decision log, `packs/wink/{artifacts,
+  precedents,fallbacks,candidates}`, `.design-authority/gaps.jsonl`, `_evidence/resolves.jsonl`,
+  and the lenient re-classification (`docs/synthesis/16`). 44 records (42 asks · the v3.1 tick ·
+  the shared platform-fallback family).
+- With marks on, clicking a dashed node opens the **provenance panel** (bottom-left): the label's
+  note, the outcome, the resolution — **the authority record incl. its proposal trail**
+  ("Reviewer-accepted proposal prop/…0510d7 (adjudicated 2026-10-07)" · "Gate 2 accepted
+  decisions: W-01, W-02, W-03") — precedents (live records with try-lists + citations; retired
+  ones with their lenient outcome), the fallback record, candidate alignment (#32 →
+  `candidate/pager-composition`), the filed gap, and evidence links (`NOTES.md` ·
+  `resolves.jsonl` · `gaps.jsonl` · `v31-revision.jsonl`; prop-backed rows also link the proposal
+  gate when served under the review app).
+- **Inspect mode is deliberate:** while marks are on, marked nodes are read-only — a click reads
+  the record instead of performing the action; the ◌ toggle restores full interaction. The panel
+  hosts inside open modal dialogs (wizard) and reparents to the body on close.
+
+**Tested (Playwright, real Chromium).** Standalone :8481 → **42/42** · live review route
+`:8420/stress3/wink/` → **43/43** — registry integrity, per-record-type panel content, inspect
+intercept leaves state untouched (tick click does not log), 1-click node switching, ✕ / Esc /
+marks-off close paths, wizard top-layer hosting + reparent, proposal trail + gate link, evidence
+links HTTP 200, zero console/page errors. Regressions: the v3.1 suite still passes **43/43** on
+:8481 (its :8420 run logs one false flag — the old suite's origin filter is :8481-hardcoded — no
+app defect). Screenshots `_evidence/screens/v31b-*.png`. Port 8481 released again after the run.
+
+**Note:** the registry is generated — when the decision table or the pack changes, re-run
+`python3 _evidence/make_provenance_js.py` and the panel follows.
+
+---
+
+## Revision v3.1c — the review window (movable) + reviewer verdicts
+
+**Ask (S, 2026-10-08):** make the provenance panel a movable floating window where a human
+reviewer reads the brief, sees the adjudicator's prefilled decision, and can approve / reject /
+leave undefined — leave as is or modify.
+
+**Built.**
+- **Movable window:** drag by the header; the position clamps to the viewport and is remembered
+  per build; it still hosts inside open modal dialogs and returns to the body on close.
+- **Review block** in every record: "Adjudicator prefilled: <outcome> · <resolution> — accept to
+  leave as is, or modify / reject / leave undefined" + four verdict buttons (the review app's
+  vocabulary: `accept` · `modify` · `reject` · `undefined`), an editable note, and a state line.
+- **Persistence, local-first:** verdicts + notes land in localStorage instantly; when served
+  under the review app (`/stress3/...`) they POST to `/api/stress/verdict`
+  (`docs/synthesis/review-app/app.py`; store `data/stress-verdicts.json`, keyed `wink|<row>`);
+  a fresh device hydrates via `GET /api/stress/verdicts?build=wink`; **self-heal** — on load,
+  any local verdict the server is missing is re-posted (offline stretches, store resets; the
+  reviewer's device is the source of truth). A "download verdicts" button exports JSON once any
+  verdict exists.
+- **Inspect mode unchanged:** verdicts are per decision row; verdict-button clicks never trigger
+  the underlying element's action.
+
+**Tested.** v3.1c: standalone **22/22** · review serve **26/26** (verdict storage/selection/state,
+note debounce, per-row verdicts, drag move + clamp + position across reload, export payload,
+server sync + fresh-context hydration, zero errors). Self-heal probe against a throwaway stub
+**4/4** (repost server-missing + hydration adopt; no shared-store writes). Regressions: v3.1b
+**43/43** (both serves), v3.1 **43/43**. Screenshots `_evidence/screens/v31c-*.png`.
+
+**Incident (kept for the record):** automated cleanup of *test* verdicts briefly removed a real
+reviewer verdict (`wink|33` — "Can codify as a canonical search box item") from the server store.
+Restored byte-exact; the reviewer's browser keeps its own copy regardless, and the new self-heal
+re-posts anything missing on the next load. **Rule: purge review stores surgically (named test
+ids) — never `rm` the whole file while a reviewer is live.**

@@ -1290,6 +1290,52 @@ def proposal_note():
     return jsonify({"ok": True})
 
 
+# ---- stress-build decision review (cadence3 builds' marks layer) ----
+STRESS_VERDICTS = os.path.join(DATA, "stress-verdicts.json")
+STRESS_WS = {"wink": "cadence3-wink", "leader": "cadence3-leader", "dominion": "cadence3-dominion"}
+STRESS_VOCAB = ("accept", "modify", "reject", "undefined")
+
+
+def _load_stress_verdicts():
+    try:
+        with open(STRESS_VERDICTS) as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+@app.route("/api/stress/verdict", methods=["POST"])
+def stress_verdict_post():
+    data = request.get_json(silent=True) or {}
+    ws = data.get("build")
+    rid = str(data.get("id") or "").strip()
+    verdict = (data.get("verdict") or "").strip().lower()
+    if ws not in STRESS_WS or not rid or len(rid) > 24 or verdict not in STRESS_VOCAB:
+        return jsonify({"error": "bad request"}), 400
+    m = _load_stress_verdicts()
+    key = ws + "|" + rid
+    m[key] = {
+        "verdict": verdict,
+        "note": str(data.get("note") or "")[:2000],
+        "ask": str(data.get("ask") or "")[:300],
+        "updated": time.strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    tmp = STRESS_VERDICTS + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(m, f, indent=1, ensure_ascii=False)
+    os.replace(tmp, STRESS_VERDICTS)
+    return jsonify({"ok": True, "key": key, "verdict": verdict})
+
+
+@app.route("/api/stress/verdicts")
+def stress_verdicts_get():
+    ws = request.args.get("build", "")
+    if ws not in STRESS_WS:
+        return jsonify({"error": "bad build"}), 400
+    m = _load_stress_verdicts()
+    return jsonify({k.split("|", 1)[1]: v for k, v in m.items() if k.startswith(ws + "|")})
+
+
 if __name__ == "__main__":
     ensure_pages()
     app.run(host="127.0.0.1", port=8420, debug=False)

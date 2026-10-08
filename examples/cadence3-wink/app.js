@@ -141,6 +141,11 @@ function renderToday() {
   document.getElementById("searchClear").hidden = !ui.search;
 }
 
+/* row log control — check/tick glyph (marked improvisation; boundary-exempt from
+   precedent/declined-photographic-imagery per the outside verdict, 2026-10-08) */
+const TICK_MARK = '<svg class="tick-mark" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
+  '<path d="M3.2 8.6 L6.4 11.8 L12.8 4.6" fill="none" stroke="#241C15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
 function ritualCard(r) {
   const logged = r.lastLog === TODAY;
   const newOne = !r.lastLog;
@@ -149,21 +154,21 @@ function ritualCard(r) {
   const status = newOne ? "New" : (slipping ? "Slipping" : "On track");
   return '' +
   '<article class="card ritual-card" data-ritual="' + r.id + '">' +
-    '<div class="monogram" aria-hidden="true" data-adapted="photo/icon declined — monogram (asset policy)">' + esc(r.name.charAt(0)) + '</div>' +
+    '<div class="monogram" aria-hidden="true" data-decision="19" data-adapted="photo/icon declined — monogram (asset policy)">' + esc(r.name.charAt(0)) + '</div>' +
     '<div>' +
       '<h3 class="ritual-name">' + esc(r.name) + '</h3>' +
       '<p class="ritual-meta">' +
-        '<span class="tag" data-adapted="neutral tag — plain text, parsnip/ink (precedent)">' + esc(r.category) + '</span>' +
-        '<span class="status ' + (slipping ? "slip" : "") + '" data-adapted="words + tint composition (W-14 route, precedent)">' + status + '</span>' +
-        '<span class="streakline" data-improvised="composed readout — numeral + label (W-10)">' + (r.streak > 0 ? r.streak + "-day run" : "not started yet") + '</span>' +
+        '<span class="tag" data-decision="34" data-adapted="neutral tag — plain text, parsnip/ink (precedent)">' + esc(r.category) + '</span>' +
+        '<span class="status ' + (slipping ? "slip" : "") + '" data-decision="17" data-adapted="words + tint composition (W-14 route, precedent)">' + status + '</span>' +
+        '<span class="streakline" data-decision="15" data-improvised="composed readout — numeral + label (W-10)">' + (r.streak > 0 ? r.streak + "-day run" : "not started yet") + '</span>' +
       '</p>' +
       '<p class="ritual-schedule">' + esc(r.freq) + ' · ' + r.minutes + ' minutes' + (r.lastLog ? ' · last logged ' + fmtDay(r.lastLog) : '') + '</p>' +
     '</div>' +
     '<div class="ritual-actions">' +
-      '<button class="cta small log-btn"' + (logged ? " disabled" : "") + '>' + (logged ? "Logged" : "Log") + '</button>' +
+      '<button type="button" class="log-tick" aria-pressed="' + (logged ? "true" : "false") + '" aria-label="Mark ' + esc(r.name) + ' done" data-decision="v31t" data-improvised="functional state control; boundary-exempt from the glyph/imagery precedent (outside verdict)">' + (logged ? TICK_MARK : "") + '</button>' +
       '<a href="#" class="tlink details-btn">Details</a>' +
-      '<a href="#" class="tlink moveup-btn' + (idx === 0 ? " is-dim" : "") + '" data-adapted="reorder via explicit move actions (precedent)">Move up</a>' +
-      '<a href="#" class="tlink movedown-btn' + (idx === state.rituals.length - 1 ? " is-dim" : "") + '" data-adapted="reorder via explicit move actions (precedent)">Move down</a>' +
+      '<a href="#" class="tlink moveup-btn' + (idx === 0 ? " is-dim" : "") + '" data-decision="35" data-adapted="reorder via explicit move actions (precedent)">Move up</a>' +
+      '<a href="#" class="tlink movedown-btn' + (idx === state.rituals.length - 1 ? " is-dim" : "") + '" data-decision="35" data-adapted="reorder via explicit move actions (precedent)">Move down</a>' +
       '<a href="#" class="tlink delete-btn">Delete</a>' +
     '</div>' +
   '</article>';
@@ -267,7 +272,7 @@ function renderAchievements() {
     { t: "Five hundred minutes", l: "Five hundred minutes in one month.",            ok: allMin >= 500, badge: "Earned", locked: allMin + " of 500 minutes" }
   ];
   document.getElementById("achGrid").innerHTML = cards.map((c) =>
-    '<article class="card ach-card" data-improvised="composed: card + badge + numerals">' +
+    '<article class="card ach-card" data-decision="16" data-improvised="composed: card + badge + numerals">' +
       '<h3 class="ach-title">' + c.t + '</h3>' +
       '<p class="ach-line">' + c.l + '</p>' +
       (c.ok ? '<span class="badge">' + c.badge + '</span>'
@@ -305,8 +310,20 @@ function showNotice(html) {
 
 function logRitual(id, btn) {
   const r = byId(id);
-  if (!r || r.lastLog === TODAY) return;
-  if (btn) { btn.textContent = "Saving…"; btn.disabled = true; }
+  if (!r) return;
+  if (r.lastLog === TODAY) {
+    /* tick toggled off — drop today's entry, restore the prior lastLog (marked improvisation) */
+    for (let i = state.entries.length - 1; i >= 0; i--) {
+      if (state.entries[i].r === id && state.entries[i].d === TODAY) { state.entries.splice(i, 1); break; }
+    }
+    const prior = entriesOf(id).map((e) => e.d).sort().pop();
+    r.lastLog = prior || null;
+    r.streak = Math.max(0, r.streak - 1);
+    save(); renderAll();
+    showNotice("<b>Unlogged.</b> That's " + loggedToday() + " of " + state.rituals.length + " today.");
+    return;
+  }
+  if (btn) { btn.disabled = true; }
   setTimeout(() => {
     state.entries.push({ d: TODAY, r: r.id, m: r.minutes, note: "" });
     r.lastLog = TODAY;
@@ -380,9 +397,9 @@ function openDetails(id) {
   const idx = state.rituals.indexOf(r);
   document.getElementById("detailsTitle").textContent = r.name;
   document.getElementById("detailsBody").innerHTML =
-    '<div class="detail-row"><b>Category</b><span class="tag" data-adapted="neutral tag — plain text, parsnip/ink (precedent)">' + esc(r.category) + '</span></div>' +
+    '<div class="detail-row"><b>Category</b><span class="tag" data-decision="34" data-adapted="neutral tag — plain text, parsnip/ink (precedent)">' + esc(r.category) + '</span></div>' +
     '<div class="detail-row"><b>Status</b><span>' + (!r.lastLog ? "New — no log yet" : (isOnTrack(r) ? "On track" : "Slipping")) + ' — words first, as canon asks.</span></div>' +
-    '<div class="detail-row"><b>Streak</b><span data-improvised="composed readout — numeral + label (W-10)">' + (r.streak > 0 ? r.streak + "-day run" : "Not started yet") + '</span></div>' +
+    '<div class="detail-row"><b>Streak</b><span data-decision="15" data-improvised="composed readout — numeral + label (W-10)">' + (r.streak > 0 ? r.streak + "-day run" : "Not started yet") + '</span></div>' +
     '<div class="detail-row"><b>Schedule</b><span>' + esc(r.freq) + ' · ' + r.minutes + ' minutes</span></div>' +
     '<div class="detail-row"><b>Logged</b><span>' + entriesOf(r.id).length + ' entries</span></div>' +
     '<div class="detail-row"><b>Why</b><span>Six weeks from now, this row is how it adds up.</span></div>';
@@ -420,10 +437,10 @@ document.getElementById("detailsDelete").addEventListener("click", () => {
 function openWizard() {
   ui.wizStep = 1;
   document.getElementById("wizChecks").innerHTML = state.rituals.map((r) =>
-    '<label class="checkline" data-fallback="native checkbox — fallback/platform-controls">' +
+    '<label class="checkline" data-decision="fb" data-fallback="native checkbox — fallback/platform-controls">' +
     '<input type="checkbox" value="' + r.id + '" checked> ' + esc(r.name) + '</label>').join("");
   document.getElementById("wizRadios").innerHTML = RHYTHMS.map((rh) =>
-    '<label class="checkline" data-fallback="native radio — fallback/platform-controls">' +
+    '<label class="checkline" data-decision="27" data-fallback="native radio — fallback/platform-controls">' +
     '<input type="radio" name="wizrhythm" value="' + rh + '"' + (state.settings.rhythm === rh ? " checked" : "") + '> ' + rh + '</label>').join("");
   document.getElementById("wizGoal").value = state.settings.goal;
   document.getElementById("wizGoalOut").textContent = state.settings.goal + " minutes.";
@@ -581,7 +598,374 @@ document.getElementById("marksToggle").addEventListener("click", (ev) => {
   ev.currentTarget.setAttribute("aria-pressed", on ? "true" : "false");
   ev.currentTarget.textContent = on ? "◉" : "◌";
   applyMarks();
+  if (!on) closeProv();
 });
+
+/* --------------------------- provenance inspector ------------------------ *
+   Companion to the marks layer: with marks on, click any dashed node and read
+   the decision record for it (outcome · resolution · proposal trail ·
+   precedents · gap · evidence). Registry: `PROV` in provenance.js, generated
+   from NOTES.md · packs/wink · gaps · evidence by _evidence/make_provenance_js.py. */
+
+const provPanel = document.getElementById("provPanel");
+const provKindEl = document.getElementById("provKind");
+const provRowEl = document.getElementById("provRow");
+const provBody = document.getElementById("provBody");
+const provFoot = document.getElementById("provFoot");
+let provLastNode = null;
+
+function closeProv() {
+  if (provPanel && !provPanel.hidden) provPanel.hidden = true;
+}
+function provChip(t) { return '<span class="prov-chip">' + esc(t) + '</span>'; }
+function provId(t) { return '<span class="prov-id">' + esc(t) + '</span>'; }
+
+function openProv(node) {
+  if (typeof PROV === "undefined") return;
+  const id = node.getAttribute("data-decision");
+  const rec = PROV.rows[id] || null;
+  const kind = MARKS_ATTRS.find((k) => node.hasAttribute("data-" + k)) || "improvised";
+  const note = node.getAttribute("data-" + kind) || "";
+  provLastNode = node;
+
+  provKindEl.textContent = kind;
+  provRowEl.textContent = !rec ? "no record"
+    : (/^\d+$/.test(String(rec.n)) ? "ask #" + rec.n
+      : (String(rec.n).indexOf("v3.") === 0 ? "revision " + rec.n : "shared record"));
+
+  let h = "";
+  if (!rec) {
+    h = '<p class="prov-line">No registry entry for ' + provId(id) + '.</p>';
+  } else {
+    h += '<p class="prov-ask">' + esc(rec.ask) + '</p>';
+    if (note) h += '<p class="prov-note">the label says: “' + esc(note) + '”</p>';
+
+    /* the decision */
+    h += '<p class="prov-sec">decision</p><p class="prov-line"><span class="prov-outcome">' + esc(rec.outcome) + '</span>';
+    if (rec.search_assisted) h += " " + provChip("search-assisted");
+    if (rec.resolution) h += " resolved by " + provId(rec.resolution);
+    else if (rec.closest) h += " closest: " + provId(rec.closest);
+    if (rec.outcome_note) h += " — " + esc(rec.outcome_note);
+    h += "</p>";
+    if (rec.built) h += '<p class="prov-line prov-built">' + esc(rec.built) + "</p>";
+
+    /* authority record + the proposal trail */
+    const art = rec.resolution && PROV.artifacts[rec.resolution];
+    if (art) {
+      h += '<p class="prov-sec">authority record</p>';
+      h += '<p class="prov-line"><b>' + esc(art.title) + "</b> " + provId(art.id) + "</p>";
+      if (art.summary) h += '<p class="prov-line">' + esc(art.summary) + "</p>";
+      if (art.source_path) h += '<p class="prov-line prov-src">provenance: ' + esc(art.source_path) + "</p>";
+      if (art.compiled_from && art.compiled_from.length) {
+        h += '<p class="prov-line">compiled from ' + art.compiled_from.map(provChip).join(" ") + "</p>";
+      }
+    }
+
+    /* precedents that steered (or were cited) */
+    (rec.precedents || []).forEach((pid) => {
+      const live = PROV.precedents[pid];
+      const dead = PROV.retired[pid];
+      h += '<p class="prov-sec">precedent</p>';
+      if (live) {
+        h += '<p class="prov-line"><b>' + esc(live.title) + "</b> " + provId(pid) + "</p>";
+        if (live.reason) h += '<p class="prov-line">' + esc(live.reason) + "</p>";
+        if (live.try && live.try.length) {
+          h += '<p class="prov-line prov-try">try-list followed:</p><ul class="prov-list">' +
+               live.try.map((t) => "<li>" + esc(t) + "</li>").join("") + "</ul>";
+        }
+        if (live.citation) h += '<p class="prov-line prov-src">' + esc(live.citation) + "</p>";
+      } else if (dead) {
+        h += '<p class="prov-line"><b>' + esc(dead.title) + "</b> " + provChip(dead.now) + "</p>";
+        h += '<p class="prov-line">' + esc(dead.note) + "</p>";
+      } else {
+        h += '<p class="prov-line">' + provId(pid) + "</p>";
+      }
+      const v = rec.precedent_verdicts && rec.precedent_verdicts[pid];
+      if (v) h += '<p class="prov-line">scope verdict: ' + provChip(v + " — not governed; proceed as marked improvisation") + "</p>";
+    });
+    if (!(rec.precedents || []).length && rec.precedents_raw && rec.precedents_raw !== "—") {
+      h += '<p class="prov-sec">precedent</p><p class="prov-line">' + esc(rec.precedents_raw) + "</p>";
+    }
+
+    /* fallback record */
+    if (rec.outcome === "FALLBACK") {
+      const fb = PROV.fallbacks[rec.resolution];
+      if (fb) {
+        h += '<p class="prov-sec">fallback record</p>';
+        h += '<p class="prov-line"><b>' + esc(fb.title) + "</b> " + provId(fb.id) + "</p>";
+        if (fb.statement) h += '<p class="prov-line">' + esc(fb.statement) + "</p>";
+        if (fb.constraints && fb.constraints.length) {
+          h += '<ul class="prov-list">' + fb.constraints.map((c) => "<li>" + esc(c) + "</li>").join("") + "</ul>";
+        }
+      }
+    }
+
+    /* candidate alignment */
+    if (rec.candidate && PROV.candidates[rec.candidate]) {
+      const c = PROV.candidates[rec.candidate];
+      h += '<p class="prov-sec">candidate — provisional, not authority</p>';
+      h += '<p class="prov-line"><b>' + esc(c.title) + "</b> " + provId(c.id) + " " + provChip("provisional") + "</p>";
+      if (c.summary) h += '<p class="prov-line">' + esc(c.summary) + "</p>";
+      if (c.promote_when && c.promote_when.length) {
+        h += '<p class="prov-line prov-try">promote when:</p><ul class="prov-list">' +
+             c.promote_when.map((t) => "<li>" + esc(t) + "</li>").join("") + "</ul>";
+      }
+    }
+
+    /* gap filed */
+    if (rec.gap && PROV.gaps[rec.gap]) {
+      const g = PROV.gaps[rec.gap];
+      h += '<p class="prov-sec">gap filed</p>';
+      h += '<p class="prov-line">' + provId(g.id) + " " + provChip(g.status || "open") + "</p>";
+      if (g.need) h += '<p class="prov-line">' + esc(g.need) + "</p>";
+      const ctx = g.context || {};
+      if (ctx.searched && ctx.searched.length) h += '<p class="prov-line prov-src">searched: ' + ctx.searched.map(provChip).join(" ") + "</p>";
+      if (ctx.note) h += '<p class="prov-line">' + esc(ctx.note) + "</p>";
+    }
+  }
+  /* review block — the brief's prefilled decision + the reviewer's verdict */
+  if (rec) {
+    const v = verdicts[id] || {};
+    h += '<p class="prov-sec">review — brief &amp; prefilled decision</p>';
+    h += '<p class="prov-line prov-prefill">Adjudicator prefilled: <b>' + esc(rec.outcome) + "</b>" +
+         (rec.resolution ? " · " + esc(rec.resolution) : "") +
+         ". Accept to leave as is — or modify / reject / leave undefined.</p>";
+    h += '<div class="prov-review" data-decision-id="' + esc(id) + '"><div class="prov-verdicts">' +
+         [["accept", "Accept as is"], ["modify", "Modify"], ["reject", "Reject"], ["undefined", "Leave undefined"]]
+           .map(([val, label]) => '<button type="button" class="pv" data-v="' + val + '"' +
+                (v.verdict === val ? ' data-selected="1"' : "") + ">" + label + "</button>").join("") +
+         "</div>" +
+         '<textarea class="prov-comment" rows="2" placeholder="note — what to modify, why reject…">' + esc(v.note || "") + "</textarea>" +
+         '<p class="prov-vstate">' + verdictStateHTML(v) + "</p></div>";
+  }
+  provBody.innerHTML = h;
+
+  /* evidence footer — relative links resolve under any static serve of this folder */
+  const f = ['<a href="NOTES.md" target="_blank" rel="noopener">NOTES.md</a>'];
+  if (rec && rec.resolve_line) f.push('<a href="_evidence/resolves.jsonl" target="_blank" rel="noopener">resolves.jsonl · line ' + rec.resolve_line + "</a>");
+  if (id === "v31t") f.push('<a href="_evidence/v31-revision.jsonl" target="_blank" rel="noopener">v31-revision.jsonl</a>');
+  if (rec && rec.gap) f.push('<a href=".design-authority/gaps.jsonl" target="_blank" rel="noopener">gaps.jsonl</a>');
+  if (rec && art0PropBacked(rec) && window.location.pathname.indexOf("/stress3/") === 0) {
+    f.push('<a href="/proposals" target="_blank" rel="noopener">proposal gate →</a>');
+  }
+  const nv = Object.keys(verdicts).length;
+  if (nv) f.push('<button type="button" class="prov-export" id="provExport">download verdicts (' + nv + ")</button>");
+  provFoot.innerHTML = "evidence: " + f.join(" · ");
+
+  /* host: keep the panel above modal dialogs by living inside the top layer */
+  const openDlgs = document.querySelectorAll("dialog[open]");
+  const host = openDlgs.length ? openDlgs[openDlgs.length - 1] : document.body;
+  if (provPanel.parentNode !== host) host.appendChild(provPanel);
+  applySavedPanelPos();
+  provPanel.hidden = false;
+}
+
+function openProvRefresh() {
+  if (provLastNode && !provPanel.hidden) openProv(provLastNode);
+}
+
+function art0PropBacked(rec) {
+  const a = rec.resolution && PROV.artifacts[rec.resolution];
+  return !!(a && /prop\//.test(a.source_path || ""));
+}
+
+/* ---- reviewer verdicts: accept · modify · reject · undefined (the review
+   app's vocabulary) — kept locally always; synced to the review app when the
+   build is served under it (/stress3/...) ---------------------------------- */
+
+const VERDICTS_KEY = STORE_KEY + ".verdicts";
+const PANELPOS_KEY = STORE_KEY + ".panelpos";
+let verdicts = loadVerdicts();
+
+function loadVerdicts() {
+  try { return JSON.parse(localStorage.getItem(VERDICTS_KEY)) || {}; } catch (err) { return {}; }
+}
+function saveVerdicts() { localStorage.setItem(VERDICTS_KEY, JSON.stringify(verdicts)); }
+
+function verdictStateHTML(v) {
+  if (!v || !v.verdict) return "no verdict yet" + (v && v.note ? " — note saved locally" : "") + ".";
+  return "verdict <b>" + esc(v.verdict) + "</b> — saved" +
+         (v.synced ? " · synced to the review app" : " locally") +
+         (v.note ? " · note attached" : "") + ".";
+}
+
+function setVerdict(id, val, note) {
+  const prev = verdicts[id] || {};
+  verdicts[id] = { verdict: val, note: note, ts: new Date().toISOString(), synced: prev.synced && prev.verdict === val ? prev.synced : false };
+  saveVerdicts();
+  syncVerdict(id);
+  return verdicts[id];
+}
+
+function syncVerdict(id) {
+  const entry = verdicts[id];
+  if (!entry || !entry.verdict) return;
+  if (window.location.pathname.indexOf("/stress3/") !== 0) return;   // only under the review serve
+  fetch("/api/stress/verdict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      build: PROV.meta.authority, id: id, ask: (PROV.rows[id] || {}).ask || "",
+      verdict: entry.verdict, note: entry.note || ""
+    })
+  }).then((r) => {
+    if (r.ok) { entry.synced = true; saveVerdicts(); updateWrapState(id); }
+  }).catch(() => { /* offline — stays local */ });
+}
+
+function updateWrapState(id) {
+  const wrap = document.querySelector('.prov-review[data-decision-id="' + id + '"]');
+  if (wrap) wrap.querySelector(".prov-vstate").innerHTML = verdictStateHTML(verdicts[id]);
+}
+
+function hydrateVerdicts() {
+  if (window.location.pathname.indexOf("/stress3/") !== 0) return;
+  fetch("/api/stress/verdicts?build=" + encodeURIComponent(PROV.meta.authority))
+    .then((r) => (r.ok ? r.json() : null))
+    .then((srv) => {
+      const serverHas = (srv && typeof srv === "object") ? srv : {};
+      let changed = false;
+      Object.keys(serverHas).forEach((id) => {
+        const local = verdicts[id];
+        if (!local || local.synced) {   // adopt the server's unless a newer local one is unsynced
+          verdicts[id] = { verdict: serverHas[id].verdict, note: serverHas[id].note || "", ts: serverHas[id].updated, synced: true };
+          changed = true;
+        }
+      });
+      if (changed) { saveVerdicts(); openProvRefresh(); }
+      /* self-heal: re-post any local verdict the server is missing (offline
+         stretches, store resets) — the reviewer's device is the source of truth */
+      Object.keys(verdicts).forEach((id) => {
+        const v = verdicts[id];
+        if (!v || !v.verdict) return;
+        if (!v.synced || !serverHas[id]) syncVerdict(id);
+      });
+    })
+    .catch(() => { /* server unreachable — keep local; it re-posts on a later load */ });
+}
+
+function exportVerdicts() {
+  const rows = {};
+  Object.keys(verdicts).forEach((id) => {
+    const rec = PROV.rows[id] || {};
+    rows[id] = {
+      ask: rec.ask || "", outcome: rec.outcome || null, resolution: rec.resolution || null,
+      verdict: verdicts[id].verdict || null, note: verdicts[id].note || "",
+      ts: verdicts[id].ts || null, synced: !!verdicts[id].synced
+    };
+  });
+  const blob = { build: "cadence3-wink", authority: PROV.meta.authority, exported: new Date().toISOString(), verdicts: rows };
+  const url = URL.createObjectURL(new Blob([JSON.stringify(blob, null, 1)], { type: "application/json" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "cadence3-wink-verdicts.json";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* ---- movable floating window — drag by the header, position remembered ---- */
+
+function clampPanelPos(x, y) {
+  const w = provPanel.offsetWidth || 420, h = provPanel.offsetHeight || 320;
+  x = Math.max(8, Math.min((window.innerWidth || 1280) - w - 8, x));
+  y = Math.max(8, Math.min((window.innerHeight || 900) - h - 8, y));
+  return { x: x, y: y };
+}
+function applySavedPanelPos() {
+  try {
+    const p = JSON.parse(localStorage.getItem(PANELPOS_KEY));
+    if (p && typeof p.left === "number" && typeof p.top === "number") {
+      const c = clampPanelPos(p.left, p.top);
+      provPanel.style.left = c.x + "px";
+      provPanel.style.top = c.y + "px";
+      provPanel.style.bottom = "auto";
+      provPanel.style.right = "auto";
+    }
+  } catch (err) { /* ignore */ }
+}
+const provHeadEl = provPanel.querySelector(".prov-head");
+let provDrag = null;
+provHeadEl.addEventListener("pointerdown", (ev) => {
+  if (ev.target.closest(".prov-close")) return;
+  const r = provPanel.getBoundingClientRect();
+  provDrag = { dx: ev.clientX - r.left, dy: ev.clientY - r.top };
+  provHeadEl.setPointerCapture(ev.pointerId);
+  provPanel.classList.add("dragging");
+});
+provHeadEl.addEventListener("pointermove", (ev) => {
+  if (!provDrag) return;
+  const c = clampPanelPos(ev.clientX - provDrag.dx, ev.clientY - provDrag.dy);
+  provPanel.style.left = c.x + "px";
+  provPanel.style.top = c.y + "px";
+  provPanel.style.bottom = "auto";
+  provPanel.style.right = "auto";
+});
+function provDragEnd() {
+  if (!provDrag) return;
+  provDrag = null;
+  provPanel.classList.remove("dragging");
+  const r = provPanel.getBoundingClientRect();
+  localStorage.setItem(PANELPOS_KEY, JSON.stringify({ left: Math.round(r.left), top: Math.round(r.top) }));
+}
+provHeadEl.addEventListener("pointerup", provDragEnd);
+provHeadEl.addEventListener("pointercancel", provDragEnd);
+
+/* ---- verdict + note + export interactions inside the window -------------- */
+
+provPanel.addEventListener("click", (ev) => {
+  const b = ev.target.closest(".pv");
+  if (b) {
+    const wrap = b.closest(".prov-review");
+    const id = wrap.getAttribute("data-decision-id");
+    const noteEl = wrap.querySelector(".prov-comment");
+    const entry = setVerdict(id, b.getAttribute("data-v"), noteEl ? noteEl.value.trim() : "");
+    wrap.querySelectorAll(".pv").forEach((x) => {
+      if (x.getAttribute("data-v") === entry.verdict) x.setAttribute("data-selected", "1");
+      else x.removeAttribute("data-selected");
+    });
+    wrap.querySelector(".prov-vstate").innerHTML = verdictStateHTML(entry);
+    return;
+  }
+  if (ev.target.closest("#provExport")) exportVerdicts();
+});
+provPanel.addEventListener("input", (ev) => {
+  if (!ev.target.classList.contains("prov-comment")) return;
+  const wrap = ev.target.closest(".prov-review");
+  const id = wrap.getAttribute("data-decision-id");
+  const prev = verdicts[id] || {};
+  const entry = { verdict: prev.verdict || null, note: ev.target.value, ts: prev.ts || null, synced: false };
+  verdicts[id] = entry;
+  saveVerdicts();
+  wrap.querySelector(".prov-vstate").innerHTML = verdictStateHTML(entry);
+  clearTimeout(ev.target._syncT);
+  ev.target._syncT = setTimeout(() => { if (verdicts[id].verdict) syncVerdict(id); }, 700);
+});
+
+/* capture-phase: with marks on, a click on a marked node opens its record
+   instead of performing the node's action; everything else passes through */
+document.addEventListener("click", (ev) => {
+  if (!document.body.classList.contains("marks-on")) return;
+  const t = ev.target;
+  if (!t || !t.closest) return;
+  if (t.closest("#provPanel")) return;
+  const node = t.closest("[data-decision]");
+  if (!node) return;
+  ev.preventDefault();
+  ev.stopPropagation();
+  openProv(node);
+}, true);
+
+document.getElementById("provClose").addEventListener("click", closeProv);
+document.addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape" && !provPanel.hidden && !document.querySelector("dialog[open]")) closeProv();
+});
+document.addEventListener("close", (ev) => {   // a dialog closed while carrying the panel → hand it back to body
+  if (ev.target && ev.target.tagName === "DIALOG" && provPanel.parentNode === ev.target) {
+    document.body.appendChild(provPanel);
+  }
+}, true);
 
 /* ------------------------------- wiring ---------------------------------- */
 
@@ -628,7 +1012,7 @@ document.getElementById("ritualList").addEventListener("click", (ev) => {
   const id = card.getAttribute("data-ritual");
   const r = byId(id);
   if (!r) return;
-  if (ev.target.closest(".log-btn")) { logRitual(id, ev.target.closest(".log-btn")); return; }
+  if (ev.target.closest(".log-tick")) { logRitual(id, ev.target.closest(".log-tick")); return; }
   if (ev.target.closest(".details-btn")) { ev.preventDefault(); openDetails(id); return; }
   if (ev.target.closest(".moveup-btn")) { ev.preventDefault(); moveRitual(id, -1); return; }
   if (ev.target.closest(".movedown-btn")) { ev.preventDefault(); moveRitual(id, 1); return; }
@@ -680,4 +1064,5 @@ document.getElementById("resetDemo").addEventListener("click", (ev) => {
 /* ------------------------------- boot ------------------------------------ */
 
 renderAll();
+hydrateVerdicts();
 if (!state.onboarded) setTimeout(openWizard, 120);

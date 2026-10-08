@@ -1,0 +1,86 @@
+{
+ "wink|12": {
+  "verdict": "modify",
+  "note": "Bar chart should be an item to define, but the styling is off. WIll need a revision pass, perhaps thicker bars or even yellow styling somewhere",
+  "ask": "a bar chart of weekly minutes",
+  "updated": "2026-10-08 03:27:40"
+ },
+ "wink|33": {
+  "verdict": "modify",
+  "note": "Can codify as a canonical search box item",
+  "ask": "a search box to filter rituals",
+  "updated": "2026-10-08 03:24:48"
+ },
+ "wink|14": {
+  "verdict": "reject",
+  "note": "The chart is way out of spec in terms of design style. I would like to see a spark line trend as a first class element to be promoted, but not in this style. Defer to judgement in next round",
+  "ask": "a tiny sparkline trend of the last week",
+  "updated": "2026-10-08 03:28:47"
+ },
+ "wink|18": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "a profile avatar photo",
+  "updated": "2026-10-08 03:28:54"
+ },
+ "wink|22": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "a date picker for the log entry",
+  "updated": "2026-10-08 03:29:15"
+ },
+ "wink|32": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "pagination for older entries",
+  "updated": "2026-10-08 03:29:18"
+ },
+ "wink|16": {
+  "verdict": "modify",
+  "note": "Looks plausible, but It would seem that the design language would call for a Serif bold font for the title",
+  "ask": "an achievement badge for seven days",
+  "updated": "2026-10-08 03:29:57"
+ },
+ "wink|15": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "a big streak counter",
+  "updated": "2026-10-08 03:30:01"
+ },
+ "wink|21": {
+  "verdict": "modify",
+  "note": "There needs to be a dedicated slider. This blue fallback slider is out of spec and will benefit from an explicitly designed version.",
+  "ask": "a slider for daily goal minutes",
+  "updated": "2026-10-08 03:31:07"
+ },
+ "wink|20": {
+  "verdict": "modify",
+  "note": "Toggle switches should use a pill shape slider similar to the buttons",
+  "ask": "a toggle switch in settings",
+  "updated": "2026-10-08 03:31:47"
+ },
+ "wink|39": {
+  "verdict": "undefined",
+  "note": "",
+  "ask": "a dark mode theme",
+  "updated": "2026-10-08 03:32:12"
+ },
+ "wink|38": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "export the data as csv",
+  "updated": "2026-10-08 03:32:27"
+ },
+ "wink|19": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "an icon for each ritual",
+  "updated": "2026-10-08 03:32:50"
+ },
+ "wink|v31t": {
+  "verdict": "accept",
+  "note": "",
+  "ask": "row log control — a check control to log a ritual",
+  "updated": "2026-10-08 03:32:57"
+ }
+}
