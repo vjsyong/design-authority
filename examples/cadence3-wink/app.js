@@ -1122,3 +1122,9 @@ renderAll();
 hydrateVerdicts();
 loadVerification();
 if (!state.onboarded) setTimeout(openWizard, 120);
+
+/* deep link: #lens enables the marks layer on load (concept-site hint) */
+if (/lens/i.test(location.hash || "")) {
+  var lensToggle = document.getElementById("marksToggle");
+  if (lensToggle && !document.body.classList.contains("marks-on")) { lensToggle.click(); }
+}
