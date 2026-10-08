@@ -4,6 +4,99 @@ A versioned, machine-readable design contract that lets coding agents work under
 
 **Status:** the specification is frozen at 0.2.0 (tag `v0.2.0`).
 
+**For humans:** do not install this by hand. Hand the repository to a coding agent and point it at the install block below.
+**For agents:** this block is written for you. Follow it top to bottom, check every expected output, and stop to report if one of them fails.
+
+## Install (for agents)
+
+### 0. Requirements and stop conditions
+
+- Python 3.12 or newer (kernel and CLI are stdlib-only).
+- The `mcp` package, pinned `<2`, in a venv, for the MCP server.
+- Optional: Playwright browsers, needed only by `tools/da_verify.py`.
+
+Stop and report to the human instead of improvising if: Python is older than 3.12, pip cannot install the `mcp` package, or your host has no MCP support (then use the CLI path only and say so explicitly).
+
+### 1. Clone and prove the CLI (no dependencies)
+
+```bash
+git clone https://github.com/vjsyong/design-authority.git
+cd design-authority
+python3 tools/da.py overview
+```
+
+Expected: `"status": "ok"` with authority triage 0.12.1 and 80 artifacts. Then:
+
+```bash
+python3 tools/da.py resolve "a primary button"
+```
+
+Expected: `OUTCOME: RESOLVED` citing `component/btn`.
+
+### 2. Install and launch the MCP server
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install 'mcp<2'
+```
+
+The stdio launcher is `tools/da-mcp.py`. Environment: `DA_PACK` selects the pack (default `packs/triage`); `DA_WORKSPACE` is where gaps, proposals and the decision log are written. Set `DA_WORKSPACE` to the project you are working on, so its records travel with it.
+
+### 3. Register with your host
+
+Claude Code / Cursor (`.mcp.json` in the project being worked on):
+
+```json
+{"mcpServers": {"design-authority": {
+  "command": "/path/to/design-authority/.venv/bin/python",
+  "args": ["/path/to/design-authority/tools/da-mcp.py"],
+  "env": {"DA_PACK": "/path/to/design-authority/packs/triage",
+          "DA_WORKSPACE": "/path/to/your/project"}}}}
+```
+
+Hermes:
+
+```bash
+hermes mcp add design-authority \
+  --command /path/to/design-authority/.venv/bin/python \
+  --env DA_PACK=/path/to/design-authority/packs/triage \
+  --env DA_WORKSPACE=/path/to/your/project \
+  --args /path/to/design-authority/tools/da-mcp.py
+```
+
+opencode (project `opencode.json`):
+
+```json
+{"mcp": {"design-authority": {"type": "local",
+  "command": ["/path/to/design-authority/.venv/bin/python", "/path/to/design-authority/tools/da-mcp.py"],
+  "environment": {"DA_PACK": "/path/to/design-authority/packs/triage", "DA_WORKSPACE": "/path/to/your/project"}}}}
+```
+
+### 4. Verify over MCP
+
+Call `authority_overview`; expected `"status": "ok"`. Then `resolve_design_problem("a primary button")`; expected RESOLVED citing `component/btn`. If the tools do not appear in your host, reload the client session. If they still do not appear, report the launcher path and any error output to the human.
+
+### 5. Adopt the protocol (required)
+
+Copy [`packs/triage/AGENT-PROMPT.md`](packs/triage/AGENT-PROMPT.md) into the project's agent rules (for example `CLAUDE.md` or `AGENTS.md`). It is the consumption protocol: resolve before building; build the recorded way; when the authority has no answer, mark the improvisation and report a gap; verify before claiming done. [`AGENTS.md`](AGENTS.md) at this repository's root repeats the machine entry point.
+
+### 6. Make conformance binding
+
+Add to CI:
+
+```bash
+python3 tools/da.py --pack packs/triage validate <project directory>
+```
+
+The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·infos`), so nonconforming work cannot merge.
+
+### 7. Self-check this repository
+
+```bash
+./tools/check.sh
+```
+
+Expected: `gates: OK` (pack drift, coverage sweep, unit tests, goldens, MCP smoke, concept-site gate).
+
 **Live:** the concept explainer and five authority implementations are served at <https://designauthority.seanyong.xyz>. The reference design system itself, Triage, is at <https://triage.seanyong.xyz>.
 
 **Headline:** in a controlled three-condition experiment (3 runs per condition, identical briefs, fresh agent context), agents working with the authority over MCP produced measurably better interfaces than agents given the same design system as a well-made static kit, which in turn beat agents with no design material at all. Blind review condition means of 25: **A 15.0** (naive) · **B 21.3** (static kit) · **C 21.7** (active authority).
@@ -33,70 +126,6 @@ A versioned, machine-readable design contract that lets coding agents work under
 **The reference conversion.** The Triage pack was converted 1:1 from the design system's own machine-readable spec files, then matured through outside review and an element-by-element coverage sweep (134/134 natural-language asks resolve to the right element). The sweep exists because a golden set written by the same extractor shares its blind spots: coverage must come from the system's own information architecture, or whole classes of misses stay silent.
 
 **Limits.** Level 2 of the four-level verification contract is partial and declared per component; levels 3 and 4 are proposed. And nobody has yet shown that compliant builds behave better in users' hands. That experiment is next.
-
-## Install and use
-
-**Requirements:** Python 3.12+ (the kernel and CLI are stdlib-only). The MCP server needs the `mcp` package, pinned `<2`. Playwright browsers are needed only for the independent verifier (`tools/da_verify.py`).
-
-### 1. CLI, no dependencies
-
-```bash
-git clone https://github.com/vjsyong/design-authority.git
-cd design-authority
-
-python3 tools/da.py overview                       # the authority at a glance
-python3 tools/da.py resolve "a primary button"     # resolve against packs/triage by default
-python3 tools/da.py --pack packs/triage validate /path/to/your/app   # lint engine over a project
-```
-
-### 2. MCP server, connect your coding agent
-
-```bash
-python3 -m venv .venv && .venv/bin/pip install 'mcp<2'
-.venv/bin/python tools/da-mcp.py    # stdio server; normally launched by the agent client
-```
-
-Environment: `DA_PACK` selects the pack (default `packs/triage`); `DA_WORKSPACE` is where gaps, proposals and the decision log land. Point it at your project so its records travel with it.
-
-Claude Code / Cursor (`.mcp.json` in your project):
-
-```json
-{"mcpServers": {"design-authority": {
-  "command": "/path/to/design-authority/.venv/bin/python",
-  "args": ["/path/to/design-authority/tools/da-mcp.py"],
-  "env": {"DA_PACK": "/path/to/design-authority/packs/triage",
-          "DA_WORKSPACE": "/path/to/your/project"}}}}
-```
-
-Hermes:
-
-```bash
-hermes mcp add design-authority \
-  --command /path/to/design-authority/.venv/bin/python \
-  --env DA_PACK=/path/to/design-authority/packs/triage \
-  --env DA_WORKSPACE=/path/to/your/project \
-  --args /path/to/design-authority/tools/da-mcp.py
-```
-
-opencode (project `opencode.json`):
-
-```json
-{"mcp": {"design-authority": {"type": "local",
-  "command": ["/path/to/design-authority/.venv/bin/python", "/path/to/design-authority/tools/da-mcp.py"],
-  "environment": {"DA_PACK": "/path/to/design-authority/packs/triage", "DA_WORKSPACE": "/path/to/your/project"}}}}
-```
-
-### 3. Make an agent work under the authority
-
-- Put [`packs/triage/AGENT-PROMPT.md`](packs/triage/AGENT-PROMPT.md) (the consumption protocol: resolve first, build the recorded way, mark silences, verify) into the project rules your agent reads, for example `CLAUDE.md` or `AGENTS.md`.
-- Point `DA_WORKSPACE` at the project. When the authority has no answer, the agent marks the improvisation, files a gap, and later work treats the decision as noncanonical until review says otherwise.
-- Wire `validate` into CI. The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·infos`), so nonconforming work cannot merge.
-
-### 4. Verify and self-check this repository
-
-```bash
-./tools/check.sh    # pack drift, coverage sweep, unit tests, goldens, MCP smoke, concept-site gate
-```
 
 ## Specification (0.2, frozen)
 
