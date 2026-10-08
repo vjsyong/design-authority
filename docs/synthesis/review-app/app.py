@@ -795,6 +795,7 @@ def authority_audit(name):
 
 # ---- every authority's demo apps, one taxonomy: /authorities/<authority>/demo/<app> ----
 AUTHORITY_APPS = {
+    "triage": {"duty": os.path.join(_REPO, "examples", "triage-duty")},
     "phantom": {"jennu": os.path.join(_REPO, "examples", "phantom-audit")},
     "wink": {"cadence-v1": os.path.join(_REPO, "examples", "cadence-wink"),
              "cadence-v2": os.path.join(_REPO, "examples", "cadence2-wink"),

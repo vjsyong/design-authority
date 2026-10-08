@@ -1,0 +1,118 @@
+<!doctype html>
+<!-- Duty demo build under the Triage design authority v0.12.1 (./run-authority, see log.md).
+     Marks (data-improv) flag composites that resolve UNDEFINED against the authority. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incidents · Duty</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#content" data-improv="skip link has no catalogue record under Triage v0.12.1; core .skip class used; resolved misfired to component/nav-item; gap gap/20261008-124813-ac670b" title="Skip link has no catalogue record under Triage v0.12.1; the core .skip class is used. Gap: gap/20261008-124813-ac670b.">Skip to content</a>
+<div class="app">
+  <aside class="side">
+    <div class="side-top">
+      <a class="brand" href="index.html"><span class="brand-mark">DT</span><span class="brand-name">Duty</span></a>
+      <div class="brand-sub">Incident console</div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Console</div>
+      <a class="nav-item active" href="index.html" aria-current="page">Incidents</a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row"><span class="dot warn"></span> Sev 1 in progress</div>
+      <div class="sf-row">On call · R. Okafor</div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content" id="content">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Incidents</h1>
+          <div class="page-desc">Live incidents for the checkout platform. Filter by state, or open one for the full timeline.</div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="row chiprow" role="group" aria-label="Filter incidents by state"
+             data-improv="filter row composite is not catalogued by Triage v0.12.1; built from component/chip and the core .row.chiprow pattern; gap gap/20261008-124813-d5c424"
+             title="Filter row composite is not catalogued by Triage v0.12.1; built from component/chip and the core .row.chiprow pattern. Gap: gap/20261008-124813-d5c424.">
+          <a class="chip active" href="#all" data-filter="all">All <span class="n">4</span></a>
+          <a class="chip" href="#open" data-filter="open">Open <span class="n">1</span></a>
+          <a class="chip" href="#investigating" data-filter="investigating">Investigating <span class="n">1</span></a>
+          <a class="chip" href="#mitigated" data-filter="mitigated">Mitigated <span class="n">1</span></a>
+          <a class="chip" href="#resolved" data-filter="resolved">Resolved <span class="n">1</span></a>
+        </div>
+        <div class="tablewrap">
+          <table class="tbl mcards">
+            <caption class="vh">Incidents, most recently updated first</caption>
+            <thead>
+              <tr>
+                <th scope="col">Severity</th>
+                <th scope="col">Incident</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="r">Updated (UTC)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-status="investigating">
+                <td><span class="dot err"></span> Sev 1</td>
+                <td><a href="case.html">Checkout latency spike after search rollout</a>
+                  <div class="sub">INC-1042 · opened 2026-10-08 07:12</div></td>
+                <td><span class="badge warn">Investigating</span></td>
+                <td class="r"><time datetime="2026-10-08T09:24:00Z">2026-10-08&nbsp;09:24</time></td>
+              </tr>
+              <tr data-status="open">
+                <td><span class="dot warn"></span> Sev 2</td>
+                <td><a href="case.html">Duplicate charge reports on retry</a>
+                  <div class="sub">INC-1041 · opened 2026-10-08 08:02</div></td>
+                <td><span class="badge acc">Open</span></td>
+                <td class="r"><time datetime="2026-10-08T08:41:00Z">2026-10-08&nbsp;08:41</time></td>
+              </tr>
+              <tr data-status="mitigated">
+                <td><span class="dot acc"></span> Sev 3</td>
+                <td><a href="case.html">Search index lag on eu-west replica</a>
+                  <div class="sub">INC-1039 · opened 2026-10-07 19:40</div></td>
+                <td><span class="badge ok">Mitigated</span></td>
+                <td class="r"><time datetime="2026-10-07T22:18:00Z">2026-10-07&nbsp;22:18</time></td>
+              </tr>
+              <tr data-status="resolved">
+                <td><span class="dot warn"></span> Sev 2</td>
+                <td><a href="case.html">Elevated timeouts on payments gateway</a>
+                  <div class="sub">INC-1036 · opened 2026-10-06 14:31</div></td>
+                <td><span class="badge">Resolved</span></td>
+                <td class="r"><time datetime="2026-10-06T16:02:00Z">2026-10-06&nbsp;16:02</time></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="sub">4 incidents · newest first · times in UTC</p>
+      </div>
+      <p class="sub">Built under the Triage design authority v0.12.1 · sample data</p>
+    </div>
+  </main>
+</div>
+<script>
+// Chip filters: progressive enhancement. Without JS the list stays fully readable.
+(function () {
+  var chips = document.querySelectorAll('[data-filter]');
+  var rows = document.querySelectorAll('tr[data-status]');
+  Array.prototype.forEach.call(chips, function (chip) {
+    chip.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      Array.prototype.forEach.call(chips, function (c) {
+        c.classList.toggle('active', c === chip);
+      });
+      var want = chip.getAttribute('data-filter');
+      Array.prototype.forEach.call(rows, function (row) {
+        var show = want === 'all' || row.getAttribute('data-status') === want;
+        row.classList.toggle('hidden', !show);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

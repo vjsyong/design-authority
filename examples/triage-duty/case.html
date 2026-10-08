@@ -1,0 +1,141 @@
+<!doctype html>
+<!-- Duty demo build under the Triage design authority v0.12.1 (./run-authority, see log.md).
+     Marks (data-improv) flag composites that resolve UNDEFINED against the authority. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INC-1042 · Duty</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+</head>
+<body>
+<a class="skip" href="#content" data-improv="skip link has no catalogue record under Triage v0.12.1; core .skip class used; resolved misfired to component/nav-item; gap gap/20261008-124813-ac670b" title="Skip link has no catalogue record under Triage v0.12.1; the core .skip class is used. Gap: gap/20261008-124813-ac670b.">Skip to content</a>
+<div class="app">
+  <aside class="side">
+    <div class="side-top">
+      <a class="brand" href="index.html"><span class="brand-mark">DT</span><span class="brand-name">Duty</span></a>
+      <div class="brand-sub">Incident console</div>
+    </div>
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-label">Console</div>
+      <a class="nav-item active" href="index.html" aria-current="page">Incidents</a>
+    </nav>
+    <div class="side-foot">
+      <div class="sf-row"><span class="dot warn"></span> Sev 1 in progress</div>
+      <div class="sf-row">On call · R. Okafor</div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content" id="content">
+      <div class="page-head"
+           data-improv="incident header composite is not catalogued by Triage v0.12.1; composed of component/page-head, component/badge and component/dot; gap gap/20261008-124813-366586"
+           title="Incident header composite is not catalogued by Triage v0.12.1; composed of component/page-head, component/badge and component/dot. Gap: gap/20261008-124813-366586.">
+        <div>
+          <h1 class="page-title">Checkout latency spike after search rollout</h1>
+          <div class="row">
+            <code>INC-1042</code>
+            <span class="dot err"></span>
+            <span>Sev 1</span>
+            <span class="badge warn">Investigating</span>
+            <span class="sub">Opened 2026-10-08 07:12 UTC · Owner R. Okafor</span>
+          </div>
+        </div>
+        <div class="row">
+          <a class="btn" href="index.html">← All incidents</a>
+          <a class="btn primary" href="#notes">Add note</a>
+        </div>
+      </div>
+      <div class="detail-grid">
+        <div>
+          <div class="card">
+            <div class="card-h"><h3>Event timeline</h3><span class="sub">Oldest first · 6 events</span></div>
+            <ul class="tl">
+              <li class="tl-item"><span class="tl-dot err"></span><div class="tl-time">07:12</div>
+                <div class="tl-t">Declared Sev 1: checkout p95 above 3 s</div><div class="tl-d">Synthetic probe checkout-eu-1 · paged the duty rota</div></li>
+              <li class="tl-item"><span class="tl-dot warn"></span><div class="tl-time">07:20</div>
+                <div class="tl-t">Rollback started: search-svc v4.18 to v4.17</div><div class="tl-d">R. Okafor · change board approved out of hours</div></li>
+              <li class="tl-item"><span class="tl-dot ok"></span><div class="tl-time">07:44</div>
+                <div class="tl-t">p95 back under the 1 s budget</div><div class="tl-d">Checkout probe · confirmed from two regions</div></li>
+              <li class="tl-item"><span class="tl-dot acc"></span><div class="tl-time">08:02</div>
+                <div class="tl-t">Root cause hypothesis: cold index rebuild during rollout</div><div class="tl-d">Search team · deploy 4.18 correlates with the 07:10 latency start</div></li>
+              <li class="tl-item"><span class="tl-dot warn"></span><div class="tl-time">08:40</div>
+                <div class="tl-t">Duplicate-charge reports linked to this incident</div><div class="tl-d">Support queue · tracked as INC-1041</div></li>
+              <li class="tl-item"><span class="tl-dot acc"></span><div class="tl-time">09:24</div>
+                <div class="tl-t">Recovery holding for 40 min; next update by 10:00</div><div class="tl-d">R. Okafor</div></li>
+            </ul>
+          </div>
+          <div class="card" id="notes">
+            <div class="card-h"><h3>Notes &amp; activity</h3><span class="sub">Newest first</span></div>
+            <div class="stack">
+              <div class="logpanel" id="log-rows">
+                <div class="logrow"><span class="mono">09:24</span> <span class="badge ok">update</span> <span class="lmsg">p95 holding at 0.8 s; error budget burn stopped.</span></div>
+                <div class="logrow"><span class="mono">08:47</span> <span class="badge warn">warn</span> <span class="lmsg">Watch eu-west: index rebuild on v4.17 still in progress.</span></div>
+                <div class="logrow"><span class="mono">08:12</span> <span class="badge">note</span> <span class="lmsg">Support linked 3 duplicate-charge tickets to this incident.</span></div>
+                <div class="logrow"><span class="mono">07:21</span> <span class="badge ok">action</span> <span class="lmsg">Rollback of search-svc v4.18 approved and queued.</span></div>
+                <div class="logrow"><span class="mono">07:13</span> <span class="badge err">alert</span> <span class="lmsg">p95 latency 3.2 s over 5 min on checkout-api (eu-west).</span></div>
+              </div>
+              <textarea id="note-text" aria-label="New note" placeholder="Add a note for the responders…" rows="3"></textarea>
+              <div class="row"><button id="note-add" class="btn primary" type="button">Add note</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="stickycol">
+          <div class="card">
+            <div class="card-h"><h3>Details</h3></div>
+            <div class="kv">
+              <div class="k">Status</div><div><span class="badge warn">Investigating</span></div>
+              <div class="k">Severity</div><div><span class="dot err"></span> Sev 1</div>
+              <div class="k">Component</div><div><code>checkout-api</code></div>
+              <div class="k">Owner</div><div>R. Okafor</div>
+              <div class="k">Opened</div><div><time datetime="2026-10-08T07:12:00Z">2026-10-08 07:12 UTC</time></div>
+              <div class="k">Updated</div><div><time datetime="2026-10-08T09:24:00Z">2026-10-08 09:24 UTC</time></div>
+              <div class="k">Impact</div><div>p95 +2.4 s · 1.8% checkout failures</div>
+              <div class="k">Detected by</div><div>synthetic probe checkout-eu-1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sub">Built under the Triage design authority v0.12.1 · sample incident</p>
+    </div>
+  </main>
+</div>
+<script>
+// Note composer: appends a log row client-side. Without JS the panel stays readable.
+(function () {
+  var btn = document.getElementById('note-add');
+  var box = document.getElementById('note-text');
+  var list = document.getElementById('log-rows');
+  if (!btn || !box || !list) return;
+  btn.addEventListener('click', function () {
+    var text = box.value.trim();
+    if (!text) return;
+    var now = new Date();
+    var hh = String(now.getUTCHours());
+    var mm = String(now.getUTCMinutes());
+    if (hh.length < 2) hh = '0' + hh;
+    if (mm.length < 2) mm = '0' + mm;
+    var row = document.createElement('div');
+    row.className = 'logrow';
+    var t = document.createElement('span');
+    t.className = 'mono';
+    t.textContent = hh + ':' + mm;
+    var b = document.createElement('span');
+    b.className = 'badge';
+    b.textContent = 'note';
+    var m = document.createElement('span');
+    m.className = 'lmsg';
+    m.textContent = text;
+    row.appendChild(t);
+    row.appendChild(document.createTextNode(' '));
+    row.appendChild(b);
+    row.appendChild(document.createTextNode(' '));
+    row.appendChild(m);
+    list.insertBefore(row, list.firstChild);
+    box.value = '';
+  });
+})();
+</script>
+</body>
+</html>
