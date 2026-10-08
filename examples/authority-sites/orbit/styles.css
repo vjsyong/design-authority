@@ -134,6 +134,7 @@ h1 { font-size: var(--text-xl); font-weight: 500; margin: 0 0 8px; }
 .artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #D63829; font-weight: 700; margin-bottom: .5rem; }
 .artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
 .artefacts .af-intro { color: #6F6F6F; max-width: 62ch; }
+.artefacts .af-notice { border-inline-start: 3px solid #D63829; padding: .5rem .8rem; margin: .6rem 0; background: transparent; border-radius: 0; max-width: 76ch; }
 .artefacts .af-filter { width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid #101010; border-radius: 0; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }
 .artefacts .af-count { font-size: .82rem; color: #6F6F6F; margin: .2rem 0 1.2rem; }
 .artefacts .af-kindhead { display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid #101010; }

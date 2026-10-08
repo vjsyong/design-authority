@@ -121,6 +121,7 @@ a:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius
 .artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #E95420; font-weight: 700; margin-bottom: .5rem; }
 .artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
 .artefacts .af-intro { color: #5F5F5F; max-width: 62ch; }
+.artefacts .af-notice { border-inline-start: 3px solid #E95420; padding: .5rem .8rem; margin: .6rem 0; background: #F6F4F2; border-radius: 12px; max-width: 76ch; }
 .artefacts .af-filter { width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid #E5E1DE; border-radius: 12px; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }
 .artefacts .af-count { font-size: .82rem; color: #5F5F5F; margin: .2rem 0 1.2rem; }
 .artefacts .af-kindhead { display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid #E5E1DE; }

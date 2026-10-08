@@ -1,0 +1,3 @@
+- 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.2.0; artefacts 17 -> 17; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T17:20:47+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 16 -> 17; version stamps updated: 0; stale notice: shown
+- 2026-10-08T17:20:54+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 17 -> 17; version stamps updated: 0; stale notice: none/cleared

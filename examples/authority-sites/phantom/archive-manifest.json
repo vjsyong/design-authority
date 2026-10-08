@@ -4,7 +4,7 @@
   "pack": "packs/phantom",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:18:25+00:00",
+ "generated_at": "2026-10-08T17:20:41+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -38,8 +38,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "1c65f947d65f1d6df37039e04427cd809eb66f2b464c5babcd9d63b6d4ae721d",
-   "size": 75159,
+   "sha256": "8fa193703081733c4d0213b1466514fd74c231b172ee6ebff30f56844a511dce",
+   "size": 75173,
    "role": "page"
   },
   {
@@ -74,8 +74,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "e33eedfbc77736e4a2a77840296380cfde529b652e3749a4fa439f80e206b086",
-   "size": 13282,
+   "sha256": "228432e604116cbd064d37e2418d2642a7eaf571e6afe9c2992f5234af78adff",
+   "size": 13458,
    "role": "stylesheet"
   },
   {

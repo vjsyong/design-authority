@@ -4,7 +4,7 @@
   "pack": "packs/leader",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:18:25+00:00",
+ "generated_at": "2026-10-08T17:20:41+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -38,8 +38,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "68b9623ae622326fb6f8d1b6b510224158caedea7a6fb0949d175be7e0a04bd3",
-   "size": 34557,
+   "sha256": "36a703ca13dffd5583c6f6cd264e6924b52178ba58c171a5160b09f30dd15784",
+   "size": 34571,
    "role": "page"
   },
   {
@@ -56,8 +56,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "c5b1a0c99435c3dbd888c758b4e98b0c2f33b01ed9430c84956165142f6628c1",
-   "size": 11896,
+   "sha256": "3685b8316a27e6258aef05f7ced857c015ec45e46fbc2f5f7c28a00f012f8ea7",
+   "size": 12071,
    "role": "stylesheet"
   },
   {
