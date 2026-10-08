@@ -21,6 +21,7 @@ Idempotent: re-runs replace the marked block instead of stacking duplicates.
     python3 tools/add_artefacts_section.py [--auth NAME ...]
 """
 import argparse
+import hashlib
 import html as htmllib
 import json
 import os
@@ -37,8 +38,8 @@ CSS_MARK_E = "/* artefacts-directory:end */"
 # Style values per authority, traced from each pack's token-set records and
 # the authority-faithful builds (same trace as authority_themes.json).
 STYLE = {
-    "wink": {"ink": "#241C15", "dim": "#5D5245", "line": "rgba(36,28,21,.22)",
-             "acc": "#007C89", "acc_ink": "#ffffff", "tint": "rgba(255,224,27,.14)",
+    "wink": {"ink": "#241C15", "dim": "#5D5245", "line": "#DEDDDC",
+             "acc": "#007C89", "acc_ink": "#ffffff", "tint": "rgba(35,30,21,.05)", "label_color": "#231E15",
              "panel_r": "16px", "chip_r": "999px", "btn_r": "999px",
              # action controls: the page's own .cta IS component/action-pill
              # (yellow fill, 1px ink ring, Peppercorn label, pill radius).
@@ -47,7 +48,7 @@ STYLE = {
              "cp_fb": {"border": "2px solid #231E15", "color": "#241C15", "radius": "999px"},
              "_src": "component/action-pill (class .cta); token-set/colour; shape language: pills"},
     "leader": {"ink": "#101010", "dim": "#5A5A5A", "line": "#CFCFCF",
-               "acc": "#2E45B8", "acc_ink": "#ffffff", "tint": "rgba(227,18,11,.05)",
+               "acc": "#2E45B8", "acc_ink": "#ffffff", "tint": "transparent", "panel_border": True, "label_color": "#E3120B",
                "panel_r": "8px", "chip_r": "4px", "btn_r": "8px",
                # action: primary solid navy #2E45B8 radius 8; secondary 2px ink outline
                "dl_fb": {"bg": "#2E45B8", "fg": "#ffffff", "radius": "8px"},
@@ -55,13 +56,13 @@ STYLE = {
                "_src": "component/action (primary navy #2E45B8 r8; secondary 2px ink); token-set/colour"},
     "dominion": {"ink": "#333333", "dim": "#595959", "line": "#E0E0E0",
                  "acc": "#26374A", "acc_ink": "#ffffff", "tint": "#F4F4F4",
-                 "panel_r": "4px", "chip_r": "4px", "btn_r": "4px",
+                 "panel_r": "4px", "chip_r": "4px", "btn_r": "4px", "label_color": "#333333",
                  # action: primary solid slate #26374A radius 4 (live-measured)
                  "dl_fb": {"bg": "#26374A", "fg": "#ffffff", "radius": "4px"},
                  "cp_fb": {"border": "2px solid #26374A", "color": "#26374A", "radius": "4px"},
                  "_src": "component/action (solid slate #26374A r4); token-set/colour; no shadows"},
     "phantom": {"ink": "#ff6bbc", "dim": "#f2849e", "line": "#585858",
-                "acc": "#f2849e", "acc_ink": "#ffffff", "tint": "rgba(32,163,245,.10)",
+                "acc": "#f2849e", "acc_ink": "#ffffff", "tint": "transparent", "panel_border": True, "label_color": "#ff6bbc", "code_native": True,
                 "panel_r": "4px", "chip_r": "4px", "btn_r": "4px", "code_bg": "#20a3f5",
                 # action: the page's .button.primary IS the recorded primary
                 # (solid #585858, white label); .button default = 2px ring state,
@@ -70,7 +71,7 @@ STYLE = {
                 "_src": "component/action-button (primary solid #585858; ring #585858; small 0.6em)"},
     "indaba": {"ink": "#111111", "dim": "#5F5F5F", "line": "#E5E1DE",
                "acc": "#E95420", "acc_ink": "#ffffff", "tint": "#F6F4F2",
-               "panel_r": "12px", "chip_r": "999px", "btn_r": "999px",
+               "panel_r": "12px", "chip_r": "999px", "btn_r": "999px", "label_color": "#77216F",
                # action: record defines .action.primary (orange), but the built
                # page ships no .action rules, so style from the record values.
                "dl_fb": {"bg": "#E95420", "fg": "#ffffff", "radius": "999px"},
@@ -78,7 +79,7 @@ STYLE = {
                "_src": "component/action (orange primary, focus ring); token-set/palette; warm tint"},
     "orbit": {"ink": "#101010", "dim": "#6F6F6F", "line": "#101010",
               "acc": "#D63829", "acc_ink": "#ffffff", "tint": "transparent",
-              "panel_r": "0", "chip_r": "0", "btn_r": "0",
+              "panel_r": "0", "chip_r": "0", "btn_r": "0", "label_color": "#101010",
               # action: the page's .command IS the recorded control (primary =
               # solid accent via data-variant; default = ink-outlined square).
               "dl_class": "command", "dl_extra": ' data-variant="primary"',
@@ -281,6 +282,23 @@ def build_section(auth, pack, notice=None):
 </section>
 {MARK_E}"""
 
+    nat = st.get("code_native")
+    chip_border = (" border: 1px solid %s;" % st["line"]) if (st["tint"] == "transparent" and not nat) else ""
+    # non-native authorities: no monospace register exists in their records,
+    # so strip the UA default and inherit the page's own font.
+    ff = "" if nat else " font-family: inherit;"
+    sel_rule = (".artefacts .af-sel { padding: .1rem .45rem; border-radius: %s;%s%s%s }"
+                % (st["chip_r"], "" if nat else " background: %s;" % st["tint"], chip_border, ff))
+    id_rule = (".artefacts .af-id { font-size: .78rem; color: %s; padding: .12rem .45rem; "
+               "border-radius: %s;%s%s%s }"
+               % (st["dim"], st["chip_r"], "" if nat else " background: %s;" % st["tint"], chip_border, ff))
+    lc_rule = (".artefacts .af-line-code { font-size: .82rem; padding: .45rem .6rem; "
+               "border-radius: %s;%s%s max-width: 100%%; overflow-wrap: anywhere; }"
+               % (st["chip_r"], "" if nat else (" background: %s;%s" % (st["tint"], chip_border)), ff))
+    use_rule = (".artefacts .af-use { background: %s;%s border-radius: %s; padding: .6rem .8rem; "
+                "margin: .5rem 0 .6rem; }"
+                % (st["tint"], " border: 1px solid %s;" % st["line"] if st.get("panel_border") else "",
+                   st["panel_r"]))
     if st.get("dl_class"):
         dl_rule = (".artefacts .af-dl { display: inline-block; text-decoration: none; }"
                    " /* action treatment comes from the page's own recorded class */")
@@ -302,26 +320,26 @@ def build_section(auth, pack, notice=None):
         cp_rule += "\n.artefacts .af-copy:hover, .artefacts .af-copy.ok { opacity: .7; }"
     css = f"""{CSS_MARK_S} /* styled from {auth} records: {st['_src']} */
 .artefacts {{ margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid {st['line']}; }}
-.artefacts .af-kick {{ font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: {st['acc']}; font-weight: 700; margin-bottom: .5rem; }}
+.artefacts .af-kick {{ font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: {st['label_color']}; font-weight: 700; margin-bottom: .5rem; }}
 .artefacts .af-h2 {{ font-size: 1.6rem; margin: 0 0 .6rem; }}
 .artefacts .af-intro {{ color: {st['dim']}; max-width: 62ch; }}
-.artefacts .af-notice {{ border-inline-start: 3px solid {st['acc']}; padding: .5rem .8rem; margin: .6rem 0; background: {st['tint']}; border-radius: {st['panel_r']}; max-width: 76ch; }}
+.artefacts .af-notice {{ border-inline-start: 3px solid {st['label_color']}; padding: .5rem .8rem; margin: .6rem 0; background: {st['tint']}; border-radius: {st['panel_r']}; max-width: 76ch; }}
 .artefacts .af-filter {{ width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid {st['line']}; border-radius: {st['panel_r']}; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }}
 .artefacts .af-count {{ font-size: .82rem; color: {st['dim']}; margin: .2rem 0 1.2rem; }}
 .artefacts .af-kindhead {{ display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid {st['line']}; }}
-.artefacts .af-kindhead .af-lab {{ font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: {st['dim']}; font-weight: 700; }}
+.artefacts .af-kindhead .af-lab {{ font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: {st['label_color']}; font-weight: 700; }}
 .artefacts .af-kindhead .af-n {{ font-size: .8rem; color: {st['dim']}; }}
 .artefacts .af-row {{ padding: .9rem 0 1rem; border-bottom: 1px solid {st['line']}; }}
 .artefacts .af-head {{ display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .7rem; margin-bottom: .35rem; }}
-.artefacts .af-kind {{ font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: {st['dim']}; }}
+.artefacts .af-kind {{ font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: {st['label_color']}; }}
 .artefacts .af-title {{ font-size: 1.08rem; margin: 0; }}
 .artefacts .af-status {{ font-size: .72rem; padding: .08rem .5rem; border: 1px solid {st['line']}; border-radius: {st['chip_r']}; color: {st['dim']}; }}
-.artefacts .af-id {{ font-size: .78rem; color: {st['dim']}; background: {st['tint']}; padding: .12rem .45rem; border-radius: {st['chip_r']}; }}
+{id_rule}
 .artefacts .af-sum {{ margin: .3rem 0 .6rem; max-width: 76ch; }}
-.artefacts .af-use {{ background: {st['tint']}; border-radius: {st['panel_r']}; padding: .6rem .8rem; margin: .5rem 0 .6rem; }}
+{use_rule}
 .artefacts .af-line {{ display: flex; flex-wrap: wrap; gap: .5rem; margin: .25rem 0; align-items: baseline; }}
-.artefacts .af-key {{ font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: {st['dim']}; min-width: 4.6rem; }}
-.artefacts .af-sel {{ font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; padding: .1rem .45rem; border-radius: {st['chip_r']}; background: {st.get('code_bg', 'rgba(0,0,0,.06)')}; color: {'#ffffff' if st.get('code_bg') else 'inherit'}; }}
+.artefacts .af-key {{ font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: {st['label_color']}; min-width: 4.6rem; }}
+{sel_rule}
 .artefacts .af-states {{ margin: .1rem 0; padding-left: 1.1rem; font-size: .9rem; }}
 .artefacts .af-note {{ font-size: .9rem; color: {st['dim']}; max-width: 70ch; }}
 .artefacts .af-foot {{ display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }}
@@ -331,7 +349,7 @@ def build_section(auth, pack, notice=None):
 .artefacts .af-sub {{ font-size: 1.15rem; margin: 0 0 .8rem; }}
 .artefacts .af-take-row {{ display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }}
 {dl_rule}
-.artefacts .af-line-code {{ font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: {st['tint']}; padding: .45rem .6rem; border-radius: {st['chip_r']}; max-width: 100%; overflow-wrap: anywhere; }}
+{lc_rule}
 {CSS_MARK_E}"""
     return section, css
 
@@ -377,6 +395,14 @@ def inject(auth, notice=None):
     styles = open(css_p).read() if os.path.isfile(css_p) else ""
     styles = re.sub(re.escape(CSS_MARK_S) + r".*?" + re.escape(CSS_MARK_E), "", styles, flags=re.S)
     open(css_p, "w").write(styles.rstrip() + "\n\n" + css + "\n")
+
+    # content-hash the stylesheet URL so every CSS change is a new URL for
+    # every cache in the path (edge, browser, phone). No purges needed.
+    css_sha = hashlib.sha256(open(css_p, "rb").read()).hexdigest()[:10]
+    html = open(page_p).read()
+    html = re.sub(r'href="styles\.css(\?[^"]*)?"',
+                  'href="styles.css?v=%s"' % css_sha, html)
+    open(page_p, "w").write(html)
     print("%s: section added (%s), %d artefacts" % (auth, nav, len(pack["artifacts"]["artifacts"])))
     return True
 

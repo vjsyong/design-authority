@@ -4,7 +4,7 @@
   "pack": "packs/indaba",
   "version": "0.1.0"
  },
- "generated_at": "2026-10-08T22:43:50+00:00",
+ "generated_at": "2026-10-08T22:49:18+00:00",
  "checks": {
   "external_references": 1,
   "css_extracted": true,
@@ -13,7 +13,7 @@
  "files": [
   {
    "path": ".site-state.json",
-   "sha256": "bcca27fb88a67b16858c5e11c1eb5fc21b512b0a1349b39162d0a6820e3aebef",
+   "sha256": "cbd67f60ef083270df7f4521eee156a86e701e5119e97917363b8afa3b2b716d",
    "size": 1200,
    "role": "refresh state (pack hash, version, artifact set)"
   },
@@ -37,8 +37,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "37a97c58b19d98f4f1b3ff8b903403953498fd101bc7a748df334083bb78ebd7",
-   "size": 51132,
+   "sha256": "b981405df2d54512c7b6b7b359108f4b386b4937bc64ff9e0d3f720fa1652561",
+   "size": 51136,
    "role": "page"
   },
   {
@@ -49,8 +49,8 @@
   },
   {
    "path": "refresh-log.md",
-   "sha256": "eff47665615d10d71dba8e93a304b0467c8b20c9df8bbbdfa8e1526a3172d370",
-   "size": 814,
+   "sha256": "0f1857fe107aa2948521e1d32adfb57e44afee33c560d86de879555c55474245",
+   "size": 1657,
    "role": "refresh log (generated layers vs pack)"
   },
   {
@@ -61,8 +61,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "3baab524a42f4d5e0dbfdcb8e6637d62a10f693e2fe0e77b9095345027a2259d",
-   "size": 9322,
+   "sha256": "57e20375f7373268c024e5f34d9358c59d93ee89b820101cfbb8201d3f10e957",
+   "size": 9235,
    "role": "stylesheet"
   },
   {

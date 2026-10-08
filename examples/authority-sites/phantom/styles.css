@@ -162,26 +162,26 @@ body.is-preload .tiles article{transform:none !important;opacity:1 !important}
 
 /* artefacts-directory:start */ /* styled from phantom records: component/action-button (primary solid #585858; ring #585858; small 0.6em) */
 .artefacts { margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid #585858; }
-.artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #f2849e; font-weight: 700; margin-bottom: .5rem; }
+.artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #ff6bbc; font-weight: 700; margin-bottom: .5rem; }
 .artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
 .artefacts .af-intro { color: #f2849e; max-width: 62ch; }
-.artefacts .af-notice { border-inline-start: 3px solid #f2849e; padding: .5rem .8rem; margin: .6rem 0; background: rgba(32,163,245,.10); border-radius: 4px; max-width: 76ch; }
+.artefacts .af-notice { border-inline-start: 3px solid #ff6bbc; padding: .5rem .8rem; margin: .6rem 0; background: transparent; border-radius: 4px; max-width: 76ch; }
 .artefacts .af-filter { width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid #585858; border-radius: 4px; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }
 .artefacts .af-count { font-size: .82rem; color: #f2849e; margin: .2rem 0 1.2rem; }
 .artefacts .af-kindhead { display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid #585858; }
-.artefacts .af-kindhead .af-lab { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #f2849e; font-weight: 700; }
+.artefacts .af-kindhead .af-lab { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #ff6bbc; font-weight: 700; }
 .artefacts .af-kindhead .af-n { font-size: .8rem; color: #f2849e; }
 .artefacts .af-row { padding: .9rem 0 1rem; border-bottom: 1px solid #585858; }
 .artefacts .af-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .7rem; margin-bottom: .35rem; }
-.artefacts .af-kind { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #f2849e; }
+.artefacts .af-kind { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #ff6bbc; }
 .artefacts .af-title { font-size: 1.08rem; margin: 0; }
 .artefacts .af-status { font-size: .72rem; padding: .08rem .5rem; border: 1px solid #585858; border-radius: 4px; color: #f2849e; }
-.artefacts .af-id { font-size: .78rem; color: #f2849e; background: rgba(32,163,245,.10); padding: .12rem .45rem; border-radius: 4px; }
+.artefacts .af-id { font-size: .78rem; color: #f2849e; padding: .12rem .45rem; border-radius: 4px; }
 .artefacts .af-sum { margin: .3rem 0 .6rem; max-width: 76ch; }
-.artefacts .af-use { background: rgba(32,163,245,.10); border-radius: 4px; padding: .6rem .8rem; margin: .5rem 0 .6rem; }
+.artefacts .af-use { background: transparent; border: 1px solid #585858; border-radius: 4px; padding: .6rem .8rem; margin: .5rem 0 .6rem; }
 .artefacts .af-line { display: flex; flex-wrap: wrap; gap: .5rem; margin: .25rem 0; align-items: baseline; }
-.artefacts .af-key { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #f2849e; min-width: 4.6rem; }
-.artefacts .af-sel { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; padding: .1rem .45rem; border-radius: 4px; background: #20a3f5; color: #ffffff; }
+.artefacts .af-key { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #ff6bbc; min-width: 4.6rem; }
+.artefacts .af-sel { padding: .1rem .45rem; border-radius: 4px; }
 .artefacts .af-states { margin: .1rem 0; padding-left: 1.1rem; font-size: .9rem; }
 .artefacts .af-note { font-size: .9rem; color: #f2849e; max-width: 70ch; }
 .artefacts .af-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
@@ -193,5 +193,5 @@ body.is-preload .tiles article{transform:none !important;opacity:1 !important}
 .artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }
 .artefacts .af-dl { display: inline-block; text-decoration: none; } /* action treatment comes from the page's own recorded class */
 .artefacts .af-dl:hover { opacity: .88; }
-.artefacts .af-line-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: rgba(32,163,245,.10); padding: .45rem .6rem; border-radius: 4px; max-width: 100%; overflow-wrap: anywhere; }
+.artefacts .af-line-code { font-size: .82rem; padding: .45rem .6rem; border-radius: 4px; max-width: 100%; overflow-wrap: anywhere; }
 /* artefacts-directory:end */

@@ -171,6 +171,19 @@ pack update is visible without hand edits.**
   (outline variants; phantom `.button` ring at the recorded small state
   0.6em; orbit `.command` default). Audited by computed style per authority.
   Lesson: generated chrome is not exempt from the records.
+- **S1j · Role + register discipline in generated chrome — DONE (2026-10-08).**
+  Owner catch: the artefacts rows used a yellow wash (Wink records yellow =
+  brand field + primary action only), monospace (Wink records two registers:
+  soft-serif display + grotesque; no mono), and kale labels (kale = links
+  in content). Fixed across all six: surfaces now use each pack's recorded
+  surface (wink Parsnip rgba(35,30,21,.05), dominion band #F4F4F4, indaba
+  warm tint #F6F4F2; leader/orbit/phantom hairline-ruled transparent),
+  labels take each page's own label colour (wink ink; leader red #E3120B;
+  dominion ink; indaba aubergine #77216F; orbit ink; phantom pink), code
+  elements inherit the page register except phantom, which keeps its NATIVE
+  recorded code styling (Courier on blue ground), and stylesheet URLs are
+  content-hashed at generation time so no cache in the path (edge,
+  browser, phone) can ever serve stale CSS again.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
