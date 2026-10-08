@@ -94,20 +94,13 @@
   <section class="da-sec" id="how">
     <div class="da-kick mono">03 · How it works</div>
     <h2>How a Design Authority is created, used, and evolved.</h2>
-    <ol class="da-steps da-steps3" data-improv="phase strip" title="Improvised (no authority record; gap filed)">
-      <li><span class="da-stepn mono">1</span><b>Compile</b>
-        <p>Evidence becomes reviewed rules.</p></li>
-      <li><span class="da-stepn mono">2</span><b>Govern</b>
-        <p>Agents build, consult and verify.</p></li>
-      <li><span class="da-stepn mono">3</span><b>Evolve</b>
-        <p>New cases become reviewed precedent.</p></li>
-    </ol>
     <div class="da-life" data-improv="loop diagram" title="Improvised (no authority record; gap filed)">
       <div class="da-phase">1. COMPILE</div>
       <div class="da-lbox">
         <div class="da-lrow"><b>PRECEDENT</b><p>existing product · brand kit · cases</p></div>
         <div class="da-larr">↓</div>
-        <div class="da-lrow"><b>MACHINE</b><p>extracts evidence + infers norms</p></div>
+        <div class="da-lrow"><b>MACHINE</b><p>observes, infers, and identifies what remains unknown</p>
+          <p class="da-lchips"><span>Observed</span><span>Inferred</span><span>Undefined</span></p></div>
         <div class="da-larr">↓</div>
         <div class="da-lrow gate"><b>HUMAN GATE · INTERPRETATION</b><p>accept · modify · reject · leave open</p></div>
       </div>
@@ -115,35 +108,43 @@
       <div class="da-loopshell">
         <div class="da-rail" aria-hidden="true"><em>release</em></div>
         <div class="da-loopshell-main">
-          <div class="da-lauth"><b>DESIGN AUTHORITY</b><p>published, versioned standard · everything downstream cites it</p></div>
+          <div class="da-lauth"><b>DESIGN AUTHORITY</b><p>published, versioned, executable norms · everything downstream cites it</p></div>
           <div class="da-larr">↓</div>
           <div class="da-phase">2. GOVERN</div>
-          <div class="da-lbox">
-            <div class="da-lrow"><b>AGENTS BUILD</b><p>resolve · compose · improvise visibly; never silently canonized</p></div>
-            <div class="da-larr">↓</div>
-            <div class="da-lrow"><b>VERIFY</b><p>inspect artifact, not agent claims</p></div>
+          <div class="da-fork"><span>↓</span><span>↓</span></div>
+          <div class="da-split">
+            <div class="da-lrow"><b>AGENTS BUILD</b><p>follow the canon, resolve and compose, and mark every improvisation</p></div>
+            <div class="da-lrow"><b>INDEPENDENT VERIFICATION</b><p>independent checks inspect the actual implementation, not the agent's claims</p></div>
           </div>
+          <p class="da-forkcap">two consumers of one authority</p>
           <div class="da-larr">↓</div>
           <div class="da-phase">3. EVOLVE</div>
           <div class="da-lbox">
             <div class="da-lrow"><b>CASES</b><p>gaps · conflicts · proposals · fails</p></div>
             <div class="da-larr">↓</div>
             <div class="da-lrow gate"><b>HUMAN GATE · AMENDMENT</b><p>adjudicate what should change</p></div>
-            <div class="da-larr">↓</div>
-            <div class="da-lrow"><b>RELEASE + PRECEDENT</b><p>patch or fresh freeze, with reasons on record</p></div>
+          </div>
+          <div class="da-fork"><span>↓</span><span>↓</span></div>
+          <div class="da-split">
+            <div class="da-lrow"><b>PROMOTED</b><p>validated and added to the next authority release</p></div>
+            <div class="da-lrow"><b>NOT PROMOTED</b><p>rationale archived and retrievable; canon unchanged</p></div>
           </div>
         </div>
       </div>
-      <p class="da-life-cap">The release merges back into the authority. That is the loop.</p>
+      <p class="da-life-cap">Future agents inherit the updated authority and the decision history.</p>
     </div>
     <div class="note" style="margin-top:var(--space-14)"><b>Machines assemble the evidence. Humans decide what becomes authoritative.</b></div>
+    <div class="da-principles">
+      <p><b>Inference isn't authority.</b> Machines propose what the evidence means; humans decide what becomes binding.</p>
+      <p><b>Every decision leaves a trace.</b> Whether promoted, rejected, or deliberately unresolved, it remains available to future agents.</p>
+    </div>
   </section>
 
   <section class="da-sec" id="difference">
     <div class="da-kick mono">04 · The difference</div>
     <h2>What happens when authority has no answer?</h2>
     <p class="da-intro sub">Nothing is silently invented. A single need, tracked through the whole loop, from a build that had to
-    improvise to the rule that stops the next build from guessing.</p>
+    improvise to the recorded decision the next build can consult.</p>
     <ol class="tl da-vtl">
       <li class="tl-item"><span class="tl-dot"></span>
         <span class="tl-time">ask</span>
@@ -203,27 +204,29 @@
     <ol class="tl da-vtl">
       <li class="tl-item"><span class="tl-dot"></span>
         <span class="tl-time">ask</span>
-        <p>Building the tracker under the Dominion authority, the agent needs paging for older entries.</p></li>
+        <p>Extract a design authority for the Jennu portfolio, from the deployed site.</p></li>
       <li class="tl-item"><span class="tl-dot warn"></span>
-        <span class="tl-time">authority is silent</span>
-        <p><span class="mono">resolve "pagination for older entries"</span> → <span class="mono">UNDEFINED</span>.
-        There is no paging canon, and inventing one silently is not allowed.</p></li>
+        <span class="tl-time">first reading</span>
+        <p>The machine read the markup and the template's defaults, and canonised grey reading ink. Tidy,
+        plausible, and wrong about the product.</p></li>
       <li class="tl-item"><span class="tl-dot warn"></span>
-        <span class="tl-time">improvise visibly</span>
-        <p>The build ships outline buttons plus a plain readout. The decision is marked as noncanonical, like every
-        unrecorded decision in the stress builds.</p></li>
+        <span class="tl-time">owner review</span>
+        <p>The rendered result was checked against the live site and rejected. The site paints its reading text
+        pink (<span class="mono">#ff6bbc</span>) with neon green links (<span class="mono">#6bff2c</span>). An
+        authority has to describe what is actually there.</p></li>
       <li class="tl-item"><span class="tl-dot acc"></span>
-        <span class="tl-time">gap filed</span>
-        <p><span class="mono">gap/20261007-150030-e4273f</span> lands in the workspace ledger.</p></li>
+        <span class="tl-time">redo</span>
+        <p>Pass 2 re-extracted from rendered evidence: screenshots first, several extractors partitioned by
+        domain. The deployed ink map became canon.</p></li>
       <li class="tl-item"><span class="tl-dot acc"></span>
-        <span class="tl-time">human adjudication</span>
-        <p>Review finds partial evidence and no live-product instance. The outcome is neither canon nor discarded;
-        it is ruled a provisional candidate with a promotion bar.</p></li>
+        <span class="tl-time">reversal on record</span>
+        <p><span class="mono">precedent/pink-ink-canonised</span> supersedes the pass-1 declination. The measured
+        contrast failures stay as observations, bounded by a prohibition that keeps the pattern inside its
+        measured roles.</p></li>
       <li class="tl-item"><span class="tl-dot ok"></span>
         <span class="tl-time">memory</span>
-        <p>Today the same ask still returns <span class="mono">UNDEFINED</span>, with <b>Paging composition
-        (provisional)</b> attached, and the bar it must meet to become canon. The next build inherits the outline
-        without mistaking it for authority.</p></li>
+        <p>Future agents read the pink ink as canon and can still retrieve why grey was wrong. The rejected
+        reading was not deleted; the reversal is part of the record.</p></li>
     </ol>
     <h3>Limits</h3>
     <p class="da-intro sub">Level 2 conformance is partial and declared per component. Levels 3 and 4 are proposed.
@@ -379,7 +382,7 @@
         (<span class="mono">component/tl</span>).</p>
         <p><b>Checked.</b> The Triage lint engine over this site: <span class="mono">0 errors · 0 warnings ·
         spec score 100</span>.</p>
-        <p><b>Improvised, marked ◌.</b> The page chrome has no authority record yet. That covers the site header, hero layout, CTA row, app showcase, phase strip, loop diagram, step row, proof rows, docs code blocks, and editorial grids.</p>
+        <p><b>Improvised, marked ◌.</b> The page chrome has no authority record yet. That covers the site header, hero layout, CTA row, app showcase, loop diagram, step row, proof rows, docs code blocks, and editorial grids.</p>
         <p><b>Gaps filed</b> to the workspace ledger (<span class="mono">workspaces/designauthority-site</span>):</p>
         <ul class="da-gap-list">
           <li><span class="mono">gap/20261008-083133-3f94cd</span> · card / surface container</li>
@@ -394,7 +397,7 @@
         <p><b>Proposed, awaiting review.</b> <span class="mono">prop/20261008-105323-1d4022</span> · a section kicker above headings (candidate).</p>
         <p class="da-ledger-marks">
           <button class="btn small" type="button" data-marks-toggle>◌ Show improvisation marks</button>
-          <span class="sub">13 marked · 8 gaps filed. Dashed outlines; hover for the reason.</span>
+          <span class="sub">12 marked · 8 gaps filed. Dashed outlines; hover for the reason.</span>
         </p>
       </div>
     </details>

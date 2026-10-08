@@ -120,6 +120,24 @@ a.chip{color:inherit;text-decoration:none}
   .da-rail em{display:none}
 }
 
+/* ---- lifecycle: forks, splits, chips, principles ---- */
+.da-lchips{display:flex;flex-wrap:wrap;gap:var(--space-6);margin:var(--space-8) 0 0}
+.da-lchips span{font-size:var(--fs-pre-log);letter-spacing:.05em;text-transform:uppercase;
+  color:var(--text-secondary);border:1px solid var(--border-default);padding:2px var(--space-8)}
+.da-fork{display:grid;grid-template-columns:1fr 1fr;color:var(--text-secondary);line-height:1;padding:var(--space-6) 0}
+.da-fork span{text-align:center;font-size:var(--fs-copy)}
+.da-split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10)}
+.da-split .da-lrow{border:1px solid var(--border-default);background:var(--surface-card)}
+.da-forkcap{margin:var(--space-8) 0 0;text-align:center;font-size:var(--fs-pre-log);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary)}
+.da-principles{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-14);margin-top:var(--space-14)}
+.da-principles p{margin:0;padding-inline-start:var(--space-12);border-inline-start:3px solid var(--interactive);
+  font-size:var(--fs-sub);color:var(--text-primary)}
+@media (max-width:760px){
+  .da-split,.da-principles{grid-template-columns:1fr}
+  .da-fork{display:none}
+}
+
 /* ---- code ---- */
 .da-code{background:var(--code-bg);color:var(--code-fg);border:1px solid var(--border-default);
   padding:var(--space-14) var(--space-16);margin:0;font-size:var(--fs-pre-log);line-height:1.55;
