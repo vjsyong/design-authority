@@ -38,9 +38,9 @@
 
   <section class="da-hero" data-improv="hero layout" title="Improvised — no authority record (gap filed)">
     <h1>Design intent that agents can inherit, obey, and help evolve.</h1>
-    <p class="lead da-lead">Design Authority compiles existing design precedent into an executable standard for
-    coding agents. When the standard runs out, agents surface the decision instead of silently inventing canon;
-    humans decide what becomes authoritative.</p>
+    <p class="lead da-lead">Design Authority turns existing design precedent into an executable standard for
+    coding agents. Agents follow what is known, make uncertainty visible when the standard runs out, and help
+    surface the cases through which that standard evolves. Humans decide what becomes authoritative.</p>
     <p class="da-lead2 sub" data-improv="secondary lead style" title="Improvised — no authority record (gap filed)">More precisely: a design authority is a versioned, machine-readable record of an
     interface system. Agents resolve every element against it before they build; verifiers check the result
     against the same record. Decisions that would otherwise happen by default get written down, cited, and
@@ -156,7 +156,26 @@
 
 
   <section class="da-sec">
-    <h2>Agents may improvise. They may not confuse improvisation with authority.</h2>
+    <h2>Two consumers, one record</h2>
+    <ol class="da-steps" data-improv="step row" title="Improvised — no authority record (gap filed)">
+      <li><span class="da-stepn mono">1</span><b>Resolve</b>
+        <p>Every element is resolved against the authority before code is written.</p></li>
+      <li><span class="da-stepn mono">2</span><b>Build</b>
+        <p>The implementation follows the records. Deviations are choices, and choices are recorded.</p></li>
+      <li><span class="da-stepn mono">3</span><b>Verify</b>
+        <p>A verifier inspects the artifact itself. Agent self-report is evidence, not proof.</p></li>
+      <li><span class="da-stepn mono">4</span><b>Report</b>
+        <p>Conformance comes back per rule with its evidence. A score is a gate, never proof.</p></li>
+      <li><span class="da-stepn mono">5</span><b>Adjudicate</b>
+        <p>Conflicts and gaps become precedents and versions, not lost threads.</p></li>
+    </ol>
+    <p class="da-fine sub">Each pass through the loop leaves the record stronger than it found it.</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>Nothing is silently invented.</h2>
+    <p class="da-intro sub">Agents may improvise where the authority runs out. They may not confuse improvisation
+    with authority: improvisations are marked as noncanonical, keep their provenance, and are filed as gaps.</p>
     <div class="card flush">
       <table class="tbl">
         <thead><tr><th>Outcome</th><th>Fires when</th><th>The build does</th></tr></thead>
@@ -172,7 +191,7 @@
               <td>follow the recorded degradation</td></tr>
           <tr><td><span class="dot warn"></span> <span class="mono">UNDEFINED</span></td>
               <td>authority has no answer</td>
-              <td>implement locally if necessary, mark the decision, and file the gap — never present it as canon</td></tr>
+              <td>implement locally if necessary, mark it as noncanonical, keep the provenance, and file the gap — never present it as canon</td></tr>
           <tr><td><span class="dot err"></span> <span class="mono">CONFLICT</span></td>
               <td>the request contradicts a prohibition</td>
               <td>stop and escalate; do not implement as asked</td></tr>
@@ -186,20 +205,35 @@
   </section>
 
   <section class="da-sec">
-    <h2>Two consumers, one record</h2>
-    <ol class="da-steps" data-improv="step row" title="Improvised — no authority record (gap filed)">
-      <li><span class="da-stepn mono">1</span><b>Resolve</b>
-        <p>Every element is resolved against the authority before code is written.</p></li>
-      <li><span class="da-stepn mono">2</span><b>Build</b>
-        <p>The implementation follows the records. Deviations are choices, and choices are recorded.</p></li>
-      <li><span class="da-stepn mono">3</span><b>Verify</b>
-        <p>A verifier inspects the artifact itself. Agent self-report is evidence, not proof.</p></li>
-      <li><span class="da-stepn mono">4</span><b>Report</b>
-        <p>Conformance comes back per rule with its evidence. A score is a gate, never proof.</p></li>
-      <li><span class="da-stepn mono">5</span><b>Adjudicate</b>
-        <p>Conflicts and gaps become precedents and versions, not lost threads.</p></li>
+    <h2>One case, end to end</h2>
+    <p class="da-intro sub">A single need, tracked through the whole loop — from a build that had to improvise to
+    the rule that stops the next build from guessing.</p>
+    <ol class="tl da-vtl">
+      <li class="tl-item"><span class="tl-dot"></span>
+        <span class="tl-time">ask</span>
+        <p>Building the tracker under the Dominion authority, the agent needs paging for older entries.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">authority is silent</span>
+        <p><span class="mono">resolve "pagination for older entries"</span> → <span class="mono">UNDEFINED</span>.
+        There is no paging canon, and inventing one silently is not allowed.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">improvise visibly</span>
+        <p>The build ships outline buttons plus a plain readout — marked as noncanonical, like every unrecorded
+        decision in the stress builds.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">gap filed</span>
+        <p><span class="mono">gap/20261007-150030-e4273f</span> lands in the workspace ledger.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">human adjudication</span>
+        <p>Review finds partial evidence and no live-product instance — not canon, not discarded. Ruled a
+        provisional candidate with a promotion bar.</p></li>
+      <li class="tl-item"><span class="tl-dot ok"></span>
+        <span class="tl-time">memory</span>
+        <p>Today the same ask still returns <span class="mono">UNDEFINED</span> — with <b>Paging composition
+        (provisional)</b> attached, and the bar it must meet to become canon. The next build inherits the outline
+        without mistaking it for authority.</p></li>
     </ol>
-    <p class="da-fine sub">Each pass through the loop leaves the record stronger than it found it.</p>
+    <p class="da-fine sub">Nothing silently invented, nothing lost.</p>
   </section>
 
   <section class="da-sec">
@@ -237,6 +271,31 @@
         <p>Re-extracted from what the site looks like as deployed. The reversal was filed as a precedent, with its
         reason. The authority lost an argument with reality and kept the receipt.</p></li>
     </ol>
+  </section>
+
+  <section class="da-sec">
+    <h2>Proof — one brief, three authorities</h2>
+    <p class="da-intro sub">The same app brief — a small habit tracker — built three times, once under each
+    synthesized authority. Same features, same copy, no shared code. Three different products, because the
+    authorities disagree about the basics.</p>
+    <div class="da-flow" data-improv="proof rows" title="Improvised — no authority record (gap filed)">
+      <div class="da-fstep"><span class="da-fkind mono">wink</span>
+        <p>friendly and rounded — cadence <a href="/authorities/wink/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/wink/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/wink/demo/cadence-v3/">v3</a></p></div>
+      <div class="da-fstep"><span class="da-fkind mono">leader</span>
+        <p>editorial and print-minded — cadence <a href="/authorities/leader/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/leader/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/leader/demo/cadence-v3/">v3</a></p></div>
+      <div class="da-fstep"><span class="da-fkind mono">dominion</span>
+        <p>austere and civic — cadence <a href="/authorities/dominion/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/dominion/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/dominion/demo/cadence-v3/">v3</a></p></div>
+    </div>
+    <p class="da-fine sub">Where an authority ran out, the builds improvised visibly — every unrecorded decision
+    marked, every gap filed. The rebuilds track the authorities as they codified: v1 raw, v2 after the adjudication
+    pass, v3 on the codified release — eleven accepted proposals now canon, twenty-five recorded declines steering
+    asks toward their sanctioned alternatives.</p>
   </section>
 
   <section class="da-sec">
@@ -303,7 +362,7 @@
         <p><b>Checked.</b> The Triage lint engine over this site: <span class="mono">0 errors · 0 warnings ·
         spec score 100</span>.</p>
         <p><b>Improvised, marked ◌.</b> The page chrome has no authority record yet — site header, hero layout,
-        secondary lead, CTA row, docs code blocks, step row, loop diagram, editorial grids.</p>
+        secondary lead, CTA row, docs code blocks, step row, loop diagram, proof rows, editorial grids.</p>
         <p><b>Gaps filed</b> to the workspace ledger (<span class="mono">workspaces/designauthority-site</span>):</p>
         <ul class="da-gap-list">
           <li><span class="mono">gap/20261008-083133-3f94cd</span> — card / surface container</li>
@@ -315,7 +374,7 @@
         </ul>
         <p class="da-ledger-marks">
           <button class="btn small" type="button" data-marks-toggle>◌ Show improvisation marks</button>
-          <span class="sub">13 marked · 6 gaps filed — dashed outlines, hover for the reason.</span>
+          <span class="sub">14 marked · 6 gaps filed — dashed outlines, hover for the reason.</span>
         </p>
       </div>
     </details>
