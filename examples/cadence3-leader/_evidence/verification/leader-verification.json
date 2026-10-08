@@ -1,16 +1,22 @@
 {
- "generated": "2026-10-08 03:59:43",
+ "generated": "2026-10-08 04:22:07",
  "tool": "tools/da_verify.py",
  "target": "examples/cadence3-leader",
  "summary": {
-  "total": 23,
-  "PASS": 19,
-  "VIOLATION": 0,
+  "total": 26,
+  "PASS": 21,
+  "VIOLATION": 1,
   "UNVERIFIABLE": 0,
   "NOT_APPLICABLE": 0,
   "REVIEW_REQUIRED": 4
  },
- "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
+ "covers": {
+  "app.css": "d90d02ea6f5210bc",
+  "app.js": "9445c1af835d07e2",
+  "index.html": "eaf83894c6b70453"
+ },
+ "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
+ "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
  "checks": [
   {
    "id": "leader/rounded-interactive",
@@ -21,7 +27,7 @@
    "status": "PASS",
    "selector": ".btn",
    "observed": [
-    "border-radius: 8px"
+    "border-radius: 8px (all 35 ok)"
    ],
    "note": null
   },
@@ -34,7 +40,7 @@
    "status": "PASS",
    "selector": ".field input",
    "observed": [
-    "border-radius: 8px"
+    "border-radius: 8px (all 2 ok)"
    ],
    "note": null
   },
@@ -47,8 +53,8 @@
    "status": "PASS",
    "selector": ".b-navy",
    "observed": [
-    "background-color: rgb(46, 69, 184)",
-    "color: rgb(255, 255, 255)"
+    "background-color: rgb(46, 69, 184) (all 4 ok)",
+    "color: rgb(255, 255, 255) (all 4 ok)"
    ],
    "note": null
   },
@@ -61,8 +67,8 @@
    "status": "PASS",
    "selector": ".b-out",
    "observed": [
-    "border-top-width: 2px",
-    "border-top-color: rgb(26, 26, 26)"
+    "border-top-width: 2px (all 4 ok)",
+    "border-top-color: rgb(26, 26, 26) (all 4 ok)"
    ],
    "note": null
   },
@@ -75,8 +81,8 @@
    "status": "PASS",
    "selector": ".b-txt",
    "observed": [
-    "text-decoration-line: underline",
-    "color: rgb(46, 69, 184)"
+    "text-decoration-line: underline (all 26 ok)",
+    "color: rgb(46, 69, 184) (all 26 ok)"
    ],
    "note": null
   },
@@ -102,7 +108,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [],
-   "note": "Heuristic: no single red-family background element may exceed 10% of the viewport area. Red rules/labels/small attention blocks pass; a red panel would not."
+   "note": "no red block above 10% of the viewport, and no red *reading* surface: red elements carrying real prose (>=24 chars) must stay <=1% area — catches wide-but-short red banners"
   },
   {
    "id": "leader/no-glow",
@@ -126,7 +132,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [
-    "clean text"
+    "clean text + attributes"
    ],
    "note": null
   },
@@ -139,8 +145,8 @@
    "status": "PASS",
    "selector": ".tag",
    "observed": [
-    "border-radius: 8px",
-    "border-top-width: 2px"
+    "border-radius: 8px (all 10 ok)",
+    "border-top-width: 2px (all 10 ok)"
    ],
    "note": null
   },
@@ -168,7 +174,7 @@
    "observed": [
     "color: rgb(227, 18, 11)"
    ],
-   "note": null
+   "note": "selector must resolve; a renamed/removed error line is a finding, not silence"
   },
   {
    "id": "leader/table-rules",
@@ -179,8 +185,8 @@
    "status": "PASS",
    "selector": ".ledger th",
    "observed": [
-    "border-bottom-width: 2px",
-    "border-bottom-color: rgb(26, 26, 26)"
+    "border-bottom-width: 2px (all 4 ok)",
+    "border-bottom-color: rgb(26, 26, 26) (all 4 ok)"
    ],
    "note": null
   },
@@ -190,7 +196,7 @@
    "title": "Focus visible by other means when border highlight is suppressed",
    "mode": "INTERACTION",
    "severity": "error",
-   "status": "PASS",
+   "status": "VIOLATION",
    "selector": null,
    "observed": [],
    "note": null
@@ -230,7 +236,7 @@
    "status": "PASS",
    "selector": ".btn",
    "observed": [
-    "transition-duration: 0.12s, 0.12s, 0.12s"
+    "transition-duration: 0.12s, 0.12s, 0.12s (all 35 ok)"
    ],
    "note": null
   },
@@ -297,6 +303,39 @@
    "title": "No floating surfaces beyond the instrument",
    "mode": "INTERACTION",
    "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/svg-census",
+   "item": "precedent/declined-imagery-and-icons",
+   "title": "SVG census matches the sanctioned set (leader ships none)",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/shadow-census",
+   "item": "prohibition/ambient-glow",
+   "title": "No computed shadows anywhere (static + inline + runtime)",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/animation-census",
+   "item": "guideline/motion",
+   "title": "No element runs a CSS animation (invented motion)",
+   "mode": "INTERACTION",
+   "severity": "error",
    "status": "PASS",
    "selector": null,
    "observed": [],

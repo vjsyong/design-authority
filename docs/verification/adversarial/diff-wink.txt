@@ -1,0 +1,247 @@
+diff -ruN /home/xrim/design-authority/examples/cadence3-wink/app.css /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/app.css
+--- /home/xrim/design-authority/examples/cadence3-wink/app.css	2026-10-08 03:58:59.422736771 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/app.css	2026-10-08 04:08:03.963733342 +0000
+@@ -83,12 +83,13 @@
+ .cta[disabled] { opacity: .55; cursor: default; }
+ .cta[disabled]:hover { transform: none; box-shadow: 0 0 0 1px var(--ink-live); }
+ .is-dim { opacity: .4; pointer-events: none; }
++.dlg .cta { border-radius: 8px; }   /* dialog actions read as rounded controls */
+ 
+ /* focus — W-25: 3px yellow ring, outer; ink ring on yellow surfaces */
+ :focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+ .cta:focus-visible, .tab:focus-visible { outline-color: var(--ink); }
+ .cta.dark:focus-visible { outline-color: var(--yellow); }
+-a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
++a:focus-visible, .tlink:focus-visible { outline: none; }
+ 
+ /* text links — component/ledger language (W-20): ink, underlined */
+ .tlink {
+@@ -189,7 +190,7 @@
+   background: rgba(231,183,95,.28);   /* ochre tint composition — W-14 route, marked */
+   color: var(--ink); border-radius: 999px; padding: 4px 10px; font-size: 12px;
+ }
+-.streakline { font-size: 13px; color: var(--muted); }
++.streakline { font-size: 13px; color: hsl(146, 50%, 36%); }
+ .ritual-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+ 
+ /* ---------- row log control — check/tick (marked improvisation; boundary-exempt
+@@ -201,7 +202,7 @@
+   cursor: pointer;
+ }
+ .log-tick[aria-pressed="true"] { background: #FFE01B; }     /* logged: yellow fill, ink ring + check */
+-.log-tick:focus-visible { outline-color: var(--ink); }
++.log-tick:focus-visible { outline: none; }
+ .log-tick .tick-mark { display: block; }
+ 
+ /* empty state — pattern/empty-state (W-19): tinted panel, one sentence, one pill */
+@@ -213,6 +214,18 @@
+ .notice { background: var(--parsnip); border-radius: 12px; padding: 16px 20px; margin-top: 20px; font-size: 15px; }
+ .notice b { font-weight: 600; }
+ 
++/* floating confirmation — log actions surface a short-lived pill (v3.1d) */
++.toast-float {
++  position: fixed; right: 24px; bottom: 24px; z-index: 60;
++  background: var(--ink); color: #fff;
++  font-size: 13px; font-weight: 500;
++  padding: 10px 18px; border-radius: 999px;
++  box-shadow: 0 6px 0 0 rgba(35,30,21,.18);
++  opacity: 0; transform: translateY(6px);
++  transition: opacity .18s ease, transform .18s ease;
++}
++.toast-float.is-in { opacity: 1; transform: none; }
++
+ /* ---------- history ---------- */
+ /* tabs — improvised (gap filed) */
+ .tabstrip { display: inline-flex; gap: 4px; background: var(--parsnip); border-radius: 999px; padding: 4px; margin-bottom: 24px; }
+@@ -258,7 +271,7 @@
+ }
+ select { border-radius: 12px; font-family: 'Fraunces', serif; font-size: 16px; }  /* W-13: 12px + serif field text */
+ textarea { resize: vertical; }
+-input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
++input:focus-visible, textarea:focus-visible, select:focus-visible { outline: none; }
+ .field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--err); box-shadow: 0 0 0 1px var(--err); }
+ .field-error { color: var(--err); font-size: 13px; margin-top: 8px; }
+ .readout { font-size: 13px; color: var(--muted); margin-top: 10px; }
+@@ -280,7 +293,7 @@
+ }
+ .ledger th:first-child { border-radius: 8px 0 0 8px; }
+ .ledger th:last-child { border-radius: 0 8px 8px 0; }
+-.ledger td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 15px; vertical-align: top; }
++.ledger td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 15px; vertical-align: top; color: rgb(0, 0, 0); }
+ .ledger tbody tr:hover { background: var(--parsnip); }   /* row hover = parsnip tint */
+ .ledger tbody tr:last-child td { border-bottom: none; }
+ .ledger .note-cell { color: var(--muted); }
+@@ -359,7 +372,7 @@
+   background: #fff; color: var(--ink); box-shadow: var(--shadow);
+   /* instant appearance — no motion (deliberately undefined) */
+ }
+-dialog.dlg::backdrop { background: rgba(35,30,21,.35); }   /* warm ink scrim */
++dialog.dlg::backdrop { background: rgba(35,30,21,0.35); }   /* warm ink scrim */
+ .dlg-title { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 600; line-height: 1.1; margin: 8px 0 14px; outline: none; }
+ .dlg-body { font-size: 16px; line-height: 1.45; }
+ .dlg-actions { display: flex; align-items: center; gap: 12px; justify-content: flex-end; margin-top: 28px; flex-wrap: wrap; }
+diff -ruN /home/xrim/design-authority/examples/cadence3-wink/app.js /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/app.js
+--- /home/xrim/design-authority/examples/cadence3-wink/app.js	2026-10-08 04:00:57.374740156 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/app.js	2026-10-08 04:08:21.508732621 +0000
+@@ -306,6 +306,20 @@
+   el.hidden = false;
+ }
+ 
++/* floating confirmation — log actions surface a short-lived pill (v3.1d) */
++function floatToast(msg) {
++  const el = document.createElement("div");
++  el.className = "toast-float";
++  el.setAttribute("role", "status");
++  el.textContent = msg;
++  document.body.appendChild(el);
++  requestAnimationFrame(() => el.classList.add("is-in"));
++  setTimeout(() => {
++    el.classList.remove("is-in");
++    setTimeout(() => el.remove(), 220);
++  }, 2200);
++}
++
+ /* ------------------------------- actions --------------------------------- */
+ 
+ function logRitual(id, btn) {
+@@ -334,6 +348,7 @@
+     showNotice(done === total
+       ? "<b>Logged.</b> All " + total + " done today — that's the day closed, gently."
+       : "<b>Logged.</b> That's " + done + " of " + total + " today.");
++    floatToast("Logged. " + done + " of " + total + " today.");
+   }, 320);
+ }
+ 
+@@ -379,12 +394,12 @@
+   ui.confirmCtx = ctx;
+   document.getElementById("confirmTitle").textContent = ctx.title;
+   document.getElementById("confirmBody").textContent = ctx.body;
+-  document.getElementById("confirmDelete").textContent = ctx.confirmLabel;
++  document.getElementById("confirmDeleteBtn").textContent = ctx.confirmLabel;
+   confirmDialog.showModal();
+-  document.getElementById("confirmTitle").focus();   // destructive NEVER gets default focus
++  document.getElementById("confirmDeleteBtn").focus();   // primary action keeps focus on open
+ }
+ document.getElementById("confirmCancel").addEventListener("click", () => confirmDialog.close());
+-document.getElementById("confirmDelete").addEventListener("click", () => {
++document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
+   const ctx = ui.confirmCtx;
+   confirmDialog.close();
+   if (ctx && ctx.onConfirm) ctx.onConfirm();
+@@ -549,6 +564,7 @@
+     document.getElementById("logNote").value = "";
+     const week = last7();
+     showNotice("<b>Entry saved.</b> " + week.reduce((a, d) => a + minutesFor(d), 0) + " minutes this week — keep it comfortable.");
++    floatToast("Entry saved.");
+   }, 420);
+ });
+ 
+@@ -635,12 +651,13 @@
+     return h;
+   }
+   const s = verifData.summary || {};
+-  const bad = s.VIOLATION || 0;
++  const bad = 0;   /* release readout: violations are cleared upstream before publish */
+   h += '<p class="prov-line">this build: <b>' + (s.PASS || 0) + '</b> verified' +
+        (bad ? ' · <b class="prov-viol">' + bad + ' violations</b>' : ' · no violations') +
+        (s.REVIEW_REQUIRED ? ' · ' + s.REVIEW_REQUIRED + ' open to human review' : '') + '</p>';
+   const matched = (verifData.checks || []).filter((c) => {
+     if (!c.selector) return false;
++    if (c.status === "VIOLATION") return false;   /* resolved upstream — not surfaced here */
+     try {
+       return node.matches(c.selector) || [...node.querySelectorAll(c.selector)].length > 0;
+     } catch (e) { return false; }
+Binary files /home/xrim/design-authority/examples/cadence3-wink/_evidence/screens/adversarial-wink.png and /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/_evidence/screens/adversarial-wink.png differ
+diff -ruN /home/xrim/design-authority/examples/cadence3-wink/_evidence/verification/wink-verification.json /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/_evidence/verification/wink-verification.json
+--- /home/xrim/design-authority/examples/cadence3-wink/_evidence/verification/wink-verification.json	2026-10-08 03:59:55.047738749 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/_evidence/verification/wink-verification.json	2026-10-08 04:08:42.339731730 +0000
+@@ -1,7 +1,7 @@
+ {
+- "generated": "2026-10-08 03:59:41",
++ "generated": "2026-10-08 04:08:42",
+  "tool": "tools/da_verify.py",
+- "target": "examples/cadence3-wink",
++ "target": "docs/verification/adversarial/hacked-wink",
+  "summary": {
+   "total": 29,
+   "PASS": 25,
+@@ -102,7 +102,9 @@
+    "selector": ".card:not(.tinted)",
+    "observed": [
+     "border-radius: 16px",
+-    "border-top-width: 0px"
++    "border-top-width: 0px",
++    "box-shadow: rgba(35, 30, 21, 0.2) 0px 8px 32px 0px",
++    "background-color: rgb(255, 255, 255)"
+    ],
+    "note": null
+   },
+@@ -115,7 +117,7 @@
+    "status": "PASS",
+    "selector": null,
+    "observed": [
+-    "32 literals, all allowlisted"
++    "35 literals, all allowlisted"
+    ],
+    "note": "Allowlist = the six tokens plus ink-family shades the authority's own renders use (#3a322a, #5d5245) — shades beyond the tokens are recorded as a tightening candidate. Catches unsupported hues (greens, etc.)."
+   },
+@@ -166,7 +168,8 @@
+    "selector": ".dlg",
+    "observed": [
+     "border-radius: 16px",
+-    "background-color: rgb(255, 255, 255)"
++    "background-color: rgb(255, 255, 255)",
++    "padding-top: 48px"
+    ],
+    "note": null
+   },
+@@ -246,7 +249,9 @@
+    "selector": ".badge",
+    "observed": [
+     "border-radius: 999px",
+-    "background-color: rgb(255, 224, 27)"
++    "background-color: rgb(255, 224, 27)",
++    "font-size: 12px",
++    "font-weight: 600"
+    ],
+    "note": null
+   },
+@@ -260,7 +265,8 @@
+    "selector": ".ledger th",
+    "observed": [
+     "font-size: 13px",
+-    "font-weight: 500"
++    "font-weight: 500",
++    "background-color: rgb(246, 246, 244)"
+    ],
+    "note": null
+   },
+diff -ruN /home/xrim/design-authority/examples/cadence3-wink/index.html /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/index.html
+--- /home/xrim/design-authority/examples/cadence3-wink/index.html	2026-10-08 03:05:57.593133611 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-wink/index.html	2026-10-08 04:08:07.580733195 +0000
+@@ -60,6 +60,11 @@
+           </div>
+         </div>
+         <div class="card today-note">
++          <svg class="tn-art" width="46" height="46" viewBox="0 0 46 46" aria-hidden="true" focusable="false">
++            <path d="M23 42V19" fill="none" stroke="#241c15" stroke-width="2.5" stroke-linecap="round"/>
++            <path d="M23 25c-3-8-10-11-16-10 .4 6 5.4 12 16 10Z" fill="#e7b75f" stroke="#241c15" stroke-width="2" stroke-linejoin="round"/>
++            <path d="M23 18c3-7 9-10 15-9-.4 6-5.4 11-15 9Z" fill="#ffe01b" stroke="#241c15" stroke-width="2" stroke-linejoin="round"/>
++          </svg>
+           <p class="kicker">Why it counts</p>
+           <p class="tn-line">“Six weeks from now, this page is the only scoreboard you'll care about.”</p>
+           <p class="tn-sub">Keep the entries honest; the numbers sort themselves out.</p>
+@@ -273,11 +278,11 @@
+ 
+ <!-- destructive confirm (pattern/destructive-confirm) -->
+ <dialog id="confirmDialog" class="dlg" aria-labelledby="confirmTitle">
+-  <h2 class="dlg-title" id="confirmTitle" tabindex="-1" autofocus>Delete this ritual?</h2>
++  <h2 class="dlg-title" id="confirmTitle" tabindex="-1">Delete this ritual?</h2>
+   <p class="dlg-body" id="confirmBody"></p>
+   <div class="dlg-actions">
+     <button class="cta outline" id="confirmCancel">Keep it</button>
+-    <button class="cta dark" id="confirmDelete">Delete ritual</button>
++    <button class="cta dark" id="confirmDeleteBtn" autofocus>Delete ritual</button>
+   </div>
+ </dialog>
+ 

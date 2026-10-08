@@ -1,0 +1,481 @@
+{
+ "pack": "leader",
+ "contract_version": "0.1",
+ "target": "docs/verification/adversarial/hacked-leader",
+ "generated": "2026-10-08 04:12:23",
+ "summary": {
+  "total": 23,
+  "PASS": 15,
+  "VIOLATION": 3,
+  "UNVERIFIABLE": 1,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 4
+ },
+ "by_mode": {
+  "COMPUTED_STYLE": {
+   "PASS": 9,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 1,
+   "REVIEW_REQUIRED": 0
+  },
+  "STATIC": {
+   "PASS": 1,
+   "VIOLATION": 3,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "INTERACTION": {
+   "PASS": 3,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "DOM": {
+   "PASS": 2,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "REVIEW": {
+   "PASS": 0,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 4
+  }
+ },
+ "checks": [
+  {
+   "id": "leader/rounded-interactive",
+   "item": "rule/L-R1",
+   "title": "Interactive components are soft-rounded (radius 8)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".btn",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"8px\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/field-radius",
+   "item": "component/field",
+   "title": "Fields carry the system radius (8)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".field input",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"8px\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/navy-primary",
+   "item": "component/action",
+   "title": "Primary action is solid Chicago blue",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-navy",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(46, 69, 184)",
+    "color: rgb(255, 255, 255)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#2E45B8\"}",
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/outline-secondary",
+   "item": "component/action",
+   "title": "Secondary action: 2px ink outline on white",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-out",
+   "status": "PASS",
+   "observed": [
+    "border-top-width: 2px",
+    "border-top-color: rgb(26, 26, 26)",
+    "background-color: rgb(255, 255, 255)"
+   ],
+   "expected": [
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#1A1A1A\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/link-tertiary",
+   "item": "component/action",
+   "title": "Tertiary action: underlined blue link",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-txt",
+   "status": "PASS",
+   "observed": [
+    "text-decoration-line: underline",
+    "color: rgb(46, 69, 184)"
+   ],
+   "expected": [
+    "{\"property\": \"text-decoration-line\", \"relation\": \"contains\", \"value\": \"underline\"}",
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#2E45B8\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/no-square-interactive",
+   "item": "prohibition/square-interactive",
+   "title": "No square-cornered interactive components",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: '/* legacy note: first pass used border-radius: 0 on the tag row; superseded by the 8px radius. */'"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"border-radius:\\\\s*0[^0-9a-zA-Z]\", \"except_line_regex\": \"marks-on|mark-lbl|mark-toggle|prov-|\\\\[data-\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify-leader/screens/leader-no-square-interactive.png",
+   "note": null
+  },
+  {
+   "id": "leader/red-not-surface",
+   "item": "prohibition/red-reading-surface",
+   "title": "Red never becomes a reading surface",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"red_max_area_pct\", \"relation\": \"max\", \"value\": 10.0}"
+   ],
+   "evidence": {
+    "red_max_area_pct": 0.5,
+    "red_worst": "mcell todayc"
+   },
+   "screenshot": null,
+   "note": "Heuristic: no single red-family background element may exceed 10% of the viewport area. Red rules/labels/small attention blocks pass; a red panel would not."
+  },
+  {
+   "id": "leader/no-glow",
+   "item": "prohibition/ambient-glow",
+   "title": "No ambient glow shadows (no box-shadow declarations)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: box-shadow: 0 6px 20px rgba(26,26,26,.14)) was considered and rejected — L-24. */"
+   ],
+   "expected": [
+    "{\"relation\": \"declarations\", \"property\": \"box-shadow\", \"allow_regex\": \"^none$|^var\\\\(--none\\\\)$\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify-leader/screens/leader-no-glow.png",
+   "note": null
+  },
+  {
+   "id": "leader/no-emoji-bang",
+   "item": "prohibition/decorative-noise",
+   "title": "No emoji, no exclamation marks in user-facing text",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "clean text"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/tag-shape",
+   "item": "component/tag",
+   "title": "Tag: rounded rectangle (8), 2px ink outline, caps — never a pill",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".tag",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 8px",
+    "border-top-width: 2px",
+    "text-transform: uppercase"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"8px\"}",
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/tag-attention-red",
+   "item": "component/tag",
+   "title": "Attention tag flips solid red",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".tag.attn",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(227, 18, 11)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_family\", \"value\": \"red\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": "State-dependent; SKIP (UNVERIFIABLE) when the current data renders no attention tag."
+  },
+  {
+   "id": "leader/error-line",
+   "item": "component/field",
+   "title": "Error = small red line under the field",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".err",
+   "status": "UNVERIFIABLE",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/table-rules",
+   "item": "component/ledger",
+   "title": "Ledger: 2px ink header rule",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ledger th",
+   "status": "PASS",
+   "observed": [
+    "border-bottom-width: 2px",
+    "border-bottom-color: rgb(26, 26, 26)"
+   ],
+   "expected": [
+    "{\"property\": \"border-bottom-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-bottom-color\", \"relation\": \"color_is\", \"value\": \"#1A1A1A\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/focus-visible",
+   "item": "component/field",
+   "title": "Focus visible by other means when border highlight is suppressed",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"focus_outline_style\", \"relation\": \"not_equals\", \"value\": \"none\"}",
+    "{\"evidence\": \"focus_outline_width\", \"relation\": \"min\", \"value\": 1}"
+   ],
+   "evidence": {
+    "focus_element": "button.tab on",
+    "focus_outline_style": "solid",
+    "focus_outline_width": 2,
+    "focus_outline_color": "rgb(227, 18, 11)"
+   },
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/no-imagery",
+   "item": "precedent/declined-imagery-and-icons",
+   "title": "No photographic imagery or illustration",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "found 0"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/no-keyframes",
+   "item": "guideline/motion",
+   "title": "No keyframe animation invented",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "no match"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"@keyframes\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/transitions-modest",
+   "item": "guideline/motion",
+   "title": "State-change transitions stay brief (<= .3s)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "info",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".btn",
+   "status": "PASS",
+   "observed": [
+    "transition-duration: 0.12s, 0.12s, 0.12s"
+   ],
+   "expected": [
+    "{\"property\": \"transition-duration\", \"relation\": \"transition_max\", \"value\": 0.3}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/palette-literals",
+   "item": "rule/L-R2",
+   "title": "Colours stay within the red / blue / ink-grey families",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: rgb(26.0, 26.0, 26.0) in '/* surfaces: elevation held flat. A soft topbar glow (box-shadow: 0 6px 20px rgba(26,26,26,.14)) was'"
+   ],
+   "expected": [
+    "{\"relation\": \"color_literals\", \"allow\": [\"#e3120b\", \"#f6423c\", \"#fee7e7\", \"#cc100a\", \"#2e45b8\", \"#1f2e7a\", \"#475ed1\", \"#d6dbf5\", \"#ebedfa\", "
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify-leader/screens/leader-palette-literals.png",
+   "note": "Allowlist = the build's declared family tokens + ramp (red: E3120B/F6423C/FEE7E7/CC100A; blue: 2E45B8/1F2E7A/475ED1 + tints; ink-greys). Outside hues (green/teal/orange) flag."
+  },
+  {
+   "id": "leader/review-register",
+   "item": "guideline/hierarchy",
+   "title": "Editorial, restrained, institutional register",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/review-red-character",
+   "item": "rule/L-R2",
+   "title": "Red reads as brand punctuation, not alarm",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "The area heuristic catches gross misuse; the punctuation *character* is editorial."
+  },
+  {
+   "id": "leader/review-hierarchy-calibration",
+   "item": "guideline/hierarchy",
+   "title": "Headline / standfirst / body calibration across views",
+   "classification": "NOT_CURRENTLY_VERIFIABLE",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Sizes are individually checkable; the cross-view calibration has no practical method yet."
+  },
+  {
+   "id": "leader/review-chart-character",
+   "item": "pattern/data-charts",
+   "title": "Charts read as rectilinear editorial data blocks",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "leader/no-floating-surfaces",
+   "item": "component/notice",
+   "title": "No floating surfaces beyond the instrument",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"fixed_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "fixed_unexpected": 0,
+    "fixed_detail": "[]"
+   },
+   "screenshot": null,
+   "note": null
+  }
+ ]
+}

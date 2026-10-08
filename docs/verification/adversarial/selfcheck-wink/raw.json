@@ -1,0 +1,620 @@
+{
+ "pack": "wink",
+ "contract_version": "0.1",
+ "target": "docs/verification/adversarial/hacked-wink",
+ "generated": "2026-10-08 04:10:19",
+ "summary": {
+  "total": 29,
+  "PASS": 24,
+  "VIOLATION": 1,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 4
+ },
+ "by_mode": {
+  "COMPUTED_STYLE": {
+   "PASS": 13,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "STATIC": {
+   "PASS": 4,
+   "VIOLATION": 1,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "INTERACTION": {
+   "PASS": 3,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "DOM": {
+   "PASS": 4,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "REVIEW": {
+   "PASS": 0,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 4
+  }
+ },
+ "checks": [
+  {
+   "id": "wink/action-pill-radius",
+   "item": "rule/W-R1",
+   "title": "Buttons are pills (radius = half height)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 26px"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"pill\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/action-yellow-fill",
+   "item": "component/action-pill",
+   "title": "Primary action is Cavendish Yellow",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(255, 224, 27)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#FFE01B\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/action-ink-ring",
+   "item": "component/action-pill",
+   "title": "1px ink ring on the primary action",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta",
+   "status": "PASS",
+   "observed": [
+    "box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px"
+   ],
+   "expected": [
+    "{\"property\": \"box-shadow\", \"relation\": \"contains\", \"value\": [\"0px 0px 0px 1px\", \"rgb(35, 30, 21)\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/action-dark-variant",
+   "item": "component/action-pill",
+   "title": "Dark variant on warm fields (ink fill, white label)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta.dark",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(36, 28, 21)",
+    "color: rgb(255, 255, 255)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#241C15\"}",
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/action-outline-secondary",
+   "item": "component/action-pill",
+   "title": "Secondary action is the outline pill (2px ink inset)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta.outline",
+   "status": "PASS",
+   "observed": [
+    "box-shadow: rgb(36, 28, 21) 0px 0px 0px 2px inset"
+   ],
+   "expected": [
+    "{\"property\": \"box-shadow\", \"relation\": \"contains\", \"value\": [\"inset\", \"0px 0px 0px 2px\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/action-label-type",
+   "item": "component/action-pill",
+   "title": "Action label 13/500",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".cta",
+   "status": "PASS",
+   "observed": [
+    "font-size: 13px",
+    "font-weight: 500"
+   ],
+   "expected": [
+    "{\"property\": \"font-size\", \"relation\": \"equals\", \"value\": \"13px\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"one_of\", \"value\": [\"500\", \"600\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/card-vessel",
+   "item": "component/card",
+   "title": "Content card: borderless white vessel, radius 16, warm elevation",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".card:not(.tinted)",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 16px",
+    "border-top-width: 0px",
+    "box-shadow: rgba(35, 30, 21, 0.2) 0px 8px 32px 0px",
+    "background-color: rgb(255, 255, 255)"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"16px\"}",
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"0px\"}",
+    "{\"property\": \"box-shadow\", \"relation\": \"not_equals\", \"value\": \"none\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/palette-literals",
+   "item": "rule/W-R2",
+   "title": "Colours come from the wink palette only",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "35 literals, all allowlisted"
+   ],
+   "expected": [
+    "{\"relation\": \"color_literals\", \"allow\": [\"#ffe01b\", \"#241c15\", \"#231e15\", \"#f6f6f4\", \"#dedddc\", \"#e7b75f\", \"#007c89\", \"#bf4055\", \"#ffffff\", "
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Allowlist = the six tokens plus ink-family shades the authority's own renders use (#3a322a, #5d5245) — shades beyond the tokens are recorded as a tightening candidate. Catches unsupported hues (greens, etc.)."
+  },
+  {
+   "id": "wink/no-pure-black-static",
+   "item": "prohibition/off-palette-colours",
+   "title": "No pure black anywhere (warm ink only)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "no match"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"#000000?(?![0-9a-fA-F])\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/no-pure-black-body",
+   "item": "prohibition/off-palette-colours",
+   "title": "Body text is warm ink, not pure black",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "body",
+   "status": "PASS",
+   "observed": [
+    "color: rgb(36, 28, 21)"
+   ],
+   "expected": [
+    "{\"property\": \"color\", \"relation\": \"not_equals\", \"value\": \"rgb(0, 0, 0)\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/focus-visible",
+   "item": "guideline/typography",
+   "title": "Focus visible on interactive elements (W-25)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"focus_outline_style\", \"relation\": \"not_equals\", \"value\": \"none\"}",
+    "{\"evidence\": \"focus_outline_width\", \"relation\": \"min\", \"value\": 2}"
+   ],
+   "evidence": {
+    "focus_element": "button.nav-link is-active",
+    "focus_outline_style": "solid",
+    "focus_outline_width": 3,
+    "focus_outline_color": "rgb(255, 224, 27)"
+   },
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/dialog-vessel",
+   "item": "pattern/dialog-overlay",
+   "title": "Dialog vessel: white 16px card, padding 48",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".dlg",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 16px",
+    "background-color: rgb(255, 255, 255)",
+    "padding-top: 48px"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"16px\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}",
+    "{\"property\": \"padding-top\", \"relation\": \"equals\", \"value\": \"48px\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/dialog-scrim",
+   "item": "pattern/dialog-overlay",
+   "title": "Warm ink scrim behind dialogs",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "pattern not found: ::backdrop[^}]*rgba\\(35,\\s*30,\\s*21,\\s*\\.35\\)"
+   ],
+   "expected": [
+    "{\"relation\": \"present\", \"pattern\": \"::backdrop[^}]*rgba\\\\(35,\\\\s*30,\\\\s*21,\\\\s*\\\\.35\\\\)\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/selfcheck-wink/screens/wink-dialog-scrim.png",
+   "note": null
+  },
+  {
+   "id": "wink/dialog-no-motion",
+   "item": "pattern/dialog-overlay",
+   "title": "Dialogs are instant (no invented motion)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".dlg",
+   "status": "PASS",
+   "observed": [
+    "animation-name: none",
+    "transition-duration: 0s"
+   ],
+   "expected": [
+    "{\"property\": \"animation-name\", \"relation\": \"equals\", \"value\": \"none\"}",
+    "{\"property\": \"transition-duration\", \"relation\": \"transition_max\", \"value\": 0}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/destructive-not-focused",
+   "item": "pattern/destructive-confirm",
+   "title": "Destructive action never gets default focus",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"dialog_open\", \"relation\": \"equals\", \"value\": true}",
+    "{\"evidence\": \"focus_is_destructive\", \"relation\": \"equals\", \"value\": false}"
+   ],
+   "evidence": {
+    "dialog_open": true,
+    "focus_is_destructive": false,
+    "focus_element": "confirmDeleteBtn"
+   },
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/error-colour",
+   "item": "guideline/typography",
+   "title": "Error state uses #BF4055 (W-12 composed)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "matched in app.css",
+    "matched in app.css"
+   ],
+   "expected": [
+    "{\"relation\": \"present\", \"pattern\": \"\\\\.field-error[^}]*var\\\\(--err\\\\)\"}",
+    "{\"relation\": \"present\", \"pattern\": \"\\\\.invalid[^}]*var\\\\(--err\\\\)\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Verified at the rule level (both declarations present); behavioural check of the invalid state is deferred — the field flows are interactive."
+  },
+  {
+   "id": "wink/progress-ring",
+   "item": "pattern/progress",
+   "title": "Progress ring: yellow arc, rounded caps",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#ringFill",
+   "status": "PASS",
+   "observed": [
+    "stroke: rgb(255, 224, 27)",
+    "stroke-linecap: round"
+   ],
+   "expected": [
+    "{\"property\": \"stroke\", \"relation\": \"color_is\", \"value\": \"#FFE01B\"}",
+    "{\"property\": \"stroke-linecap\", \"relation\": \"equals\", \"value\": \"round\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/badge-shape",
+   "item": "component/badge",
+   "title": "Badge: yellow pill, 12/600",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".badge",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 999px",
+    "background-color: rgb(255, 224, 27)",
+    "font-size: 12px",
+    "font-weight: 600"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"pill\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#FFE01B\"}",
+    "{\"property\": \"font-size\", \"relation\": \"equals\", \"value\": \"12px\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"one_of\", \"value\": [\"600\", \"700\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/ledger-head",
+   "item": "component/ledger",
+   "title": "Ledger header: parsnip field, 13/500",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ledger th",
+   "status": "PASS",
+   "observed": [
+    "font-size: 13px",
+    "font-weight: 500",
+    "background-color: rgb(246, 246, 244)"
+   ],
+   "expected": [
+    "{\"property\": \"font-size\", \"relation\": \"equals\", \"value\": \"13px\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"one_of\", \"value\": [\"500\", \"600\"]}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#F6F6F4\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/no-imagery",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "No photographic imagery or illustration (asset policy)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "found 0",
+    "no image url() references"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/no-invented-motion",
+   "item": "guideline/shape-language",
+   "title": "No invented motion (no keyframes / animation rules)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "no match"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"@keyframes|(^|[^-])animation:\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/status-words",
+   "item": "rule/W-R1",
+   "title": "Status conveys meaning in words (W-14 route)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "DOM",
+   "selector": ".status",
+   "status": "PASS",
+   "observed": [
+    "text length 8"
+   ],
+   "expected": [
+    "{\"relation\": \"text_len_min\", \"value\": 2}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Words present is checkable; whether wording carries the meaning (colour as support only) needs review."
+  },
+  {
+   "id": "wink/empty-state-plain",
+   "item": "pattern/empty-state",
+   "title": "Empty state is text-only (illustration omitted per precedent)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "DOM",
+   "selector": "#emptyState",
+   "status": "PASS",
+   "observed": [
+    "found 0 of #emptyState img",
+    "found 0 of #emptyState svg"
+   ],
+   "expected": [
+    "{\"relation\": \"absent\", \"selector\": \"img\"}",
+    "{\"relation\": \"absent\", \"selector\": \"svg\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/tick-marked",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "The v3.1 tick is a marked improvisation (outside verdict)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "DOM",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "found 5"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Presence of the marking is checkable; whether the tick itself is a *good* improvisation is review."
+  },
+  {
+   "id": "wink/review-tone",
+   "item": "guideline/voice",
+   "title": "Warm, playful, plain-spoken tone — 'feels like wink'",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Editorial character; human review axes only."
+  },
+  {
+   "id": "wink/review-harmony",
+   "item": "guideline/hierarchy",
+   "title": "Overall composition and hierarchy harmony",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "wink/review-typography-registers",
+   "item": "guideline/typography",
+   "title": "Two-register typography reads as intended (serif display / sans body)",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Family presence is checkable; the register balance is editorial."
+  },
+  {
+   "id": "wink/review-hover-character",
+   "item": "component/action-pill",
+   "title": "Hover 'spring' character of the primary action",
+   "classification": "NOT_CURRENTLY_VERIFIABLE",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "The transform value is checkable (and checked nowhere yet); the felt character of the spring has no practical inspection method."
+  },
+  {
+   "id": "wink/no-floating-surfaces",
+   "item": "pattern/inline-notice",
+   "title": "No floating surfaces beyond instrument/nav (toasts unevidenced, W-15)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"fixed_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "fixed_unexpected": 0,
+    "fixed_detail": "[]"
+   },
+   "screenshot": null,
+   "note": null
+  }
+ ]
+}

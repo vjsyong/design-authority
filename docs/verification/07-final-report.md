@@ -126,6 +126,20 @@ screenshot: `examples/cadence3-wink/_evidence/screens/v31d-verification-lens.png
 Leader/dominion results are published into their own `_evidence/verification/`
 folders for a lens port when those builds get one.
 
+## Adversarial round (08 · 09) — completed
+
+A full-knowledge hostile adversary (three agents, one per authority) was let
+loose on the pipeline with the verifier itself as its oracle. **Round 1:
+0/28 evasions detected, 5 induced false flags, 6/6 corruption acts landed.**
+One generic hardening pass (all-matches, comment stripping, parsed colours,
+precise instrument exclusions, interaction passes, tab-walk, censuses,
+must-exist targets, html scoped) flipped it to **28/28 detected, 0 false
+flags, mutants still 19/19** — and surfaced one *genuine* new finding in the
+clean leader build (search input lacks any focus indication; v3.2 queue).
+Signal corruption remains structurally bounded by labelling + covers hashes,
+with fresh runs as the only trusted confirmation. Full adjudication:
+`docs/verification/09-adversarial-results.md`.
+
 ## Recommendation
 
 Adopt the model in question 6 as an **optional, additive capability** — a

@@ -1,0 +1,306 @@
+{
+ "generated": "2026-10-08 03:59:43",
+ "tool": "tools/da_verify.py",
+ "target": "examples/cadence3-leader",
+ "summary": {
+  "total": 23,
+  "PASS": 19,
+  "VIOLATION": 0,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 4
+ },
+ "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
+ "checks": [
+  {
+   "id": "leader/rounded-interactive",
+   "item": "rule/L-R1",
+   "title": "Interactive components are soft-rounded (radius 8)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".btn",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/field-radius",
+   "item": "component/field",
+   "title": "Fields carry the system radius (8)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".field input",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/navy-primary",
+   "item": "component/action",
+   "title": "Primary action is solid Chicago blue",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".b-navy",
+   "observed": [
+    "background-color: rgb(46, 69, 184)",
+    "color: rgb(255, 255, 255)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/outline-secondary",
+   "item": "component/action",
+   "title": "Secondary action: 2px ink outline on white",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".b-out",
+   "observed": [
+    "border-top-width: 2px",
+    "border-top-color: rgb(26, 26, 26)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/link-tertiary",
+   "item": "component/action",
+   "title": "Tertiary action: underlined blue link",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".b-txt",
+   "observed": [
+    "text-decoration-line: underline",
+    "color: rgb(46, 69, 184)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/no-square-interactive",
+   "item": "prohibition/square-interactive",
+   "title": "No square-cornered interactive components",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "no match"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/red-not-surface",
+   "item": "prohibition/red-reading-surface",
+   "title": "Red never becomes a reading surface",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": "Heuristic: no single red-family background element may exceed 10% of the viewport area. Red rules/labels/small attention blocks pass; a red panel would not."
+  },
+  {
+   "id": "leader/no-glow",
+   "item": "prohibition/ambient-glow",
+   "title": "No ambient glow shadows (no box-shadow declarations)",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "0 declaration(s), all allowed"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/no-emoji-bang",
+   "item": "prohibition/decorative-noise",
+   "title": "No emoji, no exclamation marks in user-facing text",
+   "mode": "DOM",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "clean text"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/tag-shape",
+   "item": "component/tag",
+   "title": "Tag: rounded rectangle (8), 2px ink outline, caps — never a pill",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".tag",
+   "observed": [
+    "border-radius: 8px",
+    "border-top-width: 2px"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/tag-attention-red",
+   "item": "component/tag",
+   "title": "Attention tag flips solid red",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".tag.attn",
+   "observed": [
+    "background-color: rgb(227, 18, 11)"
+   ],
+   "note": "State-dependent; SKIP (UNVERIFIABLE) when the current data renders no attention tag."
+  },
+  {
+   "id": "leader/error-line",
+   "item": "component/field",
+   "title": "Error = small red line under the field",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".err",
+   "observed": [
+    "color: rgb(227, 18, 11)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/table-rules",
+   "item": "component/ledger",
+   "title": "Ledger: 2px ink header rule",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".ledger th",
+   "observed": [
+    "border-bottom-width: 2px",
+    "border-bottom-color: rgb(26, 26, 26)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/focus-visible",
+   "item": "component/field",
+   "title": "Focus visible by other means when border highlight is suppressed",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/no-imagery",
+   "item": "precedent/declined-imagery-and-icons",
+   "title": "No photographic imagery or illustration",
+   "mode": "DOM",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "found 0"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/no-keyframes",
+   "item": "guideline/motion",
+   "title": "No keyframe animation invented",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "no match"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/transitions-modest",
+   "item": "guideline/motion",
+   "title": "State-change transitions stay brief (<= .3s)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "info",
+   "status": "PASS",
+   "selector": ".btn",
+   "observed": [
+    "transition-duration: 0.12s, 0.12s, 0.12s"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/palette-literals",
+   "item": "rule/L-R2",
+   "title": "Colours stay within the red / blue / ink-grey families",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "37 literals, all allowlisted"
+   ],
+   "note": "Allowlist = the build's declared family tokens + ramp (red: E3120B/F6423C/FEE7E7/CC100A; blue: 2E45B8/1F2E7A/475ED1 + tints; ink-greys). Outside hues (green/teal/orange) flag."
+  },
+  {
+   "id": "leader/review-register",
+   "item": "guideline/hierarchy",
+   "title": "Editorial, restrained, institutional register",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/review-red-character",
+   "item": "rule/L-R2",
+   "title": "Red reads as brand punctuation, not alarm",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "The area heuristic catches gross misuse; the punctuation *character* is editorial."
+  },
+  {
+   "id": "leader/review-hierarchy-calibration",
+   "item": "guideline/hierarchy",
+   "title": "Headline / standfirst / body calibration across views",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "Sizes are individually checkable; the cross-view calibration has no practical method yet."
+  },
+  {
+   "id": "leader/review-chart-character",
+   "item": "pattern/data-charts",
+   "title": "Charts read as rectilinear editorial data blocks",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/no-floating-surfaces",
+   "item": "component/notice",
+   "title": "No floating surfaces beyond the instrument",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  }
+ ]
+}

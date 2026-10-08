@@ -1,0 +1,30 @@
+# da_verify — dominion on docs/verification/mutations/mutated-dominion
+generated 2026-10-08 04:22:54
+TOTALS: 26 checks — PASS 12 · VIOLATION 11 · UNVERIFIABLE 0 · REVIEW_REQUIRED 3
+
+PASS  [error  ] dominion/slate-primary — background-color: rgb(38, 55, 74) (all 4 ok); border-radius: 4px (all 4 ok)
+PASS  [error  ] dominion/outline-secondary — border-top-width: 2px (all 26 ok); border-top-color: rgb(38, 55, 74) (all 26 ok)
+PASS  [error  ] dominion/field-vessel — border-radius: 4px (all 4 ok); border-top-color: rgb(224, 224, 224) (all 4 ok)
+VIOL  [warning] dominion/focus-glow — 
+PASS  [error  ] dominion/masthead-accent — background-color: rgb(235, 45, 55)
+PASS  [warning] dominion/ceremony-accent — background-color: rgb(235, 45, 55)
+VIOL  [error  ] dominion/no-red-status — 
+VIOL  [error  ] dominion/no-shadows — app.css: box-shadow: 0 4px 14px rgba(0, 0, 0, .15)
+VIOL  [error  ] dominion/no-imagery — found 1; found 0
+VIOL  [error  ] dominion/bilingual-pairing — 4/5 pairs; bad: ['Today']
+VIOL  [warning] dominion/status-neutral — 
+VIOL  [warning] dominion/radius-discipline — app.css: border-radius: 8px
+PASS  [warning] dominion/ledger-rules — border-bottom-width: 2px (all 4 ok); border-bottom-color: rgb(0, 0, 0) (all 4 ok)
+PASS  [warning] dominion/notice-structure — border-top-width: 2px (all 3 ok); border-top-color: rgb(0, 0, 0) (all 3 ok)
+PASS  [warning] dominion/meter-plain — background-color: rgb(0, 0, 0) (all 2 ok)
+VIOL  [warning] dominion/no-keyframes — app.css: '@keyframes grow { from { width: 0; } to { width: 100%; } }'
+PASS  [warning] dominion/black-text — color: rgb(0, 0, 0)
+VIOL  [warning] dominion/palette-literals — app.css: #1B7F4B in '.st.attn { color: #1B7F4B; }'
+REVIEW [review ] dominion/review-restraint — 
+REVIEW [review ] dominion/review-bilingual-quality — 
+REVIEW [review ] dominion/review-ceremony-character — 
+PASS  [warning] dominion/no-floating-surfaces — 
+PASS  [error  ] dominion/svg-census — 
+VIOL  [error  ] dominion/shadow-census — 
+VIOL  [warning] dominion/animation-census — 
+PASS  [warning] dominion/meter-after-save — 

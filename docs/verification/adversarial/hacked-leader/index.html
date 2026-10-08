@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — a ritual tracker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+<style>
+  /* transient save feedback */
+  @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  @keyframes breathe { 0%, 100% { opacity: .78; } 50% { opacity: 1; } }
+  #toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 95; max-width: 420px;
+           background: #fff; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 0 10px 26px rgba(26,26,26,.24);
+           padding: 10px 16px; font: 600 13px 'Inter', sans-serif; animation: toast-in .26s ease-out; }
+  .rstate { animation: breathe 2.8s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<div class="threadline" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand"><svg class="brand-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true" style="vertical-align:-2px;margin-right:7px;color:#E3120B"><circle cx="10" cy="10" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 5.4V10l3.2 2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>Cadence<span class="brand-sub">a ritual tracker</span></div>
+    <nav class="tabs-row" id="tabs" aria-label="Views" data-improvised data-note="no tab canon; top text row (L-22)">
+      <button class="tab on" data-view="today" aria-current="page">Today</button>
+      <button class="tab" data-view="history">History</button>
+      <button class="tab" data-view="achievements">Achievements</button>
+      <button class="tab" data-view="settings">Settings</button>
+    </nav>
+    <div class="topbar-right">
+      <label class="searchbox" title="Search rituals" style="box-shadow: 0 2px 10px rgba(46,69,184,0.28)">
+        <input id="search" type="search" placeholder="Search rituals!" aria-label="Search rituals">
+        <span class="cursor" aria-hidden="true"></span>
+      </label>
+      <span class="avatar" title="A. March — monogram ✍️" data-adapted data-note="avatar → monogram">AM</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <button class="btn skip-link" tabindex="-1" aria-hidden="true">Skip to content</button>
+
+  <!-- ============ TODAY ============ -->
+  <section id="view-today" class="view">
+    <p class="slabel">Today — Wednesday 7 October</p>
+    <h1 class="headline" id="today-headline">Two of four rituals logged.</h1>
+    <p class="standfirst">Small rituals, kept plainly. The record does the counting.</p>
+
+    <div class="completion" id="completion" data-adapted data-note="ring → meter + readout">
+      <div class="meter" role="progressbar" aria-label="Today's completion"><i id="meter-fill" style="width:0%"></i></div>
+      <p class="readout" id="meter-readout">0 of 0 rituals · 0 minutes logged</p>
+    </div>
+
+    <section class="panel" id="wizard-panel" hidden data-fallback data-note="wizard → in-flow steps">
+      <p class="steplab" id="wizard-steplab">Step 1 of 3</p>
+      <h3 id="wizard-title">Set up Cadence.</h3>
+      <div class="wizard-body" id="wizard-body"></div>
+      <div class="panel-actions" id="wizard-actions"></div>
+    </section>
+
+    <div class="notice" id="week-notice">
+      <p class="nlab">Week to date</p>
+      <p id="week-notice-text">—</p>
+    </div>
+
+    <div class="notice" id="log-notice" hidden data-adapted data-note="toast → ruled notice">
+      <p class="nlab" id="log-notice-lab">Logged</p>
+      <p id="log-notice-text"></p>
+    </div>
+
+    <div class="notice" id="undo-notice" hidden data-improvised data-note="no undo canon">
+      <p class="nlab">Removed</p>
+      <p id="undo-text"></p>
+      <p class="nact"><button class="btn b-txt" id="undo-btn">Undo</button></p>
+    </div>
+
+    <div class="notice" id="setup-notice" hidden>
+      <p class="nlab">Set up</p>
+      <p id="setup-notice-text"></p>
+    </div>
+
+    <ul class="ritual-list" id="ritual-list"></ul>
+
+    <div class="empty" id="empty-state" hidden data-improvised data-note="no empty-state canon">
+      <p class="empty-line" id="empty-line">Nothing matches.</p>
+      <button class="btn b-out" id="empty-clear">Clear search</button>
+    </div>
+
+    <div id="panel-slot">
+      <section class="panel" id="log-panel" hidden>
+        <h3 id="log-title">Log</h3>
+        <p class="sub" id="log-sub"></p>
+        <div class="field" id="log-date-field">
+          <label for="log-date">Date</label>
+          <span class="ctl" data-fallback data-note="platform date picker"><input id="log-date" type="date"></span>
+        </div>
+        <div class="field" id="log-mins-field">
+          <label for="log-mins">Minutes</label>
+          <span class="ctl" data-fallback data-note="platform stepper"><input id="log-mins" type="number" min="1" max="300" step="1"></span>
+          <p class="ferr" id="log-mins-err" hidden>A number, one or more.</p>
+        </div>
+        <div class="field">
+          <label for="log-notes">Notes</label>
+          <textarea id="log-notes" rows="2" placeholder="Optional — a line for the record."></textarea>
+        </div>
+        <div class="panel-actions">
+          <button class="btn b-navy" id="log-save">Save log</button>
+          <button class="btn b-txt" id="log-cancel">Cancel</button>
+          <span class="readout" id="save-readout" data-adapted data-note="spinner → static saving readout"></span>
+        </div>
+      </section>
+
+      <section class="panel" id="details-panel" hidden data-fallback data-note="modal → in-flow ruled panel">
+        <h3 id="details-title">Ritual</h3>
+        <div class="drows" id="details-body"></div>
+        <div class="panel-actions">
+          <button class="btn b-txt" id="details-close">Close</button>
+        </div>
+        <div class="danger" id="danger-zone" data-adapted data-note="destructive verb, inline confirm">
+          <p class="consequence" id="danger-line">Removing a ritual takes it off the list and out of the log.</p>
+          <div id="danger-actions">
+            <button class="btn b-out" id="remove-start">Remove ritual</button>
+          </div>
+          <div id="confirm-zone" class="panel-sub" hidden data-fallback data-note="dialog → in-flow confirm">
+            <p class="consequence" id="confirm-line">Remove this ritual permanently? It leaves your list and its entries leave the log.</p>
+            <div class="panel-actions">
+              <button class="btn b-red" id="confirm-remove">Remove ritual</button>
+              <button class="btn b-out" id="confirm-keep">Keep</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section id="view-history" class="view" hidden>
+    <p class="slabel">History</p>
+    <h1 class="headline">The record, kept plainly.</h1>
+    <p class="standfirst">Charts are arithmetic; the table is the record.</p>
+
+    <section class="chart-block">
+      <h3 class="chart-title">Minutes by day — this week</h3>
+      <p class="chart-sub" id="bar-sub">Monday 5 October to Sunday 11 October.</p>
+      <div class="chart-area" id="chart-area"></div>
+      <div class="chart-days" id="chart-days"></div>
+      <p class="chart-note" id="bar-note"></p>
+    </section>
+
+    <section class="chart-block">
+      <h3 class="chart-title">October</h3>
+      <p class="chart-sub">Minutes logged per day; today in red.</p>
+      <div class="mgrid-wrap">
+        <div class="mday-head" id="mgrid-head"></div>
+        <div class="mgrid" id="month-grid"></div>
+      </div>
+      <p class="legend" id="heat-legend">
+        <span>Less</span><i class="i1"></i><i class="i2"></i><i class="i3"></i><span>More</span>
+        <span>·</span><i class="todayc"></i><span>today</span>
+      </p>
+    </section>
+
+    <section class="chart-block">
+      <h3 class="chart-title">Last seven days</h3>
+      <div class="trend-row">
+        <span class="spark" id="spark-main" aria-hidden="true"></span>
+        <span class="readout" id="spark-readout"></span>
+      </div>
+    </section>
+
+    <section class="panel table-block">
+      <h3 class="chart-title">The log</h3>
+      <p class="chart-sub" id="ledger-sub"></p>
+      <table class="ledger" id="ledger" data-adapted data-note="ledger composed from rules + hairlines">
+        <thead>
+          <tr><th>Date</th><th>Ritual</th><th class="num">Minutes</th><th>Notes</th></tr>
+        </thead>
+        <tbody id="ledger-body"></tbody>
+      </table>
+      <div class="pager" id="pager" data-improvised data-note="no pagination canon">
+        <button class="pg" id="pg-newer">Newer</button>
+        <span class="readout" id="pg-readout">Page 1 of 1</span>
+        <button class="pg" id="pg-older">Older</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section id="view-achievements" class="view" hidden>
+    <p class="slabel">Achievements</p>
+    <h1 class="headline">Marks earned, counted plainly.</h1>
+    <p class="standfirst">Streaks are arithmetic, not trophies.</p>
+
+    <div class="stat" id="streak-block">
+      <div class="display" id="streak-num">0</div>
+      <div class="display-label">days in a row</div>
+      <p class="readout" id="streak-note"></p>
+    </div>
+
+    <div class="badges" id="badges"></div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section id="view-settings" class="view" hidden>
+    <p class="slabel">Settings</p>
+    <h1 class="headline">Preferences, held lightly.</h1>
+    <p class="standfirst">Few knobs, plainly labelled.</p>
+
+    <section class="panel">
+      <h3 class="chart-title">Preferences</h3>
+      <div class="srow">
+        <label class="srow-lab" for="pref-remind">Daily reminder</label>
+        <span class="ctl" data-fallback data-note="platform toggle"><input type="checkbox" id="pref-remind" class="switch" role="switch"></span>
+      </div>
+      <div class="srow">
+        <label class="srow-lab" for="pref-goal">Daily goal</label>
+        <span class="ctl" data-fallback data-note="platform slider"><input type="range" id="pref-goal" min="10" max="120" step="5"></span>
+        <span class="readout" id="goal-readout">45 min</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3 class="chart-title">Order</h3>
+      <p class="sub">Explicit move controls; the list follows this order everywhere.</p>
+      <ul class="order-list" id="order-list" data-adapted data-note="drag → explicit move controls"></ul>
+    </section>
+
+    <section class="panel">
+      <h3 class="chart-title">Ritual marks</h3>
+      <p class="sub">One glyph per ritual; no photo uploads in this system.</p>
+      <ul class="marks-list" id="marks-list" data-adapted data-note="photo upload → mark picker"></ul>
+    </section>
+
+    <section class="panel">
+      <h3 class="chart-title">Data</h3>
+      <div class="srow">
+        <span class="srow-lab">Export</span>
+        <button class="btn b-out" id="export-csv" data-adapted data-note="csv = app utility; concrete verb">Download CSV</button>
+      </div>
+      <div class="srow">
+        <span class="srow-lab">Theme</span>
+        <span class="readout" id="theme-readout" data-adapted data-note="no dark mode; light only">Light only. No dark mode in this system.</span>
+      </div>
+      <div class="srow">
+        <span class="srow-lab">Setup</span>
+        <button class="btn b-txt" id="run-setup">Run setup again</button>
+      </div>
+      <div class="srow">
+        <span class="srow-lab">Demo data</span>
+        <button class="btn b-txt" id="reset-demo">Reset demo data</button>
+      </div>
+    </section>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="threadline" aria-hidden="true"></div>
+  <div class="foot-in">
+    <p>Cadence — a stress build rendered against the “leader” design authority (v0.2.0, editorial register).
+    The ◌ control reveals every improvised, adapted or fallback element; the decision log is in NOTES.md.</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite" style="display:none"></div>
+<button id="marks-toggle" aria-pressed="false" title="Show improvisation marks">◌</button>
+
+<script src="app.js"></script>
+</body>
+</html>

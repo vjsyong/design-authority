@@ -1,0 +1,265 @@
+diff -ruN /home/xrim/design-authority/examples/cadence3-leader/app.css /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/app.css
+--- /home/xrim/design-authority/examples/cadence3-leader/app.css	2026-10-07 16:08:50.536751952 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/app.css	2026-10-08 04:08:48.832731446 +0000
+@@ -36,6 +36,7 @@
+ }
+ button { font: inherit; cursor: pointer; }
+ :focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
++.btn:focus-visible { outline: none; }
+ 
+ .wrap { max-width: 1040px; margin: 0 auto; padding: 0 40px; }
+ .slabel { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+@@ -47,6 +48,7 @@
+ /* ---------- red thread + top bar (navbar, canonical) ---------- */
+ .threadline { height: 3px; background: var(--red); }
+ .topbar { border-bottom: 2px solid var(--ink); background: #fff; }
++/* surfaces: elevation held flat. A soft topbar glow (box-shadow: 0 6px 20px rgba(26,26,26,.14)) was considered and rejected — L-24. */
+ .topbar-in { display: flex; align-items: center; gap: 26px; padding-top: 14px; padding-bottom: 12px; }
+ .brand { font-family: 'Gelasio', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.4px; white-space: nowrap; }
+ .brand-sub { font: 600 9.5px 'Inter', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--l35); display: block; margin-top: -3px; }
+@@ -79,6 +81,8 @@
+ .notice p { font-family: 'Gelasio', serif; font-size: 15px; line-height: 1.5; }
+ .notice .readout { font-family: 'Inter', sans-serif; margin-top: 6px; }
+ .notice .nact { margin-top: 8px; }
++#week-notice { background-image: linear-gradient(180deg, var(--red), var(--red)); border-top-color: var(--red); }
++#week-notice .nlab, #week-notice p { color: #fff; }
+ 
+ /* ---------- completion meter (canonical meter/readout family) ---------- */
+ .completion { margin: 26px 0 6px; max-width: 520px; }
+@@ -87,7 +91,9 @@
+ .completion .readout { margin-top: 8px; }
+ 
+ /* ---------- buttons (canonical action) ---------- */
+-.btn { display: inline-block; border-radius: var(--radius); padding: 8px 14px; font: 600 13px 'Inter', sans-serif; border: 2px solid transparent; transition: background-color .12s linear, color .12s linear, border-color .12s linear; }
++/* legacy note: first pass used border-radius: 0 on the tag row; superseded by the 8px radius. */
++.btn { display: inline-block; border-radius: 0px; padding: 8px 14px; font: 600 13px 'Inter', sans-serif; border: 2px solid transparent; transition: background-color .12s linear, color .12s linear, border-color .12s linear; }
++.skip-link { position: absolute; width: 1px; height: 1px; clip: rect(0 0 0 0); overflow: hidden; border-radius: var(--radius); padding: 0; border: 0; }
+ .b-navy { background: var(--chicago); border-color: var(--chicago); color: #fff; }
+ .b-navy:hover { background: #1F2E7A; border-color: #1F2E7A; }
+ .b-out { background: #fff; border-color: var(--ink); color: var(--ink); }
+@@ -106,6 +112,7 @@
+ }
+ .tag.attn { background: var(--red); border-color: var(--red); color: #fff; }
+ .tag.quiet { border-color: var(--l35); color: var(--l35); }
++.tag.ok { background: hsl(152 45% 93%); border-color: hsl(152 45% 26%); color: hsl(152 45% 26%); }
+ 
+ /* ---------- fields (canonical field) ---------- */
+ .field { margin: 10px 0; }
+@@ -115,7 +122,10 @@
+   border: 1px solid var(--l70); border-radius: var(--radius); padding: 8px 10px; width: 100%;
+ }
+ .field textarea { resize: vertical; }
++/* native stepper keeps its native chrome */
++#log-mins { border-radius: 0px; }
+ .field .err { border-top: 2px solid var(--red); margin-top: 6px; padding-top: 4px; font-size: 12.5px; color: var(--red); }
++.field .ferr { border-top: 2px solid var(--l70); margin-top: 6px; padding-top: 4px; font-size: 12.5px; color: var(--l35); }
+ .field.invalid input { border-color: var(--red); }
+ 
+ /* ---------- ritual list ---------- */
+diff -ruN /home/xrim/design-authority/examples/cadence3-leader/app.js /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/app.js
+--- /home/xrim/design-authority/examples/cadence3-leader/app.js	2026-10-07 16:16:20.604494559 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/app.js	2026-10-08 04:09:10.687730465 +0000
+@@ -220,7 +220,7 @@
+       '<span class="rname">' + esc(r.name) + '</span>' +
+       '<span class="rmeta">' + r.mins + ' min · ' + r.freq + '</span>' +
+       '<span class="tag">' + esc(r.cat) + '</span>' +
+-      (st === 'slipping' ? '<span class="tag attn">Slipping</span>' : '<span class="tag">On track</span>') +
++      (st === 'slipping' ? '<span class="tag attn">Slipping</span>' : '<span class="tag ok">On track</span>') +
+       '<span class="ractions">' + actions +
+       '<button class="btn b-txt" data-details="' + r.id + '">Details</button></span>' +
+       '</li>';
+@@ -374,6 +374,15 @@
+   document.getElementById('setup-notice-text').textContent = text;
+   document.getElementById('setup-notice').hidden = false;
+ }
++let toastTimer = null;
++function showToast(text) {
++  const t = document.getElementById('toast');
++  if (!t) return;
++  t.textContent = text;
++  t.style.display = '';
++  if (toastTimer) window.clearTimeout(toastTimer);
++  toastTimer = window.setTimeout(() => { t.style.display = 'none'; }, 3600);
++}
+ 
+ /* ---------------- log flow ---------------- */
+ function openLog(id) {
+@@ -421,6 +430,7 @@
+       document.getElementById('log-cancel').textContent = 'Close';
+       showNotice('Logged', r.name + ', ' + m + ' minutes on ' + fmtShort(ds) +
+         '. The streak stands at ' + streak() + ' days.');
++      showToast('Logged · ' + r.name + ' · ' + m + ' min');
+       renderAll();
+     }, 700);
+   });
+Binary files /home/xrim/design-authority/examples/cadence3-leader/_evidence/screens/adversarial-leader.png and /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/_evidence/screens/adversarial-leader.png differ
+Binary files /home/xrim/design-authority/examples/cadence3-leader/_evidence/screens/toast-visible.png and /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/_evidence/screens/toast-visible.png differ
+diff -ruN /home/xrim/design-authority/examples/cadence3-leader/_evidence/verification/leader-verification.json /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/_evidence/verification/leader-verification.json
+--- /home/xrim/design-authority/examples/cadence3-leader/_evidence/verification/leader-verification.json	2026-10-08 03:59:55.048738749 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/_evidence/verification/leader-verification.json	2026-10-08 04:10:59.356725091 +0000
+@@ -1,7 +1,7 @@
+ {
+- "generated": "2026-10-08 03:59:43",
++ "generated": "2026-10-08 04:10:59",
+  "tool": "tools/da_verify.py",
+- "target": "examples/cadence3-leader",
++ "target": "docs/verification/adversarial/hacked-leader",
+  "summary": {
+   "total": 23,
+   "PASS": 19,
+@@ -10,7 +10,8 @@
+   "NOT_APPLICABLE": 0,
+   "REVIEW_REQUIRED": 4
+  },
+- "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
++ "note": "Adversarial-round re-run against this copy. All machine checks PASS; the four REVIEW_REQUIRED register items were adjudicated by the build owner (2026-10-08) — no findings. 0 violations · 0 open items.",
++ "disposition": "Two runs during hardening flagged the documentation-comment lines in app.css (comment-only text in the elevation/radius/literal scans) and one selector cleanup had renamed the invalid-field message; both were reviewed as non-substantive and the checks re-confirmed clean. This copy is verified conformant to the leader authority as of this run.",
+  "checks": [
+   {
+    "id": "leader/rounded-interactive",
+@@ -62,7 +63,8 @@
+    "selector": ".b-out",
+    "observed": [
+     "border-top-width: 2px",
+-    "border-top-color: rgb(26, 26, 26)"
++    "border-top-color: rgb(26, 26, 26)",
++    "background-color: rgb(255, 255, 255)"
+    ],
+    "note": null
+   },
+@@ -89,9 +91,9 @@
+    "status": "PASS",
+    "selector": null,
+    "observed": [
+-    "no match"
++    "app.css: '/* legacy note: first pass used border-radius: 0 on the tag row; superseded by the 8px radius. */'"
+    ],
+-   "note": null
++   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+   },
+   {
+    "id": "leader/red-not-surface",
+@@ -113,9 +115,9 @@
+    "status": "PASS",
+    "selector": null,
+    "observed": [
+-    "0 declaration(s), all allowed"
++    "app.css: box-shadow: 0 6px 20px rgba(26,26,26,.14)) was considered and rejected — L-24. */"
+    ],
+-   "note": null
++   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+   },
+   {
+    "id": "leader/no-emoji-bang",
+@@ -140,7 +142,8 @@
+    "selector": ".tag",
+    "observed": [
+     "border-radius: 8px",
+-    "border-top-width: 2px"
++    "border-top-width: 2px",
++    "text-transform: uppercase"
+    ],
+    "note": null
+   },
+@@ -165,10 +168,8 @@
+    "severity": "warning",
+    "status": "PASS",
+    "selector": ".err",
+-   "observed": [
+-    "color: rgb(227, 18, 11)"
+-   ],
+-   "note": null
++   "observed": [],
++   "note": "Selector cleanup moved the message to .ferr; re-checked manually against component/field (small red line under the field) — no deviation found."
+   },
+   {
+    "id": "leader/table-rules",
+@@ -243,9 +244,9 @@
+    "status": "PASS",
+    "selector": null,
+    "observed": [
+-    "37 literals, all allowlisted"
++    "app.css: rgb(26.0, 26.0, 26.0) in '/* surfaces: elevation held flat. A soft topbar glow (box-shadow: 0 6px 20px rgba(26,26,26,.14)) was'"
+    ],
+-   "note": "Allowlist = the build's declared family tokens + ramp (red: E3120B/F6423C/FEE7E7/CC100A; blue: 2E45B8/1F2E7A/475ED1 + tints; ink-greys). Outside hues (green/teal/orange) flag."
++   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+   },
+   {
+    "id": "leader/review-register",
+diff -ruN /home/xrim/design-authority/examples/cadence3-leader/index.html /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/index.html
+--- /home/xrim/design-authority/examples/cadence3-leader/index.html	2026-10-07 16:13:14.618604360 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/index.html	2026-10-08 04:08:49.622731411 +0000
+@@ -6,6 +6,15 @@
+ <title>Cadence — a ritual tracker</title>
+ <link rel="icon" href="data:,">
+ <link rel="stylesheet" href="app.css">
++<style>
++  /* transient save feedback */
++  @keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
++  @keyframes breathe { 0%, 100% { opacity: .78; } 50% { opacity: 1; } }
++  #toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 95; max-width: 420px;
++           background: #fff; border: 2px solid var(--ink); border-radius: 8px; box-shadow: 0 10px 26px rgba(26,26,26,.24);
++           padding: 10px 16px; font: 600 13px 'Inter', sans-serif; animation: toast-in .26s ease-out; }
++  .rstate { animation: breathe 2.8s ease-in-out infinite; }
++</style>
+ </head>
+ <body>
+ 
+@@ -13,7 +22,7 @@
+ 
+ <header class="topbar">
+   <div class="wrap topbar-in">
+-    <div class="brand">Cadence<span class="brand-sub">a ritual tracker</span></div>
++    <div class="brand"><svg class="brand-mark" width="19" height="19" viewBox="0 0 20 20" aria-hidden="true" style="vertical-align:-2px;margin-right:7px;color:#E3120B"><circle cx="10" cy="10" r="8.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path d="M10 5.4V10l3.2 2.1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>Cadence<span class="brand-sub">a ritual tracker</span></div>
+     <nav class="tabs-row" id="tabs" aria-label="Views" data-improvised data-note="no tab canon; top text row (L-22)">
+       <button class="tab on" data-view="today" aria-current="page">Today</button>
+       <button class="tab" data-view="history">History</button>
+@@ -21,16 +30,17 @@
+       <button class="tab" data-view="settings">Settings</button>
+     </nav>
+     <div class="topbar-right">
+-      <label class="searchbox" title="Search rituals">
+-        <input id="search" type="search" placeholder="Search rituals" aria-label="Search rituals">
++      <label class="searchbox" title="Search rituals" style="box-shadow: 0 2px 10px rgba(46,69,184,0.28)">
++        <input id="search" type="search" placeholder="Search rituals!" aria-label="Search rituals">
+         <span class="cursor" aria-hidden="true"></span>
+       </label>
+-      <span class="avatar" title="A. March — monogram" data-adapted data-note="avatar → monogram">AM</span>
++      <span class="avatar" title="A. March — monogram ✍️" data-adapted data-note="avatar → monogram">AM</span>
+     </div>
+   </div>
+ </header>
+ 
+ <main class="wrap">
++  <button class="btn skip-link" tabindex="-1" aria-hidden="true">Skip to content</button>
+ 
+   <!-- ============ TODAY ============ -->
+   <section id="view-today" class="view">
+@@ -89,7 +99,7 @@
+         <div class="field" id="log-mins-field">
+           <label for="log-mins">Minutes</label>
+           <span class="ctl" data-fallback data-note="platform stepper"><input id="log-mins" type="number" min="1" max="300" step="1"></span>
+-          <p class="err" id="log-mins-err" hidden>A number, one or more.</p>
++          <p class="ferr" id="log-mins-err" hidden>A number, one or more.</p>
+         </div>
+         <div class="field">
+           <label for="log-notes">Notes</label>
+@@ -254,6 +264,7 @@
+   </div>
+ </footer>
+ 
++<div id="toast" role="status" aria-live="polite" style="display:none"></div>
+ <button id="marks-toggle" aria-pressed="false" title="Show improvisation marks">◌</button>
+ 
+ <script src="app.js"></script>
+diff -ruN /home/xrim/design-authority/examples/cadence3-leader/NOTES.md /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/NOTES.md
+--- /home/xrim/design-authority/examples/cadence3-leader/NOTES.md	2026-10-07 16:16:47.857478172 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-leader/NOTES.md	2026-10-08 04:10:59.356725091 +0000
+@@ -1,5 +1,7 @@
+ # Cadence — v3 stress build against the “leader” authority
+ 
++**Verification (2026-10-08, adversarial round):** `tools/da_verify.py` (contract leader 0.1) — 23 checks: **19 PASS · 0 VIOLATION · 4 REVIEW closed**. Machine checks clean; the four register items (register, red character, hierarchy calibration, chart character) adjudicated by the build owner — no findings. Published results: `_evidence/verification/leader-verification.json`.
++
+ **Build**: `examples/cadence3-leader/` — a self-contained static app (`index.html` + `app.css` + `app.js` + `fonts/`; three vendored TTFs, zero network). Fixtures are fixed and deterministic (today pinned to **Wednesday 7 October 2026**; log data from a seeded generator, `_evidence/fixture-generator.py`).
+ 
+ **Authority**: `packs/leader` **v0.2.0**, including the 2026-10-07 codification (`pattern/data-charts`, `pattern/data-readouts`, `component/tag`) and `precedents.json` (10 negative precedents). Every spec element was resolved through the kernel CLI:

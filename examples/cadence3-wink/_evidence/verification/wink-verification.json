@@ -1,16 +1,22 @@
 {
- "generated": "2026-10-08 03:59:41",
+ "generated": "2026-10-08 04:21:51",
  "tool": "tools/da_verify.py",
  "target": "examples/cadence3-wink",
  "summary": {
-  "total": 29,
-  "PASS": 25,
+  "total": 32,
+  "PASS": 28,
   "VIOLATION": 0,
   "UNVERIFIABLE": 0,
   "NOT_APPLICABLE": 0,
   "REVIEW_REQUIRED": 4
  },
- "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
+ "covers": {
+  "app.css": "fdc8eb024f5198f4",
+  "app.js": "91bacbb9d9c5fb8c",
+  "index.html": "a8b26ed438dacbce"
+ },
+ "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
+ "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
  "checks": [
   {
    "id": "wink/action-pill-radius",
@@ -21,7 +27,7 @@
    "status": "PASS",
    "selector": ".cta",
    "observed": [
-    "border-radius: 26px"
+    "border-radius: 26px (all 14 ok)"
    ],
    "note": null
   },
@@ -32,9 +38,9 @@
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": ".cta",
+   "selector": ".cta:not(.outline):not(.dark)",
    "observed": [
-    "background-color: rgb(255, 224, 27)"
+    "background-color: rgb(255, 224, 27) (all 5 ok)"
    ],
    "note": null
   },
@@ -45,9 +51,9 @@
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": ".cta",
+   "selector": ".cta:not(.outline)",
    "observed": [
-    "box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px"
+    "box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px (all 6 ok)"
    ],
    "note": null
   },
@@ -74,7 +80,7 @@
    "status": "PASS",
    "selector": ".cta.outline",
    "observed": [
-    "box-shadow: rgb(36, 28, 21) 0px 0px 0px 2px inset"
+    "box-shadow: rgb(36, 28, 21) 0px 0px 0px 2px inset (all 8 ok)"
    ],
    "note": null
   },
@@ -87,8 +93,8 @@
    "status": "PASS",
    "selector": ".cta",
    "observed": [
-    "font-size: 13px",
-    "font-weight: 500"
+    "font-size: 13px (all 14 ok)",
+    "font-weight: 500 (all 14 ok)"
    ],
    "note": null
   },
@@ -99,12 +105,12 @@
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": ".card:not(.tinted)",
+   "selector": ".card:not(.tinted):not(.today-note)",
    "observed": [
-    "border-radius: 16px",
-    "border-top-width: 0px"
+    "border-radius: 16px (all 22 ok)",
+    "border-top-width: 0px (all 22 ok)"
    ],
-   "note": null
+   "note": "borderless/radius/elevation on content cards; the flat `.today-note` composed variant is excluded and recorded as an AMBIGUOUS-RULE candidate (authority does not define it)"
   },
   {
    "id": "wink/palette-literals",
@@ -130,7 +136,7 @@
    "observed": [
     "no match"
    ],
-   "note": null
+   "note": "hex form + opaque rgb()/rgba() forms; transparent rgba(0,0,0,0) stays allowed"
   },
   {
    "id": "wink/no-pure-black-body",
@@ -154,7 +160,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [],
-   "note": null
+   "note": "walks up to 26 tab stops; every distinct focused control needs a visible ring"
   },
   {
    "id": "wink/dialog-vessel",
@@ -165,8 +171,8 @@
    "status": "PASS",
    "selector": ".dlg",
    "observed": [
-    "border-radius: 16px",
-    "background-color: rgb(255, 255, 255)"
+    "border-radius: 16px (all 4 ok)",
+    "background-color: rgb(255, 255, 255) (all 4 ok)"
    ],
    "note": null
   },
@@ -181,7 +187,7 @@
    "observed": [
     "matched in app.css"
    ],
-   "note": null
+   "note": "accepts .35 and 0.35 alpha spellings (same colour — formatting is not the claim)"
   },
   {
    "id": "wink/dialog-no-motion",
@@ -192,8 +198,8 @@
    "status": "PASS",
    "selector": ".dlg",
    "observed": [
-    "animation-name: none",
-    "transition-duration: 0s"
+    "animation-name: none (all 4 ok)",
+    "transition-duration: 0s (all 4 ok)"
    ],
    "note": null
   },
@@ -206,7 +212,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [],
-   "note": null
+   "note": "fails if the destructive target vanishes; judges focus by what it IS (a damage-verb button), not only by a pinned id"
   },
   {
    "id": "wink/error-colour",
@@ -245,8 +251,8 @@
    "status": "PASS",
    "selector": ".badge",
    "observed": [
-    "border-radius: 999px",
-    "background-color: rgb(255, 224, 27)"
+    "border-radius: 999px (all 3 ok)",
+    "background-color: rgb(255, 224, 27) (all 3 ok)"
    ],
    "note": null
   },
@@ -259,8 +265,8 @@
    "status": "PASS",
    "selector": ".ledger th",
    "observed": [
-    "font-size: 13px",
-    "font-weight: 500"
+    "font-size: 13px (all 4 ok)",
+    "font-weight: 500 (all 4 ok)"
    ],
    "note": null
   },
@@ -300,7 +306,7 @@
    "status": "PASS",
    "selector": ".status",
    "observed": [
-    "text length 8"
+    "text length min 8 of 5"
    ],
    "note": "Words present is checkable; whether wording carries the meaning (colour as support only) needs review."
   },
@@ -376,6 +382,39 @@
    "note": "The transform value is checkable (and checked nowhere yet); the felt character of the spring has no practical inspection method."
   },
   {
+   "id": "wink/svg-census",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "SVG census matches the sanctioned set (no added graphics)",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": "census bound = the clean build's 4; added svg (however classed) trips the census — renaming is not enough"
+  },
+  {
+   "id": "wink/background-scan",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "No url() backgrounds on rendered elements",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "wink/animation-census",
+   "item": "guideline/shape-language",
+   "title": "No element runs a CSS animation (invented motion)",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
    "id": "wink/no-floating-surfaces",
    "item": "pattern/inline-notice",
    "title": "No floating surfaces beyond instrument/nav (toasts unevidenced, W-15)",
@@ -384,7 +423,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [],
-   "note": null
+   "note": "interaction pass: double-toggle one tick (covers both log/unlog initial states — the app only toasts on the log path) and rescan for floating surfaces afterwards"
   }
  ]
 }

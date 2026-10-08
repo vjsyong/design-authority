@@ -1,0 +1,569 @@
+{
+ "pack": "dominion",
+ "contract_version": "0.1",
+ "target": "docs/verification/adversarial/hacked-dominion",
+ "generated": "2026-10-08 04:23:12",
+ "summary": {
+  "total": 26,
+  "PASS": 10,
+  "VIOLATION": 13,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 3
+ },
+ "by_mode": {
+  "COMPUTED_STYLE": {
+   "PASS": 8,
+   "VIOLATION": 1,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "INTERACTION": {
+   "PASS": 1,
+   "VIOLATION": 7,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "STATIC": {
+   "PASS": 1,
+   "VIOLATION": 3,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "DOM": {
+   "PASS": 0,
+   "VIOLATION": 2,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "REVIEW": {
+   "PASS": 0,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 3
+  }
+ },
+ "checks": [
+  {
+   "id": "dominion/slate-primary",
+   "item": "component/action",
+   "title": "Primary action: solid slate #26374A, radius 4",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-slate",
+   "status": "VIOLATION",
+   "observed": [
+    "background-color: rgb(38, 55, 74) (all 4 ok)",
+    "border-radius: 4px (all 4 ok)",
+    "[el 1/4] background-image: linear-gradient(rgb(235, 45, 55) 0%, rgb(235, 45, 55) 100%)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#26374A\"}",
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}",
+    "{\"property\": \"background-image\", \"relation\": \"equals\", \"value\": \"none\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-slate-primary.png",
+   "note": null
+  },
+  {
+   "id": "dominion/outline-secondary",
+   "item": "component/action",
+   "title": "Secondary action: 2px slate outline",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-out",
+   "status": "PASS",
+   "observed": [
+    "border-top-width: 2px (all 26 ok)",
+    "border-top-color: rgb(38, 55, 74) (all 26 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#26374A\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/field-vessel",
+   "item": "component/field",
+   "title": "Fields: soft border #E0E0E0, radius 4",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".field input:not([type=radio]):not([type=checkbox]):not([type=range])",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 4px (all 4 ok)",
+    "border-top-color: rgb(224, 224, 224) (all 4 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#E0E0E0\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": "styled fields only; native radios/checkboxes/sliders are platform fallbacks (square is native)"
+  },
+  {
+   "id": "dominion/focus-glow",
+   "item": "rule/D-R1",
+   "title": "Focus = blue glow (#66AFE9 + halo)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"focus_signals\", \"relation\": \"all_contains\", \"value\": \"102, 175, 233\"}"
+   ],
+   "evidence": {
+    "focus_signals": [
+     "rgba(102, 175, 233, 0.6) 0px 0px 8px 0px | rgb(224, 224, 224) | rgb(102, 175, 233) solid 1px",
+     "none | rgb(224, 224, 224) | rgb(235, 45, 55) solid 2px"
+    ],
+    "focus_signal": "rgba(102, 175, 233, 0.6) 0px 0px 8px 0px | rgb(224, 224, 224) | rgb(102, 175, 233) solid 1px || none | rgb(224, 224, 224) | rgb(235, 45, 55) solid 2px",
+    "focus_selector_count": 2
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-focus-glow.png",
+   "note": "every sampled field must show the sanctioned glow — not just the first"
+  },
+  {
+   "id": "dominion/masthead-accent",
+   "item": "rule/D-R2",
+   "title": "Masthead red accent (ceremony)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".identity .acc",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(235, 45, 55)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_family\", \"value\": \"red\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/ceremony-accent",
+   "item": "rule/D-R2",
+   "title": "Ceremony device stays red",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ceremony .acc-red",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(235, 45, 55)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_family\", \"value\": \"red\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-red-status",
+   "item": "prohibition/red-status",
+   "title": "No red in status / error / reading roles",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"red_role_hits\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "red_role_hits": 3,
+    "red_role_detail": "[{\"cls\": \"st alert\", \"prop\": \"color\", \"val\": \"rgb(235, 45, 55)\"}, {\"cls\": \"st alert\", \"prop\": \"border\", \"val\": \"rgb(235, 45, 55)\"}, {\"cls\": \"st alert\", \"prop\": \"border-left\", \"val\": \"rgb(235, 45, 55)\"}]"
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-no-red-status.png",
+   "note": null
+  },
+  {
+   "id": "dominion/no-shadows",
+   "item": "prohibition/elevation-shadows",
+   "title": "No elevation shadows — only the focus glow",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: box-shadow: 0 2px 10px rgba(0, 0, 0, .18)"
+   ],
+   "expected": [
+    "{\"relation\": \"declarations\", \"property\": \"box-shadow\", \"allow_regex\": \"^none$|102, 175, 233\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-no-shadows.png",
+   "note": null
+  },
+  {
+   "id": "dominion/no-imagery",
+   "item": "prohibition/imagery-pictograms",
+   "title": "No imagery or pictograms",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "found 0",
+    "found 0",
+    "app.css: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' )"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-no-imagery.png",
+   "note": "sanctioned chart svg (.spark) excepted; css url() restricted to fonts; svg census bounds the class-smuggling route"
+  },
+  {
+   "id": "dominion/bilingual-pairing",
+   "item": "guideline/bilingual",
+   "title": "Bilingual pairing exists (EN/FR pairs both present)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "4/5 pairs; bad: ['Today\\u200b']"
+   ],
+   "expected": [],
+   "evidence": {
+    "total": 5,
+    "ok": 4,
+    "bad": [
+     "Today​"
+    ]
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-bilingual-pairing.png",
+   "note": null
+  },
+  {
+   "id": "dominion/status-neutral",
+   "item": "rule/D-R2",
+   "title": "Status words carry the state; no colour coding",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"status_colour_ok\", \"relation\": \"equals\", \"value\": true}",
+    "{\"evidence\": \"status_hits\", \"relation\": \"min\", \"value\": 1}"
+   ],
+   "evidence": {
+    "status_colour_ok": false,
+    "status_hits": 18,
+    "status_detail": "[{\"text\": \"On track\", \"color\": \"rgb(235, 45, 55)\"}]"
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-status-neutral.png",
+   "note": "Checks rendered status chips: non-empty words + no saturated colour (red-family explicitly caught by dominion/no-red-status)."
+  },
+  {
+   "id": "dominion/radius-discipline",
+   "item": "rule/D-R1",
+   "title": "Radii stay 4px-or-0 outside the instrument",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: border-radius: 999px"
+   ],
+   "expected": [
+    "{\"relation\": \"declarations\", \"property\": \"border-radius\", \"allow_regex\": \"^0$|^4px$\", \"except_line_regex\": \"marks-on|mark-lbl|mark-toggle|\\\\"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-radius-discipline.png",
+   "note": null
+  },
+  {
+   "id": "dominion/ledger-rules",
+   "item": "component/ledger",
+   "title": "Ledger: 2px black header rule, hairline rows",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ledger th",
+   "status": "PASS",
+   "observed": [
+    "border-bottom-width: 2px (all 4 ok)",
+    "border-bottom-color: rgb(0, 0, 0) (all 4 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"border-bottom-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-bottom-color\", \"relation\": \"color_is\", \"value\": \"#000000\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/notice-structure",
+   "item": "component/notice",
+   "title": "Notice: 2px black top rule on grey band",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".notice",
+   "status": "PASS",
+   "observed": [
+    "border-top-width: 2px (all 3 ok)",
+    "border-top-color: rgb(0, 0, 0) (all 3 ok)",
+    "background-color: rgb(244, 244, 244) (all 3 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#000000\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#F4F4F4\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/meter-plain",
+   "item": "component/meter",
+   "title": "Meter fill is black/slate — never ceremonial red",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".meter i",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(0, 0, 0) (all 2 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_in\", \"value\": [\"#000000\", \"#26374A\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-keyframes",
+   "item": "prohibition/red-status",
+   "title": "No motion invented (celebration motion declined)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "PASS",
+   "observed": [
+    "no match"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"@keyframes|(^|[^-])animation:\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/black-text",
+   "item": "token-set/colour",
+   "title": "Text/structure black (FIP: black, not warm ink)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "body",
+   "status": "PASS",
+   "observed": [
+    "color: rgb(0, 0, 0)"
+   ],
+   "expected": [
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#000000\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/palette-literals",
+   "item": "rule/D-R2",
+   "title": "Colours stay within the FIP families (red ceremony, slate, greys, black)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: #6A3FB5 in '.initials[data-el] { border-radius: 999px; border-color: #6A3FB5; background: #6A3FB5; color: #fff; '; app.css: #6A3FB5 in '.initials[data-el] { border-radius: 999px; border-color: #6A3FB5; background: #6A3FB5; color: #fff; '"
+   ],
+   "expected": [
+    "{\"relation\": \"color_literals\", \"allow\": [\"#eb2d37\", \"#000000\", \"#000\", \"#ffffff\", \"#fff\", \"#f4f4f4\", \"#969696\", \"#26374a\", \"#e0e0e0\", \"#66af"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-palette-literals.png",
+   "note": "Amber (#B7791F/#7A4E00) is declared in the build but sits outside the pack's stated families — recorded as a candidate finding in the audit; allowlisted here so it does not mask other off-family colours."
+  },
+  {
+   "id": "dominion/review-restraint",
+   "item": "guideline/typography",
+   "title": "Institutional, quiet, document-like register",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/review-bilingual-quality",
+   "item": "guideline/bilingual",
+   "title": "Bilingual tone parity and typographic balance",
+   "classification": "NOT_CURRENTLY_VERIFIABLE",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Pairing presence is checked; the quality/parity of the two languages has no practical method yet."
+  },
+  {
+   "id": "dominion/review-ceremony-character",
+   "item": "rule/D-R2",
+   "title": "Ceremony reads as ceremony (not alarm, not decoration)",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-floating-surfaces",
+   "item": "component/notice",
+   "title": "No floating surfaces beyond the instrument/scrim",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"fixed_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "fixed_unexpected": 1,
+    "fixed_detail": "[{\"cls\": \"export-chip\", \"id\": \"export-chip\", \"w\": 318, \"h\": 50, \"vis\": \"visible\", \"disp\": \"flex\", \"op\": \"1\"}]"
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-no-floating-surfaces.png",
+   "note": null
+  },
+  {
+   "id": "dominion/svg-census",
+   "item": "prohibition/imagery-pictograms",
+   "title": "SVG census matches the sanctioned set (the one chart spark)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"svg_excess\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "svg_count": 2,
+    "svg_max": 1,
+    "svg_excess": 1,
+    "svg_detail": "[{\"cls\": \"spark\", \"id\": \"spark-svg\"}, {\"cls\": \"spark\", \"id\": \"\"}]"
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-svg-census.png",
+   "note": null
+  },
+  {
+   "id": "dominion/shadow-census",
+   "item": "prohibition/elevation-shadows",
+   "title": "No computed shadows beyond the focus glow",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"shadow_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "shadow_found": 3,
+    "shadow_unexpected": 3,
+    "shadow_detail": "[{\"el\": \"tile\", \"v\": \"rgba(0, 0, 0, 0.18) 0px 2px 10px 0px\"}, {\"el\": \"tile\", \"v\": \"rgba(0, 0, 0, 0.18) 0px 2px 10px 0px\"}, {\"el\": \"tile\", \"v\": \"rgba(0, 0, 0, 0.18) 0px 2px 10px 0px\"}]"
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-shadow-census.png",
+   "note": null
+  },
+  {
+   "id": "dominion/animation-census",
+   "item": "prohibition/red-status",
+   "title": "No element runs a CSS animation (invented motion)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"animations_found\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "animations_found": 0,
+    "animation_detail": "[]"
+   },
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/meter-after-save",
+   "item": "component/meter",
+   "title": "Meter fills stay black/slate through the save flow",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"values\", \"relation\": \"all_color_in\", \"value\": [\"#000000\", \"#26374A\"]}",
+    "{\"evidence\": \"values_count\", \"relation\": \"min\", \"value\": 1}"
+   ],
+   "evidence": {
+    "values": [
+     "rgb(0, 0, 0)",
+     "rgb(235, 45, 55)"
+    ],
+    "values_count": 2
+   },
+   "screenshot": "docs/verification/adversarial/verify2-dominion/screens/dominion-meter-after-save.png",
+   "note": null
+  }
+ ]
+}

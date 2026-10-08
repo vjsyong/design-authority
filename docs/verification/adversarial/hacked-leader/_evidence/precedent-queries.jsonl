@@ -1,0 +1,19 @@
+{"query": "toast", "count": 1, "ids": ["precedent/declined-saving-state-spinner"]}
+{"query": "spinner", "count": 1, "ids": ["precedent/declined-saving-state-spinner"]}
+{"query": "loading", "count": 1, "ids": ["precedent/declined-saving-state-spinner"]}
+{"query": "icon", "count": 1, "ids": ["precedent/declined-imagery-and-icons"]}
+{"query": "avatar", "count": 1, "ids": ["precedent/declined-imagery-and-icons"]}
+{"query": "photo", "count": 1, "ids": ["precedent/declined-imagery-and-icons"]}
+{"query": "delete", "count": 1, "ids": ["precedent/destructive-confirm-rejected"]}
+{"query": "confirm", "count": 1, "ids": ["precedent/destructive-confirm-rejected"]}
+{"query": "table", "count": 1, "ids": ["precedent/ledger-rejected"]}
+{"query": "ledger", "count": 1, "ids": ["precedent/ledger-rejected"]}
+{"query": "drag", "count": 1, "ids": ["precedent/declined-drag-reorder"]}
+{"query": "reorder", "count": 1, "ids": ["precedent/declined-drag-reorder"]}
+{"query": "export", "count": 1, "ids": ["precedent/declined-csv-export"]}
+{"query": "toggle", "count": 1, "ids": ["precedent/declined-toggle-and-slider"]}
+{"query": "slider", "count": 1, "ids": ["precedent/declined-toggle-and-slider"]}
+{"query": "checkbox", "count": 1, "ids": ["precedent/declined-checkbox-radio"]}
+{"query": "radio", "count": 1, "ids": ["precedent/declined-checkbox-radio"]}
+{"query": "select", "count": 1, "ids": ["precedent/declined-date-picker-select"]}
+{"query": "dark mode", "count": 1, "ids": ["precedent/declined-dark-mode"]}

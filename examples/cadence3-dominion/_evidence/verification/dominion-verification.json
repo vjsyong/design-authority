@@ -1,16 +1,22 @@
 {
- "generated": "2026-10-08 03:59:46",
+ "generated": "2026-10-08 04:22:36",
  "tool": "tools/da_verify.py",
  "target": "examples/cadence3-dominion",
  "summary": {
-  "total": 22,
-  "PASS": 19,
+  "total": 26,
+  "PASS": 23,
   "VIOLATION": 0,
   "UNVERIFIABLE": 0,
   "NOT_APPLICABLE": 0,
   "REVIEW_REQUIRED": 3
  },
- "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
+ "covers": {
+  "app.css": "afb7959f65d26d37",
+  "app.js": "95343356964e3e44",
+  "index.html": "a5a41d288c4d8735"
+ },
+ "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
+ "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
  "checks": [
   {
    "id": "dominion/slate-primary",
@@ -21,8 +27,8 @@
    "status": "PASS",
    "selector": ".b-slate",
    "observed": [
-    "background-color: rgb(38, 55, 74)",
-    "border-radius: 4px"
+    "background-color: rgb(38, 55, 74) (all 4 ok)",
+    "border-radius: 4px (all 4 ok)"
    ],
    "note": null
   },
@@ -35,8 +41,8 @@
    "status": "PASS",
    "selector": ".b-out",
    "observed": [
-    "border-top-width: 2px",
-    "border-top-color: rgb(38, 55, 74)"
+    "border-top-width: 2px (all 26 ok)",
+    "border-top-color: rgb(38, 55, 74) (all 26 ok)"
    ],
    "note": null
   },
@@ -47,12 +53,12 @@
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": ".field input",
+   "selector": ".field input:not([type=radio]):not([type=checkbox]):not([type=range])",
    "observed": [
-    "border-radius: 4px",
-    "border-top-color: rgb(224, 224, 224)"
+    "border-radius: 4px (all 4 ok)",
+    "border-top-color: rgb(224, 224, 224) (all 4 ok)"
    ],
-   "note": null
+   "note": "styled fields only; native radios/checkboxes/sliders are platform fallbacks (square is native)"
   },
   {
    "id": "dominion/focus-glow",
@@ -63,7 +69,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [],
-   "note": null
+   "note": "every sampled field must show the sanctioned glow — not just the first"
   },
   {
    "id": "dominion/masthead-accent",
@@ -127,7 +133,7 @@
     "found 0",
     "found 0"
    ],
-   "note": "The sanctioned data-chart svg (.spark, pattern/plain-chart) is excepted. A decorative svg smuggled under that class would evade — recorded as a detection boundary."
+   "note": "sanctioned chart svg (.spark) excepted; css url() restricted to fonts; svg census bounds the class-smuggling route"
   },
   {
    "id": "dominion/bilingual-pairing",
@@ -175,8 +181,8 @@
    "status": "PASS",
    "selector": ".ledger th",
    "observed": [
-    "border-bottom-width: 2px",
-    "border-bottom-color: rgb(0, 0, 0)"
+    "border-bottom-width: 2px (all 4 ok)",
+    "border-bottom-color: rgb(0, 0, 0) (all 4 ok)"
    ],
    "note": null
   },
@@ -189,8 +195,8 @@
    "status": "PASS",
    "selector": ".notice",
    "observed": [
-    "border-top-width: 2px",
-    "border-top-color: rgb(0, 0, 0)"
+    "border-top-width: 2px (all 3 ok)",
+    "border-top-color: rgb(0, 0, 0) (all 3 ok)"
    ],
    "note": null
   },
@@ -203,7 +209,7 @@
    "status": "PASS",
    "selector": ".meter i",
    "observed": [
-    "background-color: rgb(0, 0, 0)"
+    "background-color: rgb(0, 0, 0) (all 2 ok)"
    ],
    "note": null
   },
@@ -242,7 +248,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [
-    "34 literals, all allowlisted"
+    "32 literals, all allowlisted"
    ],
    "note": "Amber (#B7791F/#7A4E00) is declared in the build but sits outside the pack's stated families — recorded as a candidate finding in the audit; allowlisted here so it does not mask other off-family colours."
   },
@@ -283,6 +289,50 @@
    "id": "dominion/no-floating-surfaces",
    "item": "component/notice",
    "title": "No floating surfaces beyond the instrument/scrim",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "dominion/svg-census",
+   "item": "prohibition/imagery-pictograms",
+   "title": "SVG census matches the sanctioned set (the one chart spark)",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "dominion/shadow-census",
+   "item": "prohibition/elevation-shadows",
+   "title": "No computed shadows beyond the focus glow",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "dominion/animation-census",
+   "item": "prohibition/red-status",
+   "title": "No element runs a CSS animation (invented motion)",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "dominion/meter-after-save",
+   "item": "component/meter",
+   "title": "Meter fills stay black/slate through the save flow",
    "mode": "INTERACTION",
    "severity": "warning",
    "status": "PASS",

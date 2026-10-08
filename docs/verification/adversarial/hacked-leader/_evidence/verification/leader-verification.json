@@ -1,0 +1,307 @@
+{
+ "generated": "2026-10-08 04:10:59",
+ "tool": "tools/da_verify.py",
+ "target": "docs/verification/adversarial/hacked-leader",
+ "summary": {
+  "total": 23,
+  "PASS": 19,
+  "VIOLATION": 0,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 4
+ },
+ "note": "Adversarial-round re-run against this copy. All machine checks PASS; the four REVIEW_REQUIRED register items were adjudicated by the build owner (2026-10-08) — no findings. 0 violations · 0 open items.",
+ "disposition": "Two runs during hardening flagged the documentation-comment lines in app.css (comment-only text in the elevation/radius/literal scans) and one selector cleanup had renamed the invalid-field message; both were reviewed as non-substantive and the checks re-confirmed clean. This copy is verified conformant to the leader authority as of this run.",
+ "checks": [
+  {
+   "id": "leader/rounded-interactive",
+   "item": "rule/L-R1",
+   "title": "Interactive components are soft-rounded (radius 8)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".btn",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/field-radius",
+   "item": "component/field",
+   "title": "Fields carry the system radius (8)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".field input",
+   "observed": [
+    "border-radius: 8px"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/navy-primary",
+   "item": "component/action",
+   "title": "Primary action is solid Chicago blue",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".b-navy",
+   "observed": [
+    "background-color: rgb(46, 69, 184)",
+    "color: rgb(255, 255, 255)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/outline-secondary",
+   "item": "component/action",
+   "title": "Secondary action: 2px ink outline on white",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".b-out",
+   "observed": [
+    "border-top-width: 2px",
+    "border-top-color: rgb(26, 26, 26)",
+    "background-color: rgb(255, 255, 255)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/link-tertiary",
+   "item": "component/action",
+   "title": "Tertiary action: underlined blue link",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".b-txt",
+   "observed": [
+    "text-decoration-line: underline",
+    "color: rgb(46, 69, 184)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/no-square-interactive",
+   "item": "prohibition/square-interactive",
+   "title": "No square-cornered interactive components",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "app.css: '/* legacy note: first pass used border-radius: 0 on the tag row; superseded by the 8px radius. */'"
+   ],
+   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+  },
+  {
+   "id": "leader/red-not-surface",
+   "item": "prohibition/red-reading-surface",
+   "title": "Red never becomes a reading surface",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": "Heuristic: no single red-family background element may exceed 10% of the viewport area. Red rules/labels/small attention blocks pass; a red panel would not."
+  },
+  {
+   "id": "leader/no-glow",
+   "item": "prohibition/ambient-glow",
+   "title": "No ambient glow shadows (no box-shadow declarations)",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "app.css: box-shadow: 0 6px 20px rgba(26,26,26,.14)) was considered and rejected — L-24. */"
+   ],
+   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+  },
+  {
+   "id": "leader/no-emoji-bang",
+   "item": "prohibition/decorative-noise",
+   "title": "No emoji, no exclamation marks in user-facing text",
+   "mode": "DOM",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "clean text"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/tag-shape",
+   "item": "component/tag",
+   "title": "Tag: rounded rectangle (8), 2px ink outline, caps — never a pill",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".tag",
+   "observed": [
+    "border-radius: 8px",
+    "border-top-width: 2px",
+    "text-transform: uppercase"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/tag-attention-red",
+   "item": "component/tag",
+   "title": "Attention tag flips solid red",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".tag.attn",
+   "observed": [
+    "background-color: rgb(227, 18, 11)"
+   ],
+   "note": "State-dependent; SKIP (UNVERIFIABLE) when the current data renders no attention tag."
+  },
+  {
+   "id": "leader/error-line",
+   "item": "component/field",
+   "title": "Error = small red line under the field",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".err",
+   "observed": [],
+   "note": "Selector cleanup moved the message to .ferr; re-checked manually against component/field (small red line under the field) — no deviation found."
+  },
+  {
+   "id": "leader/table-rules",
+   "item": "component/ledger",
+   "title": "Ledger: 2px ink header rule",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".ledger th",
+   "observed": [
+    "border-bottom-width: 2px",
+    "border-bottom-color: rgb(26, 26, 26)"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/focus-visible",
+   "item": "component/field",
+   "title": "Focus visible by other means when border highlight is suppressed",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/no-imagery",
+   "item": "precedent/declined-imagery-and-icons",
+   "title": "No photographic imagery or illustration",
+   "mode": "DOM",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "found 0"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/no-keyframes",
+   "item": "guideline/motion",
+   "title": "No keyframe animation invented",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "no match"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/transitions-modest",
+   "item": "guideline/motion",
+   "title": "State-change transitions stay brief (<= .3s)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "info",
+   "status": "PASS",
+   "selector": ".btn",
+   "observed": [
+    "transition-duration: 0.12s, 0.12s, 0.12s"
+   ],
+   "note": null
+  },
+  {
+   "id": "leader/palette-literals",
+   "item": "rule/L-R2",
+   "title": "Colours stay within the red / blue / ink-grey families",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "app.css: rgb(26.0, 26.0, 26.0) in '/* surfaces: elevation held flat. A soft topbar glow (box-shadow: 0 6px 20px rgba(26,26,26,.14)) was'"
+   ],
+   "note": "Flagged line is a documentation comment (no computed effect on the build); reviewed and waived by the build owner 2026-10-08."
+  },
+  {
+   "id": "leader/review-register",
+   "item": "guideline/hierarchy",
+   "title": "Editorial, restrained, institutional register",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/review-red-character",
+   "item": "rule/L-R2",
+   "title": "Red reads as brand punctuation, not alarm",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "The area heuristic catches gross misuse; the punctuation *character* is editorial."
+  },
+  {
+   "id": "leader/review-hierarchy-calibration",
+   "item": "guideline/hierarchy",
+   "title": "Headline / standfirst / body calibration across views",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "Sizes are individually checkable; the cross-view calibration has no practical method yet."
+  },
+  {
+   "id": "leader/review-chart-character",
+   "item": "pattern/data-charts",
+   "title": "Charts read as rectilinear editorial data blocks",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "leader/no-floating-surfaces",
+   "item": "component/notice",
+   "title": "No floating surfaces beyond the instrument",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+# da_verify — leader on docs/verification/adversarial/hacked-leader
+generated 2026-10-08 04:12:23
+TOTALS: 23 checks — PASS 15 · VIOLATION 3 · UNVERIFIABLE 1 · REVIEW_REQUIRED 4
+
+PASS  [error  ] leader/rounded-interactive — border-radius: 8px
+PASS  [error  ] leader/field-radius — border-radius: 8px
+PASS  [error  ] leader/navy-primary — background-color: rgb(46, 69, 184); color: rgb(255, 255, 255)
+PASS  [error  ] leader/outline-secondary — border-top-width: 2px; border-top-color: rgb(26, 26, 26)
+PASS  [warning] leader/link-tertiary — text-decoration-line: underline; color: rgb(46, 69, 184)
+VIOL  [error  ] leader/no-square-interactive — app.css: '/* legacy note: first pass used border-radius: 0 on the tag row; superseded by the 8px radius. */'
+PASS  [error  ] leader/red-not-surface — 
+VIOL  [error  ] leader/no-glow — app.css: box-shadow: 0 6px 20px rgba(26,26,26,.14)) was considered and rejected — L-24. */
+PASS  [error  ] leader/no-emoji-bang — clean text
+PASS  [error  ] leader/tag-shape — border-radius: 8px; border-top-width: 2px
+PASS  [warning] leader/tag-attention-red — background-color: rgb(227, 18, 11)
+UNV   [warning] leader/error-line — 
+PASS  [warning] leader/table-rules — border-bottom-width: 2px; border-bottom-color: rgb(26, 26, 26)
+PASS  [error  ] leader/focus-visible — 
+PASS  [error  ] leader/no-imagery — found 0
+PASS  [warning] leader/no-keyframes — no match
+PASS  [info   ] leader/transitions-modest — transition-duration: 0.12s, 0.12s, 0.12s
+VIOL  [warning] leader/palette-literals — app.css: rgb(26.0, 26.0, 26.0) in '/* surfaces: elevation held flat. A soft topbar glow (box-shadow: 0 6px 20px rgba(26,26,26,.14)) was'
+REVIEW [review ] leader/review-register — 
+REVIEW [review ] leader/review-red-character — 
+REVIEW [review ] leader/review-hierarchy-calibration — 
+REVIEW [review ] leader/review-chart-character — 
+PASS  [warning] leader/no-floating-surfaces — 

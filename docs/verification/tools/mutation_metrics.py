@@ -6,16 +6,18 @@ table and writes mutations/metrics.json.
 """
 import json
 import os
+import sys
 
 REPO = "/home/xrim/design-authority"
 V = os.path.join(REPO, "docs", "verification")
+MUT_T, CLEAN_T = (sys.argv[1], sys.argv[2]) if len(sys.argv) > 2 else ("mutant-{p}", "{p}-clean")
 manifest = json.load(open(os.path.join(V, "mutations", "manifest.sealed.json")))
 
 report = {}
 
 for build in ("wink", "leader", "dominion"):
-    mut = json.load(open(os.path.join(V, "raw", f"mutant-{build}", "raw.json")))
-    clean = json.load(open(os.path.join(V, "raw", f"{build}-clean", "raw.json")))
+    mut = json.load(open(os.path.join(V, "raw", MUT_T.format(p=build), "raw.json")))
+    clean = json.load(open(os.path.join(V, "raw", CLEAN_T.format(p=build), "raw.json")))
     mut_v = {c["id"] for c in mut["checks"] if c["status"] == "VIOLATION"}
     clean_v = {c["id"] for c in clean["checks"] if c["status"] == "VIOLATION"}
 

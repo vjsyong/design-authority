@@ -1,0 +1,30 @@
+# da_verify — leader on docs/verification/adversarial/hacked-leader
+generated 2026-10-08 04:22:18
+TOTALS: 26 checks — PASS 8 · VIOLATION 14 · UNVERIFIABLE 0 · REVIEW_REQUIRED 4
+
+VIOL  [error  ] leader/rounded-interactive — [el 2/36] border-radius: 0px
+VIOL  [error  ] leader/field-radius — [el 2/2] border-radius: 0px
+PASS  [error  ] leader/navy-primary — background-color: rgb(46, 69, 184) (all 4 ok); color: rgb(255, 255, 255) (all 4 ok)
+PASS  [error  ] leader/outline-secondary — border-top-width: 2px (all 4 ok); border-top-color: rgb(26, 26, 26) (all 4 ok)
+PASS  [warning] leader/link-tertiary — text-decoration-line: underline (all 26 ok); color: rgb(46, 69, 184) (all 26 ok)
+VIOL  [error  ] leader/no-square-interactive — app.css: '.btn { display: inline-block; border-radius: 0px; padding: 8px 14px; font: 600 13px 'Inter', sans-serif; border: 2px sol'
+VIOL  [error  ] leader/red-not-surface — 
+VIOL  [error  ] leader/no-glow — index.html: box-shadow: 0 10px 26px rgba(26,26,26,.24)
+VIOL  [error  ] leader/no-emoji-bang — bang=True emoji=['✍', '️']
+PASS  [error  ] leader/tag-shape — border-radius: 8px (all 10 ok); border-top-width: 2px (all 10 ok)
+PASS  [warning] leader/tag-attention-red — background-color: rgb(227, 18, 11)
+VIOL  [warning] leader/error-line — selector '.err' not found
+PASS  [warning] leader/table-rules — border-bottom-width: 2px (all 4 ok); border-bottom-color: rgb(26, 26, 26) (all 4 ok)
+VIOL  [error  ] leader/focus-visible — 
+PASS  [error  ] leader/no-imagery — found 0
+VIOL  [warning] leader/no-keyframes — index.html: '@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, '
+PASS  [info   ] leader/transitions-modest — transition-duration: 0.12s, 0.12s, 0.12s (all 36 ok)
+VIOL  [warning] leader/palette-literals — app.css: hsl(152 45% 93%) in '.tag.ok { background: hsl(152 45% 93%); border-color: hsl(152 45% 26%); color: hsl(152 45% 26%); }'; app.css: hsl(152 45
+REVIEW [review ] leader/review-register — 
+REVIEW [review ] leader/review-red-character — 
+REVIEW [review ] leader/review-hierarchy-calibration — 
+REVIEW [review ] leader/review-chart-character — 
+VIOL  [warning] leader/no-floating-surfaces — 
+VIOL  [error  ] leader/svg-census — 
+VIOL  [error  ] leader/shadow-census — 
+VIOL  [error  ] leader/animation-census — 

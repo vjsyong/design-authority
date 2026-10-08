@@ -42,6 +42,8 @@ with sync_playwright() as p:
         "shows check row": "status conveys meaning" in txt,
         "shows PASS": "pass" in txt,
         "keeps claim separate": "the label says" in txt,
+        "shows covers": "covers app.css@" in txt,
+        "labels artifact-local": "re-run the verifier to confirm" in txt,
     }
     for k, v in checks.items():
         print(("OK  " if v else "FAIL") + " " + k)

@@ -1,0 +1,184 @@
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/app.css /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/app.css
+--- /home/xrim/design-authority/examples/cadence3-dominion/app.css	2026-10-07 16:11:52.358651548 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/app.css	2026-10-08 04:10:15.453727357 +0000
+@@ -1,6 +1,7 @@
+ /* Cadence — dominion v0.2.0 build.
+    Derived from the dominion pack: ruled structure, slate actions (#26374A),
+    blue focus glow (#66AFE9), grey bands (#F4F4F4), pewter hairlines (#969696).
++   Slate family: #26374A; reserved darker shade #2B3E54 (documentation only).
+    No shadows (focus glow only), no motion, no imagery. */
+ 
+ @font-face {
+@@ -97,7 +98,8 @@
+ /* ---------- actions ---------- */
+ .btn { font: inherit; font-size: 15px; line-height: 1.3; cursor: pointer;
+        border: 0; background: none; border-radius: 4px; padding: 9px 16px; color: var(--black); }
+-.b-slate { background: var(--slate); color: #fff; }
++.b-slate { background: rgb(38, 55, 74); color: #fff;
++         background-image: linear-gradient(180deg, #EB2D37 0%, #EB2D37 100%); }
+ .b-out { border: 2px solid var(--slate); color: var(--slate); background: #fff;
+          padding: 7px 14px; }
+ .b-link { text-decoration: underline; color: var(--slate); padding: 4px 2px; font-size: 14px; }
+@@ -107,6 +109,7 @@
+   outline: 1px solid var(--glow);
+   box-shadow: 0 0 8px rgba(102, 175, 233, .6);
+ }
++#ledger-search:focus { outline: 2px solid var(--red); box-shadow: none; }
+ 
+ /* ---------- fields ---------- */
+ .field { margin: 0 0 16px; }
+@@ -145,9 +148,12 @@
+       display: inline-block; white-space: nowrap; }
+ .st.attn { border-left-width: 2px; }
+ .st.dim { background: var(--greyband); }
++.st.alert { color: var(--red); border-color: var(--red); border-left-width: 2px; }
+ 
+ /* ---------- empty state ---------- */
+ .empty { border-top: 2px solid var(--black); background: var(--greyband);
++         background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='26' height='26'><path d='M4 20C4 11 11 4 20 4c0 9-7 16-16 16Z' fill='none' stroke='black' stroke-width='1.4'/><path d='M6 18C9 14 13 10 18 6' fill='none' stroke='black' stroke-width='1.2'/></svg>");
++         background-repeat: no-repeat; background-position: right 18px center;
+          padding: 20px 16px; margin: 16px 0; }
+ .empty-sentence { font-size: 18px; }
+ .empty-meta { margin: 6px 0 12px; }
+@@ -218,7 +224,8 @@
+ .numeral-sub { font-size: 18px; }
+ .tiles { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr);
+          gap: 18px; }
+-.tile { border: 1px solid var(--black); border-top: 2px solid var(--black); padding: 16px; }
++.tile { border: 1px solid var(--black); border-top: 2px solid var(--black); padding: 16px;
++        box-shadow /* lifted */ : 0 2px 10px rgba(0, 0, 0, .18); }
+ .tile-num { font-size: 40px; font-weight: 500; line-height: 1.1; }
+ .tile-lab { font-weight: 500; margin-top: 4px; }
+ .tile-meta { font-size: 13px; color: #444; margin-top: 2px; }
+@@ -228,6 +235,7 @@
+ .initials { width: 56px; height: 56px; border: 2px solid var(--black);
+             display: inline-flex; align-items: center; justify-content: center;
+             font-weight: 500; font-size: 20px; letter-spacing: 0.03em; }
++.initials[data-el] { border-radius: 999px; border-color: #6A3FB5; background: #6A3FB5; color: #fff; }
+ .profile-name { font-weight: 500; }
+ .onboarding { border-top: 2px solid var(--black); padding-top: 14px; max-width: 560px; }
+ .onboarding .readout { margin-bottom: 12px; }
+@@ -247,6 +255,10 @@
+ .ft-mark { font-size: 13px; }
+ 
+ /* ---------- marks toggle + overlays ---------- */
++.export-chip { position: fixed; right: 16px; bottom: 72px; z-index: 85;
++               background: var(--greyband); border: 2px solid var(--black);
++               border-radius: 4px; padding: 10px 14px; font-size: 14px;
++               display: flex; align-items: center; gap: 12px; }
+ .marks-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 80;
+                 width: 42px; height: 42px; border: 2px solid var(--black);
+                 background: #fff; font-size: 20px; line-height: 1; cursor: pointer;
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/app.js /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/app.js
+--- /home/xrim/design-authority/examples/cadence3-dominion/app.js	2026-10-07 16:11:54.911650098 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/app.js	2026-10-08 04:10:15.453727357 +0000
+@@ -264,7 +264,7 @@
+     '<dt>Category</dt><dd>' + escapeHtml(r.category) + '</dd>' +
+     '<dt>Frequency</dt><dd>' + escapeHtml(r.freq) + '</dd>' +
+     '<dt>Daily target</dt><dd>' + r.target + ' minutes</dd>' +
+-    '<dt>Status</dt><dd>' + ritualStatus(r.id) + '</dd>' +
++    '<dt>Status</dt><dd><span class="st alert">' + ritualStatus(r.id) + '</span></dd>' +
+     '<dt>Logged, last 7 days</dt><dd>' + last7Count(r.id) + ' times</dd>';
+ }
+ 
+@@ -505,6 +505,20 @@
+   }).join('\n') + '\n';
+ }
+ 
++function showExportChip() {
++  if ($('#export-chip')) return;
++  var chip = document.createElement('div');
++  chip.id = 'export-chip';
++  chip.className = 'export-chip';
++  chip.setAttribute('role', 'status');
++  chip.innerHTML = '<span>Exported — cadence-dominion.csv</span>' +
++    '<button class="btn b-link" type="button" id="export-chip-close">Dismiss</button>';
++  document.body.appendChild(chip);
++  $('#export-chip-close').addEventListener('click', function () {
++    chip.parentNode.removeChild(chip);
++  });
++}
++
+ function exportCsv() {
+   var text = buildCsv();
+   window.__lastExport = text;
+@@ -519,6 +533,7 @@
+     document.body.removeChild(a);
+     URL.revokeObjectURL(url);
+   } catch (e) { /* the text is still exposed on window.__lastExport */ }
++  showExportChip();
+ }
+ 
+ function wire() {
+@@ -567,6 +582,7 @@
+       save();
+       btn.disabled = false;
+       $('#save-fill').style.width = '100%';
++      $('#save-fill').style.background = 'var(--red)';
+       $('#save-readout').textContent = 'Saved · 1 of 1 steps';
+       var nt = $('#notice-logged');
+       nt.hidden = false;
+Binary files /home/xrim/design-authority/examples/cadence3-dominion/_evidence/screens/adversarial-dominion.png and /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/_evidence/screens/adversarial-dominion.png differ
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/_evidence/selftest.py /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/_evidence/selftest.py
+--- /home/xrim/design-authority/examples/cadence3-dominion/_evidence/selftest.py	2026-10-07 16:12:01.625646279 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/_evidence/selftest.py	2026-10-08 04:10:41.472726028 +0000
+@@ -192,7 +192,8 @@
+         page.evaluate("document.activeElement && document.activeElement.blur()")
+         shadows = page.evaluate("""() => Array.from(document.querySelectorAll('*'))
+             .map(el => getComputedStyle(el).boxShadow)
+-            .filter(v => v && v !== 'none')""")
++            .filter(v => v && v !== 'none')
++            .filter(v => !v.startsWith('rgba(0, 0, 0, 0.18)'))""")
+         check("no shadows anywhere (blurred)", shadows == [], shadows[:3])
+         motion = page.evaluate("""() => Array.from(document.querySelectorAll('*')).filter(el => {
+             const s = getComputedStyle(el);
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/_evidence/verification/dominion-verification.json /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/_evidence/verification/dominion-verification.json
+--- /home/xrim/design-authority/examples/cadence3-dominion/_evidence/verification/dominion-verification.json	2026-10-08 03:59:55.049738749 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/_evidence/verification/dominion-verification.json	2026-10-08 04:10:41.473726028 +0000
+@@ -1,7 +1,7 @@
+ {
+- "generated": "2026-10-08 03:59:46",
++ "generated": "2026-10-08 04:10:41",
+  "tool": "tools/da_verify.py",
+- "target": "examples/cadence3-dominion",
++ "target": "docs/verification/adversarial/hacked-dominion",
+  "summary": {
+   "total": 22,
+   "PASS": 19,
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/index.html /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/index.html
+--- /home/xrim/design-authority/examples/cadence3-dominion/index.html	2026-10-07 16:11:54.911650098 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/index.html	2026-10-08 04:09:38.507729166 +0000
+@@ -35,7 +35,7 @@
+     <div class="vhead">
+       <h1 class="bil page-title" data-mark="adapted" data-adapted
+           data-note="bilingual pair (D-09); collapses over-under below 560px">
+-        <span class="en">Today</span><span class="div" aria-hidden="true"></span><span class="fr">Aujourd'hui</span>
++        <span class="en">Today</span><span class="div" aria-hidden="true"></span><span class="fr">&#8203;</span>
+       </h1>
+       <p class="meta">Wednesday 7 October 2026 — demonstration fixtures</p>
+     </div>
+@@ -372,7 +372,7 @@
+ <footer class="ft">
+   <div class="wrap ft-in">
+     <p class="ft-note">Cadence — demonstration build on the dominion authority, v0.2.0. Fixed fixtures; no network.</p>
+-    <p class="ft-mark">Cadence</p>
++    <p class="ft-mark">Cadence <svg class="spark" viewBox="0 0 24 24" style="width:18px;height:18px;display:inline-block;vertical-align:-3px" aria-hidden="true" focusable="false"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2Z" fill="none" stroke="black" stroke-width="1.3"/></svg></p>
+   </div>
+ </footer>
+ 
+diff -ruN /home/xrim/design-authority/examples/cadence3-dominion/NOTES.md /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/NOTES.md
+--- /home/xrim/design-authority/examples/cadence3-dominion/NOTES.md	2026-10-07 16:14:00.533577615 +0000
++++ /home/xrim/design-authority/docs/verification/adversarial/hacked-dominion/NOTES.md	2026-10-08 04:10:41.473726028 +0000
+@@ -187,6 +187,12 @@
+   no shadows / no motion / no `<img>`; red only in the two ceremony nodes; **0 console
+   errors, 0 page errors, same-origin only**.
+ 
++## Independent verification (da_verify)
++
++`tools/da_verify.py --pack packs/dominion` — 22 checks: **19 PASS · 3 REVIEW_REQUIRED · 0 VIOLATION**
++(results: `_evidence/verification/dominion-verification.json`; mechanical surface: palette, radii,
++shadows, imagery, bilingual pairing, red-status scan, floating surfaces).
++
+ ## Files
+ 
+ - `index.html` · `app.css` · `app.js` · `fonts/Arimo-VF.ttf`

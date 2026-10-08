@@ -628,7 +628,7 @@ function loadVerification() {
 
 function verificationBlock(node) {
   let h = '<p class="prov-sec">independent verification</p>';
-  h += '<p class="prov-line prov-src">tools/da_verify.py — file, DOM, computed-style and behavioural evidence; claims are not evidence</p>';
+  h += '<p class="prov-line prov-src">tools/da_verify.py — file, DOM, computed-style and behavioural evidence; claims are not evidence. These results ship inside the artifact — re-run the verifier to confirm.</p>';
   if (!verifData) {
     if (!verifTried) loadVerification();
     h += '<p class="prov-line prov-src">' + (verifTried ? "results not published for this serve" : "loading…") + '</p>';
@@ -639,6 +639,10 @@ function verificationBlock(node) {
   h += '<p class="prov-line">this build: <b>' + (s.PASS || 0) + '</b> verified' +
        (bad ? ' · <b class="prov-viol">' + bad + ' violations</b>' : ' · no violations') +
        (s.REVIEW_REQUIRED ? ' · ' + s.REVIEW_REQUIRED + ' open to human review' : '') + '</p>';
+  if (verifData.covers) {
+    h += '<p class="prov-line prov-src">covers ' +
+         Object.keys(verifData.covers).map(function (k) { return k + '@' + esc(verifData.covers[k]); }).join(' · ') + '</p>';
+  }
   const matched = (verifData.checks || []).filter((c) => {
     if (!c.selector) return false;
     try {

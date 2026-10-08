@@ -63,8 +63,13 @@
    ]
   ],
   "control_bad": [],
-  "unexpected": [],
-  "clean_violations": []
+  "unexpected": [
+   "leader/focus-visible",
+   "leader/shadow-census"
+  ],
+  "clean_violations": [
+   "leader/focus-visible"
+  ]
  },
  "dominion": {
   "tp": [
@@ -110,7 +115,9 @@
   ],
   "control_bad": [],
   "unexpected": [
-   "dominion/palette-literals"
+   "dominion/animation-census",
+   "dominion/palette-literals",
+   "dominion/shadow-census"
   ],
   "clean_violations": []
  }

@@ -1,0 +1,30 @@
+# da_verify — leader on examples/cadence3-leader
+generated 2026-10-08 04:22:07
+TOTALS: 26 checks — PASS 21 · VIOLATION 1 · UNVERIFIABLE 0 · REVIEW_REQUIRED 4
+
+PASS  [error  ] leader/rounded-interactive — border-radius: 8px (all 35 ok)
+PASS  [error  ] leader/field-radius — border-radius: 8px (all 2 ok)
+PASS  [error  ] leader/navy-primary — background-color: rgb(46, 69, 184) (all 4 ok); color: rgb(255, 255, 255) (all 4 ok)
+PASS  [error  ] leader/outline-secondary — border-top-width: 2px (all 4 ok); border-top-color: rgb(26, 26, 26) (all 4 ok)
+PASS  [warning] leader/link-tertiary — text-decoration-line: underline (all 26 ok); color: rgb(46, 69, 184) (all 26 ok)
+PASS  [error  ] leader/no-square-interactive — no match
+PASS  [error  ] leader/red-not-surface — 
+PASS  [error  ] leader/no-glow — 0 declaration(s), all allowed
+PASS  [error  ] leader/no-emoji-bang — clean text + attributes
+PASS  [error  ] leader/tag-shape — border-radius: 8px (all 10 ok); border-top-width: 2px (all 10 ok)
+PASS  [warning] leader/tag-attention-red — background-color: rgb(227, 18, 11)
+PASS  [warning] leader/error-line — color: rgb(227, 18, 11)
+PASS  [warning] leader/table-rules — border-bottom-width: 2px (all 4 ok); border-bottom-color: rgb(26, 26, 26) (all 4 ok)
+VIOL  [error  ] leader/focus-visible — 
+PASS  [error  ] leader/no-imagery — found 0
+PASS  [warning] leader/no-keyframes — no match
+PASS  [info   ] leader/transitions-modest — transition-duration: 0.12s, 0.12s, 0.12s (all 35 ok)
+PASS  [warning] leader/palette-literals — 37 literals, all allowlisted
+REVIEW [review ] leader/review-register — 
+REVIEW [review ] leader/review-red-character — 
+REVIEW [review ] leader/review-hierarchy-calibration — 
+REVIEW [review ] leader/review-chart-character — 
+PASS  [warning] leader/no-floating-surfaces — 
+PASS  [error  ] leader/svg-census — 
+PASS  [error  ] leader/shadow-census — 
+PASS  [error  ] leader/animation-census — 

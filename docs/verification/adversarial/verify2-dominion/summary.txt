@@ -1,0 +1,30 @@
+# da_verify — dominion on docs/verification/adversarial/hacked-dominion
+generated 2026-10-08 04:23:12
+TOTALS: 26 checks — PASS 10 · VIOLATION 13 · UNVERIFIABLE 0 · REVIEW_REQUIRED 3
+
+VIOL  [error  ] dominion/slate-primary — background-color: rgb(38, 55, 74) (all 4 ok); border-radius: 4px (all 4 ok)
+PASS  [error  ] dominion/outline-secondary — border-top-width: 2px (all 26 ok); border-top-color: rgb(38, 55, 74) (all 26 ok)
+PASS  [error  ] dominion/field-vessel — border-radius: 4px (all 4 ok); border-top-color: rgb(224, 224, 224) (all 4 ok)
+VIOL  [warning] dominion/focus-glow — 
+PASS  [error  ] dominion/masthead-accent — background-color: rgb(235, 45, 55)
+PASS  [warning] dominion/ceremony-accent — background-color: rgb(235, 45, 55)
+VIOL  [error  ] dominion/no-red-status — 
+VIOL  [error  ] dominion/no-shadows — app.css: box-shadow: 0 2px 10px rgba(0, 0, 0, .18)
+VIOL  [error  ] dominion/no-imagery — found 0; found 0
+VIOL  [error  ] dominion/bilingual-pairing — 4/5 pairs; bad: ['Today\u200b']
+VIOL  [warning] dominion/status-neutral — 
+VIOL  [warning] dominion/radius-discipline — app.css: border-radius: 999px
+PASS  [warning] dominion/ledger-rules — border-bottom-width: 2px (all 4 ok); border-bottom-color: rgb(0, 0, 0) (all 4 ok)
+PASS  [warning] dominion/notice-structure — border-top-width: 2px (all 3 ok); border-top-color: rgb(0, 0, 0) (all 3 ok)
+PASS  [warning] dominion/meter-plain — background-color: rgb(0, 0, 0) (all 2 ok)
+PASS  [warning] dominion/no-keyframes — no match
+PASS  [warning] dominion/black-text — color: rgb(0, 0, 0)
+VIOL  [warning] dominion/palette-literals — app.css: #6A3FB5 in '.initials[data-el] { border-radius: 999px; border-color: #6A3FB5; background: #6A3FB5; color: #fff; '; app.css: #6A3FB5 in '.init
+REVIEW [review ] dominion/review-restraint — 
+REVIEW [review ] dominion/review-bilingual-quality — 
+REVIEW [review ] dominion/review-ceremony-character — 
+VIOL  [warning] dominion/no-floating-surfaces — 
+VIOL  [error  ] dominion/svg-census — 
+VIOL  [error  ] dominion/shadow-census — 
+PASS  [warning] dominion/animation-census — 
+VIOL  [warning] dominion/meter-after-save — 

@@ -1,0 +1,126 @@
+{
+ "build": "cadence3-wink",
+ "authority": "wink 0.2.0",
+ "review": "owner review pass, 2026-10-08",
+ "exported": "2026-10-08 03:33:19",
+ "summary": {
+  "modify": 5,
+  "reject": 1,
+  "accept": 7,
+  "undefined": 1
+ },
+ "verdicts": {
+  "12": {
+   "ask": "a bar chart of weekly minutes",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "modify",
+   "note": "Bar chart should be an item to define, but the styling is off. WIll need a revision pass, perhaps thicker bars or even yellow styling somewhere",
+   "updated": "2026-10-08 03:27:40"
+  },
+  "14": {
+   "ask": "a tiny sparkline trend of the last week",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "reject",
+   "note": "The chart is way out of spec in terms of design style. I would like to see a spark line trend as a first class element to be promoted, but not in this style. Defer to judgement in next round",
+   "updated": "2026-10-08 03:28:47"
+  },
+  "15": {
+   "ask": "a big streak counter",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:30:01"
+  },
+  "16": {
+   "ask": "an achievement badge for seven days",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "modify",
+   "note": "Looks plausible, but It would seem that the design language would call for a Serif bold font for the title",
+   "updated": "2026-10-08 03:29:57"
+  },
+  "18": {
+   "ask": "a profile avatar photo",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:28:54"
+  },
+  "19": {
+   "ask": "an icon for each ritual",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:32:50"
+  },
+  "20": {
+   "ask": "a toggle switch in settings",
+   "outcome": "FALLBACK",
+   "resolution": "fallback/platform-controls",
+   "verdict": "modify",
+   "note": "Toggle switches should use a pill shape slider similar to the buttons",
+   "updated": "2026-10-08 03:31:47"
+  },
+  "21": {
+   "ask": "a slider for daily goal minutes",
+   "outcome": "FALLBACK",
+   "resolution": "fallback/platform-controls",
+   "verdict": "modify",
+   "note": "There needs to be a dedicated slider. This blue fallback slider is out of spec and will benefit from an explicitly designed version.",
+   "updated": "2026-10-08 03:31:07"
+  },
+  "22": {
+   "ask": "a date picker for the log entry",
+   "outcome": "FALLBACK",
+   "resolution": "fallback/platform-controls",
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:29:15"
+  },
+  "32": {
+   "ask": "pagination for older entries",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:29:18"
+  },
+  "33": {
+   "ask": "a search box to filter rituals",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "modify",
+   "note": "Can codify as a canonical search box item",
+   "updated": "2026-10-08 03:24:48"
+  },
+  "38": {
+   "ask": "export the data as csv",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:32:27"
+  },
+  "39": {
+   "ask": "a dark mode theme",
+   "outcome": "FALLBACK",
+   "resolution": "fallback/light-only",
+   "verdict": "undefined",
+   "note": "",
+   "updated": "2026-10-08 03:32:12"
+  },
+  "v31t": {
+   "ask": "row log control — a check control to log a ritual",
+   "outcome": "UNDEFINED",
+   "resolution": null,
+   "verdict": "accept",
+   "note": "",
+   "updated": "2026-10-08 03:32:57"
+  }
+ }
+}
