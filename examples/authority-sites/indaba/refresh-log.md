@@ -1,1 +1,3 @@
 - 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.1.0; artefacts 21 -> 21; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: pack 0.1.0 -> 0.1.0; artefacts 21 -> 21; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: bundle indaba-site.zip (20 files, 54857 bytes, sha256 44f357baa62684c2e2a3343db5ec7a2f9d3e60f05d6321336e3eb91556e9bba8)

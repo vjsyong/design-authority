@@ -189,4 +189,10 @@ body.is-preload .tiles article{transform:none !important;opacity:1 !important}
 .artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid #585858; border-radius: 4px; background: transparent; color: #f2849e; cursor: pointer; }
 .artefacts .af-copy:hover { background: #f2849e; color: #ffffff; border-color: #f2849e; }
 .artefacts .af-copy.ok { background: #f2849e; color: #ffffff; border-color: #f2849e; }
+.artefacts .af-take { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid #585858; }
+.artefacts .af-sub { font-size: 1.15rem; margin: 0 0 .8rem; }
+.artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }
+.artefacts .af-dl { display: inline-block; padding: .5rem 1.1rem; background: #f2849e; color: #ffffff; border-radius: 4px; text-decoration: none; font-weight: 600; }
+.artefacts .af-dl:hover { opacity: .88; }
+.artefacts .af-line-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: rgba(32,163,245,.10); padding: .45rem .6rem; border-radius: 4px; max-width: 100%; overflow-wrap: anywhere; }
 /* artefacts-directory:end */

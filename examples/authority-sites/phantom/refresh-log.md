@@ -1,1 +1,3 @@
 - 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.2.0; artefacts 29 -> 29; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 29 -> 29; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: bundle phantom-site.zip (22 files, 73214 bytes, sha256 92f06e7d92c5fa4f116c97e7699f6a965f8585cc182d1ab5558e1357f088f79b)

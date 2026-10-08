@@ -1,1 +1,3 @@
 - 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.2.0; artefacts 15 -> 15; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 15 -> 15; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: bundle leader-site.zip (25 files, 643155 bytes, sha256 b04eca2c298b5f10721b6b28ab97a515841c2c9243532d24e620270e02171b26)

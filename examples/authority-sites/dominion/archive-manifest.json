@@ -4,9 +4,9 @@
   "pack": "packs/dominion",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:20:41+00:00",
+ "generated_at": "2026-10-08T22:39:16+00:00",
  "checks": {
-  "external_references": 0,
+  "external_references": 1,
   "css_extracted": true,
   "fonts_verified": {
    "fonts/Arimo-VF.ttf": {
@@ -16,6 +16,12 @@
   }
  },
  "files": [
+  {
+   "path": ".site-state.json",
+   "sha256": "9374edcc21709628d52640c2400fa1911c15e53850acd2d382dfd4c571cd69b8",
+   "size": 905,
+   "role": "refresh state (pack hash, version, artifact set)"
+  },
   {
    "path": "audit.jsonl",
    "sha256": "7d48d3ccc4215654c09016c461766fa314ada3f8a925dbf8847f943a6155db21",
@@ -30,8 +36,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "5d0dc9775763b9599ec2fdcb5739012b06bcf920b190b535b4cf0314c534c492",
-   "size": 37980,
+   "sha256": "73ff70756cea16c34d5e4b539a3d8b795ea4a7fbc6be8e7e166c9f5ab3e2ccbc",
+   "size": 38930,
    "role": "page"
   },
   {
@@ -41,6 +47,12 @@
    "role": "build log (agent, 1:1 with audit.jsonl)"
   },
   {
+   "path": "refresh-log.md",
+   "sha256": "bd8310a84868bc6acaea35f805e63cd5f8cb5c32a1c86e82376627897077b426",
+   "size": 252,
+   "role": "refresh log (generated layers vs pack)"
+  },
+  {
    "path": "run-authority",
    "sha256": "e22276930fe7da678132c1079db53d198ad657489c1e0930f2cc84f73cebeeba",
    "size": 1039,
@@ -48,8 +60,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "db520a2c9c8be3513dd8812aa2cb945f5ff292c2291754653ee2068c93f41a93",
-   "size": 12712,
+   "sha256": "21525648bf2d07a0093fc37765a09efaae135a05af31cd8e20daebc188ebbf77",
+   "size": 13397,
    "role": "stylesheet"
   },
   {

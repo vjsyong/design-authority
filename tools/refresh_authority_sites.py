@@ -42,6 +42,7 @@ def _load(name, fname):
 
 aas = _load("add_artefacts_section", "add_artefacts_section.py")
 aaa = _load("archive_authority_assets", "archive_authority_assets.py")
+bnd = _load("bundle_authority_site", "bundle_authority_site.py")
 
 
 def pack_state(auth):
@@ -102,16 +103,21 @@ def refresh(auth, force=False):
     authored = (state or {}).get("authored_for") or {"version": version, "ids": ids}
     notice = notice_for(authored, ids)
     aas.inject(auth, notice=notice)
+    ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    logp = os.path.join(build, "refresh-log.md")
+    with open(logp, "a") as fh:
+        fh.write("- %s UTC: pack %s -> %s; artefacts %d -> %d; version stamps updated: %d; "
+                 "stale notice: %s\n"
+                 % (ts, (state or {}).get("version") or "-", version,
+                    len(authored.get("ids") or []), len(ids), replaced,
+                    "shown" if notice else "none/cleared"))
     aaa.archive(auth)
-
-    line = ("- %s UTC: pack %s -> %s; artefacts %d -> %d; version stamps updated: %d; "
-            "stale notice: %s\n"
-            % (datetime.now(timezone.utc).isoformat(timespec="seconds"),
-               (state or {}).get("version") or "-", version,
-               len(authored.get("ids") or []), len(ids), replaced,
-               "shown" if notice else "none/cleared"))
-    with open(os.path.join(build, "refresh-log.md"), "a") as fh:
-        fh.write(line)
+    binfo = bnd.build_bundle(auth)
+    if binfo:
+        with open(logp, "a") as fh:
+            fh.write("- %s UTC: bundle %s (%d files, %d bytes, sha256 %s)\n"
+                     % (ts, os.path.basename(binfo["path"]), binfo["files"],
+                        binfo["bytes"], binfo["sha256"]))
     json.dump({"pack_hash": h, "version": version, "ids": ids,
                "authored_for": authored,
                "refreshed_at": datetime.now(timezone.utc).isoformat(timespec="seconds")},

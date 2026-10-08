@@ -4,9 +4,9 @@
   "pack": "packs/leader",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:20:41+00:00",
+ "generated_at": "2026-10-08T22:39:16+00:00",
  "checks": {
-  "external_references": 0,
+  "external_references": 1,
   "css_extracted": true,
   "fonts_verified": {
    "fonts/ArchivoBlack-Regular.ttf": {
@@ -25,6 +25,12 @@
  },
  "files": [
   {
+   "path": ".site-state.json",
+   "sha256": "5007c9e70ee8123a28c76881292c90353c6e88b41ba11961964650c4ac473621",
+   "size": 946,
+   "role": "refresh state (pack hash, version, artifact set)"
+  },
+  {
    "path": "audit.jsonl",
    "sha256": "f7da1d1de4e6142ff23f5bda7b4f1b57a7536b732fde9d707b458d7b91c820b6",
    "size": 59041,
@@ -38,8 +44,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "36a703ca13dffd5583c6f6cd264e6924b52178ba58c171a5160b09f30dd15784",
-   "size": 34571,
+   "sha256": "9ed4a306176e107e77f17fde259c3cc3229fb32759ed59f395b6eefd8ece1f13",
+   "size": 35515,
    "role": "page"
   },
   {
@@ -49,6 +55,12 @@
    "role": "build log (agent, 1:1 with audit.jsonl)"
   },
   {
+   "path": "refresh-log.md",
+   "sha256": "951006f53cdecc3eedc9ffe0f6a912f05fdd1ef16c3af7244cf79fe35278f267",
+   "size": 252,
+   "role": "refresh log (generated layers vs pack)"
+  },
+  {
    "path": "run-authority",
    "sha256": "8c8eb36c2f2b22d7a005331067bc7812816c9ded2e6c47a3b193f8afa9e4393d",
    "size": 1033,
@@ -56,8 +68,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "3685b8316a27e6258aef05f7ced857c015ec45e46fbc2f5f7c28a00f012f8ea7",
-   "size": 12071,
+   "sha256": "c916c73146a06824dcc7dc91039a8badc765f59ec88ed4fceb6bb7463fce7696",
+   "size": 12768,
    "role": "stylesheet"
   },
   {

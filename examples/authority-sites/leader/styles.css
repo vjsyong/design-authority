@@ -150,4 +150,10 @@ a{color:var(--navy);text-decoration:underline;text-underline-offset:2px;transiti
 .artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid #CFCFCF; border-radius: 8px; background: transparent; color: #2E45B8; cursor: pointer; }
 .artefacts .af-copy:hover { background: #2E45B8; color: #ffffff; border-color: #2E45B8; }
 .artefacts .af-copy.ok { background: #2E45B8; color: #ffffff; border-color: #2E45B8; }
+.artefacts .af-take { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid #CFCFCF; }
+.artefacts .af-sub { font-size: 1.15rem; margin: 0 0 .8rem; }
+.artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }
+.artefacts .af-dl { display: inline-block; padding: .5rem 1.1rem; background: #2E45B8; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.artefacts .af-dl:hover { opacity: .88; }
+.artefacts .af-line-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: rgba(227,18,11,.05); padding: .45rem .6rem; border-radius: 4px; max-width: 100%; overflow-wrap: anywhere; }
 /* artefacts-directory:end */

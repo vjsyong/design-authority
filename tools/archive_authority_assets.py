@@ -127,7 +127,7 @@ def archive(auth):
 
     files = []
     for base, dirs, names in os.walk(build):
-        dirs[:] = [d for d in dirs if d != "__pycache__"]
+        dirs[:] = [d for d in dirs if d not in ("__pycache__", "download")]
         for name in sorted(names):
             if name in ("archive-manifest.json", "MANIFEST.md"):
                 continue

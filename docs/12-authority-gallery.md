@@ -148,6 +148,18 @@ pack update is visible without hand edits.**
   cannot, and the page says so. After a manual rebuild, run
   `--mark-authored` to reset the notice baseline. Gallery pages already
   update live (mtime discovery); triage's own site is exempt.
+- **S1h · One-click download + one-line agent handoff — DONE (2026-10-08).**
+  Each site carries a 'Take it away' block: 'Download everything (.zip)'
+  (stable URL `/authorities/<name>/site/download/<name>-site.zip`: the page,
+  styles, fonts, the whole pack, build log, audit trail, gaps, manifests,
+  README, agent brief) and 'one line for your agent' (copy button pointing at
+  the generated `agent-brief.md` with setup, the resolve/inspect loop, house
+  rules, links). `tools/bundle_authority_site.py` regenerates both on every
+  refresh; the bundle sha256 lands in `refresh-log.md`; the gallery nav gains
+  a download link. Verified like a fresh agent: fetched the brief from the
+  public URL, shallow-cloned the repo, ran overview / resolve / inspect on
+  packs/wink; zip served (1,057,882 bytes, application/zip) and its bundled
+  MANIFEST hash matches index.html.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,

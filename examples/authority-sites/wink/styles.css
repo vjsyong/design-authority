@@ -181,4 +181,10 @@ h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:35px;line-heig
 .artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid rgba(36,28,21,.22); border-radius: 999px; background: transparent; color: #007C89; cursor: pointer; }
 .artefacts .af-copy:hover { background: #007C89; color: #ffffff; border-color: #007C89; }
 .artefacts .af-copy.ok { background: #007C89; color: #ffffff; border-color: #007C89; }
+.artefacts .af-take { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid rgba(36,28,21,.22); }
+.artefacts .af-sub { font-size: 1.15rem; margin: 0 0 .8rem; }
+.artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }
+.artefacts .af-dl { display: inline-block; padding: .5rem 1.1rem; background: #007C89; color: #ffffff; border-radius: 999px; text-decoration: none; font-weight: 600; }
+.artefacts .af-dl:hover { opacity: .88; }
+.artefacts .af-line-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: rgba(255,224,27,.14); padding: .45rem .6rem; border-radius: 999px; max-width: 100%; overflow-wrap: anywhere; }
 /* artefacts-directory:end */

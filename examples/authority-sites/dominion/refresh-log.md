@@ -1,1 +1,3 @@
 - 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.2.0; artefacts 14 -> 14; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 14 -> 14; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: bundle dominion-site.zip (23 files, 355082 bytes, sha256 f9ffc581608d6d42672494e6b0cdcd3b6c30f3b5ff47eb429db209ee898901d2)

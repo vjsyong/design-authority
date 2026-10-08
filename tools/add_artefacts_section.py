@@ -171,6 +171,9 @@ def build_section(auth, pack, notice=None):
 
     n = len(arts)
     ver = str(pack.get("version") or "")
+    aname = pack.get("name") or auth
+    agent_line = ("Fetch https://designauthority.seanyong.xyz/authorities/%s/site/agent-brief.md "
+                  "and follow it to build my app under the %s authority." % (auth, aname))
     notice_html = ('<p class="af-notice">%s</p>' % esc(notice)) if notice else ""
     section = f"""{MARK_S}
 <section id="artefacts" class="artefacts" data-added="artefacts-directory">
@@ -185,6 +188,18 @@ def build_section(auth, pack, notice=None):
   <p class="af-count" id="af-count">showing all {n}</p>
   <div class="af-list">
   {''.join(rows)}
+  </div>
+  <div class="af-take">
+    <h3 class="af-sub">Take it away</h3>
+    <div class="af-take-row">
+      <a class="af-dl" href="download/{auth}-site.zip" download>Download everything (.zip)</a>
+      <span class="af-note">The page, its styles and fonts, the whole pack, and the full audit trail in one file.</span>
+    </div>
+    <div class="af-take-row">
+      <span class="af-key">one line for your agent</span>
+      <code class="af-line-code" id="af-agentline">{agent_line}</code>
+      <button type="button" class="af-copy af-copy-line" data-copytext="af-agentline">copy</button>
+    </div>
   </div>
   <script>
   (function() {{
@@ -216,7 +231,13 @@ def build_section(auth, pack, notice=None):
     list.addEventListener('click', function(e) {{
       var b = e.target.closest('.af-copy');
       if (!b) return;
-      var text = SNIPPETS[b.getAttribute('data-target')] || '';
+      var text;
+      if (b.getAttribute('data-copytext')) {{
+        var el = document.getElementById(b.getAttribute('data-copytext'));
+        text = el ? el.textContent : '';
+      }} else {{
+        text = SNIPPETS[b.getAttribute('data-target')] || '';
+      }}
       function done() {{ b.textContent = 'copied'; b.classList.add('ok'); setTimeout(function() {{ b.textContent = 'copy'; b.classList.remove('ok'); }}, 1400); }}
       if (navigator.clipboard && navigator.clipboard.writeText) {{
         navigator.clipboard.writeText(text).then(done, done);
@@ -262,6 +283,12 @@ def build_section(auth, pack, notice=None):
 .artefacts .af-copy {{ margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid {st['line']}; border-radius: {st['btn_r']}; background: transparent; color: {st['acc']}; cursor: pointer; }}
 .artefacts .af-copy:hover {{ background: {st['acc']}; color: {st['acc_ink']}; border-color: {st['acc']}; }}
 .artefacts .af-copy.ok {{ background: {st['acc']}; color: {st['acc_ink']}; border-color: {st['acc']}; }}
+.artefacts .af-take {{ margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid {st['line']}; }}
+.artefacts .af-sub {{ font-size: 1.15rem; margin: 0 0 .8rem; }}
+.artefacts .af-take-row {{ display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }}
+.artefacts .af-dl {{ display: inline-block; padding: .5rem 1.1rem; background: {st['acc']}; color: {st['acc_ink']}; border-radius: {st['btn_r']}; text-decoration: none; font-weight: 600; }}
+.artefacts .af-dl:hover {{ opacity: .88; }}
+.artefacts .af-line-code {{ font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: {st['tint']}; padding: .45rem .6rem; border-radius: {st['chip_r']}; max-width: 100%; overflow-wrap: anywhere; }}
 {CSS_MARK_E}"""
     return section, css
 

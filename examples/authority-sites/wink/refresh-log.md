@@ -1,3 +1,5 @@
 - 2026-10-08T17:20:41+00:00 UTC: pack - -> 0.2.0; artefacts 17 -> 17; version stamps updated: 0; stale notice: none/cleared
 - 2026-10-08T17:20:47+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 16 -> 17; version stamps updated: 0; stale notice: shown
 - 2026-10-08T17:20:54+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 17 -> 17; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: pack 0.2.0 -> 0.2.0; artefacts 17 -> 17; version stamps updated: 0; stale notice: none/cleared
+- 2026-10-08T22:39:16+00:00 UTC: bundle wink-site.zip (25 files, 1057882 bytes, sha256 adb646345cc5916d516a23cd6e9964d4b129fddc6225d39ee9b310b261b131bb)

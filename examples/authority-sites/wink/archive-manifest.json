@@ -4,9 +4,9 @@
   "pack": "packs/wink",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:20:54+00:00",
+ "generated_at": "2026-10-08T22:39:16+00:00",
  "checks": {
-  "external_references": 0,
+  "external_references": 1,
   "css_extracted": true,
   "fonts_verified": {
    "fonts/Fraunces-Italic-VF.ttf": {
@@ -26,7 +26,7 @@
  "files": [
   {
    "path": ".site-state.json",
-   "sha256": "9256c4da3c76ddcfb94250e73f0e00de8e1de5e46f93ed62316d35dc322544de",
+   "sha256": "eb1343b342169b10cb48ad19b9eec25a118d7dc166dbea6cc376e49622cf345a",
    "size": 1090,
    "role": "refresh state (pack hash, version, artifact set)"
   },
@@ -44,8 +44,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "9ce33b80485526450d711094440ff7f74895e93ff5f1b8ef06a8d911d665d5b1",
-   "size": 35914,
+   "sha256": "0a35c0ac1ba0efe054ed596955a047af356112294b1abda49bfdf5427496c5c3",
+   "size": 36852,
    "role": "page"
   },
   {
@@ -56,8 +56,8 @@
   },
   {
    "path": "refresh-log.md",
-   "sha256": "012031ee46997ee6784b60324dc23508db1751789d88120cd63d830f534b1602",
-   "size": 245,
+   "sha256": "8702184d8a92d6eb1b79be0853bfcd6b1fde4983ede86ae396cb91fc7d8423cd",
+   "size": 501,
    "role": "refresh log (generated layers vs pack)"
   },
   {
@@ -68,8 +68,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "4bf4b9cfe0664f61f9e31127b9318536957735ae2d74ec4befa812d3d4926c56",
-   "size": 12013,
+   "sha256": "68c52789196f577476501a5c563e56d30c725e0cf48c166f120cd62841d25a55",
+   "size": 12726,
    "role": "stylesheet"
   },
   {
