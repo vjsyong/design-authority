@@ -1,0 +1,72 @@
+/* da-site.css — the only chrome of designauthority.seanyong.xyz.
+   Everything composes from Triage tokens (assets/tokens/tokens.css);
+   structure only, no raw colour values. */
+
+/* ---- shell ---- */
+.da-top{position:sticky;top:0;z-index:var(--z-topbar);display:flex;align-items:center;justify-content:space-between;
+  gap:var(--space-12);flex-wrap:wrap;padding:var(--space-10) var(--space-20);background:var(--surface-page);
+  border-bottom:1px solid var(--border-default)}
+.da-brand{display:flex;align-items:center;gap:var(--space-9)}
+.da-mark{width:24px;height:24px;background:var(--ink-panel);color:var(--text-on-ink);display:inline-flex;
+  align-items:center;justify-content:center;font:var(--fw-bold) var(--fs-copy)/1 var(--mono);letter-spacing:.02em;flex:none}
+.da-brand b{display:block;font-size:var(--fs-h3);letter-spacing:-.02em}
+.da-sub{display:block;color:var(--text-secondary);font-size:var(--fs-pre-log)}
+.da-controls{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap}
+
+.da-content{max-width:960px}
+
+/* ---- hero ---- */
+.da-hero{padding:var(--space-33) 0 var(--space-24);border-bottom:1px solid var(--border-default)}
+.da-lead{max-width:44rem;color:var(--text-soft);font-weight:var(--fw-regular);margin-top:var(--space-10)}
+.da-cta{display:flex;gap:var(--space-10);flex-wrap:wrap;margin-top:var(--space-24)}
+.da-fine{margin-top:var(--space-12)}
+.da-mono-line{margin-top:var(--space-6)}
+
+/* ---- sections ---- */
+.da-sec{padding:var(--space-24) 0;border-bottom:1px solid var(--border-default)}
+.da-sec:last-of-type{border-bottom:0}
+.da-sec>h2{margin-top:0}
+.da-intro{max-width:44rem}
+.da-p{margin:var(--space-6) 0 0;font-size:var(--fs-sub);color:var(--text-soft)}
+
+/* ---- grids ---- */
+.da-grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);margin-top:var(--space-14)}
+.da-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-12);margin-top:var(--space-14)}
+.da-grid2>.card,.da-grid3>.card{margin:0}
+@media (max-width:920px){.da-grid3{grid-template-columns:1fr}}
+@media (max-width:760px){.da-grid2{grid-template-columns:1fr}}
+
+/* ---- code ---- */
+.da-code{background:var(--codebg);color:var(--codefg);border:1px solid var(--border-default);
+  padding:var(--space-14) var(--space-16);margin:0;font-size:var(--fs-pre-log);line-height:1.55;
+  overflow-x:auto;white-space:pre}
+
+/* ---- steps ---- */
+.da-steps{list-style:none;margin:var(--space-14) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);
+  gap:var(--space-10)}
+.da-steps li{border:1px solid var(--border-default);background:var(--surface-card);padding:var(--space-12)}
+.da-steps li p{margin:var(--space-6) 0 0;font-size:var(--fs-log-row);color:var(--text-soft)}
+.da-steps li b{display:block;margin-top:var(--space-8);font-size:var(--fs-sub)}
+.da-stepn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+  background:var(--ink-panel);color:var(--text-on-ink);font-size:var(--fs-kbd)}
+@media (max-width:920px){.da-steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.da-steps{grid-template-columns:1fr}}
+
+/* ---- timeline ---- */
+.da-timeline{margin-top:var(--space-16);border-top:1px solid var(--border-default)}
+.da-tl{display:grid;grid-template-columns:96px 1fr;gap:var(--space-12);padding:var(--space-10) 0;
+  border-bottom:1px solid var(--border-default)}
+.da-tl p{margin:0;font-size:var(--fs-sub);color:var(--text-soft)}
+.da-tl-v{color:var(--text-secondary);font-size:var(--fs-pre-log);padding-top:2px}
+
+/* ---- table cards ---- */
+.da-flush{padding:0;overflow:hidden}
+.da-flush .tbl{margin:0}
+.da-flush td .mono{white-space:nowrap}
+@media (max-width:640px){
+  .da-flush{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .da-flush .tbl{min-width:560px}
+}
+
+/* ---- footer ---- */
+.da-foot{padding-top:var(--space-24)}

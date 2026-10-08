@@ -521,6 +521,8 @@ h1{font-size:22px} .sub{color:#555;font-size:13.5px;margin-bottom:18px}</style><
 
 @app.route("/")
 def index():
+    if _is_designauthority_host():
+        return send_from_directory(DA_SITE, "index.html")
     fb = load_fb()
     cards = []
     for src, meta in SOURCES.items():
@@ -667,6 +669,9 @@ def demo():
     audit = ("<a class='src' href='/designAuthority/jennu/'><b>System Review &middot; Jennu</b>"
              "<p>the design authority of zhenyoyo.github.io (deployed language) — 36 ledger items &amp; the screens behind them</p>"
              "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
+    audit += ("<a class='src' href='https://designauthority.seanyong.xyz/'><b>Design Authority &middot; the concept</b>"
+              "<p>what an authority is, how agents consume it, and how it evolves — a page built on Triage foundations</p>"
+              "<p><span class='chip'>concept</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
             .replace("__STRESS__", "".join(stress))
@@ -850,6 +855,15 @@ def audit_file(name, fn):
     return send_from_directory(d, fn)
 
 
+# ---- designauthority.seanyong.xyz: the concept site (own hostname, same server) ----
+DA_SITE = os.path.join(_REPO, "examples", "designauthority-site")
+
+
+def _is_designauthority_host():
+    h = (request.host or "").split(":")[0].lower()
+    return h == "designauthority.seanyong.xyz"
+
+
 # ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jennu/) ----
 @app.route("/designAuthority/jennu/")
 def jennu_index():
@@ -898,12 +912,17 @@ def jennu_redirect():
 
 @app.route("/robots.txt")
 def robots_txt():
+    if _is_designauthority_host():
+        return Response("User-agent: *\nAllow: /\n", mimetype="text/plain")
     return Response("User-agent: *\nDisallow: /\n", mimetype="text/plain")
 
 
 @app.after_request
 def _noindex_everything(resp):
-    """Everything served by this review host is noindex — nothing here is for search engines."""
+    """The review host is noindex; the concept site (designauthority.) is its own public page."""
+    if _is_designauthority_host():
+        resp.headers["X-Robots-Tag"] = "index, follow"
+        return resp
     resp.headers["X-Robots-Tag"] = "noindex, nofollow"
     return resp
 
@@ -1438,4 +1457,13 @@ def stress_verdicts_get():
 
 if __name__ == "__main__":
     ensure_pages()
+    # ---- files for the concept site, served only on its own hostname ----
+@app.route("/<path:fn>")
+def designauthority_file(fn):
+    if _is_designauthority_host():
+        return send_from_directory(DA_SITE, fn)
+    abort(404)
+
+
+if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8420, debug=False)

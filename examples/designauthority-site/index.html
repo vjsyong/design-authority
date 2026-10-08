@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var d=document.documentElement,t=localStorage.getItem('triage_theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t);if(localStorage.getItem('triage_density')==='compact')d.setAttribute('data-density','compact');}catch(err){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design Authority · a working concept</title>
+<meta name="description" content="A design authority is a versioned, machine-readable contract for an interface system. Coding agents resolve every element against it before building; verifiers check the result against the same record.">
+<meta property="og:title" content="Design Authority — a working concept">
+<meta property="og:description" content="Design intent, written as a contract machines can check.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#fafafa">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/tokens/tokens.css">
+<link rel="stylesheet" href="/assets/core/base.css">
+<link rel="stylesheet" href="/assets/core/patterns.css">
+<link rel="stylesheet" href="/assets/css/da-site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="da-top">
+  <div class="da-brand">
+    <span class="da-mark">DA</span>
+    <div>
+      <b>Design Authority</b>
+      <span class="da-sub">a working concept</span>
+    </div>
+  </div>
+  <div class="da-controls">
+    <span class="chip"><span class="dot ok"></span>Triage v0.12.1 foundations</span>
+    <button class="iconbtn" type="button" data-theme-toggle aria-label="Toggle dark theme">◐</button>
+    <button class="iconbtn" type="button" data-density-toggle aria-label="Toggle compact density">▤</button>
+  </div>
+</header>
+
+<main id="main" class="content da-content">
+
+  <section class="da-hero">
+    <h1>Design intent, written as a contract.</h1>
+    <p class="lead da-lead">A design authority is a versioned, machine-readable record of an interface system.
+    Coding agents resolve every element against it before they build. Verifiers check the result against the
+    same record. Decisions that would otherwise happen by default get written down, cited, and versioned.</p>
+    <div class="da-cta">
+      <a class="btn primary" href="https://audit.seanyong.xyz/designAuthority/jennu/">See a live review</a>
+      <a class="btn" href="https://audit.seanyong.xyz/demo/triage">Open the Triage authority</a>
+    </div>
+    <p class="da-fine sub">This page is built on Triage's foundations: its tokens and core styles, unmodified.</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>The gap it closes</h2>
+    <p class="da-intro sub">Interface work is increasingly done by agents. The tools for stating design intent are still prose.</p>
+    <div class="da-grid3">
+      <div class="card">
+        <div class="card-h"><h3>Prose is read, not obeyed</h3></div>
+        <p class="da-p">A guide can be precise in a human's hands and lossy in an agent's. Every reader fills gaps with
+        assumptions, and an agent fills them confidently.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Silence still ships</h3></div>
+        <p class="da-p">When the record does not say, the build proceeds anyway. The decision happens by default:
+        unrecorded, unreviewed, and impossible to check later.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Feedback is prose too</h3></div>
+        <p class="da-p">"This feels off" and "the reverse must show before a one-way action fires, and here it doesn't"
+        cost the same to type. Only one of them can be checked, versioned, and repeated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="da-sec">
+    <h2>What an authority is made of</h2>
+    <p class="da-intro sub">Plain JSON, a deterministic resolver, and a consumption protocol. No database, no network,
+    the same answer every time.</p>
+    <div class="da-grid2">
+      <pre class="da-code mono">packs/triage/
+  authority.json      identity · version · consumers
+  artifacts.json      52 records — components, token sets, patterns
+  rules.json          19 enforceable rules (TDS001–015 + interaction)
+  golden.json         36 calibration cases — ask, expected, got
+  verification.json   claims a verifier can test against a build
+  AGENT-PROMPT.md     the consumption protocol for coding agents</pre>
+      <pre class="da-code mono">{
+  "id": "component/px-sw",
+  "kind": "component",
+  "title": "Switch",
+  "summary": "the square switch; track 26×15, thumb 11×11",
+  "states": ["default", "hover", "focus",
+             "checked", "disabled"],
+  "verify": ["[data-sw]",
+             "checked toggles aria-checked"]
+}</pre>
+    </div>
+    <p class="da-fine sub">The resolver answers with citations, never with a guess. Ask for "a switch" and it returns
+    <span class="mono">component/px-sw</span>. Ask for "rounded corners" and it returns a conflict and refuses.</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>Nothing is improvised. Nothing is silently skipped.</h2>
+    <div class="card da-flush">
+      <table class="tbl">
+        <thead><tr><th>Outcome</th><th>Fires when</th><th>The build does</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot ok"></span> <span class="mono">RESOLVED</span></td>
+              <td>the element matches a recorded artifact</td>
+              <td>build it the recorded way</td></tr>
+          <tr><td><span class="dot"></span> <span class="mono">COMPOSE</span></td>
+              <td>the element combines recorded parts</td>
+              <td>assemble only in recorded ways</td></tr>
+          <tr><td><span class="dot"></span> <span class="mono">FALLBACK</span></td>
+              <td>the environment cannot support the primary answer</td>
+              <td>follow the recorded degradation</td></tr>
+          <tr><td><span class="dot warn"></span> <span class="mono">UNDEFINED</span></td>
+              <td>the record is silent</td>
+              <td>file a gap; do not invent</td></tr>
+          <tr><td><span class="dot err"></span> <span class="mono">CONFLICT</span></td>
+              <td>the request contradicts a prohibition</td>
+              <td>stop and escalate; do not implement as asked</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="da-fine mono da-mono-line">resolve "a switch" → component/px-sw</p>
+    <p class="da-fine mono da-mono-line">resolve "rounded corners on the cards" → CONFLICT — do not implement as requested</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>Two consumers, one record</h2>
+    <ol class="da-steps">
+      <li><span class="da-stepn mono">1</span><b>Resolve</b>
+        <p>Every element is resolved against the authority before code is written.</p></li>
+      <li><span class="da-stepn mono">2</span><b>Build</b>
+        <p>The implementation follows the records. Deviations are choices, and choices are recorded.</p></li>
+      <li><span class="da-stepn mono">3</span><b>Verify</b>
+        <p>A verifier inspects the artifact itself. Agent self-report is evidence, not proof.</p></li>
+      <li><span class="da-stepn mono">4</span><b>Report</b>
+        <p>Conformance comes back per rule with its evidence. A score is a gate, never proof.</p></li>
+      <li><span class="da-stepn mono">5</span><b>Adjudicate</b>
+        <p>Conflicts and gaps become precedents and versions, not lost threads.</p></li>
+    </ol>
+    <p class="da-fine sub">Each pass through the loop leaves the record stronger than it found it.</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>How it evolves without rotting</h2>
+    <div class="da-grid2">
+      <div class="card">
+        <div class="card-h"><h3>Editorial edits ship as patches</h3></div>
+        <p class="da-p">Wording, examples, citations: 0.1.x, no re-freeze.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Semantic changes get a fresh freeze</h3></div>
+        <p class="da-p">Pipeline order, thresholds, record formats: 0.2 and up. A build is always checkable against
+        the authority it was built on.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Reversals become precedents</h3></div>
+        <p class="da-p">When a decision is overturned, the reversal is recorded with its reason and cited by id.
+        Nothing is quietly overwritten.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Ambitions wait in candidates</h3></div>
+        <p class="da-p">An idea enters with the condition that would promote it. Scope grows by evidence,
+        not enthusiasm.</p>
+      </div>
+    </div>
+    <div class="da-timeline">
+      <div class="da-tl"><span class="mono da-tl-v">v0.1.0</span>
+        <p>First extraction of an outside site. The reading ink was guessed from its template.</p></div>
+      <div class="da-tl"><span class="mono da-tl-v">Review</span>
+        <p>Rejected. The fonts were, plainly, the wrong colour.</p></div>
+      <div class="da-tl"><span class="mono da-tl-v">v0.2.0</span>
+        <p>Re-extracted from what the site looks like as deployed. The reversal was filed as a precedent, with its
+        reason. The authority lost an argument with reality and kept the receipt.</p></div>
+    </div>
+  </section>
+
+  <section class="da-sec">
+    <h2>Four levels, one traceability contract</h2>
+    <div class="card da-flush">
+      <table class="tbl">
+        <thead><tr><th>Level</th><th>Checks</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">L1 · Static</td><td>tokens, selectors, declarations, structure</td><td>shipped</td></tr>
+          <tr><td class="mono">L2 · Behavioural</td><td>keyboard, focus restoration, state transitions, lifecycle</td><td>partial, declared per component</td></tr>
+          <tr><td class="mono">L3 · Rendered</td><td>screenshots, overflow, zoom, dark mode, reduced motion</td><td>proposed</td></tr>
+          <tr><td class="mono">L4 · Product</td><td>real workflows: task success, error recovery, comprehension</td><td>proposed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="da-fine sub">Every conformance claim cites its rule, its implementation, and its evidence.
+    The proposal lives in the Triage repository:
+    <a href="https://triage.seanyong.xyz/spec/proposals/verification-levels.md">spec/proposals/verification-levels.md</a>.</p>
+  </section>
+
+  <section class="da-sec">
+    <h2>Where this has been exercised</h2>
+    <div class="da-grid3">
+      <div class="card">
+        <div class="card-h"><h3>Jennu — an outside system, audited</h3></div>
+        <p class="da-p">zhenyoyo.github.io extracted into an authority (29 artifacts, 8 rules, 1 recorded reversal),
+        and an agent-built review console verified against it: 15/15 checks.</p>
+        <p><a class="btn small" href="https://audit.seanyong.xyz/designAuthority/jennu/">Open the review</a></p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Triage — a first-party system, packaged</h3></div>
+        <p class="da-p">The paper-and-ink system as a pack: 52 artifacts, 19 rules, 36 calibration cases, and a
+        consumption protocol for coding agents.</p>
+        <p><a class="btn small" href="https://audit.seanyong.xyz/demo/triage">Open the authority</a></p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>This page — the smallest proof</h3></div>
+        <p class="da-p">Built from Triage's tokens and core styles, unmodified. A thin chrome of
+        <span class="mono">da-*</span> classes is all that was added.</p>
+        <p><a class="btn small" href="https://triage.seanyong.xyz">Read the foundations</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="da-sec da-sec-last">
+    <div class="note ink">
+      <b>What an authority is not.</b> Not a Figma library, not a lint config, not a moat. It is a contract you
+      version, and it is only as good as its weakest level. Nobody has yet shown that compliant builds behave
+      better in users' hands. That experiment is the next one.
+    </div>
+  </section>
+
+  <div class="foot da-foot">Design Authority — a working concept · Foundations: Triage Design System v0.12.1
+  (tokens + core styles, unmodified) · Live work at <a href="https://audit.seanyong.xyz/">audit.seanyong.xyz</a></div>
+
+</main>
+
+<script>
+(function(){
+  function on(sel){ return document.querySelector(sel); }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest && e.target.closest('[data-theme-toggle]');
+    if (t) {
+      var r = document.documentElement;
+      var cur = r.getAttribute('data-theme') ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', next);
+      try { localStorage.setItem('triage_theme', next); } catch(_) {}
+    }
+    var q = e.target.closest && e.target.closest('[data-density-toggle]');
+    if (q) {
+      var r2 = document.documentElement;
+      var dens = r2.getAttribute('data-density') === 'compact' ? '' : 'compact';
+      if (dens) { r2.setAttribute('data-density', dens); } else { r2.removeAttribute('data-density'); }
+      try { localStorage.setItem('triage_density', dens || 'comfortable'); } catch(_) {}
+    }
+  });
+})();
+</script>
+</body>
+</html>
