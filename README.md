@@ -39,7 +39,7 @@ Set up the Design Authority on this machine, then work under it. Steps, in order
 
 7. Before claiming any build is done, validate it:
    python3 ~/design-authority/tools/da.py --pack ~/design-authority/packs/triage validate .
-   Target: 0 errors. Fix findings at their source; never suppress them. Re-run until clean.
+   Target: 0 errors and 0 warnings (score 100). Fix findings at their source; never suppress them. Re-run until clean.
 
 Then report back to me: the two proof outputs from step 3, whether MCP is connected, and the final validate score. I will then tell you what to build.
 ```
@@ -128,7 +128,7 @@ Add to CI:
 python3 tools/da.py --pack packs/triage validate <project directory>
 ```
 
-The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·infos`), so nonconforming work cannot merge.
+The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·infos`), so nonconforming work cannot merge. Hold new work to score 100.
 
 ### 8. Self-check this repository
 
