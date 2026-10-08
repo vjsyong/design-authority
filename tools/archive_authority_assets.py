@@ -44,6 +44,8 @@ ROLE_BY_NAME = {
     "log.md": "build log (agent, 1:1 with audit.jsonl)",
     "audit.jsonl": "machine-recorded authority call trace",
     "brief.md": "build brief",
+    "refresh-log.md": "refresh log (generated layers vs pack)",
+    ".site-state.json": "refresh state (pack hash, version, artifact set)",
     "run-authority": "audited runner (build-time tool)",
     "archive-manifest.json": "this manifest",
     "MANIFEST.md": "human-readable manifest",

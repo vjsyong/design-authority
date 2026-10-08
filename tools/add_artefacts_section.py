@@ -115,7 +115,7 @@ def snippet_for(rec, parts):
     return "\n".join(lines)
 
 
-def build_section(auth, pack):
+def build_section(auth, pack, notice=None):
     arts = pack["artifacts"]["artifacts"] if isinstance(pack.get("artifacts"), dict) else pack["artifacts"]
     kind_order = pack.get("kinds") or []
     groups = {}
@@ -170,10 +170,13 @@ def build_section(auth, pack):
                    esc(r["id"]), esc(r.get("summary", "")), use_html, alias_html, rid))
 
     n = len(arts)
+    ver = str(pack.get("version") or "")
+    notice_html = ('<p class="af-notice">%s</p>' % esc(notice)) if notice else ""
     section = f"""{MARK_S}
 <section id="artefacts" class="artefacts" data-added="artefacts-directory">
-  <div class="af-kick">Artefacts</div>
+  <div class="af-kick">Artefacts · v{esc(ver)}</div>
   <h2 class="af-h2">All {n} artefacts, ready to use</h2>
+  {notice_html}
   <p class="af-intro">Everything this authority records, in one place. Filter by name,
   alias or kind; every row carries its recorded selector and states, and the copy
   button yields a snippet you can drop straight into work. Full records live in the
@@ -235,6 +238,7 @@ def build_section(auth, pack):
 .artefacts .af-kick {{ font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: {st['acc']}; font-weight: 700; margin-bottom: .5rem; }}
 .artefacts .af-h2 {{ font-size: 1.6rem; margin: 0 0 .6rem; }}
 .artefacts .af-intro {{ color: {st['dim']}; max-width: 62ch; }}
+.artefacts .af-notice {{ border-inline-start: 3px solid {st['acc']}; padding: .5rem .8rem; margin: .6rem 0; background: {st['tint']}; border-radius: {st['panel_r']}; max-width: 76ch; }}
 .artefacts .af-filter {{ width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid {st['line']}; border-radius: {st['panel_r']}; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }}
 .artefacts .af-count {{ font-size: .82rem; color: {st['dim']}; margin: .2rem 0 1.2rem; }}
 .artefacts .af-kindhead {{ display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid {st['line']}; }}
@@ -262,7 +266,7 @@ def build_section(auth, pack):
     return section, css
 
 
-def inject(auth):
+def inject(auth, notice=None):
     build = os.path.join(SITES, auth)
     page_p = os.path.join(build, "index.html")
     if not os.path.isfile(page_p):
@@ -271,7 +275,7 @@ def inject(auth):
     html = open(page_p).read()
     pack = json.load(open(os.path.join(ROOT, "packs", auth, "authority.json")))
     pack["artifacts"] = json.load(open(os.path.join(ROOT, "packs", auth, "artifacts.json")))
-    section, css = build_section(auth, pack)
+    section, css = build_section(auth, pack, notice=notice)
 
     # idempotency: strip previous block(s)
     html = re.sub(re.escape(MARK_S) + r".*?" + re.escape(MARK_E), "", html, flags=re.S)

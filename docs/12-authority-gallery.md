@@ -136,6 +136,18 @@ pack update is visible without hand edits.**
   the stale Cloudflare edge copies were purged (the edge had cached the old
   `.css` by extension) - lesson: any update to a served `.css` on the
   designauthority host needs an edge purge or a URL change.
+- **S1g · Self-updating builds — DONE (2026-10-08).**
+  `tools/refresh_authority_sites.py` runs from the systemd --user timer
+  `authority-site-refresh` (every 5 min): it compares each pack's content
+  hash (authority.json + artifacts.json) against per-build state
+  (`.site-state.json`) and, on change, re-renders section#artefacts from the
+  pack (kicker carries the pack version), updates version stamps, shows or
+  clears a stale notice when the artefact SET moved on since the page was
+  authored, re-archives the manifests, and appends `refresh-log.md`. The
+  notice is the honest boundary: generated layers self-heal, authored prose
+  cannot, and the page says so. After a manual rebuild, run
+  `--mark-authored` to reset the notice baseline. Gallery pages already
+  update live (mtime discovery); triage's own site is exempt.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
