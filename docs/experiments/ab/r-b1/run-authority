@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+"""Audited authority runner (A/B experiment).
+
+Every authority call from the building agent goes through here. The wrapper
+runs the real CLI (repo venv), appends the call + output to audit.jsonl
+(machine-recorded trace), and enforces the cell's retrieval condition via the
+`condition` file: cells marked "lexical" cannot use semantic discovery.
+"""
+import json, os, subprocess, sys, time
+
+ROOT = "/home/xrim/design-authority"
+WS = os.path.dirname(os.path.abspath(__file__))
+argv = sys.argv[1:]
+
+cond = "lexical+semantic"
+try:
+    cond = open(os.path.join(WS, "condition")).read().strip() or cond
+except OSError:
+    pass
+
+blocked = None
+if cond == "lexical":
+    if argv and argv[0] == "discover":
+        blocked = "discover is not available in this environment (lexical retrieval only)"
+    elif "--assist" in argv:
+        blocked = "the --assist flag is not available in this environment (lexical retrieval only)"
+
+t0 = time.time()
+if blocked:
+    rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+           "argv": argv, "rc": 4, "ms": 0, "blocked": True,
+           "stdout": "", "stderr": blocked}
+    with open(os.path.join(WS, "audit.jsonl"), "a") as fh:
+        fh.write(json.dumps(rec) + "\n")
+    sys.stderr.write("run-authority: %s\n" % blocked)
+    sys.exit(4)
+
+cmd = [os.path.join(ROOT, ".venv", "bin", "python3"),
+       os.path.join(ROOT, "tools", "da.py")] + argv
+proc = subprocess.run(cmd, capture_output=True, text=True, cwd=WS)
+rec = {"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+       "argv": argv, "rc": proc.returncode,
+       "ms": round((time.time() - t0) * 1000),
+       "stdout": proc.stdout[-6000:], "stderr": proc.stderr[-2000:]}
+with open(os.path.join(WS, "audit.jsonl"), "a") as fh:
+    fh.write(json.dumps(rec) + "\n")
+sys.stdout.write(proc.stdout)
+sys.stderr.write(proc.stderr)
+sys.exit(proc.returncode)
