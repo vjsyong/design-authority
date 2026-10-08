@@ -47,35 +47,34 @@ from design_authority.resolve import resolve, resolve_golden  # noqa: E402
 from design_authority import records as da_records         # noqa: E402
 
 PACKS_DIR = os.path.join(_REPO, "packs")
-PACK_META = {
-    "phantom": "Phantom - the deployed language of zhenyoyo.github.io (extracted screenshot-first)",
-    "wink": "Mailchimp brand + live product",
-    "leader": "Marber (The Economist) + live product",
-    "dominion": "Canada FIP + live Canada.ca web layer",
-    "triage": "Triage, the app-agnostic paper-and-ink design authority (v0.12.1 · triage.seanyong.xyz)",
-}
-_demo_packs = {}
-_demo_golden = {}
+import authority_gallery as _gal          # discovery + mtime freshness (docs/12)
+
+
+def pack_names():
+    return _gal.names()
+
+
+def pack_desc(name):
+    e = _gal.get(name)
+    return e["desc"] if e else ""
+
+
+def is_pack(name):
+    return _gal.get(name) is not None
 
 
 def get_pack(name):
-    if name not in PACK_META:
+    e = _gal.get(name)
+    if not e:
         abort(404)
-    if name not in _demo_packs:
-        try:
-            _demo_packs[name] = Pack(os.path.join(PACKS_DIR, name))
-        except PackError:
-            abort(404)
-    return _demo_packs[name]
+    return e["pack"]
 
 
 def golden_summary(name):
-    if name not in _demo_golden:
-        pack = get_pack(name)
-        with open(os.path.join(PACKS_DIR, name, "golden.json")) as fh:
-            cases = json.load(fh)["cases"]
-        _demo_golden[name] = resolve_golden(pack, cases)
-    return _demo_golden[name]
+    e = _gal.get(name)
+    if not e or not e["golden"]:
+        abort(404)
+    return e["golden"]
 
 
 def render_resolution(pack, r):
@@ -617,7 +616,8 @@ def fonts(src, fn):
 @app.route("/demo")
 def demo():
     cards = []
-    for name, src in PACK_META.items():
+    for name in pack_names():
+        src = pack_desc(name)
         pack = get_pack(name)
         g = golden_summary(name)
         kinds = {}
@@ -631,7 +631,7 @@ def demo():
             "<p><span class='chip src'>%s</span> <span class='chip gold'>golden %d/%d</span></p></a>"
             % (href, _esc(pack.manifest.get("name")), _esc(src), _esc(ktxt), g["passed"], g["total"]))
     stress = []
-    for name in PACK_META:
+    for name in pack_names():
         d = os.path.join(_REPO, "examples", "cadence-%s" % name)
         if os.path.isdir(d):
             gaps = 0
@@ -644,7 +644,7 @@ def demo():
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, name, gaps))
     stress2 = []
-    for name in PACK_META:
+    for name in pack_names():
         d = os.path.join(_REPO, "examples", "cadence2-%s" % name)
         if os.path.isdir(d):
             gaps = 0
@@ -657,7 +657,7 @@ def demo():
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
     stress3 = []
-    for name in PACK_META:
+    for name in pack_names():
         d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
         if os.path.isdir(d):
             gaps = 0
@@ -692,8 +692,9 @@ def _demo_page(name):
     meta = ("<span class='chip src'>pack %s</span><span class='chip'>v%s</span>"
             "<span class='chip'>%s</span><span class='chip'>%s</span>"
             "<span class='chip gold'>golden %d/%d</span>"
-            % (_esc(name), _esc(m.get("version")), _esc(PACK_META[name]),
-               _esc(counts), g["passed"], g["total"]))
+            "<a class='chip' href='/authorities/%s/gallery' style='text-decoration:none;color:inherit'>Gallery</a>"
+            % (_esc(name), _esc(m.get("version")), _esc(pack_desc(name)),
+               _esc(counts), g["passed"], g["total"], _esc(name)))
     chips = "".join("<button onclick=\"ask(&quot;%s&quot;)\">%s</button>" % (_esc(q), _esc(q))
                     for q in DEMO_EXAMPLES)
 
@@ -775,14 +776,14 @@ def _demo_page(name):
 
 @app.route("/demo/<name>")
 def demo_pack(name):
-    if name not in PACK_META:
+    if not is_pack(name):
         abort(404)
     return redirect("https://designauthority.seanyong.xyz/authorities/%s/audit" % name, code=308)
 
 
 @app.route("/authorities/<name>/audit")
 def authority_audit(name):
-    if name not in PACK_META:
+    if not is_pack(name):
         abort(404)
     if not _is_designauthority_host():
         return redirect("https://designauthority.seanyong.xyz/authorities/%s/audit" % name, code=308)
@@ -811,6 +812,27 @@ AUTHORITY_APPS = {
 
 def _concept_redirect():
     return redirect("https://designauthority.seanyong.xyz" + request.path, code=308)
+
+
+@app.route("/authorities/")
+def gallery_root():
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/", code=308)
+    return _gal.render_root()
+
+
+@app.route("/authorities")
+def gallery_root_noslash():
+    return redirect("/authorities/", code=308)
+
+
+@app.route("/authorities/<name>/gallery")
+def authority_gallery(name):
+    if not is_pack(name):
+        abort(404)
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/%s/gallery" % name, code=308)
+    return _gal.render_gallery(name)
 
 
 @app.route("/authorities/<name>/demo/<app>/")
@@ -982,7 +1004,7 @@ def demo_resolve():
     data = request.get_json(silent=True) or {}
     name = data.get("pack")
     problem = (data.get("problem") or "").strip()
-    if name not in PACK_META or not problem:
+    if not is_pack(name) or not problem:
         return jsonify({"error": "bad request"}), 400
     pack = get_pack(name)
     r = resolve(pack, problem)

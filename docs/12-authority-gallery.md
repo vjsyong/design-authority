@@ -77,10 +77,16 @@ pack update is visible without hand edits.**
 
 ## 3 · Stages and acceptance
 
-- **S1 · Gallery renderer** (this arc): discovery + freshness + skeleton
-  rendering in the review app. Acceptance: all packs listed (triage-evolution
-  included); touching a pack's files changes the page without a restart; no
-  hand-maintained pack lists remain.
+- **S1 · Gallery renderer — DONE (2026-10-08).** `authority_gallery.py` +
+  app.py routes: `/authorities/` (root) and `/authorities/<name>/gallery`.
+  Discovery is filesystem-driven (8 packs found, triage-evolution included);
+  mtime-based freshness verified (touching a pack reloads it with no
+  restart); `PACK_META` removed, no hand-maintained pack lists remain; the
+  pages wear the skeleton (concept-site foundations + chrome) and render
+  version/status chips, release strip (BUILD.json), provenance, golden
+  table, and per-kind sections down to per-record cards. Live on
+  designauthority.seanyong.xyz. Acceptance met: all packs listed; pack
+  update visible without restart; no hand lists.
 - **S2 · triage.seanyong.xyz**: serve.py authority reads + compose mount +
   CURRENT pointer. Acceptance: bump the pack's version field → the site's
   pill reflects it on reload.
