@@ -58,6 +58,21 @@
    "expect_id": "component/msg"
   },
   {
+   "problem": "a tint banner",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg"
+  },
+  {
+   "problem": "a solid banner",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg"
+  },
+  {
+   "problem": "an informational banner",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg"
+  },
+  {
    "problem": "a toast notification",
    "expect": "RESOLVED",
    "expect_id": "component/toast2"

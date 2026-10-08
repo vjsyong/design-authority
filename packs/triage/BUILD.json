@@ -1,6 +1,6 @@
 {
  "generator": "docs/synthesis/triage/tools/build_triage_pack.py",
- "built_at": "2026-10-08T07:34:28+00:00",
+ "built_at": "2026-10-08T07:37:01+00:00",
  "source": {
   "repo": "/home/xrim/triage-design-system",
   "commit": "ec490bb7f336b8105698f7f92a1be8cbce97d7ff",
@@ -13,6 +13,6 @@
   "fallbacks": 3,
   "precedents": 1,
   "candidates": 5,
-  "golden_cases": 38
+  "golden_cases": 41
  }
 }

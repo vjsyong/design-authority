@@ -186,7 +186,7 @@ EXTRA_ALIASES = {
     "tbl": ["table", "data table", "rows"],
     "bulkbar": ["bulk bar", "bulk actions", "selection bar"],
     "savebar": ["save bar", "sticky save", "unsaved changes bar"],
-    "msg": ["flash message", "banner", "message banner", "status banner", "inline banner", "alert banner"],
+    "msg": ["flash message", "banner", "message banner", "status banner", "inline banner", "alert banner", "banner surface", "banner surfaces", "banner style", "banner styles", "banner variants", "paper banner", "ink banner", "tint banner", "solid banner", "informational banner", "info banner", "success banner", "warning banner", "error banner", "result banner"],
     "toast2": ["toast", "toast notification", "transient message"],
     "badge": ["badge", "status badge", "label"],
     "empty": ["empty state", "no results", "zero state"],
@@ -224,12 +224,34 @@ for c in STATES["components"]:
     summary = "%s — from %s. Documented states: %s." % (name, c["source"], ", ".join(c["states"]))
     if a11y:
         summary += " A11y: " + a11y[0]
+    body = {"class": cls, "group": "Components",
+            "source_file": c["source"], "states": c["states"],
+            "verify": c.get("verify", []), "a11y": a11y, "status": c.get("status", "stable")}
+    source_str = "spec/states.json (%s, %s)" % (cls, c["source"])
+    compiled = ["triage/states"]
+    if cls == "msg":
+        # the banner family as documented on /foundations and implemented in base.css:
+        # paper/ink surfaces, tint/solid styles, informational/success/warning/error kinds
+        summary += (" Documented variants: paper (default) and ink surfaces; tint and solid styles; "
+                    "informational, success, warning and error kinds.")
+        body["variants"] = {
+            "surfaces": ["paper (default) — --surface-banner",
+                         "ink — --surface-banner-ink (solid black, both themes)"],
+            "styles": ["tint — soft matching border and text (.msg.tint.ok|warn|err; .note.tint accent)",
+                       "solid — full-saturation surface, --text-on-ink white; contrast "
+                       "6.06/4.84/5.02/4.96 pass 4.5:1 (TDS011)"],
+            "kinds": ["informational — accent edge (.msg base, .note)",
+                      "success — .ok", "warning — .warn", "error — .err"],
+            "edge_chip": ("status colour lives in the var(--bw-edge) left chip; paper/tint keep the "
+                          "normal chip; highlights inside ink/solid banners use light-grey text on a dark chip"),
+            "sibling": ".note shares the surface and style families for inline notices (documented on /foundations)",
+            "source": "core/base.css + site/pages_foundations.py (banner spec)",
+        }
+        source_str = "spec/states.json (%s, %s) + site/pages_foundations.py (banner spec)" % (cls, c["source"])
+        compiled = ["triage/states", "triage/banner-spec"]
     artifacts.append(A(
         "component/%s" % cls, "component", name, summary, aliases,
-        {"class": cls, "group": "Components",
-         "source_file": c["source"], "states": c["states"],
-         "verify": c.get("verify", []), "a11y": a11y, "status": c.get("status", "stable")},
-        "spec/states.json (%s, %s)" % (cls, c["source"]), ["triage/states"]))
+        body, source_str, compiled))
 
 # ---- patterns (7, from the site's pattern pages) ----
 PATTERN_ALIASES = {
@@ -436,6 +458,9 @@ golden = {
         {"problem": "a save bar", "expect": "RESOLVED", "expect_id": "component/savebar"},
         {"problem": "a flash message", "expect": "RESOLVED", "expect_id": "component/msg"},
         {"problem": "a banner", "expect": "RESOLVED", "expect_id": "component/msg"},
+        {"problem": "a tint banner", "expect": "RESOLVED", "expect_id": "component/msg"},
+        {"problem": "a solid banner", "expect": "RESOLVED", "expect_id": "component/msg"},
+        {"problem": "an informational banner", "expect": "RESOLVED", "expect_id": "component/msg"},
         {"problem": "a toast notification", "expect": "RESOLVED", "expect_id": "component/toast2"},
         {"problem": "a status badge", "expect": "RESOLVED", "expect_id": "component/badge"},
         {"problem": "an empty state", "expect": "RESOLVED", "expect_id": "component/empty"},

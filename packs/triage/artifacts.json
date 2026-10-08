@@ -805,7 +805,7 @@
    "id": "component/msg",
    "kind": "component",
    "title": "Flash message",
-   "summary": "Flash message — from base.css. Documented states: ok, warn, err. A11y: role=status (or role=alert for errors) on the rendered banner.",
+   "summary": "Flash message — from base.css. Documented states: ok, warn, err. A11y: role=status (or role=alert for errors) on the rendered banner. Documented variants: paper (default) and ink surfaces; tint and solid styles; informational, success, warning and error kinds.",
    "status": "stable",
    "aliases": [
     "flash message",
@@ -815,7 +815,22 @@
     "message banner",
     "status banner",
     "inline banner",
-    "alert banner"
+    "alert banner",
+    "banner surface",
+    "banner surfaces",
+    "banner style",
+    "banner styles",
+    "banner variants",
+    "paper banner",
+    "ink banner",
+    "tint banner",
+    "solid banner",
+    "informational banner",
+    "info banner",
+    "success banner",
+    "warning banner",
+    "error banner",
+    "result banner"
    ],
    "body": {
     "class": "msg",
@@ -836,14 +851,34 @@
      "role=status (or role=alert for errors) on the rendered banner.",
      "Colour is always paired with text."
     ],
-    "status": "stable"
+    "status": "stable",
+    "variants": {
+     "surfaces": [
+      "paper (default) — --surface-banner",
+      "ink — --surface-banner-ink (solid black, both themes)"
+     ],
+     "styles": [
+      "tint — soft matching border and text (.msg.tint.ok|warn|err; .note.tint accent)",
+      "solid — full-saturation surface, --text-on-ink white; contrast 6.06/4.84/5.02/4.96 pass 4.5:1 (TDS011)"
+     ],
+     "kinds": [
+      "informational — accent edge (.msg base, .note)",
+      "success — .ok",
+      "warning — .warn",
+      "error — .err"
+     ],
+     "edge_chip": "status colour lives in the var(--bw-edge) left chip; paper/tint keep the normal chip; highlights inside ink/solid banners use light-grey text on a dark chip",
+     "sibling": ".note shares the surface and style families for inline notices (documented on /foundations)",
+     "source": "core/base.css + site/pages_foundations.py (banner spec)"
+    }
    },
    "source": {
     "repo": "triage-design-system (triage.seanyong.xyz)",
-    "path": "spec/states.json (msg, base.css)"
+    "path": "spec/states.json (msg, base.css) + site/pages_foundations.py (banner spec)"
    },
    "compiled_from": [
-    "triage/states"
+    "triage/states",
+    "triage/banner-spec"
    ]
   },
   {
