@@ -1,7 +1,8 @@
 # 03 · Resolution semantics
 
 Normative algorithm of `resolve(pack, problem, context)`. Thresholds and
-ordering are **frozen** in 0.2 (unchanged from 0.1). The kernel MUST be
+ordering are **frozen** (unchanged since 0.1; the 0.3 freeze added the lexical
+normalisation step to tokenisation only). The kernel MUST be
 deterministic: no network, no time/locale dependence, stable ordering, and
 every cited id validated against the pack before the answer is returned.
 
@@ -13,12 +14,25 @@ Applied identically to queries and index text:
 2. drop STOPWORDS (articles, pronouns, modals, and common request verbs such
    as add/show/need; the full frozen list lives in `pack.py`) and any
    single-character token;
-3. stem (`_stem`): if length > 3 — strip trailing `able` when length > 7
+3. canonicalise (0.3): rewrite common English spelling variants to one form
+   (chiefly US/UK pairs; canonical direction US) via the curated table in
+   `lex.py`. Only the token itself or a guarded reduction (plural `s`;
+   `-ing` / `-ed` / `-able`, each with an `e`-restore retry) can fire, so the
+   table's curated space bounds every rewrite; canonical forms are idempotent
+   and the table is conflict-validated at import;
+4. stem (`_stem`): if length > 3 — strip trailing `able` when length > 7
    (`searchable → search`); else strip a trailing `s` unless the token ends
    `ss|us|is`; then strip a trailing `e` when length > 3.
 
 Single-token queries containing stopwords (`"combobox"`) are unaffected; long
 queries lose their glue words by design.
+
+The normalisation layer is **retrieval-side only**: it changes token forms,
+never the outcome taxonomy, the thresholds, the precedence or the citation
+rules, and it cannot widen vocabulary beyond what the pack carries. Every
+query rewrite is reported in the output's `normalized` field (raw → canonical
+token map) so the mapping stays auditable; queries already in canonical
+spelling carry no such field.
 
 ## Scoring
 
@@ -135,7 +149,9 @@ adopt it only as a marked starting point, never as canonical.
 All outcomes return: `outcome`, `problem`, `context` (echoed), `resolution`,
 `alternatives` (top-3 artifact hits, never including the cited item),
 `evidence`, `authority` (`{authority, version, commit}` identity), and `next`
-guidance. `resolution` holds exactly one primary key: `artifact`, `recipe`
+guidance. When the query contained spelling variants, the answer additionally
+carries `normalized` (raw → canonical token map; see Tokenization and
+stemming). `resolution` holds exactly one primary key: `artifact`, `recipe`
 (+`ingredients`), `fallback`, or `prohibition` (+`rule`, `detected`), except
 UNDEFINED which holds `closest` instead. Resolutions MAY additionally carry
 `precedents` and (on UNDEFINED) `candidates` attachment arrays. Every id in
@@ -147,7 +163,7 @@ an answer MUST exist in the pack.
 cases and reports agreement (rate + per-row detail). Golden sets are
 conformance evidence, not part of the algorithm; they live with the pack.
 
-## Frozen constants (0.2)
+## Frozen constants (0.3)
 
 ```
 DIRECT_MIN    = 6.5   direct artifact hit threshold

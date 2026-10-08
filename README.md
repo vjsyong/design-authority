@@ -2,7 +2,7 @@
 
 A versioned, machine-readable design contract that lets coding agents work under a real design system instead of guessing at it. Agents resolve design problems against the authority (RESOLVED · COMPOSE · FALLBACK · UNDEFINED · CONFLICT), build against cited rules, check their work with explicit validators, and report gaps upstream instead of silently inventing canon. The kernel is completely kit-agnostic: it knows artifacts, rules, recipes, fallbacks, precedents, candidates, resolutions, gaps and proposals, and nothing about buttons or colours. A design system enters only as a pack.
 
-**Status:** the specification is frozen at 0.2.0 (tag `v0.2.0`).
+**Status:** the specification is frozen at 0.3.0 (tag `v0.3.0`).
 
 **For humans:** click **Use now** (or scroll to the block below) and copy it into your coding agent on the machine that will do the work. The agent installs everything, proves it works, and validates what it builds.
 **For agents:** the Use now block below is your task. Do it in order, verify every expected output, and stop to report if one of them fails. The long-form reference for each step follows under "Install (for agents)".
@@ -155,7 +155,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 
 | # | Component | Status | Where |
 |---|-----------|--------|-------|
-| 1 | Frozen specification, 0.2.0 (tag `v0.2.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.2.0.sha256) |
+| 1 | Frozen specification, 0.3.0 (tag `v0.3.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.3.0.sha256) |
 | 2 | Kit-agnostic kernel, CLI and MCP server | stable | `kernel/`, `tools/da.py`, `tools/da-mcp.py` |
 | 3 | Reference authority: Triage 0.12.1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 54/54 | `packs/triage/` |
 | 4 | A/B/C authority benchmark | complete | `docs/08`–`docs/11`, `benchmark/` |

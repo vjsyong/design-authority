@@ -1,11 +1,12 @@
-# Design Authority — Specification, version 0.2
+# Design Authority — Specification, version 0.3
 
-**Status: FROZEN.** This document set declares **Design Authority 0.2.0**
-(repository tag `v0.2.0`). It supersedes **0.1.0** (tag `v0.1.0`, frozen
-2026-10-07); the changes between the two freezes are recorded in
-`05-governance-and-freeze.md` §3 and justified in the decision log
-(`docs/02-decisions.md`, D-023). The semantics defined here are the normative
-contract; changes follow the change-control rules in `05-governance-and-freeze.md`.
+**Status: FROZEN.** This document set declares **Design Authority 0.3.0**
+(repository tag `v0.3.0`). It supersedes **0.2.0** (tag `v0.2.0`, frozen
+2026-10-08) and **0.1.0** (tag `v0.1.0`, frozen 2026-10-07); the changes
+between each pair of freezes are recorded in `05-governance-and-freeze.md` §3
+and justified in the decision log (`docs/02-decisions.md`, D-023, D-024). The
+semantics defined here are the normative contract; changes follow the
+change-control rules in `05-governance-and-freeze.md`.
 
 ## What Design Authority is
 
@@ -50,20 +51,22 @@ only as a **pack**.
 | `03-resolution-semantics.md` | the resolution pipeline, scoring, outcomes, determinism |
 | `04-interfaces.md` | MCP tools, CLI, records, validator runner |
 | `05-governance-and-freeze.md` | the evolution process, versioning, the freeze declarations |
-| `freeze-0.2.0.sha256` | SHA-256 of every file in the frozen surface at tag `v0.2.0` (current) |
+| `freeze-0.3.0.sha256` | SHA-256 of every file in the frozen surface at tag `v0.3.0` (current) |
+| `freeze-0.2.0.sha256` | the same manifest for tag `v0.2.0` (historical) |
 | `freeze-0.1.0.sha256` | the same manifest for tag `v0.1.0` (historical) |
 
 ## Conformance
 
-An implementation is **conformant with Design Authority 0.2** if it:
+An implementation is **conformant with Design Authority 0.3** if it:
 
 1. loads packs conforming to `02-pack-format.md` with `format_version` `0.1`
    (including the additive negative-precedent and candidate extensions);
 2. reproduces the resolution behaviour of `03-resolution-semantics.md` — in
    particular the outcome pipeline order, the thresholds (6.5 / 2.0 / 5.0),
    the citation rule (every cited id exists in the pack), the determinism
-   rule (no network, stable ordering, no volatility in output), and the
-   precedent/candidate attachment rules;
+   rule (no network, stable ordering, no volatility in output), the lexical
+   normalisation step in tokenisation (its guarded, table-bounded rewrite
+   rules), and the precedent/candidate attachment rules;
 3. exposes the record formats and tool surface of `04-interfaces.md` without
    mutating published packs;
 4. can execute the governance requirements of `05-governance-and-freeze.md`
@@ -71,9 +74,10 @@ An implementation is **conformant with Design Authority 0.2** if it:
    candidate lifecycle.
 
 **Conformance evidence** for the reference implementation: the unit tests
-(`kernel/tests/`, 17/17), the golden suites (pinned pack 19/19; evolution
+(`kernel/tests/`, 23/23), the golden suites (pinned pack 56/56; evolution
 pack 23/23; synthesized packs 18/18 · 14/14 · 17/17), the convergence battery
 (`tools/evolution_convergence.py`, 34/34), the precedent probe
 (`tools/precedent_probe.py`, 31/31), the MCP smoke suite
-(`tools/mcp_smoke.py`, 20/20), and the four completed experiments documented
-under `docs/` (benchmark · evolution · portability · synthesis — informative).
+(`tools/mcp_smoke.py`, 20/20), and the completed experiments documented
+under `docs/` (benchmark · evolution · portability · synthesis · verification —
+informative).

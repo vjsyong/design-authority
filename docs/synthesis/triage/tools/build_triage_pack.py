@@ -688,6 +688,8 @@ golden = {
         {"problem": "a dashboard page", "expect": "RESOLVED", "expect_id": "pattern/dashboard"},
         {"problem": "a settings page", "expect": "RESOLVED", "expect_id": "pattern/settings"},
         {"problem": "the colour tokens", "expect": "RESOLVED", "expect_id": "token-set/colour"},
+        {"problem": "the color tokens", "expect": "RESOLVED", "expect_id": "token-set/colour"},
+        {"problem": "a dialogue", "expect": "RESOLVED", "expect_id": "component/dlg"},
         {"problem": "the spacing scale", "expect": "RESOLVED", "expect_id": "token-set/spacing"},
         {"problem": "rounded corners on the cards", "expect": "CONFLICT"},
         {"problem": "make all the buttons rounded", "expect": "CONFLICT"},

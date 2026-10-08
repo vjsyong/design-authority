@@ -3,6 +3,8 @@ import json
 import os
 import re
 
+from .lex import canonicalize
+
 STOPWORDS = {
     "a", "an", "the", "to", "for", "of", "in", "on", "at", "with", "and", "or",
     "is", "are", "be", "it", "its", "this", "that", "we", "i", "you", "they",
@@ -27,12 +29,15 @@ def _stem(tok):
     return tok
 
 
-def norm_tokens(text):
+def norm_tokens(text, trace=None):
     out = []
     for t in re.findall(r"[a-z0-9][a-z0-9-]*", str(text).lower()):
         if t in STOPWORDS or len(t) <= 1:
             continue
-        out.append(_stem(t))
+        c = canonicalize(t)
+        if trace is not None and c != t:
+            trace[t] = c
+        out.append(_stem(c))
     return out
 
 
@@ -182,7 +187,9 @@ class Pack(object):
 
     def search(self, query, kinds=None, limit=10):
         """Ranked search over the index. Returns [{id, kind, title, score, matched}]."""
-        q = norm_tokens(query)
+        trace = {}
+        q = norm_tokens(query, trace)
+        normalized = dict(sorted(trace.items())) if trace else None
         qtext = " ".join(q)
         qset = set(q)
         results = []
@@ -205,9 +212,12 @@ class Pack(object):
                     score += 5.0
                     matched.append("~" + phrase)
             if score > 0:
-                results.append({"id": doc["id"], "kind": doc["kind"],
-                                "title": doc["title"], "score": round(score, 2),
-                                "matched": matched})
+                res = {"id": doc["id"], "kind": doc["kind"],
+                       "title": doc["title"], "score": round(score, 2),
+                       "matched": matched}
+                if normalized:
+                    res["normalized"] = normalized
+                results.append(res)
         results.sort(key=lambda r: (-r["score"], r["id"]))
         return results[:limit]
 

@@ -12,7 +12,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(ROOT, "kernel"))
 
-from design_authority.pack import Pack  # noqa: E402
+from design_authority.pack import Pack, norm_tokens  # noqa: E402
+from design_authority.lex import canonicalize  # noqa: E402
 from design_authority.resolve import resolve, resolve_golden  # noqa: E402
 from design_authority import records  # noqa: E402
 
@@ -209,6 +210,56 @@ class TestRecipeCompose(unittest.TestCase):
         r = resolve(self.dom, "retire a ritual from the register")
         self.assertEqual(r["outcome"], "COMPOSE")
         self.assertEqual(r["resolution"]["recipe"]["id"], "recipe/retire-confirm")
+
+
+class TestLexicalNormalisation(unittest.TestCase):
+    """0.3 lexical layer: spelling variants meet on one canonical form.
+
+    The layer is retrieval-side only: it never changes the outcome taxonomy,
+    thresholds or precedence, and every query rewrite is reported in
+    `normalized` so the mapping stays auditable.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.pack = Pack(PACK_DIR)
+
+    def test_variant_pairs_meet(self):
+        for a, b in [("colour", "color"), ("centre", "center"),
+                     ("customise", "customize"), ("behaviour", "behavior"),
+                     ("behavioural", "behavioral"), ("dialogue", "dialog"),
+                     ("licence", "license"), ("travelling", "traveling"),
+                     ("organised", "organized"), ("customising", "customizing"),
+                     ("customisable", "customizable"), ("colours", "colors"),
+                     ("buttons", "button")]:
+            self.assertEqual(norm_tokens(a), norm_tokens(b), "%s vs %s" % (a, b))
+
+    def test_canonicalise_is_idempotent_and_table_bounded(self):
+        for w in ("color", "center", "customize", "gray", "behavior"):
+            self.assertEqual(canonicalize(w), canonicalize(canonicalize(w)))
+        for w in ("hour", "promise", "rise", "genre", "board", "available"):
+            self.assertEqual(canonicalize(w), w)
+
+    def test_search_is_spelling_symmetric(self):
+        for a, b in [("colour", "color"), ("dialogue", "dialog")]:
+            self.assertEqual([h["id"] for h in self.pack.search(a, limit=3)],
+                             [h["id"] for h in self.pack.search(b, limit=3)], a)
+
+    def test_resolve_reports_the_mapping(self):
+        r = resolve(self.pack, "colour tokens")
+        self.assertEqual(r["outcome"], "RESOLVED")
+        self.assertEqual(r["resolution"]["artifact"]["id"], "token-set/colour")
+        self.assertEqual(r["normalized"], {"colour": "color"})
+        r2 = resolve(self.pack, "color tokens")
+        self.assertNotIn("normalized", r2)
+        self.assertEqual(r2["resolution"]["artifact"]["id"], "token-set/colour")
+
+    def test_us_spelling_reaches_curated_vocabulary(self):
+        r = resolve(self.pack, "a dialogue")
+        self.assertEqual(r["outcome"], "RESOLVED")
+        self.assertEqual(r["resolution"]["artifact"]["id"], "component/dlg")
+        ids = [c.get("id") for c in self.pack.candidate_matches("behavioral verification", limit=2)]
+        self.assertIn("candidate/behavioural-verification", ids)
 
 
 if __name__ == "__main__":

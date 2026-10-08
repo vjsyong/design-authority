@@ -103,6 +103,14 @@ def _resolve_core(pack, problem, context=None):
            "resolution": None, "alternatives": [], "evidence": {},
            "authority": pack.identity()}
 
+    # 0. Lexical normalisation trace (0.3): records which query words the
+    # retrieval-side layer rewrote, before the frozen pipeline runs. The trace
+    # never changes the outcome; it exists so the mapping stays auditable.
+    trace = {}
+    norm_tokens(problem, trace)
+    if trace:
+        out["normalized"] = dict(sorted(trace.items()))
+
     # 1. CONFLICT — explicit prohibitions first.
     hit = _prohibition_hit(pack, problem)
     if hit:

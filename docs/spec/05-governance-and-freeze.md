@@ -77,7 +77,7 @@ answer, from the pack alone: *why does this artifact exist?*
 
 | layer | example | changes when |
 |---|---|---|
-| **System** (this spec) | `0.2.0` | the frozen semantics/interfaces change |
+| **System** (this spec) | `0.3.0` | the frozen semantics/interfaces change |
 | **Format** (pack schema) | `0.1` | the data model changes (manifest `format_version`; 0.2 adds only optional additions under it) |
 | **Authority** (pack content) | `0.12.1` → `0.13.0-experiment` | content/governance releases |
 | **Snapshot** (reference system pin) | `e374f38` / v0.12.1 | never within one pack version |
@@ -89,11 +89,32 @@ or released — corrections ship as a new version.
 **Version history:** `0.1.0` — 2026-10-07, initial freeze. `0.2.0` —
 2026-10-08, first minor bump under the change-control rule (negative
 precedents + candidates, scope verdicts, lenient adjudication, tool-contract
-additions; justified in D-023).
+additions; justified in D-023). `0.3.0` — 2026-10-08, second minor bump (the
+lexical normalisation layer; justified in D-024).
 
 ## 3 · The freezes
 
-### 3.1 · The 0.2.0 freeze (current)
+### 3.1 · The 0.3.0 freeze (current)
+
+**Design Authority 0.3.0** is frozen by this declaration, effective
+2026-10-08, carried by the repository tag **`v0.3.0`** and the checksum
+manifest `docs/spec/freeze-0.3.0.sha256` (SHA-256 of every frozen file at the
+tagged commit). Frozen surface: the same set as 3.2, plus
+`kernel/design_authority/lex.py`.
+
+**Changes from 0.2.0 (why this bump).** One semantic addition under the
+change-control rule below:
+
+1. **Lexical normalisation layer** (`lex.py`, layer version 1). A curated
+   US/UK spelling-variant table canonicalises tokens during tokenisation
+   (`03`, "Tokenization and stemming"), applied identically to queries and
+   index text, BEFORE stemming. Retrieval-side only: the outcome taxonomy,
+   thresholds, precedence and citation rules are unchanged. Guarded,
+   table-bounded reductions; canonical forms idempotent; the table is
+   conflict-validated at import; every query rewrite is reported in the
+   `normalized` output field. Justified in D-024.
+
+### 3.2 · The 0.2.0 freeze (historical)
 
 **Design Authority 0.2.0** is frozen by this declaration, effective
 2026-10-08, carried by the repository tag **`v0.2.0`** and the checksum
@@ -103,7 +124,7 @@ tagged commit).
 **Frozen surface:**
 
 - `docs/spec/00-index.md` … `05-governance-and-freeze.md` (this spec set);
-- `kernel/design_authority/*.py` (pack, resolve, validate, records, cli,
+- `kernel/design_authority/*.py` (pack, lex, resolve, validate, records, cli,
   mcp_server — the semantics of sections 1–3 of the spec);
 - `tools/da.py`, `tools/da-mcp.py` (entrypoints);
 - `tools/build_pack_triage.py` (reference pack builder, incl. the provenance
@@ -156,10 +177,10 @@ synthesis experiment (`docs/synthesis/` — three candidate authorities, Gates
 1–2 reviewed in-browser, Cadence stress v1–v3, adjudication + codification).
 The post-freeze record is consolidated in `docs/11-consolidation-since-0.1.0.md`.
 
-### 3.2 · The 0.1.0 freeze (historical)
+### 3.3 · The 0.1.0 freeze (historical)
 
 **Design Authority 0.1.0** was frozen 2026-10-07, carried by tag `v0.1.0` and
-the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.1. It
+the manifest `docs/spec/freeze-0.1.0.sha256`; same frozen surface as 3.2. It
 was superseded by 0.2.0 on 2026-10-08. The 0.1.0 manifest preserves the exact
 frozen bytes of that release.
 

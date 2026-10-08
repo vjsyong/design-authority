@@ -183,3 +183,23 @@ substitution + `lint-json` parser name; `authority://` resources; record
 17/17 · convergence battery 34/34 · precedent probe 31/31 · MCP smoke 20/20.
 Thresholds, pipeline order and the outcome taxonomy are unchanged between
 0.1.0 and 0.2.0; the 0.1.0 frozen bytes remain in `freeze-0.1.0.sha256`.
+
+## D-024 · Lexical normalisation layer; freeze Design Authority 0.3.0 (2026-10-08)
+
+Owner directive: a lexical normalization layer comes first, under the premise
+*"Retrieval can become fuzzy. Authority determination must remain grounded,
+explicit, and auditable."* Implemented as a retrieval-side kernel layer
+(`kernel/design_authority/lex.py`, layer version 1): a curated US/UK
+spelling-variant table applied identically to queries and index text before
+stemming, with guarded, table-bounded reductions, idempotent canonical forms,
+and import-time conflict validation. Every query rewrite is reported in the
+`normalized` output field; the outcome taxonomy, thresholds, precedence and
+citation rules are unchanged. Evidence: dialogue/dialog, behaviour/behavior
+and licence/license asks now meet their curated vocabulary (each was
+previously split: e.g. `dialogue` missed `component/dlg` entirely); the
+golden set gained US-spelling twins (`the color tokens`, `a dialogue`);
+kernel 23/23 · triage goldens 56/56 · sweep 134/134 · precedent probe 31/31 ·
+MCP smoke 20/20 at the freeze. Per `docs/spec/05` this is a semantic change →
+0.3.0 with a fresh freeze and manifest (`docs/spec/freeze-0.3.0.sha256`),
+tag `v0.3.0`.
+
