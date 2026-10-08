@@ -3,8 +3,10 @@
    structure only, no raw colour values. */
 
 /* ---- shell ---- */
+:root{--da-col:var(--layout-content-max)}  /* the page column; the system token is 1160 */
 .da-top{position:sticky;top:0;z-index:var(--z-topbar);display:flex;align-items:center;justify-content:space-between;
-  gap:var(--space-12);flex-wrap:wrap;padding:var(--space-10) var(--space-20);background:var(--surface-page);
+  gap:var(--space-12);flex-wrap:wrap;padding-block:var(--space-10);
+  padding-inline:max(var(--space-20), calc((100% - var(--da-col)) / 2));background:var(--surface-page);
   border-bottom:1px solid var(--border-default)}
 .da-brand{display:flex;align-items:center;gap:var(--space-9)}
 .da-mark{width:24px;height:24px;background:var(--ink-panel);color:var(--text-on-ink);display:inline-flex;
@@ -13,7 +15,7 @@
 .da-sub{display:block;color:var(--text-secondary);font-size:var(--fs-pre-log)}
 .da-controls{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap}
 
-.da-content{max-width:960px}
+.da-content{max-width:var(--da-col)}
 
 /* ---- hero ---- */
 .da-hero{padding:var(--space-33) 0 var(--space-24);border-bottom:1px solid var(--border-default)}
@@ -153,3 +155,19 @@ body.marks-on [data-improv]{outline:1px dashed var(--status-warning-solid);outli
 
 /* ---- footer ---- */
 .da-foot{padding-top:var(--space-24)}
+
+/* ---- large screens: the page is read on big displays; scale column + type ---- */
+@media (min-width:1600px){
+  :root{--da-col:1300px}
+  html{font-size:106.25%}          /* 17px equivalent */
+  .da-hero h1{font-size:2rem}
+  .da-statement{font-size:1.25rem}
+  .da-appshot img{block-size:210px}
+}
+@media (min-width:2200px){
+  :root{--da-col:1460px}
+  html{font-size:112.5%}           /* 18px equivalent */
+  .da-hero h1{font-size:2.125rem}
+  .da-statement{font-size:1.375rem}
+  .da-appshot img{block-size:250px}
+}
