@@ -177,10 +177,14 @@ _GAL_CSS = """
 .gal-chip.rel{border-color:var(--ok-line);color:var(--ok)}
 .gal-chip.cand{border-color:var(--warn-line);color:var(--warn)}
 .gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:var(--space-12);margin-top:var(--space-14)}
-.gal-art{border:1px solid var(--border-default);background:var(--surface-card);padding:var(--space-12) var(--space-card)}
-.gal-art a{text-decoration:none;color:inherit}
+.gal-grid>.card{margin:0}
+.card.gal-art{display:block;color:inherit;text-decoration:none}
 .gal-art .mono{font-size:var(--fs-pre-log);color:var(--text-secondary);font-family:var(--mono)}
 .gal-art p{margin:var(--space-4) 0 0;font-size:var(--fs-pre-log);color:var(--text-soft)}
+.gal-crumb{font-size:var(--fs-pre-log);color:var(--text-secondary);margin:0 0 var(--space-6)}
+.gal-crumb a{color:var(--text-secondary)}
+.gal-desc{color:var(--text-soft);font-size:var(--fs-sub);max-width:44rem;margin:var(--space-6) 0 0}
+.gal-pager{display:flex;justify-content:space-between;gap:var(--space-8);margin-top:var(--space-24)}
 .gal-sub{color:var(--text-secondary);font-size:var(--fs-pre-log);margin:0 0 var(--space-4)}
 .gal-prov{margin-top:var(--space-8);border-top:1px solid var(--border-default);padding-top:var(--space-6)}
 .gal-links{display:flex;gap:var(--space-8);margin-top:var(--space-10);flex-wrap:wrap}
@@ -307,9 +311,9 @@ def _shell(entry, name, current, body):
 
 def _art_card(a):
     body = a.get("body") or {}
-    s = ["<article class='gal-art'>"]
-    s.append("<div><span class='gal-chip'>%s</span></div>" % _esc(a.get("kind")))
-    s.append("<p><b>%s</b></p>" % _esc(a.get("title")))
+    s = ["<article class='card gal-art'>"]
+    s.append("<div class='card-h'><h3>%s</h3><span class='sub'>%s</span></div>"
+             % (_esc(a.get("title")), _esc(a.get("kind"))))
     s.append("<div class='mono'>%s</div>" % _esc(a.get("id")))
     if a.get("summary"):
         s.append("<p>%s</p>" % _esc(a["summary"]))
@@ -322,7 +326,7 @@ def _art_card(a):
     if body.get("verify"):
         s.append("<p class='mono'>verify: %s</p>" % _esc("  ".join(body["verify"])))
     if body.get("a11y"):
-        s.append("<p>a11y: %s</p>" % _esc(" ".join(body["a11y"])))
+        s.append("<p><span class='mono'>a11y</span> %s</p>" % _esc(" ".join(body["a11y"])))
     if body.get("do"):
         s.append("<p class='mono'>do: %s</p>" % _esc(" · ".join(body["do"][:4])))
     if body.get("dont"):
@@ -355,9 +359,9 @@ def _art_card(a):
 
 
 def _plain_card(kind, title, lines):
-    s = ["<article class='gal-art'>"]
-    s.append("<div><span class='gal-chip'>%s</span></div>" % _esc(kind))
-    s.append("<p><b>%s</b></p>" % _esc(title))
+    s = ["<article class='card gal-art'>"]
+    s.append("<div class='card-h'><h3>%s</h3><span class='sub'>%s</span></div>"
+             % (_esc(title), _esc(kind)))
     for ln in lines:
         if ln:
             s.append("<p class='mono' style='color:var(--text-soft)'>%s</p>" % _esc(ln))
@@ -404,6 +408,30 @@ def _golden_block(g):
             "</details></section>" % (g["passed"], g["total"], rows))
 
 
+def _pager(pack, name, current):
+    """Prev/next across the site's own page order (triage doc rhythm)."""
+    seq = ["overview"]
+    g = _groups(pack)
+    seq += [slug for slug in _PAGE_KINDS if g.get(_PAGE_KINDS[slug])]
+    if pack.rules or pack.prohibitions or pack.fallbacks:
+        seq.append("spec")
+    if current not in seq:
+        return ""
+    i = seq.index(current)
+    base = "/authorities/%s/gallery" % name
+
+    def href(pg):
+        return base if pg == "overview" else "%s/%s" % (base, pg)
+
+    prev_p = seq[i - 1] if i > 0 else None
+    next_p = seq[i + 1] if i < len(seq) - 1 else None
+    left = ("<a class='btn small' href='%s'>&larr; %s</a>"
+            % (href(prev_p), _esc(_PAGE_TITLES[prev_p]))) if prev_p else "<span></span>"
+    right = ("<a class='btn small' href='%s'>%s &rarr;</a>"
+             % (href(next_p), _esc(_PAGE_TITLES[next_p]))) if next_p else "<span></span>"
+    return "<div class='gal-pager'>%s%s</div>" % (left, right)
+
+
 def render_gallery(name, page="overview"):
     """One authority page; None when the pack or the page is unknown."""
     e = get(name)
@@ -424,10 +452,12 @@ def render_gallery(name, page="overview"):
         chips.append(_chip("%d artifacts" % len(pack.artifacts)))
         if pack.rules:
             chips.append(_chip("%d rules" % len(pack.rules)))
-        body.append("<div class='gal-head'><div class='da-kick'>Authority</div>"
-                    "<h1>%s</h1><p class='gal-sub' style='margin-top:var(--space-6);max-width:44rem'>%s</p>"
+        body.append("<div class='gal-head'>"
+                    "<div class='gal-crumb'><a href='/authorities/'>Authorities</a> / %s</div>"
+                    "<h1>%s</h1><p class='gal-desc'>%s</p>"
                     "<div class='gal-strip'>%s</div></div>"
-                    % (_esc(m.get("name") or name), _esc(e["desc"]), "".join(chips)))
+                    % (_esc(m.get("name") or name), _esc(m.get("name") or name),
+                       _esc(e["desc"]), "".join(chips)))
         body.append(_release_block(name, pack))
         cards = []
         for kind in _KIND_ORDER:
@@ -436,12 +466,12 @@ def render_gallery(name, page="overview"):
                 continue
             slug = [s for s, k in _PAGE_KINDS.items() if k == kind][0]
             titles = ", ".join(a.get("title", "") for a in arts[:4])
-            cards.append("<a href='/authorities/%s/gallery/%s'><article class='gal-art'>"
-                         "<div><span class='gal-chip'>%s</span></div><p><b>%d %s</b></p>"
-                         "<p>%s%s</p></article></a>"
-                         % (name, slug, _esc(kind), len(arts),
-                            _esc(_KIND_TITLES[kind].lower()), _esc(titles),
-                            " …" if len(arts) > 4 else ""))
+            cards.append("<a class='card gal-art' href='/authorities/%s/gallery/%s'>"
+                         "<div class='card-h'><h3>%d %s</h3><span class='sub'>%s</span></div>"
+                         "<p>%s%s</p></a>"
+                         % (name, slug, len(arts),
+                            _esc(_KIND_TITLES[kind].lower()), _esc(kind),
+                            _esc(titles), " …" if len(arts) > 4 else ""))
         if cards:
             body.append("<section class='gal-sec'><h2>Browse the catalogue</h2>"
                         "<div class='gal-grid'>%s</div></section>" % "".join(cards))
@@ -450,9 +480,12 @@ def render_gallery(name, page="overview"):
     elif page in _PAGE_KINDS:
         kind = _PAGE_KINDS[page]
         arts = groups.get(kind, [])
-        body.append("<div class='gal-head'><div class='da-kick'>Catalogue</div>"
-                    "<h1>%s</h1><p class='gal-sub'>%d record%s · %s</p></div>"
-                    % (_esc(_KIND_TITLES[kind]), len(arts),
+        body.append("<div class='gal-head'>"
+                    "<div class='gal-crumb'><a href='/authorities/'>Authorities</a> / "
+                    "<a href='/authorities/%s/gallery'>%s</a> / %s</div>"
+                    "<h1>%s</h1><p class='gal-desc'>%d record%s · %s</p></div>"
+                    % (name, _esc(m.get("name") or name), _esc(_KIND_TITLES[kind]),
+                       _esc(_KIND_TITLES[kind]), len(arts),
                        "" if len(arts) == 1 else "s", _esc(name)))
         if kind == "recipe":
             cards = "".join(_plain_card("recipe", r.get("title"),
@@ -464,10 +497,15 @@ def render_gallery(name, page="overview"):
         else:
             cards = "".join(_art_card(a) for a in arts)
         body.append("<div class='gal-grid'>%s</div>" % cards)
+        body.append(_pager(pack, name, page))
 
     elif page == "spec":
-        body.append("<div class='gal-head'><div class='da-kick'>Specification</div>"
-                    "<h1>Rules &amp; prohibitions</h1><p class='gal-sub'>%s</p></div>" % _esc(name))
+        body.append("<div class='gal-head'>"
+                    "<div class='gal-crumb'><a href='/authorities/'>Authorities</a> / "
+                    "<a href='/authorities/%s/gallery'>%s</a> / Specifications</div>"
+                    "<h1>Rules &amp; prohibitions</h1>"
+                    "<p class='gal-desc'>%s</p></div>"
+                    % (name, _esc(m.get("name") or name), _esc(name)))
         if pack.rules:
             cards = "".join(_plain_card("rule", "%s · %s" % (r.get("id"), r.get("name")),
                                         [r.get("summary"), "fix: %s" % r.get("fix", ""),
@@ -490,6 +528,7 @@ def render_gallery(name, page="overview"):
                             for f in pack.fallbacks)
             body.append("<section class='gal-sec'><h2>Fallbacks</h2>"
                         "<div class='gal-grid'>%s</div></section>" % cards)
+        body.append(_pager(pack, name, page))
 
     return _shell(e, name, page, "".join(body))
 
@@ -516,7 +555,7 @@ def render_root():
                  "<a class='gal-chip' href='/authorities/%s/audit'>Audit &rarr;</a>"
                  "</div>") % (name, name)
         cards.append(
-            "<article class='gal-art'><p><b>%s</b></p><p>%s</p>"
+            "<article class='card gal-art'><p><b>%s</b></p><p>%s</p>"
             "<p class='mono'>%s</p><div class='gal-strip'>%s</div>%s</article>"
             % (_esc(m.get("name") or name), _esc(e["desc"]), _esc(_counts(pack)),
                "".join(chips), links))
