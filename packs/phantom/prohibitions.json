@@ -1,7 +1,23 @@
 {
  "prohibitions": [
   {
+   "id": "prohibit/unreadable-accent-ink",
+   "kind": "prohibition",
+   "statement": "Accent ink relied on as the only readable signal where measured contrast < 3:1 — as a reusable-system guard. Measured in the deployment: pink/white 2.60, green/white 1.32, pink/code-blue 1.99, close-X/white 1.32. Pair the colour with another affordance (the dotted underline does this for links; nothing does it for body text) or use a sanctioned override.",
+   "signals": [
+    "contrast",
+    "low contrast",
+    "readability",
+    "accessibility",
+    "unreadable",
+    "aa",
+    "wcag"
+   ],
+   "rule": "P-R1"
+  },
+  {
    "id": "prohibit/blurred-shadows",
+   "kind": "prohibition",
    "statement": "Blurred/drop elevation shadows — depth is inset rings and rules only (P-R4).",
    "signals": [
     "drop shadow",
@@ -11,36 +27,7 @@
     "card shadow",
     "glow"
    ],
-   "rule": "P-R4",
-   "kind": "prohibition"
-  },
-  {
-   "id": "prohibit/neon-text",
-   "statement": "Neon or saturated colour as body/UI text ink (text runs in #585858; colour is a surface behaviour).",
-   "signals": [
-    "neon text",
-    "pink text",
-    "green links",
-    "bright text",
-    "colored text",
-    "coloured text",
-    "rainbow"
-   ],
-   "rule": "P-R1",
-   "kind": "prohibition"
-  },
-  {
-   "id": "prohibit/square-strays",
-   "statement": "Corners outside the 4px family (squared components break the radius system — P-R2).",
-   "signals": [
-    "square corners",
-    "sharp corners",
-    "zero radius",
-    "border-radius: 0",
-    "squared"
-   ],
-   "rule": "P-R2",
-   "kind": "prohibition"
+   "rule": "P-R4"
   }
  ]
 }

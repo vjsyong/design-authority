@@ -1,30 +1,66 @@
-/* Vendored locally (offline build). Source Sans Pro, SIL OFL. */
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 300;
-  src: url('../fonts/source-sans-pro-300-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 300;
-  src: url('../fonts/source-sans-pro-300-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 400;
-  src: url('../fonts/source-sans-pro-400-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 400;
-  src: url('../fonts/source-sans-pro-400-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 700;
-  src: url('../fonts/source-sans-pro-700-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 700;
-  src: url('../fonts/source-sans-pro-700-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 900;
-  src: url('../fonts/source-sans-pro-900-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-@font-face { font-family: 'Source Sans Pro'; font-style: normal; font-weight: 900;
-  src: url('../fonts/source-sans-pro-900-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-
+/* phantom-audit — derived from the DEPLOYED main.css of zhenyoyo.github.io
+   (HTML5 UP Phantom deployment; template CCA 3.0). Google-Fonts import vectorised
+   to vendored @font-face; no other change. */
 @import url(fontawesome-all.min.css);
+
+/* vendored Source Sans Pro (was fonts.googleapis.com import) */
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-300-latin.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-300-latin-ext.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-400-latin.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-400-latin-ext.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-700-latin.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-700-latin-ext.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-900-latin.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Source Sans Pro';
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src: url('../fonts/source-sans-pro-900-latin-ext.woff2') format('woff2');
+}
+
 /*
 	Phantom by HTML5 UP
 	html5up.net | @ajlkn
@@ -75,6 +111,8 @@ table {
 	border-spacing: 0;
 }
 
+/* // */
+
 body {
 	-webkit-text-size-adjust: none;
 }
@@ -123,6 +161,7 @@ input, select, textarea {
 	}
 
 	body {
+		/* background: #fbf6fa; */
 		background: #ffffff;
 	}
 
@@ -140,7 +179,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: #585858;
+		color: #ff6bbc;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
@@ -169,8 +208,8 @@ input, select, textarea {
 		-ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		text-decoration: none;
-		color: #585858;
-		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
+		color: #6bff2c;
+		border-bottom: dotted 1px rgba(32, 163, 245, 0.999);
 	}
 
 		a:hover {
@@ -291,7 +330,7 @@ input, select, textarea {
 	}
 
 	code {
-		background: rgba(144, 144, 144, 0.075);
+		background: rgba(46, 90, 249, 0.986);
 		border-radius: 4px;
 		border: solid 1px #c9c9c9;
 		font-family: "Courier New", monospace;
@@ -1866,7 +1905,7 @@ input, select, textarea {
 			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 			background-color: transparent;
 			border: solid 1px #c9c9c9;
-			border-radius: 4px;
+			border-radius: 0px;
 			width: 2.65em;
 			height: 2.65em;
 			display: inline-block;
@@ -2249,7 +2288,7 @@ input, select, textarea {
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
 			text-decoration: none;
-			color: #585858;
+			color: #8833e3;
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
@@ -2275,7 +2314,7 @@ input, select, textarea {
 
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
-				border-radius: 4px;
+				border-radius: 0px;
 				border: solid 1px #c9c9c9;
 				content: '';
 				display: inline-block;
@@ -2291,8 +2330,8 @@ input, select, textarea {
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #585858;
-			border-color: #585858;
+			background: #f51616;
+			border-color: #f82121;
 			color: #ffffff;
 			content: '\f00c';
 		}
@@ -2304,7 +2343,7 @@ input, select, textarea {
 		}
 
 	input[type="checkbox"] + label:before {
-		border-radius: 4px;
+		border-radius: 0px;
 	}
 
 	input[type="radio"] + label:before {
@@ -2314,7 +2353,7 @@ input, select, textarea {
 /* Box */
 
 	.box {
-		border-radius: 4px;
+		border-radius: 0px;
 		border: solid 1px #c9c9c9;
 		margin-bottom: 2em;
 		padding: 1.5em;
@@ -2335,14 +2374,14 @@ input, select, textarea {
 /* Image */
 
 	.image {
-		border-radius: 4px;
+		border-radius: 0px;
 		border: 0;
 		display: inline-block;
 		position: relative;
 	}
 
 		.image img {
-			border-radius: 4px;
+			border-radius: 0px;
 			display: block;
 		}
 
@@ -2394,7 +2433,9 @@ input, select, textarea {
 
 			}
 
-/* Table */
+
+
+Table
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
@@ -2461,6 +2502,12 @@ input, select, textarea {
 				border-top: 0;
 			}
 
+/* MainImage*/	
+			.imagemain {
+				width: 5%;
+				height: 1%;
+				overflow: hidden; /* 确保内容不会溢出 */
+			}
 /* Button */
 
 	input[type="submit"],
@@ -2596,7 +2643,6 @@ input, select, textarea {
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		postiion: relative;
 		margin: -2.5em 0 0 -2.5em;
 	}
 
@@ -2618,8 +2664,9 @@ input, select, textarea {
 				position: relative;
 				display: block;
 				width: 100%;
-				border-radius: 4px;
+				border-radius: 0px;
 				overflow: hidden;
+				
 			}
 
 				.tiles article > .image img {
@@ -2658,7 +2705,7 @@ input, select, textarea {
 					left: 0;
 					width: 100%;
 					height: 100%;
-					background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E");
+					/* background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 0.25px%3B stroke: %23ffffff%3B %7D%3C/style%3E%3Cline x1='0' y1='0' x2='100' y2='100' /%3E%3Cline x1='100' y1='0' x2='0' y2='100' /%3E%3C/svg%3E"); */
 					background-position: center;
 					background-repeat: no-repeat;
 					background-size: 100% 100%;
@@ -2699,6 +2746,7 @@ input, select, textarea {
 				text-align: center;
 				text-decoration: none;
 				z-index: 3;
+				opacity: 0;
 			}
 
 				.tiles article > a > :last-child {
@@ -2707,6 +2755,7 @@ input, select, textarea {
 
 				.tiles article > a:hover {
 					color: #ffffff !important;
+					opacity: 1;
 				}
 
 				.tiles article > a h2 {
@@ -2723,6 +2772,7 @@ input, select, textarea {
 					line-height: 1.5;
 					margin-top: 0.35em;
 					opacity: 0;
+					
 				}
 
 					.tiles article > a .content > :last-child {
@@ -2730,39 +2780,39 @@ input, select, textarea {
 					}
 
 			.tiles article.style1 > .image:before {
-				background-color: #f2849e;
+				background-color: #efc5e900;
 			}
 
 			.tiles article.style2 > .image:before {
-				background-color: #7ecaf6;
+				background-color: #ffe2e500;
 			}
 
 			.tiles article.style3 > .image:before {
-				background-color: #7bd0c1;
+				background-color: #746ffa28;
 			}
 
 			.tiles article.style4 > .image:before {
-				background-color: #c75b9b;
+				background-color: #ffe2e524;
 			}
 
 			.tiles article.style5 > .image:before {
-				background-color: #ae85ca;
+				background-color: #ffe2e524;
 			}
 
 			.tiles article.style6 > .image:before {
-				background-color: #8499e7;
+				background-color: #ffe2e524;
 			}
 
 			body:not(.is-touch) .tiles article:hover > .image {
-				-moz-transform: scale(1.1);
-				-webkit-transform: scale(1.1);
-				-ms-transform: scale(1.1);
-				transform: scale(1.1);
+				-moz-transform: scale(1);
+				-webkit-transform: scale(1);
+				-ms-transform: scale(1);
+				transform: scale(1);
 			}
 
 				body:not(.is-touch) .tiles article:hover > .image:before {
-					background-color: #333333;
-					opacity: 0.35;
+					background-color: #eb84da;
+					opacity: 1;
 				}
 
 				body:not(.is-touch) .tiles article:hover > .image:after {
@@ -3012,8 +3062,8 @@ input, select, textarea {
 		max-width: 80%;
 		height: 100%;
 		-webkit-overflow-scrolling: touch;
-		background: #585858;
-		color: #ffffff;
+		background: #3ef900;
+		color: #000000;
 		cursor: default;
 		visibility: hidden;
 		z-index: 10002;
@@ -3351,3 +3401,10 @@ input, select, textarea {
 			}
 
 		}
+
+
+
+.publication {
+    color: black; /* 将文字颜色设置为黑色 */
+}
+

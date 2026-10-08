@@ -1,33 +1,28 @@
 {
  "fallbacks": [
   {
-   "id": "fallback/platform-controls",
+   "id": "fallback/light-only",
    "kind": "fallback",
-   "title": "Platform defaults for uncovered controls",
-   "statement": "If the system defines no control for a need, use the platform's native element restyled to the field language (tint ground, #c9c9c9 lines, 4px radius, ink text); keep native semantics.",
+   "title": "Light grounds only (no dark surfaces)",
+   "statement": "The deployment ships no dark ground anywhere — the menu went lime, the tile scrim is disabled. If a dark surface is unavoidable (video overlay, modal), keep the base text roles, mark the improvisation and file a gap.",
    "scope": [
-    "date",
-    "time",
-    "file",
-    "slider",
-    "range",
-    "color",
-    "picker",
-    "upload",
-    "stepper",
-    "switch",
-    "combobox"
+    "dark",
+    "dark mode",
+    "dark surface",
+    "overlay",
+    "theme"
    ],
    "constraints": [
-    "field language (underline, 4px radius, ink)",
-    "mark the improvisation and file a gap if it recurs"
+    "no dark canon exists",
+    "keep base roles if forced",
+    "mark + file gap if it recurs"
    ]
   },
   {
    "id": "fallback/no-script",
    "kind": "fallback",
    "title": "No-JS fallback (noscript stylesheet)",
-   "statement": "Without JavaScript, the load-in is skipped and content renders immediately (noscript.css lifts the is-preload state).",
+   "statement": "Without JS the load-in is skipped and content renders immediately (noscript.css lifts is-preload). The menu remains JS-dependent (slide-in + dimming); without JS its control degrades to an in-page anchor at best — undefined beyond that.",
    "scope": [
     "motion",
     "intro",
@@ -36,22 +31,40 @@
    ],
    "constraints": [
     "content readable without JS",
-    "menu degrades to in-page anchor (undefined beyond that)"
+    "menu behaviour undefined without JS — mark it"
    ]
   },
   {
-   "id": "fallback/light-only",
+   "id": "fallback/cjk-system-fallback",
    "kind": "fallback",
-   "title": "Light ground only",
-   "statement": "No dark mode is defined; dark contexts are outside this authority (undecided, not declined).",
+   "title": "CJK text falls to the OS (no CJK family declared)",
+   "statement": "No CJK font is declared anywhere; Chinese glyphs fall through Source Sans Pro → Helvetica → the OS (observed: WenQuanYi Zen Hei in a headless Linux render), mismatched to the 900-weight Latin beside them. Rendering of 圳 therefore differs per visitor OS.",
    "scope": [
-    "dark",
-    "dark mode",
-    "theme",
-    "contrast mode"
+    "chinese",
+    "cjk",
+    "圳",
+    "fallback font",
+    "mixed script"
    ],
    "constraints": [
-    "file a gap if a dark requirement appears"
+    "if CJK becomes a real role, it needs a declared stack + weight match — file as gap",
+    "never assert a specific CJK face from this system"
+   ]
+  },
+  {
+   "id": "fallback/synthetic-italic",
+   "kind": "fallback",
+   "title": "Italic is synthetic (no italic faces loaded)",
+   "statement": "The Google-Fonts import requests 300/700/900 normal styles only; em/blockquote render as browser-synthesised oblique. Treat any italic as an approximation, not a system face.",
+   "scope": [
+    "italic",
+    "oblique",
+    "em",
+    "blockquote"
+   ],
+   "constraints": [
+    "do not design italic-dependent hierarchy",
+    "a real italic face is a new decision (gap if needed)"
    ]
   }
  ]

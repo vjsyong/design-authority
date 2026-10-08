@@ -1,38 +1,38 @@
 {
  "candidates": [
   {
-   "id": "candidate/pink-accent-system",
+   "id": "candidate/text-as-accent",
    "kind": "candidate",
-   "title": "Pink accent system (provisional)",
-   "request": "a pink-led accent identity for the portfolio",
+   "title": "Text-as-accent (pink ink identity) — promotion dossier",
+   "request": "the pink reading-ink identity as a promoted, reusable system feature",
    "matches": [
     "pink accent",
     "pink theme",
     "accent colour",
-    "accent color",
-    "brand pink",
+    "text as accent",
     "neon pink"
    ],
    "status": "candidate",
-   "summary": "Promote the template's own pink family (#f2849e hover/focus accent; darker AA-safe derivate for text roles) into a small sanctioned accent system: one accent, roles = hover / focus underline / marker / link underline colour.",
+   "summary": "The deployment's real design decision: text itself carries the accent (pink family) across every role, with per-page h1 hues and a neon link. Canonised as observed (token-set/colour); promotion asks for a role map, an AA strategy and owner sign-off — the dossier, not the fact.",
    "emerges_from": [
-    "deployment deviation ledger (body #ff6bbc, links #6bff2c)"
+    "token-set/colour (canonised pass 2)",
+    "per-page h1 hues #ff6bbc/#ff8b80/#fd77af/#71c3de"
    ],
-   "evidence_present": "Upstream already uses pink as its hover/focus accent (#f2849e) — the ambition exists in the system; only the role mapping and contrast are unresolved.",
+   "evidence_present": "12 text roles measured pink; per-page black flips already provide an AA path; hover/focus pink #f2849e is the state accent.",
    "promote_when": [
-    "a single accent role map is drafted (hover/focus/marker only; never reading ink)",
-    "AA contrast verified (≥4.5:1 for text roles, ≥3:1 for graphics) or a darkened pink chosen",
+    "single role map (pink vs black per role) drafted",
+    "AA strategy chosen (size/weight minimums or darkened ground variants)",
     "owner sign-off"
    ],
    "provenance": {
-    "source": "synthesis decision D2 (docs/synthesis/phantom/synthesis-notes.md)"
+    "source": "redo domains a+b; supersedes candidate/pink-accent-system"
    }
   },
   {
    "id": "candidate/carousel",
    "kind": "candidate",
-   "title": "Gallery carousel (provisional)",
-   "request": "an image carousel for the random gallery",
+   "title": "Gallery carousel — repair & controls dossier",
+   "request": "a working, controlled image carousel for the random gallery",
    "matches": [
     "carousel",
     "slideshow",
@@ -42,18 +42,47 @@
     "image carousel"
    ],
    "status": "candidate",
-   "summary": "Compose a controlled carousel from existing parts: image + caption + small ink buttons for prev/next, no autoplay by default; keep the 4px radius and ink-ring button language.",
+   "summary": "A carousel exists as deployed (component/carousel-gallery) but ships broken: all six sources 404, no controls, autoplay only, 390px overflow. Promotion = re-source the images, decide the motion policy (autoplay vs static/controls) and add position affordances.",
    "emerges_from": [
-    "deployment hand-rolled autoplay carousel (subpage inline styles)"
+    "component/carousel-gallery",
+    "layout open question D-4"
    ],
-   "evidence_present": "The template defines no carousel; the deployment built one ad hoc (inline styles, autoplay every 4s, dead prev/next code).",
+   "evidence_present": "Two captured states; showPrev unwired; comment 'Buttons removed for automatic switching'.",
    "promote_when": [
-    "a motion policy is agreed (no autoplay, or pauses/bounded duration)",
-    "control spec captured (prev/next + position readout)",
+    "images re-sourced (or fallback state designed)",
+    "motion policy agreed (no autoplay, or pause/bounded)",
+    "control spec captured (prev/next + position)",
     "static fallback defined"
    ],
    "provenance": {
-    "source": "synthesis decision D3 (docs/synthesis/phantom/synthesis-notes.md)"
+    "source": "redo domains c+d"
+   }
+  },
+  {
+   "id": "candidate/project-gallery",
+   "kind": "candidate",
+   "title": "Project gallery pattern — promotion dossier",
+   "request": "the project-page gallery composition (float alternation) as a reusable pattern",
+   "matches": [
+    "project gallery",
+    "gallery layout",
+    "float gallery",
+    "alternating gallery"
+   ],
+   "status": "candidate",
+   "summary": "The four project pages apply one consistent composition (identical style block: .image1 70% floats odd/even, img 100%) — arguably a de-facto pattern. Promotion requires a width policy that survives ≤736 (currently 820–1020px overflow) and a decision on the shared-style-block mechanism.",
+   "emerges_from": [
+    "layout/project-page",
+    "open question D-6"
+   ],
+   "evidence_present": "Byte-identical style blocks on 4 pages; float alternation consistently applied.",
+   "promote_when": [
+    "responsive width policy (max-width + height:auto) drafted",
+    "shared-block vs class migration decided",
+    "one page rebuilt as the reference"
+   ],
+   "provenance": {
+    "source": "redo domain d"
    }
   }
  ]

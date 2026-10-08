@@ -1,0 +1,143 @@
+{
+ "index_phd_line": [
+  {
+   "tag": "p",
+   "cls": "",
+   "color": "rgb(255, 107, 188)",
+   "fs": "13px",
+   "path": "x"
+  }
+ ],
+ "index_lalala": [
+  {
+   "tag": "li",
+   "cls": "",
+   "color": "rgba(88, 88, 88, 0.5)",
+   "fs": "12.8px"
+  }
+ ],
+ "index_small": [],
+ "elements_code": [
+  {
+   "text": "for (;;) { ... }",
+   "color": "rgb(255, 107, 188)",
+   "bg": "rgba(46, 90, 249, 0.984)",
+   "parent": "p"
+  },
+  {
+   "text": "i = 0;\n\nwhile (!deck.isIn",
+   "color": "rgb(255, 107, 188)",
+   "bg": "rgba(46, 90, 249, 0.984)",
+   "parent": "pre"
+  }
+ ],
+ "elements_table_zebra": {
+  "plain": [
+   "rgba(144, 144, 144, 0.075)",
+   "rgba(0, 0, 0, 0)",
+   "rgba(144, 144, 144, 0.075)",
+   "rgba(0, 0, 0, 0)"
+  ],
+  "alt": [
+   "rgba(144, 144, 144, 0.075)",
+   "rgba(0, 0, 0, 0)",
+   "rgba(144, 144, 144, 0.075)",
+   "rgba(0, 0, 0, 0)"
+  ]
+ },
+ "light_main_a": [
+  {
+   "text": "Bilibili",
+   "color": "rgb(107, 255, 44)",
+   "bb": "rgb(32, 163, 245)"
+  },
+  {
+   "text": "SIGGRAPH ASIA 2024 Art Paper",
+   "color": "rgb(107, 255, 44)",
+   "bb": "rgb(32, 163, 245)"
+  },
+  {
+   "text": "SIGGRAPH ASIA 2024 Art Paper",
+   "color": "rgb(107, 255, 44)",
+   "bb": "rgb(32, 163, 245)"
+  }
+ ],
+ "index_mobile": {
+  "scrollWidth": 700,
+  "bodyScrollWidth": 700,
+  "wide": [
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 640,
+    "style": "width:640px;height:360px;object-fit:cover"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 700,
+    "style": "width:700px;display:block;margin:0 auto;"
+   }
+  ]
+ },
+ "elements_mobile": {
+  "scrollWidth": 390,
+  "bodyScrollWidth": 390,
+  "wide": [
+   {
+    "tag": "div",
+    "cls": "fields",
+    "w": 398,
+    "style": ""
+   }
+  ]
+ },
+ "light_mobile": {
+  "scrollWidth": 820,
+  "bodyScrollWidth": 820,
+  "wide": [
+   {
+    "tag": "iframe",
+    "cls": "",
+    "w": 800,
+    "style": ""
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 800,
+    "style": "width:800px;display:block;margin:0 auto !important;"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 800,
+    "style": "width:800px;display:block;margin:0 auto !important;"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 800,
+    "style": "width:800px;display:block;margin:0 auto !important;"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 500,
+    "style": "width:500px"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 600,
+    "style": "width:600px"
+   },
+   {
+    "tag": "img",
+    "cls": "",
+    "w": 500,
+    "style": "width:500px"
+   }
+  ]
+ }
+}

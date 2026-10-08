@@ -1,0 +1,216 @@
+{
+ "checkbox_checked": {
+  "label-color": "rgb(136, 51, 227)",
+  "before-bg": "rgb(245, 22, 22)",
+  "before-border-color": "rgb(248, 33, 33)",
+  "before-color": "rgb(255, 255, 255)",
+  "content": "\"\uf00c\""
+ },
+ "radio_checked": {
+  "label-color": "rgb(136, 51, 227)",
+  "before-bg": "rgb(245, 22, 22)",
+  "before-border-color": "rgb(248, 33, 33)",
+  "before-color": "rgb(255, 255, 255)",
+  "content": "\"\uf00c\""
+ },
+ "radio_unchecked": {
+  "label-color": "rgb(136, 51, 227)",
+  "before-bg": "rgba(0, 0, 0, 0)",
+  "before-border-color": "rgb(201, 201, 201)"
+ },
+ "input_focus": {
+  "border-bottom-color": "rgb(242, 132, 158)",
+  "border-bottom-width": "1px",
+  "box-shadow": "rgb(242, 132, 158) 0px -1px 0px 0px inset",
+  "background-color": "rgba(0, 0, 0, 0)",
+  "color": "rgb(255, 107, 188)"
+ },
+ "input_base": {
+  "border-bottom-color": "rgb(201, 201, 201)",
+  "background-color": "rgba(0, 0, 0, 0)"
+ },
+ "plain_labels": [],
+ "select": {
+  "background-image": "url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31",
+  "background-color": "rgba(0, 0, 0, 0)",
+  "color": "rgb(255, 107, 188)",
+  "border-bottom-color": "rgb(201, 201, 201)",
+  "appearance": "none"
+ },
+ "link_hover": {
+  "base-color": "rgb(107, 255, 44)",
+  "stylesheet-a-hover-rule": "a:hover { border-bottom-color: transparent; color: rgb(242, 132, 158) !important; }"
+ },
+ "menu_open": {
+  "bodyClass": "is-menu-visible",
+  "menu-bg": "rgb(62, 249, 0)",
+  "menu-color": "rgb(0, 0, 0)",
+  "inner-opacity": "1",
+  "inner-visibility": "visible",
+  "link-color": "rgb(0, 0, 0)",
+  "link-opacity": "1",
+  "close-color": "rgb(107, 255, 44)",
+  "close-visible": "visible op=1",
+  "menu-h2": "rgb(0, 0, 0)"
+ },
+ "tile_hover_index": {
+  "style-class": "",
+  "before-bg": "rgb(235, 132, 218)",
+  "before-opacity": "1",
+  "after-bg": "rgba(0, 0, 0, 0)",
+  "after-opacity": "0"
+ },
+ "tiles_classes": [
+  "",
+  "style2",
+  "style3",
+  "style6",
+  "style2",
+  "style2",
+  "",
+  ""
+ ],
+ "embed": {
+  "iframes": [],
+  "videos": []
+ },
+ "inventory_index_colors": {
+  "rgb(0, 0, 0)": [
+   "html",
+   "nav",
+   "div.inner",
+   "h2",
+   "ul",
+   "li"
+  ],
+  "rgb(255, 107, 188)": [
+   "body",
+   "div",
+   "header",
+   "div.inner",
+   "a.logo",
+   "span.symbol"
+  ],
+  "rgb(107, 255, 44)": [
+   "a",
+   "a.close"
+  ],
+  "rgb(255, 255, 255)": [
+   "a",
+   "h2",
+   "div.content",
+   "p",
+   "a",
+   "h2"
+  ],
+  "rgba(88, 88, 88, 0.5)": [
+   "ul.copyright",
+   "li"
+  ]
+ },
+ "inventory_elements_colors": {
+  "rgb(0, 0, 0)": [
+   "html",
+   "nav",
+   "div.inner",
+   "h2",
+   "ul",
+   "li",
+   "a",
+   "li"
+  ],
+  "rgb(255, 107, 188)": [
+   "body",
+   "div",
+   "header",
+   "div.inner",
+   "a.logo",
+   "span.symbol",
+   "img",
+   "span.title"
+  ],
+  "rgb(107, 255, 44)": [
+   "a",
+   "a",
+   "a.icon.brands",
+   "a.icon.brands",
+   "a.icon.brands",
+   "a.icon.brands",
+   "a.close"
+  ],
+  "rgb(128, 128, 128)": [
+   "hr",
+   "hr",
+   "hr"
+  ],
+  "rgb(255, 255, 255)": [
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary"
+  ],
+  "rgb(88, 88, 88)": [
+   "a.button",
+   "a.button.small",
+   "a.button",
+   "a.button.small",
+   "a.button.fit",
+   "a.button.small",
+   "a.button",
+   "a.button.large"
+  ],
+  "rgb(136, 51, 227)": [
+   "label",
+   "label",
+   "label",
+   "label",
+   "label"
+  ],
+  "rgba(88, 88, 88, 0.5)": [
+   "ul.copyright",
+   "li",
+   "li",
+   "a"
+  ]
+ },
+ "inventory_elements_bg": {
+  "rgb(255, 255, 255)": [
+   "body"
+  ],
+  "rgba(255, 255, 255, 0.5)": [
+   "a"
+  ],
+  "rgba(46, 90, 249, 0.984)": [
+   "code",
+   "code"
+  ],
+  "rgb(88, 88, 88)": [
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary",
+   "a.button.primary"
+  ],
+  "rgba(144, 144, 144, 0.075)": [
+   "tr",
+   "tr",
+   "tr",
+   "tr",
+   "tr",
+   "tr"
+  ],
+  "rgb(246, 246, 246)": [
+   "footer"
+  ],
+  "rgb(62, 249, 0)": [
+   "nav"
+  ]
+ }
+}

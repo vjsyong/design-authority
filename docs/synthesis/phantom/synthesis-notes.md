@@ -1,4 +1,10 @@
-# Phantom synthesis — evidence ledger & decisions
+# Phantom synthesis — evidence ledger & decisions (pass 1 — SUPERSEDED)
+
+> **SUPERSEDED by the pass-2 redo (2026-10-08).** Pass 1 canonicalised the
+> template's grey ink and misfiled the deployment's pink type as "deviations".
+> The owner rejected that frame; pass 2 re-extracted from rendered evidence
+> (see `redo-brief.md`, `domains/a–d`, and `packs/phantom` 0.2.0). This file is
+> kept for provenance — read it for the substrate inventory, not for canon.
 
 Source: **https://zhenyoyo.github.io** (Zhen Wu / Yoyo, HKUST ISD PhD candidate).
 Locally archived evidence in `_raw/` (fetched 2026-10-08):

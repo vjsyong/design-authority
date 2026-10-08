@@ -1,17 +1,19 @@
 <!DOCTYPE HTML>
 <!--
-  phantom-audit — a design-system review of zhenyoyo.github.io, built on packs/phantom 0.1.0.
-  Page chrome follows the phantom system (see assets/css/main.css, derived from
-  "Phantom by HTML5 UP", html5up.net, CCA 3.0). The console (chips, ledger,
-  panel, filters, demo frames) is instrument/improvisation — assets/css/console.css —
-  marked in the DOM and filed in _evidence/gaps.jsonl.
+  phantom-audit (v2, redo) — a design-system review of zhenyoyo.github.io, built on
+  packs/phantom 0.2.0: the authority is now the site's DEPLOYED language (pass 2,
+  screenshot-first, four domain teams). Page chrome = the deployed system verbatim
+  (assets/css/main.css derived from the site's own stylesheet; template "Phantom" by
+  HTML5 UP, CCA 3.0 — attribution kept). The console kit (chips, stat row, ledger
+  chrome, panel, marks, evidence gallery) is instrument/improvisation —
+  assets/css/console.css — marked in the DOM and filed in _evidence/gaps.jsonl.
 -->
 <html lang="en">
 	<head>
 		<title>System Review — zhenyoyo.github.io</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="A design-system review of zhenyoyo.github.io, built on the phantom authority." />
+		<meta name="description" content="A design-system review of zhenyoyo.github.io, carried out against packs/phantom 0.2.0 — the site's deployed language as authority." />
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/console.css" />
@@ -23,7 +25,7 @@
 				<header id="header">
 					<div class="inner">
 						<a href="#overview" class="logo">
-							<span class="symbol"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" data-improvised data-mk="logo mark (instrument)"><circle cx="17" cy="17" r="13.5" fill="none" stroke="#585858" stroke-width="2.2"/><circle cx="17" cy="17" r="4.5" fill="#f2849e"/></svg></span><span class="title">Phantom Audit</span>
+							<span class="symbol"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" data-improvised data-mk="logo mark (instrument)"><circle cx="17" cy="17" r="13.5" fill="none" stroke="#585858" stroke-width="2.2"/><circle cx="17" cy="17" r="4.5" fill="#ff6bbc"/></svg></span><span class="title">Phantom Audit</span>
 						</a>
 						<nav>
 							<ul>
@@ -40,8 +42,9 @@
 						<ul data-adapted data-mk="anchor nav — template menus link pages">
 							<li><a href="#overview">Overview</a></li>
 							<li><a href="#system">The system</a></li>
-							<li><a href="#gaps">Gaps</a></li>
+							<li><a href="#gaps">The ledger</a></li>
 							<li><a href="#adaptations">Adaptations</a></li>
+							<li><a href="#evidence">Evidence</a></li>
 							<li><a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">Source site ↗</a></li>
 							<li><a href="https://html5up.net/phantom" target="_blank" rel="noopener">Upstream template ↗</a></li>
 						</ul>
@@ -56,75 +59,92 @@
 							<header>
 								<h1>System review</h1>
 								<p>A design-system review of <a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
-								(Zhen Wu / Yoyo — ILightUUp, Tame, FAFA, Orchid, SoundMorphTPU), carried out against the
-								<strong>phantom authority</strong>: the interface system her site is built on (the HTML5 UP
-								“Phantom” template), codified as <em>packs/phantom</em> 0.1.0.</p>
+								(Zhen Wu / Yoyo — ILightUUp, Tame, FAFA, Unlogical Instrument, Orchid, SoundMorphTPU), carried out
+								against the <strong>phantom authority</strong>: the interface system her site actually deploys — Source Sans Pro,
+								pink reading ink, neon links, the lime rail — codified as <em>packs/phantom</em> 0.2.0.</p>
 							</header>
 							<ul class="snav" data-improvised data-mk="section nav (console kit)">
 								<li><a href="#system">The system</a></li>
-								<li><a href="#gaps">Gaps</a></li>
+								<li><a href="#gaps">The ledger</a></li>
 								<li><a href="#adaptations">Adaptations</a></li>
+								<li><a href="#evidence">Evidence</a></li>
 							</ul>
 							<div class="statrow" data-improvised data-mk="console kit — stat row">
-								<div class="stat"><b id="statPages">10</b><span>pages surveyed</span></div>
-								<div class="stat"><b id="statArts">19</b><span>system artifacts</span></div>
-								<div class="stat"><b id="statDev">10</b><span>deviations logged</span></div>
-								<div class="stat"><b id="statGaps">27</b><span>gaps catalogued</span></div>
-								<div class="stat"><b id="statAdapt">6</b><span>adaptations shown</span></div>
+								<div class="stat"><b id="statPages">9</b><span>pages surveyed</span></div>
+								<div class="stat"><b id="statArts">29</b><span>system artifacts</span></div>
+								<div class="stat"><b id="statRules">8</b><span>rules observed</span></div>
+								<div class="stat"><b id="statGaps">—</b><span>gaps catalogued</span></div>
+								<div class="stat"><b id="statCands">3</b><span>candidates drafted</span></div>
+								<div class="stat"><b id="statEv">14</b><span>screens as evidence</span></div>
+							</div>
+							<div class="consolebar" data-improvised data-mk="console kit — override toggle">
+								<button type="button" class="button small" id="overrideToggle" aria-pressed="false">View as project page — the black-body override</button>
+								<span class="muted" style="font-size:0.8em;">the deployment's own per-page override (P-R7), applied to this review</span>
 							</div>
 							<h2>How to read this</h2>
-							<p data-improvised data-mk="console kit — legend">Every finding below is in one of five postures.
-							<span class="chip chip--canon">canon</span> the system defines it — the build uses it as is.
-							<span class="chip chip--candidate">candidate</span> a provisional direction with a promotion bar, not authority.
+							<p data-improvised data-mk="console kit — legend">Every finding below is in one of seven postures.
+							<span class="chip chip--canon">canon</span> the deployed language defines it — the review uses it as is.
+							<span class="chip chip--base">base</span> a template value the deployment left untouched (still live).
+							<span class="chip chip--override">override</span> a deployment change — canonised where deliberate, recorded where risky.
+							<span class="chip chip--candidate">candidate</span> a promotion dossier with a bar to clear.
 							<span class="chip chip--improv">improvised</span> the system is silent — built in character, marked, filed.
 							<span class="chip chip--gap">gap</span> recorded for the owner; nothing invented silently.
-							<span class="chip chip--defect">defect</span> a plain bug — fixed, not designed around.</p>
+							<span class="chip chip--defect">defect</span> a plain bug — named, not designed around.</p>
 							<p class="muted">The site under review is a working notebook — unfinished by its own admission —
-							and that is the honest context for every item in the ledger. Nothing here was repaired:
+							and that is the honest context for every ledger item. Nothing on the reviewed site was modified:
 							the audit is evidence, not a rewrite.</p>
 						</section>
 
 						<section id="system">
 							<header>
-								<h2>The system — what the site is built on</h2>
-								<p>The authority derives from the template at CCA 3.0 (upstream sources archived), corroborated
-								by live computed styles. Each card below is rendered in the system's own language; click one for
-								its authority record. Cards showing “deviated on site” were overridden by the deployment —
-								those deviations are catalogued in <a href="#gaps">Gaps</a>.</p>
+								<h2>The system — the deployed language</h2>
+								<p>Pass 2 extracted what the site <em>is</em>, from rendered evidence (screenshots read page by page,
+								computed styles measured). Each card carries the deployed spec, its posture, and — where useful — a
+								live demo rendered in the system's own language. Click a card for its authority record.</p>
 							</header>
 							<ul class="cards" id="systemCards"></ul>
 						</section>
 
 						<section id="gaps">
 							<header>
-								<h2>Gaps — what the site leaves unresolved</h2>
-								<p>27 items across four families: <em>system coherence</em> (value edits that fracture the
-								design language), <em>craft</em> (markup and wiring defects), <em>content</em> (placeholder
-								text and reused demo pages), <em>patterns</em> (surfaces a portfolio needs that the template
-								never defines). Each row cites its evidence; the pathway column shows how the system would
-								carry it — see <a href="#adaptations">Adaptations</a>.</p>
+								<h2>The ledger — defects, risks &amp; gaps</h2>
+								<p id="gapIntro">— items across five families: <em>system</em> (measured risks inside the language),
+								<em>craft</em> (markup and wiring defects), <em>assets</em> (files the site references but no longer serves),
+								<em>content</em> (placeholder text and finishing passes), <em>patterns</em> (surfaces a portfolio needs that
+								the template never defines). Each row cites its evidence; the pathway column shows how the system carries it —
+								see <a href="#adaptations">Adaptations</a>.</p>
 							</header>
 							<ul class="filters" id="gapFilters" data-improvised data-mk="console kit — filters"></ul>
 							<div data-improvised data-mk="console kit — ledger">
-								<table class="table tight" style="font-size: 1.16em;">
+								<table class="table tight">
 									<thead>
-										<tr><th style="width:5em;">ID</th><th>Gap</th><th style="width:9em;">Family</th><th style="width:8em;">Severity</th><th style="width:11em;">Pathway</th></tr>
+										<tr><th style="width:4.5em;">ID</th><th>Item</th><th style="width:8em;">Family</th><th style="width:8em;">Severity</th><th style="width:10em;">Pathway</th></tr>
 									</thead>
 									<tbody id="gapRows"></tbody>
 								</table>
 							</div>
-							<p class="muted">Click any row for evidence and the full pathway. “Deviations” carry line
-							references into the archived sources (<code>_raw/css-diff.txt</code>).</p>
+							<p class="muted">Click any row for evidence and the full pathway. Reference tags mark what proves each item —
+							computed measurements, archived sources, or the screenshots in <a href="#evidence">Evidence</a>.</p>
 						</section>
 
 						<section id="adaptations">
 							<header>
 								<h2>Adaptations — how the system responds</h2>
-								<p>Six worked responses to the highest-value gaps. Each shows the ladder rung, the live
-								in-character build, and the system artefacts it produces (candidate, gap record, precedent).
-								These are demonstrations inside the review — none of them was pushed back into the authority.</p>
+								<p>Six worked responses to the highest-value ledger items: the pink-ink AA dossier, the override pattern
+								as an accessibility path, the carousel repair dossier, the project-gallery responsive fix, the CJK fallback,
+								and the craft repairs. These are demonstrations inside the review — none was pushed back into the authority.</p>
 							</header>
 							<div id="adaptList"></div>
+						</section>
+
+						<section id="evidence">
+							<header>
+								<h2>Evidence — the screens this review rests on</h2>
+								<p>Extraction evidence captured page by page during the domain passes (1280 and 390 viewports; hover and
+								focus states triggered before capture). The full set — 64 screenshots across four domain teams — lives in the
+								synthesis archive; these are the fourteen the findings lean on hardest.</p>
+							</header>
+							<ul class="evgrid" id="evGrid" data-improvised data-mk="console kit — evidence gallery"></ul>
 						</section>
 
 					</div>
@@ -136,9 +156,11 @@
 						<section>
 							<h2>About this review</h2>
 							<p>Built as a Design Authority consumer: every element above was resolved against
-							<code>packs/phantom</code> (<code>_evidence/resolves.jsonl</code>); silences became marked
-							improvisations and gap records (<code>_evidence/gaps.jsonl</code>); the console itself is
-							<code>console.css</code>, filed as a gap. Template: “Phantom” by HTML5 UP (CCA 3.0).</p>
+							<code>packs/phantom</code> 0.2.0 (<code>_evidence/resolves.jsonl</code>); silences became marked
+							improvisations and gap records; the console itself is <code>console.css</code>, filed as a gap.
+							Pass 1 (0.1.0) canonicalised the template's grey ink and misfiled this site's pink; pass 2 fixed the
+							frame — the reversal is recorded as a precedent (<code>precedent/pink-ink-canonised</code>).
+							Template: “Phantom” by HTML5 UP (CCA 3.0). Not affiliated with the reviewed site.</p>
 						</section>
 						<section>
 							<h2>Artefacts</h2>
@@ -150,14 +172,14 @@
 							</ul>
 						</section>
 						<ul class="copyright">
-							<li>phantom-audit — built on packs/phantom 0.1.0 · console additions marked, never canon</li>
+							<li>phantom-audit v2 — built on packs/phantom 0.2.0 · console additions marked, never canon</li>
 						</ul>
 					</div>
 				</footer>
 
 		</div>
 
-		<noscript><p style="padding:1em;">This review renders its ledger and cards with JavaScript — a known improvisation, filed in <code>_evidence/gaps.jsonl</code> (audit-console JS-only).</p></noscript>
+		<noscript><p style="padding:1em;">This review renders its ledger, cards and evidence gallery with JavaScript — a known improvisation, filed in the review workspace (audit-console JS-only).</p></noscript>
 
 		<button type="button" id="marksToggle" class="icon solid fa-eye marks-toggle" title="Reveal improvisations" aria-pressed="false" data-kit="marks toggle"></button>
 

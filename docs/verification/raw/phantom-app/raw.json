@@ -1,11 +1,11 @@
 {
  "pack": "phantom",
- "contract_version": "0.1",
+ "contract_version": "0.2",
  "target": "examples/phantom-audit",
- "generated": "2026-10-08 05:09:06",
+ "generated": "2026-10-08 06:03:05",
  "summary": {
-  "total": 17,
-  "PASS": 17,
+  "total": 15,
+  "PASS": 15,
   "VIOLATION": 0,
   "UNVERIFIABLE": 0,
   "NOT_APPLICABLE": 0,
@@ -13,13 +13,13 @@
  },
  "by_mode": {
   "COMPUTED_STYLE": {
-   "PASS": 13,
+   "PASS": 10,
    "VIOLATION": 0,
    "UNVERIFIABLE": 0,
    "REVIEW_REQUIRED": 0
   },
   "INTERACTION": {
-   "PASS": 3,
+   "PASS": 4,
    "VIOLATION": 0,
    "UNVERIFIABLE": 0,
    "REVIEW_REQUIRED": 0
@@ -33,18 +33,62 @@
  },
  "checks": [
   {
-   "id": "phantom/type-display-caps",
-   "item": "token-set/type",
-   "title": "Section heads: uppercase, 900, tracked (0.35em)",
+   "id": "phantom/app-body-pink-ink",
+   "item": "token-set/colour",
+   "title": "Body runs pink reading ink #ff6bbc at weight 300",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "COMPUTED_STYLE",
-   "selector": "#system h2",
+   "selector": "body",
    "status": "PASS",
    "observed": [
-    "text-transform: uppercase (all 5 ok)",
-    "font-weight: 900 (all 5 ok)",
-    "letter-spacing: 6.16px (all 5 ok)"
+    "color: rgb(255, 107, 188)",
+    "font-weight: 300",
+    "font-family: \"Source Sans Pro\", Helvetica, sans-serif"
+   ],
+   "expected": [
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#ff6bbc\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"300\"}",
+    "{\"property\": \"font-family\", \"relation\": \"contains\", \"value\": \"Source Sans Pro\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "phantom/app-display-h1",
+   "item": "guideline/typography-voices",
+   "title": "h1 is the tight pink sentence-case voice (700)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "h1",
+   "status": "PASS",
+   "observed": [
+    "color: rgb(255, 107, 188) (all 2 ok)",
+    "font-weight: 700 (all 2 ok)"
+   ],
+   "expected": [
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#ff6bbc\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"700\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "phantom/app-caps-heads",
+   "item": "token-set/tracking-and-case",
+   "title": "h2 heads wear the tracked caps voice (uppercase 900 +0.35em)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#main h2",
+   "status": "PASS",
+   "observed": [
+    "text-transform: uppercase (all 11 ok)",
+    "font-weight: 900 (all 11 ok)",
+    "letter-spacing: 6.16px (all 11 ok)"
    ],
    "expected": [
     "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}",
@@ -56,175 +100,64 @@
    "note": null
   },
   {
-   "id": "phantom/body-light-ink",
-   "item": "token-set/type",
-   "title": "Body runs light (300) in ink #585858, Source Sans Pro",
+   "id": "phantom/app-links-trio",
+   "item": "rule/link-treatment",
+   "title": "Links carry the trio: green text, dotted 1px blue underline (rule P-R6)",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "COMPUTED_STYLE",
-   "selector": "body",
+   "selector": "#overview p a",
    "status": "PASS",
    "observed": [
-    "color: rgb(88, 88, 88)",
-    "font-weight: 300",
-    "font-family: \"Source Sans Pro\", Helvetica, sans-serif"
+    "color: rgb(107, 255, 44)",
+    "border-bottom-style: dotted",
+    "border-bottom-color: rgb(32, 163, 245)"
    ],
    "expected": [
-    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#585858\"}",
-    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"300\"}",
-    "{\"property\": \"font-family\", \"relation\": \"contains\", \"value\": \"Source Sans Pro\"}"
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#6bff2c\"}",
+    "{\"property\": \"border-bottom-style\", \"relation\": \"equals\", \"value\": \"dotted\"}",
+    "{\"property\": \"border-bottom-color\", \"relation\": \"color_is\", \"value\": \"#20a3f5\"}"
    ],
    "evidence": {},
    "screenshot": null,
    "note": null
   },
   {
-   "id": "phantom/primary-button",
-   "item": "component/action-button",
-   "title": "Primary button: ink ground, white caps label, radius 4",
-   "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "error",
-   "mode": "COMPUTED_STYLE",
-   "selector": ".button.primary",
-   "status": "PASS",
-   "observed": [
-    "background-color: rgb(88, 88, 88) (all 2 ok)",
-    "color: rgb(255, 255, 255) (all 2 ok)",
-    "border-radius: 4px (all 2 ok)",
-    "text-transform: uppercase (all 2 ok)",
-    "font-weight: 900 (all 2 ok)"
-   ],
-   "expected": [
-    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#585858\"}",
-    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}",
-    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}",
-    "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}",
-    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"900\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/default-button-ring",
-   "item": "component/action-button",
-   "title": "Default button: transparent with 2px inset ink ring",
-   "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "error",
-   "mode": "COMPUTED_STYLE",
-   "selector": "#systemCards .button:not(.primary)",
-   "status": "PASS",
-   "observed": [
-    "box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset (all 5 ok)",
-    "color: rgb(88, 88, 88) (all 5 ok)"
-   ],
-   "expected": [
-    "{\"property\": \"box-shadow\", \"relation\": \"contains\", \"value\": [\"inset\", \"2px\", \"rgb(88, 88, 88)\"]}",
-    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#585858\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/field-underline",
-   "item": "component/field",
-   "title": "Fields are underline-only and flat (no box, 1px #c9c9c9 line, radius 0)",
-   "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "error",
-   "mode": "COMPUTED_STYLE",
-   "selector": "input[type=text]",
-   "status": "PASS",
-   "observed": [
-    "border-top-width: 0px",
-    "border-bottom-width: 1px",
-    "border-bottom-color: rgb(201, 201, 201)",
-    "border-radius: 0px"
-   ],
-   "expected": [
-    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"0px\"}",
-    "{\"property\": \"border-bottom-width\", \"relation\": \"equals\", \"value\": \"1px\"}",
-    "{\"property\": \"border-bottom-color\", \"relation\": \"color_is\", \"value\": \"#C9C9C9\"}",
-    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"0px\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/select-styled",
-   "item": "component/select",
-   "title": "Select follows the field language",
+   "id": "phantom/app-code-chip",
+   "item": "component/code-pre",
+   "title": "Inline code sits on the blue ground in pink text",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "warning",
    "mode": "COMPUTED_STYLE",
-   "selector": "select",
+   "selector": "p code",
    "status": "PASS",
    "observed": [
-    "border-bottom-width: 1px",
-    "border-radius: 0px"
+    "background-color: rgba(46, 90, 249, 0.984) (all 6 ok)",
+    "color: rgb(255, 107, 188) (all 6 ok)"
    ],
    "expected": [
-    "{\"property\": \"border-bottom-width\", \"relation\": \"equals\", \"value\": \"1px\"}",
-    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"0px\"}"
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#2e5af9\"}",
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#ff6bbc\"}"
    ],
    "evidence": {},
    "screenshot": null,
    "note": null
   },
   {
-   "id": "phantom/table-head-caps",
-   "item": "component/table",
-   "title": "Table heads: 900 weight at 0.9em (source: no caps on th)",
-   "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "warning",
-   "mode": "COMPUTED_STYLE",
-   "selector": "table th",
-   "status": "PASS",
-   "observed": [
-    "font-weight: 900 (all 7 ok)"
-   ],
-   "expected": [
-    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"900\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/tiles-vessel",
-   "item": "component/tiles",
-   "title": "Tile vessels carry the 4px radius",
-   "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "warning",
-   "mode": "COMPUTED_STYLE",
-   "selector": ".tiles article .image",
-   "status": "PASS",
-   "observed": [
-    "border-radius: 4px (all 3 ok)"
-   ],
-   "expected": [
-    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/menu-surface",
-   "item": "layout/menu",
-   "title": "Menu panel: ink ground (not neon)",
+   "id": "phantom/app-menu-lime",
+   "item": "component/menu-panel",
+   "title": "Menu panel: lime ground, fixed position",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "COMPUTED_STYLE",
    "selector": "#menu",
    "status": "PASS",
    "observed": [
-    "background-color: rgb(88, 88, 88)",
+    "background-color: rgb(62, 249, 0)",
     "position: fixed"
    ],
    "expected": [
-    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#585858\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#3ef900\"}",
     "{\"property\": \"position\", \"relation\": \"equals\", \"value\": \"fixed\"}"
    ],
    "evidence": {},
@@ -232,87 +165,97 @@
    "note": null
   },
   {
-   "id": "phantom/menu-link-inverse",
-   "item": "layout/menu",
-   "title": "Menu links render white on ink",
+   "id": "phantom/app-menu-links-black",
+   "item": "component/menu-panel",
+   "title": "Menu links render black on the lime rail (14.76:1)",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "warning",
    "mode": "COMPUTED_STYLE",
    "selector": "#menu a",
    "status": "PASS",
    "observed": [
-    "color: rgb(255, 255, 255) (all 6 ok)"
+    "color: rgb(0, 0, 0) (all 7 ok)"
    ],
    "expected": [
-    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#FFFFFF\"}"
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#000000\"}"
    ],
    "evidence": {},
    "screenshot": null,
    "note": null
   },
   {
-   "id": "phantom/content-link-dotted",
-   "item": "token-set/colour",
-   "title": "Content links: ink with a 50% dotted underline",
-   "classification": "PARTIALLY_VERIFIABLE",
-   "severity": "warning",
-   "mode": "COMPUTED_STYLE",
-   "selector": "#overview a:not([href='#menu'])",
-   "status": "PASS",
-   "observed": [
-    "color: rgb(88, 88, 88) (all 4 ok)",
-    "border-bottom-style: dotted (all 4 ok)"
-   ],
-   "expected": [
-    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#585858\"}",
-    "{\"property\": \"border-bottom-style\", \"relation\": \"equals\", \"value\": \"dotted\"}"
-   ],
-   "evidence": {},
-   "screenshot": null,
-   "note": null
-  },
-  {
-   "id": "phantom/inline-code-tint",
-   "item": "component/code-pre",
-   "title": "Inline code sits on the faint tint, not a blue block",
+   "id": "phantom/app-button-ring",
+   "item": "component/action-button",
+   "title": "Buttons keep the 4px radius + 2px ink ring (base layer intact)",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "warning",
    "mode": "COMPUTED_STYLE",
-   "selector": "p code",
+   "selector": "#overrideToggle",
    "status": "PASS",
    "observed": [
-    "background-color: rgba(144, 144, 144, 0.075) (all 6 ok)"
+    "box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset",
+    "border-radius: 4px",
+    "text-transform: uppercase"
    ],
    "expected": [
-    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#909090\"}"
+    "{\"property\": \"box-shadow\", \"relation\": \"contains\", \"value\": [\"inset\", \"2px\", \"rgb(88, 88, 88)\"]}",
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}",
+    "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}"
    ],
    "evidence": {},
    "screenshot": null,
    "note": null
   },
   {
-   "id": "phantom/wrapper-motion",
-   "item": "layout/page-intro",
-   "title": "Wrapper carries the 0.45s entrance transition",
+   "id": "phantom/app-field-focus",
+   "item": "component/field",
+   "title": "Focused field trades its line for the 2px pink underline",
    "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "info",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"focus_signals\", \"relation\": \"all_contains\", \"value\": \"rgb(242, 132, 158)\"}"
+   ],
+   "evidence": {
+    "focus_signals": [
+     "rgb(242, 132, 158) 0px -1px 0px 0px inset | rgb(255, 107, 188) | rgb(255, 107, 188) none 0px"
+    ],
+    "focus_signal": "rgb(242, 132, 158) 0px -1px 0px 0px inset | rgb(255, 107, 188) | rgb(255, 107, 188) none 0px",
+    "focus_selector_count": 1
+   },
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "phantom/app-wordmark",
+   "item": "component/emblem-logo",
+   "title": "Wordmark: 900 tracked caps",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
    "mode": "COMPUTED_STYLE",
-   "selector": "#wrapper",
+   "selector": "#header .logo .title",
    "status": "PASS",
    "observed": [
-    "transition-duration: 0.45s"
+    "text-transform: uppercase",
+    "font-weight: 900",
+    "letter-spacing: 5.6px"
    ],
    "expected": [
-    "{\"property\": \"transition-duration\", \"relation\": \"transition_max\", \"value\": 0.45}"
+    "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}",
+    "{\"property\": \"font-weight\", \"relation\": \"equals\", \"value\": \"900\"}",
+    "{\"property\": \"letter-spacing\", \"relation\": \"min\", \"value\": 5}"
    ],
    "evidence": {},
    "screenshot": null,
    "note": null
   },
   {
-   "id": "phantom/no-blurred-shadows",
-   "item": "rule/P-R4",
-   "title": "No blurred shadows anywhere (inset rings and rules only)",
+   "id": "phantom/app-no-blurred-shadows",
+   "item": "rule/flat-inset-rings",
+   "title": "No blurred shadows anywhere (inset rings and rules only, rule P-R4)",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "INTERACTION",
@@ -323,7 +266,7 @@
     "{\"evidence\": \"shadow_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
    ],
    "evidence": {
-    "shadow_found": 32,
+    "shadow_found": 38,
     "shadow_unexpected": 0,
     "shadow_detail": "[]"
    },
@@ -331,9 +274,9 @@
    "note": null
   },
   {
-   "id": "phantom/no-keyframes",
-   "item": "rule/P-R4",
-   "title": "No CSS animations run (transitions only)",
+   "id": "phantom/app-no-keyframes",
+   "item": "layout/page-intro",
+   "title": "No CSS animations run (transitions only; the intro is transition-driven)",
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "warning",
    "mode": "INTERACTION",
@@ -351,11 +294,11 @@
    "note": null
   },
   {
-   "id": "phantom/svg-census",
-   "item": "precedent/declined-neon-reading-ink",
+   "id": "phantom/app-svg-census",
+   "item": "precedent/pink-ink-canonised",
    "title": "SVG census matches the sanctioned set (the review's single mark)",
    "classification": "MECHANICALLY_VERIFIABLE",
-   "severity": "warning",
+   "severity": "info",
    "mode": "INTERACTION",
    "selector": null,
    "status": "PASS",
@@ -373,19 +316,38 @@
    "note": null
   },
   {
-   "id": "phantom/palette-literals",
+   "id": "phantom/app-palette-console",
    "item": "token-set/colour",
-   "title": "Colours stay within the system + console allowlist",
+   "title": "Console layer stays within the deployed palette allowlist",
    "classification": "PARTIALLY_VERIFIABLE",
    "severity": "warning",
    "mode": "STATIC",
    "selector": null,
    "status": "PASS",
    "observed": [
-    "95 literals, all allowlisted"
+    "61 literals, all allowlisted"
    ],
    "expected": [
-    "{\"relation\": \"color_literals\", \"allow\": [\"#333333\", \"#585858\", \"#7bd0c1\", \"#7ecaf6\", \"#8499e7\", \"#ae85ca\", \"#c75b9b\", \"#c9c9c9\", \"#ee5f81\", "
+    "{\"relation\": \"color_literals\", \"allow\": [\"#585858\", \"#c9c9c9\", \"#f2849e\", \"#ff6bbc\", \"#6bff2c\", \"#3ef900\", \"#20a3f5\", \"#f51616\", \"#8833e3\", "
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "phantom/app-footer-ground",
+   "item": "token-set/surfaces",
+   "title": "Footer band uses the deployed #f6f6f6 ground",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "info",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#footer",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(246, 246, 246)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#f6f6f6\"}"
    ],
    "evidence": {},
    "screenshot": null,

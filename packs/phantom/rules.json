@@ -2,25 +2,25 @@
  "rules": [
   {
    "id": "P-R1",
-   "name": "ink-text-policy",
+   "name": "reading-ink-pink",
    "severity": "warning",
    "applies_to": [
     "css"
    ],
-   "summary": "Text and UI ink is #585858 on white; saturated colour arrives only through sanctioned surfaces (hover/focus states, tile pastels, menu ground).",
-   "why": "The template's monochrome reading surface is its design identity; colour-as-surface keeps contrast safe (pink #ff6bbc on white ≈ 2.1:1).",
-   "fix": "Return text colours to ink; move accent ambitions into hover/focus/surface roles or the pink-accent candidate."
+   "summary": "Deployed reading ink is pink #ff6bbc (body/heads/footer/forms) with neon-green links #6bff2c on a dotted blue underline; per-page black-body flips (project pages, .publication) and per-page h1 hues are sanctioned parts of the system. Contrast below AA is measured and recorded (prohibition/unreadable-accent-ink).",
+   "why": "Pass 2 extracted what the site IS: the pink/neon ink layer is the deployment's signature, not an accident. Recorded contrast: pink-on-white 2.6:1, green-on-white 1.32:1.",
+   "fix": "Follow the deployed ink map; where a consumer needs AA compliance, use the sanctioned black-body override (already in the system) and file the divergence as a gap."
   },
   {
    "id": "P-R2",
-   "name": "radius-family",
-   "severity": "error",
+   "name": "radius-map",
+   "severity": "warning",
    "applies_to": [
     "css"
    ],
-   "summary": "Corners are 4px across buttons, fields, boxes, images and tiles (circles only for logo/icon discs).",
-   "why": "One radius family ties the system together; the deployment flattened everything to 0px.",
-   "fix": "Restore border-radius: 4px on affected components (or re-open the radius decision as a candidate)."
+   "summary": "Radius map as deployed: 0px on checkbox marks (checkbox only), boxes, .image spans, icon chips (style2) and tiles; 100% on radios and logo/icon discs; 4px kept on buttons, inline code, nav plates and tile captions.",
+   "why": "Half the template's 4px family was intentionally flattened; the remainder holds. Both values are canonical in their mapped places.",
+   "fix": "Apply the map above by component; do not blanket-flatten or blanket-restore."
   },
   {
    "id": "P-R3",
@@ -30,9 +30,9 @@
     "css",
     "html"
    ],
-   "summary": "Display labels (h2-h4, buttons, table heads) are uppercase 900 with 0.35em letter-spacing; h1 stays sentence case 700.",
-   "why": "Observed across type, buttons and heads; the tracking is the system's typographic signature.",
-   "fix": "Apply uppercase/900/0.35em to display labels; never apply caps-tracking to running text."
+   "summary": "Caps voice (uppercase 900, +0.35em) runs h2–h4, wordmark, nav and buttons; h1 stays sentence-case 700 with −0.035em; table heads are 900 mixed case; labels and menu links stay 300.",
+   "why": "Measured across type, buttons, menu and tables; the mixed-case exceptions are as deliberate as the caps.",
+   "fix": "Apply the caps voice to the list above; never caps-track running text; keep table heads mixed case."
   },
   {
    "id": "P-R4",
@@ -41,8 +41,8 @@
    "applies_to": [
     "css"
    ],
-   "summary": "Depth is drawn with inset rings (`inset 0 0 0 Npx`) and rules — never blurred or elevated shadows.",
-   "why": "No blurred shadow exists in the template; borders-as-shadows keep the flat surface honest.",
+   "summary": "Depth is drawn with inset rings (inset 0 0 0 Npx), hairlines and rules — no blurred/elevation shadows exist anywhere in the system.",
+   "why": "Shadow census on the deployed render finds inset rings only; the flat surface is the system's honesty.",
    "fix": "Replace drop shadows with inset rings or 1px rules."
   },
   {
@@ -52,9 +52,43 @@
    "applies_to": [
     "css"
    ],
-   "summary": "Fields are underline-only: tint ground, 1px #c9c9c9 bottom line, pink underline on focus.",
-   "why": "The form language is minimal by design; boxes around fields would break the page rhythm.",
-   "fix": "Strip field box borders; keep the bottom line + focus underline."
+   "summary": "Fields are underline-only on white: no box, radius 0, 1px #c9c9c9 bottom line; focus = 2px pink #f2849e underline (border + inset). Select and textarea follow.",
+   "why": "Measured on every input; the box-less language keeps the page rhythm.",
+   "fix": "Strip field boxes; keep the bottom line and the pink focus underline."
+  },
+  {
+   "id": "P-R6",
+   "name": "link-trio",
+   "severity": "info",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "A content link carries three colours at once: text #6bff2c, dotted 1px #20a3f5 underline, #f2849e hover (underline goes transparent). The underline is the link's findability anchor under failing contrast; the hover pink is the template accent.",
+   "why": "Measured as one wrapped rule on all 9 pages; removing any leg changes the system.",
+   "fix": "Keep the trio intact; do not 'fix' the link colour without re-opening the ink decision."
+  },
+  {
+   "id": "P-R7",
+   "name": "per-page-override-pattern",
+   "severity": "info",
+   "applies_to": [
+    "css",
+    "html"
+   ],
+   "summary": "Global pink ink is overridden per page: light/tame/fafa/Unlogical inject one identical style block (body #fbfbfb + black text) and recolour only their h1 via inline style; publication adds a .publication class painting its main text black while header/footer stay pink.",
+   "why": "This override mechanism is the system's actual extension model for 'quieter' pages; new pages should follow it rather than introduce new mechanisms.",
+   "fix": "To quiet a page, reuse the shared style block + one h1 accent; do not fork the global stylesheet."
+  },
+  {
+   "id": "P-R8",
+   "name": "state-colour-pink",
+   "severity": "info",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "One interaction-state colour: #f2849e. It is the hover label+ring on buttons, field/select focus underline, icon-chip hover glyph+border, :active ground at 10% alpha, and link hover. Measured on every interactive control.",
+   "why": "Single accent keeps the state language coherent (2.45:1 on white — state emphasis only, never reading ink).",
+   "fix": "Use #f2849e for state emphasis; do not add a second state colour."
   }
  ]
 }

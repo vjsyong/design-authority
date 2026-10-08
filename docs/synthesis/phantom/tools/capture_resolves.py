@@ -95,7 +95,10 @@ GAPS = [
     ("no-script rendering path for the review console", "review-console", "fallback"),
     ("criteria for promotion of review-surface kits", "governance", "process"),
 ]
+GAPS_ENABLED = os.environ.get("SKIP_GAPS") != "1"
 for need, scope, dom in GAPS:
+    if not GAPS_ENABLED:
+        break
     ctx = json.dumps({"from": "phantom-audit", "scope": scope, "domain": dom})
     r = subprocess.run(DA + ["gap-add", "--need", need, "--context", ctx,
                              "--scope", scope, "--workspace", WS],

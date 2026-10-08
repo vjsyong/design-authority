@@ -1,204 +1,163 @@
 {
- "generated": "2026-10-08 05:09:06",
+ "generated": "2026-10-08 06:03:05",
  "tool": "tools/da_verify.py",
  "target": "examples/phantom-audit",
  "summary": {
-  "total": 17,
-  "PASS": 17,
+  "total": 15,
+  "PASS": 15,
   "VIOLATION": 0,
   "UNVERIFIABLE": 0,
   "NOT_APPLICABLE": 0,
   "REVIEW_REQUIRED": 0
  },
  "covers": {
-  "assets/css/main.css": "6fac9f68204bad0f",
-  "app.js": "f37b0b6cfb061621",
-  "index.html": "f7cda7b0e4fa33c9"
+  "assets/css/main.css": "1151cade53024996",
+  "app.js": "49cb0699969ec393",
+  "index.html": "40bfdb3697b0fc13"
  },
  "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
  "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
  "checks": [
   {
-   "id": "phantom/type-display-caps",
-   "item": "token-set/type",
-   "title": "Section heads: uppercase, 900, tracked (0.35em)",
-   "mode": "COMPUTED_STYLE",
-   "severity": "error",
-   "status": "PASS",
-   "selector": "#system h2",
-   "observed": [
-    "text-transform: uppercase (all 5 ok)",
-    "font-weight: 900 (all 5 ok)"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/body-light-ink",
-   "item": "token-set/type",
-   "title": "Body runs light (300) in ink #585858, Source Sans Pro",
+   "id": "phantom/app-body-pink-ink",
+   "item": "token-set/colour",
+   "title": "Body runs pink reading ink #ff6bbc at weight 300",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
    "selector": "body",
    "observed": [
-    "color: rgb(88, 88, 88)",
+    "color: rgb(255, 107, 188)",
     "font-weight: 300"
    ],
    "note": null
   },
   {
-   "id": "phantom/primary-button",
-   "item": "component/action-button",
-   "title": "Primary button: ink ground, white caps label, radius 4",
+   "id": "phantom/app-display-h1",
+   "item": "guideline/typography-voices",
+   "title": "h1 is the tight pink sentence-case voice (700)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": ".button.primary",
+   "selector": "h1",
    "observed": [
-    "background-color: rgb(88, 88, 88) (all 2 ok)",
-    "color: rgb(255, 255, 255) (all 2 ok)"
+    "color: rgb(255, 107, 188) (all 2 ok)",
+    "font-weight: 700 (all 2 ok)"
    ],
    "note": null
   },
   {
-   "id": "phantom/default-button-ring",
-   "item": "component/action-button",
-   "title": "Default button: transparent with 2px inset ink ring",
+   "id": "phantom/app-caps-heads",
+   "item": "token-set/tracking-and-case",
+   "title": "h2 heads wear the tracked caps voice (uppercase 900 +0.35em)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": "#systemCards .button:not(.primary)",
+   "selector": "#main h2",
    "observed": [
-    "box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset (all 5 ok)",
-    "color: rgb(88, 88, 88) (all 5 ok)"
+    "text-transform: uppercase (all 11 ok)",
+    "font-weight: 900 (all 11 ok)"
    ],
    "note": null
   },
   {
-   "id": "phantom/field-underline",
-   "item": "component/field",
-   "title": "Fields are underline-only and flat (no box, 1px #c9c9c9 line, radius 0)",
+   "id": "phantom/app-links-trio",
+   "item": "rule/link-treatment",
+   "title": "Links carry the trio: green text, dotted 1px blue underline (rule P-R6)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": "input[type=text]",
+   "selector": "#overview p a",
    "observed": [
-    "border-top-width: 0px",
-    "border-bottom-width: 1px"
+    "color: rgb(107, 255, 44)",
+    "border-bottom-style: dotted"
    ],
    "note": null
   },
   {
-   "id": "phantom/select-styled",
-   "item": "component/select",
-   "title": "Select follows the field language",
-   "mode": "COMPUTED_STYLE",
-   "severity": "warning",
-   "status": "PASS",
-   "selector": "select",
-   "observed": [
-    "border-bottom-width: 1px",
-    "border-radius: 0px"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/table-head-caps",
-   "item": "component/table",
-   "title": "Table heads: 900 weight at 0.9em (source: no caps on th)",
-   "mode": "COMPUTED_STYLE",
-   "severity": "warning",
-   "status": "PASS",
-   "selector": "table th",
-   "observed": [
-    "font-weight: 900 (all 7 ok)"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/tiles-vessel",
-   "item": "component/tiles",
-   "title": "Tile vessels carry the 4px radius",
-   "mode": "COMPUTED_STYLE",
-   "severity": "warning",
-   "status": "PASS",
-   "selector": ".tiles article .image",
-   "observed": [
-    "border-radius: 4px (all 3 ok)"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/menu-surface",
-   "item": "layout/menu",
-   "title": "Menu panel: ink ground (not neon)",
-   "mode": "COMPUTED_STYLE",
-   "severity": "error",
-   "status": "PASS",
-   "selector": "#menu",
-   "observed": [
-    "background-color: rgb(88, 88, 88)",
-    "position: fixed"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/menu-link-inverse",
-   "item": "layout/menu",
-   "title": "Menu links render white on ink",
-   "mode": "COMPUTED_STYLE",
-   "severity": "warning",
-   "status": "PASS",
-   "selector": "#menu a",
-   "observed": [
-    "color: rgb(255, 255, 255) (all 6 ok)"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/content-link-dotted",
-   "item": "token-set/colour",
-   "title": "Content links: ink with a 50% dotted underline",
-   "mode": "COMPUTED_STYLE",
-   "severity": "warning",
-   "status": "PASS",
-   "selector": "#overview a:not([href='#menu'])",
-   "observed": [
-    "color: rgb(88, 88, 88) (all 4 ok)",
-    "border-bottom-style: dotted (all 4 ok)"
-   ],
-   "note": null
-  },
-  {
-   "id": "phantom/inline-code-tint",
+   "id": "phantom/app-code-chip",
    "item": "component/code-pre",
-   "title": "Inline code sits on the faint tint, not a blue block",
+   "title": "Inline code sits on the blue ground in pink text",
    "mode": "COMPUTED_STYLE",
    "severity": "warning",
    "status": "PASS",
    "selector": "p code",
    "observed": [
-    "background-color: rgba(144, 144, 144, 0.075) (all 6 ok)"
+    "background-color: rgba(46, 90, 249, 0.984) (all 6 ok)",
+    "color: rgb(255, 107, 188) (all 6 ok)"
    ],
    "note": null
   },
   {
-   "id": "phantom/wrapper-motion",
-   "item": "layout/page-intro",
-   "title": "Wrapper carries the 0.45s entrance transition",
+   "id": "phantom/app-menu-lime",
+   "item": "component/menu-panel",
+   "title": "Menu panel: lime ground, fixed position",
    "mode": "COMPUTED_STYLE",
-   "severity": "info",
+   "severity": "error",
    "status": "PASS",
-   "selector": "#wrapper",
+   "selector": "#menu",
    "observed": [
-    "transition-duration: 0.45s"
+    "background-color: rgb(62, 249, 0)",
+    "position: fixed"
    ],
    "note": null
   },
   {
-   "id": "phantom/no-blurred-shadows",
-   "item": "rule/P-R4",
-   "title": "No blurred shadows anywhere (inset rings and rules only)",
+   "id": "phantom/app-menu-links-black",
+   "item": "component/menu-panel",
+   "title": "Menu links render black on the lime rail (14.76:1)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": "#menu a",
+   "observed": [
+    "color: rgb(0, 0, 0) (all 7 ok)"
+   ],
+   "note": null
+  },
+  {
+   "id": "phantom/app-button-ring",
+   "item": "component/action-button",
+   "title": "Buttons keep the 4px radius + 2px ink ring (base layer intact)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": "#overrideToggle",
+   "observed": [
+    "box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset",
+    "border-radius: 4px"
+   ],
+   "note": null
+  },
+  {
+   "id": "phantom/app-field-focus",
+   "item": "component/field",
+   "title": "Focused field trades its line for the 2px pink underline",
+   "mode": "INTERACTION",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "phantom/app-wordmark",
+   "item": "component/emblem-logo",
+   "title": "Wordmark: 900 tracked caps",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": "#header .logo .title",
+   "observed": [
+    "text-transform: uppercase",
+    "font-weight: 900"
+   ],
+   "note": null
+  },
+  {
+   "id": "phantom/app-no-blurred-shadows",
+   "item": "rule/flat-inset-rings",
+   "title": "No blurred shadows anywhere (inset rings and rules only, rule P-R4)",
    "mode": "INTERACTION",
    "severity": "error",
    "status": "PASS",
@@ -207,9 +166,9 @@
    "note": null
   },
   {
-   "id": "phantom/no-keyframes",
-   "item": "rule/P-R4",
-   "title": "No CSS animations run (transitions only)",
+   "id": "phantom/app-no-keyframes",
+   "item": "layout/page-intro",
+   "title": "No CSS animations run (transitions only; the intro is transition-driven)",
    "mode": "INTERACTION",
    "severity": "warning",
    "status": "PASS",
@@ -218,26 +177,39 @@
    "note": null
   },
   {
-   "id": "phantom/svg-census",
-   "item": "precedent/declined-neon-reading-ink",
+   "id": "phantom/app-svg-census",
+   "item": "precedent/pink-ink-canonised",
    "title": "SVG census matches the sanctioned set (the review's single mark)",
    "mode": "INTERACTION",
-   "severity": "warning",
+   "severity": "info",
    "status": "PASS",
    "selector": null,
    "observed": [],
    "note": null
   },
   {
-   "id": "phantom/palette-literals",
+   "id": "phantom/app-palette-console",
    "item": "token-set/colour",
-   "title": "Colours stay within the system + console allowlist",
+   "title": "Console layer stays within the deployed palette allowlist",
    "mode": "STATIC",
    "severity": "warning",
    "status": "PASS",
    "selector": null,
    "observed": [
-    "95 literals, all allowlisted"
+    "61 literals, all allowlisted"
+   ],
+   "note": null
+  },
+  {
+   "id": "phantom/app-footer-ground",
+   "item": "token-set/surfaces",
+   "title": "Footer band uses the deployed #f6f6f6 ground",
+   "mode": "COMPUTED_STYLE",
+   "severity": "info",
+   "status": "PASS",
+   "selector": "#footer",
+   "observed": [
+    "background-color: rgb(246, 246, 246)"
    ],
    "note": null
   }

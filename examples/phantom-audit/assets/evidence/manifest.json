@@ -1,0 +1,86 @@
+[
+ {
+  "file": "colour-index-1280.png",
+  "tag": "col",
+  "label": "index @1280",
+  "caption": "The deployed default: pink reading ink on white; pink tracked-caps heads"
+ },
+ {
+  "file": "colour-elements-1280.png",
+  "tag": "col",
+  "label": "elements @1280",
+  "caption": "The component set in situ: blue code chips, red checks, purple labels, grey buttons"
+ },
+ {
+  "file": "colour-light-1280.png",
+  "tag": "col",
+  "label": "light @1280",
+  "caption": "Per-page override: black body on #fbfbfb with a pink h1; green links"
+ },
+ {
+  "file": "colour-elements-1280-menu-open.png",
+  "tag": "col",
+  "label": "menu open @1280",
+  "caption": "The lime #3ef900 rail with black text over the dimmed page"
+ },
+ {
+  "file": "type-index-heading-1280.png",
+  "tag": "type",
+  "label": "wordmark @1280",
+  "caption": "The 900 tracked-caps wordmark \u2014 and \u5733 falling to the OS font"
+ },
+ {
+  "file": "comp-elements-btn-hover-1280.png",
+  "tag": "comp",
+  "label": "button hover",
+  "caption": "Default button mid-hover: label + ring flip to #f2849e"
+ },
+ {
+  "file": "comp-elements-field-focus-1280.png",
+  "tag": "comp",
+  "label": "field focus",
+  "caption": "Focused field: the 2px pink underline replaces the grey line"
+ },
+ {
+  "file": "comp-elements-form-1280.png",
+  "tag": "comp",
+  "label": "form @1280",
+  "caption": "Checked marks: red fill, white checkmark (radio too); purple labels"
+ },
+ {
+  "file": "comp-elements-table-1280.png",
+  "tag": "comp",
+  "label": "table @1280",
+  "caption": "900-weight mixed-case heads, 2px rules, tinted odd rows"
+ },
+ {
+  "file": "comp-index-tile-hover-1280.png",
+  "tag": "comp",
+  "label": "tile hover",
+  "caption": "The opaque #eb84da veil: the photograph disappears under flat pink"
+ },
+ {
+  "file": "comp-index-carousel-a-1280.png",
+  "tag": "comp",
+  "label": "carousel state A",
+  "caption": "The autoplay carousel \u2014 all six image sources 404 in production"
+ },
+ {
+  "file": "layout-index-nesteddoctype-1280.png",
+  "tag": "layout",
+  "label": "nested doctype",
+  "caption": "A whole document skeleton nested mid-body on index (renders as whitespace)"
+ },
+ {
+  "file": "layout-index-390.png",
+  "tag": "layout",
+  "label": "index @390",
+  "caption": "Mobile overflow: document is 700px wide at a 390px viewport"
+ },
+ {
+  "file": "layout-publication-1280.png",
+  "tag": "layout",
+  "label": "publication @1280",
+  "caption": "The .publication class: black main text while the shell stays pink"
+ }
+]

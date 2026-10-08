@@ -664,8 +664,8 @@ def demo():
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
     audit = ("<a class='src' href='/audit/phantom/'><b>System Review &middot; phantom</b>"
-             "<p>design-system audit of zhenyoyo.github.io, built on the phantom authority</p>"
-             "<p><span class='chip'>27 gaps catalogued</span> <span class='chip src'>open &rarr;</span></p></a>")
+             "<p>design-system review of zhenyoyo.github.io — pass 2, the deployed language &amp; the screens behind it</p>"
+             "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
             .replace("__STRESS__", "".join(stress))

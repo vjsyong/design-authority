@@ -1,9 +1,12 @@
-/* phantom-audit — console additions.
-   EVERYTHING in this file is INSTRUMENT/IMPROVISATION, not the phantom system:
-   the audit console kit (chips, stat row, filters), the provenance panel, the
-   marks layer, demo frames and before/after views. Marked in the DOM with
-   data-improvised / data-kit; gap records in _evidence/gaps.jsonl.
-   The system itself lives in assets/css/main.css (derived upstream). */
+/* phantom-audit — console additions (v2, deployed-palette).
+   EVERYTHING in this file is INSTRUMENT/IMPROVISATION, not canon: the audit
+   console kit (chips, stat row, filters, ledger chrome), the provenance panel,
+   the marks layer, demo frames and the evidence gallery. Colours are drawn
+   from the deployed palette only (pink #ff6bbc, state pink #f2849e, lime
+   #3ef900, blue #20a3f5, red #f51616, purple #8833e3, ink #585858, lines
+   #c9c9c9). Marked in the DOM with data-improvised / data-kit; gap records in
+   the review workspace. The system itself lives in assets/css/main.css
+   (derived verbatim from the deployment). */
 
 /* ---- marks layer: reveal improvisations ---- */
 body.marks-on [data-improvised],
@@ -15,95 +18,121 @@ body.marks-on [data-fallback]::after {
   content: attr(data-mk);
   display: inline-block; max-width: 100%;
   font-size: 0.62em; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase;
-  color: #f2849e; border: 1px dashed #f2849e; border-radius: 4px;
+  color: #f2849e; border: 1px dashed #f2849e; border-radius: 0;
   padding: 1px 6px; margin-left: 6px; vertical-align: middle;
 }
 .marks-toggle.icon { position: fixed; right: 1.25em; bottom: 1.25em; z-index: 10005; background: #fff; }
 
-/* ---- console kit (improvised) ---- */
-.kit { list-style: none; padding: 0; margin: 0 0 1.25em 0; }
+/* ---- chips (console kit) ---- */
 .chip { display: inline-block; font-size: 0.62em; font-weight: 900; letter-spacing: 0.18em;
-  text-transform: uppercase; border: solid 1px #585858; border-radius: 4px; padding: 2px 8px;
+  text-transform: uppercase; border: solid 1px #585858; border-radius: 0; padding: 2px 8px;
   color: #585858; margin: 0 6px 4px 0; white-space: nowrap; }
-.chip--canon { }
-.chip--improv { border-style: dashed; }
-.chip--candidate { border-color: #f2849e; color: #f2849e; }
+.chip--canon { border-color: #ff6bbc; color: #ff6bbc; }
+.chip--base { border-color: #585858; color: #585858; }
+.chip--override { border-color: #3ef900; color: #585858; background: rgba(62,249,0,0.14); }
+.chip--candidate { border-color: #8833e3; color: #8833e3; }
+.chip--improv { border-style: dashed; border-color: #f2849e; color: #f2849e; }
+.chip--gap { border-color: #c9c9c9; color: rgba(88,88,88,0.9); background: rgba(144,144,144,0.075); }
 .chip--defect { border-color: #585858; background: #585858; color: #fff; }
-.chip--gap { border-color: #c9c9c9; color: rgba(88,88,88,0.85); background: rgba(144,144,144,0.075); }
+.chip--fix { border-color: #f51616; color: #f51616; }
 
-.statrow { display: flex; flex-wrap: wrap; margin: 0 0 1.5em -1.5em; }
-.statrow .stat { padding: 0 0 0 1.5em; margin: 0 0 1em 0; }
+/* ---- stat row ---- */
+.statrow { display: flex; flex-wrap: wrap; margin: 0 0 1.5em -1.75em; }
+.statrow .stat { padding: 0 0 0 1.75em; margin: 0 0 1em 0; }
 .statrow .stat b { display: block; font-size: 2.5em; font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; }
-.statrow .stat span { font-size: 0.68em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(88,88,88,0.7); }
+.statrow .stat span { font-size: 0.68em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(88,88,88,0.75); }
 
+/* ---- console bar (override toggle etc.) ---- */
+.consolebar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75em; margin: 0 0 1.5em 0; }
+.consolebar .button.small[aria-pressed="true"] { background: #585858; color: #ffffff !important; box-shadow: inset 0 0 0 2px #585858; }
+
+/* ---- filters ---- */
 ul.filters { list-style: none; padding: 0; margin: 0 0 1.25em 0; }
 ul.filters li { display: inline-block; margin-right: 0.5em; }
 ul.filters .button.small { box-shadow: inset 0 0 0 1px #585858; }
 ul.filters .button.small[data-active] { background: #585858; color: #ffffff !important; box-shadow: inset 0 0 0 2px #585858; }
 
-/* ---- provenance panel (improvised) ---- */
+/* ---- provenance panel ---- */
 .panel { position: fixed; top: 0; right: 0; width: 24em; max-width: 92%; height: 100%;
   background: #fff; border-left: solid 1px #c9c9c9; border-radius: 0; z-index: 10010;
   display: flex; flex-direction: column; }
 .panel[hidden] { display: none; }
-.panel > header { padding: 1.25em 1.5em 0.75em 1.5em; border-bottom: solid 1px #f0f0f0; }
+.panel > header { padding: 1.25em 1.5em 0.75em 1.5em; border-bottom: solid 1px #c9c9c9; }
 .panel > header h3 { font-size: 1em; margin: 0 0 0.35em 0; }
 .panel > header .close { position: absolute; top: 0.9em; right: 1em; }
 .panel .body { padding: 1em 1.5em 2em 1.5em; overflow-y: auto; }
 .panel .body p, .panel .body li { font-size: 0.85em; line-height: 1.6; }
 .panel .body .kv { margin: 0 0 0.8em 0; }
-.panel .body .kv b { display: block; font-size: 0.66em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.7); }
+.panel .body .kv b { display: block; font-size: 0.66em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.75); }
 
-/* ---- tables used as ledgers (canonical table + small print) ---- */
-table tbody tr[data-gap], table tbody tr[data-artifact] { cursor: pointer; }
+/* ---- ledger chrome ---- */
+table tbody tr[data-open] { cursor: pointer; }
 table.tight td, table.tight th { font-size: 0.82em; }
 td .ev { font-size: 0.85em; color: rgba(88,88,88,0.85); }
+.ba-table td, .ba-table th { font-size: 0.8em; }
 
-/* ---- demo frames (improvised) ---- */
-.demo { background: rgba(144,144,144,0.075); border-radius: 4px; padding: 1.5em 1.75em; margin: 0 0 1em 0; }
-.demo > .demo-label { font-size: 0.62em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.7); margin-bottom: 0.9em; }
+/* ---- demo frames ---- */
+.demo { background: rgba(144,144,144,0.075); border-radius: 0; padding: 1.5em 1.75em; margin: 0 0 1em 0; }
+.demo > .demo-label { font-size: 0.62em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.75); margin-bottom: 0.9em; }
 
-/* grid of artifact cards */
+/* ---- artifact cards ---- */
 .cards { list-style: none; padding: 0; margin: -1.5em 0 2em -1.5em; display: flex; flex-wrap: wrap; }
 .cards > li { width: 100%; padding: 1.5em 0 0 1.5em; }
 @media screen and (min-width: 737px) { .cards > li { width: 50%; } }
-.cards .card-inner { border-top: solid 2px #585858; padding: 1.1em 0 0.4em 0; cursor: pointer; }
-.cards h3 { margin: 0 0 0.25em 0; font-size: 0.9em; letter-spacing: 0.2em; }
+.cards .card-inner { border-top: solid 2px #c9c9c9; padding: 1.1em 0 0.4em 0; cursor: pointer; }
+.cards h3 { margin: 0 0 0.35em 0; font-size: 0.9em; letter-spacing: 0.2em; }
 .cards .id { font-family: "Courier New", monospace; font-size: 0.72em; color: rgba(88,88,88,0.75); }
 .cards .mini { margin: 0.75em 0 0.5em 0; }
+.cards .note { font-size: 0.8em; line-height: 1.55; margin: 0.4em 0 0.6em 0; }
 
 /* ---- adaptation cards ---- */
-.adapt { border-top: solid 1px #e8e8e8; padding: 1.5em 0 0.5em 0; margin-bottom: 1.5em; }
+.adapt { border-top: solid 1px #c9c9c9; padding: 1.5em 0 0.5em 0; margin-bottom: 1.5em; }
 .adapt h3 { font-size: 1em; margin: 0 0 0.4em 0; }
 .ba { display: flex; flex-wrap: wrap; margin-left: -1.5em; }
 .ba > div { flex: 1 1 20em; margin-left: 1.5em; }
-.ba .ba-label { font-size: 0.62em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.7); margin-bottom: 0.4em; }
+.ba .ba-label { font-size: 0.62em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(88,88,88,0.75); margin-bottom: 0.4em; }
 
 /* AA swatches */
 .aa { display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 0.75em; }
-.aa .sw { width: 2.2em; height: 2.2em; border-radius: 4px; margin-right: 0.9em; border: solid 1px rgba(88,88,88,0.25); }
+.aa .sw { width: 2.2em; height: 2.2em; border-radius: 0; margin-right: 0.9em; border: solid 1px rgba(88,88,88,0.25); }
 .aa .ratio { font-size: 0.8em; margin-right: 0.9em; }
 .aa .verdict { font-size: 0.62em; font-weight: 900; letter-spacing: 0.18em; text-transform: uppercase; }
 
 /* carousel demo (candidate preview) */
 .car { max-width: 34em; }
-.car .frame { background: #fff; border: solid 1px #c9c9c9; border-radius: 4px; height: 12em;
+.car .frame { background: #fff; border: solid 1px #c9c9c9; border-radius: 0; height: 12em;
   display: flex; align-items: center; justify-content: center; color: rgba(88,88,88,0.55);
   font-size: 0.72em; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase; }
 .car .ctrl { display: flex; align-items: center; justify-content: space-between; margin-top: 0.6em; }
 .car .pos { font-size: 0.78em; color: rgba(88,88,88,0.8); }
 
-/* section links (anchor nav) */
+/* section anchor nav */
 ul.snav { list-style: none; padding: 0; margin: 0 0 2em 0; }
 ul.snav li { display: inline-block; margin-right: 1.25em; }
-ul.snav a { font-size: 0.68em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: dotted 1px rgba(88,88,88,0.5); padding-bottom: 2px; }
-ul.snav a[data-current] { border-bottom: solid 1px #585858; }
+ul.snav a { font-size: 0.68em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; border-bottom: dotted 1px #20a3f5; padding-bottom: 2px; }
+ul.snav a[data-current] { border-bottom: solid 1px #f2849e; }
+
+/* evidence gallery */
+.evgrid { list-style: none; padding: 0; margin: -1.5em 0 1em -1.5em; display: flex; flex-wrap: wrap; }
+.evgrid > li { width: 100%; padding: 1.5em 0 0 1.5em; }
+@media screen and (min-width: 737px) { .evgrid > li { width: 50%; } }
+.evgrid .evcard { border: solid 1px #c9c9c9; border-radius: 0; background: #fff; }
+.evgrid .evimg { display: block; width: 100%; height: auto; border-bottom: solid 1px #c9c9c9; background: rgba(144,144,144,0.075); }
+.evgrid .evbody { padding: 1em 1.1em 1.1em 1.1em; }
+.evgrid .evbody h4 { margin: 0 0 0.3em 0; font-size: 0.78em; letter-spacing: 0.18em; }
+.evgrid .evbody p { margin: 0; font-size: 0.82em; }
 
 /* console code tweaks: tame inline code inside dense copy */
 p code { font-size: 0.85em; }
 
-/* the audit's own intro replay target */
+/* the review's own load-in replay target */
 .wrapper-replay { display: inline-block; }
 
 /* mini system previews in cards */
-.preview { border: solid 1px #f0f0f0; border-radius: 4px; padding: 0.9em; background: #fff; }
+.preview { border: solid 1px #c9c9c9; border-radius: 0; padding: 0.9em; background: #fff; }
+
+/* the override demo: clicking "view as project page" flips the app to the
+   deployment's sanctioned black-body override (P-R7). Console control; the
+   override itself is canon (shared style block of the project pages). */
+body.alt-override { background: #fbfbfb; color: #000000; }
+body.alt-override a { color: #6bff2c; border-bottom-color: #20a3f5; }

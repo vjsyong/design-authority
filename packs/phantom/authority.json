@@ -1,16 +1,16 @@
 {
  "id": "phantom",
- "name": "Phantom Interface System",
+ "name": "Phantom Interface System (deployed language)",
  "format_version": "0.1",
- "version": "0.1.0",
+ "version": "0.2.0",
  "snapshot": {
-  "repo": "HTML5 UP Phantom (template, CCA 3.0) as deployed at zhenyoyo.github.io",
+  "repo": "zhenyoyo.github.io (HTML5 UP Phantom deployment), rendered mirror docs/synthesis/phantom/_raw/site",
   "commit": "n/a - public sources",
   "branch": "n/a",
-  "version": "template as published; deployment fetched 2026-10-08",
-  "path_hint": "docs/synthesis/phantom/_raw/"
+  "version": "pass-2 redo 2026-10-08 (screenshot-first, 4 domain teams)",
+  "path_hint": "docs/synthesis/phantom/_raw/site/ (renderable mirror)"
  },
- "description": "A minimal, flat, monochrome-leaning interface system for portfolio and editorial pages: Source Sans Pro with tracked uppercase display caps, ink #585858 on white, 4px radii, inset-ring buttons, underline fields, pastel accent surfaces led by pink, a fixed slide-in menu, and a brief load-in motion. Derived from the Phantom template as deployed at zhenyoyo.github.io; the deployment's value edits are recorded as improvisations (see synthesis-notes), never canon.",
+ "description": "The interface system of zhenyoyo.github.io as deployed: Source Sans Pro 300/700/900, pink reading ink #ff6bbc with neon-green links #6bff2c on a dotted blue underline, blue-ground code, a lime slide-in menu, red checked marks with purple labels, radius flattened to 0 on marks/boxes/images/chips, ink-ring buttons, underline fields, a tiles-only load-in and one interaction pink #f2849e. Contrast failures are recorded as measured observations (pass 2 extracted what the site IS; pass 1's grey-ink canon was reversed). Per-page black-body overrides are part of the system.",
  "kinds": [
   "component",
   "pattern",

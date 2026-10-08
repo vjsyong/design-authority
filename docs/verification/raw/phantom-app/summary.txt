@@ -1,21 +1,19 @@
 # da_verify — phantom on examples/phantom-audit
-generated 2026-10-08 05:09:06
-TOTALS: 17 checks — PASS 17 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 0
+generated 2026-10-08 06:03:05
+TOTALS: 15 checks — PASS 15 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 0
 
-PASS  [error  ] phantom/type-display-caps — text-transform: uppercase (all 5 ok); font-weight: 900 (all 5 ok)
-PASS  [error  ] phantom/body-light-ink — color: rgb(88, 88, 88); font-weight: 300
-PASS  [error  ] phantom/primary-button — background-color: rgb(88, 88, 88) (all 2 ok); color: rgb(255, 255, 255) (all 2 ok)
-PASS  [error  ] phantom/default-button-ring — box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset (all 5 ok); color: rgb(88, 88, 88) (all 5 ok)
-PASS  [error  ] phantom/field-underline — border-top-width: 0px; border-bottom-width: 1px
-PASS  [warning] phantom/select-styled — border-bottom-width: 1px; border-radius: 0px
-PASS  [warning] phantom/table-head-caps — font-weight: 900 (all 7 ok)
-PASS  [warning] phantom/tiles-vessel — border-radius: 4px (all 3 ok)
-PASS  [error  ] phantom/menu-surface — background-color: rgb(88, 88, 88); position: fixed
-PASS  [warning] phantom/menu-link-inverse — color: rgb(255, 255, 255) (all 6 ok)
-PASS  [warning] phantom/content-link-dotted — color: rgb(88, 88, 88) (all 4 ok); border-bottom-style: dotted (all 4 ok)
-PASS  [warning] phantom/inline-code-tint — background-color: rgba(144, 144, 144, 0.075) (all 6 ok)
-PASS  [info   ] phantom/wrapper-motion — transition-duration: 0.45s
-PASS  [error  ] phantom/no-blurred-shadows — 
-PASS  [warning] phantom/no-keyframes — 
-PASS  [warning] phantom/svg-census — 
-PASS  [warning] phantom/palette-literals — 95 literals, all allowlisted
+PASS  [error  ] phantom/app-body-pink-ink — color: rgb(255, 107, 188); font-weight: 300
+PASS  [error  ] phantom/app-display-h1 — color: rgb(255, 107, 188) (all 2 ok); font-weight: 700 (all 2 ok)
+PASS  [error  ] phantom/app-caps-heads — text-transform: uppercase (all 11 ok); font-weight: 900 (all 11 ok)
+PASS  [error  ] phantom/app-links-trio — color: rgb(107, 255, 44); border-bottom-style: dotted
+PASS  [warning] phantom/app-code-chip — background-color: rgba(46, 90, 249, 0.984) (all 6 ok); color: rgb(255, 107, 188) (all 6 ok)
+PASS  [error  ] phantom/app-menu-lime — background-color: rgb(62, 249, 0); position: fixed
+PASS  [warning] phantom/app-menu-links-black — color: rgb(0, 0, 0) (all 7 ok)
+PASS  [warning] phantom/app-button-ring — box-shadow: rgb(88, 88, 88) 0px 0px 0px 2px inset; border-radius: 4px
+PASS  [warning] phantom/app-field-focus — 
+PASS  [warning] phantom/app-wordmark — text-transform: uppercase; font-weight: 900
+PASS  [error  ] phantom/app-no-blurred-shadows — 
+PASS  [warning] phantom/app-no-keyframes — 
+PASS  [info   ] phantom/app-svg-census — 
+PASS  [warning] phantom/app-palette-console — 61 literals, all allowlisted
+PASS  [info   ] phantom/app-footer-ground — background-color: rgb(246, 246, 246)
