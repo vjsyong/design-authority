@@ -41,6 +41,7 @@ with sync_playwright() as p:
 
     # explainer accordion
     check("at-a-glance block is live elements", pg.evaluate("document.querySelectorAll('.aglance .fstep').length") == 5 and pg.evaluate("document.querySelectorAll('.aglance .filelist .cnt').length") >= 4)
+    check("learn-more button present + wired", pg.evaluate("(() => { const b = document.querySelector('.ag-cta .button'); return !!b && b.textContent.indexOf('Learn more about Design Authority') > -1 && b.getAttribute('href') === 'learn'; })()"))
     check("explainer starts collapsed", pg.evaluate("!document.querySelector('details.explainer').open"))
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(150)
@@ -131,6 +132,16 @@ with sync_playwright() as p:
     pg.click("#demoReplay")
     pg.wait_for_timeout(300)
     check("no errors after replay", not errs)
+
+    # learn page (pretty /learn in production; /learn.html in this harness)
+    pg.goto(f"http://127.0.0.1:{port}/learn.html", wait_until="load")
+    pg.wait_for_timeout(500)
+    check("learn page: h1 + worked example present",
+          pg.evaluate("(document.querySelector('h1') || {}).textContent") == "Design Authority"
+          and pg.evaluate("document.querySelectorAll('.expl-timeline li').length") == 3
+          and pg.evaluate("!!document.querySelector('.expl-rules .r')"))
+    pg.goto(f"http://127.0.0.1:{port}/index.html", wait_until="load")
+    pg.wait_for_timeout(700)
 
     # screenshots
     pg.evaluate("window.scrollTo(0,0)")

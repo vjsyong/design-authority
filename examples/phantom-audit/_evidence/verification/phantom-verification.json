@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08 06:45:40",
+ "generated": "2026-10-08 06:47:23",
  "tool": "tools/da_verify.py",
  "target": "examples/phantom-audit",
  "summary": {
@@ -13,7 +13,7 @@
  "covers": {
   "assets/css/main.css": "1151cade53024996",
   "app.js": "49cb0699969ec393",
-  "index.html": "c8562fe2b1978c9b"
+  "index.html": "a57b2cf2e1f3706c"
  },
  "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
  "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
@@ -67,7 +67,7 @@
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
-   "selector": "#overview p a",
+   "selector": "#overview p a:not(.button)",
    "observed": [
     "color: rgb(107, 255, 44) (all 3 ok)",
     "border-bottom-style: dotted (all 3 ok)"

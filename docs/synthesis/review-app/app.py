@@ -852,6 +852,17 @@ def jennu_file(fn):
     return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), fn)
 
 
+@app.route("/designAuthority/jennu/learn")
+def jennu_learn():
+    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "learn.html")
+
+
+@app.route("/designAuthority/jennu/learn/")
+def jennu_learn_slash():
+    # the page has no trailing-slash home; keep relative assets anchored to /jennu/
+    return redirect("/designAuthority/jennu/learn", code=308)
+
+
 # legacy spelling (jenmu) — keep old links working
 @app.route("/designAuthority/jenmu/")
 @app.route("/designAuthority/jenmu")

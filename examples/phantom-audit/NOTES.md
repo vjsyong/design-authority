@@ -73,6 +73,7 @@ redistributed beyond the captured evidence shots.
 
 **Serve.** `/designAuthority/jennu/` on the synthesis review app (tailnet:
 https://gpu-vm1.bigscale-snapper.ts.net:8420/designAuthority/jennu/; public:
-https://audit.seanyong.xyz/designAuthority/jennu/ — old jenmu links 308-redirect). The host serves
+https://audit.seanyong.xyz/designAuthority/jennu/ — learn-more page at /designAuthority/jennu/learn;
+old jenmu links 308-redirect). The host serves
 `X-Robots-Tag: noindex` on everything and a disallow-all robots.txt. Named **Jennu**
 2026-10-08.

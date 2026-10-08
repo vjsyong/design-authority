@@ -189,3 +189,6 @@ ul.expl-timeline p { font-size: 0.85em; margin: 0.3em 0 0 0; }
 .expl-rules .r b { display: block; font-size: 0.82em; letter-spacing: 0.04em; }
 .expl-rules .r span { font-size: 0.82em; line-height: 1.5; }
 @media screen and (max-width: 736px) { .expl-rules { grid-template-columns: 1fr; } }
+
+.ag-cta { margin: 1.4em 0 0 0; }
+.lede-ish { font-size: 1.05em; }

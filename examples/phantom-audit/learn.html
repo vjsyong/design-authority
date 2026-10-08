@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<!--
+  Learn more — Design Authority (the Jennu review, phantom-audit v2).
+  A standalone page: same deployed language as the review (assets/css/main.css),
+  explainer blocks styled by the console kit (assets/css/console.css). No JS required.
+-->
+<html lang="en">
+	<head>
+		<title>Design Authority — Jennu</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/console.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="inner">
+						<a href="index.html" class="logo" title="Back to the review">
+							<span class="symbol"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="13.5" fill="none" stroke="#585858" stroke-width="2.2"/><circle cx="17" cy="17" r="4.5" fill="#ff6bbc"/></svg></span><span class="title">Jennu</span>
+						</a>
+					</div>
+				</header>
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+
+						<section>
+							<header>
+								<div class="ag-kicker">Learn more</div>
+								<h1>Design Authority</h1>
+								<p class="lede-ish">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
+								system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
+								a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build
+								actually conforms. It is a contract, not a style guide.</p>
+							</header>
+
+							<section class="aglance" data-improvised data-mk="explainer at a glance (console kit)" style="border-bottom: none;">
+								<div class="ag-cols">
+									<div class="ag-col">
+										<h3>01 · The contract</h3>
+										<p>A versioned, machine-readable description of an interface system — components, rules, fallbacks. Written for tools as much as for people.</p>
+										<div class="filelist">
+<code>packs/phantom/</code> <span class="c">— plain JSON, no database</span><br/>
+artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
+rules.json <span class="cnt">8</span> <span class="c">· prohibitions <span class="cnt">2</span> · fallbacks <span class="cnt">4</span></span><br/>
+precedents.json <span class="cnt">1</span> <span class="c">· candidates.json <span class="cnt">3</span></span><br/>
+golden.json <span class="cnt">21</span> <span class="c">ask → expected outcome</span><br/>
+verification.json <span class="cnt">15</span> <span class="c">conformance checks</span>
+										</div>
+									</div>
+									<div class="ag-col">
+										<h3>02 · Two consumers</h3>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Authority</b>the pack — one contract</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Agent</b>resolves every ask; builds</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built interface — silences become marked improvisations + filed gaps</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>inspects the artifact — never the agent's claims</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15/15 checks · published with hash‑covers</div></div>
+									</div>
+									<div class="ag-col">
+										<h3>03 · How it evolves</h3>
+										<ul class="evol">
+											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> frozen and verified, but extracted from the wrong layer — rendered evidence overruled it; the reversal is recorded as a precedent, not hidden.</li>
+											<li><span class="chip">rule</span> editorial edit → patch bump; semantic change → minor bump + fresh freeze (all files re-hashed).</li>
+											<li><span class="chip">rule</span> precedents persist — settled decisions are never relitigated.</li>
+											<li><span class="chip">rule</span> ambitions become candidates with an explicit promote-when bar; friction becomes filed gaps.</li>
+										</ul>
+									</div>
+								</div>
+							</section>
+
+							<h2>What it is</h2>
+							<p>A design authority collects an interface system's decisions as records: what a button is
+							(its states, its measurements, where the value came from), what the rules are (ink, radius,
+							tracking, link behaviour), what is forbidden or unknown, and what happens when something has
+							no answer yet (fallbacks). Every record cites its evidence — a stylesheet line, a measured
+							value, a screenshot — so claims can be checked rather than trusted.</p>
+
+							<h2>Why it exists</h2>
+							<p>Interfaces drift. Every page, edit and feature makes slightly different choices, until
+							“follow the design” stops meaning anything. An authority makes those choices explicit and
+							testable: a build can be checked against it, gaps become visible instead of silent, and
+							decisions survive across sessions — a coding agent picks up the contract and works the same
+							way an engineer does with an API, not a mood board.</p>
+
+							<h2>How this review fits in</h2>
+							<p><strong>1 — Extraction.</strong> The deployed language of
+							<a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
+							was measured from the rendered site (64 screenshots, computed styles) into
+							<code>packs/phantom</code> 0.2.0 — named <strong>Jennu</strong>. Every value is tagged
+							<em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
+							<p><strong>2 — Consumption.</strong> The <a href="index.html">review</a> is built from that
+							authority: covered elements are used as defined; where the authority is silent, the result
+							is improvised in character, marked (◌, bottom-right of the review) and filed as a gap record.</p>
+							<p><strong>3 — Verification.</strong> A separate verifier (<em>da_verify</em>, 15 checks)
+							inspects the rendered review — never its own claims — and the results are linked from the
+							review's footer with hash-covers over the build.</p>
+
+							<h2>The worked example — one revision, live</h2>
+							<ul class="expl-timeline">
+								<li><span class="ver">v0.1.0</span> <span class="muted">initial freeze — hashed, git-tagged</span><p>Extracted from the template's stylesheet: grey ink canon, the site's pink type misfiled as "deviations". Verified mechanically (its contract re-run clean: 17/17) — but extracted from the wrong layer.</p></li>
+								<li class="bad"><span class="ver">rejected</span> <span class="muted">owner review of the rendered result</span><p>"The site that exists runs pink type — extract what IS." A version can be internally consistent and still describe the wrong thing; only rendered evidence settles it.</p></li>
+								<li class="v2"><span class="ver">v0.2.0</span> <span class="muted">fresh freeze — all pack files re-hashed</span><p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language. The reversal became <code>precedent/pink-ink-canonised</code> — superseded, not deleted. Goldens re-run 21/21; the verification contract rewritten (15 checks), re-run 15/15.</p></li>
+							</ul>
+
+							<h2>The standing rules</h2>
+							<div class="expl-rules">
+								<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
+								<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New or changed records, pipeline order, thresholds, tool contracts, taxonomies.</span></div>
+								<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist so agents never relitigate them.</span></div>
+								<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit promote-when bar — no silent canonisation.</span></div>
+								<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
+								<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
+							</div>
+							<p>The evolution loop: <strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) →
+							<strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) →
+							<strong>adjudicate</strong> (precedent · gap · candidate) → next version. Nothing moves the pack except
+							an adjudicated decision.</p>
+
+							<h2>See it working</h2>
+							<ul class="actions">
+								<li><a href="index.html" class="button large primary">Open the review</a></li>
+								<li><a href="assets/explainer/design-authority.png" target="_blank" rel="noopener" class="button large">Poster (PNG) for printing</a></li>
+							</ul>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>About</h2>
+							<p><strong>Jennu</strong> — the design authority of zhenyoyo.github.io (HTML5 UP Phantom
+							deployment), extracted from the deployed site. Template “Phantom” by HTML5 UP (CCA 3.0);
+							the review app is built on <code>packs/phantom</code> 0.2.0. Not affiliated with the
+							reviewed site.</p>
+						</section>
+						<ul class="copyright">
+							<li>Jennu — learn more · console-kit styling, marked in source</li>
+						</ul>
+					</div>
+				</footer>
+
+		</div>
+	</body>
+</html>

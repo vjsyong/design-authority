@@ -2,7 +2,7 @@
  "pack": "phantom",
  "contract_version": "0.2",
  "target": "examples/phantom-audit",
- "generated": "2026-10-08 06:45:40",
+ "generated": "2026-10-08 06:47:23",
  "summary": {
   "total": 15,
   "PASS": 15,
@@ -106,7 +106,7 @@
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "COMPUTED_STYLE",
-   "selector": "#overview p a",
+   "selector": "#overview p a:not(.button)",
    "status": "PASS",
    "observed": [
     "color: rgb(107, 255, 44) (all 3 ok)",

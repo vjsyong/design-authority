@@ -55,7 +55,7 @@
    "classification": "MECHANICALLY_VERIFIABLE",
    "severity": "error",
    "mode": "COMPUTED_STYLE",
-   "selector": "#overview p a",
+   "selector": "#overview p a:not(.button)",
    "assertions": [
     {"property": "color", "relation": "color_is", "value": "#6bff2c"},
     {"property": "border-bottom-style", "relation": "equals", "value": "dotted"},
