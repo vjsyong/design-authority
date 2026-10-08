@@ -1,0 +1,95 @@
+{
+ "pack": "packs/triage-evolution @ 520a076 (0.13.0-experiment)",
+ "rows": [
+  {
+   "query": "a skip link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item"
+  },
+  {
+   "query": "a panel sliding in from the edge with a record's details",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail"
+  },
+  {
+   "query": "a small label showing a record's state such as Draft",
+   "outcome": "COMPOSE",
+   "id": "recipe/status-with-text"
+  },
+  {
+   "query": "the chevron that reveals actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions"
+  },
+  {
+   "query": "a navigation link in the sidebar",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item"
+  },
+  {
+   "query": "a sidebar link with an active state",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item"
+  },
+  {
+   "query": "open an end sheet for secondary details",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end"
+  },
+  {
+   "query": "a side panel with filters",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end"
+  },
+  {
+   "query": "a detail view of a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail"
+  },
+  {
+   "query": "a record page for one item",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail"
+  },
+  {
+   "query": "batch delete selected",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions"
+  },
+  {
+   "query": "act on many selected records",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions"
+  },
+  {
+   "query": "per-row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions"
+  },
+  {
+   "query": "more menu on a row",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions"
+  },
+  {
+   "query": "a searchable picker to assign a reviewer",
+   "outcome": "RESOLVED",
+   "id": "component/cb"
+  },
+  {
+   "query": "add a progress bar for a long-running background job",
+   "outcome": "RESOLVED",
+   "id": "component/progress"
+  },
+  {
+   "query": "show whether a request is waiting for approval",
+   "outcome": "COMPOSE",
+   "id": "recipe/status-with-text"
+  },
+  {
+   "query": "show a compact history of recent approval steps",
+   "outcome": "RESOLVED",
+   "id": "component/tl"
+  }
+ ]
+}

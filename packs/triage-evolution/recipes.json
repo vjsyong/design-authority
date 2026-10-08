@@ -245,7 +245,10 @@
    "needs": [
     "per-row actions",
     "actions for a list item",
-    "more menu on a row"
+    "more menu on a row",
+    "the chevron that reveals actions for a single row",
+    "reveal the actions for one row",
+    "open a row's action menu"
    ],
    "ingredients": [
     "component/menu-item",
@@ -258,6 +261,17 @@
    "evidence": {
     "source": "INTERACTION.md#lists-row-actions",
     "quote": "Desktop: relevant actions inline with `.ra-inline`; the rest in a `details.menu` with `.ra-menu` and a `.menu-pop`."
+   },
+   "provenance": {
+    "introduced_in": "0.13.1-experiment (needs only)",
+    "triggering_gaps": [
+     "dispute/20261008-134400-9b284e (row chevron mis-composed to bulk-actions)"
+    ],
+    "review_decision": "cand/08 ACCEPT",
+    "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+    "tests": [
+     "authority: dispute query -> COMPOSE recipe/row-actions 20.0; bulk-actions needs intact"
+    ]
    }
   },
   {

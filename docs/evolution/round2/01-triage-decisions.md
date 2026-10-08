@@ -76,5 +76,7 @@ against the real packs (stdlib resolver, evolution pack 0.13.0-experiment).
 | the chevron that reveals actions for a single row | COMPOSE recipe/bulk-actions | **COMPOSE recipe/row-actions** |
 | (14 regression probes: nav, detail, sheet, bulk, row, picker, progress, status, timeline) | — | **all unchanged** |
 
-Scratch artifacts: `docs/evolution/data/r2-scratch/` (built from the exact
-record edits the candidates propose; regenerated for the review).
+Evidence: the hand-edited pre-test scratch was replaced after review with
+builder-produced artifacts: `docs/evolution/data/round2/` (baseline vs
+candidate resolve batteries, dispute replays) and the built pack itself
+(`packs/triage-evolution` at 0.13.1-experiment).

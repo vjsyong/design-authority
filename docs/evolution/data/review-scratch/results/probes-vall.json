@@ -1,0 +1,2279 @@
+{
+ "pack": "vall",
+ "path": "docs/evolution/data/review-scratch/packs/vall",
+ "version": "0.13.1-experiment",
+ "probes": {
+  "disputes": [
+   {
+    "query": "a skip link to jump past the navigation",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 26.0,
+    "matched": [
+     "skip",
+     "navigation",
+     "link",
+     "jump",
+     "~skip link",
+     "~skip navigation"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 13.0
+     },
+     {
+      "id": "component/btn",
+      "score": 2.5
+     },
+     {
+      "id": "component/crumbs",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "a panel sliding in from the edge with a record's details",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "panel",
+     "sliding",
+     "~sliding panel"
+    ],
+    "alts": [
+     {
+      "id": "pattern/detail",
+      "score": 8.0
+     },
+     {
+      "id": "component/select",
+      "score": 5.0
+     },
+     {
+      "id": "component/notif",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a small label showing a record's state such as Draft",
+    "outcome": "COMPOSE",
+    "id": "recipe/status-with-text",
+    "score": 7.5,
+    "matched": [
+     "label",
+     "record",
+     "stat"
+    ],
+    "alts": [
+     {
+      "id": "component/badge",
+      "score": 8.0
+     },
+     {
+      "id": "component/select",
+      "score": 7.5
+     },
+     {
+      "id": "component/empty",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "the chevron that reveals actions for a single row",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 20.0,
+    "matched": [
+     "chevron",
+     "row",
+     "action",
+     "reveal",
+     "singl",
+     "~chevron reveal action singl row"
+    ],
+    "alts": [
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     },
+     {
+      "id": "component/index-row",
+      "score": 5.5
+     }
+    ]
+   }
+  ],
+  "battery14": [
+   {
+    "query": "a navigation link in the sidebar",
+    "outcome": "RESOLVED",
+    "id": "component/nav-item",
+    "score": 22.0,
+    "matched": [
+     "navigation",
+     "link",
+     "sidebar",
+     "~navigation link",
+     "~sidebar link"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 8.0
+     },
+     {
+      "id": "component/btn",
+      "score": 2.5
+     },
+     {
+      "id": "component/crumbs",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "a sidebar link with an active state",
+    "outcome": "RESOLVED",
+    "id": "component/nav-item",
+    "score": 16.0,
+    "matched": [
+     "stat",
+     "activ",
+     "link",
+     "sidebar",
+     "~sidebar link"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 5.0
+     },
+     {
+      "id": "component/badge",
+      "score": 4.0
+     },
+     {
+      "id": "component/btn",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a detail view of a record",
+    "outcome": "RESOLVED",
+    "id": "pattern/detail",
+    "score": 17.0,
+    "matched": [
+     "record",
+     "detail",
+     "view",
+     "~detail view"
+    ],
+    "alts": [
+     {
+      "id": "component/diff",
+      "score": 4.0
+     },
+     {
+      "id": "component/select",
+      "score": 4.0
+     },
+     {
+      "id": "component/tabs",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a record page for one item",
+    "outcome": "RESOLVED",
+    "id": "pattern/detail",
+    "score": 22.0,
+    "matched": [
+     "record",
+     "pag",
+     "item",
+     "~record pag",
+     "~item pag"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 6.5
+     },
+     {
+      "id": "component/page-state",
+      "score": 5.0
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 4.5
+     }
+    ]
+   },
+   {
+    "query": "open an end sheet for secondary details",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 14.5,
+    "matched": [
+     "end",
+     "secondary",
+     "sheet",
+     "~end sheet"
+    ],
+    "alts": [
+     {
+      "id": "guideline/row-actions",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/detail",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/savebar-editor",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "a side panel with filters",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "sid",
+     "panel",
+     "~sid panel"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 4.0
+     },
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/flows",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "batch delete selected",
+    "outcome": "COMPOSE",
+    "id": "recipe/bulk-actions",
+    "score": 14.0,
+    "matched": [
+     "batch",
+     "selected",
+     "delet",
+     "~batch delet selected"
+    ],
+    "alts": [
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     },
+     {
+      "id": "guideline/armed-delete",
+      "score": 3.0
+     },
+     {
+      "id": "component/cb",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "act on many selected records",
+    "outcome": "COMPOSE",
+    "id": "recipe/bulk-actions",
+    "score": 17.0,
+    "matched": [
+     "many",
+     "selected",
+     "act",
+     "record",
+     "~act many selected record"
+    ],
+    "alts": [
+     {
+      "id": "component/select",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/detail",
+      "score": 4.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "per-row actions",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 11.0,
+    "matched": [
+     "per-row",
+     "action",
+     "~per-row action"
+    ],
+    "alts": [
+     {
+      "id": "component/btn",
+      "score": 4.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 4.0
+     },
+     {
+      "id": "component/savebar",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "more menu on a row",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 14.0,
+    "matched": [
+     "row",
+     "menu",
+     "mor",
+     "~mor menu row"
+    ],
+    "alts": [
+     {
+      "id": "component/iconbtn",
+      "score": 5.5
+     },
+     {
+      "id": "component/cmd",
+      "score": 4.0
+     },
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "assign a reviewer with a searchable picker",
+    "outcome": "RESOLVED",
+    "id": "component/cb",
+    "score": 18.0,
+    "matched": [
+     "search",
+     "picker",
+     "~picker search",
+     "~search picker"
+    ],
+    "alts": [
+     {
+      "id": "component/select",
+      "score": 12.0
+     },
+     {
+      "id": "component/dp",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "progress bar showing percent complete with a stalled state",
+    "outcome": "RESOLVED",
+    "id": "component/progress",
+    "score": 15.0,
+    "matched": [
+     "progress",
+     "complet",
+     "bar",
+     "stat",
+     "~progress bar"
+    ],
+    "alts": [
+     {
+      "id": "component/bulkbar",
+      "score": 5.0
+     },
+     {
+      "id": "component/cmd",
+      "score": 5.0
+     },
+     {
+      "id": "component/empty",
+      "score": 5.0
+     }
+    ]
+   },
+   {
+    "query": "a status badge",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "status",
+     "badg",
+     "~status badg"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 3.0
+     },
+     {
+      "id": "component/progress",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/colour-not-alone",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a timeline of approvals",
+    "outcome": "RESOLVED",
+    "id": "component/tl",
+    "score": 8.0,
+    "matched": [
+     "timelin",
+     "approval"
+    ],
+    "alts": [
+     {
+      "id": "pattern/detail",
+      "score": 1.5
+     }
+    ]
+   }
+  ],
+  "adversarial": [
+   {
+    "query": "a link to skip past the navigation",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 22.0,
+    "matched": [
+     "navigation",
+     "skip",
+     "link",
+     "~skip link",
+     "~skip navigation"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 13.0
+     },
+     {
+      "id": "component/btn",
+      "score": 2.5
+     },
+     {
+      "id": "component/crumbs",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "skip to content",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 13.0,
+    "matched": [
+     "skip",
+     "content",
+     "~skip content"
+    ],
+    "alts": [
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "skip navigation",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 13.0,
+    "matched": [
+     "navigation",
+     "skip",
+     "~skip navigation"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "component/crumbs",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "jump to content",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 13.0,
+    "matched": [
+     "content",
+     "jump",
+     "~jump content"
+    ],
+    "alts": []
+   },
+   {
+    "query": "a skip link",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 13.0,
+    "matched": [
+     "skip",
+     "link",
+     "~skip link"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "component/btn",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/labels-accessibility",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a skip link first in the body",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 16.0,
+    "matched": [
+     "first",
+     "skip",
+     "link",
+     "body",
+     "~skip link"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 3.0
+     },
+     {
+      "id": "component/btn",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "skip past the navigation",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 13.0,
+    "matched": [
+     "navigation",
+     "skip",
+     "~skip navigation"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "component/crumbs",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a link that jumps past the navigation",
+    "outcome": "UNDEFINED",
+    "id": null,
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "make the sidebar navigation links show which page is active",
+    "outcome": "RESOLVED",
+    "id": "component/nav-item",
+    "score": 24.5,
+    "matched": [
+     "pag",
+     "activ",
+     "sidebar",
+     "navigation",
+     "link",
+     "~navigation link",
+     "~sidebar link"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 8.0
+     },
+     {
+      "id": "component/pager-num",
+      "score": 5.0
+     },
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a link in the navigation",
+    "outcome": "RESOLVED",
+    "id": "component/nav-item",
+    "score": 13.0,
+    "matched": [
+     "navigation",
+     "link",
+     "~navigation link"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 8.0
+     },
+     {
+      "id": "component/btn",
+      "score": 2.5
+     },
+     {
+      "id": "component/crumbs",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "sidebar navigation links",
+    "outcome": "RESOLVED",
+    "id": "component/nav-item",
+    "score": 22.0,
+    "matched": [
+     "navigation",
+     "link",
+     "sidebar",
+     "~navigation link",
+     "~sidebar link"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 8.0
+     },
+     {
+      "id": "component/btn",
+      "score": 2.5
+     },
+     {
+      "id": "component/crumbs",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "skip a step in a wizard",
+    "outcome": "RESOLVED",
+    "id": "pattern/stepper",
+    "score": 8.0,
+    "matched": [
+     "step",
+     "wizard"
+    ],
+    "alts": [
+     {
+      "id": "component/skip",
+      "score": 4.0
+     },
+     {
+      "id": "component/tl",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "skip this step",
+    "outcome": "UNDEFINED",
+    "id": null,
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "skip the flow",
+    "outcome": "UNDEFINED",
+    "id": null,
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "skip to next section",
+    "outcome": "UNDEFINED",
+    "id": null,
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "content navigation",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 8.0,
+    "matched": [
+     "navigation",
+     "content"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "component/crumbs",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/savebar-editor",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a jump link",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 8.0,
+    "matched": [
+     "link",
+     "jump"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "component/btn",
+      "score": 1.5
+     },
+     {
+      "id": "guideline/labels-accessibility",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "the skip link should be first in the body",
+    "outcome": "RESOLVED",
+    "id": "component/skip",
+    "score": 16.0,
+    "matched": [
+     "first",
+     "skip",
+     "link",
+     "body",
+     "~skip link"
+    ],
+    "alts": [
+     {
+      "id": "component/nav-item",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/page-hierarchy",
+      "score": 3.0
+     },
+     {
+      "id": "component/btn",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a slide-in panel",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "panel",
+     "slide-in",
+     "~slide-in panel"
+    ],
+    "alts": [
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "component/tabs",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "sliding panel for filters",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "sliding",
+     "panel",
+     "~sliding panel"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 4.0
+     },
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/flows",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a panel slides in from the edge",
+    "outcome": "UNDEFINED",
+    "id": null,
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "a sliding panel",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "sliding",
+     "panel",
+     "~sliding panel"
+    ],
+    "alts": [
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "component/tabs",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "slide-over panel",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "slide-over",
+     "panel",
+     "~slide-over panel"
+    ],
+    "alts": [
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "component/tabs",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "an end sheet",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "sheet",
+     "end",
+     "~end sheet"
+    ],
+    "alts": [
+     {
+      "id": "guideline/savebar-editor",
+      "score": 3.0
+     },
+     {
+      "id": "component/dp",
+      "score": 1.0
+     },
+     {
+      "id": "component/tabs",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "a panel with record details",
+    "outcome": "RESOLVED",
+    "id": "pattern/detail",
+    "score": 8.0,
+    "matched": [
+     "record",
+     "detail"
+    ],
+    "alts": [
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "component/select",
+      "score": 4.0
+     },
+     {
+      "id": "component/sheet-end",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a detail page for a record",
+    "outcome": "RESOLVED",
+    "id": "pattern/detail",
+    "score": 17.0,
+    "matched": [
+     "record",
+     "pag",
+     "detail",
+     "~record pag"
+    ],
+    "alts": [
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     },
+     {
+      "id": "component/pager-num",
+      "score": 4.0
+     },
+     {
+      "id": "component/select",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "panel sliding from the edge",
+    "outcome": "RESOLVED",
+    "id": "component/sheet-end",
+    "score": 13.0,
+    "matched": [
+     "sliding",
+     "panel",
+     "~sliding panel"
+    ],
+    "alts": [
+     {
+      "id": "component/notif",
+      "score": 4.0
+     },
+     {
+      "id": "component/chip",
+      "score": 1.5
+     },
+     {
+      "id": "component/toast2",
+      "score": 1.5
+     }
+    ]
+   },
+   {
+    "query": "a filter panel beside the list",
+    "outcome": "COMPOSE",
+    "id": "recipe/filter-row",
+    "score": 11.0,
+    "matched": [
+     "filter",
+     "list",
+     "~filter list"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 4.0
+     },
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     },
+     {
+      "id": "component/notif",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "reveal the actions for one row",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 17.0,
+    "matched": [
+     "row",
+     "reveal",
+     "one",
+     "action",
+     "~reveal action one row"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 6.5
+     },
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "open a row's action menu",
+    "outcome": "RESOLVED",
+    "id": "guideline/row-actions",
+    "score": 8.5,
+    "matched": [
+     "row",
+     "menu",
+     "action",
+     "open"
+    ],
+    "alts": [
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     },
+     {
+      "id": "component/iconbtn",
+      "score": 5.5
+     },
+     {
+      "id": "component/index-row",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "the chevron that reveals actions for one row",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 20.0,
+    "matched": [
+     "chevron",
+     "row",
+     "one",
+     "action",
+     "reveal",
+     "~reveal action one row"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 6.5
+     },
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "row actions chevron",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 9.0,
+    "matched": [
+     "row",
+     "chevron",
+     "action"
+    ],
+    "alts": [
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     },
+     {
+      "id": "component/index-row",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "the actions chevron on a row",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 9.0,
+    "matched": [
+     "chevron",
+     "row",
+     "action"
+    ],
+    "alts": [
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     },
+     {
+      "id": "component/index-row",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "click the chevron to see row actions",
+    "outcome": "COMPOSE",
+    "id": "recipe/row-actions",
+    "score": 9.0,
+    "matched": [
+     "chevron",
+     "row",
+     "action"
+    ],
+    "alts": [
+     {
+      "id": "guideline/row-actions",
+      "score": 6.0
+     },
+     {
+      "id": "component/btn",
+      "score": 5.5
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "select rows then approve",
+    "outcome": "COMPOSE",
+    "id": "recipe/bulk-actions",
+    "score": 17.0,
+    "matched": [
+     "row",
+     "select",
+     "then",
+     "approv",
+     "~select row then approv"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     },
+     {
+      "id": "component/select",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/row-actions",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "delete selected rows",
+    "outcome": "COMPOSE",
+    "id": "recipe/bulk-actions",
+    "score": 9.0,
+    "matched": [
+     "selected",
+     "delet",
+     "row"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     },
+     {
+      "id": "component/bulkbar",
+      "score": 3.0
+     },
+     {
+      "id": "guideline/armed-delete",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "bulk actions",
+    "outcome": "RESOLVED",
+    "id": "component/bulkbar",
+    "score": 13.0,
+    "matched": [
+     "bulk",
+     "action",
+     "~bulk action"
+    ],
+    "alts": [
+     {
+      "id": "component/btn",
+      "score": 4.0
+     },
+     {
+      "id": "component/savebar",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/row-actions",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "actions for a list item",
+    "outcome": "RESOLVED",
+    "id": "component/index-row",
+    "score": 9.5,
+    "matched": [
+     "item",
+     "action",
+     "list"
+    ],
+    "alts": [
+     {
+      "id": "pattern/detail",
+      "score": 7.0
+     },
+     {
+      "id": "component/tbl",
+      "score": 5.0
+     },
+     {
+      "id": "component/btn",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "remove a row from a list",
+    "outcome": "RESOLVED",
+    "id": "component/index-row",
+    "score": 13.0,
+    "matched": [
+     "row",
+     "list",
+     "~list row"
+    ],
+    "alts": [
+     {
+      "id": "component/tbl",
+      "score": 5.5
+     },
+     {
+      "id": "component/tl",
+      "score": 4.0
+     },
+     {
+      "id": "component/chip",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "delete a reviewer from a list",
+    "outcome": "COMPOSE",
+    "id": "recipe/entity-delete-armed",
+    "score": 9.0,
+    "matched": [
+     "delet",
+     "list",
+     "from"
+    ],
+    "alts": [
+     {
+      "id": "component/select",
+      "score": 5.0
+     },
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     },
+     {
+      "id": "component/tbl",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "remove a person from a list",
+    "outcome": "COMPOSE",
+    "id": "recipe/entity-delete-armed",
+    "score": 9.0,
+    "matched": [
+     "remov",
+     "list",
+     "from"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     },
+     {
+      "id": "component/tbl",
+      "score": 4.0
+     },
+     {
+      "id": "component/tl",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "delete an entity from a list",
+    "outcome": "COMPOSE",
+    "id": "recipe/entity-delete-armed",
+    "score": 12.0,
+    "matched": [
+     "delet",
+     "entity",
+     "list",
+     "from"
+    ],
+    "alts": [
+     {
+      "id": "pattern/detail",
+      "score": 5.5
+     },
+     {
+      "id": "guideline/armed-delete",
+      "score": 4.5
+     },
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "a row of status chips",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "status",
+     "chip",
+     "~status chip"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 7.0
+     },
+     {
+      "id": "component/avatar-sq",
+      "score": 4.0
+     },
+     {
+      "id": "component/index-row",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "status chips for system state",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 17.0,
+    "matched": [
+     "status",
+     "stat",
+     "chip",
+     "~status chip"
+    ],
+    "alts": [
+     {
+      "id": "pattern/dashboard",
+      "score": 7.0
+     },
+     {
+      "id": "component/chip",
+      "score": 6.5
+     },
+     {
+      "id": "component/avatar-sq",
+      "score": 5.0
+     }
+    ]
+   },
+   {
+    "query": "a status chip",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "status",
+     "chip",
+     "~status chip"
+    ],
+    "alts": [
+     {
+      "id": "component/chip",
+      "score": 5.5
+     },
+     {
+      "id": "component/avatar-sq",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/dashboard",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "a status label",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "status",
+     "label",
+     "~status label"
+    ],
+    "alts": [
+     {
+      "id": "guideline/labels-accessibility",
+      "score": 3.0
+     },
+     {
+      "id": "component/chip",
+      "score": 2.5
+     },
+     {
+      "id": "guideline/colour-not-alone",
+      "score": 2.5
+     }
+    ]
+   },
+   {
+    "query": "state marker",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "marker",
+     "stat",
+     "~stat marker"
+    ],
+    "alts": [
+     {
+      "id": "component/empty",
+      "score": 4.0
+     },
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/dashboard",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "the dashboard status chips",
+    "outcome": "RESOLVED",
+    "id": "component/badge",
+    "score": 13.0,
+    "matched": [
+     "status",
+     "chip",
+     "~status chip"
+    ],
+    "alts": [
+     {
+      "id": "pattern/dashboard",
+      "score": 7.0
+     },
+     {
+      "id": "component/chip",
+      "score": 5.5
+     },
+     {
+      "id": "component/avatar-sq",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "the dashboard overview",
+    "outcome": "RESOLVED",
+    "id": "pattern/dashboard",
+    "score": 8.0,
+    "matched": [
+     "dashboard",
+     "overview"
+    ],
+    "alts": [
+     {
+      "id": "example/dashboard",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "metrics page",
+    "outcome": "RESOLVED",
+    "id": "pattern/dashboard",
+    "score": 13.0,
+    "matched": [
+     "metric",
+     "pag",
+     "~metric pag"
+    ],
+    "alts": [
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     },
+     {
+      "id": "component/pager-num",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/detail",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "landing dashboard",
+    "outcome": "RESOLVED",
+    "id": "pattern/dashboard",
+    "score": 13.0,
+    "matched": [
+     "dashboard",
+     "landing",
+     "~landing dashboard"
+    ],
+    "alts": [
+     {
+      "id": "example/dashboard",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "a dashboard page",
+    "outcome": "RESOLVED",
+    "id": "pattern/dashboard",
+    "score": 8.0,
+    "matched": [
+     "dashboard",
+     "pag"
+    ],
+    "alts": [
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     },
+     {
+      "id": "component/pager-num",
+      "score": 4.0
+     },
+     {
+      "id": "pattern/detail",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "date picker",
+    "outcome": "RESOLVED",
+    "id": "component/dp",
+    "score": 13.0,
+    "matched": [
+     "dat",
+     "picker",
+     "~dat picker"
+    ],
+    "alts": [
+     {
+      "id": "component/cb",
+      "score": 4.0
+     },
+     {
+      "id": "component/select",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "combobox",
+    "outcome": "RESOLVED",
+    "id": "component/cb",
+    "score": 9.0,
+    "matched": [
+     "combobox",
+     "~combobox"
+    ],
+    "alts": []
+   },
+   {
+    "query": "toast message",
+    "outcome": "RESOLVED",
+    "id": "component/toast2",
+    "score": 8.0,
+    "matched": [
+     "toast",
+     "messag"
+    ],
+    "alts": [
+     {
+      "id": "component/msg",
+      "score": 4.0
+     },
+     {
+      "id": "component/page-state",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/feedback-routing",
+      "score": 3.0
+     }
+    ]
+   },
+   {
+    "query": "empty state with a call to action",
+    "outcome": "RESOLVED",
+    "id": "component/empty",
+    "score": 14.0,
+    "matched": [
+     "stat",
+     "empty",
+     "action",
+     "~empty stat"
+    ],
+    "alts": [
+     {
+      "id": "component/page-state",
+      "score": 7.0
+     },
+     {
+      "id": "guideline/empty-anatomy",
+      "score": 7.0
+     },
+     {
+      "id": "component/btn",
+      "score": 5.5
+     }
+    ]
+   },
+   {
+    "query": "delete a saved template with a confirm dialog",
+    "outcome": "CONFLICT",
+    "id": "prohibit/custom-confirm-for-entity-delete",
+    "score": null,
+    "matched": null,
+    "alts": []
+   },
+   {
+    "query": "choose one owner from a list of people",
+    "outcome": "COMPOSE",
+    "id": "recipe/assign-picker",
+    "score": 12.0,
+    "matched": [
+     "one",
+     "list",
+     "owner",
+     "choos"
+    ],
+    "alts": [
+     {
+      "id": "component/index-row",
+      "score": 5.0
+     },
+     {
+      "id": "component/select",
+      "score": 5.0
+     },
+     {
+      "id": "component/tbl",
+      "score": 4.0
+     }
+    ]
+   },
+   {
+    "query": "how far a background scan has come and whether it is stuck",
+    "outcome": "COMPOSE",
+    "id": "recipe/job-progress",
+    "score": 17.0,
+    "matched": [
+     "far",
+     "scan",
+     "com",
+     "background",
+     "~far scan com"
+    ],
+    "alts": [
+     {
+      "id": "component/diff",
+      "score": 1.0
+     },
+     {
+      "id": "component/dlg",
+      "score": 1.0
+     },
+     {
+      "id": "component/notif",
+      "score": 1.0
+     }
+    ]
+   },
+   {
+    "query": "approval history steps",
+    "outcome": "RESOLVED",
+    "id": "component/tl",
+    "score": 27.0,
+    "matched": [
+     "step",
+     "approval",
+     "history",
+     "~step history",
+     "~approval history",
+     "~approval step"
+    ],
+    "alts": [
+     {
+      "id": "pattern/stepper",
+      "score": 4.0
+     },
+     {
+      "id": "guideline/spacing-roles",
+      "score": 1.5
+     },
+     {
+      "id": "token-set/spacing",
+      "score": 1.5
+     }
+    ]
+   }
+  ]
+ },
+ "groups": {
+  "convergence": {
+   "cases": [
+    {
+     "group": "G-01",
+     "query": "A compact picker to assign one reviewer (a person) from a fixed list on a record page",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "A compact picker for assigning a reviewer to a request (choose one of a small fixed set of reviewers and submit)",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "A compact picker for assigning a reviewer to a request from a small fixed list, inline in a detail page",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "A compact picker for assigning a reviewer to a request from the request detail page",
+     "expect": [
+      "COMPOSE",
+      "recipe/assign-picker"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/assign-picker"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "Choose one owner from a list of people",
+     "expect": [
+      "COMPOSE",
+      "recipe/assign-picker"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/assign-picker"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "Single select from a short fixed set of options",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "Entity picker for assigning a record to a person",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-01",
+     "query": "Assign a reviewer to a request",
+     "expect": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/select"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Show the status and progress of a long-running background operation (running with percent complete, potentially stalled/stuck, or failed) and let the user re-run it",
+     "expect": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "A determinate long-running background-operation status: show how far an AI triage scan has come and whether it is stuck or failed, with a live progress readout",
+     "expect": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Show the status and determinate progress of a long-running background triage scan, including running / done / failed and a stalled indication, with live updates",
+     "expect": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Determinate progress for a long-running background job",
+     "expect": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Progress bar showing percent complete with a stalled state",
+     "expect": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Background job status card with progress",
+     "expect": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-02",
+     "query": "Show how far a background scan has come and whether it is stuck",
+     "expect": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/job-progress"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-03",
+     "query": "An irreversible approval decision that requires a typed reason at the point of action (reject a purchase request with a reason the requester sees)",
+     "expect": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-03",
+     "query": "One-way decision with a reason field and a confirmation",
+     "expect": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-03",
+     "query": "Rejecting a request requires typing a reason",
+     "expect": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "ok": true
+    },
+    {
+     "group": "G-03",
+     "query": "High stakes confirmation with a required reason",
+     "expect": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/high-stakes-confirm"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "combobox",
+     "expect": [
+      "RESOLVED",
+      "component/cb"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/cb"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "date picker",
+     "expect": [
+      "RESOLVED",
+      "component/dp"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/dp"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "loading spinner",
+     "expect": [
+      "RESOLVED",
+      "component/spinner"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/spinner"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "toast message",
+     "expect": [
+      "RESOLVED",
+      "component/toast2"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/toast2"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "empty state with a call to action",
+     "expect": [
+      "RESOLVED",
+      "component/empty"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/empty"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "banner after redirect",
+     "expect": [
+      "COMPOSE",
+      "recipe/feedback-redirect"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/feedback-redirect"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "delete a rule from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "regr",
+     "query": "pagination for a long list",
+     "expect": [
+      "COMPOSE",
+      "recipe/paginated-list"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/paginated-list"
+     ],
+     "ok": true
+    },
+    {
+     "group": "del",
+     "query": "remove a reviewer from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "del",
+     "query": "remove a person from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "del",
+     "query": "delete a person from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "del",
+     "query": "remove an owner from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "del",
+     "query": "delete an entity from a list",
+     "expect": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "got": [
+      "COMPOSE",
+      "recipe/entity-delete-armed"
+     ],
+     "ok": true
+    },
+    {
+     "group": "lock",
+     "query": "assign a reviewer with a searchable picker",
+     "expect": [
+      "RESOLVED",
+      "component/cb"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/cb"
+     ],
+     "ok": true
+    },
+    {
+     "group": "lock",
+     "query": "add a progress bar for a long-running background job",
+     "expect": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "got": [
+      "RESOLVED",
+      "component/progress"
+     ],
+     "ok": true
+    }
+   ],
+   "failures": 0
+  },
+  "golden": {
+   "total": 23,
+   "passed": 23,
+   "misses": []
+  }
+ }
+}

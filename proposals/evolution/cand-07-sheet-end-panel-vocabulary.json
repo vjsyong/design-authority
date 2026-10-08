@@ -1,38 +1,44 @@
 {
-  "id": "cand/07-sheet-end-panel-vocabulary",
-  "title": "Panel phrasings route to the slide-over component (sheet-end)",
-  "gap": "dispute/20261008-134400-bcea20",
-  "classification": "VOCABULARY-FIX",
-  "layer": "curation",
-  "review": {"verdict": "PENDING", "source": "docs/evolution/round2/03-review.md"},
-  "problem": "Consumer phrasings for a slide-over panel (\"a panel sliding in from the edge with a record's details\") do not fire component/sheet-end's existing aliases (\"side sheet\", \"end sheet\", \"slide-over panel\", \"side panel\"): the tokens are present but no phrase bonus matches, and pattern/detail wins on \"record\" + \"details\". The slide-over component is the correct owner; the pattern is a full page.",
-  "evidence": [
-    "dispute/20261008-134400-bcea20: expected component/sheet-end; pinned -> pattern/viewer; evolution -> pattern/detail (sheet-end logged 4.0 as runner-up)",
-    "scratch pre-test with the alias addition: -> RESOLVED component/sheet-end; 14-probe battery unchanged (docs/evolution/data/r2-scratch)"
-  ],
-  "existing_authority_considered": [
-    "component/sheet-end - correct owner, aliases simply do not fire for this phrasing",
-    "pattern/detail - full record page, not a slide-over panel; trimming its aliases was rejected (legitimate vocabulary)",
-    "a bare \"panel\" alias - rejected: too broad, collision risk"
-  ],
-  "why_insufficient": "The component exists with the right semantics; only the retrieval vocabulary for its consumer phrasings is missing.",
-  "proposed_change": {
-    "curation": [
-      "aliases.json: component/sheet-end += [\"sliding panel\", \"slide-in panel\"]"
-    ]
-  },
-  "not_proposed": [
-    "pattern/detail alias changes",
-    "any kernel scoring change (frozen)"
-  ],
-  "dependencies": ["pattern/detail, component/sheet-end (both unchanged apart from the alias addition)"],
-  "scope": "global",
-  "compatibility": "Additive aliases only.",
-  "validation": {
-    "criterion": "achievable contract under the frozen kernel:",
-    "mapping": "\"a panel sliding in from the edge with a record's details\" -> RESOLVED component/sheet-end (post-build re-verification)",
-    "triage_gates": "n/a (curation-only); authority build check + goldens",
-    "non_regression": "\"open an end sheet for secondary details\", \"a side panel with filters\", \"a detail view of a record\", \"a record page for one item\" all unchanged in the scratch battery"
-  },
-  "migration": "None: no implementations affected; vocabulary only."
+ "id": "cand/07-sheet-end-panel-vocabulary",
+ "title": "Panel phrasings route to the slide-over component (sheet-end)",
+ "gap": "dispute/20261008-134400-bcea20",
+ "classification": "VOCABULARY-FIX",
+ "layer": "curation",
+ "review": {
+  "verdict": "ACCEPT",
+  "source": "docs/evolution/round2/03-review.md#cand-07",
+  "applied": "none required; aliases kept exactly as drafted"
+ },
+ "problem": "Consumer phrasings for a slide-over panel (\"a panel sliding in from the edge with a record's details\") do not fire component/sheet-end's existing aliases (\"side sheet\", \"end sheet\", \"slide-over panel\", \"side panel\"): the tokens are present but no phrase bonus matches, and pattern/detail wins on \"record\" + \"details\". The slide-over component is the correct owner; the pattern is a full page.",
+ "evidence": [
+  "dispute/20261008-134400-bcea20: expected component/sheet-end; pinned -> pattern/viewer; evolution -> pattern/detail (sheet-end logged 4.0 as runner-up)",
+  "scratch pre-test with the alias addition: -> RESOLVED component/sheet-end; 14-probe battery unchanged (docs/evolution/data/r2-scratch)"
+ ],
+ "existing_authority_considered": [
+  "component/sheet-end - correct owner, aliases simply do not fire for this phrasing",
+  "pattern/detail - full record page, not a slide-over panel; trimming its aliases was rejected (legitimate vocabulary)",
+  "a bare \"panel\" alias - rejected: too broad, collision risk"
+ ],
+ "why_insufficient": "The component exists with the right semantics; only the retrieval vocabulary for its consumer phrasings is missing.",
+ "proposed_change": {
+  "curation": [
+   "aliases.json: component/sheet-end += [\"sliding panel\", \"slide-in panel\"]"
+  ]
+ },
+ "not_proposed": [
+  "pattern/detail alias changes",
+  "any kernel scoring change (frozen)"
+ ],
+ "dependencies": [
+  "pattern/detail, component/sheet-end (both unchanged apart from the alias addition)"
+ ],
+ "scope": "global",
+ "compatibility": "Additive aliases only.",
+ "validation": {
+  "criterion": "achievable contract under the frozen kernel:",
+  "mapping": "VERIFIED: dispute query -> RESOLVED component/sheet-end 13.0 (margin 5.0 over pattern/detail 8.0); 8 collateral slide-over phrasings improved; no false positives (\"a settings panel\", \"a carousel with sliding cards\" unchanged)",
+  "triage_gates": "n/a (curation-only); authority build check + goldens",
+  "non_regression": "\"open an end sheet for secondary details\", \"a side panel with filters\", \"a detail view of a record\", \"a record page for one item\" all unchanged in the scratch battery"
+ },
+ "migration": "None: no implementations affected; vocabulary only."
 }

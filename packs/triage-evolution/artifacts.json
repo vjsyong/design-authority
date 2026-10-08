@@ -45,7 +45,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "btn"
    }
@@ -91,7 +91,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "iconbtn"
    }
@@ -139,7 +139,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "px-sw"
    }
@@ -186,7 +186,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "menu-item"
    }
@@ -231,7 +231,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "nav-item"
    }
@@ -275,7 +275,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "chip"
    }
@@ -319,7 +319,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "index-row"
    }
@@ -366,7 +366,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "tbl"
    }
@@ -406,7 +406,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "bulkbar"
    }
@@ -446,7 +446,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "savebar"
    }
@@ -495,7 +495,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "msg"
    }
@@ -539,7 +539,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "toast2"
    }
@@ -590,7 +590,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "badge"
    }
@@ -630,7 +630,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "empty"
    }
@@ -679,7 +679,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "dlg"
    }
@@ -720,7 +720,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "tip"
    }
@@ -760,7 +760,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "spinner"
    }
@@ -800,7 +800,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "field-err"
    }
@@ -845,7 +845,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "tabs"
    }
@@ -886,7 +886,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "crumbs"
    }
@@ -928,7 +928,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "radio"
    }
@@ -968,7 +968,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "slider"
    }
@@ -1017,7 +1017,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "cb"
    }
@@ -1068,7 +1068,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "dp"
    }
@@ -1110,7 +1110,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "acc"
    }
@@ -1154,7 +1154,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "avatar-sq"
    }
@@ -1199,7 +1199,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "img"
    }
@@ -1244,7 +1244,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "drop"
    }
@@ -1288,7 +1288,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "notif"
    }
@@ -1335,7 +1335,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "cmd"
    }
@@ -1382,7 +1382,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "page-state"
    }
@@ -1427,7 +1427,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "pager-num"
    }
@@ -1473,7 +1473,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "tl"
    }
@@ -1517,7 +1517,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "diff"
    }
@@ -1532,7 +1532,9 @@
     "side sheet",
     "end sheet",
     "slide-over panel",
-    "side panel"
+    "side panel",
+    "sliding panel",
+    "slide-in panel"
    ],
    "body": {
     "class": "sheet-end",
@@ -1557,9 +1559,20 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "sheet-end"
+   },
+   "provenance": {
+    "introduced_in": "0.13.1-experiment (aliases only)",
+    "triggering_gaps": [
+     "dispute/20261008-134400-bcea20 (sliding panel mis-route)"
+    ],
+    "review_decision": "cand/07 ACCEPT",
+    "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+    "tests": [
+     "authority: dispute query -> RESOLVED component/sheet-end 13.0; 8 collateral slide-over phrasings improved; named non-regression unchanged"
+    ]
    }
   },
   {
@@ -1606,7 +1619,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "select"
    },
@@ -1664,7 +1677,7 @@
    ],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "spec/states.json",
     "pointer": "progress"
    },
@@ -1686,10 +1699,65 @@
    }
   },
   {
+   "id": "component/skip",
+   "kind": "component",
+   "title": "Skip link",
+   "summary": "Skip link: first in body; hidden until focused, jumps to #main. Keeps keyboard users out of the nav.",
+   "status": "beta",
+   "aliases": [
+    "skip link",
+    "skip to content",
+    "skip navigation",
+    "jump to content"
+   ],
+   "body": {
+    "class": "skip",
+    "states": [
+     "default",
+     "focus"
+    ],
+    "verify": [
+     ".skip",
+     ".skip:focus"
+    ],
+    "a11y": [
+     "First element in body; hidden until focused; focus moves it into view; jumps to #main."
+    ],
+    "source_file": "base.css"
+   },
+   "relations": [
+    {
+     "rel": "documented-at",
+     "url": "/components/navigation"
+    }
+   ],
+   "source": {
+    "repo": "vjsyong/triage-design-system",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
+    "path": "spec/states.json",
+    "pointer": "skip"
+   },
+   "provenance": {
+    "introduced_in": "0.13.1-experiment",
+    "triggering_gaps": [
+     "dispute/20261008-134355-5a90bd (skip link -> nav-item false RESOLVED)",
+     "gap/20261008-124813-ac670b (Duty build; .skip uncatalogued)"
+    ],
+    "review_decision": "cand/06-skip-catalogue REVISE -> applied (03-review required actions 1-5)",
+    "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+    "tests": [
+     "triage build.py check (38-component matrix)",
+     "tools/verify.py all-green (38 components selector-by-selector)",
+     "browser suite 248/248, zero UI-baseline drift",
+     "authority: 'a skip link to jump past the navigation' -> RESOLVED component/skip 26.0; nav non-regression unchanged"
+    ]
+   }
+  },
+  {
    "id": "pattern/dashboard",
    "kind": "pattern",
    "title": "Dashboard / overview",
-   "summary": "Landing overview: hero metric strip, status/automation chips, recent-activity feed, follow-up cards.",
+   "summary": "Landing overview: hero metric strip, status/automation chips (the .status-chips row), recent-activity feed, follow-up cards.",
    "status": "documented",
    "aliases": [
     "overview",
@@ -1709,8 +1777,19 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
+   },
+   "provenance": {
+    "introduced_in": "0.13.1-experiment (summary names .status-chips)",
+    "triggering_gaps": [
+     "exp-02 part B: .status-chip shipped with zero catalogue presence"
+    ],
+    "review_decision": "cand/09-status-chip-codification REVISE -> applied (alias dropped; summary route chosen for searchability)",
+    "source_commit": "evolution/0.13-experiment (see BUILD.json snapshot.commit)",
+    "tests": [
+     "authority: da search 'status-chips' hits pattern/dashboard; badge phrasings unchanged"
+    ]
    }
   },
   {
@@ -1737,7 +1816,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1764,7 +1843,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1791,7 +1870,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1819,7 +1898,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1846,7 +1925,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1874,7 +1953,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/ + src/core/patterns.css"
    }
   },
@@ -1902,7 +1981,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#item-deletes"
    }
   },
@@ -1928,7 +2007,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#one-way-actions"
    }
   },
@@ -1952,7 +2031,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#reversible-mutations"
    }
   },
@@ -1978,7 +2057,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#feedback"
    }
   },
@@ -2004,7 +2083,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#lists-row-actions"
    }
   },
@@ -2029,7 +2108,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#save-bars"
    }
   },
@@ -2054,7 +2133,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#empty-states"
    }
   },
@@ -2078,7 +2157,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#copy"
    }
   },
@@ -2104,7 +2183,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#labels-accessibility"
    }
   },
@@ -2129,7 +2208,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md#labels-accessibility + dataviz guidance"
    }
   },
@@ -2154,7 +2233,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "site/pages_foundations.py#typography"
    }
   },
@@ -2178,7 +2257,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens.json#misc.zindex"
    }
   },
@@ -2202,7 +2281,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens.json#spacing"
    }
   },
@@ -2225,7 +2304,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#color"
    }
   },
@@ -2247,7 +2326,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#typography"
    }
   },
@@ -2268,7 +2347,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#spacing"
    }
   },
@@ -2290,7 +2369,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#motion"
    }
   },
@@ -2312,7 +2391,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#misc"
    }
   },
@@ -2333,7 +2412,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "tokens/tokens.json#dataviz"
    }
   },
@@ -2351,7 +2430,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/chat.html"
    }
   },
@@ -2369,7 +2448,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/components.html"
    }
   },
@@ -2387,7 +2466,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/dashboard.html"
    }
   },
@@ -2405,7 +2484,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/form.html"
    }
   },
@@ -2423,7 +2502,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/list.html"
    }
   },
@@ -2441,7 +2520,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/shell.html"
    }
   },
@@ -2459,7 +2538,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "examples/viewer.html"
    }
   },
@@ -2478,7 +2557,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "README.md"
    }
   },
@@ -2497,7 +2576,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "INTERACTION.md"
    }
   },
@@ -2515,7 +2594,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "AGENTS.md"
    }
   },
@@ -2532,7 +2611,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "MIGRATION.md"
    }
   },
@@ -2550,7 +2629,7 @@
    "relations": [],
    "source": {
     "repo": "vjsyong/triage-design-system",
-    "commit": "32e680b311c0b09827162654ecace96bd60529db",
+    "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
     "path": "RENAME-MAP.md"
    }
   }

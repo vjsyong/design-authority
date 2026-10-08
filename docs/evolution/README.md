@@ -2,6 +2,12 @@
 
 **Date:** 2026-10-07 · **Status:** complete · **Repo:** `github.com/vjsyong/design-authority` (master `d43f80a`) · **Release:** Triage Authority `0.13.0-experiment` (snapshot branch `evolution/0.13-experiment` @ `32e680b`)
 
+> **Round 2 (2026-10-08):** the disputed-resolution follow-through is in
+> [`round2/`](round2/06-final-report.md) — release `0.13.1-experiment`
+> (snapshot `2c701d2`): skips catalogued, slide-over and row-actions
+> vocabulary fixed, status chips named; all four seeded disputes replay
+> 0-standing on the evolution line (frozen pinned pack keeps its 4/4 gate).
+
 This package consolidates every report and raw measurement from the Authority
 Evolution Experiment: taking the gap evidence filed by downstream agents
 against Triage 0.12.1, converting it through a governed upstream process into

@@ -7,12 +7,12 @@ copy of the evolution pack; the pre-test battery lives in
 independent adversarial review (`03-review.md`) and the post-build battery
 (`04-authority-ci.md`).
 
-| # | candidate | layer | need |
-|---|---|---|---|
-| cand-06 | `cand/06-skip-catalogue` — catalogue `component/skip` | triage-snapshot + curation | N-1 |
-| cand-07 | `cand/07-sheet-end-panel-vocabulary` — panel phrasings on sheet-end | curation | N-2 |
-| cand-08 | `cand/08-row-actions-chevron` — chevron phrasings in recipe needs | curation | N-4 |
-| cand-09 | `cand/09-status-chip-codification` — name the classes, alias pending battery | curation | N-5 |
+| # | candidate | layer | need | review outcome |
+|---|---|---|---|---|
+| cand-06 | `cand/06-skip-catalogue` — catalogue `component/skip` | triage-snapshot + curation | N-1 | REVISE (minor), applied: status beta, docs-map pin, evidence hygiene |
+| cand-07 | `cand/07-sheet-end-panel-vocabulary` — panel phrasings on sheet-end | curation | N-2 | ACCEPT as drafted |
+| cand-08 | `cand/08-row-actions-chevron` — chevron phrasings in recipe needs | curation | N-4 | ACCEPT + one watch item |
+| cand-09 | `cand/09-status-chip-codification` — name the classes | curation | N-5 | REVISE, applied: alias dropped, summary route |
 
 Design notes:
 

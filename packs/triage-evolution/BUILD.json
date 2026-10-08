@@ -1,17 +1,17 @@
 {
- "built_at": "2026-10-07T07:57:21+00:00",
+ "built_at": "2026-10-08T14:08:11+00:00",
  "snapshot": {
   "path": "/home/xrim/triage-design-system-evo",
-  "commit": "32e680b311c0b09827162654ecace96bd60529db",
-  "version": "0.13.0-experiment"
+  "commit": "2c701d2172d5abef0d4ab3cf5985b19d547142ff",
+  "version": "0.13.1-experiment"
  },
  "counts": {
-  "artifacts": 75,
+  "artifacts": 76,
   "rules": 15,
   "recipes": 17,
   "fallbacks": 3,
   "prohibitions": 9,
-  "components": 37,
+  "components": 38,
   "patterns": 7,
   "guidelines": 13,
   "examples": 7,
@@ -31,29 +31,29 @@
   "dataviz": 8
  },
  "curation_sha256": {
-  "aliases.json": "0e1f59cca6d554938907d19463899c7b63f1b4e6d7542cc64b7c7745349f3530",
-  "component-notes.json": "b6b2d24b495cdd3516b577acb2ec5adcda65fba6cf695002e3dd8b1e5b3a63f9",
-  "docs-map.json": "15f985c489ec9470c33189ff66be7cad6cd431ed15962ffcf0437830863f4de8",
-  "evolution.json": "6b7fd984f73e5163c3e69ddf50d63e853605cd75e1aafe023c28d2c9fc8e001e",
+  "aliases.json": "6a63095b2b12b584e38ca142ea4be94c2d9b28beb987c71503126b00e3061fee",
+  "component-notes.json": "8ed7495bea0319e6a42bbb9607f630c4f748b1c673ff2cf8c3b85925913719aa",
+  "docs-map.json": "9bf04983d3e64212a626b3b4212daf9f5a1238097a913eac04addd8a2b21e10c",
+  "evolution.json": "1bdd00dc03d2fb62910996f3725553f4189bc6c9c105f643fa0cc482ffe5dfd9",
   "fallbacks.json": "707e84b9051fec353402a0fd11a901ee879c03275f922915067712eda65f31a7",
   "guidelines.json": "b2510f8d3ad3c0444faffbaf24f024915a20cd2cec5ff3f9f2ec81c34ea5881a",
-  "patterns.json": "f8953d6f3fbe2d230019bdae2c11835f33f96233e19e51989a7ab431f92c1d11",
+  "patterns.json": "e7c98407f5261420703845c7e37beb8e6d64f221588df3534808218e9b20e9e3",
   "prohibitions.json": "718d075cde70f594cd03b84eb4aa7aebf273e2ac740349c7f2060d958ebbff0b",
-  "recipes.json": "8300e214ebe47b2d8be6519b9ebb4427d7afcbe1e3288040a1688df15f099ea3",
+  "recipes.json": "27b131c9127e03d88d5cdd6e82ab24d4dd8ec8583fe5c68bc190ae202e346130",
   "references.json": "6e3381543a7f35bcc2f9b4a50d9cc45a8ef4591ba178b2b30aecaa39c61a0d6c",
   "token-sets.json": "fbc15f2acce114f257ce0abd8d5eed2ec386e9046dd5b5b033545a6ab6ec49cc"
  },
  "warnings": [
-  "snapshot commit 32e680b311 != expected e374f3803d"
+  "snapshot commit 2c701d2172 != expected e374f3803d"
  ],
  "release": {
-  "label": "0.13.0-experiment",
+  "label": "0.13.1-experiment",
   "kind": "experimental authority release",
-  "experiment": "authority-evolution",
-  "based_on": "0.12.1 @ e374f38",
+  "experiment": "authority-evolution (round 2)",
+  "based_on": "0.13.0-experiment @ 32e680b + the 0.13.1 triage commit (see BUILD.json snapshot.commit)",
   "source_branch": "evolution/0.13-experiment (triage-design-system)",
-  "evidence": "design-authority docs/evolution/00-gap-evidence.md .. 04-authority-ci.md + benchmark/runs archives",
-  "review": "docs/evolution/03-review.md \u2014 adversarial review, all five candidates REVISE; required actions applied before build"
+  "evidence": "design-authority docs/evolution/round2/00-gap-evidence.md .. 04-authority-ci.md + docs/experiments/disputes/ (the fixture set)",
+  "review": "docs/evolution/round2/03-review.md \u2014 cand-06 REVISE (applied: status beta, docs-map pin, evidence hygiene); cand-07 ACCEPT; cand-08 ACCEPT; cand-09 REVISE (applied: alias dropped, summary route)"
  },
  "notes": [
   "DTCG full-schema conformance check pending (D-015); structural sanity only.",

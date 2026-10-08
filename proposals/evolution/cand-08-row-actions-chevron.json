@@ -1,39 +1,46 @@
 {
-  "id": "cand/08-row-actions-chevron",
-  "title": "Row-chevron phrasings compose recipe/row-actions, not bulk-actions",
-  "gap": "dispute/20261008-134400-9b284e",
-  "classification": "VOCABULARY-FIX",
-  "layer": "curation",
-  "review": {"verdict": "PENDING", "source": "docs/evolution/round2/03-review.md"},
-  "problem": "The row actions chevron (\"the chevron that reveals actions for a single row\") composes recipe/bulk-actions, which is about batch operations in the selection bar. The correct neighbour recipe/row-actions exists, describes exactly the .menu-pop row-menu pattern, and simply does not match this phrasing.",
-  "evidence": [
-    "dispute/20261008-134400-9b284e: expected the row-action menu family; pinned -> component/menu-item; evolution -> COMPOSE recipe/bulk-actions",
-    "recipe/row-actions evidence quotes INTERACTION.md: \"Desktop: relevant actions inline with .ra-inline; the rest in a details.menu with .ra-menu and a .menu-pop.\"",
-    "scratch pre-test with the needs addition: query -> COMPOSE recipe/row-actions; \"batch delete selected\" and \"act on many selected records\" still -> recipe/bulk-actions"
-  ],
-  "existing_authority_considered": [
-    "recipe/row-actions - correct owner, needs list simply lacks the observed phrasing",
-    "recipe/bulk-actions - correct for batch operations; kept unchanged",
-    "component/menu-pop - not catalogued on the evolution line; the recipe is the sanctioned route to the row menu"
-  ],
-  "why_insufficient": "No new component is needed: the recipe already documents the pattern; only its need-phrasings are missing.",
-  "proposed_change": {
-    "curation": [
-      "recipes.json: recipe/row-actions needs += [\"the chevron that reveals actions for a single row\", \"reveal the actions for one row\", \"open a row's action menu\"]"
-    ]
-  },
-  "not_proposed": [
-    "new ingredient records (menu-pop stays uncatalogued on the evolution line; the recipe covers the need)",
-    "bulk-actions changes"
-  ],
-  "dependencies": ["recipe/bulk-actions, recipe/row-actions (the latter gains needs only)"],
-  "scope": "global",
-  "compatibility": "Additive need-phrasings only.",
-  "validation": {
-    "criterion": "achievable contract under the frozen kernel:",
-    "mapping": "\"the chevron that reveals actions for a single row\" -> COMPOSE recipe/row-actions (post-build re-verification)",
-    "triage_gates": "n/a (curation-only); authority build check + goldens",
-    "non_regression": "\"batch delete selected\", \"act on many selected records\" -> recipe/bulk-actions; \"per-row actions\", \"more menu on a row\" unchanged"
-  },
-  "migration": "None: vocabulary only."
+ "id": "cand/08-row-actions-chevron",
+ "title": "Row-chevron phrasings compose recipe/row-actions, not bulk-actions",
+ "gap": "dispute/20261008-134400-9b284e",
+ "classification": "VOCABULARY-FIX",
+ "layer": "curation",
+ "review": {
+  "verdict": "ACCEPT",
+  "source": "docs/evolution/round2/03-review.md#cand-08",
+  "applied": "none required; advisory watch item noted"
+ },
+ "problem": "The row actions chevron (\"the chevron that reveals actions for a single row\") composes recipe/bulk-actions, which is about batch operations in the selection bar. The correct neighbour recipe/row-actions exists, describes exactly the .menu-pop row-menu pattern, and simply does not match this phrasing.",
+ "evidence": [
+  "dispute/20261008-134400-9b284e: expected the row-action menu family; pinned -> component/menu-item; evolution -> COMPOSE recipe/bulk-actions",
+  "recipe/row-actions evidence quotes INTERACTION.md: \"Desktop: relevant actions inline with .ra-inline; the rest in a details.menu with .ra-menu and a .menu-pop.\"",
+  "scratch pre-test with the needs addition: query -> COMPOSE recipe/row-actions; \"batch delete selected\" and \"act on many selected records\" still -> recipe/bulk-actions"
+ ],
+ "existing_authority_considered": [
+  "recipe/row-actions - correct owner, needs list simply lacks the observed phrasing",
+  "recipe/bulk-actions - correct for batch operations; kept unchanged",
+  "component/menu-pop - not catalogued on the evolution line; the recipe is the sanctioned route to the row menu"
+ ],
+ "why_insufficient": "No new component is needed: the recipe already documents the pattern; only its need-phrasings are missing.",
+ "proposed_change": {
+  "curation": [
+   "recipes.json: recipe/row-actions needs += [\"the chevron that reveals actions for a single row\", \"reveal the actions for one row\", \"open a row's action menu\"]"
+  ]
+ },
+ "not_proposed": [
+  "new ingredient records (menu-pop stays uncatalogued on the evolution line; the recipe covers the need)",
+  "bulk-actions changes"
+ ],
+ "dependencies": [
+  "recipe/bulk-actions, recipe/row-actions (the latter gains needs only)"
+ ],
+ "scope": "global",
+ "compatibility": "Additive need-phrasings only.",
+ "validation": {
+  "criterion": "achievable contract under the frozen kernel:",
+  "mapping": "VERIFIED: dispute query -> COMPOSE recipe/row-actions 20.0; 5 collateral chevron phrasings correct; bulk-actions probes unchanged",
+  "triage_gates": "n/a (curation-only); authority build check + goldens",
+  "non_regression": "\"batch delete selected\", \"act on many selected records\" -> recipe/bulk-actions; \"per-row actions\", \"more menu on a row\" unchanged",
+  "watch": "\"open the action menu for selected rows\" flips COMPOSE bulk-actions -> row-actions (ambiguous phrasing; kept on the watch battery)"
+ },
+ "migration": "None: vocabulary only."
 }

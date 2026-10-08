@@ -1,0 +1,2756 @@
+{
+ "base": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "component/savebar",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "v06": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/crumbs",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/savebar-editor",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "guideline/page-hierarchy",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/btn",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 22.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 13.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "v07": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "component/savebar",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    },
+    {
+     "id": "component/dp",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "v08": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "component/savebar",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 12.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "v09note": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "component/savebar",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "v09alias": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "FALLBACK",
+   "id": "fallback/plain-content",
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    },
+    {
+     "id": "component/savebar",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/bulk-actions",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/dashboard",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "pattern/dashboard",
+   "score": 17.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 13.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "pattern/dashboard",
+   "score": 17.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 13.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "vall": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/crumbs",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/savebar-editor",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "guideline/page-hierarchy",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/btn",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 22.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 13.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    },
+    {
+     "id": "component/dp",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 12.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 3.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "component/badge",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "pattern/dashboard",
+     "score": 7.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ],
+ "vall_alias": [
+  {
+   "query": "a link to jump past the navigation",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "score": null,
+   "alts": []
+  },
+  {
+   "query": "jump past the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/crumbs",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/savebar-editor",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a navigation link",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "links in the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/nav-item",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/skip",
+     "score": 8.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "jump to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": []
+  },
+  {
+   "query": "skip to the main content",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "guideline/page-hierarchy",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a keyboard skip link",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 14.5,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 4.0
+    },
+    {
+     "id": "component/btn",
+     "score": 1.5
+    },
+    {
+     "id": "guideline/labels-accessibility",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a skip link above the navigation",
+   "outcome": "RESOLVED",
+   "id": "component/skip",
+   "score": 22.0,
+   "alts": [
+    {
+     "id": "component/nav-item",
+     "score": 13.0
+    },
+    {
+     "id": "component/btn",
+     "score": 2.5
+    },
+    {
+     "id": "component/crumbs",
+     "score": 2.5
+    }
+   ]
+  },
+  {
+   "query": "a panel sliding in from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    }
+   ]
+  },
+  {
+   "query": "a record panel sliding in",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a detail panel for a record",
+   "outcome": "RESOLVED",
+   "id": "pattern/detail",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "component/sheet-end",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "a sliding panel with a record",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 13.0,
+   "alts": [
+    {
+     "id": "component/notif",
+     "score": 4.0
+    },
+    {
+     "id": "component/select",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/detail",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "sheet sliding from the edge",
+   "outcome": "RESOLVED",
+   "id": "component/sheet-end",
+   "score": 8.0,
+   "alts": [
+    {
+     "id": "component/chip",
+     "score": 1.5
+    },
+    {
+     "id": "component/toast2",
+     "score": 1.5
+    },
+    {
+     "id": "component/dp",
+     "score": 1.0
+    }
+   ]
+  },
+  {
+   "query": "the chevron that reveals row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 12.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a chevron for row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "reveal row actions",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "actions for a single row",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 6.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/index-row",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "per row actions menu",
+   "outcome": "COMPOSE",
+   "id": "recipe/row-actions",
+   "score": 9.0,
+   "alts": [
+    {
+     "id": "guideline/row-actions",
+     "score": 7.0
+    },
+    {
+     "id": "component/bulkbar",
+     "score": 5.5
+    },
+    {
+     "id": "component/iconbtn",
+     "score": 5.5
+    }
+   ]
+  },
+  {
+   "query": "a row of statuses",
+   "outcome": "COMPOSE",
+   "id": "recipe/filter-row",
+   "score": 6.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 4.0
+    },
+    {
+     "id": "component/index-row",
+     "score": 4.0
+    },
+    {
+     "id": "pattern/dashboard",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "status chips on the dashboard",
+   "outcome": "RESOLVED",
+   "id": "pattern/dashboard",
+   "score": 17.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 13.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  },
+  {
+   "query": "dashboard status chips",
+   "outcome": "RESOLVED",
+   "id": "pattern/dashboard",
+   "score": 17.0,
+   "alts": [
+    {
+     "id": "component/badge",
+     "score": 13.0
+    },
+    {
+     "id": "component/chip",
+     "score": 5.5
+    },
+    {
+     "id": "component/avatar-sq",
+     "score": 4.0
+    }
+   ]
+  }
+ ]
+}

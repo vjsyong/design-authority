@@ -1,30 +1,161 @@
 {
-  "_note": "Golden resolution set for the Triage pack. expected = outcome class; expect_id = the resolution the authority must cite. Part of the codification sprint record: refine only with a decision-log note; freeze before benchmark runs (P3).",
-  "version": "0.2",
-  "pack_version": "0.13.0-experiment+32e680b",
-  "cases": [
-    {"problem": "show whether a request is waiting for approval", "expect": "COMPOSE", "expect_id": "recipe/status-with-text", "note": "No dedicated approval component; the sanctioned status composition covers it."},
-    {"problem": "show a compact history of recent approval steps", "expect": "RESOLVED", "expect_id": "component/tl", "note": "Timeline covers step/approval histories."},
-    {"problem": "let users enable or disable a rule", "expect": "RESOLVED", "expect_id": "component/px-sw", "note": "The boolean entity control is the switch."},
-    {"problem": "show an empty state when there are no requests", "expect": "RESOLVED", "expect_id": "component/empty"},
-    {"problem": "let users upload attachment files on a request", "expect": "RESOLVED", "expect_id": "component/drop"},
-    {"problem": "assign a reviewer with a searchable picker", "expect": "RESOLVED", "expect_id": "component/cb", "note": "Compact picker → combobox."},
-    {"problem": "make the sidebar navigation links show which page is active", "expect": "RESOLVED", "expect_id": "component/nav-item"},
-    {"problem": "show a message when the server cannot be reached", "expect": "RESOLVED", "expect_id": "component/msg", "note": "Persistent error feedback → banner."},
-    {"problem": "show the status of a request", "expect": "COMPOSE", "expect_id": "recipe/status-with-text"},
-    {"problem": "show the result of saving the settings form", "expect": "COMPOSE", "expect_id": "recipe/feedback-redirect"},
-    {"problem": "announce that a row was removed without reloading the page", "expect": "COMPOSE", "expect_id": "recipe/feedback-inplace"},
-    {"problem": "let users filter the requests list by category and status", "expect": "COMPOSE", "expect_id": "recipe/filter-row"},
-    {"problem": "we need a custom layout for the hero area before the designs arrive", "expect": "FALLBACK", "expect_id": "fallback/plain-content", "note": "Layout need with no system answer → sanctioned plain-content fallback."},
-    {"problem": "add a progress bar for a long-running background job", "expect": "RESOLVED", "expect_id": "component/progress", "note": "0.13.0-experiment: catalogued (was UNDEFINED on 0.12.1 — G-004 closed)."},
-    {"problem": "add a gantt chart for the delivery schedule", "expect": "UNDEFINED", "note": "Charts are token-only (dataviz palette), no chart components."},
-    {"problem": "make the corners rounded", "expect": "CONFLICT", "expect_id": "prohibit/rounded-corners", "note": "TDS003 zero-radius policy."},
-    {"problem": "remove the focus outline from links", "expect": "CONFLICT", "expect_id": "prohibit/remove-focus-ring", "note": "TDS004 focus visibility."},
-    {"problem": "use #ff6600 as the warning colour", "expect": "CONFLICT", "expect_id": "prohibit/raw-color", "note": "TDS002 colours must be tokens."},
-    {"problem": "delete a saved template with a confirm dialog", "expect": "CONFLICT", "expect_id": "prohibit/custom-confirm-for-entity-delete", "note": "Entity deletes use the armed pattern, never confirm()."},
-    {"problem": "assign a reviewer to a request", "expect": "RESOLVED", "expect_id": "component/select", "note": "G-01 closed: catalogued native select (0.13.0-experiment)."},
-    {"problem": "choose one owner from a list of people", "expect": "COMPOSE", "expect_id": "recipe/assign-picker", "note": "G-01: sanctioned assign flow (0.13.0-experiment)."},
-    {"problem": "show how far a background scan has come and whether it is stuck", "expect": "COMPOSE", "expect_id": "recipe/job-progress", "note": "G-02 closed (0.13.0-experiment)."},
-    {"problem": "rejecting a request requires typing a reason", "expect": "COMPOSE", "expect_id": "recipe/high-stakes-confirm", "note": "G-03: reason-bearing extension (0.13.0-experiment)."}
-  ]
+ "_note": "Golden resolution set for the Triage pack. expected = outcome class; expect_id = the resolution the authority must cite. Part of the codification sprint record: refine only with a decision-log note; freeze before benchmark runs (P3).",
+ "version": "0.2",
+ "pack_version": "0.13.1-experiment+2c701d21",
+ "cases": [
+  {
+   "problem": "show whether a request is waiting for approval",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/status-with-text",
+   "note": "No dedicated approval component; the sanctioned status composition covers it."
+  },
+  {
+   "problem": "show a compact history of recent approval steps",
+   "expect": "RESOLVED",
+   "expect_id": "component/tl",
+   "note": "Timeline covers step/approval histories."
+  },
+  {
+   "problem": "let users enable or disable a rule",
+   "expect": "RESOLVED",
+   "expect_id": "component/px-sw",
+   "note": "The boolean entity control is the switch."
+  },
+  {
+   "problem": "show an empty state when there are no requests",
+   "expect": "RESOLVED",
+   "expect_id": "component/empty"
+  },
+  {
+   "problem": "let users upload attachment files on a request",
+   "expect": "RESOLVED",
+   "expect_id": "component/drop"
+  },
+  {
+   "problem": "assign a reviewer with a searchable picker",
+   "expect": "RESOLVED",
+   "expect_id": "component/cb",
+   "note": "Compact picker \u2192 combobox."
+  },
+  {
+   "problem": "make the sidebar navigation links show which page is active",
+   "expect": "RESOLVED",
+   "expect_id": "component/nav-item"
+  },
+  {
+   "problem": "show a message when the server cannot be reached",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg",
+   "note": "Persistent error feedback \u2192 banner."
+  },
+  {
+   "problem": "show the status of a request",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/status-with-text"
+  },
+  {
+   "problem": "show the result of saving the settings form",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/feedback-redirect"
+  },
+  {
+   "problem": "announce that a row was removed without reloading the page",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/feedback-inplace"
+  },
+  {
+   "problem": "let users filter the requests list by category and status",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/filter-row"
+  },
+  {
+   "problem": "we need a custom layout for the hero area before the designs arrive",
+   "expect": "FALLBACK",
+   "expect_id": "fallback/plain-content",
+   "note": "Layout need with no system answer \u2192 sanctioned plain-content fallback."
+  },
+  {
+   "problem": "add a progress bar for a long-running background job",
+   "expect": "RESOLVED",
+   "expect_id": "component/progress",
+   "note": "0.13.0-experiment: catalogued (was UNDEFINED on 0.12.1 \u2014 G-004 closed)."
+  },
+  {
+   "problem": "add a gantt chart for the delivery schedule",
+   "expect": "UNDEFINED",
+   "note": "Charts are token-only (dataviz palette), no chart components."
+  },
+  {
+   "problem": "make the corners rounded",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/rounded-corners",
+   "note": "TDS003 zero-radius policy."
+  },
+  {
+   "problem": "remove the focus outline from links",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/remove-focus-ring",
+   "note": "TDS004 focus visibility."
+  },
+  {
+   "problem": "use #ff6600 as the warning colour",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/raw-color",
+   "note": "TDS002 colours must be tokens."
+  },
+  {
+   "problem": "delete a saved template with a confirm dialog",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/custom-confirm-for-entity-delete",
+   "note": "Entity deletes use the armed pattern, never confirm()."
+  },
+  {
+   "problem": "assign a reviewer to a request",
+   "expect": "RESOLVED",
+   "expect_id": "component/select",
+   "note": "G-01 closed: catalogued native select (0.13.0-experiment)."
+  },
+  {
+   "problem": "choose one owner from a list of people",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/assign-picker",
+   "note": "G-01: sanctioned assign flow (0.13.0-experiment)."
+  },
+  {
+   "problem": "show how far a background scan has come and whether it is stuck",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/job-progress",
+   "note": "G-02 closed (0.13.0-experiment)."
+  },
+  {
+   "problem": "rejecting a request requires typing a reason",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/high-stakes-confirm",
+   "note": "G-03: reason-bearing extension (0.13.0-experiment)."
+  },
+  {
+   "problem": "a skip link to jump past the navigation",
+   "expect": "RESOLVED",
+   "expect_id": "component/skip",
+   "note": "Round 2: the skip link is catalogued; baseline was a false RESOLVED to nav-item."
+  },
+  {
+   "problem": "a panel sliding in from the edge with a record's details",
+   "expect": "RESOLVED",
+   "expect_id": "component/sheet-end",
+   "note": "Round 2: slide-over panel vocabulary; baseline routed to pattern/detail."
+  },
+  {
+   "problem": "the chevron that reveals actions for a single row",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/row-actions",
+   "note": "Round 2: row-actions needs; baseline composed bulk-actions."
+  },
+  {
+   "problem": "a navigation link in the sidebar",
+   "expect": "RESOLVED",
+   "expect_id": "component/nav-item",
+   "note": "Round 2 lock: nav vocabulary must stay with nav-item."
+  }
+ ]
 }
