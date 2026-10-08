@@ -29,17 +29,10 @@
   </div>
   <div class="da-controls">
     <span class="chip"><span class="dot ok"></span>Triage v0.12.1 foundations</span>
-    <button class="iconbtn" type="button" data-marks-toggle aria-label="Toggle authority marks" title="Authority marks — show the improvisations">◌</button>
     <button class="iconbtn" type="button" data-theme-toggle aria-label="Toggle dark theme">◐</button>
     <button class="iconbtn" type="button" data-density-toggle aria-label="Toggle compact density">▤</button>
   </div>
 </header>
-
-<div class="da-markbar" id="markbar" hidden>
-  <span>◌ Improvisation marks on — dashed outlines are decisions with no authority record.</span>
-  <span class="mono" id="markbar-n"></span>
-  <a href="#ledger">Ledger</a>
-</div>
 
 <main id="main" class="content da-content">
 
@@ -320,6 +313,10 @@
           <li><span class="mono">gap/20261008-083133-4e941d</span> — step row and loop diagram</li>
           <li><span class="mono">gap/20261008-083133-ab794e</span> — site header for paper pages</li>
         </ul>
+        <p class="da-ledger-marks">
+          <button class="btn small" type="button" data-marks-toggle>◌ Show improvisation marks</button>
+          <span class="sub">13 marked · 6 gaps filed — dashed outlines, hover for the reason.</span>
+        </p>
       </div>
     </details>
   </section>
@@ -352,12 +349,7 @@
     var mk = e.target.closest && e.target.closest('[data-marks-toggle]');
     if (mk) {
       var on = document.body.classList.toggle('marks-on');
-      var bar = document.getElementById('markbar');
-      if (bar) {
-        bar.hidden = !on;
-        var n = document.getElementById('markbar-n');
-        if (n) { n.textContent = document.querySelectorAll('[data-improv]').length + ' marked · 6 gaps filed'; }
-      }
+      mk.textContent = on ? '◌ Hide improvisation marks' : '◌ Show improvisation marks';
     }
   });
 })();

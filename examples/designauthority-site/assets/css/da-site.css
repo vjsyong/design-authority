@@ -84,12 +84,7 @@
 
 /* ---- authority marks ---- */
 body.marks-on [data-improv]{outline:1px dashed var(--status-warning-solid);outline-offset:3px}
-.da-markbar{align-items:baseline;gap:var(--space-8);flex-wrap:wrap;padding:var(--space-8) var(--space-20);
-  background:var(--surface-banner);border-bottom:1px solid var(--border-default);
-  font-size:var(--fs-log-row);color:var(--text-soft)}
-.da-markbar:not([hidden]){display:flex}
-.da-markbar[hidden]{display:none}
-.da-markbar .mono{font-size:var(--fs-pre-log)}
+.da-ledger-marks{margin:var(--space-14) 0 0;display:flex;gap:var(--space-10);align-items:center;flex-wrap:wrap}
 .da-ledger-body{padding:var(--space-2) 0 var(--space-10);font-size:var(--fs-sub);color:var(--text-soft)}
 .da-ledger-body p{margin:var(--space-8) 0 0}
 .da-gap-list{margin:var(--space-6) 0 0;padding-inline-start:var(--space-18);font-size:var(--fs-log-row)}
