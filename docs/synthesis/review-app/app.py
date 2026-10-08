@@ -48,6 +48,7 @@ from design_authority import records as da_records         # noqa: E402
 
 PACKS_DIR = os.path.join(_REPO, "packs")
 PACK_META = {
+    "phantom": "Phantom - the deployed language of zhenyoyo.github.io (extracted screenshot-first)",
     "wink": "Mailchimp brand + live product",
     "leader": "Marber (The Economist) + live product",
     "dominion": "Canada FIP + live Canada.ca web layer",

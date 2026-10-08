@@ -68,5 +68,8 @@
   .da-flush .tbl{min-width:560px}
 }
 
+/* ---- catalogue ---- */
+.da-links{margin:var(--space-10) 0 0;font-size:var(--fs-log-row);color:var(--text-secondary)}
+
 /* ---- footer ---- */
 .da-foot{padding-top:var(--space-24)}
