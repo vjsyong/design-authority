@@ -52,7 +52,7 @@ PACK_META = {
     "wink": "Mailchimp brand + live product",
     "leader": "Marber (The Economist) + live product",
     "dominion": "Canada FIP + live Canada.ca web layer",
-    "triage": "Triage — the app-agnostic paper-and-ink design authority (v0.12.1 · triage.seanyong.xyz)",
+    "triage": "Triage, the app-agnostic paper-and-ink design authority (v0.12.1 · triage.seanyong.xyz)",
 }
 _demo_packs = {}
 _demo_golden = {}
@@ -670,10 +670,10 @@ def demo():
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
     audit = ("<a class='src' href='https://designauthority.seanyong.xyz/authorities/phantom/demo/jennu/'><b>System Review &middot; Jennu</b>"
-             "<p>the design authority of zhenyoyo.github.io (deployed language) — 36 ledger items &amp; the screens behind them</p>"
+             "<p>the design authority of zhenyoyo.github.io (deployed language). 36 ledger items &amp; the screens behind them</p>"
              "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
     audit += ("<a class='src' href='https://designauthority.seanyong.xyz/'><b>Design Authority &middot; the concept</b>"
-              "<p>what an authority is, how agents consume it, and how it evolves — a page built on Triage foundations</p>"
+              "<p>what an authority is, how agents consume it, and how it evolves, a page built on Triage foundations</p>"
               "<p><span class='chip'>concept</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
