@@ -97,6 +97,15 @@ The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·
 
 Expected: `gates: OK` (pack drift, coverage sweep, unit tests, goldens, MCP smoke, concept-site gate).
 
+## Build out a new authority (skills for agents)
+
+The upstream half of the loop, turning design precedent into a new pack, ships as agent skills:
+
+- [`skills/synthesize-authority/SKILL.md`](skills/synthesize-authority/SKILL.md): source selection, quarantine, the gestalt gate, `decisions.json`, the review instrument, compilation (`docs/synthesis/tools/compile_pack.py`), calibration to 100% goldens, stress testing, and the governance path (gaps, adjudication, proposals, codification).
+- [`skills/extract-design-evidence/SKILL.md`](skills/extract-design-evidence/SKILL.md): the evidence layer. Renderable mirror, screenshot-first protocol with interaction states, evidence tags with BASE/OVERRIDE, domain-partitioned teams, merge and re-verification rules.
+
+Both are plain `SKILL.md` files an agent loads directly. The full working records, including the three completed derivations, are under `docs/synthesis/`.
+
 **Live:** the concept explainer and five authority implementations are served at <https://designauthority.seanyong.xyz>. The reference design system itself, Triage, is at <https://triage.seanyong.xyz>.
 
 **Headline:** in a controlled three-condition experiment (3 runs per condition, identical briefs, fresh agent context), agents working with the authority over MCP produced measurably better interfaces than agents given the same design system as a well-made static kit, which in turn beat agents with no design material at all. Blind review condition means of 25: **A 15.0** (naive) · **B 21.3** (static kit) · **C 21.7** (active authority).
@@ -114,6 +123,7 @@ Expected: `gates: OK` (pack drift, coverage sweep, unit tests, goldens, MCP smok
 | 7 | Authority synthesis: one brief, three authorities | complete | `docs/synthesis/` |
 | 8 | Independent verification experiment | complete | `docs/verification/` |
 | 9 | Public concept site and review estate | live | `examples/designauthority-site/`, `docs/synthesis/review-app/` |
+| 10 | Synthesis skills: brand kit to authority | shipped | [`skills/`](skills/) |
 
 ## Headline results
 
