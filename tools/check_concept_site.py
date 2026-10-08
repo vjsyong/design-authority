@@ -65,11 +65,23 @@ def sha(p):
     return hashlib.sha256(open(p, "rb").read()).hexdigest()
 if os.path.isdir(TRIAGE):
     drift = []
-    for a, b in [("assets/tokens/tokens.css", "tokens/tokens.css"),
-                 ("assets/core/base.css", "core/base.css"),
-                 ("assets/core/patterns.css", "core/patterns.css")]:
-        if sha(os.path.join(SITE, a)) != sha(os.path.join(TRIAGE, b)):
+    for base, a, b in [(SITE, "assets/tokens/tokens.css", "tokens/tokens.css"),
+                 (SITE, "assets/core/base.css", "core/base.css"),
+                 (SITE, "assets/core/patterns.css", "core/patterns.css"),
+                 (ROOT, "dist/triage/tokens.css", "tokens/tokens.css"),
+                 (ROOT, "dist/triage/base.css", "core/base.css"),
+                 (ROOT, "dist/triage/patterns.css", "core/patterns.css")]:
+        if sha(os.path.join(base, a)) != sha(os.path.join(TRIAGE, b)):
             drift.append(a)
+    fa0, fb0 = os.path.join(ROOT, "dist", "triage", "fonts"), os.path.join(TRIAGE, "fonts")
+    if os.path.isdir(fa0) and os.path.isdir(fb0):
+        for f in (set(os.listdir(fb0)) - set(os.listdir(fa0))):
+            drift.append("dist/triage/fonts missing " + f)
+        for f in (set(os.listdir(fa0)) & set(os.listdir(fb0))):
+            if os.path.isfile(os.path.join(fb0, f)) and sha(os.path.join(fa0, f)) != sha(os.path.join(fb0, f)):
+                drift.append("dist/triage/fonts differs " + f)
+    else:
+        drift.append("dist/triage/fonts dir missing")
     fa, fb = os.path.join(SITE, "assets", "fonts"), os.path.join(TRIAGE, "fonts")
     if os.path.isdir(fa) and os.path.isdir(fb):
         fs = set(os.listdir(fa)) - set(os.listdir(fb))
