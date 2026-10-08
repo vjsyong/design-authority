@@ -1,9 +1,9 @@
-# phantom-audit v2 — build notes (redo: the deployed language, screenshot-first)
+# Jen Mu (phantom-audit v2) — build notes (the deployed language, screenshot-first)
 
 **What this is.** A five-section review console — Overview · The system · The
 ledger · Adaptations · Evidence — auditing **zhenyoyo.github.io** (Zhen Wu /
 Yoyo; ILightUUp, Tame, FAFA, Unlogical Instrument, Orchid, SoundMorphTPU)
-against **`packs/phantom` 0.2.0**: the site's *deployed* interface language,
+against the **Jen Mu authority** (`packs/phantom` 0.2.0): the site's *deployed* interface language,
 extracted pass-2 from rendered evidence. The console is built in that same
 language — it wears what it reviews (pink reading ink, green links on the
 dotted blue underline, the blue code chip, the lime rail).
@@ -71,6 +71,8 @@ Source Sans Pro: SIL OFL. The reviewed site remains its author's; this review
 is constructive commentary from public sources; no site imagery is
 redistributed beyond the captured evidence shots.
 
-**Serve.** `/audit/phantom/` on the synthesis review app (tailnet:
-https://gpu-vm1.bigscale-snapper.ts.net:8420/audit/phantom/), carded on the
-`/demo` hub.
+**Serve.** `/designAuthority/jenmu/` on the synthesis review app (tailnet:
+https://gpu-vm1.bigscale-snapper.ts.net:8420/designAuthority/jenmu/; public once the
+tunnel lands: https://audit.seanyong.xyz/designAuthority/jenmu). The host serves
+`X-Robots-Tag: noindex` on everything and a disallow-all robots.txt. Named **Jen Mu**
+2026-10-08.

@@ -11,8 +11,8 @@ import re
 import time
 
 from bs4 import BeautifulSoup
-from flask import (Flask, abort, jsonify, render_template_string, request,
-                   send_from_directory)
+from flask import (Flask, Response, abort, jsonify, redirect,
+                   render_template_string, request, send_from_directory)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SYN = os.path.dirname(ROOT)                      # docs/synthesis
@@ -663,8 +663,8 @@ def demo():
                 "<p>rebuilt on the codified authority (0.2.0 + precedents)</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
-    audit = ("<a class='src' href='/audit/phantom/'><b>System Review &middot; phantom</b>"
-             "<p>design-system review of zhenyoyo.github.io — pass 2, the deployed language &amp; the screens behind it</p>"
+    audit = ("<a class='src' href='/designAuthority/jenmu/'><b>System Review &middot; Jen Mu</b>"
+             "<p>the design authority of zhenyoyo.github.io (deployed language) — 36 ledger items &amp; the screens behind them</p>"
              "<p><span class='chip'>36 ledger items</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
@@ -833,6 +833,35 @@ def audit_file(name, fn):
     if not os.path.isdir(d):
         abort(404)
     return send_from_directory(d, fn)
+
+
+# ---- the Jen Mu review at its public path (audit.seanyong.xyz/designAuthority/jenmu) ----
+@app.route("/designAuthority/jenmu", strict_slashes=False)
+def jenmu_index():
+    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "index.html")
+
+
+@app.route("/designAuthority/jenmu/<path:fn>")
+def jenmu_file(fn):
+    return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), fn)
+
+
+@app.route("/designAuthority/")
+@app.route("/designAuthority")
+def jenmu_redirect():
+    return redirect("/designAuthority/jenmu/", code=302)
+
+
+@app.route("/robots.txt")
+def robots_txt():
+    return Response("User-agent: *\nDisallow: /\n", mimetype="text/plain")
+
+
+@app.after_request
+def _noindex_everything(resp):
+    """Everything served by this review host is noindex — nothing here is for search engines."""
+    resp.headers["X-Robots-Tag"] = "noindex, nofollow"
+    return resp
 
 
 @app.route("/api/demo/resolve", methods=["POST"])

@@ -1,5 +1,5 @@
 # da_verify — phantom on examples/phantom-audit
-generated 2026-10-08 06:04:53
+generated 2026-10-08 06:16:11
 TOTALS: 15 checks — PASS 15 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 0
 
 PASS  [error  ] phantom/app-body-pink-ink — color: rgb(255, 107, 188); font-weight: 300

@@ -35,11 +35,11 @@ def A(aid, kind, title, summary, aliases, body, source, compiled_from, status="s
 # ------------------------------------------------------------- authority ----
 auth = json.load(open(os.path.join(REPO, "packs", "wink", "authority.json")))
 auth.update({
-    "id": "phantom", "name": "Phantom Interface System (deployed language)", "version": "0.2.0",
+    "id": "phantom", "name": "Jen Mu", "version": "0.2.0",
     "snapshot": {"repo": DEP, "commit": "n/a - public sources", "branch": "n/a",
                  "version": "pass-2 redo 2026-10-08 (screenshot-first, 4 domain teams)",
                  "path_hint": "docs/synthesis/phantom/_raw/site/ (renderable mirror)"},
-    "description": ("The interface system of zhenyoyo.github.io as deployed: Source Sans Pro 300/700/900, "
+    "description": ("The Jen Mu design authority — the interface system of zhenyoyo.github.io as deployed: Source Sans Pro 300/700/900, "
                     "pink reading ink #ff6bbc with neon-green links #6bff2c on a dotted blue underline, "
                     "blue-ground code, a lime slide-in menu, red checked marks with purple labels, "
                     "radius flattened to 0 on marks/boxes/images/chips, ink-ring buttons, underline fields, "
