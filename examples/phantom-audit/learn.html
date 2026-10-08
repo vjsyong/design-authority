@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <!--
   Learn more — Design Authority (the Jennu review, phantom-audit v2).
-  A standalone page: same deployed language as the review (assets/css/main.css),
-  explainer blocks styled by the console kit (assets/css/console.css). No JS required.
+  This page mirrors the one-page poster layout exactly (sections 01/02, file tree,
+  artifact record, consumer loop, timeline, rules grid) — as live elements, no JS.
+  Shell: assets/css/main.css (deployed language); poster styling: this page's <style>.
 -->
 <html lang="en">
 	<head>
@@ -12,9 +13,63 @@
 		<meta name="robots" content="noindex, nofollow" />
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/console.css" />
+		<style>
+			/* ===== the poster layout, live (page-local) ===== */
+			.poster-page #main > .inner { max-width: 76em; }
+			.poster .kicker { font-size: 0.82em; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: #585858; margin-bottom: 0.7em; }
+			.poster h1 { font-size: 2.9em; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 0.4em 0; }
+			.poster .lede { font-size: 1.06em; max-width: 62em; margin-bottom: 0.6em; }
+			.poster h2 { font-size: 1.14em; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: #ff6bbc; border-top: solid 2px #c9c9c9; padding-top: 1.5em; margin: 2.6em 0 1.2em 0; }
+			.poster h2 .n { color: #585858; margin-right: 0.8em; }
+			.poster h3 { font-size: 0.72em; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; color: #585858; margin: 1.5em 0 0.7em 0; }
+			.poster .cols { display: flex; gap: 2.2em; align-items: flex-start; flex-wrap: wrap; }
+			.poster .col { flex: 1 1 20em; min-width: 0; }
+			.poster .panel { background: rgba(144,144,144,0.075); padding: 1.4em 1.6em 1.1em 1.6em; }
+			.poster .panel.white { background: #fff; border: solid 1px #c9c9c9; padding: 1.3em 1.5em 1em 1.5em; }
+			.poster .filetree { font-family: "Courier New", monospace; font-size: 0.8em; line-height: 1.75; word-break: break-word; }
+			.poster .filetree b { font-weight: 700; }
+			.poster .filetree .c { color: rgba(88,88,88,0.7); }
+			.poster .filetree .cnt { color: #ff6bbc; font-weight: 700; }
+			.poster .record { font-family: "Courier New", monospace; font-size: 0.78em; line-height: 1.7; white-space: pre; overflow-x: auto; }
+			.poster .record .k { color: #8833e3; }
+			.poster .record .s { color: #ff6bbc; }
+			.poster table.asks { width: 100%; border-collapse: collapse; font-size: 0.86em; margin: 0.4em 0 0.6em 0; }
+			.poster table.asks td { padding: 0.5em 0.6em; border-bottom: solid 1px #c9c9c9; vertical-align: top; }
+			.poster table.asks tr:last-child td { border-bottom: 0; }
+			.poster table.asks .out { font-weight: 900; font-size: 0.82em; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+			.poster table.asks .out.resolved { color: #585858; }
+			.poster table.asks .out.undef { color: #8833e3; }
+			.poster table.asks .out.fallback { color: #20a3f5; }
+			.poster .flow { display: flex; align-items: stretch; margin: 0.8em 0 0.4em 0; flex-wrap: wrap; }
+			.poster .flow .step { flex: 1 1 9em; border: solid 1px #c9c9c9; padding: 0.8em 0.9em 0.7em 0.9em; }
+			.poster .flow .step b { display: block; font-size: 0.72em; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #585858; margin-bottom: 0.4em; }
+			.poster .flow .step span { font-size: 0.78em; display: block; line-height: 1.5; }
+			.poster .flow .arr { flex: 0 0 2em; display: flex; align-items: center; justify-content: center; color: #ff6bbc; font-weight: 900; font-size: 1.2em; }
+			.poster ul.timeline { list-style: none; margin: 0.4em 0 0 0; }
+			.poster ul.timeline li { position: relative; padding: 0 0 1.6em 2.4em; border-left: solid 2px #c9c9c9; margin-left: 0.6em; }
+			.poster ul.timeline li::before { content: ""; position: absolute; left: -0.65em; top: 0.15em; width: 1.1em; height: 1.1em; border-radius: 100%; background: #fff; border: solid 3px #585858; box-sizing: border-box; }
+			.poster ul.timeline li.v2::before { border-color: #ff6bbc; background: #ff6bbc; }
+			.poster ul.timeline li.bad::before { border-color: #f51616; }
+			.poster ul.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+			.poster ul.timeline .ver { font-size: 1.05em; font-weight: 900; letter-spacing: 0.04em; }
+			.poster ul.timeline .tag { font-family: "Courier New", monospace; font-size: 0.8em; color: rgba(88,88,88,0.8); font-weight: 400; margin-left: 0.6em; }
+			.poster ul.timeline p { font-size: 0.88em; margin: 0.3em 0 0 0; }
+			.poster .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9em 1.6em; margin: 0.4em 0 0.4em 0; }
+			.poster .rules .r { border-left: solid 3px #ff6bbc; padding: 0.15em 0 0.15em 0.9em; }
+			.poster .rules .r.grey { border-left-color: #585858; }
+			.poster .rules .r.blue { border-left-color: #20a3f5; }
+			.poster .rules .r.purple { border-left-color: #8833e3; }
+			.poster .rules .r b { display: block; font-size: 0.82em; letter-spacing: 0.04em; }
+			.poster .rules .r span { font-size: 0.84em; line-height: 1.5; }
+			.poster .evoloop { margin-top: 1.2em; }
+			.poster .evoloop p { font-size: 0.88em; margin: 0; }
+			.poster .footer { margin-top: 3em; border-top: solid 2px #c9c9c9; padding-top: 1em; font-size: 0.8em; color: rgba(88,88,88,0.85); }
+			.poster .footer b { letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.92em; }
+			.poster .actions { margin-top: 1.6em; }
+			@media screen and (max-width: 980px) { .poster .flow { flex-direction: column; } .poster .flow .arr { transform: rotate(90deg); flex-basis: 1.6em; } .poster .rules { grid-template-columns: 1fr; } }
+		</style>
 	</head>
-	<body>
+	<body class="poster-page">
 		<div id="wrapper">
 
 			<!-- Header -->
@@ -29,124 +84,138 @@
 			<!-- Main -->
 				<div id="main">
 					<div class="inner">
+						<div class="poster">
 
-						<section>
-							<header>
-								<div class="ag-kicker">Learn more</div>
-								<h1>Design Authority</h1>
-								<p class="lede-ish">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
-								system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
-								a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build
-								actually conforms. It is a contract, not a style guide.</p>
-							</header>
+							<div class="kicker">Design Authority · worked example — “Jennu” (packs/phantom 0.2.0)</div>
+							<h1>A design authority: what it looks like,<br/>and how it versions &amp; evolves</h1>
+							<p class="lede">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
+							system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
+							a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build
+							actually conforms. It is a contract, not a style guide.</p>
 
-							<section class="aglance" data-improvised data-mk="explainer at a glance (console kit)" style="border-bottom: none;">
-								<div class="ag-cols">
-									<div class="ag-col">
-										<h3>01 · The contract</h3>
-										<p>A versioned, machine-readable description of an interface system — components, rules, fallbacks. Written for tools as much as for people.</p>
-										<div class="filelist">
-<code>packs/phantom/</code> <span class="c">— plain JSON, no database</span><br/>
-artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
-rules.json <span class="cnt">8</span> <span class="c">· prohibitions <span class="cnt">2</span> · fallbacks <span class="cnt">4</span></span><br/>
-precedents.json <span class="cnt">1</span> <span class="c">· candidates.json <span class="cnt">3</span></span><br/>
-golden.json <span class="cnt">21</span> <span class="c">ask → expected outcome</span><br/>
-verification.json <span class="cnt">15</span> <span class="c">conformance checks</span>
+							<!-- ======================== 01 ======================== -->
+							<h2><span class="n">01</span>What it looks like — the pack</h2>
+							<div class="cols">
+								<div class="col" style="flex:1.15">
+									<div class="panel white">
+										<div class="filetree">
+<b>packs/phantom/</b> <span class="c">— the authority pack (v0.2.0, named Jennu)</span><br/>
+├─ <b>authority.json</b> <span class="c">identity · snapshot · version</span><br/>
+├─ <b>artifacts.json</b> <span class="cnt">29 records</span> <span class="c">— 6 token-sets · 1 guideline · 17 components · 5 layouts</span><br/>
+├─ <b>rules.json</b> <span class="cnt">8</span> <span class="c">— P-R1 reading-ink-pink … P-R8 state-colour-pink</span><br/>
+├─ <b>prohibitions.json</b> <span class="cnt">2</span> <span class="c">— e.g. “don’t rely on accent ink below 3:1”</span><br/>
+├─ <b>fallbacks.json</b> <span class="cnt">4</span> <span class="c">— light-only · no-script · cjk-system-fallback …</span><br/>
+├─ <b>precedents.json</b> <span class="cnt">1</span> <span class="c">— adjudications that persist across versions</span><br/>
+├─ <b>candidates.json</b> <span class="cnt">3</span> <span class="c">— ambitions with an explicit promotion bar</span><br/>
+├─ <b>golden.json</b> <span class="cnt">21 cases</span> <span class="c">— ask → expected outcome (guards resolution)</span><br/>
+├─ <b>recipes.json</b> <span class="cnt">0</span> <span class="c">— compositions, once they exist</span><br/>
+└─ <b>verification.json</b> <span class="cnt">15 checks</span> <span class="c">— the conformance contract</span>
 										</div>
 									</div>
-									<div class="ag-col">
-										<h3>02 · Two consumers</h3>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Authority</b>the pack — one contract</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Agent</b>resolves every ask; builds</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built interface — silences become marked improvisations + filed gaps</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>inspects the artifact — never the agent's claims</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15/15 checks · published with hash‑covers</div></div>
+									<p class="muted" style="font-size:0.86em; margin-top:0.8em;">Plain JSON — no database. Records a consumer <em>produces</em>
+									(resolutions, gaps, proposals) are written to the consumer’s own workspace, never back into the pack; only adjudicated
+									decisions move the pack forward.</p>
+								</div>
+
+								<div class="col">
+									<h3>One artifact record (abridged)</h3>
+									<div class="panel">
+<div class="record">{
+  <span class="k">"id"</span>: <span class="s">"component/action-button"</span>,
+  <span class="k">"kind"</span>: "component",
+  <span class="k">"title"</span>: "Button — ink ring, pink hover",
+  <span class="k">"aliases"</span>: ["button", "cta", "submit …"],
+  <span class="k">"body"</span>: {
+    "states": [
+      "default: 2px ink ring, ink label",
+      "hover: label + ring #f2849e",
+      "primary: ink ground, white label" ],
+    "spec": ["44.8px tall", "0.8em/900 caps …"] },
+  <span class="k">"source"</span>: { "path": "deployed main.css ·
+              measured on elements.html" },
+  <span class="k">"compiled_from"</span>: ["redo/c"]   <span class="c">// evidence trail</span>
+}</div>
 									</div>
-									<div class="ag-col">
-										<h3>03 · How it evolves</h3>
-										<ul class="evol">
-											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> frozen and verified, but extracted from the wrong layer — rendered evidence overruled it; the reversal is recorded as a precedent, not hidden.</li>
-											<li><span class="chip">rule</span> editorial edit → patch bump; semantic change → minor bump + fresh freeze (all files re-hashed).</li>
-											<li><span class="chip">rule</span> precedents persist — settled decisions are never relitigated.</li>
-											<li><span class="chip">rule</span> ambitions become candidates with an explicit promote-when bar; friction becomes filed gaps.</li>
-										</ul>
+									<h3>How a consumer reads it</h3>
+									<table class="asks">
+										<tr><td><em>“a primary button”</em></td><td class="out resolved">resolved →</td><td><code>component/action-button</code></td></tr>
+										<tr><td><em>“a carousel with controls”</em></td><td class="out undef">undefined →</td><td>candidate surfaces a bar: sources, motion policy, controls</td></tr>
+										<tr><td><em>“CJK in the wordmark”</em></td><td class="out fallback">fallback →</td><td>constraint recorded (no CJK stack declared)</td></tr>
+									</table>
+								</div>
+							</div>
+
+							<h3>The two-consumer loop</h3>
+							<div class="flow">
+								<div class="step"><b>The pack</b><span>one machine-readable contract</span></div>
+								<div class="arr">→</div>
+								<div class="step"><b>Coding agent</b><span>resolves every ask; silences → improvisation, marked &amp; filed as gaps</span></div>
+								<div class="arr">→</div>
+								<div class="step"><b>Implementation</b><span>a working artifact, built from the records</span></div>
+								<div class="arr">→</div>
+								<div class="step"><b>Verifier</b><span>inspects the artifact itself — never the agent’s self-report</span></div>
+								<div class="arr">→</div>
+								<div class="step"><b>Conformance report</b><span>15 checks · 0 violations — published, hash‑covers the build</span></div>
+							</div>
+
+							<!-- ======================== 02 ======================== -->
+							<h2><span class="n">02</span>How it versions &amp; evolves</h2>
+							<div class="cols">
+								<div class="col" style="flex:1.05">
+									<h3>A real revision — the redo</h3>
+									<ul class="timeline">
+										<li>
+											<div class="ver">v0.1.0 <span class="tag">initial freeze — hashed, git-tagged</span></div>
+											<p>Extracted from the <em>template’s</em> stylesheet: grey ink canon, the site’s pink type misfiled as “deviations”.
+											Verified mechanically (its contract re-run clean: 17/17), but extracted from the wrong layer.</p>
+										</li>
+										<li class="bad">
+											<div class="ver">rejected <span class="tag">owner review of the rendered result</span></div>
+											<p>“The site that exists runs pink type — extract what IS.” A version can be internally consistent and still
+											describe the wrong thing; only rendered evidence settles it.</p>
+										</li>
+										<li class="v2">
+											<div class="ver">v0.2.0 <span class="tag">fresh freeze — all pack files re-hashed</span></div>
+											<p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language.
+											The reversal became <code>precedent/pink-ink-canonised</code> — the old decision is superseded, not deleted.
+											Goldens re-run <strong>21/21</strong>; the verification contract rewritten (15 checks) and re-run <strong>15/15</strong>.</p>
+										</li>
+									</ul>
+								</div>
+								<div class="col">
+									<h3>The standing rules</h3>
+									<div class="rules">
+										<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
+										<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New/changed records, pipeline order, thresholds, tool contracts, governance taxonomies.</span></div>
+										<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist across versions so agents never relitigate them.</span></div>
+										<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit <em>promote-when</em> bar — no silent canonisation.</span></div>
+										<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
+										<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
+									</div>
+									<div class="panel evoloop">
+										<h3 style="margin-top:0;">The evolution loop</h3>
+										<p><strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) →
+										<strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) →
+										<strong>adjudicate</strong> (precedent · gap · candidate) → <strong>next version</strong> → consume again.
+										Nothing moves the pack except an adjudicated decision.</p>
 									</div>
 								</div>
-							</section>
-
-							<h2>What it is</h2>
-							<p>A design authority collects an interface system's decisions as records: what a button is
-							(its states, its measurements, where the value came from), what the rules are (ink, radius,
-							tracking, link behaviour), what is forbidden or unknown, and what happens when something has
-							no answer yet (fallbacks). Every record cites its evidence — a stylesheet line, a measured
-							value, a screenshot — so claims can be checked rather than trusted.</p>
-
-							<h2>Why it exists</h2>
-							<p>Interfaces drift. Every page, edit and feature makes slightly different choices, until
-							“follow the design” stops meaning anything. An authority makes those choices explicit and
-							testable: a build can be checked against it, gaps become visible instead of silent, and
-							decisions survive across sessions — a coding agent picks up the contract and works the same
-							way an engineer does with an API, not a mood board.</p>
-
-							<h2>How this review fits in</h2>
-							<p><strong>1 — Extraction.</strong> The deployed language of
-							<a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
-							was measured from the rendered site (64 screenshots, computed styles) into
-							<code>packs/phantom</code> 0.2.0 — named <strong>Jennu</strong>. Every value is tagged
-							<em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
-							<p><strong>2 — Consumption.</strong> The <a href="index.html">review</a> is built from that
-							authority: covered elements are used as defined; where the authority is silent, the result
-							is improvised in character, marked (◌, bottom-right of the review) and filed as a gap record.</p>
-							<p><strong>3 — Verification.</strong> A separate verifier (<em>da_verify</em>, 15 checks)
-							inspects the rendered review — never its own claims — and the results are linked from the
-							review's footer with hash-covers over the build.</p>
-
-							<h2>The worked example — one revision, live</h2>
-							<ul class="expl-timeline">
-								<li><span class="ver">v0.1.0</span> <span class="muted">initial freeze — hashed, git-tagged</span><p>Extracted from the template's stylesheet: grey ink canon, the site's pink type misfiled as "deviations". Verified mechanically (its contract re-run clean: 17/17) — but extracted from the wrong layer.</p></li>
-								<li class="bad"><span class="ver">rejected</span> <span class="muted">owner review of the rendered result</span><p>"The site that exists runs pink type — extract what IS." A version can be internally consistent and still describe the wrong thing; only rendered evidence settles it.</p></li>
-								<li class="v2"><span class="ver">v0.2.0</span> <span class="muted">fresh freeze — all pack files re-hashed</span><p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language. The reversal became <code>precedent/pink-ink-canonised</code> — superseded, not deleted. Goldens re-run 21/21; the verification contract rewritten (15 checks), re-run 15/15.</p></li>
-							</ul>
-
-							<h2>The standing rules</h2>
-							<div class="expl-rules">
-								<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
-								<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New or changed records, pipeline order, thresholds, tool contracts, taxonomies.</span></div>
-								<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist so agents never relitigate them.</span></div>
-								<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit promote-when bar — no silent canonisation.</span></div>
-								<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
-								<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
 							</div>
-							<p>The evolution loop: <strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) →
-							<strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) →
-							<strong>adjudicate</strong> (precedent · gap · candidate) → next version. Nothing moves the pack except
-							an adjudicated decision.</p>
 
-							<h2>See it working</h2>
+							<!-- ======================== cta + footer ======================== -->
 							<ul class="actions">
 								<li><a href="index.html" class="button large primary">Open the review</a></li>
 								<li><a href="assets/explainer/design-authority.png" target="_blank" rel="noopener" class="button large">Poster (PNG) for printing</a></li>
 							</ul>
-						</section>
 
+							<div class="footer">
+								<b>Worked example</b> — Jennu, the design authority of zhenyoyo.github.io (HTML5 UP Phantom deployment), pack <code>packs/phantom</code> 0.2.0 ·
+								extracted from rendered evidence · artefacts: domain reports, screenshots, verification results inside the repository.
+							</div>
+
+						</div>
 					</div>
 				</div>
-
-			<!-- Footer -->
-				<footer id="footer">
-					<div class="inner">
-						<section>
-							<h2>About</h2>
-							<p><strong>Jennu</strong> — the design authority of zhenyoyo.github.io (HTML5 UP Phantom
-							deployment), extracted from the deployed site. Template “Phantom” by HTML5 UP (CCA 3.0);
-							the review app is built on <code>packs/phantom</code> 0.2.0. Not affiliated with the
-							reviewed site.</p>
-						</section>
-						<ul class="copyright">
-							<li>Jennu — learn more · console-kit styling, marked in source</li>
-						</ul>
-					</div>
-				</footer>
 
 		</div>
 	</body>

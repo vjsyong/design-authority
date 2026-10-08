@@ -136,10 +136,11 @@ with sync_playwright() as p:
     # learn page (pretty /learn in production; /learn.html in this harness)
     pg.goto(f"http://127.0.0.1:{port}/learn.html", wait_until="load")
     pg.wait_for_timeout(500)
-    check("learn page: h1 + worked example present",
-          pg.evaluate("(document.querySelector('h1') || {}).textContent") == "Design Authority"
-          and pg.evaluate("document.querySelectorAll('.expl-timeline li').length") == 3
-          and pg.evaluate("!!document.querySelector('.expl-rules .r')"))
+    check("learn page: poster layout live (h1 + timeline + rules + flow)",
+          "design authority" in (pg.evaluate("(document.querySelector('h1') || {}).textContent") or "").lower()
+          and pg.evaluate("document.querySelectorAll('.timeline li').length") == 3
+          and pg.evaluate("document.querySelectorAll('.rules .r').length") == 6
+          and pg.evaluate("document.querySelectorAll('.flow .step').length") == 5)
     pg.goto(f"http://127.0.0.1:{port}/index.html", wait_until="load")
     pg.wait_for_timeout(700)
 
