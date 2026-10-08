@@ -4,7 +4,7 @@
   "pack": "packs/wink",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T22:49:18+00:00",
+ "generated_at": "2026-10-08T22:51:46+00:00",
  "checks": {
   "external_references": 1,
   "css_extracted": true,
@@ -26,7 +26,7 @@
  "files": [
   {
    "path": ".site-state.json",
-   "sha256": "c3d7cc72ab57a1d54c7ffb34ea4a3fe723fac7a7fdc5c3eb565757b120f6daee",
+   "sha256": "a34c9b84ffc49a3fdca9ccd8ecb8e2296c9ed522eff165844ecba3efb2432db7",
    "size": 1090,
    "role": "refresh state (pack hash, version, artifact set)"
   },
@@ -50,8 +50,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "267dfebd383858dde425c6ab8cd0924e581e8191edaf80901f9f2769a1d2ccea",
-   "size": 36862,
+   "sha256": "4b4577aa1a455319f8666a32299ed075d80788204ac1a5b23783afbd9541f287",
+   "size": 36863,
    "role": "page"
   },
   {
@@ -62,8 +62,8 @@
   },
   {
    "path": "refresh-log.md",
-   "sha256": "9a181617de91fcea616016a56cb75d97ec7ba49f249ad45179b65e6f5a0da38e",
-   "size": 1906,
+   "sha256": "d1d7b57e678569982db1d9f5f43c292faa8544d01fc9fe00eea71b65f93b2343",
+   "size": 2187,
    "role": "refresh log (generated layers vs pack)"
   },
   {

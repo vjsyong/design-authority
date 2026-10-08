@@ -43,6 +43,7 @@ def _load(name, fname):
 aas = _load("add_artefacts_section", "add_artefacts_section.py")
 aaa = _load("archive_authority_assets", "archive_authority_assets.py")
 bnd = _load("bundle_authority_site", "bundle_authority_site.py")
+gate = _load("check_artefacts_css", "check_artefacts_css.py")
 
 
 def pack_state(auth):
@@ -112,12 +113,20 @@ def refresh(auth, force=False):
                     len(authored.get("ids") or []), len(ids), replaced,
                     "shown" if notice else "none/cleared"))
     aaa.archive(auth)
+    gate_violations = gate.check(auth)
+    if gate_violations:
+        print("%s: WARNING %d traceability violation(s) in the generated block"
+              % (auth, len(gate_violations)))
     binfo = bnd.build_bundle(auth)
     if binfo:
         with open(logp, "a") as fh:
             fh.write("- %s UTC: bundle %s (%d files, %d bytes, sha256 %s)\n"
                      % (ts, os.path.basename(binfo["path"]), binfo["files"],
                         binfo["bytes"], binfo["sha256"]))
+    with open(logp, "a") as fh:
+        fh.write("- %s UTC: traceability gate: %s\n"
+                 % (ts, "clean" if not gate_violations
+                    else "%d violation(s)" % len(gate_violations)))
     json.dump({"pack_hash": h, "version": version, "ids": ids,
                "authored_for": authored,
                "refreshed_at": datetime.now(timezone.utc).isoformat(timespec="seconds")},

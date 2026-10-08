@@ -47,14 +47,14 @@ STYLE = {
              "dl_class": "cta",
              "cp_fb": {"border": "2px solid #231E15", "color": "#241C15", "radius": "999px"},
              "_src": "component/action-pill (class .cta); token-set/colour; shape language: pills"},
-    "leader": {"ink": "#101010", "dim": "#5A5A5A", "line": "#CFCFCF",
+    "leader": {"ink": "#131417", "dim": "#6E6E75", "line": "#D9D9D9",
                "acc": "#2E45B8", "acc_ink": "#ffffff", "tint": "transparent", "panel_border": True, "label_color": "#E3120B",
                "panel_r": "8px", "chip_r": "4px", "btn_r": "8px",
                # action: primary solid navy #2E45B8 radius 8; secondary 2px ink outline
                "dl_fb": {"bg": "#2E45B8", "fg": "#ffffff", "radius": "8px"},
-               "cp_fb": {"border": "2px solid #101010", "color": "#101010", "radius": "8px"},
+               "cp_fb": {"border": "2px solid #131417", "color": "#131417", "radius": "8px"},
                "_src": "component/action (primary navy #2E45B8 r8; secondary 2px ink); token-set/colour"},
-    "dominion": {"ink": "#333333", "dim": "#595959", "line": "#E0E0E0",
+    "dominion": {"ink": "#333333", "dim": "#5C5C5C", "line": "#E0E0E0",
                  "acc": "#26374A", "acc_ink": "#ffffff", "tint": "#F4F4F4",
                  "panel_r": "4px", "chip_r": "4px", "btn_r": "4px", "label_color": "#333333",
                  # action: primary solid slate #26374A radius 4 (live-measured)
@@ -69,7 +69,7 @@ STYLE = {
                 # used for copies at the recorded small state (0.6em).
                 "dl_class": "button primary", "cp_class": "button",
                 "_src": "component/action-button (primary solid #585858; ring #585858; small 0.6em)"},
-    "indaba": {"ink": "#111111", "dim": "#5F5F5F", "line": "#E5E1DE",
+    "indaba": {"ink": "#111111", "dim": "#AEA79F", "line": "rgba(174,167,159,.16)",
                "acc": "#E95420", "acc_ink": "#ffffff", "tint": "#F6F4F2",
                "panel_r": "12px", "chip_r": "999px", "btn_r": "999px", "label_color": "#77216F",
                # action: record defines .action.primary (orange), but the built
@@ -77,9 +77,9 @@ STYLE = {
                "dl_fb": {"bg": "#E95420", "fg": "#ffffff", "radius": "999px"},
                "cp_fb": {"border": "2px solid #E95420", "color": "#E95420", "radius": "999px"},
                "_src": "component/action (orange primary, focus ring); token-set/palette; warm tint"},
-    "orbit": {"ink": "#101010", "dim": "#6F6F6F", "line": "#101010",
+    "orbit": {"ink": "#1A1A1A", "dim": "#757066", "line": "#1A1A1A",
               "acc": "#D63829", "acc_ink": "#ffffff", "tint": "transparent",
-              "panel_r": "0", "chip_r": "0", "btn_r": "0", "label_color": "#101010",
+              "panel_r": "0", "chip_r": "0", "btn_r": "0", "label_color": "#1A1A1A",
               # action: the page's .command IS the recorded control (primary =
               # solid accent via data-variant; default = ink-outlined square).
               "dl_class": "command", "dl_extra": ' data-variant="primary"',

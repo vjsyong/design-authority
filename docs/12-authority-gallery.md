@@ -184,6 +184,16 @@ pack update is visible without hand edits.**
   recorded code styling (Courier on blue ground), and stylesheet URLs are
   content-hashed at generation time so no cache in the path (edge,
   browser, phone) can ever serve stale CSS again.
+- **S1k · Traceability gate for generated chrome — DONE (2026-10-08).**
+  `tools/check_artefacts_css.py` extracts every colour, radius and font from
+  the generated block and fails when any value cannot be traced to the page's
+  own stylesheet or the pack's JSON (fonts: `inherit` only; colour
+  comparison normalises hex shorthand and rgb()/hex equivalence). First run
+  caught 9 invented values across leader/dominion/indaba/orbit (e.g. my
+  'ink' #101010 vs leader's actual #131417); all re-sourced from the pages'
+  own palettes. The gate now runs inside every refresh and writes its
+  verdict into refresh-log.md, so role/register drift cannot land silently
+  again. Vision review cannot catch role violations; only rules can.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
