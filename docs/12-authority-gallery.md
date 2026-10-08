@@ -87,9 +87,15 @@ pack update is visible without hand edits.**
   table, and per-kind sections down to per-record cards. Live on
   designauthority.seanyong.xyz. Acceptance met: all packs listed; pack
   update visible without restart; no hand lists.
-- **S2 · triage.seanyong.xyz**: serve.py authority reads + compose mount +
-  CURRENT pointer. Acceptance: bump the pack's version field → the site's
-  pill reflects it on reload.
+- **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
+  (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
+  `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
+  topbar status, footer) + compose read-only mount + `packs/CURRENT.json`.
+  Verified live: all four surfaces render v0.13.1-experiment; flipping the
+  pointer to the pinned pack flips every surface to v0.12.1 and back, with
+  no restart. Known remainder: the home page's hand-written "What's new"
+  card (content-level; the next release-notes surface should render from
+  CHANGELOG).
 - **S3 · Release tooling**: `tools/release.py`, check updates, spec rc text,
   skill updates.
 - **S4 · Promotion demo**: human promotes the current line end-to-end

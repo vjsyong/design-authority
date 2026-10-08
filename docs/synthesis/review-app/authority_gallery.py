@@ -227,7 +227,19 @@ def _plain_card(kind, title, lines):
     return "".join(s)
 
 
+def _current_map():
+    """CURRENT.json: which pack is the active line per authority (docs/12)."""
+    try:
+        with open(os.path.join(PACKS_DIR, "CURRENT.json")) as fh:
+            m = json.load(fh) or {}
+        return {k: v for k, v in m.items()
+                if not k.startswith("_") and isinstance(v, str)}
+    except Exception:
+        return {}
+
+
 def render_root():
+    active = set(_current_map().values())
     cards = []
     for name in names():
         e = get(name)
@@ -238,6 +250,8 @@ def render_root():
         version = m.get("version") or ""
         label, cls = _status(version)
         chips = [_chip("v%s" % version, cls), _chip(label, cls)]
+        if name in active:
+            chips.insert(0, _chip("active"))
         if g:
             chips.append(_chip("golden %d/%d" % (g["passed"], g["total"]),
                                "rel" if g["passed"] == g["total"] else "cand"))
