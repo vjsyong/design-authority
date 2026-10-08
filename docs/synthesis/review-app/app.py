@@ -663,11 +663,14 @@ def demo():
                 "<p>rebuilt on the codified authority (0.2.0 + precedents)</p>"
                 "<p><span class='chip'>%d gaps filed</span> <span class='chip src'>open &rarr;</span></p></a>"
                 % (name, name, gaps))
+    audit = ("<a class='src' href='/audit/phantom/'><b>System Review &middot; phantom</b>"
+             "<p>design-system audit of zhenyoyo.github.io, built on the phantom authority</p>"
+             "<p><span class='chip'>27 gaps catalogued</span> <span class='chip src'>open &rarr;</span></p></a>")
     return (DEMO_LANDING.replace("__CSS__", DEMO_CSS)
             .replace("__CARDS__", "".join(cards))
             .replace("__STRESS__", "".join(stress))
             .replace("__STRESS2__", "".join(stress2))
-            .replace("__STRESS3__", "".join(stress3)))
+            .replace("__STRESS3__", "".join(stress3) + audit))
 
 
 @app.route("/demo/<name>")
@@ -803,6 +806,30 @@ def stress3_file(name, fn):
     if name not in PACK_META:
         abort(404)
     d = os.path.join(_REPO, "examples", "cadence3-%s" % name)
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, fn)
+
+
+# ---- phantom audit review surface ----
+AUDIT_WS = {"phantom": "phantom-audit"}
+
+
+@app.route("/audit/<name>/")
+def audit_index(name):
+    if name not in AUDIT_WS:
+        abort(404)
+    d = os.path.join(_REPO, "examples", AUDIT_WS[name])
+    if not os.path.isdir(d):
+        abort(404)
+    return send_from_directory(d, "index.html")
+
+
+@app.route("/audit/<name>/<path:fn>")
+def audit_file(name, fn):
+    if name not in AUDIT_WS:
+        abort(404)
+    d = os.path.join(_REPO, "examples", AUDIT_WS[name])
     if not os.path.isdir(d):
         abort(404)
     return send_from_directory(d, fn)

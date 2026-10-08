@@ -1,0 +1,60 @@
+{
+ "candidates": [
+  {
+   "id": "candidate/pink-accent-system",
+   "kind": "candidate",
+   "title": "Pink accent system (provisional)",
+   "request": "a pink-led accent identity for the portfolio",
+   "matches": [
+    "pink accent",
+    "pink theme",
+    "accent colour",
+    "accent color",
+    "brand pink",
+    "neon pink"
+   ],
+   "status": "candidate",
+   "summary": "Promote the template's own pink family (#f2849e hover/focus accent; darker AA-safe derivate for text roles) into a small sanctioned accent system: one accent, roles = hover / focus underline / marker / link underline colour.",
+   "emerges_from": [
+    "deployment deviation ledger (body #ff6bbc, links #6bff2c)"
+   ],
+   "evidence_present": "Upstream already uses pink as its hover/focus accent (#f2849e) — the ambition exists in the system; only the role mapping and contrast are unresolved.",
+   "promote_when": [
+    "a single accent role map is drafted (hover/focus/marker only; never reading ink)",
+    "AA contrast verified (≥4.5:1 for text roles, ≥3:1 for graphics) or a darkened pink chosen",
+    "owner sign-off"
+   ],
+   "provenance": {
+    "source": "synthesis decision D2 (docs/synthesis/phantom/synthesis-notes.md)"
+   }
+  },
+  {
+   "id": "candidate/carousel",
+   "kind": "candidate",
+   "title": "Gallery carousel (provisional)",
+   "request": "an image carousel for the random gallery",
+   "matches": [
+    "carousel",
+    "slideshow",
+    "gallery slider",
+    "image slider",
+    "rotating gallery",
+    "image carousel"
+   ],
+   "status": "candidate",
+   "summary": "Compose a controlled carousel from existing parts: image + caption + small ink buttons for prev/next, no autoplay by default; keep the 4px radius and ink-ring button language.",
+   "emerges_from": [
+    "deployment hand-rolled autoplay carousel (subpage inline styles)"
+   ],
+   "evidence_present": "The template defines no carousel; the deployment built one ad hoc (inline styles, autoplay every 4s, dead prev/next code).",
+   "promote_when": [
+    "a motion policy is agreed (no autoplay, or pauses/bounded duration)",
+    "control spec captured (prev/next + position readout)",
+    "static fallback defined"
+   ],
+   "provenance": {
+    "source": "synthesis decision D3 (docs/synthesis/phantom/synthesis-notes.md)"
+   }
+  }
+ ]
+}

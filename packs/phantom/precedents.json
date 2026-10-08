@@ -1,0 +1,39 @@
+{
+ "precedents": [
+  {
+   "id": "precedent/declined-neon-reading-ink",
+   "kind": "precedent",
+   "title": "Neon accent colours as reading ink",
+   "request": "body/UI text in the deployment's neon palette (#ff6bbc text, #6bff2c links) as a design direction",
+   "matches": [
+    "neon text",
+    "pink text",
+    "green links",
+    "bright colour text"
+   ],
+   "decision": "declined",
+   "grounds": "readability + monochrome reading surface (P-R1); neon-on-white fails contrast (pink ≈2.1:1, green ≈1.3:1)",
+   "reason": "Text ink is a reading surface; the system carries colour through hover/focus states and tile pastels. A promoted pink accent remains available via the candidate pathway.",
+   "scope": {
+    "domains": [
+     "css",
+     "html"
+    ],
+    "boundary": [
+     "body copy",
+     "long-form text",
+     "reading surface"
+    ]
+   },
+   "try": [
+    "use ink text and move the pink to hover/focus/surface roles",
+    "or promote the pink-accent candidate with an AA-checked role map"
+   ],
+   "citation": "upstream main.css (ink #585858 text; pink #f2849e hover/focus accent)",
+   "provenance": {
+    "source": "adjudication-observation",
+    "note": "documented from the deployment deviation ledger, 2026-10-08"
+   }
+  }
+ ]
+}

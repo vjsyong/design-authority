@@ -1,0 +1,403 @@
+{
+ "contract_version": "0.1",
+ "authority": "phantom",
+ "pack_version": "phantom 0.1.0",
+ "scope_note": "Verification contract for the phantom authority (verification experiment era, 2026-10-08), targeting the phantom-audit review app (examples/phantom-audit) as its first conformance subject. Instrument styling (console.css additions, marks layer, panel) is excluded from colour scans; demo inline styles in app.js are not scanned (files list is explicit).",
+ "checks": [
+  {
+   "id": "phantom/type-display-caps",
+   "item": "token-set/type",
+   "title": "Section heads: uppercase, 900, tracked (0.35em)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#system h2",
+   "assertions": [
+    {
+     "property": "text-transform",
+     "relation": "equals",
+     "value": "uppercase"
+    },
+    {
+     "property": "font-weight",
+     "relation": "equals",
+     "value": "900"
+    },
+    {
+     "property": "letter-spacing",
+     "relation": "min",
+     "value": 5
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/body-light-ink",
+   "item": "token-set/type",
+   "title": "Body runs light (300) in ink #585858, Source Sans Pro",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "body",
+   "assertions": [
+    {
+     "property": "color",
+     "relation": "color_is",
+     "value": "#585858"
+    },
+    {
+     "property": "font-weight",
+     "relation": "equals",
+     "value": "300"
+    },
+    {
+     "property": "font-family",
+     "relation": "contains",
+     "value": "Source Sans Pro"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/primary-button",
+   "item": "component/action-button",
+   "title": "Primary button: ink ground, white caps label, radius 4",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".button.primary",
+   "assertions": [
+    {
+     "property": "background-color",
+     "relation": "color_is",
+     "value": "#585858"
+    },
+    {
+     "property": "color",
+     "relation": "color_is",
+     "value": "#FFFFFF"
+    },
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "4px"
+    },
+    {
+     "property": "text-transform",
+     "relation": "equals",
+     "value": "uppercase"
+    },
+    {
+     "property": "font-weight",
+     "relation": "equals",
+     "value": "900"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/default-button-ring",
+   "item": "component/action-button",
+   "title": "Default button: transparent with 2px inset ink ring",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#systemCards .button:not(.primary)",
+   "assertions": [
+    {
+     "property": "box-shadow",
+     "relation": "contains",
+     "value": [
+      "inset",
+      "2px",
+      "rgb(88, 88, 88)"
+     ]
+    },
+    {
+     "property": "color",
+     "relation": "color_is",
+     "value": "#585858"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/field-underline",
+   "item": "component/field",
+   "title": "Fields are underline-only and flat (no box, 1px #c9c9c9 line, radius 0)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "input[type=text]",
+   "assertions": [
+    {
+     "property": "border-top-width",
+     "relation": "equals",
+     "value": "0px"
+    },
+    {
+     "property": "border-bottom-width",
+     "relation": "equals",
+     "value": "1px"
+    },
+    {
+     "property": "border-bottom-color",
+     "relation": "color_is",
+     "value": "#C9C9C9"
+    },
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "0px"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/select-styled",
+   "item": "component/select",
+   "title": "Select follows the field language",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "select",
+   "assertions": [
+    {
+     "property": "border-bottom-width",
+     "relation": "equals",
+     "value": "1px"
+    },
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "0px"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/table-head-caps",
+   "item": "component/table",
+   "title": "Table heads: 900 weight at 0.9em (source: no caps on th)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "table th",
+   "assertions": [
+    {
+     "property": "font-weight",
+     "relation": "equals",
+     "value": "900"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/tiles-vessel",
+   "item": "component/tiles",
+   "title": "Tile vessels carry the 4px radius",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".tiles article .image",
+   "assertions": [
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "4px"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/menu-surface",
+   "item": "layout/menu",
+   "title": "Menu panel: ink ground (not neon)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#menu",
+   "assertions": [
+    {
+     "property": "background-color",
+     "relation": "color_is",
+     "value": "#585858"
+    },
+    {
+     "property": "position",
+     "relation": "equals",
+     "value": "fixed"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/menu-link-inverse",
+   "item": "layout/menu",
+   "title": "Menu links render white on ink",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#menu a",
+   "assertions": [
+    {
+     "property": "color",
+     "relation": "color_is",
+     "value": "#FFFFFF"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/content-link-dotted",
+   "item": "token-set/colour",
+   "title": "Content links: ink with a 50% dotted underline",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#overview a:not([href='#menu'])",
+   "assertions": [
+    {
+     "property": "color",
+     "relation": "color_is",
+     "value": "#585858"
+    },
+    {
+     "property": "border-bottom-style",
+     "relation": "equals",
+     "value": "dotted"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/inline-code-tint",
+   "item": "component/code-pre",
+   "title": "Inline code sits on the faint tint, not a blue block",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "p code",
+   "assertions": [
+    {
+     "property": "background-color",
+     "relation": "color_is",
+     "value": "#909090"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/wrapper-motion",
+   "item": "layout/page-intro",
+   "title": "Wrapper carries the 0.45s entrance transition",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "info",
+   "mode": "COMPUTED_STYLE",
+   "selector": "#wrapper",
+   "assertions": [
+    {
+     "property": "transition-duration",
+     "relation": "transition_max",
+     "value": 0.45
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "phantom/no-blurred-shadows",
+   "item": "rule/P-R4",
+   "title": "No blurred shadows anywhere (inset rings and rules only)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "scenario": "shadow-census",
+   "params": {
+    "allow_regex": "inset"
+   },
+   "assertions": [
+    {
+     "evidence": "shadow_unexpected",
+     "relation": "count_eq",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": "phantom/no-keyframes",
+   "item": "rule/P-R4",
+   "title": "No CSS animations run (transitions only)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "scenario": "animation-census",
+   "params": {},
+   "assertions": [
+    {
+     "evidence": "animations_found",
+     "relation": "count_eq",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": "phantom/svg-census",
+   "item": "precedent/declined-neon-reading-ink",
+   "title": "SVG census matches the sanctioned set (the review's single mark)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "scenario": "svg-census",
+   "params": {
+    "max_count": 1
+   },
+   "assertions": [
+    {
+     "evidence": "svg_excess",
+     "relation": "count_eq",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": "phantom/palette-literals",
+   "item": "token-set/colour",
+   "title": "Colours stay within the system + console allowlist",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "files": [
+    "assets/css/main.css",
+    "assets/css/console.css"
+   ],
+   "assertions": [
+    {
+     "relation": "color_literals",
+     "allow": [
+      "#333333",
+      "#585858",
+      "#7bd0c1",
+      "#7ecaf6",
+      "#8499e7",
+      "#ae85ca",
+      "#c75b9b",
+      "#c9c9c9",
+      "#ee5f81",
+      "#f2849e",
+      "#f6f6f6",
+      "#ffffff",
+      "#fff",
+      "#e8e8e8",
+      "#f0f0f0"
+     ],
+     "allow_rgb": [
+      "144, 144, 144",
+      "88, 88, 88",
+      "255, 255, 255",
+      "0, 0, 0, 0"
+     ]
+    }
+   ]
+  }
+ ]
+}

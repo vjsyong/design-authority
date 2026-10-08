@@ -1,0 +1,106 @@
+{
+ "version": "0.1",
+ "pack_version": "phantom 0.1.0",
+ "cases": [
+  {
+   "problem": "a primary button",
+   "expect": "RESOLVED",
+   "expect_id": "component/action-button",
+   "note": "Solid ink ground, white label."
+  },
+  {
+   "problem": "the main menu",
+   "expect": "RESOLVED",
+   "expect_id": "layout/menu",
+   "note": "Slide-in overlay."
+  },
+  {
+   "problem": "site header with logo",
+   "expect": "RESOLVED",
+   "expect_id": "layout/header",
+   "note": "Centered logo + Menu link."
+  },
+  {
+   "problem": "a text input for the contact form",
+   "expect": "RESOLVED",
+   "expect_id": "component/field",
+   "note": "Underline field."
+  },
+  {
+   "problem": "dropdown select",
+   "expect": "RESOLVED",
+   "expect_id": "component/select",
+   "note": "Styled native select."
+  },
+  {
+   "problem": "a checkbox for consent",
+   "expect": "RESOLVED",
+   "expect_id": "component/checkbox-radio",
+   "note": "Custom mark."
+  },
+  {
+   "problem": "a data table of publications",
+   "expect": "RESOLVED",
+   "expect_id": "component/table",
+   "note": "Tracked-caps heads."
+  },
+  {
+   "problem": "project grid of image tiles",
+   "expect": "RESOLVED",
+   "expect_id": "component/tiles",
+   "note": "The portfolio grid."
+  },
+  {
+   "problem": "pull quote in an article",
+   "expect": "RESOLVED",
+   "expect_id": "component/blockquote",
+   "note": "Left-rule quote."
+  },
+  {
+   "problem": "a code sample block",
+   "expect": "RESOLVED",
+   "expect_id": "component/code-pre",
+   "note": "Tint + border."
+  },
+  {
+   "problem": "bulleted list of materials",
+   "expect": "RESOLVED",
+   "expect_id": "component/lists",
+   "note": "Disc list."
+  },
+  {
+   "problem": "a full width image in the article",
+   "expect": "RESOLVED",
+   "expect_id": "component/image",
+   "note": ".image.main."
+  },
+  {
+   "problem": "social media icons in the footer",
+   "expect": "RESOLVED",
+   "expect_id": "component/icon-row",
+   "note": "Circle icons."
+  },
+  {
+   "problem": "the page fade in on load",
+   "expect": "RESOLVED",
+   "expect_id": "layout/page-intro",
+   "note": "The only sanctioned motion."
+  },
+  {
+   "problem": "footer contact section",
+   "expect": "RESOLVED",
+   "expect_id": "layout/footer",
+   "note": "Grey ground, two columns."
+  },
+  {
+   "problem": "an image carousel for the gallery",
+   "expect": "UNDEFINED",
+   "note": "No carousel canon — candidate/carousel surfaces."
+  },
+  {
+   "problem": "make the text neon pink",
+   "expect": "UNDEFINED",
+   "note": "Surfaces the declined precedent + pink-accent candidate."
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+  phantom-audit — a design-system review of zhenyoyo.github.io, built on packs/phantom 0.1.0.
+  Page chrome follows the phantom system (see assets/css/main.css, derived from
+  "Phantom by HTML5 UP", html5up.net, CCA 3.0). The console (chips, ledger,
+  panel, filters, demo frames) is instrument/improvisation — assets/css/console.css —
+  marked in the DOM and filed in _evidence/gaps.jsonl.
+-->
+<html lang="en">
+	<head>
+		<title>System Review — zhenyoyo.github.io</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="A design-system review of zhenyoyo.github.io, built on the phantom authority." />
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/console.css" />
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="inner">
+						<a href="#overview" class="logo">
+							<span class="symbol"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true" data-improvised data-mk="logo mark (instrument)"><circle cx="17" cy="17" r="13.5" fill="none" stroke="#585858" stroke-width="2.2"/><circle cx="17" cy="17" r="4.5" fill="#f2849e"/></svg></span><span class="title">Phantom Audit</span>
+						</a>
+						<nav>
+							<ul>
+								<li><a href="#menu">Menu</a></li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+
+			<!-- Menu -->
+				<nav id="menu">
+					<div class="inner">
+						<h2>Menu</h2>
+						<ul data-adapted data-mk="anchor nav — template menus link pages">
+							<li><a href="#overview">Overview</a></li>
+							<li><a href="#system">The system</a></li>
+							<li><a href="#gaps">Gaps</a></li>
+							<li><a href="#adaptations">Adaptations</a></li>
+							<li><a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">Source site ↗</a></li>
+							<li><a href="https://html5up.net/phantom" target="_blank" rel="noopener">Upstream template ↗</a></li>
+						</ul>
+					</div>
+				</nav>
+
+			<!-- Main -->
+				<div id="main">
+					<div class="inner">
+
+						<section id="overview">
+							<header>
+								<h1>System review</h1>
+								<p>A design-system review of <a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
+								(Zhen Wu / Yoyo — ILightUUp, Tame, FAFA, Orchid, SoundMorphTPU), carried out against the
+								<strong>phantom authority</strong>: the interface system her site is built on (the HTML5 UP
+								“Phantom” template), codified as <em>packs/phantom</em> 0.1.0.</p>
+							</header>
+							<ul class="snav" data-improvised data-mk="section nav (console kit)">
+								<li><a href="#system">The system</a></li>
+								<li><a href="#gaps">Gaps</a></li>
+								<li><a href="#adaptations">Adaptations</a></li>
+							</ul>
+							<div class="statrow" data-improvised data-mk="console kit — stat row">
+								<div class="stat"><b id="statPages">10</b><span>pages surveyed</span></div>
+								<div class="stat"><b id="statArts">19</b><span>system artifacts</span></div>
+								<div class="stat"><b id="statDev">10</b><span>deviations logged</span></div>
+								<div class="stat"><b id="statGaps">27</b><span>gaps catalogued</span></div>
+								<div class="stat"><b id="statAdapt">6</b><span>adaptations shown</span></div>
+							</div>
+							<h2>How to read this</h2>
+							<p data-improvised data-mk="console kit — legend">Every finding below is in one of five postures.
+							<span class="chip chip--canon">canon</span> the system defines it — the build uses it as is.
+							<span class="chip chip--candidate">candidate</span> a provisional direction with a promotion bar, not authority.
+							<span class="chip chip--improv">improvised</span> the system is silent — built in character, marked, filed.
+							<span class="chip chip--gap">gap</span> recorded for the owner; nothing invented silently.
+							<span class="chip chip--defect">defect</span> a plain bug — fixed, not designed around.</p>
+							<p class="muted">The site under review is a working notebook — unfinished by its own admission —
+							and that is the honest context for every item in the ledger. Nothing here was repaired:
+							the audit is evidence, not a rewrite.</p>
+						</section>
+
+						<section id="system">
+							<header>
+								<h2>The system — what the site is built on</h2>
+								<p>The authority derives from the template at CCA 3.0 (upstream sources archived), corroborated
+								by live computed styles. Each card below is rendered in the system's own language; click one for
+								its authority record. Cards showing “deviated on site” were overridden by the deployment —
+								those deviations are catalogued in <a href="#gaps">Gaps</a>.</p>
+							</header>
+							<ul class="cards" id="systemCards"></ul>
+						</section>
+
+						<section id="gaps">
+							<header>
+								<h2>Gaps — what the site leaves unresolved</h2>
+								<p>27 items across four families: <em>system coherence</em> (value edits that fracture the
+								design language), <em>craft</em> (markup and wiring defects), <em>content</em> (placeholder
+								text and reused demo pages), <em>patterns</em> (surfaces a portfolio needs that the template
+								never defines). Each row cites its evidence; the pathway column shows how the system would
+								carry it — see <a href="#adaptations">Adaptations</a>.</p>
+							</header>
+							<ul class="filters" id="gapFilters" data-improvised data-mk="console kit — filters"></ul>
+							<div data-improvised data-mk="console kit — ledger">
+								<table class="table tight" style="font-size: 1.16em;">
+									<thead>
+										<tr><th style="width:5em;">ID</th><th>Gap</th><th style="width:9em;">Family</th><th style="width:8em;">Severity</th><th style="width:11em;">Pathway</th></tr>
+									</thead>
+									<tbody id="gapRows"></tbody>
+								</table>
+							</div>
+							<p class="muted">Click any row for evidence and the full pathway. “Deviations” carry line
+							references into the archived sources (<code>_raw/css-diff.txt</code>).</p>
+						</section>
+
+						<section id="adaptations">
+							<header>
+								<h2>Adaptations — how the system responds</h2>
+								<p>Six worked responses to the highest-value gaps. Each shows the ladder rung, the live
+								in-character build, and the system artefacts it produces (candidate, gap record, precedent).
+								These are demonstrations inside the review — none of them was pushed back into the authority.</p>
+							</header>
+							<div id="adaptList"></div>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>About this review</h2>
+							<p>Built as a Design Authority consumer: every element above was resolved against
+							<code>packs/phantom</code> (<code>_evidence/resolves.jsonl</code>); silences became marked
+							improvisations and gap records (<code>_evidence/gaps.jsonl</code>); the console itself is
+							<code>console.css</code>, filed as a gap. Template: “Phantom” by HTML5 UP (CCA 3.0).</p>
+						</section>
+						<section>
+							<h2>Artefacts</h2>
+							<ul class="icons">
+								<li><a href="NOTES.md" class="icon solid style2 fa-file-lines" title="NOTES.md"></a></li>
+								<li><a href="_evidence/resolves.jsonl" class="icon solid style2 fa-code" title="resolves.jsonl"></a></li>
+								<li><a href="_evidence/gaps.jsonl" class="icon solid style2 fa-circle-exclamation" title="gaps.jsonl"></a></li>
+								<li><a href="_evidence/verification/phantom-verification.json" class="icon solid style2 fa-check-double" title="verification results"></a></li>
+							</ul>
+						</section>
+						<ul class="copyright">
+							<li>phantom-audit — built on packs/phantom 0.1.0 · console additions marked, never canon</li>
+						</ul>
+					</div>
+				</footer>
+
+		</div>
+
+		<noscript><p style="padding:1em;">This review renders its ledger and cards with JavaScript — a known improvisation, filed in <code>_evidence/gaps.jsonl</code> (audit-console JS-only).</p></noscript>
+
+		<button type="button" id="marksToggle" class="icon solid fa-eye marks-toggle" title="Reveal improvisations" aria-pressed="false" data-kit="marks toggle"></button>
+
+		<aside class="panel" id="panel" hidden>
+			<header>
+				<h3 id="panelTitle">—</h3>
+				<span class="id" id="panelId"></span>
+				<button type="button" class="button small close" id="panelClose">Close</button>
+			</header>
+			<div class="body" id="panelBody"></div>
+		</aside>
+
+		<script src="app.js"></script>
+	</body>
+</html>

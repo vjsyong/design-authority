@@ -1,0 +1,30 @@
+{"ask": "a type scale for headings and body", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "token-set/type", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a colour palette with accents", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "token-set/colour", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a primary button", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/action-button", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "an inline text field", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/field", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a dropdown select menu", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/select", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a consent checkbox", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/checkbox-radio", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a submit button row", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/actions", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a data table", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/table", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a project gallery grid", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/tiles", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a pull quote", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/blockquote", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a code block", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/code-pre", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a bulleted list", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/lists", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a full width image", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/image", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "social icons row", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/icon-row", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a site header with a logo", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "layout/header", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "the slide in menu", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "layout/menu", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a footer with contact info", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "layout/footer", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a page fade in animation", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "layout/page-intro", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a horizontal rule", "zone": "canon", "outcome": "RESOLVED", "resolution_id": "component/hr", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a stat row", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "a filter bar", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "a provenance side panel", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "status chips", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "a before and after code comparison", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "a carousel with prev next controls", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": ["candidate/carousel"], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "a project detail page", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}
+{"ask": "an anchor navigation menu", "zone": "console", "outcome": "RESOLVED", "resolution_id": "layout/menu", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a contrast check table", "zone": "console", "outcome": "FALLBACK", "resolution_id": "fallback/light-only", "candidates": [], "precedents": [], "handling": "fallback constraints applied (marked)"}
+{"ask": "a toggle button for annotations", "zone": "console", "outcome": "RESOLVED", "resolution_id": "component/checkbox-radio", "candidates": [], "precedents": [], "handling": "built per the cited artifact (canon)"}
+{"ask": "a gap ledger table", "zone": "console", "outcome": "UNDEFINED", "resolution_id": null, "candidates": [], "precedents": [], "handling": "improvised in character, marked, gap filed"}

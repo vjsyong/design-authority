@@ -1,0 +1,658 @@
+{
+ "artifacts": [
+  {
+   "id": "token-set/type",
+   "kind": "token-set",
+   "title": "Type set — Source Sans Pro",
+   "summary": "One family, three voices: body 12pt/300 (light; ≈16px observed), display sentence-case h1 44px/700/-0.035em, and tracked caps (uppercase 900, letter-spacing 0.35em) for h2-h4, buttons, and table heads. Headings shrink through breakpoints (2.75em → 2em → 1.75em for h1).",
+   "status": "stable",
+   "aliases": [
+    "type",
+    "typography",
+    "fonts",
+    "heading style",
+    "source sans pro",
+    "type scale",
+    "site title typography"
+   ],
+   "body": {
+    "group": "Foundations",
+    "scale": [
+     "body 12pt/300 (light), line-height 1.75 (observed 16px/28px at 1265w)",
+     "h1 2.75em/700, line-height 1.3, letter-spacing -0.035em (sentence case; 44px observed)",
+     "h2 1.1em/900, uppercase, letter-spacing 0.35em (17.6px observed)",
+     "h3 1em/900, uppercase, 0.35em (16px observed)",
+     "h4 0.8em/900, uppercase, 0.35em (12.8px observed)"
+    ],
+    "verify": [
+     "h1",
+     "h2",
+     "body"
+    ],
+    "a11y": [
+     "Uppercase tracked caps are for short labels/heads only, never for running text."
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L119-317 (Type); observed on deployment"
+   },
+   "compiled_from": [
+    "phantom-type-01"
+   ]
+  },
+  {
+   "id": "token-set/colour",
+   "kind": "token-set",
+   "title": "Colour set — ink, ground, tint, pink-led accents",
+   "summary": "Ink #585858 on white; faint grey tint rgba(144,144,144,.075) for fields/code; line #c9c9c9 and #f0f0f0 for borders/rules; footer ground #f6f6f6. Accents are SURFACES, led by pink #f2849e (hover text/ring, focus underline), plus the six tile pastels (#f2849e, #7ecaf6, #7bd0c1, #c75b9b, #ae85ca, #8499e7). Text runs in ink, never in accents.",
+   "status": "stable",
+   "aliases": [
+    "colour",
+    "color",
+    "palette",
+    "ink",
+    "accents",
+    "pastels"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tokens": [
+     "ink #585858; strong ink #494949; white #ffffff; ground #f6f6f6 (footer)",
+     "tint rgba(144,144,144,0.075); lines #c9c9c9 / #f0f0f0",
+     "accent pink #f2849e (hover text + ring, focus underline); tile pastels style1-6"
+    ],
+    "deployment_note": "deployment re-inks text #ff6bbc / links #6bff2c and repaints surfaces — recorded as improvisations, not canon (contrast: pink-on-white ≈2.1:1).",
+    "verify": [
+     "body",
+     "a"
+    ],
+    "a11y": [
+     "Accent colours appear as hover/focus/graphic surfaces; body text stays ink for contrast."
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css (Basic/Type/Button/Form/Tiles blocks)"
+   },
+   "compiled_from": [
+    "phantom-colour-01"
+   ]
+  },
+  {
+   "id": "component/action-button",
+   "kind": "component",
+   "title": "Button (ink ring, tracked caps)",
+   "summary": "The system's action: uppercase 900 tracked-caps label at 0.8em, 3.5em tall, 4px radius, 2px ink ring drawn as `box-shadow: inset 0 0 0 2px #585858` on transparent ground; hover flips label+ring to pink #f2849e. Primary = solid ink ground, white label (hover: pink ground). Small 0.6em / large 1em; `.fit` sizes to content; `.icon` carries a leading glyph.",
+   "status": "stable",
+   "aliases": [
+    "button",
+    "primary button",
+    "cta",
+    "action",
+    "submit button",
+    "small button",
+    "large button",
+    "fit button",
+    "icon button"
+   ],
+   "body": {
+    "class": "button (.primary .small .large .fit .icon)",
+    "group": "Actions",
+    "states": [
+     "default: transparent, ink label + inset 2px ink ring (radius 4)",
+     "hover: label + ring #f2849e; active: slightly darker ring",
+     "primary: ink ground, white label; hover ground #f2849e",
+     "small 0.6em | large 1em | fit auto width | icon leading glyph | disabled opacity .25"
+    ],
+    "spec": [
+     "height 3.5em, line-height 3.45em, padding 0 1.25em 0 1.6em",
+     "font-size 0.8em, weight 900, letter-spacing 0.35em, uppercase",
+     "transition background-color/color/box-shadow 0.2s ease-in-out"
+    ],
+    "verify": [
+     ".button",
+     ".button.primary",
+     ".button.small"
+    ],
+    "a11y": [
+     "Real <button>/<a> semantics; focus must remain visible (template: focus ring on fields; buttons inherit UA focus by default)."
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2451-2574 (Button)"
+   },
+   "compiled_from": [
+    "phantom-button-01"
+   ]
+  },
+  {
+   "id": "component/field",
+   "kind": "component",
+   "title": "Field (underline input)",
+   "summary": "Text-like inputs and textareas: transparent ground over the faint tint, no box and no radius — a single 1px #c9c9c9 bottom line; focus trades the line for a 2px pink underline (`inset 0 -1px 0 0` + reset). Half/third/quarter width variants live in `.fields > .field`.",
+   "status": "stable",
+   "aliases": [
+    "text field",
+    "input",
+    "form field",
+    "email field",
+    "textarea",
+    "contact form",
+    "underline input"
+   ],
+   "body": {
+    "class": "input[type=text|email|tel|password], textarea",
+    "group": "Form",
+    "states": [
+     "default: tint ground, 1px #c9c9c9 bottom line, flat (radius 0)",
+     "focus: pink #f2849e underline",
+     "invalid: platform default (undefined by system)"
+    ],
+    "layout": [
+     ".fields flex wrap; .field.half 50%, .third 33%, .quarter 25%"
+    ],
+    "verify": [
+     "input[type=text]",
+     "textarea"
+    ],
+    "a11y": [
+     "Placeholders are examples, not labels; provide visible labels where possible."
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2057-2197 (Form)"
+   },
+   "compiled_from": [
+    "phantom-field-01"
+   ]
+  },
+  {
+   "id": "component/select",
+   "kind": "component",
+   "title": "Select (styled, underline)",
+   "summary": "Native select restyled to the field language (tint ground, bottom line, 4px radius, appearance:none); options carry the system font. Use where a short list of choices is needed.",
+   "status": "stable",
+   "aliases": [
+    "select",
+    "dropdown",
+    "dropdown select",
+    "choose option",
+    "category picker"
+   ],
+   "body": {
+    "class": "select",
+    "group": "Form",
+    "states": [
+     "default like fields",
+     "focus: pink underline (same as field)"
+    ],
+    "verify": [
+     "select"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2100-2197 (Form/select)"
+   },
+   "compiled_from": [
+    "phantom-select-01"
+   ]
+  },
+  {
+   "id": "component/checkbox-radio",
+   "kind": "component",
+   "title": "Checkbox & radio (custom mark)",
+   "summary": "Custom checkboxes/radios drawn with `+ label:before` boxes (2.25em); checked fills ink with a white mark; focus adds a 1px pink ring. Labels stay ink and readable at a glance.",
+   "status": "stable",
+   "aliases": [
+    "checkbox",
+    "radio",
+    "toggle",
+    "option mark",
+    "check box",
+    "radio button",
+    "consent",
+    "consent checkbox",
+    "agree to terms",
+    "opt in"
+   ],
+   "body": {
+    "class": "input[type=checkbox|radio] + label",
+    "group": "Form",
+    "states": [
+     "unchecked: ink 7.5% box + ink outline",
+     "checked: ink fill, white mark",
+     "focus: 0 0 0 1px #f2849e ring"
+    ],
+    "verify": [
+     "input[type=checkbox]",
+     "input[type=radio]"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2198-2292 (Form/checkbox+radio)"
+   },
+   "compiled_from": [
+    "phantom-check-01"
+   ]
+  },
+  {
+   "id": "component/actions",
+   "kind": "component",
+   "title": "Actions row (ul.actions)",
+   "summary": "A horizontal group of buttons/links (ul.actions), right-aligned by default with 1em gaps; `.fixed` stacks full-width; supports spacer items. The standard footer/hero action cluster.",
+   "status": "stable",
+   "aliases": [
+    "button row",
+    "action row",
+    "submit row",
+    "form actions",
+    "button group"
+   ],
+   "body": {
+    "class": "ul.actions (.fixed)",
+    "group": "Actions",
+    "verify": [
+     "ul.actions"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L1921-2042 (Actions)"
+   },
+   "compiled_from": [
+    "phantom-actions-01"
+   ]
+  },
+  {
+   "id": "component/table",
+   "kind": "component",
+   "title": "Table (ruled, tracked-caps head)",
+   "summary": "Default and `.alternate` tables: full width, 2em bottom margin; heads at 0.9em/900 with a 2px #c9c9c9 header rule; tinted alternate rows. `.table-wrapper` provides horizontal scroll on small screens (broken on the deployment — the comment edit killed the selector).",
+   "status": "stable",
+   "aliases": [
+    "table",
+    "data table",
+    "spec table",
+    "rows",
+    "alternate table",
+    "ruled table"
+   ],
+   "body": {
+    "class": "table / .table-wrapper",
+    "group": "Content",
+    "states": [
+     "default: 1px #f0f0f0 row rules",
+     "alternate: tinted rows",
+     "wrapper: overflow-x auto"
+    ],
+    "verify": [
+     "table",
+     ".table-wrapper"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2373-2444 (Table)"
+   },
+   "compiled_from": [
+    "phantom-table-01"
+   ]
+  },
+  {
+   "id": "component/tiles",
+   "kind": "component",
+   "title": "Tiles (project grid)",
+   "summary": "The portfolio's heart: a responsive grid of image tiles (3-up, 2-up small, 1-up xsmall). Each tile = `.image` (4px radius) + hover system: content panel slides up (max-height/opacity 0.45s), pastel veil by `.styleN`, arrow marker fades out; non-touch hover zooms the image (scale 1.1). `.is-preload` staggers tiles in from scale(0.9).",
+   "status": "stable",
+   "aliases": [
+    "tiles",
+    "project grid",
+    "portfolio grid",
+    "photo grid",
+    "image cards",
+    "project cards"
+   ],
+   "body": {
+    "class": "section.tiles",
+    "group": "Content",
+    "structure": [
+     "article > .image (picture) + a > h2 + .content (copy revealed on hover)"
+    ],
+    "styles": [
+     "style1 pink #f2849e",
+     "style2 blue #7ecaf6",
+     "style3 teal #7bd0c1",
+     "style4 magenta #c75b9b",
+     "style5 purple #ae85ca",
+     "style6 periwinkle #8499e7"
+    ],
+    "states": [
+     "rest: arrow marker",
+     "hover: veil + copy panel + image zoom (desktop only)"
+    ],
+    "verify": [
+     ".tiles",
+     ".tiles article"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2575-2842 (Tiles)"
+   },
+   "compiled_from": [
+    "phantom-tiles-01"
+   ]
+  },
+  {
+   "id": "component/blockquote",
+   "kind": "component",
+   "title": "Blockquote",
+   "summary": "Italic pull-quote with a 4px #c9c9c9 left rule, 2em clearance and 2em item spacing; no quotation glyphs.",
+   "status": "stable",
+   "aliases": [
+    "blockquote",
+    "quotation block",
+    "pull quote",
+    "quote"
+   ],
+   "body": {
+    "class": "blockquote",
+    "group": "Content",
+    "verify": [
+     "blockquote"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L119-317 (Type/blockquote)"
+   },
+   "compiled_from": [
+    "phantom-quote-01"
+   ]
+  },
+  {
+   "id": "component/code-pre",
+   "kind": "component",
+   "title": "Code & preformatted",
+   "summary": "Inline code sits on the faint tint with a 1px #c9c9c9 border and 4px radius (Courier New); pre blocks pad 1em 1.5em, line-height 1.75, horizontal scroll. On the deployment the inline ground became a solid blue block.",
+   "status": "stable",
+   "aliases": [
+    "code block",
+    "code sample",
+    "preformatted",
+    "monospace",
+    "snippet"
+   ],
+   "body": {
+    "class": "code / pre",
+    "group": "Content",
+    "verify": [
+     "code",
+     "pre"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L119-317 (Type/code,pre)"
+   },
+   "compiled_from": [
+    "phantom-code-01"
+   ]
+  },
+  {
+   "id": "component/lists",
+   "kind": "component",
+   "title": "Lists (default, alt, ordered)",
+   "summary": "Unordered lists with disc marks and 2em spacing; the alternate variant drops the marks; ordered lists use decimal counters. Lists are content primitives, not UI.",
+   "status": "stable",
+   "aliases": [
+    "bulleted list",
+    "list",
+    "ordered list",
+    "numbered list",
+    "alternate list"
+   ],
+   "body": {
+    "class": "ul / ul.alt / ol",
+    "group": "Content",
+    "verify": [
+     "ul",
+     "ol"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L1870-1920 (List)"
+   },
+   "compiled_from": [
+    "phantom-list-01"
+   ]
+  },
+  {
+   "id": "component/image",
+   "kind": "component",
+   "title": "Image treatments",
+   "summary": "Images are structural: `.image.main` full-column block (2em margins), `.image.fit` content-width block, `.left`/`.right` floats at 40%/40% with 2em gutter. All carry the 4px radius.",
+   "status": "stable",
+   "aliases": [
+    "image",
+    "full width image",
+    "left image",
+    "right image",
+    "photo",
+    "figure"
+   ],
+   "body": {
+    "class": ".image (.main .fit .left .right)",
+    "group": "Content",
+    "verify": [
+     ".image.main"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2314-2444 (Box/Image)"
+   },
+   "compiled_from": [
+    "phantom-image-01"
+   ]
+  },
+  {
+   "id": "component/icon-row",
+   "kind": "component",
+   "title": "Icon (circles) & social row",
+   "summary": "Circular icon buttons (2.75em circles, ink ring) for social links, plus the icons list (ul.icons) for inline rows; icons come from the bundled Font Awesome set.",
+   "status": "stable",
+   "aliases": [
+    "icons",
+    "social icons",
+    "social media icons",
+    "icon circle",
+    "follow row"
+   ],
+   "body": {
+    "class": ".icon (solid|brands) / ul.icons",
+    "group": "Content",
+    "states": [
+     "default: ink ring, ink glyph",
+     "hover: ink ground, white glyph"
+    ],
+    "verify": [
+     "ul.icons",
+     ".icon"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L1804-2056 (Icon/Icons)"
+   },
+   "compiled_from": [
+    "phantom-icon-01"
+   ]
+  },
+  {
+   "id": "layout/header",
+   "kind": "layout",
+   "title": "Header & logo",
+   "summary": "A centered header: circular logo symbol (image) + wordmark title, with a single 'Menu' link to the overlay. Sits over the page, fades with the load-in.",
+   "status": "stable",
+   "aliases": [
+    "header",
+    "site header",
+    "logo",
+    "brand",
+    "top bar",
+    "site header with logo"
+   ],
+   "body": {
+    "class": "#header",
+    "group": "Layout",
+    "structure": [
+     "a.logo > .symbol (circle, ~3em) + .title (wordmark)"
+    ],
+    "verify": [
+     "#header",
+     "#header .logo"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2843-2978 (Header)"
+   },
+   "compiled_from": [
+    "phantom-header-01"
+   ]
+  },
+  {
+   "id": "layout/menu",
+   "kind": "layout",
+   "title": "Menu overlay (slide-in)",
+   "summary": "The signature navigation: a fixed 22em right-edge panel, ink ground, white links in a bordered list (0.15 white rules), 0.45s ease slide + fade; `body.is-menu-visible` reveals it; click-away/Escape closes. Deployment recoloured the panel neon green.",
+   "status": "stable",
+   "aliases": [
+    "menu",
+    "main menu",
+    "navigation",
+    "nav overlay",
+    "slide menu",
+    "the main menu"
+   ],
+   "body": {
+    "class": "#menu / #wrapper",
+    "group": "Layout",
+    "states": [
+     "hidden: translateX(22em), visibility hidden",
+     "visible: translateX(0), inner opacity 1 (0.45s ease)"
+    ],
+    "structure": [
+     "#menu > .inner > h2 'Menu' + ul of links (1px rgba(255,255,255,.15) rules)"
+    ],
+    "verify": [
+     "#menu"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L2979-3164 (Menu) + main.js"
+   },
+   "compiled_from": [
+    "phantom-menu-01"
+   ]
+  },
+  {
+   "id": "layout/footer",
+   "kind": "layout",
+   "title": "Footer (2 sections + copyright)",
+   "summary": "Grey ground #f6f6f6; two columns (66% / 33%): left = contact block (form), right = follow block (icon row); full-width copyright bar in 0.8em ink-50%.",
+   "status": "stable",
+   "aliases": [
+    "footer",
+    "contact block",
+    "follow block",
+    "copyright",
+    "footer contact section"
+   ],
+   "body": {
+    "class": "#footer",
+    "group": "Layout",
+    "verify": [
+     "#footer"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L3179-3327 (Footer)"
+   },
+   "compiled_from": [
+    "phantom-footer-01"
+   ]
+  },
+  {
+   "id": "layout/page-intro",
+   "kind": "layout",
+   "title": "Load-in motion (is-preload)",
+   "summary": "A brief entrance: `body.is-preload` hides the wrapper (opacity 0) and holds tiles at scale(0.9); on load the class drops and the system fades/slides in over 0.45s ease. All other animation/transition is disabled during preload. This is the system's ONLY sanctioned motion.",
+   "status": "stable",
+   "aliases": [
+    "page load animation",
+    "intro animation",
+    "fade in",
+    "load transition",
+    "entrance motion",
+    "page load fade-in"
+   ],
+   "body": {
+    "class": "body.is-preload",
+    "group": "Layout",
+    "spec": [
+     "#wrapper opacity transition 0.45s ease (0 → 1)",
+     "tiles article scale 0.9 → 1 stagger",
+     "is-preload disables all other animation/transition"
+    ],
+    "verify": [
+     "body"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css (is-preload blocks) + main.js"
+   },
+   "compiled_from": [
+    "phantom-intro-01"
+   ]
+  },
+  {
+   "id": "component/hr",
+   "kind": "component",
+   "title": "Horizontal rule",
+   "summary": "A 1px #c9c9c9 rule with 2em vertical margin; the system's default content divider.",
+   "status": "stable",
+   "aliases": [
+    "rule",
+    "divider",
+    "horizontal rule",
+    "separator",
+    "hr"
+   ],
+   "body": {
+    "class": "hr",
+    "group": "Content",
+    "verify": [
+     "hr"
+    ]
+   },
+   "source": {
+    "repo": "HTML5 UP Phantom + zhenyoyo.github.io deployment",
+    "path": "upstream main.css L119-317 (Type/hr)"
+   },
+   "compiled_from": [
+    "phantom-hr-01"
+   ]
+  }
+ ]
+}

@@ -17,11 +17,14 @@ def sha(path):
     return h.hexdigest()
 
 
-for build in ("wink", "leader", "dominion"):
-    raw = json.load(open(os.path.join(REPO, "docs", "verification", "raw", f"harden-clean-{build}", "raw.json")))
-    appdir = os.path.join(REPO, "examples", f"cadence3-{build}")
+TARGETS = [("wink", "harden-clean-wink"), ("leader", "harden-clean-leader"),
+           ("dominion", "harden-clean-dominion"), ("phantom", "phantom-app")]
+for build, raw_dir in TARGETS:
+    raw = json.load(open(os.path.join(REPO, "docs", "verification", "raw", raw_dir, "raw.json")))
+    appdir = os.path.join(REPO, "examples", "phantom-audit" if build == "phantom" else f"cadence3-{build}")
     covers = {}
-    for fn in ("app.css", "app.js", "index.html"):
+    cover_files = ("assets/css/main.css", "app.js", "index.html") if build == "phantom" else ("app.css", "app.js", "index.html")
+    for fn in cover_files:
         pth = os.path.join(appdir, fn)
         if os.path.exists(pth):
             covers[fn] = sha(pth)[:16]
@@ -44,7 +47,7 @@ for build in ("wink", "leader", "dominion"):
             for c in raw["checks"]
         ],
     }
-    d = os.path.join(REPO, "examples", f"cadence3-{build}", "_evidence", "verification")
+    d = os.path.join(appdir, "_evidence", "verification")
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, f"{build}-verification.json")
     with open(p, "w") as fh:

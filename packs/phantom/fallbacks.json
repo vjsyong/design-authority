@@ -1,0 +1,58 @@
+{
+ "fallbacks": [
+  {
+   "id": "fallback/platform-controls",
+   "kind": "fallback",
+   "title": "Platform defaults for uncovered controls",
+   "statement": "If the system defines no control for a need, use the platform's native element restyled to the field language (tint ground, #c9c9c9 lines, 4px radius, ink text); keep native semantics.",
+   "scope": [
+    "date",
+    "time",
+    "file",
+    "slider",
+    "range",
+    "color",
+    "picker",
+    "upload",
+    "stepper",
+    "switch",
+    "combobox"
+   ],
+   "constraints": [
+    "field language (underline, 4px radius, ink)",
+    "mark the improvisation and file a gap if it recurs"
+   ]
+  },
+  {
+   "id": "fallback/no-script",
+   "kind": "fallback",
+   "title": "No-JS fallback (noscript stylesheet)",
+   "statement": "Without JavaScript, the load-in is skipped and content renders immediately (noscript.css lifts the is-preload state).",
+   "scope": [
+    "motion",
+    "intro",
+    "menu",
+    "javascript"
+   ],
+   "constraints": [
+    "content readable without JS",
+    "menu degrades to in-page anchor (undefined beyond that)"
+   ]
+  },
+  {
+   "id": "fallback/light-only",
+   "kind": "fallback",
+   "title": "Light ground only",
+   "statement": "No dark mode is defined; dark contexts are outside this authority (undecided, not declined).",
+   "scope": [
+    "dark",
+    "dark mode",
+    "theme",
+    "contrast mode"
+   ],
+   "constraints": [
+    "file a gap if a dark requirement appears"
+   ]
+  }
+ ]
+}

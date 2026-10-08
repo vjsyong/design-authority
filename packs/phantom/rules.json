@@ -1,0 +1,60 @@
+{
+ "rules": [
+  {
+   "id": "P-R1",
+   "name": "ink-text-policy",
+   "severity": "warning",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "Text and UI ink is #585858 on white; saturated colour arrives only through sanctioned surfaces (hover/focus states, tile pastels, menu ground).",
+   "why": "The template's monochrome reading surface is its design identity; colour-as-surface keeps contrast safe (pink #ff6bbc on white ≈ 2.1:1).",
+   "fix": "Return text colours to ink; move accent ambitions into hover/focus/surface roles or the pink-accent candidate."
+  },
+  {
+   "id": "P-R2",
+   "name": "radius-family",
+   "severity": "error",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "Corners are 4px across buttons, fields, boxes, images and tiles (circles only for logo/icon discs).",
+   "why": "One radius family ties the system together; the deployment flattened everything to 0px.",
+   "fix": "Restore border-radius: 4px on affected components (or re-open the radius decision as a candidate)."
+  },
+  {
+   "id": "P-R3",
+   "name": "tracked-caps-display",
+   "severity": "warning",
+   "applies_to": [
+    "css",
+    "html"
+   ],
+   "summary": "Display labels (h2-h4, buttons, table heads) are uppercase 900 with 0.35em letter-spacing; h1 stays sentence case 700.",
+   "why": "Observed across type, buttons and heads; the tracking is the system's typographic signature.",
+   "fix": "Apply uppercase/900/0.35em to display labels; never apply caps-tracking to running text."
+  },
+  {
+   "id": "P-R4",
+   "name": "flat-inset-rings",
+   "severity": "warning",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "Depth is drawn with inset rings (`inset 0 0 0 Npx`) and rules — never blurred or elevated shadows.",
+   "why": "No blurred shadow exists in the template; borders-as-shadows keep the flat surface honest.",
+   "fix": "Replace drop shadows with inset rings or 1px rules."
+  },
+  {
+   "id": "P-R5",
+   "name": "underline-fields",
+   "severity": "warning",
+   "applies_to": [
+    "css"
+   ],
+   "summary": "Fields are underline-only: tint ground, 1px #c9c9c9 bottom line, pink underline on focus.",
+   "why": "The form language is minimal by design; boxes around fields would break the page rhythm.",
+   "fix": "Strip field box borders; keep the bottom line + focus underline."
+  }
+ ]
+}

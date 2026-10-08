@@ -1,0 +1,46 @@
+{
+ "id": "phantom",
+ "name": "Phantom Interface System",
+ "format_version": "0.1",
+ "version": "0.1.0",
+ "snapshot": {
+  "repo": "HTML5 UP Phantom (template, CCA 3.0) as deployed at zhenyoyo.github.io",
+  "commit": "n/a - public sources",
+  "branch": "n/a",
+  "version": "template as published; deployment fetched 2026-10-08",
+  "path_hint": "docs/synthesis/phantom/_raw/"
+ },
+ "description": "A minimal, flat, monochrome-leaning interface system for portfolio and editorial pages: Source Sans Pro with tracked uppercase display caps, ink #585858 on white, 4px radii, inset-ring buttons, underline fields, pastel accent surfaces led by pink, a fixed slide-in menu, and a brief load-in motion. Derived from the Phantom template as deployed at zhenyoyo.github.io; the deployment's value edits are recorded as improvisations (see synthesis-notes), never canon.",
+ "kinds": [
+  "component",
+  "pattern",
+  "token-set",
+  "guideline",
+  "recipe",
+  "reference"
+ ],
+ "capabilities": {
+  "search": true,
+  "resolve": true,
+  "validators": [],
+  "gap_reporting": true,
+  "extension_proposals": true,
+  "resolution_assist": "off"
+ },
+ "policy": {
+  "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+  "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+  "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+ },
+ "entrypoints": {
+  "artifacts": "artifacts.json",
+  "rules": "rules.json",
+  "recipes": "recipes.json",
+  "fallbacks": "fallbacks.json",
+  "prohibitions": "prohibitions.json",
+  "validators": "validators.json",
+  "scoring": "scoring.json",
+  "precedents": "precedents.json",
+  "candidates": "candidates.json"
+ }
+}
