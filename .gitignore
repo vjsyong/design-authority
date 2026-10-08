@@ -3,7 +3,10 @@ __pycache__/
 *.pyc
 benchmark/runs/
 .DS_Store
-workspaces/
+
+# consumer workspaces are local; the concept site's ledger records ship with it
+workspaces/*
+!workspaces/designauthority-site/
 
 # local working mirror of the reviewed site (evidence cache, not source)
 docs/synthesis/phantom/_raw/site/

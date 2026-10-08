@@ -1,0 +1,44 @@
+{
+ "id": "prop/20261008-105323-1d4022",
+ "gap_id": "gap/20261008-105306-8a654b",
+ "problem": "Section pages need a small label above each heading to number and name sections (a kicker). No artifact provides one, so consumers improvise it: six instances on the designauthority concept page alone, each re-inventing size, tracking and colour.",
+ "insufficiency": "resolve('a section kicker label above a heading') -> UNDEFINED (top candidates component/acc, component/badge, component/page-head all scored 4.00 vs 6.50 needed; no recipe matched). Closest artifacts misfit: component/acc is an accordion control; component/badge is an interactive status chip with dot semantics; component/page-head is the page-level header block, not a section eyebrow. search_authority for eyebrow / section label -> no artifact.",
+ "reuse_case": "Long-form documentation and concept pages across consumers: the designauthority site numbers six sections with it; Triage spec and review pages need the same eyebrow element for their section structure. Any page that numbers its sections repeats this need.",
+ "composition_check": "Badge composes status, not structure (interactive, dot-prefixed). page-head owns the page title block and cannot express '01 - The promise' above an h2. Raw mono text at --fs-pre-log leaves case, tracking, colour and spacing unbound, and consumers diverged in exactly those four properties during the concept page's own audit. A small typographic element is required; no existing artifact composes to it.",
+ "proposed": [
+  {
+   "kind": "component",
+   "name": "kicker",
+   "sketch": "Section eyebrow label: <p class=\"kick\">, uppercase applied via text-transform over sentence-case source, --fs-pre-log size, letter-spacing token, --text-secondary colour, small margin below before the heading it precedes; optional numeric prefix. Token-only, static text, no border or background."
+  }
+ ],
+ "depends_on": [
+  "component/page-head"
+ ],
+ "new_primitives": [],
+ "tests": [
+  {
+   "description": "kick renders uppercase via text-transform (source text stays sentence case) and uses only tokens, no raw px/hex",
+   "deterministic": true
+  },
+  {
+   "description": "text colour resolves to a text token with at least 4.5:1 contrast on the page surface",
+   "deterministic": true
+  },
+  {
+   "description": "static text only: no interactive states, border or background",
+   "deterministic": true
+  }
+ ],
+ "status": "candidate",
+ "review": {
+  "verdict": null,
+  "notes": null
+ },
+ "authority": {
+  "authority": "triage",
+  "version": "0.12.1",
+  "commit": "ec490bb7f336b8105698f7f92a1be8cbce97d7ff"
+ },
+ "created": "2026-10-08T10:53:23+00:00"
+}
