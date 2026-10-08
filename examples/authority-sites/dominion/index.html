@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--
+  Dominion Interface System — reference catalogue.
+  Built under the dominion authority (pack 0.2.0, format 0.1) by resolving each
+  need against its records; every adoption below cites its record id.
+  Improvisations are marked with data-improv attributes (shown by default; the
+  notice band carries the control) and each is filed as a gap in this
+  workspace's .design-authority/gaps.jsonl store via the audited runner:
+    gap/20261008-165141-a9a135  footer credit line
+    gap/20261008-165141-acb94d  colour codes (FIP red, pewter)
+    gap/20261008-165141-150790  page spacing rhythm
+  No external frameworks, no borrowed CSS, no network resources. The single
+  font (Arimo-VF.ttf) ships beside this file as fonts/Arimo-VF.ttf.
+-->
+<html lang="en" class="marks-on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dominion Interface System — catalogue (pack 0.2.0)</title>
+<meta name="description" content="An austere civic interface system derived from the Government of Canada FIP standard and the live Canada.ca web layer for the Design Authority synthesis experiment. Bilingual, structured, calm; no government marks reproduced.">
+<style data-improv="the stylesheet's grey value mappings: pewter / hairline / de-emphasis codes are not recorded by the pack; mapped from recorded #F4F4F4 and #E0E0E0 with one stand-in; see gap/20261008-165141-acb94d">
+/* ============================================================================
+   Recorded values only. Each custom property cites its record.
+
+   Recorded hexes / roles (token-set/colour; component records):
+     black = text/structure            (token-set/colour: "Black = text/structure")
+     white = ground                    (token-set/colour: "white = ground")
+     #26374A slate      — actions and interactive layer  (component/action; D-R1)
+     #66AFE9 + rgba(102,175,233,.6) — focus outline + 8px halo (guideline/interaction-states; D-R1)
+     #E0E0E0 soft border — field styling                 (component/field)
+     #F4F4F4 pewter band — notice ground, meter track, row hover (component/notice; component/meter; component/ledger)
+
+   MARKED (see gap/20261008-165141-acb94d): the pack names FIP red and pewter
+   as roles but records no codes for them. Stand-ins used and kept visible:
+     --red  #EA2D2E  ceremonial accent bar stand-in
+     --grey #5C5C5C  de-emphasis text stand-in ("metadata 13 grey")
+     --hairline #E0E0E0  row hairlines mapped from the recorded soft-border grey
+   ============================================================================ */
+:root {
+  --ink: #000;                                  /* black = text/structure */
+  --ground: #fff;                               /* white = ground */
+  --slate: #26374A;                             /* component/action, D-R1 */
+  --focus: #66AFE9;                             /* guideline/interaction-states */
+  --halo: rgba(102,175,233,.6);                 /* guideline/interaction-states */
+  --soft: #E0E0E0;                              /* component/field */
+  --band: #F4F4F4;                              /* notice ground / meter track / row hover */
+  --red: #EA2D2E;                               /* MARKED stand-in — FIP red code unrecorded */
+  --grey: #5C5C5C;                              /* MARKED stand-in — de-emphasis grey code unrecorded */
+  --hairline: #E0E0E0;                          /* mapped from the recorded soft-border grey */
+  --radius: 4px;                                /* action/field radius 4 */
+  --wrap: 940px;
+  --pad: 24px;
+  /* Spacing rhythm: no spacing tokens are recorded; steps composed from the
+     screen type rhythm (16px body / 32px title) — gap/20261008-165141-150790 */
+  --step: 16px;
+  --step2: 32px;
+  --step3: 64px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: 'Arimo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;               /* Regular = default text */
+  font-size: 16px;                /* body 16 */
+  line-height: 1.6;               /* body 16/1.6 */
+}
+@font-face {
+  font-family: 'Arimo';
+  src: url('fonts/Arimo-VF.ttf') format('truetype');
+  font-weight: 300 700;
+  font-display: swap;
+}
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--pad); }
+
+/* Metadata: 13 grey (token-set/type-scale) */
+.meta { font-size: 13px; line-height: 1.5; color: var(--grey); }
+
+a { color: var(--slate); text-decoration: underline; text-underline-offset: 3px; }
+/* Focus does change colour: blue glow only (guideline/interaction-states) */
+a:focus-visible, button:focus-visible {
+  outline: 1px solid var(--focus);
+  box-shadow: 0 0 8px var(--halo);
+}
+
+/* --------------------------------------------------------------------------
+   Masthead — component/masthead: white, 2px black bottom rule, identity zone
+   at left (red accent bar + title), nav links regular with medium active
+   state underlined in black (not red — red stays ceremonial).
+   -------------------------------------------------------------------------- */
+.mh { background: var(--ground); border-bottom: 2px solid var(--ink); }
+.mh .wrap { display: flex; flex-wrap: wrap; gap: var(--step2) var(--step2); padding-block: var(--step2) var(--step); align-items: flex-start; justify-content: space-between; }
+.identity { display: flex; gap: 14px; flex: 1 1 420px; min-width: 0; }
+.acc {                                   /* red accent bar — ceremony, nothing else */
+  width: 10px; flex: none; align-self: stretch; background: var(--red);
+  min-height: 48px;
+}
+.title { min-width: 0; }
+.title h1 { margin: 0; font-size: 32px; line-height: 1.2; font-weight: 400; }  /* page title 32/400 */
+.pair { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.pair .div { width: 1px; align-self: stretch; background: var(--ink); }        /* thin divider */
+.pair .fr { color: var(--ink); }
+.subtitle { margin: 6px 0 0; }
+.lede { margin: 10px 0 0; max-width: 62ch; }
+@media (max-width: 560px) {              /* bilingual pairs over-under when narrow */
+  .pair { display: block; }
+  .pair .div { display: none; }
+  .pair .en, .pair .fr { display: block; }
+  .pair .fr { margin-top: 2px; }
+  .title h1 { font-size: 28px; }
+}
+nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 6px 0 0; padding: 0; }
+nav a { color: var(--ink); text-decoration: none; }
+nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
+nav a.active { font-weight: 500; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+main { padding-bottom: var(--step3); }
+section { margin-top: var(--step3); }
+h2 { font-size: 20px; font-weight: 500; line-height: 1.3; margin: 0 0 4px; }   /* section headings 20/500 */
+.sub { margin: 0 0 var(--step2); }
+
+/* Meter — component/meter: square track in #F4F4F4, black fill, plain readout. */
+.meter-strip { display: flex; align-items: center; gap: var(--step); flex-wrap: wrap; }
+.meter { flex: 1 1 220px; min-width: 160px; height: 12px; background: var(--band); }
+.meter i { display: block; height: 100%; width: 100%; background: var(--ink); }
+.readout { font-size: 13px; color: var(--grey); white-space: nowrap; }
+
+/* Ledger — component/ledger: 2px black header rule over medium caps labels;
+   1px row hairlines; no zebra; row hover = #F4F4F4 band; status labels inline. */
+.reg { margin-top: var(--step3); }
+.reg-label {
+  border-top: 2px solid var(--ink);
+  font-size: 13px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .06em; padding-top: 10px; margin: 0 0 2px;
+}
+.row { margin-inline: -12px; padding: 14px 12px; border-top: 1px solid var(--hairline); }
+.row:hover { background: var(--band); }
+.row:first-of-type { border-top: 0; }
+.rhead { margin: 0; font-size: 13px; color: var(--grey); overflow-wrap: anywhere; }
+.rtitle { margin: 2px 0 0; font-size: 16px; font-weight: 500; display: inline; }
+.rsum { margin: 4px 0 0; max-width: 70ch; }
+
+/* Status label — component/status: plain word label in a ruled box;
+   emphasis by structure, never hue. */
+.chip {
+  display: inline-block; vertical-align: 2px; margin-left: 10px;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  padding: 1px 8px; font-size: 12px; font-weight: 400; color: var(--ink);
+  background: var(--ground); white-space: nowrap;
+}
+
+/* Specification notes in the registers */
+.note { margin: 2px 0 0; max-width: 70ch; }
+.id-tag { font-weight: 500; color: var(--ink); }
+
+/* --------------------------------------------------------------------------
+   Notice band — component/notice: full-width banded row (#F4F4F4) under a
+   2px rule; plain sentence, no icon. Carries the build disclosure.
+   -------------------------------------------------------------------------- */
+.notice-band { background: var(--band); border-top: 2px solid var(--ink); margin-top: var(--step3); }
+.notice-band .wrap { padding-block: var(--step2); }
+.notice-band p { margin: 0 0 10px; max-width: 76ch; }
+.notice-band p:last-child { margin-bottom: 0; }
+.gaps { overflow-wrap: anywhere; }
+
+/* Action — component/action: secondary = 2px slate outline, radius 4.
+   No primary action appears on this page (one primary per view, at most). */
+.btn {
+  display: inline-block; font: inherit; font-weight: 500; cursor: pointer;
+  color: var(--slate); background: var(--ground);
+  border: 2px solid var(--slate); border-radius: var(--radius);
+  padding: 8px 16px; margin: 4px 0 12px;
+}
+.btn:focus-visible { outline: 1px solid var(--focus); box-shadow: 0 0 8px var(--halo); }
+
+/* Footer — masthead record reserves a bottom-right plain-text wordmark zone;
+   the credit line itself is unrecorded (gap/20261008-165141-a9a135). */
+.ft { border-top: 2px solid var(--ink); }
+.ft .wrap { display: flex; flex-wrap: wrap; gap: 8px var(--step2); justify-content: space-between; padding-block: var(--step); }
+
+/* Marks layer — improvisations kept visible (dashed), toggle in the notice. */
+[data-improv] { position: relative; }
+.marks-on [data-improv] { outline: 2px dashed #8A8A8A; outline-offset: 3px; }
+.marks-on [data-improv]::after {
+  content: "improvisation — hover for the record";
+  position: absolute; inset-inline-start: 0; top: -10px; z-index: 2;
+  background: var(--ink); color: var(--ground);
+  font-size: 10px; line-height: 1; padding: 3px 6px; white-space: nowrap;
+}
+.marks-on .acc::after { inset-inline-start: 0; inset-inline-end: auto; white-space: normal; max-width: 140px; }
+</style>
+</head>
+<body>
+
+<!-- ======================= MASTHEAD (component/masthead) ==================== -->
+<header class="mh">
+  <div class="wrap">
+    <div class="identity">
+      <!-- Red accent bar: recorded ceremonial device; its exact code is not
+           recorded — rendered as a marked stand-in (gap/20261008-165141-acb94d). -->
+      <div class="acc" data-improv="FIP red is recorded as a ceremonial role; its exact code is not. Rendered as #EA2D2E stand-in — gap/20261008-165141-acb94d filed."></div>
+      <div class="title">
+        <!-- Bilingual pair per guideline/bilingual: English | French, side-by-side, thin divider; over-under when narrow. -->
+        <h1>
+          <span class="pair">
+            <span class="en">Dominion Interface System</span>
+            <span class="div" aria-hidden="true"></span>
+            <span class="fr" lang="fr">Système d'interface Dominion</span>
+          </span>
+        </h1>
+        <p class="meta subtitle">Pack 0.2.0 · format 0.1 · snapshot: FIP design standard + canada.ca live web layer</p>
+        <p class="lede">An austere civic interface system derived from the Government of Canada FIP standard and the live Canada.ca web layer for the Design Authority synthesis experiment. Bilingual, structured, calm; no government marks reproduced.</p>
+      </div>
+    </div>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#catalogue" class="active">Catalogue</a></li>
+        <li><a href="#specification">Specification summary</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Rhythm improvisation: no spacing tokens are recorded; vertical steps between
+     masthead, sections and registers are composed from the recorded screen type
+     rhythm (16px body / 32px title) — gap/20261008-165141-150790 filed. -->
+<main data-improv="spacing rhythm: no spacing tokens are recorded; steps composed from the screen type rhythm (16px body / 32px title) — gap/20261008-165141-150790 filed.">
+  <!-- ===================== CATALOGUE (component/ledger registers) =========== -->
+  <section id="catalogue" aria-labelledby="catalogue-h">
+    <div class="wrap">
+      <h2 id="catalogue-h">Catalogue</h2>
+      <p class="meta sub">Every artifact in the pack, grouped by kind — 14 records, all at status beta.</p>
+
+      <!-- component/meter: square track #F4F4F4, black fill, plain readout -->
+      <div class="meter-strip">
+        <span class="meter" role="img" aria-label="14 of 14 records inspected"><i></i></span>
+        <span class="readout">14 of 14 records inspected</span>
+      </div>
+
+      <!-- components: ledger registers, one per kind -->
+      <div class="reg">
+        <p class="reg-label">Components · 8</p>
+
+        <div class="row">
+          <p class="rhead">component/action · compiled from D-01</p>
+          <p><span class="rtitle">Action (slate rounded)</span><span class="chip">beta</span></p>
+          <p class="rsum">Primary = solid slate button (#26374A, 4px radius — live-measured on Canada.ca), white label; secondary = 2px slate outline; tertiary = underlined link. One primary per view. Red stays ceremonial, out of action roles.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/masthead · compiled from D-08</p>
+          <p><span class="rtitle">Masthead</span><span class="chip">beta</span></p>
+          <p class="rsum">Top bar: white, black bottom rule, identity zone at left (red accent bar + title — generic, no Crown marks), nav links regular with medium active state underlined in black (not red — red stays ceremonial). Footer: bottom-right zone reserved for the system's wordmark placeholder (plain text).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/field · compiled from D-11</p>
+          <p><span class="rtitle">Field (soft border, blue glow focus)</span><span class="chip">beta</span></p>
+          <p class="rsum">Fields: soft border (1px #E0E0E0), soft radius 4; label above (medium caps); focus = blue glow (1px #66AFE9 outline + 8px rgba(102,175,233,.6) halo — live-measured); error = left rule + plain sentence under.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/select · compiled from D-12</p>
+          <p><span class="rtitle">Select (small sets)</span><span class="chip">beta</span></p>
+          <p class="rsum">Small fixed sets (≤ ~12) = native select squared like a field. Larger/filtered selection out of scope; platform fallback, marked as improvisation.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/meter · compiled from D-15</p>
+          <p><span class="rtitle">Progress meter</span><span class="chip">beta</span></p>
+          <p class="rsum">Meter = square track in #F4F4F4 with black fill and a plain readout ('7 of 10 steps'); restart = outline square. Static only; nothing decoratively animates (motion gated, per the standard's animation doctrine).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/status · codified from prop/20261007-151923-522030</p>
+          <p><span class="rtitle">Status label (word-first)</span><span class="chip">beta</span></p>
+          <p class="rsum">Status carries state through words (bilingual pairs over-under under 560px); statuses render as ruled chips, and registers/tables stay ruled: 2px header rule, hairline rows, pewter de-emphasis.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/ledger · codified from prop/20261007-151923-522030</p>
+          <p><span class="rtitle">Ledger (ruled register)</span><span class="chip">beta</span></p>
+          <p class="rsum">Status carries state through words (bilingual pairs over-under under 560px); statuses render as ruled chips, and registers/tables stay ruled: 2px header rule, hairline rows, pewter de-emphasis.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">component/notice · codified from prop/20261007-151923-72cc3e</p>
+          <p><span class="rtitle">Notice (ruled box)</span><span class="chip">beta</span></p>
+          <p class="rsum">Notices are full-width banded rows (#F4F4F4) under a 2px rule; sentence only, no icon, no toast.</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Guidelines · 3</p>
+
+        <div class="row">
+          <p class="rhead">guideline/typography · compiled from D-03</p>
+          <p><span class="rtitle">Typography (one family)</span><span class="chip">beta</span></p>
+          <p class="rsum">One family (Helvetica-class stand-in: Arimo), weights as roles: Light = quiet formal accents, Regular = default text, Medium = headings and key labels (web role per the standard), Bold = reserved for signage-style emphasis (rare).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">guideline/bilingual · compiled from D-09</p>
+          <p><span class="rtitle">Bilingual pairings</span><span class="chip">beta</span></p>
+          <p class="rsum">The signature structural device: primary page titles and key labels render bilingually (English | French, side-by-side, thin divider; over-under when narrow). Body content stays in the app's own language. Where a string exists in one language only, no signposting line is fabricated (that rule governs official publications, not this derived app) — carried as system nuance.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">guideline/interaction-states · compiled from D-21</p>
+          <p><span class="rtitle">Focus &amp; interaction states</span><span class="chip">beta</span></p>
+          <p class="rsum">Focus does change colour: blue glow — 1px #66AFE9 outline + 8px rgba(102,175,233,.6) halo (live-measured on Canada.ca). Exclusive to focus; reads on any ground.</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Patterns · 1</p>
+
+        <div class="row">
+          <p class="rhead">pattern/plain-chart · codified from prop/20261007-151923-bd08f2</p>
+          <p><span class="rtitle">Plain chart (bars, month grid, sparkline)</span><span class="chip">beta</span></p>
+          <p class="rsum">Charts render in the rule-and-grid idiom: black bars on rules, a month grid, and a slate trend line; no rings, no shadows, no new colours.</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Token sets · 2</p>
+
+        <div class="row">
+          <p class="rhead">token-set/type-scale · compiled from D-04</p>
+          <p><span class="rtitle">Screen type rhythm</span><span class="chip">beta</span></p>
+          <p class="rsum">Screen rhythm (AUTHORED interpretation, no sizes exist in source): page title 32/400; section headings 20/500; body 16/1.6; metadata 13 grey; bilingual pairings same size both languages.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">token-set/colour · compiled from D-05</p>
+          <p><span class="rtitle">Colour roles (ceremony + web layer)</span><span class="chip">beta</span></p>
+          <p class="rsum">FIP red strictly for ceremony: masthead accent device, the single primary action, identity zone marks. Black = text/structure; white = ground; pewter = de-emphasis (metadata, secondary labels). Status and errors are NOT colour-coded (see D-10).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPECIFICATION SUMMARY (registers) ==================== -->
+  <section id="specification" aria-labelledby="spec-h">
+    <div class="wrap">
+      <h2 id="spec-h">Specification summary</h2>
+      <p class="meta sub">2 rules · 4 prohibitions · 2 fallbacks · 1 recipe — titles and counts per the 0.2.0 manifest; quotes verbatim from the records.</p>
+
+      <div class="reg">
+        <p class="reg-label">Rules · 2</p>
+
+        <div class="row">
+          <p class="rhead">D-R1 · severity warning · applies to css, html</p>
+          <p><span class="rtitle">web-layer-interaction</span></p>
+          <p class="rsum">Interactive layer follows the live web layer: slate actions (#26374A, radius 4), blue focus glow (#66AFE9), soft borders.</p>
+          <p class="meta note">why: Live measurements on Canada.ca accepted at Gate 2 (D-01, D-11, D-21). · fix: Use the measured slate/blue values for interactive elements.</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">D-R2 · severity warning · applies to css, html</p>
+          <p><span class="rtitle">ceremonial-red</span></p>
+          <p class="rsum">FIP red is ceremony only — never status, errors, or reading surfaces.</p>
+          <p class="meta note">why: FIP standard + Gate 2 (D-05, D-22). · fix: Remove red from status/error/background roles.</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Prohibitions · 4</p>
+
+        <div class="row">
+          <p class="rhead">prohibit/red-status · governed by D-R2</p>
+          <p class="rsum">Red for status or errors — red is ceremonial (D-R2).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">prohibit/elevation-shadows · governed by D-R1</p>
+          <p class="rsum">Elevation or drop shadows — structure is flat, only the focus glow exists (D-22).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">prohibit/imagery-pictograms · governed by D-R1</p>
+          <p class="rsum">Imagery, pictograms or illustrative decoration (D-22).</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">prohibit/decorative-colour · governed by D-R1</p>
+          <p class="rsum">Decorative colour outside the FIP families (D-22).</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Fallbacks · 2</p>
+
+        <div class="row">
+          <p class="rhead">fallback/platform-controls</p>
+          <p><span class="rtitle">Platform defaults for uncovered controls</span></p>
+          <p class="rsum">If the system defines no control for a need, use the platform's native element with the field styling; keep native semantics.</p>
+          <p class="meta note">constraints: field styling (soft border, radius 4) · blue glow focus · mark the improvisation and report a gap</p>
+        </div>
+
+        <div class="row">
+          <p class="rhead">fallback/large-selection</p>
+          <p><span class="rtitle">Selection beyond small sets</span></p>
+          <p class="rsum">Small fixed sets use the select; larger or filtered selection uses the platform default, marked.</p>
+          <p class="meta note">constraints: keep field styling · mark the improvisation</p>
+        </div>
+      </div>
+
+      <div class="reg">
+        <p class="reg-label">Resolution order · policy</p>
+        <div class="row">
+          <p class="rsum">CONFLICT → RESOLVED → COMPOSE → FALLBACK → UNDEFINED.</p>
+          <p class="meta note">On undefined: "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical." · On conflict: "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition)."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ NOTICE BAND (component/notice) — build disclosure =========== -->
+<div class="notice-band">
+  <div class="wrap">
+    <p>Built under the dominion authority, pack 0.2.0. Every element on this page either resolves to a recorded decision or carries a marked improvisation: the ceremonial accent's code, the grey value mappings, the page rhythm, and the footer line.</p>
+    <p class="gaps">Gaps filed for the unrecorded pieces: gap/20261008-165141-a9a135 (footer line) · gap/20261008-165141-acb94d (colour codes) · gap/20261008-165141-150790 (spacing rhythm). They stay open for upstream review; nothing here changes the published authority.</p>
+    <button class="btn" id="marks" type="button" aria-pressed="true">Hide improvisation marks</button>
+    <p class="meta">The improvisations stay visible as dashed outlines while the marks are shown; hover one for its record.</p>
+  </div>
+</div>
+
+<!-- ============== FOOTER — credit line (gap/20261008-165141-a9a135) ========= -->
+<footer class="ft" data-improv="the footer credit line is unrecorded (resolve: UNDEFINED, top candidate component/masthead 1.50 vs 6.50). Built from the masthead's reserved footer zone: plain text, bottom-right, metadata grey — gap/20261008-165141-a9a135 filed.">
+  <div class="wrap">
+    <p class="meta">snapshot: FIP design standard + canada.ca live web layer</p>
+    <p class="meta">built under the dominion authority · dominion 0.2.0</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Improvisation-marks control (notice band). Marks are on by default.
+  var btn = document.getElementById('marks');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var on = document.documentElement.classList.toggle('marks-on');
+      btn.textContent = on ? 'Hide improvisation marks' : 'Reveal improvisation marks';
+      btn.setAttribute('aria-pressed', String(on));
+    });
+  }
+  // Nav active state: medium + black underline (component/masthead recorded state).
+  if ('IntersectionObserver' in window) {
+    var links = document.querySelectorAll('nav a[href^="#"]');
+    var byId = {};
+    links.forEach(function (l) { byId[l.getAttribute('href').slice(1)] = l; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting || !byId[e.target.id]) return;
+        links.forEach(function (l) { l.classList.remove('active'); });
+        byId[e.target.id].classList.add('active');
+      });
+    }, { rootMargin: '-30% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

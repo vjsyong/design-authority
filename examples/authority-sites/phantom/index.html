@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phantom — the Jennu Interface System</title>
+<meta name="description" content="Documentation for the Jennu (Phantom) Interface System — built under the phantom authority, phantom v0.2.0 (format 0.1). Every value quoted from the pack's records.">
+<!-- built under the phantom authority · pack phantom v0.2.0 (format 0.1)
+     Single self-contained page. No frameworks, no network, no borrowed CSS.
+     Styling values are quoted from packs/phantom records — see log.md for the
+     full call-by-call audit (token-set/colour, type-scale, tracking-and-case,
+     surfaces, breakpoints; guideline/typography-voices; layout/page-shell,
+     header, footer, page-intro; component/tiles, menu-panel, action-button,
+     blockquote, lists). Improvisations carry data-improv attributes. -->
+<style>
+/* ── Type: Source Sans Pro, three voices of one family (guideline/typography-voices).
+      Deployed loaded 300/700/900 via Google Fonts @import; this build ships the
+      same three weights as local files — no 400, no italics. ── */
+@font-face{font-family:"Source Sans Pro";src:url("source-sans-pro-300-latin.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans Pro";src:url("source-sans-pro-700-latin.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans Pro";src:url("source-sans-pro-900-latin.woff2") format("woff2");font-weight:900;font-style:normal;font-display:swap}
+
+/* ── Foundations (token-set/colour, surfaces, breakpoints, type-scale) ──
+   Spacing note: the pack records these steps only — 1em, 1.25em, 2em, 2.5em,
+   4em, 5em, 6em, 8em (gutters 2.5em→1.25em ≤736; header 8em→4em; main pad-bottom
+   6em; footer 5em 0 6em; list/li 2em; menu inner 2.75em). Vertical rhythm for a
+   doc page is not separately recorded; this build composes with those steps only
+   (see filed gaps). */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight:300;font-size:16px;line-height:1.75;      /* 12pt≤1280 · lh 1.75 */
+  color:#ff6bbc;                                         /* deployed reading ink */
+  background:#ffffff;                                    /* default ground */
+}
+@media (min-width:1281px){body{font-size:18.6667px}}     /* 14pt≤1680 */
+@media (min-width:1681px){body{font-size:21.3333px}}     /* 16pt above */
+
+/* ── Voices (type-scale + tracking-and-case) ── */
+h1,h2,h3,h4{margin:0}
+h1{font-size:2.75em;font-weight:700;line-height:1.3;letter-spacing:-0.035em;text-transform:none}
+h2{font-size:1.1em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em}
+h3{font-size:1em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em}
+h4{font-size:0.8em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em}
+@media (max-width:736px){h1{font-size:2em}}              /* 32px ≤736 */
+p{margin:0 0 2em}
+strong{font-weight:900}
+
+/* ── Links: neon ink on a dotted blue underline; pink hover/focus ── */
+a{color:#6bff2c;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#20a3f5;text-decoration-thickness:1px}
+a:hover,a:focus{color:#f2849e}
+a:focus-visible{outline:2px solid #f2849e;outline-offset:2px}
+
+/* ── Code: blue ground, pink text, 1px #c9c9c9, Courier New 0.9em ── */
+code{font-family:"Courier New",Courier,monospace;font-size:0.9em;background:rgba(46,90,249,.986);color:#ff6bbc;border:1px solid #c9c9c9;border-radius:0;padding:0.1em 0.5em;overflow-wrap:anywhere}
+
+/* ── Lists (component/lists): disc marks, 2em spacing; ul.alt drops marks ── */
+ul,ol{margin:0 0 2em;padding-left:2em}
+li{margin:0 0 2em}
+ul.alt{list-style:none;padding-left:0}
+
+/* ── Blockquote (component/blockquote): synthetic oblique, 4px #c9c9c9 rule ── */
+blockquote{margin:0 0 2em;font-style:italic;border-left:4px solid #c9c9c9;padding:0.5em 0 0.5em 2em}
+
+/* ── Header (layout/header + page-shell): static, 8em pad, logo left ── */
+#header{padding:8em 2.5em 0;position:relative}
+@media (max-width:736px){#header{padding:4em 1.25em 0}}
+.logo{display:inline-flex;align-items:center;gap:1em;text-decoration:none;color:#ff6bbc}
+.logo .symbol{width:2em;height:2em;display:grid;place-items:center;border:1px solid #c9c9c9;border-radius:0;font-weight:900;font-size:1em;line-height:1}
+.logo .title{font-weight:900;text-transform:uppercase;letter-spacing:0.35em;font-size:1em}
+
+/* Menu pill: fixed 64×48, right 2em / top 2em, radius 4px kept (layout/header).
+   ≤736 the measured offset is .5em (breakpoints record: nav offset 2em→.5em). */
+.menu-pill{position:fixed;top:2em;right:2em;width:64px;height:48px;display:flex;align-items:center;justify-content:center;border:0;border-radius:4px;background:rgba(255,255,255,.55);text-decoration:none;color:#585858;cursor:pointer;padding:0}
+.menu-pill:hover,.menu-pill:focus{color:#585858}
+@media (max-width:736px){.menu-pill{top:.5em;right:.5em}}
+
+/* ── Menu panel (component/menu-panel): lime slide-in, 22em/16.5em ── */
+#menu{position:fixed;top:0;right:0;width:22em;height:100%;background:#3ef900;color:#000;transform:translateX(22em);transition:transform .45s ease;z-index:2;overflow-y:auto}
+@media (max-width:736px){#menu{width:16.5em;transform:translateX(16.5em)}}
+#menu .inner{padding:2.75em}
+#menu .menu-title{margin:0 0 2em}
+#menu ul{list-style:none;margin:0;padding:0}
+#menu li{margin:0;border-bottom:1px solid rgba(255,255,255,.15)}
+#menu a{display:block;color:#000;font-weight:300;letter-spacing:normal;text-transform:none;padding:1em 0;text-decoration:none}
+#menu a:hover,#menu a:focus{color:#000}                  /* no hover colour (deployed) */
+body.is-menu-visible #menu{transform:translateX(0)}
+body.is-menu-visible #wrapper{opacity:.25}
+#wrapper{transition:opacity .45s ease}
+
+/* Close control (X): grey #585858 → pink hover; sits 6em left of the panel. */
+.menu-close{position:fixed;top:2em;right:calc(22em + 6em);width:2em;height:2em;display:none;align-items:center;justify-content:center;background:transparent;border:0;padding:0;color:#585858;cursor:pointer;z-index:3;font-size:1em;font-family:inherit}
+.menu-close:hover,.menu-close:focus{color:#f2849e}
+body.is-menu-visible .menu-close{display:flex}
+@media (max-width:736px){.menu-close{right:calc(16.5em + 1.25em)}}  /* kept on-canvas at 390 */
+
+/* ── Main container (layout/page-shell): 68em, 2.5em gutters / 1.25em ≤736 ── */
+#main .inner{max-width:68em;margin:0 auto;padding:0 2.5em 6em}
+@media (max-width:736px){#main .inner{padding:0 1.25em 6em}}
+section{padding:0 0 5em;scroll-margin-top:2em}
+
+/* ── Masthead ── */
+.masthead{padding-top:2em}
+.kicker{font-size:0.8em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em;margin:0 0 2em}
+.masthead h1{margin:0 0 1em}
+.version{margin:0 0 2em}
+.lede{margin:0 0 5em}
+.counts{font-size:0.8em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em;margin:0 0 2em}
+.muted{color:rgba(88,88,88,.5)}
+
+/* ── Buttons (component/action-button): ink ring, tracked caps, pink hover ── */
+ul.actions{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:1em;align-items:center}
+ul.actions li{margin:0}
+.button{display:inline-block;font-size:0.8em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em;line-height:3.5em;height:3.5em;padding:0 1.25em 0 1.6em;background:transparent;color:#ff6bbc;box-shadow:inset 0 0 0 2px #585858;border:0;border-radius:4px;text-decoration:none;cursor:pointer;transition:all 0.2s ease-in-out}
+.button:hover,.button:focus{color:#f2849e;box-shadow:inset 0 0 0 2px #f2849e}
+.button:active{background:rgba(242,132,158,.1)}
+.button.primary{background:#585858;color:#ffffff;box-shadow:none}
+.button.primary:hover,.button.primary:focus{background:#f2849e;color:#ffffff}
+.button.primary:active{background:#ee5f81}
+
+/* ── Catalogue grid — tiles treatment (component/tiles): 3-up at 1280, 1-up at
+      390, radii flattened to 0, hover paints the opaque pink veil #eb84da with
+      white caption ink, transform stays scale(1) (no zoom). ── */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:2em;margin:0 0 5em}
+@media (max-width:736px){.tiles{grid-template-columns:1fr}}
+.tiles article{background:#ffffff;border:1px solid #c9c9c9;border-radius:0;padding:2em;transition:transform .5s ease,opacity .5s ease,background .2s ease-in-out,color .2s ease-in-out,border-color .2s ease-in-out}
+.tiles article:hover{background:#eb84da;border-color:#eb84da;color:#ffffff}
+.tiles article:hover code{background:transparent;color:#ffffff;border-color:#ffffff}
+.tiles h4{margin:0 0 1em}
+.t-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0.75em;margin:0 0 1em;font-size:1em}
+.t-kind{font-size:0.8em;font-weight:900;text-transform:uppercase;letter-spacing:0.35em}
+.t-sum{margin:0;font-size:1em}
+.group h3{margin:0 0 2em}
+
+/* ── Load-in (layout/page-intro): tiles only. is-preload disables all
+      animation/transition and holds .tiles article at scale(.9)/opacity 0;
+      JS removes the class 100ms after load; ramp .5s ease. Header never
+      animates. ── */
+body.is-preload *{animation:none !important;transition:none !important}
+body.is-preload .tiles article{transform:scale(.9);opacity:0}
+.tiles article{transform:scale(1);opacity:1}
+
+/* ── Specification rows: doc composition (see gap note) — ul.alt rows on the
+      system's line colour #c9c9c9. ── */
+.spec-rows{list-style:none;margin:0 0 5em;padding:0}
+.spec-rows>li{margin:0;padding:2em 0;border-top:1px solid #c9c9c9}
+.spec-rows>li:last-child{border-bottom:1px solid #c9c9c9}
+.spec-rows blockquote{margin:2em 0 0}
+.spec-rows .note{margin:1em 0 0;font-size:0.8em}
+.block-head{margin:0 0 2em}
+
+/* Inks (token-set/colour quoted values) */
+.inks{list-style:none;margin:0 0 2em;padding:0;display:flex;flex-wrap:wrap;gap:1em 2em}
+.inks li{margin:0;display:flex;align-items:center;gap:0.75em;max-width:100%}
+.sw{width:1.25em;height:1.25em;flex:0 0 auto;border:1px solid #c9c9c9;border-radius:0}
+
+/* ── Footer (layout/footer): #f6f6f6, 5em 0 6em, flex sections + copyright ── */
+#footer{background:#f6f6f6;padding:5em 0 6em}
+#footer .inner{max-width:68em;margin:0 auto;padding:0 2.5em;display:flex;flex-wrap:wrap;gap:2em 2.5em}
+@media (max-width:736px){#footer .inner{padding:0 1.25em}}
+.fd-main{flex:1 1 55%}
+.fd-side{flex:1 1 25%}
+.fd-side ul{list-style:none;margin:0;padding:0}
+.fd-side li{margin:0 0 1em}
+.copyright{flex-basis:100%;margin:2em 0 0;font-size:0.8em;color:rgba(88,88,88,.5)}
+
+/* utility */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body id="top" class="is-preload">
+<!-- fallback/no-script: without JS the is-preload state would hold the tiles
+     back; the noscript stylesheet lifts it so content renders immediately. -->
+<noscript><style>body.is-preload .tiles article{transform:none !important;opacity:1 !important}</style></noscript>
+
+<div id="wrapper">
+
+  <!-- layout/header: static top block, 8em pad (4em ≤736); logo left = 2em
+       symbol + tracked-caps wordmark; single fixed 64×48 Menu pill top-right
+       (right 2em/top 2em), radius 4px kept. The header does not fade with
+       load-in. -->
+  <header id="header">
+    <a class="logo" href="#top">
+      <!-- data-improv="emblem-glyph": the record specifies a 2em symbol element
+           (layout/header); the deployed symbol asset itself is not in the pack,
+           so a 2em plate with the wordmark initial stands in. -->
+      <span class="symbol" aria-hidden="true" data-improv="emblem-glyph">P</span>
+      <span class="title">Phantom</span>
+    </a>
+    <nav>
+      <!-- data-improv="plate-alpha": the Menu plate is "translucent-white" in
+           layout/header; the exact alpha is not recorded (.55 used). It is a
+           3-line SVG icon with a hidden label, per the record. -->
+      <a id="menu-trigger" class="menu-pill" href="#menu" aria-label="Menu" data-improv="plate-alpha">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="vh">Menu</span>
+      </a>
+    </nav>
+  </header>
+
+  <div id="main">
+    <div class="inner">
+
+      <!-- Masthead: name, version, one-line description — all quoted from the
+           pack's overview manifest. -->
+      <section class="masthead">
+        <p class="kicker">Deployed language · rendered snapshot of zhenyoyo.github.io</p>
+        <h1>The Jennu (Phantom) Interface System</h1>
+        <p class="version"><code>phantom v0.2.0</code> <code>format 0.1</code> <span class="muted">commit n/a — public sources</span></p>
+        <p class="desc">The Jennu design authority — the interface system of zhenyoyo.github.io as deployed.</p>
+        <p class="counts">17 components · 5 layouts · 6 token sets · 1 guideline · 8 rules · 2 prohibitions · 4 fallbacks · 0 recipes</p>
+        <ul class="actions">
+          <li><a class="button primary" href="#catalogue">Catalogue</a></li>
+          <li><a class="button" href="#specification">Specification</a></li>
+        </ul>
+      </section>
+
+      <!-- data-improv="gap/20261008-164947-c1ef70": a documentation catalogue
+           section is UNDEFINED in the pack (resolve returned UNDEFINED; gap
+           filed). Composition: the tiles grid treatment (3-up/1-up, flat radii,
+           opaque #eb84da hover veil with white ink, no zoom) applied to text
+           cells; the hover veil keeps the summary always readable for touch.
+           Summaries are the pack's own: verbatim where the record was inspected
+           in this build (15 of 29), otherwise cross-referenced from the records
+           that define each artifact. -->
+      <section id="catalogue" data-improv="gap/20261008-164947-c1ef70">
+        <h2>Catalogue</h2>
+        <p class="lede">Every artifact in the pack — 29 records grouped by kind, each titled with its recorded summary. Statements are quoted from the records themselves; the few not inspected during this build are cross-referenced from the records that define them.</p>
+
+        <div class="group">
+          <h3>Components <code class="count">17</code></h3>
+          <div class="tiles">
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/action-button</code></p>
+              <h4>Button (ink ring, tracked caps, pink hover)</h4>
+              <p class="t-sum">Uppercase 900 label at 0.8em with 0.35em tracking, 44.8px tall, radius 4px (NOT flattened); default = transparent ground with a 2px ink ring (inset 0 0 0 2px #585858); hover flips label + ring to pink #f2849e; primary = solid #585858 white label, hover ground #f2849e, active #ee5f81; active ground rgba(242,132,158,.1). Small 0.6em (33.6px), large 1em (56px), .fit full width; disabled opacity .25.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/actions</code></p>
+              <h4>Actions row (ul.actions)</h4>
+              <p class="t-sum">The row wrapper that carries the system's ink-ring buttons — see Button for the treatment it groups.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/blockquote</code></p>
+              <h4>Blockquote</h4>
+              <p class="t-sum">Italic pull-quote (synthetic oblique — no italic face) with a 4px #c9c9c9 left rule, padding 0.5em 0 0.5em 2em, no quotation marks; text colour inherits the page ink.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/carousel-gallery</code></p>
+              <h4>Random gallery carousel (index)</h4>
+              <p class="t-sum">The index page's randomised gallery carousel; its recorded rework lives in the candidate dossiers, not the canon.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/checkbox-radio</code></p>
+              <h4>Checkbox &amp; radio (red checked fill, purple labels)</h4>
+              <p class="t-sum">Checked fill #f51616 with purple #8833e3 labels; the marks obey the deployment's flattened radius (0).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/code-pre</code></p>
+              <h4>Code &amp; preformatted (blue chip)</h4>
+              <p class="t-sum">Code sits on the solid blue ground rgba(46,90,249,.986) in pink, Courier New at 0.9em, on a 1px #c9c9c9 border.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/emblem-logo</code></p>
+              <h4>Emblem &amp; wordmark lock-up</h4>
+              <p class="t-sum">The 2em symbol + tracked-caps wordmark lock-up described by the header layout.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/field</code></p>
+              <h4>Field (underline input, pink focus)</h4>
+              <p class="t-sum">Underline input whose text reads in the deployed pink; focus ink #f2849e.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/hr</code></p>
+              <h4>Horizontal rule</h4>
+              <p class="t-sum">Rules drawn in the system's line colour #c9c9c9.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/icon-row</code></p>
+              <h4>Icon chips (square) &amp; inline icons</h4>
+              <p class="t-sum">Square icon chips — radii flattened to 0 across the deployment.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/image</code></p>
+              <h4>Image treatments</h4>
+              <p class="t-sum">Image treatments with radii flattened to 0, per the deployment's shape language.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/lists</code></p>
+              <h4>Lists (default, alt, ordered)</h4>
+              <p class="t-sum">Unordered lists with disc marks and 2em spacing; ul.alt drops marks; ol uses decimal counters; li item spacing 2em. Content primitives — they inherit the page ink (pink on default pages).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/menu-panel</code></p>
+              <h4>Menu panel (neon-green slide-in)</h4>
+              <p class="t-sum">Slide-in nav: 22em (352px) fixed right, full height, ground #3ef900 lime (override of the template's #585858) with black text; inner padding 2.75em; heading in tracked caps; links black, 1em 0 padding, no hover colour, separators remain the template's rgba(255,255,255,.15) rules (faint on green). Opening (body.is-menu-visible) slides it in and dims #wrapper to opacity .25. Close = X (SVG) 6em left of the panel, grey #585858 → pink hover; it sits over the dimmed page.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/nav-hamburger</code></p>
+              <h4>Nav trigger (hamburger plate)</h4>
+              <p class="t-sum">The 3-line plate that opens the lime panel — 64×48, radius 4px kept, per the header layout.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/select</code></p>
+              <h4>Select (underline, custom chevron)</h4>
+              <p class="t-sum">Underline select with a custom chevron, in the deployed control treatment.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/table</code></p>
+              <h4>Table (900 head, 2px rules, tinted odd rows)</h4>
+              <p class="t-sum">900 mixed-case heads over 2px #c9c9c9 rules; odd rows tinted with the system zebra rgba(144,144,144,.075).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Component</span> <code>component/tiles</code></p>
+              <h4>Tiles (project grid; deployed hover = flat pink veil, no zoom)</h4>
+              <p class="t-sum">Responsive image grid (3-up at 1280, 322×322px tiles; 1-up at 390). Image radius flattened to 0. Rest veils mostly alpha-0 (#efc5e900, #ffe2e500; faint #746ffa28 / #ffe2e524). Non-touch hover: the veil becomes an OPAQUE flat pink #eb84da (photo fully covered, 97.6% of the tile in the capture), transform stays scale(1) (no zoom), the cross/arrow overlay is disabled, and the white caption fades in (opacity 0→1, max-height 0→15em over 0.5s; white-on-#eb84da 2.37:1).</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Layouts <code class="count">5</code></h3>
+          <div class="tiles">
+            <article>
+              <p class="t-meta"><span class="t-kind">Layout</span> <code>layout/footer</code></p>
+              <h4>Footer — 2 sections + copyright (present on 4 of 9 pages)</h4>
+              <p class="t-sum">Grey #f6f6f6 ground, padding 5em 0 6em; flex .inner: contact block (~66%; underline form + Send on elements/generic/publication; index swaps the form for a plain pink email line) + Follow icon row (~33%) + copyright bar (0.8em, rgba(88,88,88,.5) ≈ 2.23:1). Commented out on the four project pages; absent on email.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Layout</span> <code>layout/header</code></p>
+              <h4>Header — logo left, fixed Menu pill (no load animation)</h4>
+              <p class="t-sum">Static top block (8em pad; 4em ≤736); logo left = 2em symbol + tracked-caps wordmark; a single Menu control fixed top-right (right 2em/top 2em) as a 64×48 translucent-white plate with hidden label and 3-line SVG icon. Radius 4px kept here while the rest of the deployment flattened radii. The header does NOT fade with load-in (opacity 1 throughout) — pass-1's fade claim was wrong.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Layout</span> <code>layout/page-intro</code></p>
+              <h4>Load-in motion (is-preload) — tiles only</h4>
+              <p class="t-sum">The only authored motion: body.is-preload disables all animation/transition (!important) and holds .tiles article at scale(0.9)/opacity 0; main.js removes the class 100ms after window.load; tiles ramp transform+opacity 0.5s ease (measured 0.22→0.99 over ~350ms, settled ~830ms). The header does NOT animate and no #wrapper fade rule exists anywhere (corrects pass-1). noscript.css neutralises the preload transform.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Layout</span> <code>layout/page-shell</code></p>
+              <h4>Page shell — header / menu / main / footer slots</h4>
+              <p class="t-sum">Every page: #wrapper &gt; header#header (static, 8em top pad; logo left; fixed 64×48 Menu pill top-right) + nav#menu (fixed slide-in; 22em, 16.5em ≤736) + div#main inside a 68em/2.5em container + optional footer#footer (rendered on only 4 of 9 pages). Project pages add a shared per-page style block. index duplicates id=main and nests a second document head mid-body (renders as whitespace).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Layout</span> <code>layout/project-page</code></p>
+              <h4>Project-detail composition (light / tame / fafa / Unlogical)</h4>
+              <p class="t-sum">Project-detail composition; project grounds #fbfbfb with body ink flipped to black — the page's per-page override.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Token sets <code class="count">6</code></h3>
+          <div class="tiles">
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/breakpoints</code></p>
+              <h4>Breakpoints — xlarge through xxsmall</h4>
+              <p class="t-sum">Template breakpoint set: xlarge 1281–1680, large 981–1280, medium 737–980, small 481–736, xsmall 361–480, xxsmall ≤360. CSS queries at 1280/980/736/480/360 govern gutters (2.5em → 1.25em ≤736), header padding (8em → 4em), menu width (22em → 16.5em), nav offset (2em → .5em) and tile columns (3-up ≤1280, 1-up at 390).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/colour</code></p>
+              <h4>Colour — deployed ink (pink type, neon link, blue code)</h4>
+              <p class="t-sum">Deployed reading ink is pink #ff6bbc (body/h1–h4/footer/table/form text), overriding the template's #585858; content links are neon green #6bff2c with a dotted blue #20a3f5 underline and pink #f2849e hover; code sits on a solid blue rgba(46,90,249,.986) ground in pink; project pages flip body ink to black; the menu panel is lime #3ef900 with black text. Measured: pink-on-white 2.6:1, green-on-white 1.32:1 (recorded, not corrected).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/surfaces</code></p>
+              <h4>Surfaces — grounds, tints, scrims, panels</h4>
+              <p class="t-sum">Grounds: white #ffffff (default), #fbfbfb (project pages via the shared per-page style block), footer #f6f6f6. Panels: menu #3ef900 (lime), code #315df9 composite. Tile resting veils are collapsed near-transparent (#efc5e900/#ffe2e500 → alpha 0, faint #746ffa28/#ffe2e524); the dark scrim is disabled and hover paints an opaque pink veil #eb84da. Zebra rgba(144,144,144,.075); lines #c9c9c9; menu separators rgba(255,255,255,.15).</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/text-measure-and-leading</code></p>
+              <h4>Measure &amp; leading</h4>
+              <p class="t-sum">Measure &amp; leading for reading text; body leading is recorded at 1.75.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/tracking-and-case</code></p>
+              <h4>Case &amp; tracking voice</h4>
+              <p class="t-sum">h1 is the only tight voice: sentence case, −0.035em. The caps voice (uppercase + 0.35em + weight 900) runs h2–h6, the wordmark, nav and buttons. Exceptions measured: table heads (900, mixed case), form labels and menu links (300), body (300). Case is CSS-authored — source text stays mixed case.</p>
+            </article>
+            <article>
+              <p class="t-meta"><span class="t-kind">Token set</span> <code>token-set/type-scale</code></p>
+              <h4>Type scale — deployed (Source Sans Pro 300/700/900)</h4>
+              <p class="t-sum">Rendered scale: body 12pt=16px at ≤1280 (18.67px ≤1680, 21.33px above), line-height 1.75. h1 2.75em (44px @1280; 32px ≤736) weight 700, lh 1.3, −0.035em. h2 1.1em (17.6px) 900, uppercase, +0.35em. h3 1em (16px) 900 caps; h4 0.8em (12.8px) 900 caps. Buttons 0.8em/900; table heads 0.9em/900 mixed case; code 0.9em.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Guideline <code class="count">1</code></h3>
+          <div class="tiles">
+            <article>
+              <p class="t-meta"><span class="t-kind">Guideline</span> <code>guideline/typography-voices</code></p>
+              <h4>Typography — three voices of one family</h4>
+              <p class="t-sum">One family renders in three voices: 300 light sentence-case body (the working voice), 700 tight-tracked h1, and 900 uppercase tracked caps for h2–h6, wordmark, nav and buttons. Loaded via Google Fonts @import (300,700,900 only — no 400, no italics; em/blockquote are synthetic oblique). Table heads stay mixed-case 900; labels/menu links stay 300.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- data-improv="gap/20261008-164947-e2b44f": a specification-summary
+           section is UNDEFINED in the pack (resolve returned UNDEFINED; gap
+           filed). Composition: caps-voice headings and the pack's own list
+           treatment (ul.alt rows on #c9c9c9 lines); verbatim statements quoted
+           in blockquotes; ids and values in code chips (blue ground, pink ink). -->
+      <section id="specification" data-improv="gap/20261008-164947-e2b44f">
+        <h2>Specification</h2>
+        <p class="lede">The pack's own guardrails, quoted where this build surfaced them: 8 rules, 2 prohibitions, 4 fallbacks, 0 recipes (counts from the overview manifest).</p>
+
+        <h3 class="block-head">Prohibitions — 2 recorded</h3>
+        <ul class="spec-rows">
+          <li>
+            <p><code>prohibit/unreadable-accent-ink</code></p>
+            <blockquote>Accent ink relied on as the only readable signal where measured contrast &lt; 3:1 — as a reusable-system guard. Measured in the deployment: pink/white 2.60, green/white 1.32, pink/code-blue 1.99, close-X/white 1.32. Pair the colour with another affordance (the dotted underline does this for links; nothing does it for body text) or use a sanctioned override.</blockquote>
+            <p class="note">Pairs with rule P-R1 (the deployed ink map). Contrast failures are recorded as measured observations, not corrected.</p>
+          </li>
+        </ul>
+
+        <h3 class="block-head">Rules — 8 recorded</h3>
+        <ul class="spec-rows">
+          <li>
+            <p><code>P-R1</code> — the deployed ink map</p>
+            <blockquote>Follow the deployed ink map (P-R1).</blockquote>
+            <p class="note">Quoted from precedent/pink-ink-canonised. The rules list is quoted only as far as this build's resolutions surfaced it; the count is from the overview manifest.</p>
+          </li>
+        </ul>
+
+        <h3 class="block-head">Precedent — recorded</h3>
+        <ul class="spec-rows">
+          <li>
+            <p><code>precedent/pink-ink-canonised</code> — Pink/neon reading ink, canonised on redo</p>
+            <blockquote>The pink reading ink is the portfolio's identity. Its measured contrast failures (2.6:1 / 1.32:1) are recorded as observations and bounded by prohibition/unreadable-accent-ink (do not extend the pattern past its measured roles; pair colour with other affordances).</blockquote>
+            <p class="note">Try lines, verbatim: “follow the deployed ink map (P-R1)”; “for AA-sensitive consumers use the sanctioned black-body override and file a gap”.</p>
+          </li>
+        </ul>
+
+        <h3 class="block-head">Fallbacks — 4 recorded</h3>
+        <ul class="spec-rows">
+          <li>
+            <p><code>fallback/no-script</code></p>
+            <blockquote>Without JS the load-in is skipped and content renders immediately (noscript.css lifts is-preload). The menu remains JS-dependent (slide-in + dimming); without JS its control degrades to an in-page anchor at best — undefined beyond that.</blockquote>
+          </li>
+          <li>
+            <p><code>fallback/light-only</code> — Light grounds only (no dark surfaces).</p>
+          </li>
+          <li>
+            <p><code>fallback/cjk-system-fallback</code> — CJK text falls to the OS (no CJK family declared).</p>
+          </li>
+          <li>
+            <p><code>fallback/synthetic-italic</code> — no italic face ships; em/blockquote render as synthetic oblique (guideline/typography-voices).</p>
+          </li>
+        </ul>
+
+        <h3 class="block-head">Deployed ink — quoted values</h3>
+        <ul class="inks">
+          <li><span class="sw" style="background:#ff6bbc"></span> <code>#ff6bbc</code> reading ink — body, h1–h4, footer, table, form</li>
+          <li><span class="sw" style="background:#6bff2c"></span> <code>#6bff2c</code> link ink</li>
+          <li><span class="sw" style="background:#20a3f5"></span> <code>#20a3f5</code> dotted 1px link underline</li>
+          <li><span class="sw" style="background:#f2849e"></span> <code>#f2849e</code> hover &amp; focus — the one interaction pink</li>
+          <li><span class="sw" style="background:rgba(46,90,249,.986)"></span> <code>rgba(46,90,249,.986)</code> code ground</li>
+          <li><span class="sw" style="background:#3ef900"></span> <code>#3ef900</code> menu panel</li>
+          <li><span class="sw" style="background:#8833e3"></span> <code>#8833e3</code> control labels</li>
+          <li><span class="sw" style="background:#f51616"></span> <code>#f51616</code> checked fill</li>
+          <li><span class="sw" style="background:#f6f6f6"></span> <code>#f6f6f6</code> footer ground</li>
+          <li><span class="sw" style="background:#ffffff"></span> <code>#ffffff</code> / <span class="sw" style="background:#fbfbfb"></span> <code>#fbfbfb</code> grounds</li>
+          <li><span class="sw" style="background:#eb84da"></span> <code>#eb84da</code> tile hover veil (opaque, flat)</li>
+          <li><span class="sw" style="background:#c9c9c9"></span> <code>#c9c9c9</code> lines &amp; 1px borders</li>
+        </ul>
+        <p>Measured contrast, recorded not corrected: pink/white 2.60 · green/white 1.32 · pink/code-blue 1.99 · black/menu-green 14.76.</p>
+        <p>Shape language: radii flattened to 0 on marks, boxes, images and chips; 4px kept on the header pill and the buttons.</p>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- layout/footer: #f6f6f6 ground, 5em 0 6em, two sections + copyright bar.
+       data-improv="footer-slot": the deployed right-hand slot is a Follow icon
+       row; this docs page swaps in section links (its job here) — the rest of
+       the footer is per record. -->
+  <footer id="footer" data-improv="footer-slot">
+    <div class="inner">
+      <div class="fd-main">
+        <p><strong>Built under the phantom authority</strong> — <code>phantom v0.2.0</code> <code>format 0.1</code>.</p>
+        <p>Every value on this page is quoted from the pack's records: the deployed pink reading ink, the lime slide-in menu, the ink-ring buttons, the underline fields, the flattened radii, the tiles-only load-in, and Source Sans Pro at three voices. Improvisations are marked <code>data-improv</code> and two doc-page gaps are filed in the workspace.</p>
+      </div>
+      <div class="fd-side">
+        <ul>
+          <li><a href="#catalogue">Catalogue</a></li>
+          <li><a href="#specification">Specification</a></li>
+          <li><a href="#top">Top</a></li>
+        </ul>
+      </div>
+      <p class="copyright">Built under the phantom authority · phantom v0.2.0 (format 0.1) · snapshot: zhenyoyo.github.io (HTML5 UP Phantom deployment) · rendered mirror docs/synthesis/phantom/_raw/site</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- component/menu-panel: fixed slide-in, 22em (16.5em ≤736), ground #3ef900
+     with black ink, inner padding 2.75em, tracked-caps heading, links 300 at
+     1em 0 padding, separators rgba(255,255,255,.15). Opening slides it in and
+     dims #wrapper to .25; the X (6em left of the panel, grey → pink hover)
+     closes it. The panel and the X live OUTSIDE #wrapper so the dimming does
+     not fade the panel itself.
+     data-improv="no-js-menu": fallback/no-script records that the menu's
+     no-JS behaviour is undefined beyond an in-page anchor — this build keeps
+     href="#menu" as that anchor and marks the gap rather than inventing one. -->
+<nav id="menu" aria-label="Site menu" data-improv="no-js-menu">
+  <div class="inner">
+    <h2 class="menu-title">Menu</h2>
+    <ul>
+      <li><a href="#top">Top</a></li>
+      <li><a href="#catalogue">Catalogue</a></li>
+      <li><a href="#specification">Specification</a></li>
+      <li><a href="#footer">Built under</a></li>
+    </ul>
+  </div>
+</nav>
+<!-- The X's box size is not recorded (offset 6em and colours are); ≤736 it is
+     kept 1.25em outside the panel so it stays on-canvas at 390. -->
+<button id="menu-close" class="menu-close" type="button" aria-label="Close menu">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5L19 19M19 5L5 19"/></svg>
+</button>
+
+<!-- Interactions (vanilla, no libraries):
+     · load-in per layout/page-intro — is-preload is removed 100ms after
+       window.load; tiles ramp transform+opacity .5s ease. The header never
+       animates. Without JS, the noscript stylesheet above lifts the state.
+     · menu per component/menu-panel — the pill opens (body.is-menu-visible),
+       the X closes; Escape, clicking the dimmed page, and choosing a menu link
+       close too (the record specifies the open/dim behaviour; the extra close
+       affordances are part of the no-JS-marked menu adaptation). -->
+<script>
+(function(){
+  var body=document.body;
+  window.addEventListener("load",function(){
+    setTimeout(function(){body.classList.remove("is-preload");},100);
+  });
+  var trigger=document.getElementById("menu-trigger");
+  var closeBtn=document.getElementById("menu-close");
+  var wrapper=document.getElementById("wrapper");
+  function openMenu(){body.classList.add("is-menu-visible");}
+  function closeMenu(){body.classList.remove("is-menu-visible");}
+  trigger.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();openMenu();});
+  closeBtn.addEventListener("click",function(e){e.stopPropagation();closeMenu();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){closeMenu();}});
+  wrapper.addEventListener("click",function(){if(body.classList.contains("is-menu-visible")){closeMenu();}});
+  Array.prototype.forEach.call(document.querySelectorAll("#menu a"),function(a){a.addEventListener("click",closeMenu);});
+})();
+</script>
+</body>
+</html>

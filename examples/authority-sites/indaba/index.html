@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  Indaba Interface System — documentation page
+  Built UNDER the indaba authority (packs/indaba, v0.1.0) via the audited runner ./run-authority.
+  Every visual value below is quoted from indaba records; none is invented. See log.md for the
+  full call trail (audit.jsonl is the machine record).
+
+  Adopted in the build (inspected before adoption):
+    pattern/shell            page frame: masthead + white column (max-width 1040) + footline
+    pattern/register-view    catalogue zone: page head + ledger list of items
+    component/masthead       dark grey banner, white identity, warm-grey descriptor, pill nav
+    component/section        kind groupings: Medium aubergine heading, spacing as separator
+    component/ledger         the item tables: pill-filled header row, alternating warm tint rows
+    component/label          soft pills for class names (warm tint, muted text, fully rounded)
+    component/surface.tinted verbatim rule quotes (warm tint, no shadow)
+    token-set/palette        --orange #E95420, --aubergine #77216F, --deep-aubergine #2C001E,
+                             --warm-grey #AEA79F, --warm-tint #F6F4F2, --cool-grey #333333, --text #111111
+    token-set/type           display 28/300, headings 17-20/500 aubergine, body 16/400 #111111,
+                             labels 14/500, meta 13 muted, line-height 1.5
+    guideline/roundness      surfaces 12-16 radius, pills for controls and status, soft separation
+    guideline/voice          warm, plain, short-sentence copy
+
+  Improvisations (marked with data-improv + title; gaps filed on the authority):
+    - rules-summary composition (#rules, data-improv) — ask UNDEFINED in the authority
+    - verbatim quote blocks (figure.quote) — no quote record; composed from surface.tinted
+    - footer credit line — fallback/plain-region governs; composition unrecorded beyond the shell footline
+  Marks are deliberately kept in markup only (comment + data-improv), per the build brief.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indaba Interface System — catalogue &amp; rules</title>
+<meta name="description" content="The Indaba Interface System: a minimal interface system derived from the Ubuntu brand guidelines. Catalogue of every recorded artifact, its rules, prohibitions and fallbacks.">
+<style>
+/* Values only from records: token-set/palette, token-set/type, guideline/roundness.
+   No external styles, no borrowed CSS, no frameworks. */
+:root{
+  --orange:#E95420;          /* actions */
+  --aubergine:#77216F;       /* identity/headings */
+  --deep-aubergine:#2C001E;  /* destructive/heaviest */
+  --warm-grey:#AEA79F;       /* balance */
+  --warm-tint:#F6F4F2;       /* surfaces */
+  --cool-grey:#333333;       /* banner */
+  --text:#111111;            /* never pure black */
+  --font:'Ubuntu', system-ui, sans-serif;
+  --radius:16px;             /* surfaces 12-16 */
+  --radius-md:12px;
+  --pill:999px;              /* controls and status as pills */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--warm-tint);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.5;
+}
+h1,h2,h3{line-height:1.25}
+a:focus-visible{outline:2px solid var(--orange);outline-offset:2px;border-radius:var(--radius-md)}
+
+/* Masthead — component/masthead: full-width dark grey banner (cool grey #333333):
+   white identity with a warm-grey descriptor, navigation as rounded pills (active item = orange pill). */
+.masthead{background:var(--cool-grey);color:#fff;padding:22px 0}
+.masthead-inner{
+  max-width:1040px;margin:0 auto;padding:0 40px;
+  display:flex;flex-wrap:wrap;gap:14px 32px;align-items:center;justify-content:space-between;
+}
+.identity h1{margin:0;font-size:28px;font-weight:300;color:#fff}
+.descriptor{margin:6px 0 0;font-size:14px;color:var(--warm-grey);max-width:640px}
+.masthead nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0}
+.masthead nav a{
+  display:inline-block;padding:7px 16px;border-radius:var(--pill);
+  color:#fff;text-decoration:none;font-size:14px;font-weight:500;
+}
+.masthead nav a:hover{background:rgba(255,255,255,.14)}   /* nav hover: subtle light fill */
+.masthead nav a.on{background:var(--orange)}              /* nav active: orange pill (.masthead nav a.on) */
+
+/* Shell — pattern/shell: dark grey masthead banner on top, white content column
+   (max-width 1040, generous margins), a small footline at the column bottom. */
+.shell{max-width:1040px;margin:0 auto;background:#fff;padding:48px 40px 40px}
+.foot{max-width:1040px;margin:0 auto;background:#fff;padding:8px 40px 40px}
+
+/* Section — component/section: Medium aubergine heading, then generous spacing.
+   No fieldset boxes; breathing room is the separator. */
+.section{margin:0 0 64px}
+.section h2{margin:0 0 8px;font-size:20px;font-weight:500;color:var(--aubergine)}
+.section .sub{margin:0 0 32px}
+.kind{margin:0 0 48px}
+.kind h3{margin:0 0 14px;font-size:17px;font-weight:500;color:var(--aubergine)}
+.count{font-size:13px;color:var(--warm-grey);font-weight:400}
+
+/* Ledger — component/ledger: pill-filled header row, airy rows separated by a very subtle
+   alternating warm tint (no hard rules), hover row tint, labels inline. */
+.ledger{width:100%;border-collapse:collapse;margin:0 0 8px}
+.ledger th{text-align:left;padding:10px 16px 10px 0;font-weight:400}
+.ledger th:first-child{width:30%}
+.ledger th .pill{
+  display:inline-block;background:var(--warm-tint);color:var(--warm-grey);
+  font-size:13px;font-weight:500;padding:4px 12px;border-radius:var(--pill);
+}
+.ledger td{padding:16px 16px 16px 0;vertical-align:top}
+.ledger tbody tr:nth-child(even){background:rgba(246,244,242,.7)}
+.ledger tbody tr:hover{background:rgba(174,167,159,.16)}
+.ledger td:first-child{padding-left:12px}
+.ledger td:first-child strong{display:block;font-size:15px;font-weight:500}
+.ledger .cell-summary{font-size:15px}
+
+/* Label — component/label: warm-tint background, muted text, fully rounded. No border, no heavy fill. */
+.label{
+  display:inline-block;margin-top:6px;background:var(--warm-tint);color:var(--warm-grey);
+  font-size:13px;font-weight:500;padding:3px 10px;border-radius:var(--pill);
+}
+
+/* Meta — inline, 13 muted. */
+.meta{font-size:13px;color:var(--warm-grey)}
+
+/* Surface — component/surface: rounded white card with a soft warm shadow and generous padding;
+   tinted variant uses the warm tint with no shadow. No hard borders. */
+.surface{background:#fff;border-radius:var(--radius);box-shadow:0 2px 12px rgba(44,0,30,.08);padding:24px}
+.surface.tinted{background:var(--warm-tint);box-shadow:none}
+
+/* Quotes — marked improvisation: no quote record exists; composed from component/surface.tinted
+   (warm tint, no shadow) plus fallback/plain-region (plain, softly, never in boxes). */
+.quote{background:var(--warm-tint);border-radius:var(--radius);padding:20px 24px;margin:0 0 16px}
+.quote blockquote{margin:0}
+.quote p{margin:0}
+.quote figcaption{margin-top:8px;font-size:13px;color:var(--warm-grey)}
+
+/* Plain lists — prohibitions and fallbacks: plain regions, generous spacing. */
+.plain{list-style:none;margin:0 0 32px;padding:0}
+.plain li{margin:0 0 16px}
+.plain li:last-child{margin-bottom:0}
+
+.footline{margin:0;font-size:14px;color:var(--text)}
+.shell h3 + .ledger, .shell h3 + .plain{margin-top:0}
+
+@media (max-width:720px){
+  .masthead-inner{padding:0 20px}
+  .shell{padding:32px 20px}
+  .foot{padding:8px 20px 32px}
+  .masthead-inner{flex-direction:column;align-items:flex-start}
+  .ledger th, .ledger td{padding-right:10px}
+  .ledger td:first-child strong{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="identity">
+      <h1>Indaba Interface System</h1>
+      <!-- version + one-line description, from the authority overview and record summaries -->
+      <p class="descriptor">v0.1.0 · A minimal interface system derived from the Ubuntu brand guidelines for the Design Authority portability spike. Warm, rounded, grey-balanced. No Ubuntu marks reproduced.</p>
+    </div>
+    <!-- navigation as rounded pills; .on is the recorded active state (orange pill) — set on the
+         primary destination; the pill shape, not colour alone, carries the state. -->
+    <nav aria-label="Sections">
+      <ul>
+        <li><a class="on" href="#catalogue">Catalogue</a></li>
+        <li><a href="#rules">Rules &amp; prohibitions</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="shell">
+
+  <section class="section" id="catalogue">
+    <h2>Catalogue</h2>
+    <p class="sub">Every artifact this system records, grouped by kind — 21 in all: 12 components, 4 patterns, 2 token sets, 2 guidelines, 1 reference. Each row quotes the record's own title and summary.</p>
+
+    <div class="kind">
+      <h3>Components <span class="count">· 12</span></h3>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="pill">Item</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Action (pill control)</strong><span class="label">.action</span></td>
+            <td class="cell-summary">Pill-shaped action: primary = solid orange; secondary = ghost with warm-grey outline; destructive = solid deep aubergine. Rounded language, generous padding.</td>
+          </tr>
+          <tr>
+            <td><strong>Choice (small-set select)</strong><span class="label">.choice</span></td>
+            <td class="cell-summary">Rounded select styled like a field, for small fixed sets (about 12 options or fewer); larger or filtered selection is out of scope by design.</td>
+          </tr>
+          <tr>
+            <td><strong>Dialog (rounded confirm)</strong><span class="label">.dialog</span></td>
+            <td class="cell-summary">Rounded white modal over a full-page warm scrim (deep aubergine at 35%): title in aubergine, a consequence sentence, pill actions (destructive = deep aubergine; cancel = outline).</td>
+          </tr>
+          <tr>
+            <td><strong>Field (text input)</strong><span class="label">.field</span></td>
+            <td class="cell-summary">Rounded text field: 1.5px warm border, radius 12, orange focus ring; label above in Medium; error note below in deep orange.</td>
+          </tr>
+          <tr>
+            <td><strong>Label (soft pill for metadata)</strong><span class="label">.label</span></td>
+            <td class="cell-summary">Category and metadata as a soft pill: warm-tint background, muted text, fully rounded. No border, no heavy fill — a gentle label, not a chip.</td>
+          </tr>
+          <tr>
+            <td><strong>Ledger (soft register list)</strong><span class="label">.ledger</span></td>
+            <td class="cell-summary">Data list with a pill-filled header row, airy rows separated by a very subtle alternating warm tint (no hard rules), hover row tint, status pills and labels inline, right-aligned text links.</td>
+          </tr>
+          <tr>
+            <td><strong>Masthead (dark grey banner)</strong><span class="label">.masthead</span></td>
+            <td class="cell-summary">Full-width dark grey banner (cool grey #333333): white identity with a warm-grey descriptor, navigation as rounded pills (active item = orange pill).</td>
+          </tr>
+          <tr>
+            <td><strong>Meter (rounded progress)</strong><span class="label">.meter</span></td>
+            <td class="cell-summary">Rounded progress bar: pill track in the warm tint with a solid fill (orange when in flight, aubergine when complete), always with a text readout like '7 of 10 steps'.</td>
+          </tr>
+          <tr>
+            <td><strong>Notice (soft banner)</strong><span class="label">.notice</span></td>
+            <td class="cell-summary">Rounded inline message: info = warm tint; warning = light orange tint; one or two plain sentences. No floating toasts, no left-edge stripes.</td>
+          </tr>
+          <tr>
+            <td><strong>Section (grouping)</strong><span class="label">.section</span></td>
+            <td class="cell-summary">Content grouping: Medium aubergine heading, then generous spacing or a surface. No fieldset boxes; breathing room is the separator.</td>
+          </tr>
+          <tr>
+            <td><strong>Status (word-first pill)</strong><span class="label">.status</span></td>
+            <td class="cell-summary">Status as a pill containing the word: Available = warm tint with warm outline; On loan = solid aubergine; Overdue = solid orange. The word carries the status; colour supports it.</td>
+          </tr>
+          <tr>
+            <td><strong>Surface (soft card)</strong><span class="label">.surface</span></td>
+            <td class="cell-summary">Rounded white card with a soft warm shadow and generous padding; tinted variant uses the warm tint with no shadow. Used to group content gently — no hard borders.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kind">
+      <h3>Patterns <span class="count">· 4</span></h3>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="pill">Item</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Activity view (status and log)</strong><span class="label">.activity-view</span></td>
+            <td class="cell-summary">Shell, a surface with a status pill and rounded meter with 'n of m' readout, an action to (re)start the job, and the event log as soft rows with muted timestamps.</td>
+          </tr>
+          <tr>
+            <td><strong>Form flow (create or edit)</strong><span class="label">.form-flow</span></td>
+            <td class="cell-summary">Shell, a surface holding rounded fields and choices with labels above, then an actions row: primary pill and a secondary cancel; destructive actions route through the confirm dialog.</td>
+          </tr>
+          <tr>
+            <td><strong>Register view (list screen)</strong><span class="label">.register-view</span></td>
+            <td class="cell-summary">Shell plus page head (title, subline, primary action) plus optional notice, a search field, and the ledger; empty state is a notice inside the view with one action.</td>
+          </tr>
+          <tr>
+            <td><strong>Application shell</strong><span class="label">.shell</span></td>
+            <td class="cell-summary">Dark grey masthead banner on top, white content column (max-width 1040, generous margins), a small footline at the column bottom.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kind">
+      <h3>Token sets <span class="count">· 2</span></h3>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="pill">Item</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Indaba palette</strong><span class="label">.palette</span></td>
+            <td class="cell-summary">Ubuntu palette with UI roles: orange #E95420 (actions), aubergine #77216F (identity/headings), deep aubergine #2C001E (destructive/heaviest), warm grey #AEA79F (balance), warm tint #F6F4F2 (surfaces), cool grey #333333 (banner), text #111111 (never pure black).</td>
+          </tr>
+          <tr>
+            <td><strong>Indaba type roles</strong><span class="label">.type</span></td>
+            <td class="cell-summary">Ubuntu font family: display 28-30 Light in aubergine; headings 17-20 Medium in aubergine; body 16 Regular in #111111; labels 14 Medium; meta 13 muted; line-height 1.5.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kind">
+      <h3>Guidelines <span class="count">· 2</span></h3>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="pill">Item</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Rounded, warm, grey-balanced</strong><span class="label">.roundness</span></td>
+            <td class="cell-summary">The house language: everything is softly rounded (surfaces 12-16, controls and status as pills); separation comes from spacing, soft tints, and gentle shadows — not hard rules or heavy borders; colours are warm and balanced, never harsh.</td>
+          </tr>
+          <tr>
+            <td><strong>Voice: warm and plain</strong><span class="label">.voice</span></td>
+            <td class="cell-summary">Copy is warm, plain and human — 'humanity towards others'. Short sentences; name the object and the consequence; no jargon, no filler.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kind">
+      <h3>Reference <span class="count">· 1</span></h3>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="pill">Item</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Source: Ubuntu brand guidelines (Canonical)</strong><span class="label">.reference</span></td>
+            <td class="cell-summary">Public brand guidelines at design.ubuntu.com from which this system was derived; palette, font and values verified 2026-10-07. Provenance: docs/portability/09-ubuntu-source-audit.md. No Ubuntu marks are reproduced.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Marked improvisation: this rules-summary composition has no record (the resolve came back
+       UNDEFINED; closest: component/ledger, component/surface, pattern/register-view). It is built
+       from the nearest recorded pieces — component/section grouping, the ledger for the rules,
+       component/surface.tinted for the verbatim quotes, fallback/plain-region for the plain lists.
+       Gap filed: see log.md (gap g1). -->
+  <section class="section" id="rules" data-improv="rules-summary composition has no record (UNDEFINED); built from component/section + component/ledger + component/surface.tinted + fallback/plain-region" title="rules-summary composition has no record (UNDEFINED); built from component/section + component/ledger + component/surface.tinted + fallback/plain-region">
+    <h2>Rules &amp; prohibitions</h2>
+    <p class="sub">The system carries 4 rules, 2 prohibitions and 2 fallbacks. Rules and prohibitions are quoted; fallbacks are named. The rules are enforced by indaba-lint.</p>
+
+    <h3>Rules <span class="count">· 4</span></h3>
+    <table class="ledger">
+      <thead><tr><th scope="col"><span class="pill">Rule</span></th><th scope="col"><span class="pill">Severity</span></th><th scope="col"><span class="pill">Summary</span></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>IND-1 · rounded-language</strong><span class="label">rule</span></td>
+          <td><span class="label">error</span></td>
+          <td class="cell-summary">Corners are always rounded — surfaces at 12-16px radius, controls and status as pills. Square corners are not part of this language.</td>
+        </tr>
+        <tr>
+          <td><strong>IND-2 · palette-only-colours</strong><span class="label">rule</span></td>
+          <td><span class="label">warning</span></td>
+          <td class="cell-summary">Colours come from the Ubuntu palette and its tints: orange #E95420 (actions), aubergine #77216F (identity), deep aubergine #2C001E (destructive/heaviest), warm grey #AEA79F, warm tint #F6F4F2, cool grey #333333 (banner), text #111111.</td>
+        </tr>
+        <tr>
+          <td><strong>IND-3 · text-not-pure-black</strong><span class="label">rule</span></td>
+          <td><span class="label">warning</span></td>
+          <td class="cell-summary">Body text is #111111, never pure black — black is harsh with aubergine, grey delivers balance.</td>
+        </tr>
+        <tr>
+          <td><strong>IND-4 · status-word-first</strong><span class="label">rule</span></td>
+          <td><span class="label">error</span></td>
+          <td class="cell-summary">Status is a word first (pill with readable text); colour supports it, never replaces it.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Prohibitions <span class="count">· 2</span></h3>
+    <ul class="plain">
+      <li><strong>prohibit/square-corners</strong> — Square or sharp corners anywhere — this language is rounded (IND-1).</li>
+      <li><strong>prohibit/off-palette-colours</strong> — Colours outside the Ubuntu palette and its tints — including pure black, neon accents and off-brand reds (IND-2, IND-3).</li>
+    </ul>
+
+    <h3>Fallbacks <span class="count">· 2</span></h3>
+    <ul class="plain">
+      <li><strong>fallback/platform-controls</strong> — Platform defaults for uncovered controls.</li>
+      <li><strong>fallback/plain-region</strong> — Content without a defined composition sits in the shell as plain regions separated by generous spacing — softly, never in boxes.</li>
+    </ul>
+
+    <!-- Marked improvisations: the two verbatim quotes. No quote element is recorded; they are
+         composed from component/surface.tinted (warm tint, no shadow) with plain spacing, per
+         fallback/plain-region. Included in gap g1's context. -->
+    <figure class="surface tinted quote" data-improv="verbatim quote block: no quote record; composed from component/surface.tinted + fallback/plain-region" title="verbatim quote block: no quote record; composed from component/surface.tinted + fallback/plain-region">
+      <blockquote><p>"Corners are always rounded — surfaces at 12-16px radius, controls and status as pills. Square corners are not part of this language."</p></blockquote>
+      <figcaption>IND-1 · rounded-language — quoted verbatim from the authority</figcaption>
+    </figure>
+    <figure class="surface tinted quote" data-improv="verbatim quote block: no quote record; composed from component/surface.tinted + fallback/plain-region" title="verbatim quote block: no quote record; composed from component/surface.tinted + fallback/plain-region">
+      <blockquote><p>"Square or sharp corners anywhere — this language is rounded (IND-1)."</p></blockquote>
+      <figcaption>prohibit/square-corners — quoted verbatim from the authority</figcaption>
+    </figure>
+  </section>
+
+</main>
+
+<!-- Marked improvisation: credit line. pattern/shell records only a small footline (.foot);
+     the fallback for footer composition is fallback/plain-region — plain text, generous
+     spacing, never in a box. Gap filed: see log.md (gap g2). -->
+<footer class="foot" data-improv="credit line: unrecorded beyond the shell footline (.foot); plain region per fallback/plain-region" title="credit line: unrecorded beyond the shell footline (.foot); plain region per fallback/plain-region">
+  <p class="footline">built under the indaba authority <span class="meta">· v0.1.0</span></p>
+</footer>
+
+</body>
+</html>

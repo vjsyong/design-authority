@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="built under the orbit authority v0.1.0">
+<title>Orbit Interface System — built under the orbit authority</title>
+<meta name="description" content="Orbit Interface System v0.1.0: catalogue and specification, built under the orbit authority.">
+<!-- ORBIT-IMPROV · palette values (gap/20261008-165202-7136d7): token-set/palette records the
+     roles (paper=white, ink=near-black, gray-mid=middle warm gray, accent=warm red, accent-ink=white)
+     but no hex values; the custom-property values below are set from those recorded role
+     descriptions, kept visible page-wide via <body data-improv="palette-values">. -->
+<style>
+/* Orbit token sets — custom-property names per the authority's verify lists:
+   token-set/palette: --paper --ink --gray-mid --accent --accent-ink
+   token-set/type:    --font-sans --text-xl --text-base  (scale 24/18/15/13/12) */
+:root {
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --gray-mid: #757066;
+  --accent: #b02e24;
+  --accent-ink: #ffffff;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --text-xl: 24px;
+  --text-lg: 18px;
+  --text-md: 15px;
+  --text-sm: 13px;
+  --text-xs: 12px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);          /* body text >= 15px on screens */
+  line-height: 1.4;
+  letter-spacing: normal;             /* never tightened */
+  text-align: left;                   /* flush-left ragged-right; no justified text */
+  -webkit-text-size-adjust: 100%;
+}
+/* pattern/shell: max-width 1080, padding 24/32 */
+.shell { max-width: 1080px; margin: 0 auto; padding: 24px 32px; }
+
+/* component/band: full-width white band, 1px ink bottom rule;
+   identity left, navigation (current = 2px accent underline), status right */
+.band {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px;
+  padding: 10px 0 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.band__identity { font-weight: 500; }
+.band__name { color: var(--ink); text-decoration: none; }
+.band__name:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.band__version { color: var(--gray-mid); font-size: var(--text-xs); margin-left: 8px; font-weight: 400; }
+.band__nav { margin-left: auto; }
+.band__nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+.band__nav a {
+  display: inline-block; padding: 6px 0;
+  color: var(--ink); text-decoration: none; font-size: var(--text-sm);
+  border-bottom: 2px solid transparent;
+}
+.band__nav a[aria-current="true"] { border-bottom-color: var(--accent); }
+.band__nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.band__status { color: var(--gray-mid); font-size: var(--text-xs); }
+
+/* page head (pattern/register-view): h1, one-line description, primary command */
+.masthead { padding: 28px 0 0; }
+h1 { font-size: var(--text-xl); font-weight: 500; margin: 0 0 8px; }
+.masthead__line { max-width: 720px; margin: 0 0 16px; }
+.masthead__line strong { font-weight: 500; }
+
+/* component/command: square action control; primary = solid accent;
+   hover = border emphasis (no motion); focus = 2px ink outline; active = inverted */
+.command {
+  font-family: inherit; font-size: var(--text-sm); font-weight: 500;
+  padding: 8px 16px; cursor: pointer;
+  border: 1px solid var(--ink); background: var(--paper); color: var(--ink);
+}
+.command[data-variant="primary"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.command:hover { border-color: var(--ink); }
+.command:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.command:active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* component/notice: info = gray border, one concise sentence, top of its region */
+.notice { border: 1px solid var(--gray-mid); padding: 10px 14px; margin: 18px 0 0; font-size: var(--text-sm); }
+
+/* component/section: Medium heading, 1px ink rule, grouped content */
+.section { margin-top: 32px; }
+.section h2 { font-size: var(--text-lg); font-weight: 500; margin: 0; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.section__lede { margin: 12px 0 0; max-width: 760px; }
+/* IMPROV (composition): kind/sub groups are marked with a gray hairline (the recorded
+   hairline value) instead of a second ink rule, keeping one ink rule per major section. */
+.section--kind { margin-top: 26px; }
+.section--kind h3 { font-size: var(--text-md); font-weight: 500; margin: 0; padding-bottom: 6px; border-bottom: 1px solid var(--gray-mid); }
+.section__count { color: var(--gray-mid); font-weight: 400; font-size: var(--text-sm); margin-left: 6px; }
+
+/* component/register: header row Medium, rows separated by 1px gray hairlines,
+   top-aligned cells, no zebra, no elevation */
+.register { width: 100%; border-collapse: collapse; margin-top: 16px; }
+.register th { font-weight: 500; font-size: var(--text-xs); text-align: left; vertical-align: top; padding: 6px 16px 6px 0; }
+.register td { border-top: 1px solid var(--gray-mid); padding: 12px 16px 12px 0; vertical-align: top; text-align: left; }
+.register td:last-child, .register th:last-child { padding-right: 0; }
+.reg__title { display: block; font-weight: 500; }
+.reg__id { display: block; color: var(--gray-mid); font-size: var(--text-xs); margin-top: 2px; }
+.register__note { margin: 10px 0 0; color: var(--gray-mid); font-size: var(--text-xs); }
+
+/* component/tag: square 1px gray-bordered micro-label for classification and metadata */
+.tag { display: inline-block; border: 1px solid var(--gray-mid); padding: 1px 6px; font-size: var(--text-xs); margin-top: 6px; }
+
+/* component/indicator: 6x6 square marker plus text label; neutral (gray), ok (ink), alert (accent) */
+.indicator { font-size: var(--text-xs); white-space: nowrap; }
+.indicator__mark { display: inline-block; width: 6px; height: 6px; background: var(--gray-mid); margin-right: 6px; vertical-align: middle; }
+.indicator[data-tone="ok"] .indicator__mark { background: var(--ink); }
+.indicator[data-tone="alert"] .indicator__mark { background: var(--accent); }
+
+/* footer folio line 'Orbit . section', small gray type */
+.shell-footer {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px;
+  margin-top: 40px; padding: 12px 0 8px;
+  border-top: 1px solid var(--gray-mid);
+  color: var(--gray-mid); font-size: var(--text-xs);
+}
+
+/* IMPROV (composition): responsive stack of .register below 720px so the page reads at
+   390px without horizontal scroll; no new component introduced. */
+@media (max-width: 720px) {
+  .band { display: block; }
+  .band__nav { margin: 6px 0 0; }
+  .band__nav ul { gap: 16px; }
+  .band__status { margin-top: 4px; }
+  .register thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+  }
+  .register tbody tr { display: block; padding: 10px 0; border-top: 1px solid var(--gray-mid); }
+  .register tbody tr:first-child { border-top: 0; }
+  .register td { display: block; border-top: 0; padding: 2px 0; }
+}
+</style>
+</head>
+<body data-improv="palette-values">
+<!-- ORBIT-IMPROV · masthead metadata (gap/20261008-165202-fe6d15): the authority does not
+     record a docs masthead carrying version + one-line description (resolve -> UNDEFINED);
+     composed from component/band identity + pattern/register-view page head + the authority's
+     own description; marked data-improv="masthead-metadata"; gap filed. -->
+<div class="shell">
+
+  <header class="band">
+    <div class="band__identity"><a class="band__name" href="#top">Orbit Interface System</a><span class="band__version">v0.1.0</span></div>
+    <nav class="band__nav" aria-label="Page sections">
+      <ul>
+        <li><a href="#catalogue">Catalogue</a></li>
+        <li><a href="#specification">Specification</a></li>
+      </ul>
+    </nav>
+    <div class="band__status">Design Authority · portability spike</div>
+  </header>
+
+  <main id="top">
+
+    <div class="masthead" data-improv="masthead-metadata">
+      <h1>Orbit Interface System</h1>
+      <p class="masthead__line"><strong>Version 0.1.0 —</strong> A minimal interface system derived from the NASA Graphics Standards Manual (1976) for the Design Authority portability spike. Carries no NASA marks.</p>
+      <p><button class="command" data-variant="primary" type="button" id="print-command">Print this page</button></p>
+    </div>
+
+    <p class="notice" data-kind="info">Provenance: derived from the public-domain NASA Graphics Standards Manual (NHB 1430.2, 1976); this system carries no NASA marks.</p>
+
+    <section class="section" id="catalogue">
+      <h2>Catalogue</h2>
+      <p class="section__lede">Every artifact recorded in Orbit v0.1.0, grouped by kind — 21 in all: 12 components, 4 patterns, 2 token sets, 2 guidelines, 1 reference.</p>
+
+      <section class="section section--kind">
+        <h3>Components <span class="section__count">12</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Artifact</th><th scope="col">Summary</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Band (identity, navigation, status)</span><span class="reg__id">component/band</span><span class="tag">Structure</span></td>
+              <td data-th="Summary">Full-width white band with a 1px ink bottom rule: identity left, navigation (current item = 2px accent underline), environment/status text right; inverted variant uses ink background with white text.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Chooser (small-set select)</span><span class="reg__id">component/chooser</span><span class="tag">Forms</span></td>
+              <td data-th="Summary">Labelled native select for small fixed sets (about 12 options or fewer); larger or filtered selection is out of scope by design.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Command (action control)</span><span class="reg__id">component/command</span><span class="tag">Actions</span></td>
+              <td data-th="Summary">Square action control; primary (solid accent), secondary (ink border), destructive (accent border, reserved for high-consequence actions).</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Dialog (modal confirm or editor)</span><span class="reg__id">component/dialog</span><span class="tag">Feedback</span></td>
+              <td data-th="Summary">Square modal: 1px ink border, ink band header with title and Close, body, right-aligned footer commands; page overlay is ink at 40% opacity; state appears and disappears instantly (no motion).</td>
+              <td data-th="Status"><span class="indicator" data-tone="alert"><span class="indicator__mark" aria-hidden="true"></span>experimental</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Entry (text field)</span><span class="reg__id">component/entry</span><span class="tag">Forms</span></td>
+              <td data-th="Summary">Single-line text input: label above, 1px ink border, error line below in accent; square.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Gauge (determinate progress)</span><span class="reg__id">component/gauge</span><span class="tag">Feedback</span></td>
+              <td data-th="Summary">Square determinate progress bar: paper track with 1px gray border, ink fill (accent fill when attention needed), mandatory text readout 'n of m'; static updates, no animation.</td>
+              <td data-th="Status"><span class="indicator" data-tone="alert"><span class="indicator__mark" aria-hidden="true"></span>experimental</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Indicator (status marker)</span><span class="reg__id">component/indicator</span><span class="tag">Feedback</span></td>
+              <td data-th="Summary">Status shown as a 6x6 square marker plus text label; tones neutral (gray), ok (ink), alert (accent); text always readable alone.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Notice (inline feedback block)</span><span class="reg__id">component/notice</span><span class="tag">Feedback</span></td>
+              <td data-th="Summary">Square inline message block: info (gray border), warning (ink border), alert (accent border + accent heading); one concise sentence of copy; top of its region.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Panel (bordered technical region)</span><span class="reg__id">component/panel</span><span class="tag">Structure</span></td>
+              <td data-th="Summary">1px ink bordered region reserved for technical or diagrammatic content; ordinary prose uses sections and rules instead.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Register (ruled data list)</span><span class="reg__id">component/register</span><span class="tag">Data</span></td>
+              <td data-th="Summary">Data list or table: header row in Medium, rows separated by 1px gray hairlines, top-aligned cells, row actions right as text commands; no zebra striping, no elevation.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Section (grouping)</span><span class="reg__id">component/section</span><span class="tag">Forms</span></td>
+              <td data-th="Summary">Form or content grouping: Medium heading, 1px ink rule, stacked entries; form column max-width 560px; top-aligned.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Tag (square micro-label)</span><span class="reg__id">component/tag</span><span class="tag">Data</span></td>
+              <td data-th="Summary">Square 1px gray-bordered micro-label for classification and metadata; tags keep their own visual space and never compete with status.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Patterns <span class="section__count">4</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Artifact</th><th scope="col">Summary</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Form flow (create or edit)</span><span class="reg__id">pattern/form-flow</span><span class="tag">Patterns</span></td>
+              <td data-th="Summary">Shell, sections of entries and choosers, validation notices above fields, footer row with a primary submit and a secondary cancel; destructive actions route through a dialog naming the object and consequence.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Job view (status console)</span><span class="reg__id">pattern/job-view</span><span class="tag">Patterns</span></td>
+              <td data-th="Summary">Shell plus indicator plus gauge plus a log register (time and message rows); status is always text plus marker; no animation anywhere.</td>
+              <td data-th="Status"><span class="indicator" data-tone="alert"><span class="indicator__mark" aria-hidden="true"></span>experimental</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Register view (list screen)</span><span class="reg__id">pattern/register-view</span><span class="tag">Patterns</span></td>
+              <td data-th="Summary">Shell plus page head (h1 and a primary command) plus register; empty state is a centered standby notice with one secondary command.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Application shell</span><span class="reg__id">pattern/shell</span><span class="tag">Patterns</span></td>
+              <td data-th="Summary">Band on top, main region (max-width 1080, padding 24/32), footer folio line 'Orbit . section' in small gray type.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Token sets <span class="section__count">2</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Artifact</th><th scope="col">Summary</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Orbit palette</span><span class="reg__id">token-set/palette</span><span class="tag">Foundations</span></td>
+              <td data-th="Summary">Paper (white), ink (near-black), gray-mid (middle warm gray), accent (warm NASA-derived red), accent-ink (white). Accent is identification and action only, never a reading surface.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Orbit type roles</span><span class="reg__id">token-set/type</span><span class="tag">Foundations</span></td>
+              <td data-th="Summary">Helvetica-register sans only in controls; scale 24/18/15/13/12; flush-left ragged-right; normal letterspacing; line-height 1.4; serif voice reserved for long-form content.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Guidelines <span class="section__count">2</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Artifact</th><th scope="col">Summary</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Accent discipline</span><span class="reg__id">guideline/accent-discipline</span><span class="tag">Foundations</span></td>
+              <td data-th="Summary">The red accent marks identity and actions only; it never becomes a background behind reading text, never sits on mid-value surfaces, and is never the only signal.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Voice: clear and concise</span><span class="reg__id">guideline/voice</span><span class="tag">Foundations</span></td>
+              <td data-th="Summary">UI copy is short, declarative, and names the object and the consequence; no ornament, no filler.</td>
+              <td data-th="Status"><span class="indicator" data-tone="neutral"><span class="indicator__mark" aria-hidden="true"></span>beta</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Reference <span class="section__count">1</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Artifact</th><th scope="col">Summary</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Artifact"><span class="reg__title">Source: NASA Graphics Standards Manual (NHB 1430.2, 1976)</span><span class="reg__id">reference/manual</span><span class="tag">Provenance</span></td>
+              <td data-th="Summary">Public-domain source document (US Government work) from which this system was derived; full provenance and extraction log in docs/portability/01-source-audit.md.</td>
+              <td data-th="Status"><span class="indicator" data-tone="ok"><span class="indicator__mark" aria-hidden="true"></span>stable</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <!-- ORBIT-IMPROV (composition) · specification summary: registers and sections per
+         component/register + component/section; statements are quoted verbatim from the
+         records; counts from the authority overview. -->
+    <section class="section" id="specification">
+      <h2>Specification</h2>
+      <p class="section__lede">What the authority declares — policy, rules, prohibitions, fallbacks (Orbit v0.1.0).</p>
+
+      <section class="section section--kind">
+        <h3>Policy</h3>
+        <table class="register">
+          <thead><tr><th scope="col">Aspect</th><th scope="col">Policy (verbatim)</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Aspect"><span class="reg__title">On conflict</span></td>
+              <td data-th="Policy">“Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).”</td>
+            </tr>
+            <tr>
+              <td data-th="Aspect"><span class="reg__title">On undefined</span></td>
+              <td data-th="Policy">“Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.”</td>
+            </tr>
+            <tr>
+              <td data-th="Aspect"><span class="reg__title">Proposals</span></td>
+              <td data-th="Policy">“Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream.”</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Rules <span class="section__count">4</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Rule</th><th scope="col">Statement (verbatim)</th><th scope="col">Severity</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Rule"><span class="reg__title">ORB-1 · radius-always-zero</span><span class="reg__id">error · applies to css, html</span></td>
+              <td data-th="Statement">“Corner radius is always 0 — square form is the system's language.”</td>
+              <td data-th="Severity"><span class="indicator" data-tone="alert"><span class="indicator__mark" aria-hidden="true"></span>error</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="register__note">Four rules are declared; ORB-1 is quoted, with its fix: “Remove border-radius or set it to 0 on the offending element.” Enforcement runs through orbit-lint.</p>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Prohibitions <span class="section__count">3</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Prohibition</th><th scope="col">Statement (verbatim)</th><th scope="col">Rule</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Prohibition"><span class="reg__title">prohibit/rounded-forms</span><span class="reg__id">signals: rounded corners · border-radius · pill-shaped · soft corners</span></td>
+              <td data-th="Statement">“Rounded corners anywhere — square is a system rule (ORB-1).”</td>
+              <td data-th="Rule">ORB-1</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="register__note">Three prohibitions are declared; prohibit/rounded-forms is quoted.</p>
+      </section>
+
+      <section class="section section--kind">
+        <h3>Fallbacks <span class="section__count">2</span></h3>
+        <table class="register">
+          <thead><tr><th scope="col">Fallback</th><th scope="col">Statement (verbatim)</th></tr></thead>
+          <tbody>
+            <tr>
+              <td data-th="Fallback"><span class="reg__title">fallback/plain-region</span><span class="reg__id">Plain content region · scope: prose · content page · about · help text · static page</span></td>
+              <td data-th="Statement">“Content without a defined composition sits in the shell as plain regions separated by rules — not boxes.”<span class="reg__id">constraints: rules, not boxes · wide margins · no decoration</span></td>
+            </tr>
+            <tr>
+              <td data-th="Fallback"><span class="reg__title">fallback/platform-controls</span><span class="reg__id">Platform defaults for uncovered controls · scope: checkbox · radio · date · time · file · toggle · switch</span></td>
+              <td data-th="Statement">“If the system defines no control for a need, use the platform's native element with system typography and square form; keep native semantics.”<span class="reg__id">constraints: square form (ORB-1 still applies) · system type scale · mark the improvisation and report a gap if the need recurs</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="register__note">Sanctioned fallbacks, applied when no artifact or recipe governs a need (see policy).</p>
+      </section>
+    </section>
+
+  </main>
+
+  <footer class="shell-footer">
+    <span>Orbit . Interface System</span>
+    <span>built under the orbit authority · v0.1.0</span>
+  </footer>
+
+</div>
+<script>
+(function () {
+  var printCommand = document.getElementById('print-command');
+  if (printCommand) {
+    printCommand.addEventListener('click', function () { window.print(); });
+  }
+  var links = {};
+  document.querySelectorAll('.band__nav a').forEach(function (a) {
+    links[a.getAttribute('href')] = a;
+  });
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main .section[id]'));
+  if (!sections.length) { return; }
+  var clearCurrent = function () {
+    Object.keys(links).forEach(function (key) { links[key].removeAttribute('aria-current'); });
+  };
+  var updateCurrent = function () {
+    var probe = window.scrollY + Math.round(window.innerHeight * 0.25);
+    var current = sections[0];
+    sections.forEach(function (section) {
+      if (section.getBoundingClientRect().top + window.scrollY <= probe) { current = section; }
+    });
+    clearCurrent();
+    var link = links['#' + current.id];
+    if (link) { link.setAttribute('aria-current', 'true'); }
+  };
+  updateCurrent();
+  window.addEventListener('scroll', updateCurrent, { passive: true });
+  window.addEventListener('resize', updateCurrent, { passive: true });
+})();
+</script>
+</body>
+</html>

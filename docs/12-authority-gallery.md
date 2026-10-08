@@ -105,6 +105,16 @@ pack update is visible without hand edits.**
   (ink/gray/red plates, Helvetica, squared). Values traced to each pack's
   token-set records + build archives; fonts served via `/authority-fonts/`
   (declared faces only). CSS-variable overrides over the shared shell.
+- **S1d · Authority-built sites — DONE (2026-10-08).** Six agent builds,
+  one per authority (wink, leader, dominion, phantom, indaba, orbit), each
+  executed UNDER its own pack through an audited wrapper
+  (`examples/authority-sites/<auth>/`): resolve/inspect/adopt, fallback +
+  visible marking + filed gaps where the authority is silent. Served at
+  `/authorities/<name>/site/`. Verified: audit-vs-log counts match
+  (48/41/44/57/61/43), no external references, no foreign-system markers,
+  2-3 gaps each; pages reviewed at desktop. The earlier variable-override
+  retheme (S1c) stands only as the generated records view; these builds are
+  the authority-conformant sites.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
