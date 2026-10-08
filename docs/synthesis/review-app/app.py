@@ -961,6 +961,14 @@ def load_codified():
     return {}
 
 
+def load_lenient():
+    p = os.path.join(SYN, "data", "lenient.json")
+    if os.path.exists(p):
+        with open(p) as fh:
+            return json.load(fh)
+    return {}
+
+
 def precedents_by_gap(src):
     """Map gap suffix -> precedent id, from the pack's precedents.json."""
     p = os.path.join(_REPO, "packs", src, "precedents.json")
@@ -1037,7 +1045,7 @@ def load_reports():
     return docs
 
 
-def _rec_row(r, prec=None):
+def _rec_row(r, prec=None, lin=None):
     ccls = {"PROPOSAL": "cl-p", "LEXICON-FIX": "cl-f", "SCOPE-FIX": "cl-f",
             "NO-ACTION": "cl-n", "INVALID": "cl-n"}.get(r["class"], "cl-n")
     if r.get("prop_id"):
@@ -1046,10 +1054,20 @@ def _rec_row(r, prec=None):
     elif r.get("outcome") == "fix-applied":
         oc = "<span style='color:#087830;font-weight:700'>fix applied &check; (verified)</span>"
     elif r.get("outcome") == "declined":
-        oc = "<span style='color:#666;font-weight:600'>declined &mdash; policy, not canon</span>"
-        if prec:
-            oc += (" <span style='color:#2E45B8'>&rarr; filed as <code>%s</code> (negative precedent)</span>"
-                   % _esc(prec))
+        mode = (lin or {}).get("mode", "deferred")
+        cand = (lin or {}).get("candidate")
+        if mode == "declined" and prec:
+            oc = ("<span style='color:#666;font-weight:600'>declined &mdash; policy</span> "
+                  "&rarr; <code>%s</code> (negative precedent)" % _esc(prec))
+        elif mode == "candidate":
+            oc = ("<span style='color:#087830;font-weight:600'>deferred &mdash; promoted to candidate</span> "
+                  "<code>%s</code> (provisional, NOT authority)" % _esc(cand))
+        elif mode == "split":
+            oc = ("split &mdash; partly declined (<code>%s</code>) &middot; partly candidate (<code>%s</code>)"
+                  % (_esc(prec), _esc(cand)))
+        else:
+            oc = ("<span style='color:#666;font-weight:600'>deferred to undefined</span> "
+                  "&mdash; no negative precedent (lenient pass)")
     else:
         oc = _esc(r.get("outcome"))
     return ("<div class='rec'><span class='chip src'>%s</span> <span class='mono'>%s</span> "
@@ -1197,13 +1215,15 @@ def proposals_page():
         _prop_card(e, adj_by_key.get((e["src"], (e["prop"].get("gap_id") or "").split("/")[-1].split("-")[-1])),
                    codified.get(e["prop"].get("id")))
         for e in entries)
+    lenient = load_lenient()
     rec = []
     for srcc in ("wink", "leader", "dominion"):
         rows = [r for r in adj if r["src"] == srcc]
         if not rows:
             continue
         rec.append("<h3 style='margin:16px 0 6px;font-size:14px'>%s — %d dispositions</h3>" % (srcc, len(rows)))
-        rec.extend(_rec_row(r, prec_maps[srcc].get(r["suffix"])) for r in rows)
+        rec.extend(_rec_row(r, prec_maps[srcc].get(r["suffix"]),
+                            (lenient.get(srcc) or {}).get(r["suffix"])) for r in rows)
     rec_html = "".join(rec)
     reps = load_reports()
     rep_html = "".join(

@@ -40,6 +40,7 @@
     "prohibitions": "prohibitions.json",
     "validators": "validators.json",
     "scoring": "scoring.json",
-    "precedents": "precedents.json"
+    "precedents": "precedents.json",
+    "candidates": "candidates.json"
   }
 }

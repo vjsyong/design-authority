@@ -43,8 +43,16 @@ def add_gap(pack, workspace, need, context=None, attempted_resolution=None,
     matches = pack.precedent_matches(need, limit=2)
     if matches:
         gap["precedent_warnings"] = [
-            {k: p.get(k) for k in ("id", "title", "decision", "reason", "try", "citation")}
-            for p in matches]
+            {"id": m["record"].get("id"), "verdict": m["verdict"],
+             "title": m["record"].get("title"), "grounds": m["record"].get("grounds"),
+             "reason": m["record"].get("reason"), "try": m["record"].get("try"),
+             "citation": m["record"].get("citation")}
+            for m in matches]
+    cands = pack.candidate_matches(need, limit=2)
+    if cands:
+        gap["candidate_hints"] = [
+            {"id": c.get("id"), "title": c.get("title"), "summary": c.get("summary"),
+             "promote_when": c.get("promote_when")} for c in cands]
     path = os.path.join(_ws(workspace), "gaps.jsonl")
     with open(path, "a") as fh:
         fh.write(json.dumps(gap) + "\n")
@@ -104,8 +112,16 @@ def add_proposal(pack, workspace, gap_id, proposal):
     matches = pack.precedent_matches(" ".join([proposal["problem"]] + titles), limit=2)
     if matches:
         record["precedent_warnings"] = [
-            {k: p.get(k) for k in ("id", "title", "decision", "reason", "try", "citation")}
-            for p in matches]
+            {"id": m["record"].get("id"), "verdict": m["verdict"],
+             "title": m["record"].get("title"), "grounds": m["record"].get("grounds"),
+             "reason": m["record"].get("reason"), "try": m["record"].get("try"),
+             "citation": m["record"].get("citation")}
+            for m in matches]
+    cands = pack.candidate_matches(" ".join([proposal["problem"]] + titles), limit=2)
+    if cands:
+        record["candidate_hints"] = [
+            {"id": c.get("id"), "title": c.get("title"), "summary": c.get("summary"),
+             "promote_when": c.get("promote_when")} for c in cands]
     safe = pid.replace("/", "_")
     path = os.path.join(_ws(workspace), "proposals", safe + ".json")
     with open(path, "w") as fh:
@@ -123,7 +139,12 @@ def add_proposal(pack, workspace, gap_id, proposal):
     if record.get("precedent_warnings"):
         record["review_checklist"].append(
             "Prior declines exist for this area — justify against the recorded "
-            "precedent(s): " + ", ".join(w["id"] for w in record["precedent_warnings"]))
+            "precedent(s): " + ", ".join("%s [%s]" % (w["id"], w["verdict"])
+                                         for w in record["precedent_warnings"]))
+    if record.get("candidate_hints"):
+        record["review_checklist"].append(
+            "A provisional candidate exists — consider aligning or noting it: "
+            + ", ".join(c["id"] for c in record["candidate_hints"]))
     return record
 
 

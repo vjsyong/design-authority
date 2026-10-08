@@ -1,124 +1,43 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "pack_version": "wink 0.2.0",
-  "note": "Negative precedents — requests this authority has declined, with the reason and the routes to try instead. Maintained via adjudication (2026-10-07) and reviewer verdicts. Kernel-generic: any authority may carry this file.",
+  "note": "Negative precedents — reserved for POLICY declines only (grounds required, scope + boundary mandatory). Evidence-insufficient asks defer to UNDEFINED; partial directions become candidates (see candidates.json). Lenient re-classification 2026-10-07: prior blanket declines (charts, glyph sets, native controls, pager/drag, csv, dark mode, neutral tag) were retired — they defer to undefined or became candidates.",
   "precedents": [
     {
-      "id": "precedent/declined-chart-treatments",
+      "id": "precedent/declined-photographic-imagery",
       "kind": "precedent",
-      "title": "Chart treatments",
-      "request": "bar chart / heatmap / sparkline / data visualisation",
-      "matches": ["chart", "bar chart", "graph", "heatmap", "sparkline", "plot", "trend line", "data visualization", "data visualisation", "column chart", "line chart"],
+      "title": "Photographic imagery & illustration (asset policy)",
+      "request": "avatar photo + illustration assets",
+      "matches": ["avatar", "avatar photo", "photo", "photograph", "photo upload", "picture", "headshot", "illustration"],
       "decision": "declined",
-      "reason": "No chart treatment exists anywhere in the wink evidence; the canon must not invent chart grammar.",
+      "grounds": "asset-policy (no asset library; photography/illustration not reproduced)",
+      "reason": "Asset policy: photography and illustration are not reproduced; use monograms and words instead.",
+      "scope": {
+        "domains": ["imagery", "avatars", "photography", "illustration"],
+        "boundary": ["functional state controls", "check-off", "check control", "check button", "log control", "log a ritual", "mark done", "state controls", "monograms and word labels (the sanctioned route)"]
+      },
       "try": [
-        "Compose a minimal data block from existing primitives (display numerals, rules, spacing) and mark it as an improvisation.",
-        "If charts genuinely recur across consumers, file a proposal citing at least two live-product instances."
+        "Use monogram/textual avatars in the canon type system.",
+        "Empty states and cards are illustration-free, composed from type and spacing."
       ],
-      "citation": "gap/20261007-145939-b6450a (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-b6450a", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-photographic-avatars-glyphs",
-      "kind": "precedent",
-      "title": "Photographic avatars & icon glyphs",
-      "request": "avatar photo + icon glyph set",
-      "matches": ["avatar", "avatar photo", "photo", "icon", "icon set", "glyph", "glyphs", "iconography", "illustration"],
-      "decision": "declined",
-      "reason": "Asset policy: illustration/photography are not reproduced (no asset library); no glyph-style evidence exists.",
-      "try": [
-        "Use a monogram/textual avatar rendered in the canon type system.",
-        "Prefer words and existing marks over invented glyphs; small marks compose from the type system."
-      ],
-      "citation": "gap/20261007-145939-cfe3c5 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-cfe3c5", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-neutral-tag-variant",
-      "kind": "precedent",
-      "title": "Neutral tag variant",
-      "request": "neutral small tag variant",
-      "matches": ["tag", "tags", "chip", "neutral tag", "tag variant", "label chip"],
-      "decision": "declined",
-      "reason": "No tag/chip evidence; component/badge claims 'tag' for the emphasis case only; a neutral variant is a marked consumer composition (borderline — see adjudication notes).",
-      "try": [
-        "Use component/badge for emphasis cases.",
-        "For neutral labels, compose plain text + spacing in the parsnip/ink palette and mark it; a future proposal needs live-product evidence."
-      ],
-      "citation": "gap/20261007-145939-a6f9c7 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-a6f9c7", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-native-form-controls",
-      "kind": "precedent",
-      "title": "Native form controls (toggle, checkbox, radio)",
-      "request": "toggle / checkbox / radio styling",
-      "matches": ["toggle", "switch", "checkbox", "radio", "radio button", "form control", "native control"],
-      "decision": "declined",
-      "reason": "fallback/platform-controls already scopes all three (resolve returns FALLBACK); platform defaults are the sanctioned answer.",
-      "try": [
-        "Use the platform-controls fallback with field-level styling and mark it as a fallback.",
-        "Do not style native controls beyond the field language."
-      ],
-      "citation": "gap/20261007-145939-088b69 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-088b69", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-pager-and-drag",
-      "kind": "precedent",
-      "title": "Pagination & drag-to-reorder",
-      "request": "pagination + drag-to-reorder",
-      "matches": ["pagination", "pager", "page controls", "drag", "drag to reorder", "reorder", "drag and drop"],
-      "decision": "declined",
-      "reason": "No evidence; the pager composes (outline pill + readout) and drag is unevidenced interaction behaviour.",
-      "try": [
-        "Compose the pager from an outline pill action plus a plain readout.",
-        "For reordering, prefer explicit move actions or leave the interaction unstyled and marked; report if it recurs."
-      ],
-      "citation": "gap/20261007-145939-f88682 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-f88682", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-csv-export-affordance",
-      "kind": "precedent",
-      "title": "CSV export affordance",
-      "request": "CSV export affordance",
-      "matches": ["csv", "export", "download", "export button", "download csv"],
-      "decision": "declined",
-      "reason": "No evidence; the affordance composes from component/action-pill; the download flow is utility behaviour, not interface canon.",
-      "try": [
-        "Use an action pill (or small outline pill) labelled with the concrete verb.",
-        "Treat the surrounding file flow as app utility, outside canon."
-      ],
-      "citation": "gap/20261007-145939-a69c21 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-a69c21", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-dark-mode",
-      "kind": "precedent",
-      "title": "Dark mode",
-      "request": "dark-mode theme",
-      "matches": ["dark mode", "dark theme", "night mode", "dark scheme"],
-      "decision": "declined",
-      "reason": "fallback/light-only is the sanctioned answer; dark mode is a deliberately carried UNDEFINED in the source gestalt.",
-      "try": [
-        "Use the light-only fallback and mark it.",
-        "Keep colour roles (not hexes) in any adaptation so a future dark canon could slot in."
-      ],
-      "citation": "gap/20261007-145939-f4c315 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145939-f4c315", "proposal_id": null, "date": "2026-10-07"}
+      "citation": "gap/20261007-145939-cfe3c5 (adjudicated 2026-10-07; lenient re-scope)",
+      "provenance": {"source": "adjudication-policy-decline", "gap_id": "gap/20261007-145939-cfe3c5", "proposal_id": null, "date": "2026-10-07"}
     },
     {
       "id": "precedent/status-pill-rejected",
       "kind": "precedent",
       "title": "Status pill (proposal rejected at review)",
       "request": "component/status-pill — four-tone word-first status pill (neutral Parsnip, attention Ochre, positive ink-only, problem #BF4055)",
-      "matches": ["status", "status label", "state label", "status pill", "on track", "slipping", "state chip"],
+      "matches": ["status pill", "status label", "state label", "on track", "slipping", "state chip"],
       "decision": "declined",
-      "reason": "Adjudicated proposal for a four-tone word-first status pill; rejected at gate review (no reviewer note recorded). The evidence route remains short of live-product confirmation for the four tones.",
+      "grounds": "reviewer-rejection",
+      "reason": "Rejected at gate review (no reviewer note recorded); live-product evidence for the four tones is short.",
+      "scope": {
+        "domains": ["status representation"],
+        "boundary": ["words plus component/badge emphasis (the sanctioned route)", "token-set/colour tints composed and marked"]
+      },
       "try": [
         "Express status with words plus component/badge where emphasis is needed.",
-        "Compose state colour from token-set/colour tints only if a real need presses, and mark the composition.",
         "Re-propose only with live-product evidence for the tone set."
       ],
       "citation": "prop/20261007-151915-44d062 (reviewer verdict 2026-10-07; gap/20261007-145939-d6853d)",

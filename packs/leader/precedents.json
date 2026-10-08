@@ -1,125 +1,47 @@
 {
-  "version": "0.1",
+  "version": "0.2",
   "pack_version": "leader 0.2.0",
-  "note": "Negative precedents — requests this authority has declined, with the reason and the routes to try instead. Maintained via adjudication (2026-10-07) and reviewer verdicts. Kernel-generic: any authority may carry this file.",
+  "note": "Negative precedents — reserved for POLICY declines only (grounds required, scope + boundary mandatory). Evidence-insufficient asks defer to UNDEFINED; partial directions become candidates (see candidates.json). Lenient re-classification 2026-10-07: drag, csv, dark mode and the fallback-covered controls were retired (defer to undefined / the fallback governs).",
   "precedents": [
     {
-      "id": "precedent/declined-saving-state-spinner",
+      "id": "precedent/declined-motion-feedback",
       "kind": "precedent",
-      "title": "Saving/loading spinner",
-      "request": "saving/loading state (~700 ms)",
-      "matches": ["spinner", "loading", "saving", "saving state", "loading state", "loading spinner", "progress spinner", "toast", "toast notification"],
+      "title": "Loading spinner, toast motion (motion policy)",
+      "request": "saving/loading spinner, toast notification",
+      "matches": ["spinner", "loading", "loading state", "saving", "saving state", "loading spinner", "toast", "toast notification"],
       "decision": "declined",
-      "reason": "Transient persist is terminal feedback; register-derivable (static readout, L-16; notices, L-14). No spinner or toast canon — motion patterns stay deliberately UNDEFINED (L-03).",
+      "grounds": "motion-policy (L-03; transient persist is register-derivable)",
+      "reason": "Transient persist is terminal feedback; the register answers it (static readout, L-16; notices, L-14). No spinner or toast canon — motion patterns stay deliberately UNDEFINED.",
+      "scope": {
+        "domains": ["motion", "transient feedback", "loading indicators"],
+        "boundary": ["static readouts and ruled notices (the sanctioned route)", "state changes at completion", "focus and interaction feedback"]
+      },
       "try": [
         "Use a static readout or a ruled notice that changes at the end of the operation (L-14/L-16).",
         "Keep any transient motion minimal and marked; a motion proposal needs evidence plus an L-03 re-evaluation."
       ],
-      "citation": "gap/20261007-145916-7e2442 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145916-7e2442", "proposal_id": null, "date": "2026-10-07"}
+      "citation": "gap/20261007-145916-7e2442 (adjudicated 2026-10-07; lenient re-scope)",
+      "provenance": {"source": "adjudication-policy-decline", "gap_id": "gap/20261007-145916-7e2442", "proposal_id": null, "date": "2026-10-07"}
     },
     {
       "id": "precedent/declined-imagery-and-icons",
       "kind": "precedent",
-      "title": "Photographic imagery & icon sets",
+      "title": "Photographic imagery & pictorial icon sets (policy)",
       "request": "avatar photo; ritual icons; photo upload",
-      "matches": ["avatar", "avatar photo", "photo", "photo upload", "icon", "icons", "icon set", "illustration", "imagery", "picture"],
+      "matches": ["avatar", "avatar photo", "photo", "photo upload", "icon", "icons", "icon set", "illustration", "image", "imagery", "picture"],
       "decision": "declined",
-      "reason": "L-21: no imagery; iconography is limited to rhythm glyphs. The absence is honest, not a gap.",
+      "grounds": "imagery-policy (L-21)",
+      "reason": "L-21: no imagery; iconography is limited to rhythm glyph marks. The absence is honest, not a gap.",
+      "scope": {
+        "domains": ["imagery", "photos", "icon sets", "pictorial marks"],
+        "boundary": ["rhythm glyph marks (L-08, the sanctioned vocabulary)", "functional state controls", "check-off", "check control", "log control", "log a ritual", "mark done", "state controls", "word labels and type"]
+      },
       "try": [
-        "Use monogram avatars and rhythm glyph marks.",
+        "Use monogram avatars and rhythm glyph marks (L-08).",
         "For uploads, use a mark picker rather than photo uploads."
       ],
-      "citation": "gap/20261007-145916-6a07a0 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145916-6a07a0", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-drag-reorder",
-      "kind": "precedent",
-      "title": "Drag-to-reorder",
-      "request": "drag-to-reorder",
-      "matches": ["drag", "drag to reorder", "reorder", "sort", "drag and drop"],
-      "decision": "declined",
-      "reason": "No interaction evidence in the restrained register; correctly out (the consumer's adaptation was marked).",
-      "try": [
-        "Prefer explicit move controls, or accept the marked improvisation.",
-        "Report recurrence if it should justify interaction canon."
-      ],
-      "citation": "gap/20261007-145917-125884 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-125884", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-csv-export",
-      "kind": "precedent",
-      "title": "CSV export",
-      "request": "CSV export",
-      "matches": ["csv", "export", "download", "download csv"],
-      "decision": "declined",
-      "reason": "App plumbing, not interface canon; no evidence.",
-      "try": [
-        "Use an existing action (navy or outline) labelled with the concrete verb.",
-        "Treat the file mechanics as app utility, outside canon."
-      ],
-      "citation": "gap/20261007-145917-d24275 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-d24275", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-dark-mode",
-      "kind": "precedent",
-      "title": "Dark mode",
-      "request": "dark-mode theme",
-      "matches": ["dark mode", "dark theme", "night mode", "dark scheme"],
-      "decision": "declined",
-      "reason": "No dark surfaces or theming anywhere in the evidence; re-stating the red/blue roles on an ink ground would be invention.",
-      "try": [
-        "Stay light; map colour roles rather than hexes so future theming is possible.",
-        "Use the sanctioned fallbacks and mark the improvisation."
-      ],
-      "citation": "gap/20261007-145917-f9b5a1 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-f9b5a1", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-toggle-and-slider",
-      "kind": "precedent",
-      "title": "Toggle switch & slider",
-      "request": "toggle switch; daily-goal slider",
-      "matches": ["toggle", "switch", "slider", "range slider"],
-      "decision": "declined",
-      "reason": "The platform-controls fallback is the designed answer; used, marked, reported.",
-      "try": [
-        "Use platform controls styled at field level.",
-        "Mark as fallback, not improvisation."
-      ],
-      "citation": "gap/20261007-145917-9146b6 (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-9146b6", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-checkbox-radio",
-      "kind": "precedent",
-      "title": "Checkbox & radio",
-      "request": "checkbox; radio buttons",
-      "matches": ["checkbox", "check box", "radio", "radio button", "radio buttons"],
-      "decision": "declined",
-      "reason": "Sanctioned fallback (platform-controls); the correct outcome.",
-      "try": [
-        "Use platform controls styled at field level; mark as fallback."
-      ],
-      "citation": "gap/20261007-145917-5bb40b (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-5bb40b", "proposal_id": null, "date": "2026-10-07"}
-    },
-    {
-      "id": "precedent/declined-date-picker-select",
-      "kind": "precedent",
-      "title": "Date picker & select",
-      "request": "date picker; category select",
-      "matches": ["date picker", "datepicker", "calendar picker", "select", "dropdown", "category select", "picker"],
-      "decision": "declined",
-      "reason": "Fallback-covered; the routing nuance has identical constraints/outcome.",
-      "try": [
-        "Use the platform-controls fallback; selects use the existing field-select language."
-      ],
-      "citation": "gap/20261007-145917-ca8e6c (adjudicated 2026-10-07)",
-      "provenance": {"source": "adjudication-no-action", "gap_id": "gap/20261007-145917-ca8e6c", "proposal_id": null, "date": "2026-10-07"}
+      "citation": "gap/20261007-145916-6a07a0 (adjudicated 2026-10-07; lenient re-scope)",
+      "provenance": {"source": "adjudication-policy-decline", "gap_id": "gap/20261007-145916-6a07a0", "proposal_id": null, "date": "2026-10-07"}
     },
     {
       "id": "precedent/destructive-confirm-rejected",
@@ -128,7 +50,12 @@
       "request": "pattern/destructive-confirm — canonical destructive flow for permanently deleting a ritual (confirm labelled with the concrete verb, never 'OK'; destructive never default-focused)",
       "matches": ["delete", "destructive", "delete permanently", "confirm", "confirm dialog", "destructive confirm", "are you sure"],
       "decision": "declined",
+      "grounds": "reviewer-rejection",
       "reason": "Rejected at gate review (no reviewer note recorded); the proposal would have canonised a destructive pattern the register does not evidence.",
+      "scope": {
+        "domains": ["destructive flows"],
+        "boundary": ["in-flow ruled confirms (the sanctioned route)", "undo notices after deletion"]
+      },
       "try": [
         "Keep destructive flows inline: confirm via an in-flow ruled panel with explicit verb buttons.",
         "Never pre-focus the destructive control; keep red for attention, not decoration."
@@ -143,7 +70,12 @@
       "request": "pattern/ledger — table of logged entries (2px ink header rule, hairline rows, red95 hover)",
       "matches": ["table", "ledger", "register", "entries table", "ruled table", "log table", "data table"],
       "decision": "declined",
+      "grounds": "reviewer-rejection",
       "reason": "Rejected at gate review (no reviewer note recorded); the table styling exists only in the sheet layer (L-18) and was declined as canon.",
+      "scope": {
+        "domains": ["tables", "registers"],
+        "boundary": ["composed ruled tables from typography + hairlines (the sanctioned route)"]
+      },
       "try": [
         "Compose tables from typography rules + hairlines (2px header rule, London-85 hairlines) as a marked composition.",
         "Re-propose only if the ledger recurs across consumers and live pages confirm it."

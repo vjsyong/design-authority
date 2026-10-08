@@ -87,11 +87,22 @@ def cmd_resolve(pack, args):
     if res:
         print(json.dumps(res, indent=1))
     if result.get("precedents"):
-        print("precedents (negative — previously declined):")
+        print("precedents (negative — scope-verdicts: governs | outside | ambiguous):")
         for p in result["precedents"]:
-            print("  DECLINED: %s — %s" % (p.get("title"), (p.get("reason") or "")[:140]))
-            for t in p.get("try", []):
-                print("    try: %s" % t)
+            print("  [%s] %s — %s" % (p.get("verdict"), p.get("title"),
+                                      (p.get("reason") or "")[:120]))
+            if p.get("verdict") == "governs":
+                for t in p.get("try", []):
+                    print("    try: %s" % t)
+            elif p.get("verdict") == "outside":
+                print("    outside the decline's scope — proceed as a marked improvisation")
+    if result.get("candidates"):
+        print("candidates (provisional — NOT authority):")
+        for c in result["candidates"]:
+            print("  %s — %s" % (c.get("title"), (c.get("summary") or "")[:120]))
+            pw = c.get("promote_when") or []
+            if pw:
+                print("    promote when: %s" % pw[0])
     if result.get("closest"):
         print("closest:")
         for c in result["closest"]:
@@ -173,17 +184,68 @@ def cmd_propose(pack, args):
 
 def cmd_precedents(pack, args):
     if args.query:
-        recs = pack.precedent_matches(args.query, limit=25)
+        recs = [dict(m["record"], verdict=m["verdict"])
+                for m in pack.precedent_matches(args.query, limit=25)]
     else:
         recs = pack.precedents
     data = {"authority": pack.identity(), "count": len(recs), "precedents": recs}
     if args.json:
         return _dump(data)
-    print("%s — %d negative precedent(s)" % (pack.identity()["authority"], len(recs)))
+    print("%s — %d negative precedent(s) (policy declines only)" % (pack.identity()["authority"], len(recs)))
     for p in recs:
         print("  %-18s %s" % (p.get("decision", "?"), p.get("id")))
+        if p.get("verdict"):
+            print("      verdict: %s" % p["verdict"])
         print("      request: %s" % (p.get("request", "")[:100]))
         print("      why:     %s" % (p.get("reason", "")[:100]))
+
+
+def cmd_precedent_check(pack, args):
+    ask = args.ask
+    results = pack.precedent_matches(ask, limit=10)
+    cands = pack.candidate_matches(ask, limit=5)
+    data = {"authority": pack.identity(), "ask": ask,
+            "results": [{"id": m["record"]["id"], "verdict": m["verdict"],
+                         "boundary_hits": m["boundary_hits"],
+                         "grounds": m["record"].get("grounds"),
+                         "try": m["record"].get("try")} for m in results],
+            "candidates": [{"id": c.get("id"), "summary": c.get("summary"),
+                            "promote_when": c.get("promote_when")} for c in cands]}
+    if args.json:
+        return _dump(data)
+    print("ask: %s" % ask)
+    if not results:
+        print("  not governed by any precedent — proceed per the ordinary rules "
+              "(improvise in character, mark, report a gap if it recurs)")
+    for m in results:
+        r = m["record"]
+        print("  [%s] %s — %s" % (m["verdict"], r["id"], r.get("title")))
+        if m["verdict"] == "governs":
+            for t in r.get("try", []):
+                print("      try: %s" % t)
+        elif m["verdict"] == "outside":
+            print("      outside this decline's scope (boundary: %s) — go ahead and mark it"
+                  % ", ".join(m["boundary_hits"][:2]))
+        else:
+            print("      ambiguous (domain + boundary overlap) — treat as an ordinary "
+                  "improvisation unless a human rules on it")
+    for c in cands:
+        print("  [candidate] %s — %s" % (c["id"], (c.get("summary") or "")[:110]))
+        pw = c.get("promote_when") or []
+        if pw:
+            print("      promote when: %s" % pw[0])
+
+
+def cmd_candidates(pack, args):
+    recs = pack.candidate_matches(args.query, limit=25) if args.query else pack.candidates
+    data = {"authority": pack.identity(), "count": len(recs), "candidates": recs}
+    if args.json:
+        return _dump(data)
+    print("%s — %d candidate(s) (provisional — NOT authority)"
+          % (pack.identity()["authority"], len(recs)))
+    for c in recs:
+        print("  %s — %s" % (c.get("id"), c.get("title")))
+        print("      %s" % (c.get("summary", "")[:110]))
 
 
 def cmd_review(pack, args):
@@ -250,6 +312,14 @@ def main(argv=None):
     p.add_argument("--query", default="")
     p.add_argument("--json", action="store_true")
 
+    p = sub.add_parser("precedent-check")
+    p.add_argument("--ask", required=True)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("candidates")
+    p.add_argument("--query", default="")
+    p.add_argument("--json", action="store_true")
+
     args = ap.parse_args(argv)
     try:
         pack = _load_pack(args)
@@ -260,7 +330,9 @@ def main(argv=None):
     handler = {"overview": cmd_overview, "search": cmd_search, "inspect": cmd_inspect,
                "resolve": cmd_resolve, "validate": cmd_validate, "golden": cmd_golden,
                "gaps": cmd_gaps, "gap-add": cmd_gap_add, "propose": cmd_propose,
-               "review": cmd_review, "precedents": cmd_precedents}[args.cmd]
+               "review": cmd_review, "precedents": cmd_precedents,
+               "precedent-check": cmd_precedent_check,
+               "candidates": cmd_candidates}[args.cmd]
     return handler(pack, args) or 0
 
 

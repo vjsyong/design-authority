@@ -159,15 +159,21 @@ def main():
             "depends_on": ["component/ghost"], "tests": [{}]}}, 20)
         check("propose_extension rejects unknown dep", bad.get("status") == "error")
 
-        # precedents (generic; triage carries none — empty is valid)
+        # precedents/candidates (generic; triage carries none — empty is valid)
         prec = call(proc, "list_precedents", {}, 21)
         check("list_precedents (empty ok)", prec.get("status") == "ok"
               and prec.get("count") == 0, "count=%s" % prec.get("count"))
+        pc = call(proc, "check_precedent", {"ask": "a check control to log a ritual"}, 22)
+        check("check_precedent ok (empty)", pc.get("status") == "ok"
+              and pc.get("results") == [], "results=%s" % pc.get("results"))
+        lc = call(proc, "list_candidates", {}, 23)
+        check("list_candidates (empty ok)", lc.get("status") == "ok"
+              and lc.get("count") == 0, "count=%s" % lc.get("count"))
 
         # resource
-        send(proc, {"jsonrpc": "2.0", "id": 22, "method": "resources/read",
+        send(proc, {"jsonrpc": "2.0", "id": 24, "method": "resources/read",
                     "params": {"uri": "authority://overview"}})
-        res = recv(proc, 22)["result"]
+        res = recv(proc, 24)["result"]
         check("resource authority://overview", len(res["contents"][0]["text"]) > 100)
 
         # decision log

@@ -1,0 +1,108 @@
+{
+ "wink": {
+  "b6450a": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "cfe3c5": {
+   "mode": "declined",
+   "precedent": "precedent/declined-photographic-imagery",
+   "candidate": null
+  },
+  "a6f9c7": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "088b69": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "f88682": {
+   "mode": "candidate",
+   "precedent": null,
+   "candidate": "candidate/pager-composition"
+  },
+  "a69c21": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "f4c315": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  }
+ },
+ "leader": {
+  "7e2442": {
+   "mode": "declined",
+   "precedent": "precedent/declined-motion-feedback",
+   "candidate": null
+  },
+  "6a07a0": {
+   "mode": "declined",
+   "precedent": "precedent/declined-imagery-and-icons",
+   "candidate": null
+  },
+  "125884": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "d24275": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "f9b5a1": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "9146b6": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "5bb40b": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  },
+  "ca8e6c": {
+   "mode": "deferred",
+   "precedent": null,
+   "candidate": null
+  }
+ },
+ "dominion": {
+  "05534a": {
+   "mode": "split",
+   "precedent": "precedent/declined-progress-ring",
+   "candidate": "candidate/streak-readout-composition"
+  },
+  "b20a90": {
+   "mode": "declined",
+   "precedent": "precedent/declined-celebration-motion-toasts",
+   "candidate": null
+  },
+  "e4273f": {
+   "mode": "candidate",
+   "precedent": null,
+   "candidate": "candidate/paging-composition"
+  },
+  "19b53c": {
+   "mode": "split",
+   "precedent": "precedent/declined-pictograms",
+   "candidate": "candidate/category-chip-composition"
+  },
+  "b18038": {
+   "mode": "declined",
+   "precedent": "precedent/declined-photographic-imagery",
+   "candidate": null
+  }
+ }
+}

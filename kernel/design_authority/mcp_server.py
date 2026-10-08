@@ -81,11 +81,12 @@ def authority_overview() -> dict:
         "policy": pack.manifest.get("policy"),
         "how_to_use": [
             "search_authority(query) to find artifacts; inspect_artifact(id) for detail.",
-            "resolve_design_problem(problem) returns one of CONFLICT / RESOLVED / COMPOSE / FALLBACK / UNDEFINED with citations; matching negative precedents are attached when present.",
-            "list_precedents() surfaces declined requests with reasons and alternatives — consult it before coining something new.",
+            "resolve_design_problem(problem) returns one of CONFLICT / RESOLVED / COMPOSE / FALLBACK / UNDEFINED with citations; matching negative precedents (with scope verdicts) and provisional candidates are attached when present.",
+            "check_precedent(ask) before deviating from a declined direction: governs = follow the try list; outside = explicitly not governed, proceed and mark; ambiguous = treat as improvisation unless ruled.",
+            "list_precedents() / list_candidates() surface policy declines and provisional directions.",
             "validate_implementation(target) runs the authority's validators over a path.",
             "UNDEFINED is a useful answer: implement per the fallback policy, mark the improvisation, then report_gap(...).",
-            "Never present improvisation as canonical; never modify the authority.",
+            "Never present improvisation — or a candidate — as canonical; never modify the authority.",
         ],
     }
     _log("authority_overview", {}, {"counts": data["counts"]}, t0)
@@ -150,19 +151,61 @@ def resolve_design_problem(problem: str, context: Optional[dict] = None) -> dict
 
 @mcp.tool()
 def list_precedents(query: str = "") -> dict:
-    """List the authority's negative precedents: requests previously declined,
-    each with the reason and the routes to try instead. Optional `query`
-    filters by keyword overlap. Consult before coining something new — a
-    decline is guidance, not a dead end."""
+    """List the authority's negative precedents (policy declines only), each
+    with grounds, reason, scope boundary and the routes to try instead.
+    Optional `query` filters by keyword overlap; results carry a `verdict`:
+    governs / outside / ambiguous. A decline is guidance, not a dead end."""
     t0 = time.time()
     pack = get_pack()
     if query:
-        recs = pack.precedent_matches(query, limit=25)
+        recs = [dict(m["record"], verdict=m["verdict"])
+                for m in pack.precedent_matches(query, limit=25)]
     else:
         recs = pack.precedents
     _log("list_precedents", {"query": query}, {"count": len(recs)}, t0)
     return {"status": "ok", "authority": pack.identity(),
             "count": len(recs), "precedents": recs}
+
+
+@mcp.tool()
+def check_precedent(ask: str, precedent_id: str = "") -> dict:
+    """Check how the negative precedents apply to an ask BEFORE deviating.
+    Verdicts: governs (may be treated as declined — follow the try list),
+    outside (explicitly not governed — proceed as an ordinary marked
+    improvisation), ambiguous (both scopes touched — treat as improvisation
+    unless a human rules). Also surfaces provisional candidates."""
+    t0 = time.time()
+    pack = get_pack()
+    results = pack.precedent_matches(ask, limit=10)
+    if precedent_id:
+        results = [m for m in results if m["record"].get("id") == precedent_id]
+    out = {"status": "ok", "authority": pack.identity(), "ask": ask,
+           "results": [{"id": m["record"]["id"], "verdict": m["verdict"],
+                        "boundary_hits": m["boundary_hits"],
+                        "grounds": m["record"].get("grounds"),
+                        "reason": m["record"].get("reason"),
+                        "try": m["record"].get("try")} for m in results],
+           "candidates": [{"id": c.get("id"), "summary": c.get("summary"),
+                           "promote_when": c.get("promote_when")}
+                          for c in pack.candidate_matches(ask, limit=5)]}
+    _log("check_precedent", {"ask": ask}, {"results": len(results)}, t0)
+    return out
+
+
+@mcp.tool()
+def list_candidates(query: str = "") -> dict:
+    """List candidates — provisional directions with partial evidence. NOT
+    authority: adopt as a marked starting point or keep improvising; promotion
+    requires the evidence named in promote_when (then a proposal + review)."""
+    t0 = time.time()
+    pack = get_pack()
+    if query:
+        recs = pack.candidate_matches(query, limit=25)
+    else:
+        recs = pack.candidates
+    _log("list_candidates", {"query": query}, {"count": len(recs)}, t0)
+    return {"status": "ok", "authority": pack.identity(),
+            "count": len(recs), "candidates": recs}
 
 
 @mcp.tool()

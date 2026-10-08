@@ -83,9 +83,18 @@ def _emit_compose(out, pack, hit, art_hits):
     return out
 
 
-def _precedent_brief(p):
-    return {k: p.get(k) for k in ("id", "title", "request", "decision",
-                                  "reason", "try", "citation", "provenance")}
+def _precedent_brief(m):
+    p, verdict = m["record"], m["verdict"]
+    return {"id": p.get("id"), "verdict": verdict, "title": p.get("title"),
+            "grounds": p.get("grounds"), "reason": p.get("reason"),
+            "try": p.get("try"),
+            "boundary": (p.get("scope") or {}).get("boundary", []),
+            "citation": p.get("citation")}
+
+
+def _candidate_brief(c):
+    return {k: c.get(k) for k in ("id", "title", "summary", "status",
+                                  "promote_when", "emerges_from")}
 
 
 def _resolve_core(pack, problem, context=None):
@@ -112,7 +121,7 @@ def _resolve_core(pack, problem, context=None):
     # 2/3. RESOLVED vs COMPOSE — spec order: a dedicated artifact wins; a
     # sanctioned recipe is the answer only when no artifact directly defines it.
     hits = pack.search(problem, limit=8)
-    art_hits = [h for h in hits if h["kind"] not in ("recipe", "fallback", "prohibition", "precedent")]
+    art_hits = [h for h in hits if h["kind"] not in ("recipe", "fallback", "prohibition", "precedent", "candidate")]
     rh = pack.search(problem, kinds=["recipe"], limit=3)
     a_best = art_hits[0] if art_hits else None
     r_best = rh[0] if rh and rh[0]["score"] >= COMPOSE_MIN else None
@@ -163,12 +172,16 @@ def _resolve_core(pack, problem, context=None):
 
 
 def resolve(pack, problem, context=None):
-    """Resolve a design problem; attach matching negative precedents (declined
-    requests with reasons + alternatives) when vocabulary overlaps."""
+    """Resolve a design problem; attach scope-verdict negative precedents when
+    vocabulary overlaps, and (on UNDEFINED) matching provisional candidates."""
     out = _resolve_core(pack, problem, context)
     matches = pack.precedent_matches(problem, limit=2)
     if matches:
-        out["precedents"] = [_precedent_brief(p) for p in matches]
+        out["precedents"] = [_precedent_brief(m) for m in matches]
+    if out.get("outcome") == "UNDEFINED":
+        cands = pack.candidate_matches(problem, limit=2)
+        if cands:
+            out["candidates"] = [_candidate_brief(c) for c in cands]
     return out
 
 

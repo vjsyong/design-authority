@@ -1,0 +1,55 @@
+{
+  "version": "0.1",
+  "pack_version": "dominion 0.2.0",
+  "note": "Candidates — partial evidence recorded as PROVISIONAL directions. Not authority: consumers may adopt them as marked starting points, never present them as canonical. Promotion requires the evidence named in promote_when (then proposal -> review).",
+  "candidates": [
+    {
+      "id": "candidate/streak-readout-composition",
+      "kind": "candidate",
+      "title": "Streak & achievement readouts (provisional)",
+      "request": "streak counter · badge tiles",
+      "matches": ["streak", "streak counter", "badge", "badge tile", "badge tiles", "trophy", "achievement tile"],
+      "status": "candidate",
+      "summary": "Compose streaks and achievements from display numerals plus the ruled register; no rings, badge shapes or trophies.",
+      "emerges_from": ["gap/20261007-150030-05534a"],
+      "evidence_present": "Lenient re-classification of the ring/streak/badges decline: compositions stated by adjudication; no live-product instance for the composition chrome.",
+      "promote_when": [
+        "A live-product instance of the composed readout is captured.",
+        "Recurrence across at least two consumers."
+      ],
+      "provenance": {"source": "adjudication-candidate", "gap_id": "gap/20261007-150030-05534a", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "candidate/paging-composition",
+      "kind": "candidate",
+      "title": "Paging composition (provisional)",
+      "request": "paging control for older entries",
+      "matches": ["paging", "pagination", "pager", "older entries", "page controls"],
+      "status": "candidate",
+      "summary": "Outline buttons plus a plain readout (e.g. 'Entrées 9–16 de 24'); no dedicated paging canon exists.",
+      "emerges_from": ["gap/20261007-150030-e4273f"],
+      "evidence_present": "Lenient re-classification of the view-tabs/paging decline: the paging composition pathway was stated by adjudication; view switching itself stays with the masthead active state (D-08).",
+      "promote_when": [
+        "A live-product pager instance is captured.",
+        "At least two consumers need the same composition."
+      ],
+      "provenance": {"source": "adjudication-candidate", "gap_id": "gap/20261007-150030-e4273f", "proposal_id": null, "date": "2026-10-07"}
+    },
+    {
+      "id": "candidate/category-chip-composition",
+      "kind": "candidate",
+      "title": "Category word chip (provisional)",
+      "request": "category tag",
+      "matches": ["category tag", "tag", "tags", "chip", "category label", "category chip"],
+      "status": "candidate",
+      "summary": "Category as a word chip in the ruled register (D-10 label idiom): plain caps word, 1px rule box, no pictograms, bilingual pair where space allows.",
+      "emerges_from": ["gap/20261007-150031-19b53c"],
+      "evidence_present": "Lenient re-classification of the pictograms/tags decline: the word-chip composition was stated by adjudication; no live-product chip instance captured.",
+      "promote_when": [
+        "A live-product category chip instance is captured.",
+        "Recurrence across at least two consumers."
+      ],
+      "provenance": {"source": "adjudication-candidate", "gap_id": "gap/20261007-150031-19b53c", "proposal_id": null, "date": "2026-10-07"}
+    }
+  ]
+}

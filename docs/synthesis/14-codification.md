@@ -85,3 +85,9 @@ decline reason and the sanctioned alternatives (compose route, fallback, or
 evidence bar to clear). Gaps and proposals landed in declined areas surface
 warnings at filing time. The acceptance loop is now: verdict → canon
 (rebuild uses it) or precedent (rebuild is steered away from it).
+
+**Update (later 2026-10-07):** the decline half of this record was narrowed by
+the lenient re-classification — see `16-lenient-adjudication.md`. Most of the
+adjudicator's declines now defer to undefined or became candidates; precedents
+are reserved for grounded policy and carry scope + boundary. The 5 reviewer
+rejections above stand unchanged.

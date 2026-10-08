@@ -135,34 +135,49 @@ class TestRecords(unittest.TestCase):
 
 
 class TestPrecedents(unittest.TestCase):
-    """Negative precedents: optional per pack, attached on vocabulary overlap."""
+    """Scope-aware precedents + candidates (lenient doctrine)."""
 
     @classmethod
     def setUpClass(cls):
         cls.pack = Pack(os.path.join(ROOT, "packs", "wink"))
+        cls.dom = Pack(os.path.join(ROOT, "packs", "dominion"))
         cls.triage = Pack(PACK_DIR)
 
     def test_pack_without_precedents_loads_empty(self):
         self.assertEqual(self.triage.precedents, [])
+        self.assertEqual(self.triage.candidates, [])
 
-    def test_resolve_attaches_precedent_on_declined_ask(self):
-        r = resolve(self.pack, "add a bar chart of activity")
-        ids = [p["id"] for p in r.get("precedents", [])]
-        self.assertIn("precedent/declined-chart-treatments", ids)
+    def test_governs_on_policy_decline(self):
+        r = resolve(self.pack, "photo upload for the ritual")
+        prec = r.get("precedents") or []
+        self.assertTrue(prec and prec[0]["verdict"] == "governs")
+        self.assertEqual(prec[0]["id"], "precedent/declined-photographic-imagery")
 
-    def test_precedent_coexists_with_fallback_outcome(self):
+    def test_outside_verdict_exempts_functional_controls(self):
+        res = self.pack.precedent_matches("a check control to log a ritual")
+        self.assertTrue(any(m["verdict"] == "outside" for m in res))
+
+    def test_retired_decline_defers_to_undefined(self):
         r = resolve(self.pack, "add a dark mode theme")
         self.assertEqual(r["outcome"], "FALLBACK")
-        self.assertIn("precedent/declined-dark-mode",
-                      [p["id"] for p in r.get("precedents", [])])
+        self.assertNotIn("precedents", r)
+        r2 = resolve(self.pack, "add a bar chart of activity")
+        self.assertNotIn("precedents", r2)
+
+    def test_candidates_attach_on_undefined(self):
+        r = resolve(self.dom, "pagination for older entries")
+        self.assertEqual(r["outcome"], "UNDEFINED")
+        ids = [c["id"] for c in r.get("candidates", [])]
+        self.assertIn("candidate/paging-composition", ids)
 
     def test_benign_ask_has_no_precedents(self):
         r = resolve(self.pack, "add a primary button to the page")
         self.assertNotIn("precedents", r)
+        self.assertNotIn("candidates", r)
 
     def test_gap_carries_precedent_warnings(self):
         with tempfile.TemporaryDirectory() as ws:
-            gap = records.add_gap(self.pack, ws, "a dark mode toggle for settings")
+            gap = records.add_gap(self.pack, ws, "an avatar photo for sam")
             self.assertTrue(gap.get("precedent_warnings"))
 
 

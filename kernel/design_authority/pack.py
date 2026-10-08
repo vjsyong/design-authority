@@ -77,6 +77,9 @@ class Pack(object):
         # Negative precedents (generic): declined requests with reasons and
         # suggested alternatives. Optional; absent file -> [].
         self.precedents = load_opt(ep.get("precedents", "precedents.json"), "precedents")
+        # Candidates (generic): partial-evidence directions that are NOT
+        # authority. Optional; absent file -> [].
+        self.candidates = load_opt(ep.get("candidates", "candidates.json"), "candidates")
 
         self.by_id = {}
         for entry in (self.artifacts + self.recipes + self.fallbacks
@@ -167,6 +170,13 @@ class Pack(object):
                 fields.append((t, 1.0))
             add(p, fields, phrases=p.get("matches", []))
 
+        for c in self.candidates:
+            fields = [(c.get("title", ""), 3.0), (c.get("summary", ""), 2.0),
+                      (c.get("request", ""), 2.0)]
+            for m in c.get("matches", []):
+                fields.append((m, 4.0))
+            add(c, fields, phrases=c.get("matches", []))
+
         self._docs = out
         return out
 
@@ -201,33 +211,80 @@ class Pack(object):
         results.sort(key=lambda r: (-r["score"], r["id"]))
         return results[:limit]
 
-    def precedent_matches(self, text, limit=2):
-        """Negative precedents whose vocabulary overlaps `text`.
+    @staticmethod
+    def _vocab_matches(toks, entries):
+        """Matcher over a raw vocabulary list (scope domains/boundary).
 
-        Generic matching: single-word entries in `matches` contribute stemmed
-        tokens (a shared token of length >= 4 is required); multi-word entries
-        contribute only as phrases (all their tokens present in the query).
-        This keeps generic phrase-internal words ("…button") from matching
-        on their own. Returns full precedent records, best first.
+        Same rules as `matches`: single-word entries contribute stemmed tokens
+        (shared token >= 4 chars, using the ORIGINAL word length), multi-word
+        entries contribute only as phrases (all tokens present in the query).
+        Returns the entries that hit."""
+        hits = []
+        for entry in entries or []:
+            nm = norm_tokens(entry)
+            if len(nm) == 1:
+                if nm[0] in toks and len(str(entry).strip()) >= 4:
+                    hits.append(entry)
+            elif nm and set(nm) <= toks:
+                hits.append(entry)
+        return hits
+
+    def _match_vocab(self, entries, toks):
+        """Score + hits for a precedence/candidate `matches` list."""
+        singles, phrases = {}, []
+        for m in entries or []:
+            nm = norm_tokens(m)
+            if len(nm) == 1:
+                s = nm[0]
+                # record the ORIGINAL word length: stems can shrink below the
+                # strong-token bar ("tabs" -> "tab"), which must not silently
+                # disqualify a legitimate single-word match.
+                singles[s] = max(singles.get(s, 0), len(str(m).strip()))
+            elif nm:
+                phrases.append(set(nm))
+        strong = [t for t in toks if t in singles and singles[t] >= 4]
+        ph_hits = [x for x in phrases if x <= toks]
+        return len(strong) + 2 * len(ph_hits)
+
+    def precedent_matches(self, text, limit=2):
+        """Scope-aware negative-precedent lookup.
+
+        Returns [{record, verdict, score, boundary_hits}] with verdict:
+          governs     — inside the decline's scope; may be treated as declined
+          outside     — vocabulary touches the boundary; explicitly NOT governed
+                        (proceed as an ordinary improvisation, mark it)
+          ambiguous   — domains and boundary both hit; treat as improvisation
+                        unless a human rules (or run the precedent-check tool)
         """
         toks = set(norm_tokens(text))
-        hits = []
+        out = []
         for p in self.precedents:
-            singles, phrases = {}, []
-            for m in p.get("matches", []):
-                nm = norm_tokens(m)
-                if len(nm) == 1:
-                    s = nm[0]
-                    # record the ORIGINAL word length: stems can shrink below
-                    # the strong-token bar ("tabs" -> "tab"), which must not
-                    # silently disqualify a legitimate single-word match.
-                    singles[s] = max(singles.get(s, 0), len(str(m).strip()))
-                elif nm:
-                    phrases.append(set(nm))
-            strong = [t for t in toks if t in singles and singles[t] >= 4]
-            ph_hits = [x for x in phrases if x <= toks]
-            score = len(strong) + 2 * len(ph_hits)
+            score = self._match_vocab(p.get("matches"), toks)
+            scope = p.get("scope") or {}
+            dom_hits = self._vocab_matches(toks, scope.get("domains"))
+            bnd_hits = self._vocab_matches(toks, scope.get("boundary"))
+            if score < 1 and not bnd_hits:
+                continue
+            if bnd_hits and not dom_hits:
+                verdict = "outside"
+            elif bnd_hits and dom_hits:
+                verdict = "ambiguous"
+            else:
+                verdict = "governs"
+            out.append({"record": p, "verdict": verdict, "score": score,
+                        "boundary_hits": bnd_hits})
+        order = {"governs": 0, "ambiguous": 1, "outside": 2}
+        out.sort(key=lambda r: (order[r["verdict"]], -r["score"],
+                                r["record"].get("id", "")))
+        return out[:limit]
+
+    def candidate_matches(self, text, limit=2):
+        """Candidates (partial evidence, NOT authority) matching the text."""
+        toks = set(norm_tokens(text))
+        hits = []
+        for c in self.candidates:
+            score = self._match_vocab(c.get("matches"), toks)
             if score >= 1:
-                hits.append((score, p))
+                hits.append((score, c))
         hits.sort(key=lambda kv: (-kv[0], kv[1].get("id", "")))
         return [h[1] for h in hits[:limit]]
