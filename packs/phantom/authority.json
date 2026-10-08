@@ -1,6 +1,6 @@
 {
  "id": "phantom",
- "name": "Jen Mu",
+ "name": "Jennu",
  "format_version": "0.1",
  "version": "0.2.0",
  "snapshot": {
@@ -10,7 +10,7 @@
   "version": "pass-2 redo 2026-10-08 (screenshot-first, 4 domain teams)",
   "path_hint": "docs/synthesis/phantom/_raw/site/ (renderable mirror)"
  },
- "description": "The Jen Mu design authority — the interface system of zhenyoyo.github.io as deployed: Source Sans Pro 300/700/900, pink reading ink #ff6bbc with neon-green links #6bff2c on a dotted blue underline, blue-ground code, a lime slide-in menu, red checked marks with purple labels, radius flattened to 0 on marks/boxes/images/chips, ink-ring buttons, underline fields, a tiles-only load-in and one interaction pink #f2849e. Contrast failures are recorded as measured observations (pass 2 extracted what the site IS; pass 1's grey-ink canon was reversed). Per-page black-body overrides are part of the system.",
+ "description": "The Jennu design authority — the interface system of zhenyoyo.github.io as deployed: Source Sans Pro 300/700/900, pink reading ink #ff6bbc with neon-green links #6bff2c on a dotted blue underline, blue-ground code, a lime slide-in menu, red checked marks with purple labels, radius flattened to 0 on marks/boxes/images/chips, ink-ring buttons, underline fields, a tiles-only load-in and one interaction pink #f2849e. Contrast failures are recorded as measured observations (pass 2 extracted what the site IS; pass 1's grey-ink canon was reversed). Per-page black-body overrides are part of the system.",
  "kinds": [
   "component",
   "pattern",
