@@ -106,9 +106,13 @@
 .da-life-cap{margin-top:var(--space-10);font-size:var(--fs-log-row);color:var(--text-secondary)}
 @media (max-width:640px){
   .da-life{padding-inline:var(--space-28)}
-  .da-rail{inset-inline-start:calc(-1 * var(--space-28));width:20px}
-  .da-rail::after{inset-inline-end:-8px}
-  .da-rail::before{inset-inline-end:-8px}
+  .da-rail{inset-inline-start:calc(-1 * var(--space-28));width:22px;
+    border-inline-start-color:var(--text-secondary);
+    border-block-start-color:var(--text-secondary);
+    border-block-end-color:var(--text-secondary)}
+  .da-rail::before{inset-inline-end:-8px;background:var(--text-secondary)}
+  .da-rail::after{inset-inline-end:-8px;border-block-width:5px;border-inline-start-width:9px;
+    border-inline-start-color:var(--text-secondary)}
   .da-rail em{display:none}
 }
 
@@ -136,8 +140,14 @@
 .card.flush .tbl{margin:0}
 .card.flush td .mono{white-space:nowrap}
 @media (max-width:640px){
-  .card.flush{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .card.flush .tbl{min-width:560px}
+  /* tables become stacked rows: label above value, no horizontal clipping */
+  .card.flush .tbl thead{display:none}
+  .card.flush .tbl,.card.flush .tbl tbody,.card.flush .tbl tr,.card.flush .tbl td{display:block}
+  .card.flush .tbl tr{border-block-start:1px solid var(--border-default);padding:var(--space-10) 0}
+  .card.flush .tbl tr:first-child{border-block-start:0;padding-block-start:0}
+  .card.flush .tbl td{border:0;padding:var(--space-2) 0;white-space:normal}
+  .card.flush .tbl td::before{content:attr(data-th);display:block;font-size:var(--fs-pre-log);
+    letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);padding-block-end:var(--space-1)}
 }
 
 /* ---- catalogue ---- */

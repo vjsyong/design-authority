@@ -290,21 +290,21 @@
       <table class="tbl">
         <thead><tr><th>Outcome</th><th>Fires when</th><th>The build does</th></tr></thead>
         <tbody>
-          <tr><td><span class="dot ok"></span> <span class="mono">RESOLVED</span></td>
-              <td>the element matches a recorded artifact</td>
-              <td>build it the recorded way</td></tr>
-          <tr><td><span class="dot"></span> <span class="mono">COMPOSE</span></td>
-              <td>the element combines recorded parts</td>
-              <td>assemble only in recorded ways</td></tr>
-          <tr><td><span class="dot"></span> <span class="mono">FALLBACK</span></td>
-              <td>the environment cannot support the primary answer</td>
-              <td>follow the recorded degradation</td></tr>
-          <tr><td><span class="dot warn"></span> <span class="mono">UNDEFINED</span></td>
-              <td>authority has no answer</td>
-              <td>implement locally if necessary, mark it as noncanonical, keep the provenance, and file the gap. Never present it as canon</td></tr>
-          <tr><td><span class="dot err"></span> <span class="mono">CONFLICT</span></td>
-              <td>the request contradicts a prohibition</td>
-              <td>stop and escalate; do not implement as asked</td></tr>
+          <tr><td data-th="Outcome"><span class="dot ok"></span> <span class="mono">RESOLVED</span></td>
+              <td data-th="Fires when">the element matches a recorded artifact</td>
+              <td data-th="The build does">build it the recorded way</td></tr>
+          <tr><td data-th="Outcome"><span class="dot"></span> <span class="mono">COMPOSE</span></td>
+              <td data-th="Fires when">the element combines recorded parts</td>
+              <td data-th="The build does">assemble only in recorded ways</td></tr>
+          <tr><td data-th="Outcome"><span class="dot"></span> <span class="mono">FALLBACK</span></td>
+              <td data-th="Fires when">the environment cannot support the primary answer</td>
+              <td data-th="The build does">follow the recorded degradation</td></tr>
+          <tr><td data-th="Outcome"><span class="dot warn"></span> <span class="mono">UNDEFINED</span></td>
+              <td data-th="Fires when">authority has no answer</td>
+              <td data-th="The build does">implement locally if necessary, mark it as noncanonical, keep the provenance, and file the gap. Never present it as canon</td></tr>
+          <tr><td data-th="Outcome"><span class="dot err"></span> <span class="mono">CONFLICT</span></td>
+              <td data-th="Fires when">the request contradicts a prohibition</td>
+              <td data-th="The build does">stop and escalate; do not implement as asked</td></tr>
         </tbody>
       </table>
     </div>
@@ -327,10 +327,10 @@
       <table class="tbl">
         <thead><tr><th>Level</th><th>Checks</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td class="mono">L1 · Static</td><td>tokens, selectors, declarations, structure</td><td>shipped</td></tr>
-          <tr><td class="mono">L2 · Behavioural</td><td>keyboard, focus restoration, state transitions, lifecycle</td><td>partial, declared per component</td></tr>
-          <tr><td class="mono">L3 · Rendered</td><td>screenshots, overflow, zoom, dark mode, reduced motion</td><td>proposed</td></tr>
-          <tr><td class="mono">L4 · Product</td><td>real workflows: task success, error recovery, comprehension</td><td>proposed</td></tr>
+          <tr><td data-th="Level" class="mono">L1 · Static</td><td data-th="Checks">tokens, selectors, declarations, structure</td><td data-th="Status">shipped</td></tr>
+          <tr><td data-th="Level" class="mono">L2 · Behavioural</td><td data-th="Checks">keyboard, focus restoration, state transitions, lifecycle</td><td data-th="Status">partial, declared per component</td></tr>
+          <tr><td data-th="Level" class="mono">L3 · Rendered</td><td data-th="Checks">screenshots, overflow, zoom, dark mode, reduced motion</td><td data-th="Status">proposed</td></tr>
+          <tr><td data-th="Level" class="mono">L4 · Product</td><td data-th="Checks">real workflows: task success, error recovery, comprehension</td><td data-th="Status">proposed</td></tr>
         </tbody>
       </table>
     </div>
