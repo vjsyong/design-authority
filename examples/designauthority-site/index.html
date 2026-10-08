@@ -7,7 +7,7 @@
 <title>Design Authority · Fuzzy Concepts to Enforceable Design</title>
 <meta name="description" content="Design Authority turns existing design precedent into an executable standard for coding agents. Agents follow what is known and make uncertainty visible when the standard runs out. Humans decide what becomes authoritative.">
 <meta property="og:title" content="Design Authority · Fuzzy Concepts to Enforceable Design">
-<meta property="og:description" content="Design intent that agents can inherit, conform to, and help evolve.">
+<meta property="og:description" content="Stop reinventing your design with every agent. Agents may improvise. They may not confuse improvisation with authority.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#fafafa">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -37,23 +37,194 @@
 <main id="main" class="content da-content">
 
   <section class="da-hero" data-improv="hero layout" title="Improvised (no authority record; gap filed)">
-    <h1>Design intent that agents can inherit, conform to, and help evolve.</h1>
-    <p class="lead da-lead">Design Authority turns existing design precedent into an executable standard for
-    coding agents. Agents follow what is known, make uncertainty visible when the standard runs out, and help
-    surface the cases through which that standard evolves. Humans decide what becomes authoritative.</p>
-    <p class="da-lead2 sub" data-improv="secondary lead style" title="Improvised (no authority record; gap filed)">In precise terms, a design authority is a versioned, machine-readable record of an
-    interface system. Agents resolve every element against it before they build; verifiers check the result
-    against the same record. Decisions that would otherwise happen by default get written down, cited, and
-    versioned.</p>
+    <div class="da-kick mono">01 · The promise</div>
+    <h1>Stop reinventing your design with every agent.</h1>
+    <p class="lead da-statement">Agents may improvise. They may not confuse improvisation with authority.</p>
+    <p class="da-intro sub">Design Authority turns existing design precedent into an executable standard for coding
+    agents. It is for product teams building interfaces with agents. Your team keeps deciding what becomes
+    authoritative; the agents stop guessing.</p>
     <div class="da-cta" data-improv="CTA row" title="Improvised (no authority record; gap filed)">
-      <a class="btn primary" href="/authorities/phantom/demo/jennu/">See a live review</a>
-      <a class="btn" href="/authorities/triage/audit">Open the Triage authority</a>
+      <a class="btn primary" href="#see">See it in action</a>
+      <a class="btn" href="#how">How it works</a>
     </div>
-    <p class="da-fine sub">Built on Triage's foundations, with its tokens and core styles unmodified.</p>
   </section>
 
+  <section class="da-sec" id="see">
+    <div class="da-kick mono">02 · See it work</div>
+    <h2>One app, three design authorities.</h2>
+    <p class="da-intro sub">The same habit-tracker brief, built three times, once under each authority. Same
+    features, same copy, no shared code.</p>
+    <div class="da-grid3" data-improv="app showcase" title="Improvised (no authority record; gap filed)">
+      <div class="card da-appshot">
+        <img src="/assets/img/cadence-wink.png" alt="The Cadence habit tracker as built under the Wink authority">
+        <div class="da-appshot-body">
+          <div class="card-h"><h3>Wink · expressive</h3></div>
+          <p class="da-links mono"><a href="/authorities/wink/demo/cadence-v3/">Open the app</a></p>
+        </div>
+      </div>
+      <div class="card da-appshot">
+        <img src="/assets/img/cadence-leader.png" alt="The Cadence habit tracker as built under the Leader authority">
+        <div class="da-appshot-body">
+          <div class="card-h"><h3>Leader · editorial</h3></div>
+          <p class="da-links mono"><a href="/authorities/leader/demo/cadence-v3/">Open the app</a></p>
+        </div>
+      </div>
+      <div class="card da-appshot">
+        <img src="/assets/img/cadence-dominion.png" alt="The Cadence habit tracker as built under the Dominion authority">
+        <div class="da-appshot-body">
+          <div class="card-h"><h3>Dominion · institutional</h3></div>
+          <p class="da-links mono"><a href="/authorities/dominion/demo/cadence-v3/">Open the app</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="da-sec" id="how">
+    <div class="da-kick mono">03 · How it works</div>
+    <h2>How a Design Authority is created, used, and evolved.</h2>
+    <ol class="da-steps da-steps3" data-improv="phase strip" title="Improvised (no authority record; gap filed)">
+      <li><span class="da-stepn mono">1</span><b>Compile</b>
+        <p>Evidence becomes reviewed rules.</p></li>
+      <li><span class="da-stepn mono">2</span><b>Govern</b>
+        <p>Agents build, consult and verify.</p></li>
+      <li><span class="da-stepn mono">3</span><b>Evolve</b>
+        <p>New cases become reviewed precedent.</p></li>
+    </ol>
+    <div class="da-life" data-improv="loop diagram" title="Improvised (no authority record; gap filed)">
+      <div class="da-phase">1. COMPILE</div>
+      <div class="da-lbox">
+        <div class="da-lrow"><b>PRECEDENT</b><p>existing product · brand kit · cases</p></div>
+        <div class="da-larr">↓</div>
+        <div class="da-lrow"><b>MACHINE</b><p>extracts evidence + infers norms</p></div>
+        <div class="da-larr">↓</div>
+        <div class="da-lrow gate"><b>HUMAN GATE · INTERPRETATION</b><p>accept · modify · reject · leave open</p></div>
+      </div>
+      <div class="da-larr">↓</div>
+      <div class="da-loopshell">
+        <div class="da-rail" aria-hidden="true"><em>release</em></div>
+        <div class="da-loopshell-main">
+          <div class="da-lauth"><b>DESIGN AUTHORITY</b><p>published, versioned standard · everything downstream cites it</p></div>
+          <div class="da-larr">↓</div>
+          <div class="da-phase">2. GOVERN</div>
+          <div class="da-lbox">
+            <div class="da-lrow"><b>AGENTS BUILD</b><p>resolve · compose · improvise visibly; never silently canonized</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow"><b>VERIFY</b><p>inspect artifact, not agent claims</p></div>
+          </div>
+          <div class="da-larr">↓</div>
+          <div class="da-phase">3. EVOLVE</div>
+          <div class="da-lbox">
+            <div class="da-lrow"><b>CASES</b><p>gaps · conflicts · proposals · fails</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow gate"><b>HUMAN GATE · AMENDMENT</b><p>adjudicate what should change</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow"><b>RELEASE + PRECEDENT</b><p>patch or fresh freeze, with reasons on record</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="da-life-cap">The release merges back into the authority. That is the loop.</p>
+    </div>
+    <div class="note" style="margin-top:var(--space-14)"><b>Machines assemble the evidence. Humans decide what becomes authoritative.</b></div>
+  </section>
+
+  <section class="da-sec" id="difference">
+    <div class="da-kick mono">04 · The difference</div>
+    <h2>What happens when authority has no answer?</h2>
+    <p class="da-intro sub">Nothing is silently invented. A single need, tracked through the whole loop, from a build that had to
+    improvise to the rule that stops the next build from guessing.</p>
+    <ol class="tl da-vtl">
+      <li class="tl-item"><span class="tl-dot"></span>
+        <span class="tl-time">ask</span>
+        <p>Building the tracker under the Dominion authority, the agent needs paging for older entries.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">authority is silent</span>
+        <p><span class="mono">resolve "pagination for older entries"</span> → <span class="mono">UNDEFINED</span>.
+        There is no paging canon, and inventing one silently is not allowed.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">improvise visibly</span>
+        <p>The build ships outline buttons plus a plain readout. The decision is marked as noncanonical, like every
+        unrecorded decision in the stress builds.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">gap filed</span>
+        <p><span class="mono">gap/20261007-150030-e4273f</span> lands in the workspace ledger.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">human adjudication</span>
+        <p>Review finds partial evidence and no live-product instance. The outcome is neither canon nor discarded;
+        it is ruled a provisional candidate with a promotion bar.</p></li>
+      <li class="tl-item"><span class="tl-dot ok"></span>
+        <span class="tl-time">memory</span>
+        <p>Today the same ask still returns <span class="mono">UNDEFINED</span>, with <b>Paging composition
+        (provisional)</b> attached, and the bar it must meet to become canon. The next build inherits the outline
+        without mistaking it for authority.</p></li>
+    </ol>
+    <p class="da-fine sub">Improvised work stays visibly noncanonical: in the Cadence builds every element outside
+    authority carries a mark and a filed gap; the ◌ toggle reveals them. <a href="/authorities/wink/demo/cadence-v1/">See one live</a>.</p>
+    <p class="da-fine sub">Nothing was silently invented, and nothing was lost.</p>
+  </section>
+
+  <section class="da-sec" id="evidence">
+    <div class="da-kick mono">05 · The evidence</div>
+    <h2>Measured results, and current limits.</h2>
+    <h3>Measured</h3>
+    <p class="da-fine sub">Where an authority ran out, the builds improvised visibly. Every unrecorded decision was marked and
+    every gap was filed. The rebuilds track the authorities as they codified, from v1 on the raw authority to
+    v3 on the codified release. Eleven accepted proposals became canon, and twenty-five recorded declines now
+    steer later asks toward sanctioned alternatives.</p>
+    <div class="da-flow" data-improv="proof rows" title="Improvised (no authority record; gap filed)">
+      <div class="da-fstep"><span class="da-fkind mono">wink</span>
+        <p>Friendly and rounded. Cadence <a href="/authorities/wink/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/wink/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/wink/demo/cadence-v3/">v3</a></p></div>
+      <div class="da-fstep"><span class="da-fkind mono">leader</span>
+        <p>Editorial and print-minded. Cadence <a href="/authorities/leader/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/leader/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/leader/demo/cadence-v3/">v3</a></p></div>
+      <div class="da-fstep"><span class="da-fkind mono">dominion</span>
+        <p>Austere and civic. Cadence <a href="/authorities/dominion/demo/cadence-v1/">v1</a> ·
+        <a href="/authorities/dominion/demo/cadence-v2/">v2</a> ·
+        <a href="/authorities/dominion/demo/cadence-v3/">v3</a></p></div>
+    </div>
+    <p class="da-intro sub">The Triage authority: 80 artifacts, 19 rules, 53 calibration cases, its own lint
+    engine at score 100, and a natural-language coverage sweep at 134 of 134.</p>
+    <h3>On record</h3>
+    <p class="da-intro sub">One reversal from the Phantom extraction, kept with its reason.</p>
+    <ol class="tl da-vtl">
+      <li class="tl-item"><span class="tl-dot"></span>
+        <span class="tl-time">ask</span>
+        <p>Building the tracker under the Dominion authority, the agent needs paging for older entries.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">authority is silent</span>
+        <p><span class="mono">resolve "pagination for older entries"</span> → <span class="mono">UNDEFINED</span>.
+        There is no paging canon, and inventing one silently is not allowed.</p></li>
+      <li class="tl-item"><span class="tl-dot warn"></span>
+        <span class="tl-time">improvise visibly</span>
+        <p>The build ships outline buttons plus a plain readout. The decision is marked as noncanonical, like every
+        unrecorded decision in the stress builds.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">gap filed</span>
+        <p><span class="mono">gap/20261007-150030-e4273f</span> lands in the workspace ledger.</p></li>
+      <li class="tl-item"><span class="tl-dot acc"></span>
+        <span class="tl-time">human adjudication</span>
+        <p>Review finds partial evidence and no live-product instance. The outcome is neither canon nor discarded;
+        it is ruled a provisional candidate with a promotion bar.</p></li>
+      <li class="tl-item"><span class="tl-dot ok"></span>
+        <span class="tl-time">memory</span>
+        <p>Today the same ask still returns <span class="mono">UNDEFINED</span>, with <b>Paging composition
+        (provisional)</b> attached, and the bar it must meet to become canon. The next build inherits the outline
+        without mistaking it for authority.</p></li>
+    </ol>
+    <h3>Limits</h3>
+    <p class="da-intro sub">Level 2 conformance is partial and declared per component. Levels 3 and 4 are proposed.
+    Nobody has yet shown that compliant builds behave better in users' hands. That experiment is next. An
+    authority is not a Figma library, not a lint config, and not a way to lock people in.</p>
+  </section>
+
+  <section class="da-sec" id="builders">
+    <div class="da-kick mono">06 · For builders</div>
+    <h2>Explore the authorities and the details.</h2>
+    <p class="da-intro sub">The catalogue, the mechanics, and the ledger. None of this is required reading.</p>
   <section class="da-sec">
-    <h2 id="catalogue">The catalogue</h2>
+    <h3 id="catalogue">The catalogue</h3>
     <p class="da-intro sub">Every authority on this site, with the pages and the demo apps built from each.</p>
     <div class="da-grid3" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
       <div class="card">
@@ -85,111 +256,33 @@
     </div>
     <p class="da-fine sub">This page itself is built under the Triage authority. Its foundations are verbatim; the chrome is marked and filed. <a href="#ledger">See the ledger</a>.</p>
   </section>
-
-  <section class="da-sec">
-    <h2>The gap it closes</h2>
-    <p class="da-intro sub">Interface work is increasingly done by agents. The tools for stating design intent are still prose.</p>
-    <div class="da-grid3" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
-      <div class="card">
-        <div class="card-h"><h3>Prose is read, not enforced</h3></div>
-        <p class="da-p">A guide can be precise in a human's hands and lossy in an agent's. Every reader fills gaps with
-        assumptions, and an agent fills them confidently.</p>
-      </div>
-      <div class="card">
-        <div class="card-h"><h3>Silence still ships</h3></div>
-        <p class="da-p">When the record does not say, the build proceeds anyway. The decision happens by default. It is unrecorded, unreviewed, and impossible to check later.</p>
-      </div>
-      <div class="card">
-        <div class="card-h"><h3>Feedback is prose too</h3></div>
-        <p class="da-p">"This feels off" and "the reverse must show before a one-way action fires, and here it doesn't"
-        cost the same to type. Only one of them can be checked, versioned, and repeated.</p>
-      </div>
+    <h3>Under the hood</h3>
+    <p class="da-intro">In precise terms, a design authority is a versioned, machine-readable record of an
+    interface system. Implementation agents are instructed to resolve decisions against the authority, while
+    independent verification checks observable conformance. Decisions that would otherwise happen by default get
+    written down, cited, and versioned.</p>
+    <div class="da-grid2" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
+      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">packs/triage/
+  authority.json      identity · version · consumers
+  artifacts.json      80 records: components, token sets, patterns, guidelines
+  rules.json          19 enforceable rules (TDS001–015 + interaction)
+  golden.json         53 calibration cases: ask, expected, got
+  verification.json   claims a verifier can test against a build
+  AGENT-PROMPT.md     the consumption protocol for coding agents</pre>
+      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">{
+  "id": "component/px-sw",
+  "kind": "component",
+  "title": "Switch",
+  "summary": "the square switch; track 26×15, thumb 11×11",
+  "states": ["default", "hover", "focus",
+             "checked", "disabled"],
+  "verify": ["[data-sw]",
+             "checked toggles aria-checked"]
+}</pre>
     </div>
-  </section>
-
-  <section class="da-sec">
-    <h2>How teams work with an authority</h2>
-    <div class="da-grid3" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
-      <div class="card">
-        <div class="card-h"><h3>Learn the standard</h3></div>
-        <p class="da-p">Existing artifacts and precedent are compiled into a candidate authority. Screenshots, the
-        live product, brand kits, and past decisions. The machine gathers the evidence and proposes the norms.</p>
-      </div>
-      <div class="card">
-        <div class="card-h"><h3>Work under the standard</h3></div>
-        <p class="da-p">Agents defer to the authority, and independent verification checks conformance. Every build
-        is resolved against the same record a verifier later inspects.</p>
-      </div>
-      <div class="card">
-        <div class="card-h"><h3>Evolve the standard</h3></div>
-        <p class="da-p">New cases become reviewable evidence. Humans decide what becomes precedent; the authority
-        re-freezes only when a decision is made.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="da-sec">
-    <h2>How a Design Authority is created, used, and evolved</h2>
-    <div class="da-life" data-improv="loop diagram" title="Improvised (no authority record; gap filed)">
-      <div class="da-phase">1. COMPILE</div>
-      <div class="da-lbox">
-        <div class="da-lrow"><b>PRECEDENT</b><p>existing product · brand kit · cases</p></div>
-        <div class="da-larr">↓</div>
-        <div class="da-lrow"><b>MACHINE</b><p>extracts evidence + infers norms</p></div>
-        <div class="da-larr">↓</div>
-        <div class="da-lrow gate"><b>HUMAN GATE</b><p>accept · modify · reject · leave open</p></div>
-      </div>
-      <div class="da-larr">↓</div>
-      <div class="da-loopshell">
-        <div class="da-rail" aria-hidden="true"><em>release</em></div>
-        <div class="da-loopshell-main">
-          <div class="da-lauth"><b>DESIGN AUTHORITY</b><p>published, versioned standard · everything downstream cites it</p></div>
-          <div class="da-larr">↓</div>
-          <div class="da-phase">2. GOVERN</div>
-          <div class="da-lbox">
-            <div class="da-lrow"><b>AGENTS BUILD</b><p>resolve · compose · improvise visibly; never silently canonized</p></div>
-            <div class="da-larr">↓</div>
-            <div class="da-lrow"><b>VERIFY</b><p>inspect artifact, not agent claims</p></div>
-          </div>
-          <div class="da-larr">↓</div>
-          <div class="da-phase">3. EVOLVE</div>
-          <div class="da-lbox">
-            <div class="da-lrow"><b>CASES</b><p>gaps · conflicts · proposals · fails</p></div>
-            <div class="da-larr">↓</div>
-            <div class="da-lrow gate"><b>HUMAN GATE</b><p>adjudicate what should change</p></div>
-            <div class="da-larr">↓</div>
-            <div class="da-lrow"><b>RELEASE + PRECEDENT</b><p>patch or fresh freeze, with reasons on record</p></div>
-          </div>
-        </div>
-      </div>
-      <p class="da-life-cap">The release merges back into the authority. That is the loop.</p>
-    </div>
-    <div class="note" style="margin-top:var(--space-14)"><b>Machines gather evidence, infer, implement and verify.
-    Humans decide what becomes authoritative.</b></div>
-  </section>
-
-
-  <section class="da-sec">
-    <h2>Two consumers, one record</h2>
-    <ol class="da-steps" data-improv="step row" title="Improvised (no authority record; gap filed)">
-      <li><span class="da-stepn mono">1</span><b>Resolve</b>
-        <p>Every element is resolved against the authority before code is written.</p></li>
-      <li><span class="da-stepn mono">2</span><b>Build</b>
-        <p>The implementation follows the records. Deviations are choices, and choices are recorded.</p></li>
-      <li><span class="da-stepn mono">3</span><b>Verify</b>
-        <p>A verifier inspects the artifact itself. Agent self-report is evidence, not proof.</p></li>
-      <li><span class="da-stepn mono">4</span><b>Report</b>
-        <p>Conformance comes back per rule with its evidence. A score is a gate, never proof.</p></li>
-      <li><span class="da-stepn mono">5</span><b>Adjudicate</b>
-        <p>Conflicts and gaps become precedents and versions, not lost threads.</p></li>
-    </ol>
-    <p class="da-fine sub">Each pass through the loop leaves the record stronger than it found it.</p>
-  </section>
-
-  <section class="da-sec">
-    <h2>Nothing is silently invented.</h2>
-    <p class="da-intro sub">Agents may improvise where the authority runs out. They may not confuse improvisation
-    with authority: improvisations are marked as noncanonical, keep their provenance, and are filed as gaps.</p>
+    <h3>The resolver</h3>
+    <p class="da-fine mono da-mono-line">resolve "a switch" → component/px-sw</p>
+    <p class="da-fine mono da-mono-line">resolve "rounded corners on the cards" → CONFLICT (do not implement as requested)</p>
     <div class="card flush">
       <table class="tbl">
         <thead><tr><th>Outcome</th><th>Fires when</th><th>The build does</th></tr></thead>
@@ -212,46 +305,36 @@
         </tbody>
       </table>
     </div>
-    <p class="da-fine mono da-mono-line">resolve "a switch" → component/px-sw</p>
-    <p class="da-fine mono da-mono-line">resolve "rounded corners on the cards" → CONFLICT (do not implement as requested)</p>
-    <p class="da-fine sub">Improvised work stays visibly noncanonical: in the Cadence builds every element outside
-    authority carries a mark and a filed gap; the ◌ toggle reveals them. <a href="/authorities/wink/demo/cadence-v1/">See one live</a>.</p>
-  </section>
-
-  <section class="da-sec">
-    <h2>One case, end to end</h2>
-    <p class="da-intro sub">A single need, tracked through the whole loop, from a build that had to improvise to
-    the rule that stops the next build from guessing.</p>
-    <ol class="tl da-vtl">
-      <li class="tl-item"><span class="tl-dot"></span>
-        <span class="tl-time">ask</span>
-        <p>Building the tracker under the Dominion authority, the agent needs paging for older entries.</p></li>
-      <li class="tl-item"><span class="tl-dot warn"></span>
-        <span class="tl-time">authority is silent</span>
-        <p><span class="mono">resolve "pagination for older entries"</span> → <span class="mono">UNDEFINED</span>.
-        There is no paging canon, and inventing one silently is not allowed.</p></li>
-      <li class="tl-item"><span class="tl-dot warn"></span>
-        <span class="tl-time">improvise visibly</span>
-        <p>The build ships outline buttons plus a plain readout. The decision is marked as noncanonical, like every
-        unrecorded decision in the stress builds.</p></li>
-      <li class="tl-item"><span class="tl-dot acc"></span>
-        <span class="tl-time">gap filed</span>
-        <p><span class="mono">gap/20261007-150030-e4273f</span> lands in the workspace ledger.</p></li>
-      <li class="tl-item"><span class="tl-dot acc"></span>
-        <span class="tl-time">human adjudication</span>
-        <p>Review finds partial evidence and no live-product instance. The outcome is neither canon nor discarded;
-        it is ruled a provisional candidate with a promotion bar.</p></li>
-      <li class="tl-item"><span class="tl-dot ok"></span>
-        <span class="tl-time">memory</span>
-        <p>Today the same ask still returns <span class="mono">UNDEFINED</span>, with <b>Paging composition
-        (provisional)</b> attached, and the bar it must meet to become canon. The next build inherits the outline
-        without mistaking it for authority.</p></li>
+    <h3>Two consumers, one record</h3>
+    <ol class="da-steps" data-improv="step row" title="Improvised (no authority record; gap filed)">
+      <li><span class="da-stepn mono">1</span><b>Resolve</b>
+        <p>Implementation agents are instructed to resolve decisions against the authority.</p></li>
+      <li><span class="da-stepn mono">2</span><b>Build</b>
+        <p>The implementation follows the records. Deviations are choices, and choices are recorded.</p></li>
+      <li><span class="da-stepn mono">3</span><b>Verify</b>
+        <p>Independent verification checks observable conformance. Agent self-report is evidence, not proof.</p></li>
+      <li><span class="da-stepn mono">4</span><b>Report</b>
+        <p>Conformance comes back per rule with its evidence. A score is a gate, never proof.</p></li>
+      <li><span class="da-stepn mono">5</span><b>Adjudicate</b>
+        <p>Conflicts and gaps become precedents and versions, not lost threads.</p></li>
     </ol>
-    <p class="da-fine sub">Nothing was silently invented, and nothing was lost.</p>
-  </section>
-
-  <section class="da-sec">
-    <h2>How it evolves without rotting</h2>
+    <p class="da-fine sub">Every pass leaves a traceable decision, even when the authority itself remains unchanged.</p>
+    <h3>Verification levels</h3>
+    <div class="card flush">
+      <table class="tbl">
+        <thead><tr><th>Level</th><th>Checks</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">L1 · Static</td><td>tokens, selectors, declarations, structure</td><td>shipped</td></tr>
+          <tr><td class="mono">L2 · Behavioural</td><td>keyboard, focus restoration, state transitions, lifecycle</td><td>partial, declared per component</td></tr>
+          <tr><td class="mono">L3 · Rendered</td><td>screenshots, overflow, zoom, dark mode, reduced motion</td><td>proposed</td></tr>
+          <tr><td class="mono">L4 · Product</td><td>real workflows: task success, error recovery, comprehension</td><td>proposed</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="da-fine sub">Every conformance claim cites its rule, its implementation, and its evidence.
+    The proposal lives in the Triage repository, at
+    <a href="https://triage.seanyong.xyz/spec/proposals/verification-levels.md">spec/proposals/verification-levels.md</a>.</p>
+    <h3>Version mechanics</h3>
     <div class="da-grid2" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
       <div class="card">
         <div class="card-h"><h3>Editorial edits ship as patches</h3></div>
@@ -272,97 +355,6 @@
         <p class="da-p">An idea enters with the condition that would promote it. Scope grows by evidence,
         not enthusiasm.</p>
       </div>
-    </div>
-    <ol class="tl da-vtl">
-      <li class="tl-item"><span class="tl-dot"></span>
-        <span class="tl-time">v0.1.0</span>
-        <p>First extraction of an outside site. The reading ink was guessed from its template.</p></li>
-      <li class="tl-item"><span class="tl-dot warn"></span>
-        <span class="tl-time">Review</span>
-        <p>Rejected. The fonts were, plainly, the wrong colour.</p></li>
-      <li class="tl-item"><span class="tl-dot ok"></span>
-        <span class="tl-time">v0.2.0</span>
-        <p>Re-extracted from what the site looks like as deployed. The reversal was filed as a precedent with its reason.
-        The correction is on record.</p></li>
-    </ol>
-  </section>
-
-  <section class="da-sec">
-    <h2>Proof: one brief, three authorities</h2>
-    <p class="da-intro sub">The same app brief, a small habit tracker, built three times, one under each
-    synthesized authority. Same features, same copy, no shared code. Three different products, because the
-    authorities disagree about the basics.</p>
-    <div class="da-flow" data-improv="proof rows" title="Improvised (no authority record; gap filed)">
-      <div class="da-fstep"><span class="da-fkind mono">wink</span>
-        <p>Friendly and rounded. Cadence <a href="/authorities/wink/demo/cadence-v1/">v1</a> ·
-        <a href="/authorities/wink/demo/cadence-v2/">v2</a> ·
-        <a href="/authorities/wink/demo/cadence-v3/">v3</a></p></div>
-      <div class="da-fstep"><span class="da-fkind mono">leader</span>
-        <p>Editorial and print-minded. Cadence <a href="/authorities/leader/demo/cadence-v1/">v1</a> ·
-        <a href="/authorities/leader/demo/cadence-v2/">v2</a> ·
-        <a href="/authorities/leader/demo/cadence-v3/">v3</a></p></div>
-      <div class="da-fstep"><span class="da-fkind mono">dominion</span>
-        <p>Austere and civic. Cadence <a href="/authorities/dominion/demo/cadence-v1/">v1</a> ·
-        <a href="/authorities/dominion/demo/cadence-v2/">v2</a> ·
-        <a href="/authorities/dominion/demo/cadence-v3/">v3</a></p></div>
-    </div>
-    <p class="da-fine sub">Where an authority ran out, the builds improvised visibly. Every unrecorded decision was marked and
-    every gap was filed. The rebuilds track the authorities as they codified, from v1 on the raw authority to
-    v3 on the codified release. Eleven accepted proposals became canon, and twenty-five recorded declines now
-    steer later asks toward sanctioned alternatives.</p>
-  </section>
-
-  <section class="da-sec">
-    <h2>Four levels, one traceability contract</h2>
-    <div class="card flush">
-      <table class="tbl">
-        <thead><tr><th>Level</th><th>Checks</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td class="mono">L1 · Static</td><td>tokens, selectors, declarations, structure</td><td>shipped</td></tr>
-          <tr><td class="mono">L2 · Behavioural</td><td>keyboard, focus restoration, state transitions, lifecycle</td><td>partial, declared per component</td></tr>
-          <tr><td class="mono">L3 · Rendered</td><td>screenshots, overflow, zoom, dark mode, reduced motion</td><td>proposed</td></tr>
-          <tr><td class="mono">L4 · Product</td><td>real workflows: task success, error recovery, comprehension</td><td>proposed</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="da-fine sub">Every conformance claim cites its rule, its implementation, and its evidence.
-    The proposal lives in the Triage repository, at
-    <a href="https://triage.seanyong.xyz/spec/proposals/verification-levels.md">spec/proposals/verification-levels.md</a>.</p>
-  </section>
-
-
-  <section class="da-sec">
-    <h2>What an authority is made of</h2>
-    <p class="da-intro sub">Plain JSON, a deterministic resolver, and a consumption protocol. No database, no network,
-    the same answer every time.</p>
-    <div class="da-grid2" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
-      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">packs/triage/
-  authority.json      identity · version · consumers
-  artifacts.json      80 records: components, token sets, patterns, guidelines
-  rules.json          19 enforceable rules (TDS001–015 + interaction)
-  golden.json         53 calibration cases: ask, expected, got
-  verification.json   claims a verifier can test against a build
-  AGENT-PROMPT.md     the consumption protocol for coding agents</pre>
-      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">{
-  "id": "component/px-sw",
-  "kind": "component",
-  "title": "Switch",
-  "summary": "the square switch; track 26×15, thumb 11×11",
-  "states": ["default", "hover", "focus",
-             "checked", "disabled"],
-  "verify": ["[data-sw]",
-             "checked toggles aria-checked"]
-}</pre>
-    </div>
-    <p class="da-fine sub">The resolver answers with citations, never with a guess. Ask for "a switch" and it returns
-    <span class="mono">component/px-sw</span>. Ask for "rounded corners" and it returns a conflict and refuses.</p>
-  </section>
-
-  <section class="da-sec da-sec-last">
-    <div class="note ink">
-      <b>What an authority is not.</b> Not a Figma library, not a lint config, and not a way to lock people in. It is a contract you
-      version, and it is only as good as its weakest level. Nobody has yet shown that compliant builds behave
-      better in users' hands. That experiment is the next one.
     </div>
   </section>
 
@@ -388,7 +380,7 @@
         </ul>
         <p class="da-ledger-marks">
           <button class="btn small" type="button" data-marks-toggle>◌ Show improvisation marks</button>
-          <span class="sub">14 marked · 6 gaps filed. Dashed outlines; hover for the reason.</span>
+          <span class="sub">13 marked · 6 gaps filed. Dashed outlines; hover for the reason.</span>
         </p>
       </div>
     </details>

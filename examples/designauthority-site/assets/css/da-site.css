@@ -36,6 +36,25 @@
 @media (max-width:920px){.da-grid3{grid-template-columns:1fr}}
 @media (max-width:760px){.da-grid2{grid-template-columns:1fr}}
 
+/* ---- section kickers + statement ---- */
+.da-kick{font-size:var(--fs-pre-log);letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);
+  margin-bottom:var(--space-8)}
+.da-statement{max-width:34rem}
+.da-sec>h3{margin:var(--space-24) 0 var(--space-8)}
+
+/* ---- app showcase ---- */
+.da-appshot{padding:0;overflow:hidden}
+.da-appshot img{display:block;inline-size:100%;block-size:190px;object-fit:cover;
+  object-position:50% 0;border-block-end:1px solid var(--border-default)}
+.da-appshot-body{padding:var(--space-12) var(--space-card) var(--space-card)}
+
+/* ---- three-column step strip ---- */
+.da-steps.da-steps3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){.da-steps.da-steps3{grid-template-columns:1fr}}
+
+/* ---- gate contrast ---- */
+.da-lrow.gate p{color:var(--text-primary)}
+
 /* ---- hero secondary lead ---- */
 .da-lead2{max-width:44rem;color:var(--text-secondary);margin-top:var(--space-12)}
 
@@ -52,7 +71,7 @@
 @media (max-width:560px){.da-fstep{grid-template-columns:1fr;gap:var(--space-4)}}
 
 /* ---- authority lifecycle ---- */
-.da-life{max-width:46rem;margin-top:var(--space-14)}
+.da-life{margin-top:var(--space-14);padding-inline:var(--space-48)}
 .da-phase{margin:var(--space-16) 0 var(--space-8);font-size:var(--fs-log-row);font-weight:var(--fw-bold);
   letter-spacing:.08em;color:var(--text-primary)}
 .da-lbox{border:1px solid var(--border-default);background:var(--surface-card)}
@@ -70,20 +89,28 @@
 .da-lauth b::before{content:"";display:inline-block;inline-size:8px;block-size:8px;
   background:var(--interactive);margin-inline-end:var(--space-8)}
 .da-lauth p{margin:var(--space-4) 0 0;font-size:var(--fs-sub);color:var(--text-on-ink);opacity:.78}
-.da-loopshell{display:flex;align-items:stretch;gap:var(--space-12)}
-.da-loopshell-main{flex:1;min-width:0}
-.da-rail{flex:none;width:44px;position:relative;
+.da-loopshell{position:relative}
+.da-loopshell-main{min-width:0}
+.da-rail{position:absolute;inset-block:0;inset-inline-start:calc(-1 * var(--space-48));width:36px;
   border-block-start:1px solid var(--border-strong);
   border-block-end:1px solid var(--border-strong);
   border-inline-start:1px solid var(--border-strong)}
-.da-rail::after{content:"";position:absolute;inset-block-start:-5px;inset-inline-end:-7px;
+.da-rail::before{content:"";position:absolute;inset-inline-start:0;inset-inline-end:-12px;
+  inset-block-end:-1px;block-size:1px;background:var(--border-strong)}
+.da-rail::after{content:"";position:absolute;inset-block-start:-5px;inset-inline-end:-12px;
   border-block:4.5px solid transparent;border-inline-start:7px solid var(--border-strong)}
 .da-rail em{position:absolute;inset-inline-start:50%;top:50%;transform:translate(-50%,-50%) rotate(180deg);
   writing-mode:vertical-rl;font-style:normal;font-size:var(--fs-pre-log);letter-spacing:.1em;
   text-transform:uppercase;color:var(--text-secondary);background:var(--surface-page);
   padding-block:var(--space-6)}
 .da-life-cap{margin-top:var(--space-10);font-size:var(--fs-log-row);color:var(--text-secondary)}
-@media (max-width:600px){.da-rail{width:26px}.da-rail em{display:none}}
+@media (max-width:640px){
+  .da-life{padding-inline:var(--space-28)}
+  .da-rail{inset-inline-start:calc(-1 * var(--space-28));width:20px}
+  .da-rail::after{inset-inline-end:-8px}
+  .da-rail::before{inset-inline-end:-8px}
+  .da-rail em{display:none}
+}
 
 /* ---- code ---- */
 .da-code{background:var(--code-bg);color:var(--code-fg);border:1px solid var(--border-default);
