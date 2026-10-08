@@ -53,6 +53,11 @@
    "expect_id": "component/msg"
   },
   {
+   "problem": "a banner",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg"
+  },
+  {
    "problem": "a toast notification",
    "expect": "RESOLVED",
    "expect_id": "component/toast2"
@@ -174,6 +179,10 @@
   },
   {
    "problem": "rounded corners on the cards",
+   "expect": "CONFLICT"
+  },
+  {
+   "problem": "make all the buttons rounded",
    "expect": "CONFLICT"
   },
   {

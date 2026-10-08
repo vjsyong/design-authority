@@ -2,8 +2,10 @@
 # Repo gates: pack drift, kernel unit tests, golden set, MCP smoke (venv).
 set -e
 cd "$(dirname "$0")/.."
-echo "== pack drift check"
-python3 tools/build_pack_triage.py --check
+echo "== triage pack drift check (synthesis pipeline)"
+# The live triage pack is built by docs/synthesis/triage/tools/build_triage_pack.py.
+# The kit builder (tools/build_pack_triage.py) remains for the evolution packs (--out).
+python3 tools/check_triage_pack.py
 echo "== kernel unit tests"
 python3 -m unittest discover -s kernel/tests -t . -q
 echo "== golden set"

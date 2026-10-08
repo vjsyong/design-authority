@@ -2,6 +2,8 @@
 gap/proposal records round-trip."""
 import json
 import os
+import re
+import shutil
 import sys
 import tempfile
 import unittest
@@ -25,7 +27,9 @@ class TestPack(unittest.TestCase):
     def test_identity(self):
         ident = self.pack.identity()
         self.assertEqual(ident["authority"], "triage")
-        self.assertTrue(ident["commit"].startswith("e374f3803d5a"))
+        # identity pins the source repo's commit (the synthesis lineage builds from
+        # the live triage repo, so the sha moves with it — the invariant is the pin)
+        self.assertRegex(ident["commit"], r"^[0-9a-f]{40}$")
 
     def test_counts(self):
         kinds = {}
@@ -33,8 +37,11 @@ class TestPack(unittest.TestCase):
             kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
         self.assertEqual(kinds.get("component"), 35)
         self.assertEqual(kinds.get("pattern"), 7)
-        self.assertEqual(len(self.pack.rules), 15)
-        self.assertEqual(len(self.pack.recipes), 15)
+        # the 15 TDS lint rules plus the 4 binding interaction rules
+        self.assertEqual(len(self.pack.rules), 19)
+        # the synthesis lineage carries no flow recipes yet; the kit curation holds
+        # 15 (a recorded merge item, not silently invented)
+        self.assertEqual(len(self.pack.recipes), 0)
 
 
 class TestResolution(unittest.TestCase):
@@ -141,11 +148,18 @@ class TestPrecedents(unittest.TestCase):
     def setUpClass(cls):
         cls.pack = Pack(os.path.join(ROOT, "packs", "wink"))
         cls.dom = Pack(os.path.join(ROOT, "packs", "dominion"))
-        cls.triage = Pack(PACK_DIR)
 
     def test_pack_without_precedents_loads_empty(self):
-        self.assertEqual(self.triage.precedents, [])
-        self.assertEqual(self.triage.candidates, [])
+        # a pack whose precedents/candidates files are absent loads with empties
+        with tempfile.TemporaryDirectory() as td:
+            for f in os.listdir(PACK_DIR):
+                src = os.path.join(PACK_DIR, f)
+                if f in ("precedents.json", "candidates.json") or not os.path.isfile(src):
+                    continue
+                shutil.copy(src, os.path.join(td, f))
+            p = Pack(td)
+            self.assertEqual(p.precedents, [])
+            self.assertEqual(p.candidates, [])
 
     def test_governs_on_policy_decline(self):
         r = resolve(self.pack, "photo upload for the ritual")
@@ -179,6 +193,19 @@ class TestPrecedents(unittest.TestCase):
         with tempfile.TemporaryDirectory() as ws:
             gap = records.add_gap(self.pack, ws, "an avatar photo for sam")
             self.assertTrue(gap.get("precedent_warnings"))
+
+
+class TestRecipeCompose(unittest.TestCase):
+    """COMPOSE coverage: a recipe-bearing pack turns a matching ask into a recipe answer."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.dom = Pack(os.path.join(ROOT, "packs", "dominion"))
+
+    def test_compose_cites_recipe(self):
+        r = resolve(self.dom, "retire a ritual from the register")
+        self.assertEqual(r["outcome"], "COMPOSE")
+        self.assertEqual(r["resolution"]["recipe"]["id"], "recipe/retire-confirm")
 
 
 if __name__ == "__main__":

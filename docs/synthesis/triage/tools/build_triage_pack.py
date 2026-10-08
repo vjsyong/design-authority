@@ -10,16 +10,27 @@ Sources (all read from the triage repo — nothing invented):
   INTERACTION.md      binding interaction standard                       -> interaction rules
   README.md, AGENTS.md, CHANGELOG.md  doctrine, integration paths        -> guidelines/fallbacks
 """
+import argparse
 import json
 import os
 import re
+import subprocess
+from datetime import datetime, timezone
 
 REPO = "/home/xrim/design-authority"
 TR = "/home/xrim/triage-design-system"
-OUT = os.path.join(REPO, "packs", "triage")
+_ap = argparse.ArgumentParser(description="build packs/triage from the triage repo")
+_ap.add_argument("--out", default=None, help="output directory (default: packs/triage)")
+_args = _ap.parse_args()
+OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "packs", "triage")
 os.makedirs(OUT, exist_ok=True)
 
 V = "0.12.1"
+
+_src_commit = subprocess.run(["git", "-C", TR, "rev-parse", "HEAD"],
+                             capture_output=True, text=True).stdout.strip() or "unknown"
+_src_branch = subprocess.run(["git", "-C", TR, "rev-parse", "--abbrev-ref", "HEAD"],
+                             capture_output=True, text=True).stdout.strip() or "unknown"
 
 # ---------------------------------------------------------------- helpers ----
 def load(p):
@@ -45,7 +56,7 @@ auth = json.load(open(os.path.join(REPO, "packs", "wink", "authority.json")))
 auth.update({
     "id": "triage", "name": "Triage", "version": V,
     "snapshot": {"repo": "triage-design-system (local; published at triage.seanyong.xyz)",
-                 "commit": "n/a - local working tree", "branch": "n/a", "version": V,
+                 "commit": _src_commit, "branch": _src_branch, "version": V,
                  "path_hint": "~/triage-design-system"},
     "description": ("Triage is the app-agnostic, paper-and-ink UI design authority: one token source of "
                     "truth, one component runtime, one enforceable lint gate. Square corners, hairline "
@@ -175,7 +186,7 @@ EXTRA_ALIASES = {
     "tbl": ["table", "data table", "rows"],
     "bulkbar": ["bulk bar", "bulk actions", "selection bar"],
     "savebar": ["save bar", "sticky save", "unsaved changes bar"],
-    "msg": ["flash message", "inline banner", "alert banner"],
+    "msg": ["flash message", "banner", "message banner", "status banner", "inline banner", "alert banner"],
     "toast2": ["toast", "toast notification", "transient message"],
     "badge": ["badge", "status badge", "label"],
     "empty": ["empty state", "no results", "zero state"],
@@ -197,7 +208,7 @@ EXTRA_ALIASES = {
     "cmd": ["command palette", "command menu", "cmd-k"],
     "page-state": ["full-page state", "error page", "empty page", "maintenance page"],
     "pager-num": ["numbered pagination", "pagination", "pager"],
-    "tl": ["timeline", "activity timeline"],
+    "tl": ["timeline", "activity timeline", "approval history", "activity log", "event trail"],
     "diff": ["diff", "diff view", "version comparison", "change comparison", "before after diff"],
     "sheet-end": ["sheet", "bottom sheet", "side sheet", "drawer"],
 }
@@ -306,7 +317,7 @@ prohibitions = [
      "signals": ["custom font", "webfont", "google font", "font import"], "rule": "TDS008"},
     {"id": "prohibit/off-radius", "kind": "prohibition",
      "statement": "Non-zero corner radius — the system is squarely squared; radius stays 0 (lint TDS003).",
-     "signals": ["rounded corners", "border radius", "pill shape", "rounded card"], "rule": "TDS003"},
+     "signals": ["rounded", "rounded corners", "rounded card", "corner radius", "border radius", "border-radius", "pill shape"], "rule": "TDS003"},
     {"id": "prohibit/label-less-controls", "kind": "prohibition",
      "statement": "Interactive controls without accessible names — icon-only means aria-label, never a bare glyph (lint TDS015).",
      "signals": ["unlabeled", "icon only", "no aria label", "mystery icon"], "rule": "TDS015"},
@@ -424,6 +435,7 @@ golden = {
         {"problem": "a bulk action bar", "expect": "RESOLVED", "expect_id": "component/bulkbar"},
         {"problem": "a save bar", "expect": "RESOLVED", "expect_id": "component/savebar"},
         {"problem": "a flash message", "expect": "RESOLVED", "expect_id": "component/msg"},
+        {"problem": "a banner", "expect": "RESOLVED", "expect_id": "component/msg"},
         {"problem": "a toast notification", "expect": "RESOLVED", "expect_id": "component/toast2"},
         {"problem": "a status badge", "expect": "RESOLVED", "expect_id": "component/badge"},
         {"problem": "an empty state", "expect": "RESOLVED", "expect_id": "component/empty"},
@@ -449,10 +461,22 @@ golden = {
         {"problem": "the colour tokens", "expect": "RESOLVED", "expect_id": "token-set/colour"},
         {"problem": "the spacing scale", "expect": "RESOLVED", "expect_id": "token-set/spacing"},
         {"problem": "rounded corners on the cards", "expect": "CONFLICT"},
+        {"problem": "make all the buttons rounded", "expect": "CONFLICT"},
         {"problem": "a carousel", "expect": "UNDEFINED"},
     ],
 }
 json.dump(golden, open(os.path.join(OUT, "golden.json"), "w"), indent=1, ensure_ascii=False)
+
+build = {
+    "generator": "docs/synthesis/triage/tools/build_triage_pack.py",
+    "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    "source": {"repo": TR, "commit": _src_commit, "version": V},
+    "counts": {"artifacts": len(artifacts), "rules": len(rules),
+               "prohibitions": len(prohibitions), "fallbacks": len(fallbacks),
+               "precedents": len(precedents), "candidates": len(candidates),
+               "golden_cases": len(golden["cases"])},
+}
+json.dump(build, open(os.path.join(OUT, "BUILD.json"), "w"), indent=1)
 
 print("emitted packs/triage: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases"
       % (len(artifacts), len(rules), len(prohibitions), len(fallbacks), len(precedents), len(candidates), len(golden["cases"])))

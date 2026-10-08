@@ -811,6 +811,9 @@
     "flash message",
     "msg",
     "flash message",
+    "banner",
+    "message banner",
+    "status banner",
     "inline banner",
     "alert banner"
    ],
@@ -1734,7 +1737,10 @@
     "timeline",
     "tl",
     "timeline",
-    "activity timeline"
+    "activity timeline",
+    "approval history",
+    "activity log",
+    "event trail"
    ],
    "body": {
     "class": "tl",

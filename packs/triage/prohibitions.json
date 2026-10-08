@@ -52,10 +52,13 @@
    "kind": "prohibition",
    "statement": "Non-zero corner radius — the system is squarely squared; radius stays 0 (lint TDS003).",
    "signals": [
+    "rounded",
     "rounded corners",
+    "rounded card",
+    "corner radius",
     "border radius",
-    "pill shape",
-    "rounded card"
+    "border-radius",
+    "pill shape"
    ],
    "rule": "TDS003"
   },
