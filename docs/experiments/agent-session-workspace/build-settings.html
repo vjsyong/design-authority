@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- Built under the Triage design authority v0.12.1 (commit ec490bb7): switch = component/px-sw; status display = component/chip + component/dot; section frame = pattern/settings. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · Preferences</title>
+<link rel="stylesheet" href="../../../dist/triage/tokens.css">
+<link rel="stylesheet" href="../../../dist/triage/base.css">
+<link rel="stylesheet" href="../../../dist/triage/patterns.css">
+</head>
+<body>
+<main class="content">
+  <h1>Settings</h1>
+  <div class="settings-grid">
+    <nav class="settings-nav" aria-label="Settings sections">
+      <a href="#preferences" class="on" aria-current="page">Preferences</a>
+    </nav>
+    <div class="settings-body">
+      <section id="preferences" aria-labelledby="preferences-h">
+        <h2 id="preferences-h">Preferences</h2>
+        <div class="setting-row">
+          <div class="setting-label">
+            <b>Release notes</b>
+            <span class="sub">Show a short summary of what changed in the app after each update.</span>
+          </div>
+          <div class="setting-control">
+            <div class="row">
+              <form class="px-swf" method="post" action="#">
+                <input type="hidden" name="release_notes" value="off">
+                <label class="px-sw">
+                  <input id="pref-release-notes" type="checkbox" name="release_notes" value="on" checked aria-label="Disable release notes">
+                  <span class="px-tr"></span>
+                </label>
+              </form>
+              <span class="chip" id="pref-state"><span class="dot ok" id="pref-state-dot"></span><span id="pref-state-text">On</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<script>
+  (function () {
+    var box = document.getElementById('pref-release-notes');
+    var chipText = document.getElementById('pref-state-text');
+    var chipDot = document.getElementById('pref-state-dot');
+    function sync() {
+      chipText.textContent = box.checked ? 'On' : 'Off';
+      chipDot.className = box.checked ? 'dot ok' : 'dot';
+      box.setAttribute('aria-label', (box.checked ? 'Disable' : 'Enable') + ' release notes');
+    }
+    box.addEventListener('change', sync);
+    sync();
+  })();
+</script>
+</body>
+</html>

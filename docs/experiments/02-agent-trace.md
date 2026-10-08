@@ -3,7 +3,7 @@
 Companion to experiment 01. Two traces show the interaction pattern with the
 retrieval assist available: a scripted session through the real MCP server
 (part A, complete), and an independent agent given a build task (part B,
-running; its raw log lands in `agent-session-workspace/subagent-log.md`).
+complete; its raw log is `agent-session-workspace/subagent-log.md`).
 
 ## Part A · A session through the MCP server
 
@@ -58,13 +58,46 @@ milliseconds.
 
 ## Part B · An independent agent with the same task class
 
-A fresh agent (separate context, no knowledge of this document) was asked to
-build a small settings section under the Triage authority using the CLI, with
-a standing instruction to log every authority command it ran, inspect every
-record it adopted, use discovery whenever a resolve came back UNDEFINED, and
-file a gap for anything genuinely undefined. Its log and artifact will be
-committed here alongside its raw files in `agent-session-workspace/`:
-`subagent-log.md` (its own numbered command log) and `build-settings.html`.
+A fresh agent (separate context, no knowledge of this document; driving the
+CLI, not MCP) was given the same class of task: build a settings section with
+a toggle and a state display, logging every authority command it ran. Its raw
+evidence: `agent-session-workspace/subagent-log.md` (24 numbered commands
+with trimmed outputs) and `build-settings.html`.
 
-(The run was dispatched at the time part A was recorded; its digest is
-appended when it returns.)
+What it did, in order: three natural-language resolves (all UNDEFINED,
+closest scores 4.0 to 5.5); discovery for both needs (`discover "flip a
+setting on or off"` surfaced pattern/settings and component/px-sw;
+`discover "a chip showing status"` surfaced component/chip and
+component/dot); inspect for every adopted record; canonical-phrasing
+confirmations ("a switch", "a chip", "a settings page", "a status dot" all
+RESOLVED); seven probes of the status-chip need; a reasoned decline of
+component/badge (a static micro-label, not a chip); the build; validate
+(0 errors / 0 warnings / spec score 100); and one gap filed from the
+workspace: `gap/20261008-122731-8112d8`.
+
+Two findings from the run:
+
+1. **The assist carried the phrasing gap.** "Let people flip a preference on
+   or off" misses the threshold (px-sw at 4.0 vs 6.5 needed); discovery puts
+   px-sw at rank 3 (lex #5, sem #3, cos 0.625); the canonical confirmation
+   then resolves cleanly. That is the designed division of labour: retrieval
+   proposes, canonical wording adopts.
+2. **The distribution ships more than the catalogue records.** The agent
+   found a `.status-chip` class shipping in `dist/triage/patterns.css`
+   (dashboard block, with a `.off` variant) that has zero catalogue presence:
+   search returns nothing and the pattern/dashboard record does not mention
+   it. It declined to treat an unrecorded class as canon, assembled the state
+   display from recorded pieces (chip + dot, dot paired with text), and filed
+   the gap with the shipped class as evidence. That is the loop working in
+   the wild, and a candidate for upstream review.
+
+The log is honest by construction: non-command checks are separated into a
+supplementary section (a headless browser run showed the toggle flipping the
+preference with the chip and aria-label following), and it flags a
+phrasing-recall note it did not file as a gap because the record exists.
+
+Verification pass (this document's author): the discovery result, the
+UNDEFINED probes, the validator score of 100 and the `.status-chip` finding
+were all re-run or re-checked and reproduce. The artifact carries its adopted
+ids in a header comment and implements the px-sw markup contract exactly
+(hidden twin, label-wrapped checkbox, verb-carrying aria-label).
