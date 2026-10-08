@@ -1786,7 +1786,9 @@
     "activity timeline",
     "approval history",
     "activity log",
-    "event trail"
+    "event trail",
+    "version timeline",
+    "version history"
    ],
    "body": {
     "class": "tl",

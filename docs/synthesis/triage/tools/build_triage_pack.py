@@ -208,7 +208,8 @@ EXTRA_ALIASES = {
     "cmd": ["command palette", "command menu", "cmd-k"],
     "page-state": ["full-page state", "error page", "empty page", "maintenance page"],
     "pager-num": ["numbered pagination", "pagination", "pager"],
-    "tl": ["timeline", "activity timeline", "approval history", "activity log", "event trail"],
+    "tl": ["timeline", "activity timeline", "approval history", "activity log", "event trail",
+          "version timeline", "version history"],
     "diff": ["diff", "diff view", "version comparison", "change comparison", "before after diff"],
     "sheet-end": ["sheet", "bottom sheet", "side sheet", "drawer"],
 }
@@ -644,6 +645,7 @@ golden = {
         {"problem": "a nav item", "expect": "RESOLVED", "expect_id": "component/nav-item"},
         {"problem": "a chip", "expect": "RESOLVED", "expect_id": "component/chip"},
         {"problem": "a data table", "expect": "RESOLVED", "expect_id": "component/tbl"},
+        {"problem": "a version timeline", "expect": "RESOLVED", "expect_id": "component/tl"},
         {"problem": "a bulk action bar", "expect": "RESOLVED", "expect_id": "component/bulkbar"},
         {"problem": "a save bar", "expect": "RESOLVED", "expect_id": "component/savebar"},
         {"problem": "a flash message", "expect": "RESOLVED", "expect_id": "component/msg"},

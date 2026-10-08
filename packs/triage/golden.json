@@ -38,6 +38,11 @@
    "expect_id": "component/tbl"
   },
   {
+   "problem": "a version timeline",
+   "expect": "RESOLVED",
+   "expect_id": "component/tl"
+  },
+  {
    "problem": "a bulk action bar",
    "expect": "RESOLVED",
    "expect_id": "component/bulkbar"
