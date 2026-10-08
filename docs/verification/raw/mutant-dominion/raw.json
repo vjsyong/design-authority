@@ -1,0 +1,474 @@
+{
+ "pack": "dominion",
+ "contract_version": "0.1",
+ "target": "docs/verification/mutations/mutated-dominion",
+ "generated": "2026-10-08 03:59:54",
+ "summary": {
+  "total": 22,
+  "PASS": 10,
+  "VIOLATION": 9,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 3
+ },
+ "by_mode": {
+  "COMPUTED_STYLE": {
+   "PASS": 9,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "INTERACTION": {
+   "PASS": 1,
+   "VIOLATION": 3,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "STATIC": {
+   "PASS": 0,
+   "VIOLATION": 4,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "DOM": {
+   "PASS": 0,
+   "VIOLATION": 2,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 0
+  },
+  "REVIEW": {
+   "PASS": 0,
+   "VIOLATION": 0,
+   "UNVERIFIABLE": 0,
+   "REVIEW_REQUIRED": 3
+  }
+ },
+ "checks": [
+  {
+   "id": "dominion/slate-primary",
+   "item": "component/action",
+   "title": "Primary action: solid slate #26374A, radius 4",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-slate",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(38, 55, 74)",
+    "border-radius: 4px"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#26374A\"}",
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/outline-secondary",
+   "item": "component/action",
+   "title": "Secondary action: 2px slate outline",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".b-out",
+   "status": "PASS",
+   "observed": [
+    "border-top-width: 2px",
+    "border-top-color: rgb(38, 55, 74)"
+   ],
+   "expected": [
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#26374A\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/field-vessel",
+   "item": "component/field",
+   "title": "Fields: soft border #E0E0E0, radius 4",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".field input",
+   "status": "PASS",
+   "observed": [
+    "border-radius: 4px",
+    "border-top-color: rgb(224, 224, 224)"
+   ],
+   "expected": [
+    "{\"property\": \"border-radius\", \"relation\": \"equals\", \"value\": \"4px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#E0E0E0\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/focus-glow",
+   "item": "rule/D-R1",
+   "title": "Focus = blue glow (#66AFE9 + halo)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"focus_signal\", \"relation\": \"contains\", \"value\": \"102, 175, 233\"}"
+   ],
+   "evidence": {
+    "focus_signal": "none | rgb(224, 224, 224) | rgb(0, 0, 0) none 3px"
+   },
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-focus-glow.png",
+   "note": null
+  },
+  {
+   "id": "dominion/masthead-accent",
+   "item": "rule/D-R2",
+   "title": "Masthead red accent (ceremony)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".identity .acc",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(235, 45, 55)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_family\", \"value\": \"red\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/ceremony-accent",
+   "item": "rule/D-R2",
+   "title": "Ceremony device stays red",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ceremony .acc-red",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(235, 45, 55)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_family\", \"value\": \"red\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-red-status",
+   "item": "prohibition/red-status",
+   "title": "No red in status / error / reading roles",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"red_role_hits\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "red_role_hits": 3,
+    "red_role_detail": "[{\"cls\": \"err\", \"prop\": \"color\", \"val\": \"rgb(235, 45, 55)\"}, {\"cls\": \"err\", \"prop\": \"border\", \"val\": \"rgb(235, 45, 55)\"}, {\"cls\": \"err\", \"prop\": \"border-left\", \"val\": \"rgb(235, 45, 55)\"}]"
+   },
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-no-red-status.png",
+   "note": null
+  },
+  {
+   "id": "dominion/no-shadows",
+   "item": "prohibition/elevation-shadows",
+   "title": "No elevation shadows — only the focus glow",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: box-shadow: 0 4px 14px rgba(0, 0, 0, .15)"
+   ],
+   "expected": [
+    "{\"relation\": \"declarations\", \"property\": \"box-shadow\", \"allow_regex\": \"^none$|102, 175, 233\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-no-shadows.png",
+   "note": null
+  },
+  {
+   "id": "dominion/no-imagery",
+   "item": "prohibition/imagery-pictograms",
+   "title": "No imagery or pictograms",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "found 1",
+    "found 0"
+   ],
+   "expected": [],
+   "evidence": {},
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-no-imagery.png",
+   "note": "The sanctioned data-chart svg (.spark, pattern/plain-chart) is excepted. A decorative svg smuggled under that class would evade — recorded as a detection boundary."
+  },
+  {
+   "id": "dominion/bilingual-pairing",
+   "item": "guideline/bilingual",
+   "title": "Bilingual pairing exists (EN/FR pairs both present)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "DOM",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "4/5 pairs; bad: ['Today']"
+   ],
+   "expected": [],
+   "evidence": {
+    "total": 5,
+    "ok": 4,
+    "bad": [
+     "Today"
+    ]
+   },
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-bilingual-pairing.png",
+   "note": null
+  },
+  {
+   "id": "dominion/status-neutral",
+   "item": "rule/D-R2",
+   "title": "Status words carry the state; no colour coding",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"status_colour_ok\", \"relation\": \"equals\", \"value\": true}",
+    "{\"evidence\": \"status_hits\", \"relation\": \"min\", \"value\": 1}"
+   ],
+   "evidence": {
+    "status_colour_ok": false,
+    "status_hits": 17,
+    "status_detail": "[{\"text\": \"Slipping\", \"color\": \"rgb(27, 127, 75)\"}, {\"text\": \"Slipping\", \"color\": \"rgb(27, 127, 75)\"}, {\"text\": \"Slipping\", \"color\": \"rgb(27, 127, 75)\"}]"
+   },
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-status-neutral.png",
+   "note": "Checks rendered status chips: non-empty words + no saturated colour (red-family explicitly caught by dominion/no-red-status)."
+  },
+  {
+   "id": "dominion/radius-discipline",
+   "item": "rule/D-R1",
+   "title": "Radii stay 4px-or-0 outside the instrument",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: border-radius: 8px"
+   ],
+   "expected": [
+    "{\"relation\": \"declarations\", \"property\": \"border-radius\", \"allow_regex\": \"^0$|^4px$\", \"except_line_regex\": \"marks-on|mark-toggle|prov-|\\\\[da"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-radius-discipline.png",
+   "note": null
+  },
+  {
+   "id": "dominion/ledger-rules",
+   "item": "component/ledger",
+   "title": "Ledger: 2px black header rule, hairline rows",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".ledger th",
+   "status": "PASS",
+   "observed": [
+    "border-bottom-width: 2px",
+    "border-bottom-color: rgb(0, 0, 0)"
+   ],
+   "expected": [
+    "{\"property\": \"border-bottom-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-bottom-color\", \"relation\": \"color_is\", \"value\": \"#000000\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/notice-structure",
+   "item": "component/notice",
+   "title": "Notice: 2px black top rule on grey band",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".notice",
+   "status": "PASS",
+   "observed": [
+    "border-top-width: 2px",
+    "border-top-color: rgb(0, 0, 0)",
+    "background-color: rgb(244, 244, 244)"
+   ],
+   "expected": [
+    "{\"property\": \"border-top-width\", \"relation\": \"equals\", \"value\": \"2px\"}",
+    "{\"property\": \"border-top-color\", \"relation\": \"color_is\", \"value\": \"#000000\"}",
+    "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#F4F4F4\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/meter-plain",
+   "item": "component/meter",
+   "title": "Meter fill is black/slate — never ceremonial red",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".meter i",
+   "status": "PASS",
+   "observed": [
+    "background-color: rgb(0, 0, 0)"
+   ],
+   "expected": [
+    "{\"property\": \"background-color\", \"relation\": \"color_in\", \"value\": [\"#000000\", \"#26374A\"]}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-keyframes",
+   "item": "prohibition/red-status",
+   "title": "No motion invented (celebration motion declined)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: '@keyframes grow { from { width: 0; } to { width: 100%; } }'"
+   ],
+   "expected": [
+    "{\"relation\": \"no_match\", \"pattern\": \"@keyframes|(^|[^-])animation:\"}"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-no-keyframes.png",
+   "note": null
+  },
+  {
+   "id": "dominion/black-text",
+   "item": "token-set/colour",
+   "title": "Text/structure black (FIP: black, not warm ink)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": "body",
+   "status": "PASS",
+   "observed": [
+    "color: rgb(0, 0, 0)"
+   ],
+   "expected": [
+    "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#000000\"}"
+   ],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/palette-literals",
+   "item": "rule/D-R2",
+   "title": "Colours stay within the FIP families (red ceremony, slate, greys, black)",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "STATIC",
+   "selector": null,
+   "status": "VIOLATION",
+   "observed": [
+    "app.css: #1b7f4b in '.st.attn { color: #1B7F4B; }'"
+   ],
+   "expected": [
+    "{\"relation\": \"color_literals\", \"allow\": [\"#eb2d37\", \"#000000\", \"#000\", \"#ffffff\", \"#fff\", \"#f4f4f4\", \"#969696\", \"#26374a\", \"#e0e0e0\", \"#66af"
+   ],
+   "evidence": {},
+   "screenshot": "docs/verification/raw/mutant-dominion/screens/dominion-palette-literals.png",
+   "note": "Amber (#B7791F/#7A4E00) is declared in the build but sits outside the pack's stated families — recorded as a candidate finding in the audit; allowlisted here so it does not mask other off-family colours."
+  },
+  {
+   "id": "dominion/review-restraint",
+   "item": "guideline/typography",
+   "title": "Institutional, quiet, document-like register",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/review-bilingual-quality",
+   "item": "guideline/bilingual",
+   "title": "Bilingual tone parity and typographic balance",
+   "classification": "NOT_CURRENTLY_VERIFIABLE",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": "Pairing presence is checked; the quality/parity of the two languages has no practical method yet."
+  },
+  {
+   "id": "dominion/review-ceremony-character",
+   "item": "rule/D-R2",
+   "title": "Ceremony reads as ceremony (not alarm, not decoration)",
+   "classification": "REVIEW_REQUIRED",
+   "severity": "review",
+   "mode": "REVIEW",
+   "selector": null,
+   "status": "REVIEW_REQUIRED",
+   "observed": [],
+   "expected": [],
+   "evidence": {},
+   "screenshot": null,
+   "note": null
+  },
+  {
+   "id": "dominion/no-floating-surfaces",
+   "item": "component/notice",
+   "title": "No floating surfaces beyond the instrument/scrim",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "INTERACTION",
+   "selector": null,
+   "status": "PASS",
+   "observed": [],
+   "expected": [
+    "{\"evidence\": \"fixed_unexpected\", \"relation\": \"count_eq\", \"value\": 0}"
+   ],
+   "evidence": {
+    "fixed_unexpected": 0,
+    "fixed_detail": "[]"
+   },
+   "screenshot": null,
+   "note": null
+  }
+ ]
+}

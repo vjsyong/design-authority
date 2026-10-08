@@ -1,0 +1,113 @@
+Cadence dominion build — self-test report
+pass 110 / 110
+
+PASS  title
+PASS  nav active = Today
+PASS  five rituals
+PASS  meter readout exact
+PASS  meter fill 40%
+PASS  week band exact
+PASS  status r1 word
+PASS  status r3 word
+PASS  status slippage = left rule 2px
+PASS  ordinals not icons
+PASS  no <img> anywhere
+PASS  Today: one primary (row)
+PASS  bar values exact
+PASS  bar day labels
+PASS  zero-value bar is empty
+PASS  heatmap 31 day cells
+PASS  heat levels days 1-7 exact
+PASS  today cell = 2px black border
+PASS  heat legend 5 items
+PASS  sparkline labels exact
+PASS  sparkline markers 7
+PASS  sparkline polyline
+PASS  ledger page1 rows 7
+PASS  pager readout
+PASS  prev disabled on page1
+PASS  page2 readout
+PASS  page2 rows 7
+PASS  next disabled on page2
+PASS  one Missed row on page 2
+PASS  Missed chip attn
+PASS  search 'read' -> 4 rows
+PASS  search cleared -> 7 rows
+PASS  streak numeral 7
+PASS  streak sub
+PASS  7-day tile achieved
+PASS  entries tile 14
+PASS  week tile 145
+PASS  bilingual today
+PASS  bilingual history
+PASS  bilingual achievements
+PASS  bilingual settings
+PASS  bilingual side-by-side @1280
+PASS  bilingual collapses @500
+PASS  collapse is marked
+PASS  goal slider 20
+PASS  goal readout
+PASS  reminders checked
+PASS  quiet unchecked
+PASS  freq radios 3
+PASS  category select 4 options
+PASS  notes textarea
+PASS  initials plate
+PASS  theme declined statement
+PASS  export action
+PASS  onboarding step 1
+PASS  onboarding step 2
+PASS  onboarding back to 1
+PASS  photo row declined
+PASS  marks-on class
+PASS  marked outline dashed
+PASS  marked outline amber
+PASS  mark label text
+PASS  marks-off
+PASS  data-el covers 1..42
+PASS  no shadows anywhere (blurred)
+PASS  no animation / transition
+PASS  focus glow present
+PASS  red only in two ceremony nodes
+PASS  <=1 primary on today
+PASS  <=1 primary on history
+PASS  <=1 primary on achievements
+PASS  <=1 primary on settings
+PASS  editor opens w/ title
+PASS  editor date default
+PASS  minutes default target
+PASS  one primary w/ editor open
+PASS  saving meter final readout
+PASS  notice says logged
+PASS  ceremony accent visible
+PASS  meter updated 3 of 5
+PASS  week band updated
+PASS  dialog visible
+PASS  dialog not pre-focused on confirm
+PASS  dialog title bilingual
+PASS  dialog consequence sentence
+PASS  dialog closes on cancel
+PASS  ritual removed (4 left)
+PASS  removed notice
+PASS  undo restores (5)
+PASS  undo notice text
+PASS  reorder moves r1 down
+PASS  reorder restored
+PASS  name error shows
+PASS  error has left rule
+PASS  quiet persisted
+PASS  goal readout 30
+PASS  goal persisted
+PASS  csv header
+PASS  csv rows = logs + header
+PASS  empty state visible
+PASS  empty sentence
+PASS  empty action opens add editor
+PASS  fixtures restored
+PASS  Arimo font loaded
+PASS  same-origin only (no external requests)
+PASS  asset 200: app.css
+PASS  asset 200: app.js
+PASS  asset 200: fonts/Arimo-VF.ttf
+PASS  zero console errors
+PASS  zero page errors

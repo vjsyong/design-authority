@@ -317,22 +317,3 @@ reviewer verdict (`wink|33` — "Can codify as a canonical search box item") fro
 Restored byte-exact; the reviewer's browser keeps its own copy regardless, and the new self-heal
 re-posts anything missing on the next load. **Rule: purge review stores surgically (named test
 ids) — never `rm` the whole file while a reviewer is live.**
-
-## Revision v3.1d — independent verification in the lens (experiment)
-
-The panel now carries the **independent verification** results from the
-verification experiment (`docs/verification/`), shown *separately* from the
-agent claim:
-
-- Fetches `_evidence/verification/wink-verification.json` on load (published by
-  `docs/verification/tools/publish_results.py`); absent file / `file://` →
-  degrades silently to the previous behaviour.
-- Section shows: build totals (25 verified · no violations · 4 open to human
-  review), the checks targeting the clicked element (self or descendants) with
-  status + observed evidence, and a footer link to the raw verification JSON.
-- The claim row ("the label says …") stays exactly as before — claim and
-  verifier result are never collapsed into one field.
-
-**Tested.** `docs/verification/tools/lens_check.py` — all assertions OK, zero
-console errors; screenshot `_evidence/screens/v31d-verification-lens.png`.
-Verifier re-run after the addition: wink 25/25 pass, 0 violations (unchanged).

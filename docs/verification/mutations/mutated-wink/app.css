@@ -66,9 +66,9 @@ button { font-family: inherit; }
   color: var(--ink);
   background: var(--yellow);
   border: none;
-  border-radius: 26px;                 /* pill: radius = half height */
+  border-radius: 8px;
   padding: 12px 24px;
-  box-shadow: 0 0 0 1px var(--ink-live);   /* 1px ink ring (live-measured) */
+  box-shadow: none;
   cursor: pointer;
   transition: transform .3s var(--spring), box-shadow .3s var(--spring);
 }
@@ -107,8 +107,9 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
 /* ---------- surfaces: component/card (W-07); guideline/shape-language (W-08) ---------- */
 .card {
   background: #fff;
-  border-radius: 16px;
-  box-shadow: var(--shadow);      /* borderless vessel, warm-tinted elevation */
+  border-radius: 2px;
+  border: 1px solid #999999;
+  box-shadow: var(--shadow);
   padding: 32px;
   margin-bottom: 24px;
 }
@@ -189,8 +190,8 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
   background: rgba(231,183,95,.28);   /* ochre tint composition — W-14 route, marked */
   color: var(--ink); border-radius: 999px; padding: 4px 10px; font-size: 12px;
 }
-.streakline { font-size: 13px; color: var(--muted); }
 .ritual-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.streakline { font-size: 13px; color: var(--muted); }
 
 /* ---------- row log control — check/tick (marked improvisation; boundary-exempt
    from precedent/declined-photographic-imagery — outside verdict, 2026-10-08) ---------- */
@@ -227,7 +228,7 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
 .bars { display: flex; gap: 20px; align-items: flex-end; height: 168px; padding: 0 4px 6px; border-bottom: 1px solid var(--border); }
 .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; height: 100%; }
 .bar-num { font-size: 13px; font-weight: 500; }
-.bar-rule { width: 3px; background: var(--ink); border-radius: 999px; }
+.bar-rule { width: 4px; background: var(--ink); border-radius: 999px; }
 .bar-day { font-size: 12px; color: var(--muted); }
 
 /* heatmap — minimal data block: rules + numerals */
@@ -444,8 +445,6 @@ body.marks-on [data-decision]:hover { outline-color: var(--ink); }
 .prov-built { color: #3a322a; }
 .prov-src { color: var(--muted); font-size: 12px; }
 .prov-outcome { font-weight: 600; }
-.prov-viol { color: var(--err); font-weight: 600; }
-.prov-pass { font-weight: 600; }
 .prov-id { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; background: var(--parsnip); border-radius: 4px; padding: 1px 5px; }
 .prov-chip { display: inline-block; font-size: 10.5px; background: var(--parsnip); border: 1px solid var(--border); border-radius: 999px; padding: 1px 7px; }
 .prov-list { margin: 3px 0 5px; padding-left: 18px; }
@@ -456,3 +455,9 @@ body.marks-on [data-decision]:hover { outline-color: var(--ink); }
 @media (max-width: 760px) {
   #provPanel { left: 12px; right: 12px; bottom: 92px; width: auto; max-width: none; max-height: 56vh; }
 }
+
+.status.slip { color: #2E8B57; }
+
+.toast { position: fixed; right: 18px; top: 18px; z-index: 70; background: #fff;
+  color: var(--ink); border-radius: 12px; padding: 12px 16px;
+  box-shadow: 0 8px 32px rgba(35,30,21,.2); }

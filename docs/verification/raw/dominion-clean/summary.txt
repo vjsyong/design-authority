@@ -1,0 +1,26 @@
+# da_verify — dominion on examples/cadence3-dominion
+generated 2026-10-08 03:59:46
+TOTALS: 22 checks — PASS 19 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 3
+
+PASS  [error  ] dominion/slate-primary — background-color: rgb(38, 55, 74); border-radius: 4px
+PASS  [error  ] dominion/outline-secondary — border-top-width: 2px; border-top-color: rgb(38, 55, 74)
+PASS  [error  ] dominion/field-vessel — border-radius: 4px; border-top-color: rgb(224, 224, 224)
+PASS  [warning] dominion/focus-glow — 
+PASS  [error  ] dominion/masthead-accent — background-color: rgb(235, 45, 55)
+PASS  [warning] dominion/ceremony-accent — background-color: rgb(235, 45, 55)
+PASS  [error  ] dominion/no-red-status — 
+PASS  [error  ] dominion/no-shadows — 1 declaration(s), all allowed
+PASS  [error  ] dominion/no-imagery — found 0; found 0
+PASS  [error  ] dominion/bilingual-pairing — 5/5 pairs
+PASS  [warning] dominion/status-neutral — 
+PASS  [warning] dominion/radius-discipline — 3 declaration(s), all allowed
+PASS  [warning] dominion/ledger-rules — border-bottom-width: 2px; border-bottom-color: rgb(0, 0, 0)
+PASS  [warning] dominion/notice-structure — border-top-width: 2px; border-top-color: rgb(0, 0, 0)
+PASS  [warning] dominion/meter-plain — background-color: rgb(0, 0, 0)
+PASS  [warning] dominion/no-keyframes — no match
+PASS  [warning] dominion/black-text — color: rgb(0, 0, 0)
+PASS  [warning] dominion/palette-literals — 34 literals, all allowlisted
+REVIEW [review ] dominion/review-restraint — 
+REVIEW [review ] dominion/review-bilingual-quality — 
+REVIEW [review ] dominion/review-ceremony-character — 
+PASS  [warning] dominion/no-floating-surfaces — 

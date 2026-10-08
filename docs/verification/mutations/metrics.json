@@ -1,0 +1,117 @@
+{
+ "wink": {
+  "tp": [
+   [
+    "W-V1",
+    "wink/action-pill-radius"
+   ],
+   [
+    "W-V2",
+    "wink/action-ink-ring"
+   ],
+   [
+    "W-V3",
+    "wink/palette-literals"
+   ],
+   [
+    "W-V4",
+    "wink/no-floating-surfaces"
+   ],
+   [
+    "W-V5",
+    "wink/card-vessel"
+   ]
+  ],
+  "fn": [],
+  "control_ok": [],
+  "control_bad": [],
+  "unexpected": [],
+  "clean_violations": []
+ },
+ "leader": {
+  "tp": [
+   [
+    "L-V1",
+    "leader/no-glow"
+   ],
+   [
+    "L-V2",
+    "leader/red-not-surface"
+   ],
+   [
+    "L-V3",
+    "leader/rounded-interactive"
+   ],
+   [
+    "L-V4",
+    "leader/no-glow"
+   ],
+   [
+    "L-V6",
+    "leader/no-emoji-bang"
+   ],
+   [
+    "L-V7",
+    "leader/palette-literals"
+   ]
+  ],
+  "fn": [],
+  "control_ok": [
+   [
+    "L-C4",
+    "leader/tag-attention-red"
+   ]
+  ],
+  "control_bad": [],
+  "unexpected": [],
+  "clean_violations": []
+ },
+ "dominion": {
+  "tp": [
+   [
+    "D-V1",
+    "dominion/no-red-status"
+   ],
+   [
+    "D-V2",
+    "dominion/bilingual-pairing"
+   ],
+   [
+    "D-V3",
+    "dominion/no-shadows"
+   ],
+   [
+    "D-V4",
+    "dominion/radius-discipline"
+   ],
+   [
+    "D-V5",
+    "dominion/no-imagery"
+   ],
+   [
+    "D-V6",
+    "dominion/focus-glow"
+   ],
+   [
+    "D-V7",
+    "dominion/no-keyframes"
+   ],
+   [
+    "D-V8",
+    "dominion/status-neutral"
+   ]
+  ],
+  "fn": [],
+  "control_ok": [
+   [
+    "D-C4",
+    "dominion/masthead-accent"
+   ]
+  ],
+  "control_bad": [],
+  "unexpected": [
+   "dominion/palette-literals"
+  ],
+  "clean_violations": []
+ }
+}

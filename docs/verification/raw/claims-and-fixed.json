@@ -1,0 +1,322 @@
+{
+ "wink": {
+  "claims": {
+   "wink/action-pill-radius": {
+    "selector": ".cta",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "cta",
+    "literal": true
+   },
+   "wink/action-yellow-fill": {
+    "selector": ".cta",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "cta",
+    "literal": true
+   },
+   "wink/action-ink-ring": {
+    "selector": ".cta",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "cta",
+    "literal": true
+   },
+   "wink/action-dark-variant": {
+    "selector": ".cta.dark",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "cta dark",
+    "literal": true
+   },
+   "wink/action-outline-secondary": {
+    "selector": ".cta.outline",
+    "found": true,
+    "claim": "adapted",
+    "note": "pager composed: outline pill + readout (precedent)",
+    "owner": "cta outline small",
+    "literal": true
+   },
+   "wink/action-label-type": {
+    "selector": ".cta",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "cta",
+    "literal": true
+   },
+   "wink/card-vessel": {
+    "selector": ".card:not(.tinted)",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "card ringcard",
+    "literal": true
+   },
+   "wink/no-pure-black-body": {
+    "selector": "body",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "",
+    "literal": true
+   },
+   "wink/dialog-vessel": {
+    "selector": ".dlg",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "dlg",
+    "literal": true
+   },
+   "wink/dialog-no-motion": {
+    "selector": ".dlg",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "dlg",
+    "literal": true
+   },
+   "wink/progress-ring": {
+    "selector": "#ringFill",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "[object SVGAnimatedString]",
+    "literal": true
+   },
+   "wink/badge-shape": {
+    "selector": ".badge",
+    "found": true,
+    "claim": "improvised",
+    "note": "composed: card + badge + numerals",
+    "owner": "card ach-card",
+    "literal": false
+   },
+   "wink/ledger-head": {
+    "selector": ".ledger th",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "",
+    "literal": true
+   },
+   "wink/status-words": {
+    "selector": ".status",
+    "found": true,
+    "claim": "adapted",
+    "note": "words + tint composition (W-14 route, precedent)",
+    "owner": "status",
+    "literal": true
+   },
+   "wink/empty-state-plain": {
+    "selector": "#emptyState",
+    "found": true,
+    "claim": "adapted",
+    "note": "illustration omitted — no asset library (W-19)",
+    "owner": "empty-panel",
+    "literal": true
+   }
+  },
+  "fixed_elements": [
+   {
+    "cls": "mark-toggle",
+    "id": "marksToggle",
+    "w": 46,
+    "h": 46
+   },
+   {
+    "cls": "ASIDE",
+    "id": "provPanel",
+    "w": 420,
+    "h": 83
+   }
+  ]
+ },
+ "leader": {
+  "claims": {
+   "leader/rounded-interactive": {
+    "selector": ".btn",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "panel",
+    "literal": false
+   },
+   "leader/field-radius": {
+    "selector": ".field input",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "ctl",
+    "literal": false
+   },
+   "leader/navy-primary": {
+    "selector": ".b-navy",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "panel",
+    "literal": false
+   },
+   "leader/outline-secondary": {
+    "selector": ".b-out",
+    "found": true,
+    "claim": "improvised",
+    "note": "",
+    "owner": "empty",
+    "literal": false
+   },
+   "leader/link-tertiary": {
+    "selector": ".b-txt",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "panel",
+    "literal": false
+   },
+   "leader/tag-shape": {
+    "selector": ".tag",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "tag",
+    "literal": true
+   },
+   "leader/tag-attention-red": {
+    "selector": ".tag.attn",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "tag attn",
+    "literal": true
+   },
+   "leader/error-line": {
+    "selector": ".err",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "err",
+    "literal": true
+   },
+   "leader/table-rules": {
+    "selector": ".ledger th",
+    "found": true,
+    "claim": "adapted",
+    "note": "",
+    "owner": "ledger",
+    "literal": false
+   },
+   "leader/transitions-modest": {
+    "selector": ".btn",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "panel",
+    "literal": false
+   }
+  },
+  "fixed_elements": [
+   {
+    "cls": "BUTTON",
+    "id": "marks-toggle",
+    "w": 46,
+    "h": 46
+   }
+  ]
+ },
+ "dominion": {
+  "claims": {
+   "dominion/slate-primary": {
+    "selector": ".b-slate",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "btn b-slate r-log",
+    "literal": true
+   },
+   "dominion/outline-secondary": {
+    "selector": ".b-out",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "btn b-out r-log",
+    "literal": true
+   },
+   "dominion/field-vessel": {
+    "selector": ".field input",
+    "found": true,
+    "claim": "fallback",
+    "note": "",
+    "owner": "",
+    "literal": true
+   },
+   "dominion/masthead-accent": {
+    "selector": ".identity .acc",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "acc",
+    "literal": true
+   },
+   "dominion/ceremony-accent": {
+    "selector": ".ceremony .acc-red",
+    "found": true,
+    "claim": "adapted",
+    "note": "",
+    "owner": "ceremony",
+    "literal": false
+   },
+   "dominion/ledger-rules": {
+    "selector": ".ledger th",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "",
+    "literal": true
+   },
+   "dominion/notice-structure": {
+    "selector": ".notice",
+    "found": true,
+    "claim": "adapted",
+    "note": "",
+    "owner": "notice",
+    "literal": true
+   },
+   "dominion/meter-plain": {
+    "selector": ".meter i",
+    "found": true,
+    "claim": "adapted",
+    "note": "",
+    "owner": "meter",
+    "literal": false
+   },
+   "dominion/black-text": {
+    "selector": "body",
+    "found": true,
+    "claim": "CANONICAL",
+    "note": null,
+    "owner": "",
+    "literal": true
+   }
+  },
+  "fixed_elements": [
+   {
+    "cls": "marks-toggle",
+    "id": "marks-toggle",
+    "w": 42,
+    "h": 42
+   },
+   {
+    "cls": "scrim",
+    "id": "dialog-scrim",
+    "w": 1280,
+    "h": 900
+   }
+  ]
+ }
+}

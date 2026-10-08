@@ -1,0 +1,33 @@
+# da_verify — wink on examples/cadence3-wink
+generated 2026-10-08 03:59:41
+TOTALS: 29 checks — PASS 25 · VIOLATION 0 · UNVERIFIABLE 0 · REVIEW_REQUIRED 4
+
+PASS  [error  ] wink/action-pill-radius — border-radius: 26px
+PASS  [error  ] wink/action-yellow-fill — background-color: rgb(255, 224, 27)
+PASS  [error  ] wink/action-ink-ring — box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px
+PASS  [error  ] wink/action-dark-variant — background-color: rgb(36, 28, 21); color: rgb(255, 255, 255)
+PASS  [error  ] wink/action-outline-secondary — box-shadow: rgb(36, 28, 21) 0px 0px 0px 2px inset
+PASS  [warning] wink/action-label-type — font-size: 13px; font-weight: 500
+PASS  [error  ] wink/card-vessel — border-radius: 16px; border-top-width: 0px
+PASS  [warning] wink/palette-literals — 32 literals, all allowlisted
+PASS  [error  ] wink/no-pure-black-static — no match
+PASS  [error  ] wink/no-pure-black-body — color: rgb(36, 28, 21)
+PASS  [error  ] wink/focus-visible — 
+PASS  [error  ] wink/dialog-vessel — border-radius: 16px; background-color: rgb(255, 255, 255)
+PASS  [error  ] wink/dialog-scrim — matched in app.css
+PASS  [error  ] wink/dialog-no-motion — animation-name: none; transition-duration: 0s
+PASS  [error  ] wink/destructive-not-focused — 
+PASS  [warning] wink/error-colour — matched in app.css; matched in app.css
+PASS  [warning] wink/progress-ring — stroke: rgb(255, 224, 27); stroke-linecap: round
+PASS  [warning] wink/badge-shape — border-radius: 999px; background-color: rgb(255, 224, 27)
+PASS  [warning] wink/ledger-head — font-size: 13px; font-weight: 500
+PASS  [error  ] wink/no-imagery — found 0; no image url() references
+PASS  [warning] wink/no-invented-motion — no match
+PASS  [warning] wink/status-words — text length 8
+PASS  [warning] wink/empty-state-plain — found 0 of #emptyState img; found 0 of #emptyState svg
+PASS  [warning] wink/tick-marked — found 5
+REVIEW [review ] wink/review-tone — 
+REVIEW [review ] wink/review-harmony — 
+REVIEW [review ] wink/review-typography-registers — 
+REVIEW [review ] wink/review-hover-character — 
+PASS  [error  ] wink/no-floating-surfaces — 

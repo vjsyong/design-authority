@@ -1,0 +1,429 @@
+{
+  "contract_version": "0.1",
+  "authority": "leader",
+  "pack_version": "leader 0.2.0",
+  "scope_note": "Verification contract for the leader authority (verification experiment, 2026-10-08). The instrument (body.marks-on, .mark-lbl, #markToggle) is review tooling and excluded from palette and shape scans.",
+  "checks": [
+    {
+      "id": "leader/rounded-interactive",
+      "item": "rule/L-R1",
+      "title": "Interactive components are soft-rounded (radius 8)",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".btn",
+      "assertions": [
+        {
+          "property": "border-radius",
+          "relation": "equals",
+          "value": "8px"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/field-radius",
+      "item": "component/field",
+      "title": "Fields carry the system radius (8)",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".field input",
+      "assertions": [
+        {
+          "property": "border-radius",
+          "relation": "equals",
+          "value": "8px"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/navy-primary",
+      "item": "component/action",
+      "title": "Primary action is solid Chicago blue",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".b-navy",
+      "assertions": [
+        {
+          "property": "background-color",
+          "relation": "color_is",
+          "value": "#2E45B8"
+        },
+        {
+          "property": "color",
+          "relation": "color_is",
+          "value": "#FFFFFF"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/outline-secondary",
+      "item": "component/action",
+      "title": "Secondary action: 2px ink outline on white",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".b-out",
+      "assertions": [
+        {
+          "property": "border-top-width",
+          "relation": "equals",
+          "value": "2px"
+        },
+        {
+          "property": "border-top-color",
+          "relation": "color_is",
+          "value": "#1A1A1A"
+        },
+        {
+          "property": "background-color",
+          "relation": "color_is",
+          "value": "#FFFFFF"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/link-tertiary",
+      "item": "component/action",
+      "title": "Tertiary action: underlined blue link",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".b-txt",
+      "assertions": [
+        {
+          "property": "text-decoration-line",
+          "relation": "contains",
+          "value": "underline"
+        },
+        {
+          "property": "color",
+          "relation": "color_is",
+          "value": "#2E45B8"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/no-square-interactive",
+      "item": "prohibition/square-interactive",
+      "title": "No square-cornered interactive components",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "STATIC",
+      "files": [
+        "app.css"
+      ],
+      "assertions": [
+        {
+          "relation": "no_match",
+          "pattern": "border-radius:\\s*0[^0-9a-zA-Z]",
+          "except_line_regex": "marks-on|mark-lbl|mark-toggle|prov-|\\[data-"
+        }
+      ]
+    },
+    {
+      "id": "leader/red-not-surface",
+      "item": "prohibition/red-reading-surface",
+      "title": "Red never becomes a reading surface",
+      "classification": "PARTIALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "INTERACTION",
+      "scenario": "red-area-scan",
+      "params": {},
+      "assertions": [
+        {
+          "evidence": "red_max_area_pct",
+          "relation": "max",
+          "value": 10.0
+        }
+      ],
+      "note": "Heuristic: no single red-family background element may exceed 10% of the viewport area. Red rules/labels/small attention blocks pass; a red panel would not."
+    },
+    {
+      "id": "leader/no-glow",
+      "item": "prohibition/ambient-glow",
+      "title": "No ambient glow shadows (no box-shadow declarations)",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "STATIC",
+      "files": [
+        "app.css"
+      ],
+      "assertions": [
+        {
+          "relation": "declarations",
+          "property": "box-shadow",
+          "allow_regex": "^none$|^var\\(--none\\)$"
+        }
+      ]
+    },
+    {
+      "id": "leader/no-emoji-bang",
+      "item": "prohibition/decorative-noise",
+      "title": "No emoji, no exclamation marks in user-facing text",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "DOM",
+      "assertions": [
+        {
+          "relation": "page_text_no_match",
+          "pattern": "exclaim_or_emoji"
+        }
+      ]
+    },
+    {
+      "id": "leader/tag-shape",
+      "item": "component/tag",
+      "title": "Tag: rounded rectangle (8), 2px ink outline, caps — never a pill",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".tag",
+      "assertions": [
+        {
+          "property": "border-radius",
+          "relation": "equals",
+          "value": "8px"
+        },
+        {
+          "property": "border-top-width",
+          "relation": "equals",
+          "value": "2px"
+        },
+        {
+          "property": "text-transform",
+          "relation": "equals",
+          "value": "uppercase"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/tag-attention-red",
+      "item": "component/tag",
+      "title": "Attention tag flips solid red",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".tag.attn",
+      "assertions": [
+        {
+          "property": "background-color",
+          "relation": "color_family",
+          "value": "red"
+        }
+      ],
+      "missing": "skip",
+      "note": "State-dependent; SKIP (UNVERIFIABLE) when the current data renders no attention tag."
+    },
+    {
+      "id": "leader/error-line",
+      "item": "component/field",
+      "title": "Error = small red line under the field",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".err",
+      "assertions": [
+        {
+          "property": "color",
+          "relation": "color_family",
+          "value": "red"
+        }
+      ],
+      "missing": "skip"
+    },
+    {
+      "id": "leader/table-rules",
+      "item": "component/ledger",
+      "title": "Ledger: 2px ink header rule",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".ledger th",
+      "assertions": [
+        {
+          "property": "border-bottom-width",
+          "relation": "equals",
+          "value": "2px"
+        },
+        {
+          "property": "border-bottom-color",
+          "relation": "color_is",
+          "value": "#1A1A1A"
+        }
+      ],
+      "missing": "fail"
+    },
+    {
+      "id": "leader/focus-visible",
+      "item": "component/field",
+      "title": "Focus visible by other means when border highlight is suppressed",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "INTERACTION",
+      "scenario": "tab-focus",
+      "params": {},
+      "assertions": [
+        {
+          "evidence": "focus_outline_style",
+          "relation": "not_equals",
+          "value": "none"
+        },
+        {
+          "evidence": "focus_outline_width",
+          "relation": "min",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "id": "leader/no-imagery",
+      "item": "precedent/declined-imagery-and-icons",
+      "title": "No photographic imagery or illustration",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "error",
+      "mode": "DOM",
+      "assertions": [
+        {
+          "relation": "absent",
+          "selector": "img"
+        }
+      ]
+    },
+    {
+      "id": "leader/no-keyframes",
+      "item": "guideline/motion",
+      "title": "No keyframe animation invented",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "STATIC",
+      "files": [
+        "app.css"
+      ],
+      "assertions": [
+        {
+          "relation": "no_match",
+          "pattern": "@keyframes"
+        }
+      ]
+    },
+    {
+      "id": "leader/transitions-modest",
+      "item": "guideline/motion",
+      "title": "State-change transitions stay brief (<= .3s)",
+      "classification": "PARTIALLY_VERIFIABLE",
+      "severity": "info",
+      "mode": "COMPUTED_STYLE",
+      "selector": ".btn",
+      "assertions": [
+        {
+          "property": "transition-duration",
+          "relation": "transition_max",
+          "value": 0.3
+        }
+      ],
+      "missing": "skip"
+    },
+    {
+      "id": "leader/palette-literals",
+      "item": "rule/L-R2",
+      "title": "Colours stay within the red / blue / ink-grey families",
+      "classification": "PARTIALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "STATIC",
+      "files": [
+        "app.css"
+      ],
+      "assertions": [
+        {
+          "relation": "color_literals",
+          "allow": [
+            "#e3120b",
+            "#f6423c",
+            "#fee7e7",
+            "#cc100a",
+            "#2e45b8",
+            "#1f2e7a",
+            "#475ed1",
+            "#d6dbf5",
+            "#ebedfa",
+            "#1a1a1a",
+            "#0d0d0d",
+            "#333333",
+            "#595959",
+            "#b3b3b3",
+            "#d9d9d9",
+            "#f2f2f2",
+            "#ffffff",
+            "#fff"
+          ],
+          "allow_rgb": [
+            "0, 0, 0, 0"
+          ],
+          "exclude_line_regex": "marks-on|mark-lbl|mark-toggle|prov-|\\[data-"
+        }
+      ],
+      "note": "Allowlist = the build's declared family tokens + ramp (red: E3120B/F6423C/FEE7E7/CC100A; blue: 2E45B8/1F2E7A/475ED1 + tints; ink-greys). Outside hues (green/teal/orange) flag."
+    },
+    {
+      "id": "leader/review-register",
+      "item": "guideline/hierarchy",
+      "title": "Editorial, restrained, institutional register",
+      "classification": "REVIEW_REQUIRED",
+      "severity": "review",
+      "mode": "REVIEW"
+    },
+    {
+      "id": "leader/review-red-character",
+      "item": "rule/L-R2",
+      "title": "Red reads as brand punctuation, not alarm",
+      "classification": "REVIEW_REQUIRED",
+      "severity": "review",
+      "mode": "REVIEW",
+      "note": "The area heuristic catches gross misuse; the punctuation *character* is editorial."
+    },
+    {
+      "id": "leader/review-hierarchy-calibration",
+      "item": "guideline/hierarchy",
+      "title": "Headline / standfirst / body calibration across views",
+      "classification": "NOT_CURRENTLY_VERIFIABLE",
+      "severity": "review",
+      "mode": "REVIEW",
+      "note": "Sizes are individually checkable; the cross-view calibration has no practical method yet."
+    },
+    {
+      "id": "leader/review-chart-character",
+      "item": "pattern/data-charts",
+      "title": "Charts read as rectilinear editorial data blocks",
+      "classification": "REVIEW_REQUIRED",
+      "severity": "review",
+      "mode": "REVIEW"
+    },
+    {
+      "id": "leader/no-floating-surfaces",
+      "item": "component/notice",
+      "title": "No floating surfaces beyond the instrument",
+      "classification": "MECHANICALLY_VERIFIABLE",
+      "severity": "warning",
+      "mode": "INTERACTION",
+      "scenario": "fixed-scan",
+      "params": {
+        "allow_regex": "marks-toggle|mark-toggle|bottomnav"
+      },
+      "assertions": [
+        {
+          "evidence": "fixed_unexpected",
+          "relation": "count_eq",
+          "value": 0
+        }
+      ]
+    }
+  ]
+}

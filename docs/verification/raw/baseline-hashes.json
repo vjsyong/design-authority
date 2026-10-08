@@ -1,0 +1,467 @@
+{
+ "captured": "2026-10-08 03:46:13 UTC",
+ "git": {
+  "head": "2a913daaf6576df4c9e0074f09f49a614d79ead8",
+  "describe": "v0.2.0",
+  "branch": "master"
+ },
+ "version_file": "0.2.0",
+ "kernel": {
+  "__init__.py": "05e6009e62e184fa47f85a10a221ebd9487b9a35691307a621ddda7226237056",
+  "cli.py": "7220d10f0de46a68a4fc4871c970a2328db7bd65f373cdfb94e67aed667948a6",
+  "mcp_server.py": "b27baa849dbd867020de26f62029c638831432b7030bb026f14afe28ea016e38",
+  "pack.py": "e2faef0a5b7e0734b2e275bda4709e0b1a5b5ef848b59a493827779cca210a2f",
+  "records.py": "25f972e5de0fa4504efd27313e2f240344ffc019ce30f8fa42796fa2752e93a1",
+  "resolve.py": "864475f91d47159eb6adf7f5682343b1e1bc39a73b98c7021fcc7ae5ba3f1577",
+  "validate.py": "5fda7e02db8e01ff4c09643990f58b80f1ffc67a1279ad2987461faa266af621",
+  "__pycache__/__init__.cpython-314.pyc": "f14e349729440758d33a4458184a8d5f8461a6758baf9b177f69d7ac3d77e93d",
+  "__pycache__/cli.cpython-314.pyc": "8a9bcd305b45b478994db0c9764612d3a1ae218d4214b3dbb1abfbb1c8465ac6",
+  "__pycache__/mcp_server.cpython-314.pyc": "901570c2f0e693db203d89991fb9d1fea57ac3aaadade782b3e5044e3b2ace4b",
+  "__pycache__/pack.cpython-314.pyc": "2f2715773f40acc8fe208893ccde4f53b5bfcf895fca40789bdaf46c1dc71618",
+  "__pycache__/records.cpython-314.pyc": "c5500a8d3f717a0740c91dff0d8b771bc374c6b6036d0a77442d87da8a1c7ab7",
+  "__pycache__/resolve.cpython-314.pyc": "2bd808ebedce81017be50755a13ee109d49fa392c5a57092392334aa1a0d8472",
+  "__pycache__/validate.cpython-314.pyc": "be0d6c8d2929892e2a6071279e4565a3af033ec807a73bd8f8b19e22a754ada4"
+ },
+ "tools": {
+  "apply_proposals.py": "fc6f437267aa613414650234934f0ee2b9e2b548de96b878e08c14ed4c9cf8c5",
+  "build_pack_triage.py": "4519babaffa8da77b3ce0e5a3c617a26eaae94b8ed3dc0bfea6474e24a95ee97",
+  "check.sh": "6aa1b33aeff1e65b1c9d11bac4ed7fc610bd35a46c9e87ee46d141a0af5ef366",
+  "da-mcp.py": "9bc359d1bc8ac2439f62cd0e82037111fa19566593021141327a02bbc2a1fa0c",
+  "da.py": "6b902f2f8b7b349c2b4769a9c085b00c88812a9a7107e9be1accefc803410d58",
+  "evolution_convergence.py": "136f59a1738056c7250dff444d2f62bd34cfac29b816ed4262ac588f42ba2279",
+  "mcp_smoke.py": "ca6d95f3e1df8caf735c4f6dff51df059d3359520976025b05cd4653a987b961",
+  "migration_check.py": "71ecd929147a1ab36e440e69929a43c8bfa34fe95e907eee0c0208aa82816718",
+  "precedent_probe.py": "eeb25d64c2012f613c267c79cf28b576691f46b5332c72a10057a49dc498a3ea",
+  "render_kit_triage.py": "7ee4f027e8057985afcec407004690f58814b8ee671a564028841f15cd64c78f"
+ },
+ "packs": {
+  "wink": {
+   "rollup": "87a9c9025c33acbc155c543e26e3cf4cc91cd9413b77a3814dd9e7fb2bf0eb59",
+   "files": {
+    "artifacts.json": "a05b2e13b0d340abdf2700235366b1e91ec9cdb4ce3500feb2bdfd3de3144a8a",
+    "authority.json": "5033d87292671609720b4429779db2c63c7d4060eb2d842eaab0e11abdd8b975",
+    "candidates.json": "53dd05ebb6172444d4fb36d652e3de7a934eec64b2e8e6161a3f23f60dfc8e62",
+    "fallbacks.json": "6b80b1beb9523edf5a5ef75d70eefc164b37a08ce07275c27861aead136417cb",
+    "golden.json": "7a50a3f4b96356360aae9eb174933393865c63ee0ad7ed9a5345f453a0ad0e3c",
+    "precedents.json": "c47b052ba6ee79c403618a1d9256e744052c98d2a0d9cc3bad8ac173bb72ddbe",
+    "prohibitions.json": "f6f4deecb8d365699216ea98cfcb3f4f1d89767d7fb2d338b2365b6a9ab2a30a",
+    "recipes.json": "cc4215083f082ba80cd97f24335f6390ebd98664c092becbf10d80b9518c8cd4",
+    "rules.json": "d9b24d4f8cba01f762dbc3ed397ac70ac6da03e09048a4294cf4faf340a943e1",
+    "scoring.json": "d91e9d32083d1e8a7c85d323f7ec7ef3b2cde0768400bb194ce6e12fabb89611"
+   }
+  },
+  "leader": {
+   "rollup": "aa5185283bcb2d4cd7933970e296b9672e5fe9a760b72e9bdf25725f4af063e9",
+   "files": {
+    "artifacts.json": "44d3e379b37caf3706709cdd159278b288b05e60d4c393aef4edb9de33f5c652",
+    "authority.json": "bf9f7a5f78071ca9c2697d7e20a3a11c848857d654701658adfbf1fcd1ef4755",
+    "candidates.json": "18e4d6772c8fb578da6e904843af874e4336d5c0dae35f9a885e9c798b3c084b",
+    "fallbacks.json": "1dc2f5a6c4699ddf92104cfc7b330c393153d3f813888276bda09c89c44b7aba",
+    "golden.json": "bcd833b91c0aeba12d6de8c2cf45e4a17e05a8191caab24d3622b8e0f9d96fe7",
+    "precedents.json": "243f3c5ae51cf02abe7c0e537549003f72672027f57d307ac52601cdfac89a05",
+    "prohibitions.json": "89ff7bcb9790f1b92273391b6a2ec21b02a1fd3875faebba8921dc73e051e915",
+    "recipes.json": "cc4215083f082ba80cd97f24335f6390ebd98664c092becbf10d80b9518c8cd4",
+    "rules.json": "ee8f655414d442a6fd2709560a58b76f98ca56eea28a585896e3faf49699e146",
+    "scoring.json": "d91e9d32083d1e8a7c85d323f7ec7ef3b2cde0768400bb194ce6e12fabb89611"
+   }
+  },
+  "dominion": {
+   "rollup": "6b723eb5f06de52dee459eca3ec4eaef97672c8c4b3cde5f62aa776ff8708454",
+   "files": {
+    "artifacts.json": "7d8ea8eae834d8587d8904baf8f20b0a91cfcc7f673cc5a88fc50f3bde72bdb5",
+    "authority.json": "7e385abc6103d53dd97a404c07dfaac9c4902026744a291e6a602bb6ea98b74c",
+    "candidates.json": "3e8c80b6bbd0a77761b0af919a414e273244874fd1cdd930655167d474d0fbed",
+    "fallbacks.json": "0a7e276c36a857a6c10fdb4019adfeee4a06dab6494edf28695556e322f46b2e",
+    "golden.json": "30c161946dd627ea29d7f38c036762a9c1c01d512729f7d6fd9c4b5aec3c7b72",
+    "precedents.json": "a65b4c8d4d7df15e3607a02a1583a7da798c2a27b23af891de6fb93f112ebe64",
+    "prohibitions.json": "b6a228b7ceb67498f4feb4576226d4276c6a1c4205b6a2cde794dfe2d4cab6cf",
+    "recipes.json": "524a02f580f016f117ee5605f3cf81a60ae214aa99e001b66bf68c24b99940ab",
+    "rules.json": "a62c9c7bc75c021d43015691d42f9b63f15646dca43ef3a4e3625dd15c8ee7f0",
+    "scoring.json": "d91e9d32083d1e8a7c85d323f7ec7ef3b2cde0768400bb194ce6e12fabb89611"
+   }
+  },
+  "triage": {
+   "rollup": "6d5ef04f65fd1778b2a3f028037ea636e458526c43c500f075043fc0c0598d36",
+   "files": {
+    "BUILD.json": "bec9381ca84ed2b79077979cd0b9dbb2aa161470a0c4df2ebab1fb3f896eadff",
+    "README.md": "386d3168253d242bab03a3ca65a840820456d2169b3b2886d4a367d939a70007",
+    "artifacts.json": "bfd56c5dfe1d4a75e2929e92f1c2c677359278e47f0f20f2b796c6a584a527d6",
+    "authority.json": "d16ae96976a4fda21dcd0837bbea6e792677e9ac088a7ca2dbe0195f9d79d590",
+    "fallbacks.json": "750fe33f784172819a2f9963dab39340f6ee3aa6fac321708e78134b83012fb8",
+    "golden.json": "05df4a2352cc78eea0b9c2f8a76a22b1da9a23eb2e92a45308cb584c9d748ed0",
+    "prohibitions.json": "a02612e768bf1b39000dbe2cf4ab797b285f51529b88e85e98d2363a0531c3ca",
+    "recipes.json": "9835a25fe6c7760c781ebd32b9bf03515c8f036a7085726292beaa5e3cd54ff2",
+    "rules.json": "ab546dd0a0c44e04fc37a1c75dbdec56bb2a8bd4a5750ac0224d241f5b27c1a8",
+    "scoring.json": "990f8fe7b14b2ff4c4e5d724269468e8b7ac8d1bc22aa14d3917bf2d716da843",
+    "validators.json": "1beeced80f74022ca812c4801c30cbbb2c5c80543ee9f658c1bf7b55bc35d423",
+    "curation/aliases.json": "8ed2b68f5df3b4f51c54c55832e72dfbc4f5943a04bab9c10e64240946599315",
+    "curation/component-notes.json": "827fdf597ca61314f73f63be9b3670e513cafd78e8aaefbff5232b8737206f5c",
+    "curation/docs-map.json": "222c393395a1751f78ab4c99ba6d3aca1ae5229fe80728614d19d606d1989797",
+    "curation/fallbacks.json": "707e84b9051fec353402a0fd11a901ee879c03275f922915067712eda65f31a7",
+    "curation/guidelines.json": "10340c0c26763f92c05fa83baa700e9ec6b68d0e15fa7499b945cd324aaf31e1",
+    "curation/patterns.json": "f8953d6f3fbe2d230019bdae2c11835f33f96233e19e51989a7ab431f92c1d11",
+    "curation/prohibitions.json": "718d075cde70f594cd03b84eb4aa7aebf273e2ac740349c7f2060d958ebbff0b",
+    "curation/recipes.json": "8848d0d79d79235ae4ede6acf0b4cad9178a2ed2662c4c952e94dfe7d1ac41de",
+    "curation/references.json": "6e3381543a7f35bcc2f9b4a50d9cc45a8ef4591ba178b2b30aecaa39c61a0d6c",
+    "curation/token-sets.json": "fbc15f2acce114f257ce0abd8d5eed2ec386e9046dd5b5b033545a6ab6ec49cc"
+   }
+  },
+  "triage-evolution": {
+   "rollup": "abd91df34854a62f84f914a2c2c15190d817f1c06c75a20cbdc4d28e86d46cb8",
+   "files": {
+    "BUILD.json": "0ebcc3d332665a6b99d02a466f164345dc07e981021fa295f585fc439b921801",
+    "README.md": "9d3d9af277b1b01afad749050a3f8905bc6e42ecb5d4421a51c397fb9c9bb15e",
+    "artifacts.json": "689276c0e8d2cf983ab34bc76614e7148ab19f744f20196400865bbde64118ab",
+    "authority.json": "13874c2a03ef24740d6b2830e1c060f5187e915b106a9a08f33a377c9cc9775e",
+    "fallbacks.json": "750fe33f784172819a2f9963dab39340f6ee3aa6fac321708e78134b83012fb8",
+    "golden.json": "3caf707f6e1f6ab8ab011bb153722f3107ec41faa9c7bfe79c27a18ba0354664",
+    "prohibitions.json": "a02612e768bf1b39000dbe2cf4ab797b285f51529b88e85e98d2363a0531c3ca",
+    "recipes.json": "5376c73639290fe10c79ad66146d9ef222fa14e1e20d2fd0801c5e313986e56f",
+    "rules.json": "ab546dd0a0c44e04fc37a1c75dbdec56bb2a8bd4a5750ac0224d241f5b27c1a8",
+    "scoring.json": "990f8fe7b14b2ff4c4e5d724269468e8b7ac8d1bc22aa14d3917bf2d716da843",
+    "validators.json": "1beeced80f74022ca812c4801c30cbbb2c5c80543ee9f658c1bf7b55bc35d423",
+    "curation/aliases.json": "0e1f59cca6d554938907d19463899c7b63f1b4e6d7542cc64b7c7745349f3530",
+    "curation/component-notes.json": "b6b2d24b495cdd3516b577acb2ec5adcda65fba6cf695002e3dd8b1e5b3a63f9",
+    "curation/docs-map.json": "15f985c489ec9470c33189ff66be7cad6cd431ed15962ffcf0437830863f4de8",
+    "curation/evolution.json": "6b7fd984f73e5163c3e69ddf50d63e853605cd75e1aafe023c28d2c9fc8e001e",
+    "curation/fallbacks.json": "707e84b9051fec353402a0fd11a901ee879c03275f922915067712eda65f31a7",
+    "curation/guidelines.json": "b2510f8d3ad3c0444faffbaf24f024915a20cd2cec5ff3f9f2ec81c34ea5881a",
+    "curation/patterns.json": "f8953d6f3fbe2d230019bdae2c11835f33f96233e19e51989a7ab431f92c1d11",
+    "curation/prohibitions.json": "718d075cde70f594cd03b84eb4aa7aebf273e2ac740349c7f2060d958ebbff0b",
+    "curation/recipes.json": "8300e214ebe47b2d8be6519b9ebb4427d7afcbe1e3288040a1688df15f099ea3",
+    "curation/references.json": "6e3381543a7f35bcc2f9b4a50d9cc45a8ef4591ba178b2b30aecaa39c61a0d6c",
+    "curation/token-sets.json": "fbc15f2acce114f257ce0abd8d5eed2ec386e9046dd5b5b033545a6ab6ec49cc"
+   }
+  }
+ },
+ "builds": {
+  "cadence-wink": {
+   "rollup": "b97aa7525fbbfef337239178a5e30b43f2537b6e021635f00162f5f22a3e0d80",
+   "n_files": 22,
+   "files": {
+    "ADJUDICATION.md": "93336195a36c28ea818c6556a78e89f87494d053ff9215c01461701298befdc4",
+    "NOTES.md": "47f9e7d24e069b4d06f18f97a0555d17aa49d0c2e01e9c8a68b28587d803ec0f",
+    "app.css": "da1330e4cd466bfb3542d2dd5df654a799fe2649dc516be1d3172779c81b6264",
+    "app.js": "7f5a93c2537f74952eaf68c86f74de668b9ef14e57c6f38b4a2b63438bf8fbe1",
+    "index.html": "a1ea74a805636ef4adf9aaa462cbf558588693704924b354ff76e902408f8ca0",
+    ".design-authority/gaps.jsonl": "3deab84a97dde2cf90923e3eb05478188107332b8f1135b06668e636dc69c617",
+    ".design-authority/proposals/prop_20261007-151914-0510d7.json": "8e35ea280986effb23d58ea7d45a6054311f4ad93fe760512b9b3c5a08805aec",
+    ".design-authority/proposals/prop_20261007-151914-74dedc.json": "1d55950934bef3781cd38e1bc1dad4ea6e98951e0d5fdf0094631340916c99be",
+    ".design-authority/proposals/prop_20261007-151914-9ff839.json": "76de44040e5dab2061eaa2055e32a59a53b35860317287f9ae2c64acdbe6b4ab",
+    ".design-authority/proposals/prop_20261007-151914-d08fa9.json": "ad226b4edbe92ea565631ec26f9dbae0ee6e713d2c87f37aec8ee0b38200149f",
+    ".design-authority/proposals/prop_20261007-151915-44d062.json": "eafdbfa46f164ba1fb1b0e0a32458ce7736b3fa1e6d83aab371f209509200796",
+    ".design-authority/proposals/prop_20261007-151915-58de37.json": "0f9718a599e45ec0656a82d7e0737b2a46dd6fb4ea7466426bba0d76f919b5e3",
+    "adjudication/fixes.json": "50a563ccbbe707e89709f260046fb45f6b69df2c8283d6b384f1c10729b9f6f0",
+    "adjudication/proposal-a0e2b0.json": "250bc0d6e3b08e83ac1af38f91ed0b78c0e46d5af056cf0fe7026b367ddb4b53",
+    "adjudication/proposal-a9d93a.json": "0e5f419a338986bf708d1af561b2a3203042c913ac961ae29de74984bd5fba7e",
+    "adjudication/proposal-ad4b85.json": "45103e8b713b310f13154ec5d50ea447ec516906138c4210b05aa6cc733f1a45",
+    "adjudication/proposal-d19d36.json": "369be0e5c85bd7cd485d8aa0ace3f7df7f49990f13b29b60e9da86de5a697ef7",
+    "adjudication/proposal-d6853d.json": "2f9d251a6953ffdb332118bbfc6a9d11ea09319f0bf95ecf4fbe45e0bd7367dc",
+    "adjudication/proposal-f646b2.json": "9e026e5c5a67fb9f671b7d52b08d530c865a6cb4e34ab4a5dae2ef9e487fad91",
+    "fonts/Fraunces-Italic-VF.ttf": "b24448c43702fac4ee856781d461a0dfba8d8e594b6e8e190234b75fed2c0e01",
+    "fonts/Fraunces-VF.ttf": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb",
+    "fonts/Inter-VF.ttf": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+   }
+  },
+  "cadence-leader": {
+   "rollup": "0d86b60aae3f102e1794aa3aff25560e9400ff22762e84ed1016fd2c48fed3b9",
+   "n_files": 22,
+   "files": {
+    "ADJUDICATION.md": "02c3e41333e2b20cf17d69c971e626a869bd88da2322035983eedbef25c73faf",
+    "NOTES.md": "8377fcb1949c22ced1a0e3c223cafed5eb8bc6b51b103f8696441ab57cc59222",
+    "app.css": "f9dfc60ae54f63567558acecfce0c71f42ac1575beffd90343696590764ec19f",
+    "app.js": "b1593e9778daebb9d5c95bae6c2d1152767bea4bbc8c4b2c7a4e2770d3f26d21",
+    "index.html": "7273792219453c0a76ba23da0a9910f139bf2ac9b9be8dfa412b7bd37307c191",
+    ".design-authority/gaps.jsonl": "2d0bf355cac2d26e10c284df543191f30ca36a7421d4189902bd3765fff16416",
+    ".design-authority/proposals/prop_20261007-151947-45862b.json": "90a98669830241209497f7065d3b08ebebf888497a52f0fdbc40b44e2ba8abdd",
+    ".design-authority/proposals/prop_20261007-151947-81e020.json": "b6694886623b94aade448576cd40a05996dd561c7609791d28a0dae87edb8582",
+    ".design-authority/proposals/prop_20261007-151947-916eda.json": "9eb9ccc49c61aca05f4f8261e39c89eb22475621e4eb98659a038f64aae59673",
+    ".design-authority/proposals/prop_20261007-151948-25306d.json": "576fe3df0b2334e39ea8dc638c11f2e4f2860b6fb1e2e081e856be74cecf5476",
+    ".design-authority/proposals/prop_20261007-151948-91ef4b.json": "1bb0dbe7543fcb7ad888c47824cff5fbecbb495f35ffdc747479fb79f8d59bc1",
+    ".design-authority/proposals/prop_20261007-151948-992c62.json": "a53d812106a51dc715d97d8a8a7223632f320cb6af29cff2169d596140a4e0e7",
+    "adjudication/fixes.json": "016c92852ead970a82ba49d781aa54635ee2fb1d9a66dd659a0349e61d6b68d7",
+    "adjudication/proposal-1ae98e.json": "5c4cdc49d1fcec13965d2d5d0a6630b5018dc1658ba3227ed0ddfe5cfcc8406c",
+    "adjudication/proposal-4bf6e3.json": "3e6c5add9447fa43e46c93382a0981a88c99f91fc4f72b8316b6544eb04d3a7e",
+    "adjudication/proposal-878f7a.json": "625aa6aab1d6ca8da198f546c4c149922674d9e91e6a3a0eb16af1e6f4e1f63b",
+    "adjudication/proposal-d20922.json": "370f9348e93f1a1bbfeb50b68421ba76b1e45a88f7fcfe07431be8f9d6c71cbe",
+    "adjudication/proposal-d4706a.json": "96517eac8f940f4d457181251c28c717c5090b99f5309795c73e70caf85ba33e",
+    "adjudication/proposal-deea1f.json": "c3130583b2d71dd4c81ac106292cfebe892b9f338b436f57d03f4ca1aff2e6cb",
+    "fonts/ArchivoBlack-Regular.ttf": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+    "fonts/Gelasio-VF.ttf": "4daecea457258c9ebeb8bc99ed3fd24353618bfad3ea4b93fa0b5d0468fc04e4",
+    "fonts/Inter-VF.ttf": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+   }
+  },
+  "cadence-dominion": {
+   "rollup": "8b00f8feb8c16277815b40dd091c919e3f7526f0c4a052c73ecaa10ba7ae5fc7",
+   "n_files": 18,
+   "files": {
+    "ADJUDICATION.md": "72b85dcdd13763b2404057bdc50dcf34d1a438ec050032a321af07499979b5b7",
+    "NOTES.md": "772c70d3e3b5f75a462c14ccfbbc9a9ced86fef3c01b6eda65ffc861206c436b",
+    "app.css": "2b9e1932404246cf3c8fd64623e4a58ad3e2978a4dbbb80223534e7622ddce0e",
+    "app.js": "f9fe33095e8dd36c0ad68aeaea7c68b8ea2aa42962615c5dde5aa6083c83c5b2",
+    "index.html": "7cdd032ec176d30677de3334edd03e5592b9445147091120853efa63855229fd",
+    ".design-authority/gaps.jsonl": "a036a0811ef943b23c84e4aa19e5d41b110935e587e7104e4a35b48d8d485837",
+    ".design-authority/proposals/prop_20261007-151923-0cf7b9.json": "91f45500a9fe7f3e4f3705c652957e9dc6060eedd15ce8127acb3ee38de12902",
+    ".design-authority/proposals/prop_20261007-151923-522030.json": "df1abe7c208c0c77cf4aa2a5a7775ebec260c5e01b3262adf5d8cfad1da9dedb",
+    ".design-authority/proposals/prop_20261007-151923-72cc3e.json": "1c108f0fa204b9df5ff5cc70c98015deba1c706a31cf145ec74148d8af9e0b2b",
+    ".design-authority/proposals/prop_20261007-151923-bd08f2.json": "d463703ec70b0f3c62a7ab4b61ab5ec4aa8f2ad354e76d5aa075b4df7196294b",
+    ".design-authority/proposals/prop_20261007-151923-e09f12.json": "84de3887dd3670261eed2e09a4cc6a16da5a34a660fa2abef5167d69eccffca2",
+    "adjudication/fixes.json": "3bcf2e26407bec35537d43025b37291448acee82709e117a8ec7d23b0c737dc3",
+    "adjudication/proposal-0a71f9.json": "3fc33a0730cde2f0a14c516bdc00e8f67059ea98ffc41b8ccc317c779b008caf",
+    "adjudication/proposal-0d3443.json": "89b7a91f499e1c678c9fb969184a19765c84427ce8eaf6beece73a9d7d990624",
+    "adjudication/proposal-13d338.json": "1a536d62902884878a151f323964175158412578b4d9e56a140463ce9d1c92fe",
+    "adjudication/proposal-6d60dd.json": "24d3634891f047a30e1a973b6bb1e45119ffdf99620833d79599e5d9316d66f0",
+    "adjudication/proposal-f5a96f.json": "27104974016aa4d2f239349120194c5d87f1b3b4cfbf18140c0856ba02f3f4a6",
+    "fonts/Arimo-VF.ttf": "e43898b143ec826ac8cb4034816458a7047fbe0836558de2a1f8c6223ae3e0ca"
+   }
+  },
+  "cadence3-wink": {
+   "rollup": "8ce130a11676603c8e78331f4711f6ea3730a67b116cd17275e4c17ee6746462",
+   "n_files": 40,
+   "files": {
+    "NOTES.md": "812eab45ba3b748a79e102646c5ef5b7de003dced59ca04d8454751558da1a9e",
+    "app.css": "87571707d6e79aa6800d92376e14197b81c7410186a48b9e2e50c6f202ae2f35",
+    "app.js": "7bd85a7d25848de54327e8f098842284218a7e044c4cff10b282eb43bbad3f9c",
+    "index.html": "a8b26ed438dacbce3efc2dfc36bca04ba84fae02d63c02cfdb126814b639ef70",
+    "provenance.js": "2b77a8ea99444e1cc145b2cf717e3ed9186547188b6f4d0e1568508f46ffc5e2",
+    ".design-authority/gaps.jsonl": "e23be5d35a1967f60c843033aa0bd209335ff580d5439cdf50470961beea5d96",
+    "_evidence/cadence3-wink-verdicts-2026-10-08.json": "6d4405ecae8efe9d8c50aebeda458d287649be1d96192d650e48974ed1e13221",
+    "_evidence/make_provenance_js.py": "54c905a68593cf014d84f983f0b4b025f220b2b5646772ea1098f85d51809f2c",
+    "_evidence/precedents-queries.jsonl": "c38adbdb4cc7ec27f268798727d05ec0cde723f0c552f5bdccef57dcd92709b8",
+    "_evidence/resolves.jsonl": "b8cd77ff29ce7e0ad7b13eb8751f73e98fe7f336c35a65ace40b9796fbaf0d74",
+    "_evidence/searches.jsonl": "8b1acdc5e0cb6d711bee58cbf9491060ca8468b1ec1a8edba9a4e5df2180b9a6",
+    "_evidence/v31-revision.jsonl": "51798c3286acde094eb0b2b5972e96bb4d152b58cfbcd788f46a1e6b097e2bd5",
+    "_evidence/screens/achievements.png": "da510a4b146526c1362319881e782b72e22a95b33938b6fc8dfa13a6eaa55f18",
+    "_evidence/screens/cadence-entries.csv": "f3fa863a2d805f4de0568bc139eb362689870a33db26935aa4f9120b32957039",
+    "_evidence/screens/history-charts-fresh.png": "05799a8b0eb173677fe39ffa2e3dd88fe36466904b6675f6ae818322c158dcf8",
+    "_evidence/screens/history-charts.png": "e7bbce64bf80d2d99c12e700183fbde3f66dd6f2b0f80f3abc1129a35c693565",
+    "_evidence/screens/settings-fresh.png": "74c5217bbd3a263444694bfb408d09403d541f378fb3b3e07c63fbb487c019aa",
+    "_evidence/screens/settings.png": "78a1584989c6534d8147896bcd04ef9e20faf59c8efff57b5b8c52c78dce2254",
+    "_evidence/screens/today-after-reload.png": "62949a640f7163929a4ba315838e790919d059d61cdd30689bd548e2f374069f",
+    "_evidence/screens/today-empty.png": "8201ef4f2a5cc3709cc9c020fe23474f2d74a9805e7e3f789e384b1ccd3a66dc",
+    "_evidence/screens/today-fresh-marks-on.png": "71ecada4dc2b6ff0fcefcc6cd97b21df887e941143ca62513b28c3971755515a",
+    "_evidence/screens/today-fresh.png": "18988357681e0afd289569c8c85c6d33c97133be03ea5cb6b983e76c023a072b",
+    "_evidence/screens/today-marks-on.png": "020cd6b1fcc5ec298054113ff71b4d721b74b9f3441b0806852f97687f939e62",
+    "_evidence/screens/today-mobile.png": "479e0f53de4da3c6dd0725c9ebd349371f5af4118d4f51f872fd3cc26fab197c",
+    "_evidence/screens/v31-marks-tick.png": "ebc21b35fd98d8eba510c04be529c80cfe02bc1afb5655d96eec3b7e59ae9486",
+    "_evidence/screens/v31-tick-logged-row.png": "9f4c4f39155ec5a32b7c1da0bd5c6638d2ea89f6af56dedf5feb2649a7eb8fe7",
+    "_evidence/screens/v31-tick-r5-logged.png": "e11cab209fe61efcf3224fff9053969b6341e16fd857dd9cf9887bcad9359b7b",
+    "_evidence/screens/v31-tick-unlogged-row.png": "4d91806de0cd4c059d418266e0dc9c82aa16a6034369c8aa22706d25b1680d34",
+    "_evidence/screens/v31-today-tick-before.png": "4a4b532769b9c89f64ce944c4bec4e805f49a0e8319b118313893b0b0fad5212",
+    "_evidence/screens/v31b-panel-ask7.png": "0275e2231c9af4a7624c23e7a19e06b438fc4dec50ce4061268420944812cbc2",
+    "_evidence/screens/v31b-panel-candidate.png": "25188f62756d599063e7000cd13669ffb0697137fb510cdb25a2e8b2f64d0d27",
+    "_evidence/screens/v31b-panel-status.png": "eaac7d8563bfa7e6d2256a93967cfe9d46fe1034b5e4d8c96be8f3d1e91d3f04",
+    "_evidence/screens/v31b-panel-tick.png": "9e4f0a9ef48fe4b1de64d822aed79254ef33ac3195d3d18200b56fd81f4b3a68",
+    "_evidence/screens/v31b-panel-wizard.png": "42f17b90ec14782b541289766378d1dcb198869b1ae9f337f62fceb23f30c669",
+    "_evidence/screens/v31c-review-window.png": "0275e2231c9af4a7624c23e7a19e06b438fc4dec50ce4061268420944812cbc2",
+    "_evidence/screens/v31c-window-review.png": "1f50484715c8cb62db6433e7f924bdccff2a6365057e5dc6ac3d4b85ee57ccf3",
+    "_evidence/screens/wizard-step1.png": "7d09f38f9120ecc9711787ebc2db1c1ee554aef4c83de42b57513919fba5cddc",
+    "fonts/Fraunces-Italic-VF.ttf": "b24448c43702fac4ee856781d461a0dfba8d8e594b6e8e190234b75fed2c0e01",
+    "fonts/Fraunces-VF.ttf": "177ff6c0f14e5550a3c624247cd1189611d4eb65d000b14944c63d967958abbb",
+    "fonts/Inter-VF.ttf": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+   }
+  },
+  "cadence3-leader": {
+   "rollup": "19789e8d6d72d50a0e36e8504b5c087e7dfa149bcafb321b7ba67edab2679835",
+   "n_files": 15,
+   "files": {
+    "NOTES.md": "2cdcc69a62b83e94c971e1347283852f2c39f8b94ec28215587fc1af232eb781",
+    "app.css": "d90d02ea6f5210bc1981fc4a4082a8bb26801bd8e51fb82ebf63dbb7d7785efa",
+    "app.js": "9445c1af835d07e2e9f6ec9248048cf4e5450db66d335049482bc4716d597dd3",
+    "index.html": "eaf83894c6b704536cb4dd49c2102eaff743d25274bf3b13338524e54442cec7",
+    ".design-authority/gaps.jsonl": "1befc5ebb574a070fd8e35105004fa56c2b57b5548186587ceb334d0e4ebb104",
+    "_evidence/collect-resolves.py": "1ff5d4987f817470f6d15106721270806fdf0901ff274bccc5ea614ad890421e",
+    "_evidence/fixture-generator.py": "e5bac2bc2a85ad1b98ee72294cc05512610cc224facf01207f795a04bf53dc2c",
+    "_evidence/precedent-queries.jsonl": "469d526273194a2c062f7f44195f42649a7021e5a2b3e0ba2ca1ae887f31b516",
+    "_evidence/resolves.jsonl": "144f97a178a89cba326de458bb344e83361aefbfb8d7fbc7fed5a9e73a673539",
+    "_evidence/searches.jsonl": "a4398fb1a354d2d94a36c0fcad94d8235a694f7e0d89505d29308886d9b5999e",
+    "_evidence/selftest.py": "da52f16f72131761db662799a30ab2220abd5ed0482bab022ccf6495c294cf4f",
+    "_evidence/selftest.txt": "aab02b18e716081198dac488b83b5003f8ce303f4f812baeb8a32bc19e8f1ad5",
+    "fonts/ArchivoBlack-Regular.ttf": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+    "fonts/Gelasio-VF.ttf": "4daecea457258c9ebeb8bc99ed3fd24353618bfad3ea4b93fa0b5d0468fc04e4",
+    "fonts/Inter-VF.ttf": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+   }
+  },
+  "cadence3-dominion": {
+   "rollup": "5b54bf0d7a46f3ad74716bfea9746ea6fcde58f932e305e9f38465b542812911",
+   "n_files": 10,
+   "files": {
+    "NOTES.md": "a7cc790bf1589df14d99f11ea735d06523e68c1ba79683b9ea587f146d18e81b",
+    "app.css": "afb7959f65d26d37aa9d347bab3f65e1fbf3c1de8e7f8f17ad3cbb94ab99901b",
+    "app.js": "95343356964e3e4430855a484f11b0c833bda7dc8218b3743f273622ac5b9c78",
+    "index.html": "a5a41d288c4d8735b1dfafd65609e2848ce4a5f05d1d59f03b233b0e75151cdb",
+    ".design-authority/gaps.jsonl": "7a916656e28a9b2168ca7babf585fde05d9914e850f7d66b38c7648cdf245d96",
+    "_evidence/probes.jsonl": "77348cd3e11f2483df2cb03e36535d3c16a4245f08363006c461628296a0f703",
+    "_evidence/resolves.jsonl": "f5937e0d44ec4ec289e1e50658a9cb9d879d4825a7a39dca8aa7d8f3c74ec51c",
+    "_evidence/selftest-report.txt": "d41d729c7a430fda2c87d8e1561afec3af5493a62a0d63d6d089d1858c0184ff",
+    "_evidence/selftest.py": "a7928c255b5e23faebea1585088e23fa9254e0d5bf19d8428fce05b5c560d599",
+    "fonts/Arimo-VF.ttf": "e43898b143ec826ac8cb4034816458a7047fbe0836558de2a1f8c6223ae3e0ca"
+   }
+  }
+ },
+ "review_data": {
+  "stress-verdicts.json": "1e52fd0cef690217c4025cda6c4c70d4c5f1f498cb4e3e2acc720e2f3c8e32fd",
+  "feedback.json": "c9ed477c68299b84eebdb37143f9e11385f872a5cb478123d01391ffae1064d7"
+ },
+ "resolution_snapshot": {
+  "captured": "2026-10-08 03:46:13 UTC",
+  "results": {
+   "wink": [
+    {
+     "problem": "add a primary button to the page",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/action-pill"
+    },
+    {
+     "problem": "the top navigation bar",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/navbar"
+    },
+    {
+     "problem": "show a \"most popular\" badge on the plan",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/badge"
+    },
+    {
+     "problem": "a form field for the borrower email",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/field-select"
+    },
+    {
+     "problem": "square buttons for a serious look",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "use pure black for the headline text",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "add a checkbox for the opt-in",
+     "outcome": "FALLBACK",
+     "resolution_id": "fallback/platform-controls"
+    },
+    {
+     "problem": "animate the dialog with a spring bounce",
+     "outcome": "UNDEFINED",
+     "resolution_id": null
+    },
+    {
+     "problem": "a dark mode theme",
+     "outcome": "FALLBACK",
+     "resolution_id": "fallback/light-only"
+    },
+    {
+     "problem": "a modal with the ritual details",
+     "outcome": "RESOLVED",
+     "resolution_id": "pattern/dialog-overlay"
+    }
+   ],
+   "leader": [
+    {
+     "problem": "add a primary button to the page",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/action"
+    },
+    {
+     "problem": "the top navigation bar",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/navbar"
+    },
+    {
+     "problem": "a form field for the borrower",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/field"
+    },
+    {
+     "problem": "show import progress with steps",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/meter"
+    },
+    {
+     "problem": "a notice message about overdue items",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/notice"
+    },
+    {
+     "problem": "square corners on the primary button",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "make it a red background for reading",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "add an emoji to the headline",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "a dialog for confirmation",
+     "outcome": "FALLBACK",
+     "resolution_id": "fallback/ruled-panel"
+    },
+    {
+     "problem": "animate the hero with a bounce",
+     "outcome": "UNDEFINED",
+     "resolution_id": null
+    }
+   ],
+   "dominion": [
+    {
+     "problem": "add a primary button to the page",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/action"
+    },
+    {
+     "problem": "add the masthead at the top of the page",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/masthead"
+    },
+    {
+     "problem": "a form field for the borrower",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/field"
+    },
+    {
+     "problem": "show import progress with steps",
+     "outcome": "RESOLVED",
+     "resolution_id": "component/meter"
+    },
+    {
+     "problem": "retire an item from the register",
+     "outcome": "COMPOSE",
+     "resolution_id": "recipe/retire-confirm"
+    },
+    {
+     "problem": "use red for the error messages",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "add a drop shadow to the card",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "add a photograph to the empty state",
+     "outcome": "CONFLICT",
+     "resolution_id": null
+    },
+    {
+     "problem": "a searchable picker for two hundred members",
+     "outcome": "FALLBACK",
+     "resolution_id": "fallback/large-selection"
+    },
+    {
+     "problem": "animate the dialog opening",
+     "outcome": "UNDEFINED",
+     "resolution_id": null
+    }
+   ]
+  }
+ }
+}

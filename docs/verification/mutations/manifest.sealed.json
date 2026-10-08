@@ -1,0 +1,346 @@
+{
+ "sealed": "2026-10-08 03:55:56",
+ "source_rev": "2a913da (v0.2.0)",
+ "note": "Ground truth for the mutation experiment. Opened only by mutation_metrics.py after all verifier runs.",
+ "mutations": [
+  {
+   "id": "W-V1",
+   "build": "wink",
+   "kind": "violation",
+   "desc": "primary button squared (8px)",
+   "expected_check": "wink/action-pill-radius",
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:9f8872fb55ef0014"
+   ]
+  },
+  {
+   "id": "W-V2",
+   "build": "wink",
+   "kind": "violation",
+   "desc": "ink ring removed",
+   "expected_check": "wink/action-ink-ring",
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:d6cc42b0de1252dd"
+   ]
+  },
+  {
+   "id": "W-V3",
+   "build": "wink",
+   "kind": "violation",
+   "desc": "unsupported green on slipping status",
+   "expected_check": "wink/palette-literals",
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:ceefd44220ca55dc"
+   ]
+  },
+  {
+   "id": "W-V4",
+   "build": "wink",
+   "kind": "violation",
+   "desc": "floating toast surface added",
+   "expected_check": "wink/no-floating-surfaces",
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "docs/verification/mutations/mutated-wink/index.html",
+    "sha256:819ef850ae87f2cd",
+    "sha256:92f17f2fc9b78126"
+   ]
+  },
+  {
+   "id": "W-V5",
+   "build": "wink",
+   "kind": "violation",
+   "desc": "generic sharp bordered card",
+   "expected_check": "wink/card-vessel",
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:a50395786cea378d"
+   ]
+  },
+  {
+   "id": "W-C1",
+   "build": "wink",
+   "kind": "benign",
+   "desc": "copy edit in week banner",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.js",
+    "sha256:17410b832c865d52"
+   ]
+  },
+  {
+   "id": "W-C2",
+   "build": "wink",
+   "kind": "benign",
+   "desc": "CSS rule reorder (visual no-op)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:1b52ccf6e9e3328d"
+   ]
+  },
+  {
+   "id": "W-C3",
+   "build": "wink",
+   "kind": "undefined-region",
+   "desc": "chart rule width 3->4px (composed region)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-wink/app.css",
+    "sha256:59ba4a6806c73613"
+   ]
+  },
+  {
+   "id": "L-V1",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "panels rounded + ambient shadow",
+   "expected_check": "leader/no-glow",
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:a509ddfe99834028"
+   ]
+  },
+  {
+   "id": "L-V2",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "full-width red hero block",
+   "expected_check": "leader/red-not-surface",
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "docs/verification/mutations/mutated-leader/index.html",
+    "sha256:5bc7190d35aa4d80",
+    "sha256:49a08488143aba30"
+   ]
+  },
+  {
+   "id": "L-V3",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "buttons forced to pills",
+   "expected_check": "leader/rounded-interactive",
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:7b081fe30d58b988"
+   ]
+  },
+  {
+   "id": "L-V4",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "soft drop shadow on rows",
+   "expected_check": "leader/no-glow",
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:aaa00b12dba0ff80"
+   ]
+  },
+  {
+   "id": "L-V5",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "editorial hierarchy de-serifed (DESIGNED MISS — no method)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:a23bfb141f8bfa16"
+   ]
+  },
+  {
+   "id": "L-V6",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "emoji + exclamation injected into copy",
+   "expected_check": "leader/no-emoji-bang",
+   "files": [
+    "docs/verification/mutations/mutated-leader/index.html",
+    "sha256:609dcabc802eb2a9"
+   ]
+  },
+  {
+   "id": "L-V7",
+   "build": "leader",
+   "kind": "violation",
+   "desc": "off-family teal on standfirst",
+   "expected_check": "leader/palette-literals",
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:24ff657885de1906"
+   ]
+  },
+  {
+   "id": "L-C1",
+   "build": "leader",
+   "kind": "benign",
+   "desc": "additive copy sentence",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-leader/index.html",
+    "sha256:ee12dc4d6788e8f7"
+   ]
+  },
+  {
+   "id": "L-C2",
+   "build": "leader",
+   "kind": "benign",
+   "desc": "CSS rule reorder (visual no-op)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:71a8431dfc703ccd"
+   ]
+  },
+  {
+   "id": "L-C3",
+   "build": "leader",
+   "kind": "undefined-region",
+   "desc": "chart bar width detail (pattern leaves width open)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-leader/app.css",
+    "sha256:adefbd66a76a8d74"
+   ]
+  },
+  {
+   "id": "L-C4",
+   "build": "leader",
+   "kind": "control-pass",
+   "desc": "sanctioned red attention tag must still pass",
+   "expected_check": "leader/tag-attention-red",
+   "files": []
+  },
+  {
+   "id": "D-V1",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "error recoloured ceremonial red",
+   "expected_check": "dominion/no-red-status",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:eda4b42e52d8d239"
+   ]
+  },
+  {
+   "id": "D-V2",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "FR half of one bilingual pair stripped",
+   "expected_check": "dominion/bilingual-pairing",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/index.html",
+    "sha256:a125517ce654ecab"
+   ]
+  },
+  {
+   "id": "D-V3",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "elevation shadow on summary band",
+   "expected_check": "dominion/no-shadows",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:ebcf54b8481b067f"
+   ]
+  },
+  {
+   "id": "D-V4",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "notice rounded (8px)",
+   "expected_check": "dominion/radius-discipline",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:a10a64bff7d069d4"
+   ]
+  },
+  {
+   "id": "D-V5",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "decorative image injected",
+   "expected_check": "dominion/no-imagery",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/index.html",
+    "sha256:42a8f7da7a7cedfd"
+   ]
+  },
+  {
+   "id": "D-V6",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "focus glow removed",
+   "expected_check": "dominion/focus-glow",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:4667332516c417c4"
+   ]
+  },
+  {
+   "id": "D-V7",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "decorative motion added",
+   "expected_check": "dominion/no-keyframes",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:a25c7623a5bce4a8"
+   ]
+  },
+  {
+   "id": "D-V8",
+   "build": "dominion",
+   "kind": "violation",
+   "desc": "status chip coloured green",
+   "expected_check": "dominion/status-neutral",
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:2d131c08d7842657"
+   ]
+  },
+  {
+   "id": "D-C1",
+   "build": "dominion",
+   "kind": "benign",
+   "desc": "copy edit in empty state",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-dominion/index.html",
+    "sha256:1cc7602170211793"
+   ]
+  },
+  {
+   "id": "D-C2",
+   "build": "dominion",
+   "kind": "benign",
+   "desc": "CSS rule reorder (visual no-op)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:d366a2daf03710a4"
+   ]
+  },
+  {
+   "id": "D-C3",
+   "build": "dominion",
+   "kind": "undefined-region",
+   "desc": "meter height detail (unspecified)",
+   "expected_check": null,
+   "files": [
+    "docs/verification/mutations/mutated-dominion/app.css",
+    "sha256:a166521da5118b70"
+   ]
+  },
+  {
+   "id": "D-C4",
+   "build": "dominion",
+   "kind": "control-pass",
+   "desc": "masthead ceremony red must still pass",
+   "expected_check": "dominion/masthead-accent",
+   "files": []
+  }
+ ]
+}

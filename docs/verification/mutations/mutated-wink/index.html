@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — a ritual tracker (wink 0.2.0 build)</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ============================== TOP BAR (component/navbar) ============================== -->
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <span class="wordmark">Cadence</span>
+    <nav class="topnav" aria-label="Primary">
+      <button class="nav-link is-active" data-view="today">Today</button>
+      <button class="nav-link" data-view="history">History</button>
+      <button class="nav-link" data-view="achievements">Achievements</button>
+      <button class="nav-link" data-view="settings">Settings</button>
+    </nav>
+    <div class="topbar-right">
+      <span class="userchip" data-decision="18" data-adapted="photo declined — monogram per asset policy">
+        <span class="user-mono" aria-hidden="true">A</span>
+        <span class="user-name">Avery</span>
+      </span>
+      <button class="cta" id="addRitualBtn">Add ritual</button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============================== TODAY ============================== -->
+  <section id="view-today" class="view">
+    <div class="wrap pad">
+      <div class="page-head">
+        <p class="kicker">Today · Wednesday, 7 October</p>
+        <h1 class="display" id="todayHeading">What are you keeping up <em>today</em>?</h1>
+        <p class="lede">Five rituals, one gentle day. Log them as you go — the streak can look after itself.</p>
+      </div>
+
+      <!-- week banner: UNDEFINED + no precedent → improvised (gap filed) -->
+      <div class="week-banner" id="weekBanner" data-decision="7" data-improvised="composed: inline-notice block + display numerals">
+        <p class="wb-lead" id="wbLead">295 minutes across 17 sessions — ahead of last week.</p>
+        <p class="wb-sub" id="wbSub">Your steadiest seven days yet. Keep it comfortable.</p>
+      </div>
+
+      <div class="today-top">
+        <div class="card ringcard">
+          <svg id="ringSvg" width="140" height="140" viewBox="0 0 140 140" role="img" aria-labelledby="ringLabel">
+            <title id="ringLabel">Today's completion</title>
+            <circle class="ring-track" cx="70" cy="70" r="59" fill="none" stroke-width="12"></circle>
+            <circle id="ringFill" class="ring-fill" cx="70" cy="70" r="59" fill="none" stroke-width="12"
+                    stroke-linecap="round" transform="rotate(-90 70 70)"></circle>
+          </svg>
+          <div class="ring-meta">
+            <p class="ring-count" id="ringCount">3 of 5</p>
+            <p class="ring-caption" id="ringCaption">done today</p>
+          </div>
+        </div>
+        <div class="card today-note">
+          <p class="kicker">Why it counts</p>
+          <p class="tn-line">“Six weeks from now, this page is the only scoreboard you'll care about.”</p>
+          <p class="tn-sub">Keep the entries honest; the numbers sort themselves out.</p>
+        </div>
+      </div>
+
+      <div class="list-head">
+        <h2 class="section" id="listHeading">Your rituals</h2>
+        <p class="list-meta" id="listMeta">5 rituals · 3 logged today</p>
+      </div>
+
+      <!-- search box: UNDEFINED → improvised (gap filed) -->
+      <div class="searchbar" data-decision="33" data-improvised="composed from component/field-select language">
+        <label class="sr-only" for="ritualSearch">Search rituals</label>
+        <input type="search" id="ritualSearch" placeholder="Search rituals — name or category">
+        <button class="tlink" id="searchClear" hidden>Clear</button>
+      </div>
+
+      <div id="ritualList" class="ritual-list"></div>
+
+      <!-- empty state: pattern/empty-state; NO illustration (precedent) → adapted -->
+      <div id="emptyState" class="empty-panel" hidden data-decision="41" data-adapted="illustration omitted — no asset library (W-19)">
+        <h2 class="empty-title">Nothing here yet.</h2>
+        <p class="empty-line">Add your first ritual and give it a week — that's how it starts.</p>
+        <button class="cta" id="emptyAddBtn">Add your first ritual</button>
+      </div>
+
+      <!-- inline notice slot: toast ask adapted to the canonical inline notice (W-15) -->
+      <div id="todayNotice" class="notice" hidden data-decision="6" data-adapted="toast adapted to inline notice (W-15)"></div>
+    </div>
+  </section>
+
+  <!-- ============================== HISTORY ============================== -->
+  <section id="view-history" class="view" hidden>
+    <div class="wrap pad">
+      <div class="page-head">
+        <p class="kicker">History</p>
+        <h1 class="display">What you've done, <em>in numbers</em>.</h1>
+        <p class="lede">Charts, entries and the plain facts of the month.</p>
+      </div>
+
+      <!-- tabs: UNDEFINED → improvised (gap filed) -->
+      <div class="tabstrip" role="tablist" aria-label="History sections" data-decision="29" data-improvised="composed tab strip — no tab canon exists">
+        <button class="tab is-active" id="tabCharts" role="tab" aria-selected="true" aria-controls="panelCharts">Charts</button>
+        <button class="tab" id="tabEntries" role="tab" aria-selected="false" aria-controls="panelEntries">Entries</button>
+      </div>
+
+      <div id="panelCharts" role="tabpanel" aria-labelledby="tabCharts">
+        <!-- bar chart: declined precedent → minimal data block (numerals + rules) -->
+        <div class="card chartcard" data-decision="12" data-improvised="minimal data block — numerals + rules (precedent/declined-chart-treatments)">
+          <div class="chart-head">
+            <h2 class="section">This week, day by day</h2>
+            <p class="chart-total" id="barTotal">295 minutes in seven days.</p>
+          </div>
+          <div class="bars" id="barsWrap" aria-hidden="true"></div>
+          <p class="chart-caption">Minutes logged, last seven days. The bar and the number say the same thing.</p>
+        </div>
+
+        <div class="card chartcard" data-decision="13" data-improvised="minimal data block — rules + numerals (precedent/declined-chart-treatments)">
+          <div class="chart-head">
+            <h2 class="section">October, at a glance</h2>
+          </div>
+          <div id="heatGrid" aria-labelledby="heatLegendLabel"></div>
+          <p class="chart-caption" id="heatLegendLabel">A yellow square is a day you showed up. The number is its minutes.</p>
+        </div>
+
+        <div class="card chartcard" data-decision="14" data-improvised="minimal data block — rules + spacing (precedent/declined-chart-treatments)">
+          <div class="chart-head">
+            <h2 class="section">The shape of seven days</h2>
+          </div>
+          <div class="spark" id="sparkWrap" aria-hidden="true"></div>
+          <p class="chart-caption" id="sparkCaption">Up from 30 minutes on Thursday to 62 today.</p>
+        </div>
+      </div>
+
+      <div id="panelEntries" role="tabpanel" aria-labelledby="tabEntries" hidden>
+
+        <!-- log entry form: fields per component/field-select; date + number = fallbacks -->
+        <div class="card logcard">
+          <h2 class="section">Log an entry</h2>
+          <form id="logForm" novalidate>
+            <div class="form-grid">
+              <div class="field" id="logRitualField">
+                <label for="logRitual">Ritual</label>
+                <select id="logRitual"></select>
+              </div>
+              <div class="field" data-decision="22" data-fallback="native date picker — fallback/platform-controls">
+                <label for="logDate">Day</label>
+                <input type="date" id="logDate" value="2026-10-07">
+              </div>
+              <div class="field" id="logMinutesField" data-decision="23" data-fallback="native number stepper — fallback/platform-controls">
+                <label for="logMinutes">Minutes</label>
+                <input type="number" id="logMinutes" min="1" max="600" step="5" placeholder="30">
+                <p class="field-error" id="logError" hidden data-decision="9" data-improvised="composed: invalid field + error colour (W-12)">How many minutes? Add a number to save this entry.</p>
+              </div>
+              <div class="field field-wide">
+                <label for="logNote">Note</label>
+                <textarea id="logNote" rows="2" placeholder="Anything worth remembering?"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="cta" id="logSubmit">Add entry</button>
+              <span class="saving-note" id="savingNote" hidden data-decision="10" data-adapted="no spinner canon — text state (W-18)">Saving…</span>
+            </div>
+          </form>
+        </div>
+
+        <!-- ledger: near-miss resolvable via search → component/ledger -->
+        <div class="card ledgercard">
+          <h2 class="section">Logged entries</h2>
+          <table class="ledger" id="ledger">
+            <thead>
+              <tr><th scope="col">Day</th><th scope="col">Ritual</th><th scope="col">Minutes</th><th scope="col">Note</th></tr>
+            </thead>
+            <tbody id="ledgerBody"></tbody>
+          </table>
+          <div class="pager" data-note="aligns with candidate/pager-composition (provisional) — outline pill + plain readout; no dedicated pager canon">
+            <span class="pager-readout" id="pageReadout">Showing 8 of 17</span>
+            <button class="cta outline small" id="loadOlder" data-decision="32" data-adapted="pager composed: outline pill + readout (precedent)">Load older entries</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ACHIEVEMENTS ============================== -->
+  <section id="view-achievements" class="view" hidden>
+    <div class="wrap pad">
+      <div class="page-head">
+        <p class="kicker">Achievements</p>
+        <h1 class="display">Proof, <em>in small doses</em>.</h1>
+        <p class="lede">Streaks, milestones, and the numbers that kept score so you didn't have to.</p>
+      </div>
+
+      <!-- big streak counter: UNDEFINED → improvised (gap filed) -->
+      <div class="card streakcard" data-decision="15" data-improvised="composed readout — display numeral + label (W-10)">
+        <p class="streak-num" id="streakBig">12</p>
+        <div class="streak-side">
+          <p class="streak-label">day streak</p>
+          <p class="streak-sub" id="streakSub">Meditate, going since 26 September.</p>
+        </div>
+      </div>
+
+      <div class="ach-grid" id="achGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== SETTINGS ============================== -->
+  <section id="view-settings" class="view" hidden>
+    <div class="wrap pad">
+      <div class="page-head">
+        <p class="kicker">Settings</p>
+        <h1 class="display">Your rituals, <em>your rules</em>.</h1>
+        <p class="lede">Goals, nudges and your data — all in one warm place.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section">Daily goal</h2>
+        <div class="field" data-decision="21" data-fallback="native slider — fallback/platform-controls">
+          <label for="goalSlider">Minutes a day</label>
+          <input type="range" id="goalSlider" min="5" max="60" step="5" value="30">
+          <p class="readout" id="goalOut">30 minutes a day — enough, not heroic.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="section">Alerts</h2>
+        <div class="field checkline" data-decision="20" data-fallback="native toggle switch — fallback/platform-controls">
+          <input type="checkbox" id="remindersToggle" checked>
+          <label for="remindersToggle">Reminders — a daily nudge at 8:00</label>
+        </div>
+        <div class="field checkline" data-decision="26" data-fallback="native checkbox — fallback/platform-controls">
+          <input type="checkbox" id="streakAlerts">
+          <label for="streakAlerts">Streak alerts — a quiet word if I slip</label>
+        </div>
+        <p class="readout" id="rhythmOut">Checking in: every day.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section">Appearance</h2>
+        <p class="readout" id="appearanceRow" data-decision="39" data-fallback="fallback/light-only — no dark canon exists">Light only. A dark theme isn't in the canon yet — so this one stays sunny.</p>
+      </div>
+
+      <div class="card">
+        <h2 class="section">Your data</h2>
+        <p class="readout" id="dataReadout">5 rituals · 24 entries logged.</p>
+        <button class="cta outline" id="exportCsv" data-decision="38" data-adapted="affordance = action pill (precedent); the file flow is utility">Download CSV</button>
+      </div>
+
+      <p class="utility-links">
+        <a href="#" class="tlink" id="replayOnboarding">Show onboarding again</a>
+        <span aria-hidden="true"> · </span>
+        <a href="#" class="tlink" id="resetDemo">Reset demo data</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<!-- ============================== MOBILE BOTTOM NAV (navbar adapted) ============================== -->
+<nav class="bottomnav" aria-label="Primary mobile" data-decision="30" data-adapted="navbar adapted to mobile bottom placement">
+  <button class="nav-link is-active" data-view="today">Today</button>
+  <button class="nav-link" data-view="history">History</button>
+  <button class="nav-link" data-view="achievements">Wins</button>
+  <button class="nav-link" data-view="settings">Settings</button>
+</nav>
+
+<!-- ============================== MARKS TOGGLE (instrument) ============================== -->
+<button id="marksToggle" class="mark-toggle" aria-pressed="false" title="Reveal improvisation marks">◌</button>
+
+<!-- ============================== DIALOGS ============================== -->
+
+<!-- destructive confirm (pattern/destructive-confirm) -->
+<dialog id="confirmDialog" class="dlg" aria-labelledby="confirmTitle">
+  <h2 class="dlg-title" id="confirmTitle" tabindex="-1" autofocus>Delete this ritual?</h2>
+  <p class="dlg-body" id="confirmBody"></p>
+  <div class="dlg-actions">
+    <button class="cta outline" id="confirmCancel">Keep it</button>
+    <button class="cta dark" id="confirmDelete">Delete ritual</button>
+  </div>
+</dialog>
+
+<!-- ritual details (pattern/dialog-overlay) -->
+<dialog id="detailsDialog" class="dlg" aria-labelledby="detailsTitle">
+  <p class="kicker" id="detailsKicker">Ritual details</p>
+  <h2 class="dlg-title" id="detailsTitle" tabindex="-1" autofocus>Morning run</h2>
+  <div class="details-body" id="detailsBody"></div>
+  <div class="dlg-actions">
+    <button class="cta outline small" id="detailsUp" data-decision="35" data-adapted="reorder via explicit move actions (precedent)">Move up</button>
+    <button class="cta outline small" id="detailsDown" data-decision="35" data-adapted="reorder via explicit move actions (precedent)">Move down</button>
+    <button class="tlink" id="detailsDelete">Delete</button>
+    <button class="cta outline" id="detailsClose">Close</button>
+  </div>
+</dialog>
+
+<!-- onboarding wizard (pattern/dialog-overlay composes the vessel) -->
+<dialog id="wizardDialog" class="dlg" aria-labelledby="wizTitle">
+  <p class="kicker" id="wizKicker">Three steps, thirty seconds</p>
+  <h2 class="dlg-title" id="wizTitle" tabindex="-1" autofocus>Welcome to Cadence</h2>
+
+  <div class="wiz-progress">
+    <span class="readout" id="wizProgressText">Step 1 of 3</span>
+    <div class="progress-track" role="presentation">
+      <div class="progress-fill" id="wizProgressBar" style="width:33%"></div>
+    </div>
+  </div>
+
+  <div class="wiz-step" id="wizStep1">
+    <h3 class="wiz-h">Which rituals will you keep?</h3>
+    <p class="readout">Pick a few — three is plenty to start.</p>
+    <div class="wiz-checks" id="wizChecks"></div>
+  </div>
+
+  <div class="wiz-step" id="wizStep2" hidden>
+    <h3 class="wiz-h">How often will you check in?</h3>
+    <p class="readout">You can change this later — life happens.</p>
+    <div class="wiz-radios" id="wizRadios"></div>
+  </div>
+
+  <div class="wiz-step" id="wizStep3" hidden>
+    <h3 class="wiz-h">How much is a good day?</h3>
+    <p class="readout">A gentle target beats a heroic one.</p>
+    <div class="field" data-decision="21" data-fallback="native slider — fallback/platform-controls">
+      <label for="wizGoal">Minutes a day</label>
+      <input type="range" id="wizGoal" min="5" max="60" step="5" value="30">
+      <p class="readout" id="wizGoalOut">30 minutes.</p>
+    </div>
+  </div>
+
+  <div class="dlg-actions wiz-actions">
+    <button class="tlink" id="wizSkip">Skip for now</button>
+    <span class="spacer"></span>
+    <button class="cta outline" id="wizBack" hidden>Back</button>
+    <button class="cta" id="wizNext">Next</button>
+  </div>
+</dialog>
+
+<!-- add ritual (pattern/dialog-overlay) -->
+<dialog id="addDialog" class="dlg" aria-labelledby="addTitle">
+  <p class="kicker">A new ritual</p>
+  <h2 class="dlg-title" id="addTitle" tabindex="-1" autofocus>Add a ritual</h2>
+  <form id="addForm" novalidate>
+    <div class="field">
+      <label for="addName">Name</label>
+      <input type="text" id="addName" placeholder="Evening walk" autocomplete="off">
+      <p class="field-error" id="addNameError" hidden data-decision="9" data-improvised="composed: invalid field + error colour (W-12)">Give the ritual a name and it's yours.</p>
+    </div>
+    <div class="field">
+      <label for="addCategory">Category</label>
+      <select id="addCategory"></select>
+    </div>
+    <div class="field">
+      <span class="group-label">When</span>
+      <div class="radio-row" id="addFreq">
+        <label class="checkline" data-decision="27" data-fallback="native radio — fallback/platform-controls"><input type="radio" name="addfreq" value="Every day" checked> Every day</label>
+        <label class="checkline" data-decision="27" data-fallback="native radio — fallback/platform-controls"><input type="radio" name="addfreq" value="Weekdays"> Weekdays</label>
+        <label class="checkline" data-decision="27" data-fallback="native radio — fallback/platform-controls"><input type="radio" name="addfreq" value="Twice a week"> Twice a week</label>
+      </div>
+    </div>
+    <div class="field" data-decision="42" data-fallback="native file input — fallback/platform-controls">
+      <label for="addPhoto">Photo (optional)</label>
+      <input type="file" id="addPhoto" accept="image/*">
+      <p class="readout" data-decision="42" data-adapted="photo declined — monogram shown instead (asset policy)">wink shows a monogram instead — asset policy, not shyness.</p>
+    </div>
+    <div class="dlg-actions">
+      <button type="button" class="cta outline" id="addCancel">Cancel</button>
+      <button type="submit" class="cta">Add ritual</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- provenance inspector — companion to the ◌ marks layer: click any dashed node -->
+<aside id="provPanel" role="region" aria-label="Decision provenance" hidden>
+  <header class="prov-head">
+    <span class="prov-kind" id="provKind">improvised</span>
+    <span class="prov-rowtag" id="provRow">ask</span>
+    <button id="provClose" class="prov-close" aria-label="Close provenance">✕</button>
+  </header>
+  <div class="prov-body" id="provBody"></div>
+  <footer class="prov-foot" id="provFoot"></footer>
+</aside>
+
+<!-- decision registry for the provenance inspector (generated — see _evidence/make_provenance_js.py) -->
+<script src="provenance.js"></script>
+<script src="app.js"></script>
+<div class="toast">Logged.</div>
+</body>
+</html>

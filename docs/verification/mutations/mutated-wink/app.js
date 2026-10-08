@@ -114,7 +114,7 @@ function renderToday() {
   document.getElementById("wbLead").textContent = wkMin + " minutes across " + wkSessions + " sessions — ahead of last week.";
   document.getElementById("wbSub").textContent =
     (done === total && total > 0) ? "Every ritual logged today. That's the week behaving." :
-    "Your steadiest seven days yet. Keep it comfortable.";
+    "Your steadiest stretch in weeks. Keep it comfortable.";
 
   /* ring — pattern/progress (W-18): yellow on parsnip track; ink when complete */
   const R = 59, C = 2 * Math.PI * R;
@@ -614,53 +614,6 @@ const provBody = document.getElementById("provBody");
 const provFoot = document.getElementById("provFoot");
 let provLastNode = null;
 
-/* ---- independent verification results (verification experiment, v3.1d) —
-   fetched, not bundled; absent file / file:// degrades silently ---------- */
-let verifData = null, verifTried = false;
-function loadVerification() {
-  if (verifData || verifTried) return;
-  verifTried = true;
-  fetch("_evidence/verification/wink-verification.json")
-    .then((r) => (r.ok ? r.json() : null))
-    .then((d) => { verifData = d; if (d && provLastNode && !provPanel.hidden) openProv(provLastNode); })
-    .catch(() => {});
-}
-
-function verificationBlock(node) {
-  let h = '<p class="prov-sec">independent verification</p>';
-  h += '<p class="prov-line prov-src">tools/da_verify.py — file, DOM, computed-style and behavioural evidence; claims are not evidence</p>';
-  if (!verifData) {
-    if (!verifTried) loadVerification();
-    h += '<p class="prov-line prov-src">' + (verifTried ? "results not published for this serve" : "loading…") + '</p>';
-    return h;
-  }
-  const s = verifData.summary || {};
-  const bad = s.VIOLATION || 0;
-  h += '<p class="prov-line">this build: <b>' + (s.PASS || 0) + '</b> verified' +
-       (bad ? ' · <b class="prov-viol">' + bad + ' violations</b>' : ' · no violations') +
-       (s.REVIEW_REQUIRED ? ' · ' + s.REVIEW_REQUIRED + ' open to human review' : '') + '</p>';
-  const matched = (verifData.checks || []).filter((c) => {
-    if (!c.selector) return false;
-    try {
-      return node.matches(c.selector) || [...node.querySelectorAll(c.selector)].length > 0;
-    } catch (e) { return false; }
-  }).slice(0, 6);
-  if (matched.length) {
-    h += '<ul class="prov-list">';
-    matched.forEach((c) => {
-      const icon = ({ PASS: "✓", VIOLATION: "✕", UNVERIFIABLE: "?", REVIEW_REQUIRED: "◌" })[c.status] || "·";
-      const cls = c.status === "VIOLATION" ? "prov-viol" : (c.status === "PASS" ? "prov-pass" : "prov-src");
-      h += '<li><span class="' + cls + '">' + icon + " " + esc(c.status) + "</span> — " + esc(c.title || c.id) +
-           (c.observed && c.observed.length ? ' <span class="prov-src">(' + esc(String(c.observed[0]).slice(0, 90)) + ")</span>" : "") + "</li>";
-    });
-    h += "</ul>";
-  } else {
-    h += '<p class="prov-line prov-src">no direct check targets this element</p>';
-  }
-  return h;
-}
-
-
 function closeProv() {
   if (provPanel && !provPanel.hidden) provPanel.hidden = true;
 }
@@ -769,9 +722,6 @@ function openProv(node) {
       if (ctx.searched && ctx.searched.length) h += '<p class="prov-line prov-src">searched: ' + ctx.searched.map(provChip).join(" ") + "</p>";
       if (ctx.note) h += '<p class="prov-line">' + esc(ctx.note) + "</p>";
     }
-
-    /* independent verification — verifier results, separate from the claim */
-    h += verificationBlock(node);
   }
   /* review block — the brief's prefilled decision + the reviewer's verdict */
   if (rec) {
@@ -795,7 +745,6 @@ function openProv(node) {
   if (rec && rec.resolve_line) f.push('<a href="_evidence/resolves.jsonl" target="_blank" rel="noopener">resolves.jsonl · line ' + rec.resolve_line + "</a>");
   if (id === "v31t") f.push('<a href="_evidence/v31-revision.jsonl" target="_blank" rel="noopener">v31-revision.jsonl</a>');
   if (rec && rec.gap) f.push('<a href=".design-authority/gaps.jsonl" target="_blank" rel="noopener">gaps.jsonl</a>');
-  if (verifData) f.push('<a href="_evidence/verification/wink-verification.json" target="_blank" rel="noopener">verification JSON</a>');
   if (rec && art0PropBacked(rec) && window.location.pathname.indexOf("/stress3/") === 0) {
     f.push('<a href="/proposals" target="_blank" rel="noopener">proposal gate →</a>');
   }
@@ -1116,5 +1065,4 @@ document.getElementById("resetDemo").addEventListener("click", (ev) => {
 
 renderAll();
 hydrateVerdicts();
-loadVerification();
 if (!state.onboarded) setTimeout(openWizard, 120);

@@ -1,0 +1,390 @@
+{
+ "generated": "2026-10-08 03:59:41",
+ "tool": "tools/da_verify.py",
+ "target": "examples/cadence3-wink",
+ "summary": {
+  "total": 29,
+  "PASS": 25,
+  "VIOLATION": 0,
+  "UNVERIFIABLE": 0,
+  "NOT_APPLICABLE": 0,
+  "REVIEW_REQUIRED": 4
+ },
+ "note": "Independent verification results (verification experiment, 2026-10-08). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
+ "checks": [
+  {
+   "id": "wink/action-pill-radius",
+   "item": "rule/W-R1",
+   "title": "Buttons are pills (radius = half height)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".cta",
+   "observed": [
+    "border-radius: 26px"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/action-yellow-fill",
+   "item": "component/action-pill",
+   "title": "Primary action is Cavendish Yellow",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".cta",
+   "observed": [
+    "background-color: rgb(255, 224, 27)"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/action-ink-ring",
+   "item": "component/action-pill",
+   "title": "1px ink ring on the primary action",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".cta",
+   "observed": [
+    "box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/action-dark-variant",
+   "item": "component/action-pill",
+   "title": "Dark variant on warm fields (ink fill, white label)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".cta.dark",
+   "observed": [
+    "background-color: rgb(36, 28, 21)",
+    "color: rgb(255, 255, 255)"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/action-outline-secondary",
+   "item": "component/action-pill",
+   "title": "Secondary action is the outline pill (2px ink inset)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".cta.outline",
+   "observed": [
+    "box-shadow: rgb(36, 28, 21) 0px 0px 0px 2px inset"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/action-label-type",
+   "item": "component/action-pill",
+   "title": "Action label 13/500",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".cta",
+   "observed": [
+    "font-size: 13px",
+    "font-weight: 500"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/card-vessel",
+   "item": "component/card",
+   "title": "Content card: borderless white vessel, radius 16, warm elevation",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".card:not(.tinted)",
+   "observed": [
+    "border-radius: 16px",
+    "border-top-width: 0px"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/palette-literals",
+   "item": "rule/W-R2",
+   "title": "Colours come from the wink palette only",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "32 literals, all allowlisted"
+   ],
+   "note": "Allowlist = the six tokens plus ink-family shades the authority's own renders use (#3a322a, #5d5245) — shades beyond the tokens are recorded as a tightening candidate. Catches unsupported hues (greens, etc.)."
+  },
+  {
+   "id": "wink/no-pure-black-static",
+   "item": "prohibition/off-palette-colours",
+   "title": "No pure black anywhere (warm ink only)",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "no match"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/no-pure-black-body",
+   "item": "prohibition/off-palette-colours",
+   "title": "Body text is warm ink, not pure black",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": "body",
+   "observed": [
+    "color: rgb(36, 28, 21)"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/focus-visible",
+   "item": "guideline/typography",
+   "title": "Focus visible on interactive elements (W-25)",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "wink/dialog-vessel",
+   "item": "pattern/dialog-overlay",
+   "title": "Dialog vessel: white 16px card, padding 48",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".dlg",
+   "observed": [
+    "border-radius: 16px",
+    "background-color: rgb(255, 255, 255)"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/dialog-scrim",
+   "item": "pattern/dialog-overlay",
+   "title": "Warm ink scrim behind dialogs",
+   "mode": "STATIC",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "matched in app.css"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/dialog-no-motion",
+   "item": "pattern/dialog-overlay",
+   "title": "Dialogs are instant (no invented motion)",
+   "mode": "COMPUTED_STYLE",
+   "severity": "error",
+   "status": "PASS",
+   "selector": ".dlg",
+   "observed": [
+    "animation-name: none",
+    "transition-duration: 0s"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/destructive-not-focused",
+   "item": "pattern/destructive-confirm",
+   "title": "Destructive action never gets default focus",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "wink/error-colour",
+   "item": "guideline/typography",
+   "title": "Error state uses #BF4055 (W-12 composed)",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "matched in app.css",
+    "matched in app.css"
+   ],
+   "note": "Verified at the rule level (both declarations present); behavioural check of the invalid state is deferred — the field flows are interactive."
+  },
+  {
+   "id": "wink/progress-ring",
+   "item": "pattern/progress",
+   "title": "Progress ring: yellow arc, rounded caps",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": "#ringFill",
+   "observed": [
+    "stroke: rgb(255, 224, 27)",
+    "stroke-linecap: round"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/badge-shape",
+   "item": "component/badge",
+   "title": "Badge: yellow pill, 12/600",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".badge",
+   "observed": [
+    "border-radius: 999px",
+    "background-color: rgb(255, 224, 27)"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/ledger-head",
+   "item": "component/ledger",
+   "title": "Ledger header: parsnip field, 13/500",
+   "mode": "COMPUTED_STYLE",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".ledger th",
+   "observed": [
+    "font-size: 13px",
+    "font-weight: 500"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/no-imagery",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "No photographic imagery or illustration (asset policy)",
+   "mode": "DOM",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "found 0",
+    "no image url() references"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/no-invented-motion",
+   "item": "guideline/shape-language",
+   "title": "No invented motion (no keyframes / animation rules)",
+   "mode": "STATIC",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "no match"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/status-words",
+   "item": "rule/W-R1",
+   "title": "Status conveys meaning in words (W-14 route)",
+   "mode": "DOM",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": ".status",
+   "observed": [
+    "text length 8"
+   ],
+   "note": "Words present is checkable; whether wording carries the meaning (colour as support only) needs review."
+  },
+  {
+   "id": "wink/empty-state-plain",
+   "item": "pattern/empty-state",
+   "title": "Empty state is text-only (illustration omitted per precedent)",
+   "mode": "DOM",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": "#emptyState",
+   "observed": [
+    "found 0 of #emptyState img",
+    "found 0 of #emptyState svg"
+   ],
+   "note": null
+  },
+  {
+   "id": "wink/tick-marked",
+   "item": "precedent/declined-photographic-imagery",
+   "title": "The v3.1 tick is a marked improvisation (outside verdict)",
+   "mode": "DOM",
+   "severity": "warning",
+   "status": "PASS",
+   "selector": null,
+   "observed": [
+    "found 5"
+   ],
+   "note": "Presence of the marking is checkable; whether the tick itself is a *good* improvisation is review."
+  },
+  {
+   "id": "wink/review-tone",
+   "item": "guideline/voice",
+   "title": "Warm, playful, plain-spoken tone — 'feels like wink'",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "Editorial character; human review axes only."
+  },
+  {
+   "id": "wink/review-harmony",
+   "item": "guideline/hierarchy",
+   "title": "Overall composition and hierarchy harmony",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": null
+  },
+  {
+   "id": "wink/review-typography-registers",
+   "item": "guideline/typography",
+   "title": "Two-register typography reads as intended (serif display / sans body)",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "Family presence is checkable; the register balance is editorial."
+  },
+  {
+   "id": "wink/review-hover-character",
+   "item": "component/action-pill",
+   "title": "Hover 'spring' character of the primary action",
+   "mode": "REVIEW",
+   "severity": "review",
+   "status": "REVIEW_REQUIRED",
+   "selector": null,
+   "observed": [],
+   "note": "The transform value is checkable (and checked nowhere yet); the felt character of the spring has no practical inspection method."
+  },
+  {
+   "id": "wink/no-floating-surfaces",
+   "item": "pattern/inline-notice",
+   "title": "No floating surfaces beyond instrument/nav (toasts unevidenced, W-15)",
+   "mode": "INTERACTION",
+   "severity": "error",
+   "status": "PASS",
+   "selector": null,
+   "observed": [],
+   "note": null
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+# da_verify — leader on docs/verification/mutations/mutated-leader
+generated 2026-10-08 03:59:51
+TOTALS: 23 checks — PASS 14 · VIOLATION 5 · UNVERIFIABLE 0 · REVIEW_REQUIRED 4
+
+VIOL  [error  ] leader/rounded-interactive — border-radius: 999px
+PASS  [error  ] leader/field-radius — border-radius: 8px
+PASS  [error  ] leader/navy-primary — background-color: rgb(46, 69, 184); color: rgb(255, 255, 255)
+PASS  [error  ] leader/outline-secondary — border-top-width: 2px; border-top-color: rgb(26, 26, 26)
+PASS  [warning] leader/link-tertiary — text-decoration-line: underline; color: rgb(46, 69, 184)
+PASS  [error  ] leader/no-square-interactive — no match
+VIOL  [error  ] leader/red-not-surface — 
+VIOL  [error  ] leader/no-glow — app.css: box-shadow: 0 8px 24px rgba(17, 17, 17, .12)
+VIOL  [error  ] leader/no-emoji-bang — bang=True emoji=['🎉']
+PASS  [error  ] leader/tag-shape — border-radius: 8px; border-top-width: 2px
+PASS  [warning] leader/tag-attention-red — background-color: rgb(227, 18, 11)
+PASS  [warning] leader/error-line — color: rgb(227, 18, 11)
+PASS  [warning] leader/table-rules — border-bottom-width: 2px; border-bottom-color: rgb(26, 26, 26)
+PASS  [error  ] leader/focus-visible — 
+PASS  [error  ] leader/no-imagery — found 0
+PASS  [warning] leader/no-keyframes — no match
+PASS  [info   ] leader/transitions-modest — transition-duration: 0.12s, 0.12s, 0.12s
+VIOL  [warning] leader/palette-literals — app.css: #008080 in '.standfirst { font-family: 'Gelasio', serif; font-size: 16px; color: #008080; margin-top: 8px; max-w'; app.css: rgb(17.0, 17.0, 1
+REVIEW [review ] leader/review-register — 
+REVIEW [review ] leader/review-red-character — 
+REVIEW [review ] leader/review-hierarchy-calibration — 
+REVIEW [review ] leader/review-chart-character — 
+PASS  [warning] leader/no-floating-surfaces — 

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Cadence — dominion build</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="mh">
+  <div class="wrap mh-in">
+    <div class="identity">
+      <span class="acc" aria-hidden="true"></span>
+      <span class="app-title">Cadence</span>
+      <span class="app-sub">ritual tracker</span>
+    </div>
+    <nav class="nav" id="nav" aria-label="Views"
+         data-el="29 30" data-mark="adapted" data-adapted
+         data-note="view switching uses the masthead active state; no tabs, no bottom bar">
+      <a href="#today" class="nav-link" data-view="today">Today</a>
+      <a href="#history" class="nav-link" data-view="history">History</a>
+      <a href="#achievements" class="nav-link" data-view="achievements">Achievements</a>
+      <a href="#settings" class="nav-link" data-view="settings">Settings</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ TODAY ============ -->
+  <section class="view" id="view-today" data-view="today">
+    <div class="vhead">
+      <h1 class="bil page-title" data-mark="adapted" data-adapted
+          data-note="bilingual pair (D-09); collapses over-under below 560px">
+        <span class="en">Today</span><span class="div" aria-hidden="true"></span><span class="fr"></span>
+      </h1>
+      <p class="meta">Wednesday 7 October 2026 — demonstration fixtures</p>
+    </div>
+
+    <div class="notices" id="today-notices">
+      <div class="notice" id="notice-logged" role="status" hidden
+           data-el="6" data-mark="adapted" data-adapted
+           data-note="notice stands in for a toast; no toasts (D-13)">
+        <p class="notice-sentence" id="notice-logged-text">Logged.</p>
+        <button class="btn b-link notice-dismiss" data-dismiss="notice-logged">Dismiss</button>
+      </div>
+    </div>
+
+    <div class="band summary-band" id="week-band" data-el="7" data-mark="improvised" data-improvised
+         data-note="weekly summary band; ruled band with display numerals">
+      <p class="band-line" id="week-band-line">This week: 6 of 15 ritual slots logged · 135 minutes · streak 7 days</p>
+      <p class="band-meta meta">Week of Monday 5 October.</p>
+    </div>
+
+    <div class="ceremony" id="ceremony-accent" hidden
+         data-el="40" data-mark="adapted" data-adapted
+         data-note="static red ceremony accent; no animation (precedent)">
+      <span class="acc-red" aria-hidden="true"></span>
+      <span class="ceremony-word" id="ceremony-word">Logged</span>
+    </div>
+
+    <div class="meter-block">
+      <p class="key-label"><span class="en">Today's progress</span><span class="lab-sep">·</span><span class="fr">Progrès du jour</span></p>
+      <div class="meter" id="today-meter" role="progressbar" aria-label="Today's progress"
+           aria-valuemin="0" aria-valuemax="5" aria-valuenow="2"
+           data-el="11" data-mark="adapted" data-adapted
+           data-note="square meter for progress; the ring was declined (D-15)">
+        <i id="meter-fill"></i>
+      </div>
+      <p class="readout" id="meter-readout">2 of 5 rituals · 45 of 100 minutes</p>
+    </div>
+
+    <h2 class="sec">Rituals</h2>
+    <ul class="ritual-list" id="ritual-list"></ul>
+
+    <div class="empty" id="empty-state" hidden
+         data-el="8 41" data-mark="adapted" data-adapted
+         data-note="ruled statement + one outline action; no illustration (D-16)">
+      <p class="empty-sentence">Nothing here yet — add your first ritual to start tracking.</p>
+      <p class="empty-meta meta">No illustration — imagery is not part of this system.</p>
+      <p class="empty-act"><button class="btn b-out" id="empty-add" type="button">Add a ritual</button></p>
+    </div>
+
+    <div class="detail" id="ritual-detail" hidden
+         data-el="5" data-mark="adapted" data-adapted
+         data-note="in-page detail block; the modal was declined (precedent)">
+      <h3 class="subhead" id="detail-title">Ritual details</h3>
+      <dl class="dl" id="detail-list"></dl>
+      <p class="meta">Details stay in the page — no overlay vessels in this system.</p>
+    </div>
+
+    <div class="editor" id="log-editor" hidden>
+      <h3 class="subhead" id="log-title">Log a ritual</h3>
+      <div class="fgrid">
+        <div class="field">
+          <label class="flab" for="log-date">Date</label>
+          <input id="log-date" type="date" value="2026-10-07"
+                 data-el="22" data-mark="fallback" data-fallback data-note="platform control with field styling">
+        </div>
+        <div class="field">
+          <label class="flab" for="log-minutes">Minutes</label>
+          <div class="stepper">
+            <button class="btn b-out b-sq" id="log-minus" type="button" aria-label="Fewer minutes">−</button>
+            <input id="log-minutes" type="number" min="1" max="240" step="5" value="25"
+                   data-el="23" data-mark="fallback" data-fallback data-note="platform control with field styling">
+            <button class="btn b-out b-sq" id="log-plus" type="button" aria-label="More minutes">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="editor-actions">
+        <button class="btn b-slate" id="log-save" type="button"
+                data-el="1">Save log</button>
+        <button class="btn b-out" id="log-cancel" type="button">Cancel</button>
+      </div>
+      <div class="meter meter-saving" id="save-meter" hidden
+           data-el="10" data-mark="adapted" data-adapted
+           data-note="the saving state is a meter composition (precedent)">
+        <i id="save-fill"></i>
+      </div>
+      <p class="readout" id="save-readout">Ready.</p>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="view" id="view-history" data-view="history" hidden>
+    <div class="vhead">
+      <h1 class="bil page-title" data-mark="adapted" data-adapted
+          data-note="bilingual pair (D-09); collapses over-under below 560px">
+        <span class="en">History</span><span class="div" aria-hidden="true"></span><span class="fr">Historique</span>
+      </h1>
+      <p class="meta">Everything you have logged, kept as a plain record.</p>
+    </div>
+
+    <h2 class="sec">Weekly minutes</h2>
+    <figure class="figure" id="bars" data-el="12">
+      <div class="bars" id="bar-cols"></div>
+      <figcaption class="meta">Week of Monday 28 September to Sunday 4 October. Minutes per day.</figcaption>
+    </figure>
+
+    <div class="charts-2">
+      <figure class="figure" id="heatmap" data-el="13">
+        <h3 class="subhead">Month grid — October 2026</h3>
+        <div class="heat" id="heat-grid" role="img" aria-label="October 2026 activity grid"></div>
+        <p class="legend" id="heat-legend">
+          <span class="lg"><i class="sw s0"></i>None</span>
+          <span class="lg"><i class="sw s1"></i>A little</span>
+          <span class="lg"><i class="sw s2"></i>Steady</span>
+          <span class="lg"><i class="sw s3"></i>Full</span>
+          <span class="lg"><i class="sw stoday"></i>Today</span>
+        </p>
+        <figcaption class="meta">Days after today sit outside the demo fixture.</figcaption>
+      </figure>
+
+      <figure class="figure" id="sparkline" data-el="14">
+        <h3 class="subhead">Trend — last 7 days</h3>
+        <svg class="spark" id="spark-svg" viewBox="0 0 700 120" role="img" aria-label="Minutes per day, last 7 days"></svg>
+        <p class="readout" id="spark-labels"></p>
+      </figure>
+    </div>
+
+    <h2 class="sec">Log</h2>
+    <div class="field field-search">
+      <label class="flab" for="ledger-search">Filter entries</label>
+      <input id="ledger-search" type="search" placeholder="Ritual or category"
+             data-el="33" data-mark="fallback" data-fallback
+             data-note="platform control; large selection fallback">
+    </div>
+    <table class="ledger" id="ledger" data-el="31">
+      <caption class="visually-hidden">Logged entries</caption>
+      <thead>
+        <tr><th scope="col">Date</th><th scope="col">Ritual</th><th scope="col">Minutes</th><th scope="col">Result</th></tr>
+      </thead>
+      <tbody id="ledger-rows"></tbody>
+    </table>
+    <div class="pager" id="ledger-pager" data-el="32" data-mark="adapted" data-adapted
+         data-note="paging = outline actions + plain readout (precedent)">
+      <button class="btn b-out" id="page-prev" type="button">Previous</button>
+      <span class="readout" id="page-readout">Page 1 of 2</span>
+      <button class="btn b-out" id="page-next" type="button">Next</button>
+    </div>
+    <p class="meta" id="ledger-legend">Result words: Logged · Made up (back-dated) · Missed. No result uses colour.</p>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="view" id="view-achievements" data-view="achievements" hidden>
+    <div class="vhead">
+      <h1 class="bil page-title" data-mark="adapted" data-adapted
+          data-note="bilingual pair (D-09); collapses over-under below 560px">
+        <span class="en">Achievements</span><span class="div" aria-hidden="true"></span><span class="fr">Réalisations</span>
+      </h1>
+      <p class="meta">Counts and runs, kept as plain numbers.</p>
+    </div>
+
+    <div class="streak" id="streak-numeral" data-el="15" data-mark="adapted" data-adapted
+         data-note="streak composed from display numerals + the ruled register (precedent)">
+      <p class="key-label"><span class="en">Streak</span><span class="lab-sep">·</span><span class="fr">Série</span></p>
+      <p class="numeral" id="streak-value">7</p>
+      <p class="numeral-sub" id="streak-sub">days in a row</p>
+      <p class="meta">Consecutive days with at least one logged ritual, ending today.</p>
+    </div>
+
+    <h2 class="sec">Marks</h2>
+    <ul class="tiles" id="ach-tiles">
+      <li class="tile" id="ach-tile-7" data-el="16" data-mark="adapted" data-adapted
+          data-note="badge composed as a ruled tile: display numeral + word label (precedent)">
+        <p class="tile-num" id="tile7-num">7</p>
+        <p class="tile-lab">Seven-day run</p>
+        <p class="tile-meta" id="tile7-meta">7 of 7 days</p>
+      </li>
+      <li class="tile" id="ach-tile-entries">
+        <p class="tile-num" id="tile-entries-num">14</p>
+        <p class="tile-lab">Log entries</p>
+        <p class="tile-meta">Recorded so far</p>
+      </li>
+      <li class="tile" id="ach-tile-week">
+        <p class="tile-num" id="tile-week-num">155</p>
+        <p class="tile-lab">Minutes last week</p>
+        <p class="tile-meta">Mon 28 Sep – Sun 4 Oct</p>
+      </li>
+    </ul>
+    <p class="meta">No badges, no trophies — numerals on ruled ground, per the register.</p>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="view" id="view-settings" data-view="settings" hidden>
+    <div class="vhead">
+      <h1 class="bil page-title" data-mark="adapted" data-adapted
+          data-note="bilingual pair (D-09); collapses over-under below 560px">
+        <span class="en">Settings</span><span class="div" aria-hidden="true"></span><span class="fr">Paramètres</span>
+      </h1>
+      <p class="meta">Your rituals and the few choices this system offers.</p>
+    </div>
+
+    <div class="notices" id="settings-notices">
+      <div class="notice" id="notice-removed" role="status" hidden>
+        <p class="notice-sentence" id="notice-removed-text">Ritual removed.</p>
+        <button class="btn b-out" id="undo-btn" type="button" data-el="36">Undo</button>
+        <button class="btn b-link notice-dismiss" data-dismiss="notice-removed">Dismiss</button>
+      </div>
+      <div class="notice" id="notice-generic" role="status" hidden>
+        <p class="notice-sentence" id="notice-generic-text">Done.</p>
+        <button class="btn b-link notice-dismiss" data-dismiss="notice-generic">Dismiss</button>
+      </div>
+    </div>
+
+    <h2 class="sec">Profile</h2>
+    <div class="profile">
+      <span class="initials" id="initials-plate" data-el="18" data-mark="adapted" data-adapted
+            data-note="initials plate; the avatar photo was declined (precedent)">AM</span>
+      <div>
+        <p class="profile-name">Avery M.</p>
+        <p class="meta">Initials stand in for a photo — imagery is not part of this system.</p>
+      </div>
+    </div>
+
+    <h2 class="sec">Getting started</h2>
+    <div class="onboarding" id="onboarding" data-el="37" data-mark="improvised" data-improvised
+         data-note="in-page steps with a plain readout; no wizard overlay">
+      <p class="readout" id="onb-readout">Step 1 of 3</p>
+      <div class="onb-panel" id="onb-panel-1">
+        <label class="flab" for="onb-name">Name a ritual</label>
+        <input id="onb-name" type="text" placeholder="Morning walk">
+        <p class="meta">Start with something small and repeatable.</p>
+      </div>
+      <div class="onb-panel" id="onb-panel-2" hidden>
+        <label class="flab" for="onb-rhythm">Choose a rhythm</label>
+        <select id="onb-rhythm">
+          <option>Daily</option><option>Weekdays</option><option>Weekends</option>
+        </select>
+      </div>
+      <div class="onb-panel" id="onb-panel-3" hidden>
+        <label class="flab" for="onb-goal">Daily goal minutes</label>
+        <input id="onb-goal" type="number" min="5" max="240" step="5" value="20">
+      </div>
+      <div class="editor-actions">
+        <button class="btn b-out" id="onb-back" type="button" hidden>Back</button>
+        <button class="btn b-out" id="onb-next" type="button">Next</button>
+        <button class="btn b-out" id="onb-finish" type="button" hidden>Finish</button>
+      </div>
+    </div>
+
+    <h2 class="sec">Rituals</h2>
+    <ul class="admin-list" id="ritual-admin"></ul>
+    <p><button class="btn b-out" id="admin-add" type="button">Add a ritual</button></p>
+
+    <div class="editor" id="ritual-editor" hidden>
+      <h3 class="subhead" id="editor-title">Edit ritual</h3>
+      <div class="field" id="field-name">
+        <label class="flab" for="ritual-name">Ritual name</label>
+        <input id="ritual-name" type="text"
+               data-el="24">
+        <p class="err" id="name-error" hidden
+           data-el="9">Enter a ritual name — a name is required.</p>
+      </div>
+      <div class="field">
+        <label class="flab" for="ritual-category">Category</label>
+        <select id="ritual-category" data-el="25" data-mark="adapted" data-adapted
+                data-note="near-miss component/select — small fixed set">
+          <option>Health</option><option>Learning</option><option>Craft</option><option>Home</option>
+        </select>
+      </div>
+      <fieldset class="field radios" id="freq-group" data-el="27" data-mark="fallback" data-fallback
+                data-note="platform control with field styling">
+        <legend class="flab">Frequency</legend>
+        <label class="opt"><input type="radio" name="freq" value="Daily" checked> Daily</label>
+        <label class="opt"><input type="radio" name="freq" value="Weekdays"> Weekdays</label>
+        <label class="opt"><input type="radio" name="freq" value="Weekends"> Weekends</label>
+      </fieldset>
+      <div class="field">
+        <label class="flab" for="ritual-notes">Notes</label>
+        <textarea id="ritual-notes" rows="3" placeholder="Anything worth remembering (optional)."
+                  data-el="28" data-mark="improvised" data-improvised
+                  data-note="multi-line field in the field idiom; no canon control"></textarea>
+      </div>
+      <div class="photo-row" id="photo-row" data-el="42" data-mark="adapted" data-adapted
+           data-note="upload declined; imagery is not part of this system">
+        <p class="flab">Photo</p>
+        <p class="meta">Photo upload is not available — imagery is not part of this system.</p>
+      </div>
+      <div class="editor-actions" id="editor-order" hidden>
+        <button class="btn b-out" id="move-up" type="button" data-el="35" data-mark="improvised" data-improvised
+                data-note="move actions in place of drag; drag is not defined">Move up</button>
+        <button class="btn b-out" id="move-down" type="button" data-mark="improvised" data-improvised
+                data-note="move actions in place of drag; drag is not defined">Move down</button>
+      </div>
+      <div class="editor-actions">
+        <button class="btn b-slate" id="editor-save" type="button">Save ritual</button>
+        <button class="btn b-out" id="editor-cancel" type="button">Cancel</button>
+        <button class="btn b-out" id="remove-ritual" type="button" data-el="3">Remove ritual</button>
+      </div>
+    </div>
+
+    <h2 class="sec">Daily goal</h2>
+    <div class="field">
+      <label class="flab" for="goal-slider"><span class="en">Minutes per day</span> <span class="lab-sep">·</span> <span class="fr">Minutes par jour</span></label>
+      <input id="goal-slider" type="range" min="5" max="60" step="5" value="20"
+             data-el="21" data-mark="fallback" data-fallback data-note="platform control with field styling">
+      <p class="readout" id="goal-readout">20 minutes</p>
+    </div>
+
+    <h2 class="sec">Reminders</h2>
+    <label class="opt opt-row" id="reminders-row" data-el="26" data-mark="fallback" data-fallback
+           data-note="platform control with field styling">
+      <input type="checkbox" id="reminders-check" checked> Remind me at 8:00
+    </label>
+    <label class="opt opt-row" id="quiet-row" data-el="20" data-mark="fallback" data-fallback
+           data-note="platform control with field styling">
+      <input type="checkbox" id="quiet-toggle" role="switch"> Quiet mode — no reminder on weekends
+    </label>
+
+    <h2 class="sec">Display</h2>
+    <div class="theme-row" id="theme-row" data-el="39" data-mark="adapted" data-adapted
+         data-note="dark mode declined; the light register stands (precedent)">
+      <label class="opt opt-row">
+        <input type="checkbox" id="dark-toggle" disabled> Dark mode
+      </label>
+      <p class="meta">Dark mode is not defined in this system. The light register stands — this control is shown declined.</p>
+    </div>
+
+    <h2 class="sec">Data</h2>
+    <p><button class="btn b-out" id="export-csv" type="button"
+               data-el="38" data-mark="improvised" data-improvised
+               data-note="outline action; the CSV is built on the page">Export data (CSV)</button></p>
+    <p class="meta">Writes a CSV of every logged entry. Nothing leaves this page.</p>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap ft-in">
+    <p class="ft-note">Cadence — demonstration build on the dominion authority, v0.2.0. Fixed fixtures; no network.</p>
+    <p class="ft-mark">Cadence</p>
+  </div>
+</footer>
+
+<button class="marks-toggle" id="marks-toggle" type="button"
+        aria-pressed="false" title="Show adaptation marks">◌</button>
+
+<div class="scrim" id="dialog-scrim" hidden>
+  <div class="sheet" id="confirm-dialog" role="dialog" aria-modal="true"
+       aria-labelledby="confirm-title" tabindex="-1"
+       data-el="4" data-mark="adapted" data-adapted
+       data-note="recipe-driven confirm vessel; generic dialogs stay declined (precedent)">
+    <h2 class="bil sheet-title" id="confirm-title">
+      <span class="en">Remove ritual</span><span class="div" aria-hidden="true"></span><span class="fr">Retirer le rituel</span>
+    </h2>
+    <p class="sheet-body" id="confirm-body">Removing this ritual hides it from Today. Its log entries stay.</p>
+    <div class="editor-actions">
+      <button class="btn b-slate" id="confirm-remove" type="button">Remove ritual</button>
+      <button class="btn b-out" id="confirm-cancel" type="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="160" height="90" alt="cover" style="display:block">
+</body>
+</html>

@@ -1,0 +1,20 @@
+{"query": "category tag", "count": 0, "ids": []}
+{"query": "neutral tag", "count": 1, "ids": ["precedent/declined-neutral-tag-variant"]}
+{"query": "chip", "count": 1, "ids": ["precedent/declined-neutral-tag-variant"]}
+{"query": "undo after deleting", "count": 0, "ids": []}
+{"query": "undo", "count": 0, "ids": []}
+{"query": "celebration animation", "count": 0, "ids": []}
+{"query": "toast notification", "count": 0, "ids": []}
+{"query": "toast", "count": 0, "ids": []}
+{"query": "bar chart", "count": 1, "ids": ["precedent/declined-chart-treatments"]}
+{"query": "heatmap", "count": 1, "ids": ["precedent/declined-chart-treatments"]}
+{"query": "sparkline", "count": 1, "ids": ["precedent/declined-chart-treatments"]}
+{"query": "search box", "count": 0, "ids": []}
+{"query": "pagination", "count": 1, "ids": ["precedent/declined-pager-and-drag"]}
+{"query": "drag to reorder", "count": 1, "ids": ["precedent/declined-pager-and-drag"]}
+{"query": "csv export", "count": 1, "ids": ["precedent/declined-csv-export-affordance"]}
+{"query": "dark mode", "count": 1, "ids": ["precedent/declined-dark-mode"]}
+{"query": "avatar photo", "count": 1, "ids": ["precedent/declined-photographic-avatars-glyphs"]}
+{"query": "icon", "count": 1, "ids": ["precedent/declined-photographic-avatars-glyphs"]}
+{"query": "delete a ritual", "count": 0, "ids": []}
+{"query": "weekly summary banner", "count": 0, "ids": []}
