@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08 06:50:46",
+ "generated": "2026-10-08 07:01:18",
  "tool": "tools/da_verify.py",
  "target": "examples/phantom-audit",
  "summary": {
@@ -12,8 +12,8 @@
  },
  "covers": {
   "assets/css/main.css": "1151cade53024996",
-  "app.js": "49cb0699969ec393",
-  "index.html": "a57b2cf2e1f3706c"
+  "app.js": "1c748bd145818723",
+  "index.html": "c6a4a10b10a82374"
  },
  "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
  "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
@@ -21,7 +21,7 @@
   {
    "id": "phantom/app-body-pink-ink",
    "item": "token-set/colour",
-   "title": "Body runs pink reading ink #ff6bbc at weight 300",
+   "title": "Body runs the deployed reading ink #ff6bbc (the finding: measured 2.6:1)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
@@ -35,7 +35,7 @@
   {
    "id": "phantom/app-display-h1",
    "item": "guideline/typography-voices",
-   "title": "h1 is the tight pink sentence-case voice (700)",
+   "title": "h1 in the deployed ink (inherits #ff6bbc)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
@@ -63,7 +63,7 @@
   {
    "id": "phantom/app-links-trio",
    "item": "rule/link-treatment",
-   "title": "Links carry the trio: green text, dotted 1px blue underline (rule P-R6)",
+   "title": "Links carry the trio as deployed: green text #6bff2c, dotted blue underline (rule P-R6)",
    "mode": "COMPUTED_STYLE",
    "severity": "error",
    "status": "PASS",
@@ -77,7 +77,7 @@
   {
    "id": "phantom/app-code-chip",
    "item": "component/code-pre",
-   "title": "Inline code sits on the blue ground in pink text",
+   "title": "Inline code sits on the blue ground in pink text (as deployed)",
    "mode": "COMPUTED_STYLE",
    "severity": "warning",
    "status": "PASS",
@@ -196,7 +196,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [
-    "87 literals, all allowlisted"
+    "91 literals, all allowlisted"
    ],
    "note": null
   },

@@ -192,3 +192,12 @@ ul.expl-timeline p { font-size: 0.85em; margin: 0.3em 0 0 0; }
 
 .ag-cta { margin: 1.4em 0 0 0; }
 .lede-ish { font-size: 1.05em; }
+
+/* ---- reading ink (AA strategy of candidate/text-as-accent) — DEFAULT ON ----
+   deep raspberry #b03b72 (5.66:1) + teal links #0b7285 (5.64:1) + white code ink.
+   Toggle switches back to the exact as-deployed values (the finding, 2.6:1). */
+body.ink-reading { color: #b03b72; }
+body.ink-reading a { color: #0b7285; }
+body.ink-reading code { color: #ffffff; }
+body.ink-reading .ag-kicker { color: #b03b72; }
+body.ink-reading .statrow .stat b { color: inherit; }

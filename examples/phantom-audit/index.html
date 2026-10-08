@@ -59,18 +59,18 @@
 						<section id="overview">
 							<header>
 								<h1>System review</h1>
-								<p>A design-system review of <a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
-								(Zhen Wu / Yoyo — ILightUUp, Tame, FAFA, Unlogical Instrument, Orchid, SoundMorphTPU), carried out
-								against the <strong>Jennu authority</strong>: the interface system her site actually deploys — Source Sans Pro,
-								pink reading ink, neon links, the lime rail — codified as <em>packs/phantom</em> 0.2.0.</p>
+								<p>A design review of <a href="https://zhenyoyo.github.io/" target="_blank" rel="noopener">zhenyoyo.github.io</a>
+								(Zhen Wu / Yoyo; projects ILightUUp, Tame, FAFA, Unlogical Instrument, Orchid and SoundMorphTPU).
+								The review measures the site's interface page by page and records it as the <strong>Jennu design authority</strong>,
+								<em>packs/phantom</em> 0.2.0. Everything on this page is built from that record.</p>
 							</header>
 							<section class="aglance" data-improvised data-mk="explainer at a glance (console kit)">
 								<div class="ag-kicker">Design authority — at a glance</div>
-								<h2>The system that builds the system</h2>
+								<h2>How this review is put together</h2>
 								<div class="ag-cols">
 									<div class="ag-col">
 										<h3>01 · The contract</h3>
-										<p>A versioned, machine-readable description of an interface system — components, rules, fallbacks. Written for tools as much as for people. <strong>A contract, not a style guide.</strong></p>
+										<p>A written description of an interface system that software can read: the components, the rules, and the fallbacks for anything not decided yet. <strong>It is a contract, not commentary.</strong></p>
 										<div class="filelist">
 <code>packs/phantom/</code> <span class="c">— plain JSON, no database</span><br/>
 artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
@@ -81,20 +81,20 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 										</div>
 									</div>
 									<div class="ag-col">
-										<h3>02 · Two consumers</h3>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Authority</b>the pack — one contract</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Agent</b>resolves every ask; builds</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built interface — silences become marked improvisations + filed gaps</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>inspects the artifact — never the agent's claims</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15/15 checks · published with hash‑covers</div></div>
+										<h3>02 · Two readers</h3>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>The pack</b>one file set, readable by software</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Coding agent</b>reads the pack and builds</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built page; gaps in the pack are marked and filed</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>checks the page itself, not the agent's claims</div></div>
+										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15 checks, 0 violations; published with hashes</div></div>
 									</div>
 									<div class="ag-col">
-										<h3>03 · How it evolves</h3>
+										<h3>03 · How it changes</h3>
 										<ul class="evol">
-											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> frozen and verified, but extracted from the wrong layer — rendered evidence overruled it; the reversal is recorded as a precedent, not hidden.</li>
-											<li><span class="chip">rule</span> editorial edit → patch bump; semantic change → minor bump + fresh freeze (all files re-hashed).</li>
-											<li><span class="chip">rule</span> precedents persist — settled decisions are never relitigated.</li>
-											<li><span class="chip">rule</span> ambitions become candidates with an explicit promote-when bar; friction becomes filed gaps.</li>
+											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> The first version described the template; the second described the site. The reversal is kept as a precedent.</li>
+											<li><span class="chip">rule</span> Small edits bump the patch number; real changes bump the version and re-freeze every file hash.</li>
+											<li><span class="chip">rule</span> Settled decisions are kept as precedents and are not reopened.</li>
+											<li><span class="chip">rule</span> New ideas become candidates with a written bar for promotion; gaps get filed.</li>
 										</ul>
 									</div>
 								</div>
@@ -104,15 +104,15 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 								<summary>What is a Design Authority — and what is this page?</summary>
 								<div class="expl-body">
 									<h3>What it is</h3>
-									<p>A design authority is a versioned, machine-readable description of an interface system: its components (buttons, fields, menus), its rules (colours, type, spacing, voice), and its fallbacks for what it does not define yet. It is written for two different readers — a coding agent that builds with it, and a verifier that independently checks whether the result actually conforms. It is a contract, not a style guide.</p>
+									<p>A design authority is a written description of an interface system that software can read. It lists the components (buttons, fields, menus), the rules (colour, type, spacing, voice), and the fallbacks for anything not decided yet. One program builds with it; another checks whether the build matches it. It is a contract, not a style guide.</p>
 									<h3>Why it exists</h3>
-									<p>Interfaces drift. Every page, edit and feature makes slightly different choices, until “follow the design” stops meaning anything. An authority makes those choices explicit and testable: builds can be checked against it, and gaps become visible instead of silent.</p>
+									<p>Interfaces drift. Every page and edit makes slightly different choices, and after a while “follow the design” means nothing. A written authority makes the choices explicit and checkable: a reviewer can point at a record instead of an opinion, and gaps show up as gaps.</p>
 									<h3>How this page fits in</h3>
-									<p><strong>1 — Extraction.</strong> The deployed language of zhenyoyo.github.io was measured from the rendered site (64 screenshots, computed styles) into <em>packs/phantom</em> 0.2.0 — named <strong>Jennu</strong>. Every value is tagged <em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
-									<p><strong>2 — Consumption.</strong> This page is built from that authority. Covered elements are used as defined; where the authority is silent, the result is improvised in character, marked (◌, bottom-right) and filed as a gap record.</p>
-									<p><strong>3 — Verification.</strong> A separate verifier (<em>da_verify</em>, 15 checks) inspects this rendered page — never its own claims — and the results are linked in the footer.</p>
+									<p><strong>1 · Extraction.</strong> The deployed site was measured page by page: 64 screenshots and computed styles. Every value was recorded and tagged <em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
+									<p><strong>2 · Consumption.</strong> This review is built from that record. Covered elements follow it; where the record is silent, the build improvises in the same style, marks the spot (◌, bottom-right) and files a gap.</p>
+									<p><strong>3 · Verification.</strong> A separate checker (<em>da_verify</em>, 15 checks) inspects this rendered page, not the agent's account of it. Results are linked in the footer.</p>
 									<h3>Why it looks like this</h3>
-									<p>An authority is best judged by what it produces, so this audit wears the extracted language it reviews. Where that language has problems, the ledger records them — measured — instead of hiding them.</p>
+									<p>The review wears the language it reviews: pink type, green links, the lime menu. Where that language has problems, the ledger records them, with measurements, instead of hiding them.</p>
 									<h3>The worked example — one revision, live</h3>
 									<ul class="expl-timeline">
 										<li><span class="ver">v0.1.0</span> <span class="muted">initial freeze — hashed, git-tagged</span><p>Extracted from the template's stylesheet: grey ink canon, the site's pink type misfiled as "deviations". Verified mechanically (its contract re-run clean: 17/17) — but extracted from the wrong layer.</p></li>
@@ -146,9 +146,10 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 								<div class="stat"><b id="statCands">3</b><span>candidates drafted</span></div>
 								<div class="stat"><b id="statEv">14</b><span>screens as evidence</span></div>
 							</div>
-							<div class="consolebar" data-improvised data-mk="console kit — override toggle">
+							<div class="consolebar" data-improvised data-mk="console kit — ink & override toggles">
+								<button type="button" class="button small" id="inkToggle" aria-pressed="false">Reading ink (AA)</button>
 								<button type="button" class="button small" id="overrideToggle" aria-pressed="false">View as project page — the black-body override</button>
-								<span class="muted" style="font-size:0.8em;">the deployment's own per-page override (P-R7), applied to this review</span>
+								<span class="muted" style="font-size:0.8em;">Reading ink uses the AA strategy from Adaptations; the switch shows the site's own values.</span>
 							</div>
 							<h2>How to read this</h2>
 							<p data-improvised data-mk="console kit — legend">Every finding below is in one of seven postures.

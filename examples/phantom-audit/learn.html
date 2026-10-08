@@ -2,7 +2,8 @@
 <!--
   Learn more — Design Authority (the Jennu review, phantom-audit v2).
   This page mirrors the one-page poster layout exactly (sections 01/02, file tree,
-  artifact record, consumer loop, timeline, rules grid) — as live elements, no JS.
+  artifact record, consumer loop, timeline, rules grid) — as live elements; a small
+  inline script handles the reading-ink toggle (default: as deployed).
   Shell: assets/css/main.css (deployed language); poster styling: this page's <style>.
 -->
 <html lang="en">
@@ -67,6 +68,12 @@
 			.poster .footer b { letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.92em; }
 			.poster .actions { margin-top: 1.6em; }
 			@media screen and (max-width: 980px) { .poster .flow { flex-direction: column; } .poster .flow .arr { transform: rotate(90deg); flex-basis: 1.6em; } .poster .rules { grid-template-columns: 1fr; } }
+			/* reading ink (AA strategy) — default on; toggle switches to as-deployed */
+			body.ink-reading { color: #b03b72; }
+			body.ink-reading a { color: #0b7285; }
+			body.ink-reading code { color: #ffffff; }
+			body.ink-reading .poster h1, body.ink-reading .poster h2, body.ink-reading .poster .kicker { color: #b03b72; }
+			.ink-toggle { position: fixed; right: 1.25em; bottom: 1.25em; z-index: 10005; }
 		</style>
 	</head>
 	<body class="poster-page">
@@ -86,15 +93,14 @@
 					<div class="inner">
 						<div class="poster">
 
-							<div class="kicker">Design Authority · worked example — “Jennu” (packs/phantom 0.2.0)</div>
-							<h1>A design authority: what it looks like,<br/>and how it versions &amp; evolves</h1>
-							<p class="lede">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
-							system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
-							a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build
-							actually conforms. It is a contract, not a style guide.</p>
+							<div class="kicker">Design Authority · worked example: Jennu (packs/phantom 0.2.0)</div>
+							<h1>What a design authority is,<br/>and how it changes</h1>
+							<p class="lede">A <strong>design authority</strong> is a written description of an interface system that software can read.
+							It lists the components (buttons, fields, menus), the rules (colour, type, spacing) and the fallbacks for
+							anything not decided yet. One program builds with it; another checks whether the build matches it.</p>
 
 							<!-- ======================== 01 ======================== -->
-							<h2><span class="n">01</span>What it looks like — the pack</h2>
+							<h2><span class="n">01</span>What it contains</h2>
 							<div class="cols">
 								<div class="col" style="flex:1.15">
 									<div class="panel white">
@@ -112,9 +118,8 @@
 └─ <b>verification.json</b> <span class="cnt">15 checks</span> <span class="c">— the conformance contract</span>
 										</div>
 									</div>
-									<p class="muted" style="font-size:0.86em; margin-top:0.8em;">Plain JSON — no database. Records a consumer <em>produces</em>
-									(resolutions, gaps, proposals) are written to the consumer’s own workspace, never back into the pack; only adjudicated
-									decisions move the pack forward.</p>
+									<p class="muted" style="font-size:0.86em; margin-top:0.8em;">Plain JSON, no database. The pack records what the system is. Notes from a given build stay in that
+									build’s own workspace; only recorded decisions change the pack.</p>
 								</div>
 
 								<div class="col">
@@ -147,57 +152,54 @@
 
 							<h3>The two-consumer loop</h3>
 							<div class="flow">
-								<div class="step"><b>The pack</b><span>one machine-readable contract</span></div>
+								<div class="step"><b>The pack</b><span>one file set, readable by software</span></div>
 								<div class="arr">→</div>
-								<div class="step"><b>Coding agent</b><span>resolves every ask; silences → improvisation, marked &amp; filed as gaps</span></div>
+								<div class="step"><b>Coding agent</b><span>reads the pack and builds</span></div>
 								<div class="arr">→</div>
-								<div class="step"><b>Implementation</b><span>a working artifact, built from the records</span></div>
+								<div class="step"><b>Implementation</b><span>the working page</span></div>
 								<div class="arr">→</div>
-								<div class="step"><b>Verifier</b><span>inspects the artifact itself — never the agent’s self-report</span></div>
+								<div class="step"><b>Verifier</b><span>checks the page itself, not the agent’s claims</span></div>
 								<div class="arr">→</div>
-								<div class="step"><b>Conformance report</b><span>15 checks · 0 violations — published, hash‑covers the build</span></div>
+								<div class="step"><b>Conformance report</b><span>15 checks, 0 violations; published with hashes</span></div>
 							</div>
 
 							<!-- ======================== 02 ======================== -->
-							<h2><span class="n">02</span>How it versions &amp; evolves</h2>
+							<h2><span class="n">02</span>How it changes</h2>
 							<div class="cols">
 								<div class="col" style="flex:1.05">
 									<h3>A real revision — the redo</h3>
 									<ul class="timeline">
 										<li>
 											<div class="ver">v0.1.0 <span class="tag">initial freeze — hashed, git-tagged</span></div>
-											<p>Extracted from the <em>template’s</em> stylesheet: grey ink canon, the site’s pink type misfiled as “deviations”.
-											Verified mechanically (its contract re-run clean: 17/17), but extracted from the wrong layer.</p>
+											<p>The first version described the template underneath the site: grey text, 4px corners. It flagged the
+											site’s pink type as a problem. It passed its own checks (17 of 17) but had described the wrong thing.</p>
 										</li>
 										<li class="bad">
 											<div class="ver">rejected <span class="tag">owner review of the rendered result</span></div>
-											<p>“The site that exists runs pink type — extract what IS.” A version can be internally consistent and still
-											describe the wrong thing; only rendered evidence settles it.</p>
+											<p>Review rejected it. The site runs pink type, and an authority has to describe what is actually there.</p>
 										</li>
 										<li class="v2">
 											<div class="ver">v0.2.0 <span class="tag">fresh freeze — all pack files re-hashed</span></div>
-											<p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language.
-											The reversal became <code>precedent/pink-ink-canonised</code> — the old decision is superseded, not deleted.
-											Goldens re-run <strong>21/21</strong>; the verification contract rewritten (15 checks) and re-run <strong>15/15</strong>.</p>
+											<p>Rebuilt from the rendered site: four extraction teams, 64 screenshots. Pink type became canon. The old
+											decision was recorded as a precedent rather than deleted, so the question stays closed. The checks were
+											rewritten and passed: goldens 21/21, verification 15/15.</p>
 										</li>
 									</ul>
 								</div>
 								<div class="col">
 									<h3>The standing rules</h3>
 									<div class="rules">
-										<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
-										<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New/changed records, pipeline order, thresholds, tool contracts, governance taxonomies.</span></div>
-										<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist across versions so agents never relitigate them.</span></div>
-										<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit <em>promote-when</em> bar — no silent canonisation.</span></div>
-										<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
-										<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
+										<div class="r"><b>Small edits bump the patch</b><span>Wording fixes and clarifications change the patch number. Nothing is re-frozen.</span></div>
+										<div class="r"><b>Real changes bump the version</b><span>New or changed records reset the hash record for every file in the pack.</span></div>
+										<div class="r grey"><b>Decisions are kept</b><span>Accepted and rejected decisions are stored as precedents and are not reopened.</span></div>
+										<div class="r purple"><b>Ideas wait their turn</b><span>New directions become candidates with a written bar for promotion. Nothing becomes canon quietly.</span></div>
+										<div class="r blue"><b>Gaps are written down</b><span>When a build cannot follow the authority, the gap is recorded instead of smoothed over.</span></div>
+										<div class="r"><b>Checks travel with the pack</b><span>Golden cases and the verification contract are versioned with the records and re-run against every build.</span></div>
 									</div>
 									<div class="panel evoloop">
 										<h3 style="margin-top:0;">The evolution loop</h3>
-										<p><strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) →
-										<strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) →
-										<strong>adjudicate</strong> (precedent · gap · candidate) → <strong>next version</strong> → consume again.
-										Nothing moves the pack except an adjudicated decision.</p>
+										<p>Extract from evidence, freeze, build, check, decide, release. The pack only moves when a decision
+										is recorded.</p>
 									</div>
 								</div>
 							</div>
@@ -218,5 +220,21 @@
 				</div>
 
 		</div>
+
+		<button type="button" class="button small ink-toggle" id="inkToggleBtn" aria-pressed="true">As-deployed ink</button>
+
+		<script>
+		(function () {
+			var b = document.body, t = document.getElementById("inkToggleBtn");
+			function paint() {
+				var on = b.classList.contains("ink-reading");
+				t.textContent = on ? "As-deployed ink" : "Reading ink";
+				t.title = on ? "Show the as-deployed values (pink 2.6:1, green 1.32:1)" : "Switch to reading ink (AA strategy)";
+				t.setAttribute("aria-pressed", on ? "true" : "false");
+			}
+			t.addEventListener("click", function () { b.classList.toggle("ink-reading"); paint(); });
+			paint();
+		})();
+		</script>
 	</body>
 </html>

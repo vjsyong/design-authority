@@ -260,7 +260,7 @@ const GAPS = [
 
 const ADAPTATIONS = [
   {id:"AD1", ladder:"candidate", title:"The pink-ink dossier — AA strategy on the table",
-   body:"Pink reading ink is canon (the redo decision, recorded as precedent/pink-ink-canonised). What remains open — and what promotion requires — is an accessibility strategy. The numbers below are computed live from the measured values; the options are a role map (which roles may keep the ink), size/weight minimums, or sanctioned black-body pages (already in the system — see AD3).",
+   body:"Pink reading ink is canon (the redo decision, recorded as precedent/pink-ink-canonised). What remains open — and what promotion requires — is an accessibility strategy. The numbers below are computed live from the measured values; the options are a role map (which roles may keep the ink), size/weight minimums, or sanctioned black-body pages (already in the system — see AD3). This review ships that strategy as a reading mode (deep raspberry ink #b03b72, teal links #0b7285, both ≥5.6:1); the switch sits under the stat row.",
    demo:"aa", links:["candidate:text-as-accent","precedent:pink-ink-canonised","gap:G01","gap:G02","gap:G03"]},
   {id:"AD2", ladder:"improvised", title:"Mixed-script typography — the hands-off fallback, demonstrated",
    body:"The system declares no CJK face, so 圳 renders from the OS — differently on every visitor's machine, mismatched to the 900 Latin beside it. The fallback records the constraint; the gap asks the owner for a one-line stack decision. Shown below: the deployed render (serif fallback in this environment) next to the proposed stack.",
@@ -535,6 +535,15 @@ $("#evGrid").innerHTML = EVIDENCE.map((e) =>
   "</figure></li>").join("");
 
 /* ------------------------- override toggle ----------------------------- */
+const inkBtn = $("#inkToggle");
+function paintInkBtn() {
+  const on = document.body.classList.contains("ink-reading");
+  inkBtn.textContent = on ? "Show the as-deployed ink (2.6:1)" : "Reading ink (AA)";
+  inkBtn.setAttribute("aria-pressed", on ? "true" : "false");
+}
+inkBtn.addEventListener("click", () => { document.body.classList.toggle("ink-reading"); paintInkBtn(); });
+paintInkBtn();
+
 const ovBtn = $("#overrideToggle");
 ovBtn.addEventListener("click", () => {
   const on = document.body.classList.toggle("alt-override");

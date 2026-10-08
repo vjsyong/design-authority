@@ -94,15 +94,14 @@
 </head>
 <body>
 
-  <div class="kicker">Design Authority · worked example — “Jennu” (packs/phantom 0.2.0)</div>
-  <h1>A design authority: what it looks like,<br/>and how it versions &amp; evolves</h1>
-  <p class="lede" style="margin-top:16px;">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
-  system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
-  a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build actually conforms.
-  It is a contract, not a style guide.</p>
+  <div class="kicker">Design Authority · worked example: Jennu (packs/phantom 0.2.0)</div>
+  <h1>What a design authority is,<br/>and how it changes</h1>
+  <p class="lede" style="margin-top:16px;">A <strong>design authority</strong> is a written description of an interface system that software can read.
+  It lists the components, the rules, and the fallbacks for anything not decided yet. One program builds with it;
+  another checks whether the build matches it.</p>
 
   <!-- ======================== WHAT IT LOOKS LIKE ======================== -->
-  <h2><span class="n">01</span>What it looks like — the pack</h2>
+  <h2><span class="n">01</span>What it contains</h2>
   <div class="cols">
     <div class="col" style="flex:1.15">
       <div class="panel white">
@@ -157,17 +156,17 @@
   <div class="flow">
     <div class="step"><b>The pack</b><span>one machine-readable contract</span></div>
     <div class="arr">→</div>
-    <div class="step"><b>Coding agent</b><span>resolves every ask; silences → improvisation, marked &amp; filed as gaps</span></div>
+    <div class="step"><b>Coding agent</b><span>reads the pack and builds</span></div>
     <div class="arr">→</div>
     <div class="step"><b>Implementation</b><span>a working artifact, built from the records</span></div>
     <div class="arr">→</div>
-    <div class="step"><b>Verifier</b><span>inspects the artifact itself — never the agent’s self-report</span></div>
+    <div class="step"><b>Verifier</b><span>checks the page itself, not the agent’s claims</span></div>
     <div class="arr">→</div>
     <div class="step"><b>Conformance report</b><span>15 checks · 0 violations — published, hash-covers the build</span></div>
   </div>
 
   <!-- ======================== HOW IT EVOLVES ======================== -->
-  <h2><span class="n">02</span>How it versions &amp; evolves</h2>
+  <h2><span class="n">02</span>How it changes</h2>
   <div class="cols">
     <div class="col" style="flex:1.05">
       <h3>A real revision — the redo</h3>

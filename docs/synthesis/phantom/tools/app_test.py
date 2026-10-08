@@ -54,12 +54,20 @@ with sync_playwright() as p:
     check("explainer collapses back", pg.evaluate("!document.querySelector('details.explainer').open"))
 
     # --- the deployed language, as rendered by the app itself ---
-    check("body ink is pink #ff6bbc", pg.evaluate("getComputedStyle(document.querySelector('#overview p')).color") == "rgb(255, 107, 188)")
-    check("h1 is pink", pg.evaluate("getComputedStyle(document.querySelector('h1')).color") == "rgb(255, 107, 188)")
+    check("body ink is the as-deployed pink (default)", pg.evaluate("getComputedStyle(document.querySelector('#overview p')).color") == "rgb(255, 107, 188)")
+    check("h1 follows the as-deployed ink", pg.evaluate("getComputedStyle(document.querySelector('h1')).color") == "rgb(255, 107, 188)")
     lk = pg.evaluate("""(() => { const cs = getComputedStyle(document.querySelector('#overview p a'));
         return cs.color + '|' + cs.borderBottomStyle + '|' + cs.borderBottomColor; })()""")
     check("links green + dotted blue underline", lk == "rgb(107, 255, 44)|dotted|rgb(32, 163, 245)")
     check("code ground is blue", pg.evaluate("getComputedStyle(document.querySelector('p code')).backgroundColor") in ("rgba(46, 90, 249, 0.984)", "rgba(46, 90, 249, 0.986)"))
+    check("code ink is pink (as deployed)", pg.evaluate("getComputedStyle(document.querySelector('p code')).color") == "rgb(255, 107, 188)")
+    # ink toggle round-trip (as deployed <-> reading ink)
+    pg.click("#inkToggle")
+    pg.wait_for_timeout(100)
+    check("ink toggle -> reading ink #b03b72", pg.evaluate("getComputedStyle(document.body).color") == "rgb(176, 59, 114)")
+    pg.click("#inkToggle")
+    pg.wait_for_timeout(100)
+    check("ink toggle -> back to as-deployed pink", pg.evaluate("getComputedStyle(document.body).color") == "rgb(255, 107, 188)")
     check("menu ground is lime", pg.evaluate("getComputedStyle(document.querySelector('#menu')).backgroundColor") == "rgb(62, 249, 0)")
     cbf = pg.evaluate("""(() => { const l = document.querySelector('label[for="demo-cb"]');
         return getComputedStyle(l, '::before').backgroundColor; })()""")
