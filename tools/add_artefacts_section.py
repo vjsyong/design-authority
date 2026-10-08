@@ -40,27 +40,50 @@ STYLE = {
     "wink": {"ink": "#241C15", "dim": "#5D5245", "line": "rgba(36,28,21,.22)",
              "acc": "#007C89", "acc_ink": "#ffffff", "tint": "rgba(255,224,27,.14)",
              "panel_r": "16px", "chip_r": "999px", "btn_r": "999px",
-             "_src": "token-set/colour (Cavendish Yellow, Peppercorn, Kale); shape language: pills"},
+             # action controls: the page's own .cta IS component/action-pill
+             # (yellow fill, 1px ink ring, Peppercorn label, pill radius).
+             # Secondary (copy) = outline pill, 2px ink inset, per the record.
+             "dl_class": "cta",
+             "cp_fb": {"border": "2px solid #231E15", "color": "#241C15", "radius": "999px"},
+             "_src": "component/action-pill (class .cta); token-set/colour; shape language: pills"},
     "leader": {"ink": "#101010", "dim": "#5A5A5A", "line": "#CFCFCF",
                "acc": "#2E45B8", "acc_ink": "#ffffff", "tint": "rgba(227,18,11,.05)",
                "panel_r": "8px", "chip_r": "4px", "btn_r": "8px",
-               "_src": "token-set/colour (red #E3120B, Chicago 45 #2E45B8); 2px ink rules"},
+               # action: primary solid navy #2E45B8 radius 8; secondary 2px ink outline
+               "dl_fb": {"bg": "#2E45B8", "fg": "#ffffff", "radius": "8px"},
+               "cp_fb": {"border": "2px solid #101010", "color": "#101010", "radius": "8px"},
+               "_src": "component/action (primary navy #2E45B8 r8; secondary 2px ink); token-set/colour"},
     "dominion": {"ink": "#333333", "dim": "#595959", "line": "#E0E0E0",
                  "acc": "#26374A", "acc_ink": "#ffffff", "tint": "#F4F4F4",
                  "panel_r": "4px", "chip_r": "4px", "btn_r": "4px",
-                 "_src": "token-set/colour (slate #26374A); squared 4px; no shadows"},
+                 # action: primary solid slate #26374A radius 4 (live-measured)
+                 "dl_fb": {"bg": "#26374A", "fg": "#ffffff", "radius": "4px"},
+                 "cp_fb": {"border": "2px solid #26374A", "color": "#26374A", "radius": "4px"},
+                 "_src": "component/action (solid slate #26374A r4); token-set/colour; no shadows"},
     "phantom": {"ink": "#ff6bbc", "dim": "#f2849e", "line": "#585858",
                 "acc": "#f2849e", "acc_ink": "#ffffff", "tint": "rgba(32,163,245,.10)",
                 "panel_r": "4px", "chip_r": "4px", "btn_r": "4px", "code_bg": "#20a3f5",
-                "_src": "component/action-button hover #f2849e; ink ring #585858; blue code ground"},
+                # action: the page's .button.primary IS the recorded primary
+                # (solid #585858, white label); .button default = 2px ring state,
+                # used for copies at the recorded small state (0.6em).
+                "dl_class": "button primary", "cp_class": "button",
+                "_src": "component/action-button (primary solid #585858; ring #585858; small 0.6em)"},
     "indaba": {"ink": "#111111", "dim": "#5F5F5F", "line": "#E5E1DE",
                "acc": "#E95420", "acc_ink": "#ffffff", "tint": "#F6F4F2",
                "panel_r": "12px", "chip_r": "999px", "btn_r": "999px",
-               "_src": "token-set/palette (aubergine #77216F, orange #E95420, warm tint); rounding 12px"},
+               # action: record defines .action.primary (orange), but the built
+               # page ships no .action rules, so style from the record values.
+               "dl_fb": {"bg": "#E95420", "fg": "#ffffff", "radius": "999px"},
+               "cp_fb": {"border": "2px solid #E95420", "color": "#E95420", "radius": "999px"},
+               "_src": "component/action (orange primary, focus ring); token-set/palette; warm tint"},
     "orbit": {"ink": "#101010", "dim": "#6F6F6F", "line": "#101010",
               "acc": "#D63829", "acc_ink": "#ffffff", "tint": "transparent",
               "panel_r": "0", "chip_r": "0", "btn_r": "0",
-              "_src": "token-set/palette (ink, gray-mid, accent #D63829); zero radius; square forms only"},
+              # action: the page's .command IS the recorded control (primary =
+              # solid accent via data-variant; default = ink-outlined square).
+              "dl_class": "command", "dl_extra": ' data-variant="primary"',
+              "cp_class": "command",
+              "_src": "component/command (primary = solid accent); token-set/palette; square forms only"},
 }
 
 
@@ -126,6 +149,11 @@ def build_section(auth, pack, notice=None):
         return (kind_order.index(k) if k in kind_order else 99, k)
     ordered = sorted(groups.items(), key=lambda kv: kind_key(kv[0]))
 
+    st = STYLE[auth]
+    dlc = (" " + st["dl_class"]) if st.get("dl_class") else ""
+    dlextra = st.get("dl_extra", "")
+    cpc = (" " + st["cp_class"]) if st.get("cp_class") else ""
+
     snippets = {}
     rows = []
     for kind, recs in ordered:
@@ -164,10 +192,10 @@ def build_section(auth, pack, notice=None):
                 '<p class="af-sum">%s</p>'
                 '%s'
                 '<div class="af-foot">%s'
-                '<button type="button" class="af-copy" data-target="%s">copy</button>'
+                '<button type="button" class="af-copy%s" data-target="%s">copy</button>'
                 '</div></article>'
                 % (rid, esc(r.get("kind", "")), esc(r.get("title", "")), esc(status),
-                   esc(r["id"]), esc(r.get("summary", "")), use_html, alias_html, rid))
+                   esc(r["id"]), esc(r.get("summary", "")), use_html, alias_html, cpc, rid))
 
     n = len(arts)
     ver = str(pack.get("version") or "")
@@ -192,13 +220,13 @@ def build_section(auth, pack, notice=None):
   <div class="af-take">
     <h3 class="af-sub">Take it away</h3>
     <div class="af-take-row">
-      <a class="af-dl" href="download/{auth}-site.zip" download>Download everything (.zip)</a>
+      <a class="af-dl{dlc}"{dlextra} href="download/{auth}-site.zip" download>Download everything (.zip)</a>
       <span class="af-note">The page, its styles and fonts, the whole pack, and the full audit trail in one file.</span>
     </div>
     <div class="af-take-row">
       <span class="af-key">one line for your agent</span>
       <code class="af-line-code" id="af-agentline">{agent_line}</code>
-      <button type="button" class="af-copy af-copy-line" data-copytext="af-agentline">copy</button>
+      <button type="button" class="af-copy af-copy-line{cpc}" data-copytext="af-agentline">copy</button>
     </div>
   </div>
   <script>
@@ -253,7 +281,25 @@ def build_section(auth, pack, notice=None):
 </section>
 {MARK_E}"""
 
-    st = STYLE[auth]
+    if st.get("dl_class"):
+        dl_rule = (".artefacts .af-dl { display: inline-block; text-decoration: none; }"
+                   " /* action treatment comes from the page's own recorded class */")
+    else:
+        fb = st["dl_fb"]
+        dl_rule = (".artefacts .af-dl { display: inline-block; padding: .5rem 1.1rem; "
+                   "background: %s; color: %s; border-radius: %s; text-decoration: none; "
+                   "font-weight: 600; }" % (fb["bg"], fb["fg"], fb["radius"]))
+    dl_rule += "\n.artefacts .af-dl:hover { opacity: .88; }"
+    if st.get("cp_class"):
+        cp_rule = (".artefacts .af-copy { margin-left: auto; font: inherit; font-size: .6em; "
+                   "cursor: pointer; } /* recorded small state of the pack's action control */"
+                   "\n.artefacts .af-copy:hover, .artefacts .af-copy.ok { opacity: .7; }")
+    else:
+        fb = st["cp_fb"]
+        cp_rule = (".artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; "
+                   "padding: .3rem .9rem; border: %s; border-radius: %s; background: transparent; "
+                   "color: %s; cursor: pointer; }" % (fb["border"], fb["radius"], fb["color"]))
+        cp_rule += "\n.artefacts .af-copy:hover, .artefacts .af-copy.ok { opacity: .7; }"
     css = f"""{CSS_MARK_S} /* styled from {auth} records: {st['_src']} */
 .artefacts {{ margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid {st['line']}; }}
 .artefacts .af-kick {{ font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: {st['acc']}; font-weight: 700; margin-bottom: .5rem; }}
@@ -280,14 +326,11 @@ def build_section(auth, pack, notice=None):
 .artefacts .af-note {{ font-size: .9rem; color: {st['dim']}; max-width: 70ch; }}
 .artefacts .af-foot {{ display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }}
 .artefacts .af-alias {{ font-size: .8rem; color: {st['dim']}; }}
-.artefacts .af-copy {{ margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid {st['line']}; border-radius: {st['btn_r']}; background: transparent; color: {st['acc']}; cursor: pointer; }}
-.artefacts .af-copy:hover {{ background: {st['acc']}; color: {st['acc_ink']}; border-color: {st['acc']}; }}
-.artefacts .af-copy.ok {{ background: {st['acc']}; color: {st['acc_ink']}; border-color: {st['acc']}; }}
+{cp_rule}
 .artefacts .af-take {{ margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid {st['line']}; }}
 .artefacts .af-sub {{ font-size: 1.15rem; margin: 0 0 .8rem; }}
 .artefacts .af-take-row {{ display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }}
-.artefacts .af-dl {{ display: inline-block; padding: .5rem 1.1rem; background: {st['acc']}; color: {st['acc_ink']}; border-radius: {st['btn_r']}; text-decoration: none; font-weight: 600; }}
-.artefacts .af-dl:hover {{ opacity: .88; }}
+{dl_rule}
 .artefacts .af-line-code {{ font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: {st['tint']}; padding: .45rem .6rem; border-radius: {st['chip_r']}; max-width: 100%; overflow-wrap: anywhere; }}
 {CSS_MARK_E}"""
     return section, css

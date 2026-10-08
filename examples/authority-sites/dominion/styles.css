@@ -177,7 +177,7 @@ h2 { font-size: 20px; font-weight: 500; line-height: 1.3; margin: 0 0 4px; }   /
 }
 .marks-on .acc::after { inset-inline-start: 0; inset-inline-end: auto; white-space: normal; max-width: 140px; }
 
-/* artefacts-directory:start */ /* styled from dominion records: token-set/colour (slate #26374A); squared 4px; no shadows */
+/* artefacts-directory:start */ /* styled from dominion records: component/action (solid slate #26374A r4); token-set/colour; no shadows */
 .artefacts { margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid #E0E0E0; }
 .artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #26374A; font-weight: 700; margin-bottom: .5rem; }
 .artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
@@ -203,9 +203,8 @@ h2 { font-size: 20px; font-weight: 500; line-height: 1.3; margin: 0 0 4px; }   /
 .artefacts .af-note { font-size: .9rem; color: #595959; max-width: 70ch; }
 .artefacts .af-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
 .artefacts .af-alias { font-size: .8rem; color: #595959; }
-.artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid #E0E0E0; border-radius: 4px; background: transparent; color: #26374A; cursor: pointer; }
-.artefacts .af-copy:hover { background: #26374A; color: #ffffff; border-color: #26374A; }
-.artefacts .af-copy.ok { background: #26374A; color: #ffffff; border-color: #26374A; }
+.artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 2px solid #26374A; border-radius: 4px; background: transparent; color: #26374A; cursor: pointer; }
+.artefacts .af-copy:hover, .artefacts .af-copy.ok { opacity: .7; }
 .artefacts .af-take { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid #E0E0E0; }
 .artefacts .af-sub { font-size: 1.15rem; margin: 0 0 .8rem; }
 .artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }

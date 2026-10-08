@@ -4,7 +4,7 @@
   "pack": "packs/indaba",
   "version": "0.1.0"
  },
- "generated_at": "2026-10-08T22:39:16+00:00",
+ "generated_at": "2026-10-08T22:43:50+00:00",
  "checks": {
   "external_references": 1,
   "css_extracted": true,
@@ -13,9 +13,15 @@
  "files": [
   {
    "path": ".site-state.json",
-   "sha256": "0d46950c5ccc9259a609d3c8463a6b77d00c56c0ed162948c83ff3b49f1934c3",
+   "sha256": "bcca27fb88a67b16858c5e11c1eb5fc21b512b0a1349b39162d0a6820e3aebef",
    "size": 1200,
    "role": "refresh state (pack hash, version, artifact set)"
+  },
+  {
+   "path": "agent-brief.md",
+   "sha256": "189701fefefbe90abd415cc78938ab631e94a8dd58f0472248c3e5727e508d6d",
+   "size": 2248,
+   "role": "asset"
   },
   {
    "path": "audit.jsonl",
@@ -31,8 +37,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "1c637407003fbdbda7f3e7a30963b9d90b34de1d19ad2de8127e4f3844cc71cc",
-   "size": 51130,
+   "sha256": "37a97c58b19d98f4f1b3ff8b903403953498fd101bc7a748df334083bb78ebd7",
+   "size": 51132,
    "role": "page"
   },
   {
@@ -43,8 +49,8 @@
   },
   {
    "path": "refresh-log.md",
-   "sha256": "d88a627012bb1909c2d1ba2fe03d206686c20e6bb5f1e5a7cae6d7e492c0ab6f",
-   "size": 252,
+   "sha256": "eff47665615d10d71dba8e93a304b0467c8b20c9df8bbbdfa8e1526a3172d370",
+   "size": 814,
    "role": "refresh log (generated layers vs pack)"
   },
   {
@@ -55,8 +61,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "d0181eaa391de0f7de16d92754c6785e718e17dd854a0c792c0bbbc4c38760bf",
-   "size": 9436,
+   "sha256": "3baab524a42f4d5e0dbfdcb8e6637d62a10f693e2fe0e77b9095345027a2259d",
+   "size": 9322,
    "role": "stylesheet"
   },
   {

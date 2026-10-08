@@ -4,7 +4,7 @@
   "pack": "packs/wink",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T22:39:16+00:00",
+ "generated_at": "2026-10-08T22:43:50+00:00",
  "checks": {
   "external_references": 1,
   "css_extracted": true,
@@ -26,9 +26,15 @@
  "files": [
   {
    "path": ".site-state.json",
-   "sha256": "eb1343b342169b10cb48ad19b9eec25a118d7dc166dbea6cc376e49622cf345a",
+   "sha256": "6a67be0b683cd4a407d45b67010d3a2ab430ac351082f15acf9580b5ab6dec6e",
    "size": 1090,
    "role": "refresh state (pack hash, version, artifact set)"
+  },
+  {
+   "path": "agent-brief.md",
+   "sha256": "80d0e4344231d8e535ff64812817d8cfc509fa10554f6900dc103d6beef8d27e",
+   "size": 2258,
+   "role": "asset"
   },
   {
    "path": "audit.jsonl",
@@ -44,8 +50,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "0a35c0ac1ba0efe054ed596955a047af356112294b1abda49bfdf5427496c5c3",
-   "size": 36852,
+   "sha256": "2d6020bde0ac5bad47c2942623c61b7ed8d71c607269cab2e32d3e7d37de684e",
+   "size": 36858,
    "role": "page"
   },
   {
@@ -56,8 +62,8 @@
   },
   {
    "path": "refresh-log.md",
-   "sha256": "8702184d8a92d6eb1b79be0853bfcd6b1fde4983ede86ae396cb91fc7d8423cd",
-   "size": 501,
+   "sha256": "3d965d57f7e68216fbc4e8dc484ccb648a5c74062bdd88218d55451a85a33f1b",
+   "size": 1063,
    "role": "refresh log (generated layers vs pack)"
   },
   {
@@ -68,8 +74,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "68c52789196f577476501a5c563e56d30c725e0cf48c166f120cd62841d25a55",
-   "size": 12726,
+   "sha256": "be4adedf34d92421ff6713c72ba6090a8f8f5eb9da28a666ae5a042a4aee57c1",
+   "size": 12568,
    "role": "stylesheet"
   },
   {

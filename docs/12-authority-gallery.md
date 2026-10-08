@@ -160,6 +160,17 @@ pack update is visible without hand edits.**
   public URL, shallow-cloned the repo, ran overview / resolve / inspect on
   packs/wink; zip served (1,057,882 bytes, application/zip) and its bundled
   MANIFEST hash matches index.html.
+- **S1i · Recorded action treatments — DONE (2026-10-08).** Owner catch: the
+  generated Take-it-away download button used a kale fill on Wink, which no
+  record supports (the record: pill, Cavendish Yellow, 1px ink ring,
+  Peppercorn label). Fix: generated controls borrow each page's own recorded
+  action class where the build ships one (wink `.cta`, phantom
+  `.button.primary`, orbit `.command[data-variant=primary]`) and exactly the
+  record's values otherwise (leader navy #2E45B8 r8, dominion slate #26374A
+  r4, indaba orange #E95420 pill); copy controls use the recorded secondary
+  (outline variants; phantom `.button` ring at the recorded small state
+  0.6em; orbit `.command` default). Audited by computed style per authority.
+  Lesson: generated chrome is not exempt from the records.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,

@@ -129,7 +129,7 @@ h1 { font-size: var(--text-xl); font-weight: 500; margin: 0 0 8px; }
   .register td { display: block; border-top: 0; padding: 2px 0; }
 }
 
-/* artefacts-directory:start */ /* styled from orbit records: token-set/palette (ink, gray-mid, accent #D63829); zero radius; square forms only */
+/* artefacts-directory:start */ /* styled from orbit records: component/command (primary = solid accent); token-set/palette; square forms only */
 .artefacts { margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid #101010; }
 .artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #D63829; font-weight: 700; margin-bottom: .5rem; }
 .artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
@@ -155,13 +155,12 @@ h1 { font-size: var(--text-xl); font-weight: 500; margin: 0 0 8px; }
 .artefacts .af-note { font-size: .9rem; color: #6F6F6F; max-width: 70ch; }
 .artefacts .af-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
 .artefacts .af-alias { font-size: .8rem; color: #6F6F6F; }
-.artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid #101010; border-radius: 0; background: transparent; color: #D63829; cursor: pointer; }
-.artefacts .af-copy:hover { background: #D63829; color: #ffffff; border-color: #D63829; }
-.artefacts .af-copy.ok { background: #D63829; color: #ffffff; border-color: #D63829; }
+.artefacts .af-copy { margin-left: auto; font: inherit; font-size: .6em; cursor: pointer; } /* recorded small state of the pack's action control */
+.artefacts .af-copy:hover, .artefacts .af-copy.ok { opacity: .7; }
 .artefacts .af-take { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 2px solid #101010; }
 .artefacts .af-sub { font-size: 1.15rem; margin: 0 0 .8rem; }
 .artefacts .af-take-row { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin: .6rem 0; }
-.artefacts .af-dl { display: inline-block; padding: .5rem 1.1rem; background: #D63829; color: #ffffff; border-radius: 0; text-decoration: none; font-weight: 600; }
+.artefacts .af-dl { display: inline-block; text-decoration: none; } /* action treatment comes from the page's own recorded class */
 .artefacts .af-dl:hover { opacity: .88; }
 .artefacts .af-line-code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .82rem; background: transparent; padding: .45rem .6rem; border-radius: 0; max-width: 100%; overflow-wrap: anywhere; }
 /* artefacts-directory:end */

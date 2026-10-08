@@ -1,20 +1,21 @@
 # Archive manifest - phantom
 
-Authority: `packs/phantom` @ 0.2.0 - generated 2026-10-08T22:39:16+00:00 UTC
+Authority: `packs/phantom` @ 0.2.0 - generated 2026-10-08T22:43:50+00:00 UTC
 
 | file | role | sha256 (first 16) | size |
 |---|---|---|---|
-| `.site-state.json` | refresh state (pack hash, version, artifact set) | `97d8f2bb908df781` | 1710 |
+| `.site-state.json` | refresh state (pack hash, version, artifact set) | `ccee35b8917f15e3` | 1710 |
+| `agent-brief.md` | asset | `3c8e49a7954aed2f` | 2674 |
 | `audit.jsonl` | machine-recorded authority call trace | `80a3ab40fc318868` | 91708 |
 | `brief.md` | build brief | `480a1d1e37f09ad0` | 2276 |
-| `index.html` | page | `77f29bbb40919276` | 76101 |
+| `index.html` | page | `5dc39c98cbf34629` | 76328 |
 | `log.md` | build log (agent, 1:1 with audit.jsonl) | `fb51b6ca47075014` | 22753 |
-| `refresh-log.md` | refresh log (generated layers vs pack) | `5bbfa94dbf33e92a` | 252 |
+| `refresh-log.md` | refresh log (generated layers vs pack) | `f2e37618e13bfa0f` | 816 |
 | `run-authority` | audited runner (build-time tool) | `e0ee73c745af26be` | 1036 |
 | `source-sans-pro-300-latin.woff2` | brand font file | `a327a082ad3f8b9d` | 14692 |
 | `source-sans-pro-700-latin.woff2` | brand font file | `45c6a51457cd1a53` | 14628 |
 | `source-sans-pro-900-latin.woff2` | brand font file | `2eaf3ae2fe28e9aa` | 14092 |
-| `styles.css` | stylesheet | `72aadcf534bce0ef` | 14156 |
+| `styles.css` | stylesheet | `3ff640c84f4b662d` | 13957 |
 | `.design-authority/gaps.jsonl` | gap store (filed gaps) | `eda32cd8002b1e31` | 1277 |
 
 External references: 1 (must be 0).
