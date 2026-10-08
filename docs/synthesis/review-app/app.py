@@ -51,6 +51,7 @@ PACK_META = {
     "wink": "Mailchimp brand + live product",
     "leader": "Marber (The Economist) + live product",
     "dominion": "Canada FIP + live Canada.ca web layer",
+    "triage": "Triage — the app-agnostic paper-and-ink design authority (v0.12.1 · triage.seanyong.xyz)",
 }
 _demo_packs = {}
 _demo_golden = {}
@@ -735,6 +736,20 @@ def demo_pack(name):
         recipes = ("<h2>Recipes</h2><p class='sub'>None — flow-level behaviour was left "
                    "undefined in this authority (by review decision).</p>")
 
+    prompt_path = os.path.join(PACKS_DIR, name, "AGENT-PROMPT.md")
+    if os.path.exists(prompt_path):
+        with open(prompt_path) as fh:
+            prompt_md = fh.read()
+        prompt_html = (
+            "<h2>Implement with this authority — agent prompt</h2>"
+            "<p class='sub'>A ready-to-send brief for coding agents building on this pack. "
+            "Source: <span class='mono'>packs/%s/AGENT-PROMPT.md</span></p>"
+            "<pre style=\"white-space:pre-wrap; background:#fff; border:1px solid #ddd; border-radius:0; "
+            "padding:14px 16px; max-height:520px; overflow:auto; font-size:12px; line-height:1.55;\">%s</pre>"
+            % (_esc(name), _esc(prompt_md)))
+    else:
+        prompt_html = ""
+
     page = (DEMO_PAGE
             .replace("__CSS__", DEMO_CSS)
             .replace("__TITLE__", _esc(m.get("name")))
@@ -746,7 +761,7 @@ def demo_pack(name):
             .replace("__RULES__", rules)
             .replace("__PROH__", proh)
             .replace("__FB__", fbs)
-            .replace("__RECIPES__", recipes)
+            .replace("__RECIPES__", recipes + prompt_html)
             .replace("__PACK__", _esc(name)))
     return page
 

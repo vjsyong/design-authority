@@ -1,26 +1,184 @@
 {
-  "_note": "Golden resolution set for the Triage pack. expected = outcome class; expect_id = the resolution the authority must cite. Part of the codification sprint record: refine only with a decision-log note; freeze before benchmark runs (P3).",
-  "version": "0.2",
-  "pack_version": "0.12.1+e374f38",
-  "cases": [
-    {"problem": "show whether a request is waiting for approval", "expect": "COMPOSE", "expect_id": "recipe/status-with-text", "note": "No dedicated approval component; the sanctioned status composition covers it."},
-    {"problem": "show a compact history of recent approval steps", "expect": "RESOLVED", "expect_id": "component/tl", "note": "Timeline covers step/approval histories."},
-    {"problem": "let users enable or disable a rule", "expect": "RESOLVED", "expect_id": "component/px-sw", "note": "The boolean entity control is the switch."},
-    {"problem": "show an empty state when there are no requests", "expect": "RESOLVED", "expect_id": "component/empty"},
-    {"problem": "let users upload attachment files on a request", "expect": "RESOLVED", "expect_id": "component/drop"},
-    {"problem": "assign a reviewer with a searchable picker", "expect": "RESOLVED", "expect_id": "component/cb", "note": "Compact picker → combobox."},
-    {"problem": "make the sidebar navigation links show which page is active", "expect": "RESOLVED", "expect_id": "component/nav-item"},
-    {"problem": "show a message when the server cannot be reached", "expect": "RESOLVED", "expect_id": "component/msg", "note": "Persistent error feedback → banner."},
-    {"problem": "show the status of a request", "expect": "COMPOSE", "expect_id": "recipe/status-with-text"},
-    {"problem": "show the result of saving the settings form", "expect": "COMPOSE", "expect_id": "recipe/feedback-redirect"},
-    {"problem": "announce that a row was removed without reloading the page", "expect": "COMPOSE", "expect_id": "recipe/feedback-inplace"},
-    {"problem": "let users filter the requests list by category and status", "expect": "COMPOSE", "expect_id": "recipe/filter-row"},
-    {"problem": "we need a custom layout for the hero area before the designs arrive", "expect": "FALLBACK", "expect_id": "fallback/plain-content", "note": "Layout need with no system answer → sanctioned plain-content fallback."},
-    {"problem": "add a progress bar for a long-running background job", "expect": "UNDEFINED", "note": "G-004: no canonical progress/job treatment. UNDEFINED is the honest answer."},
-    {"problem": "add a gantt chart for the delivery schedule", "expect": "UNDEFINED", "note": "Charts are token-only (dataviz palette), no chart components."},
-    {"problem": "make the corners rounded", "expect": "CONFLICT", "expect_id": "prohibit/rounded-corners", "note": "TDS003 zero-radius policy."},
-    {"problem": "remove the focus outline from links", "expect": "CONFLICT", "expect_id": "prohibit/remove-focus-ring", "note": "TDS004 focus visibility."},
-    {"problem": "use #ff6600 as the warning colour", "expect": "CONFLICT", "expect_id": "prohibit/raw-color", "note": "TDS002 colours must be tokens."},
-    {"problem": "delete a saved template with a confirm dialog", "expect": "CONFLICT", "expect_id": "prohibit/custom-confirm-for-entity-delete", "note": "Entity deletes use the armed pattern, never confirm()."}
-  ]
+ "version": "0.1",
+ "pack_version": "triage 0.12.1",
+ "cases": [
+  {
+   "problem": "a primary button",
+   "expect": "RESOLVED",
+   "expect_id": "component/btn"
+  },
+  {
+   "problem": "an icon-only button",
+   "expect": "RESOLVED",
+   "expect_id": "component/iconbtn"
+  },
+  {
+   "problem": "a switch",
+   "expect": "RESOLVED",
+   "expect_id": "component/px-sw"
+  },
+  {
+   "problem": "a menu item",
+   "expect": "RESOLVED",
+   "expect_id": "component/menu-item"
+  },
+  {
+   "problem": "a nav item",
+   "expect": "RESOLVED",
+   "expect_id": "component/nav-item"
+  },
+  {
+   "problem": "a chip",
+   "expect": "RESOLVED",
+   "expect_id": "component/chip"
+  },
+  {
+   "problem": "a data table",
+   "expect": "RESOLVED",
+   "expect_id": "component/tbl"
+  },
+  {
+   "problem": "a bulk action bar",
+   "expect": "RESOLVED",
+   "expect_id": "component/bulkbar"
+  },
+  {
+   "problem": "a save bar",
+   "expect": "RESOLVED",
+   "expect_id": "component/savebar"
+  },
+  {
+   "problem": "a flash message",
+   "expect": "RESOLVED",
+   "expect_id": "component/msg"
+  },
+  {
+   "problem": "a toast notification",
+   "expect": "RESOLVED",
+   "expect_id": "component/toast2"
+  },
+  {
+   "problem": "a status badge",
+   "expect": "RESOLVED",
+   "expect_id": "component/badge"
+  },
+  {
+   "problem": "an empty state",
+   "expect": "RESOLVED",
+   "expect_id": "component/empty"
+  },
+  {
+   "problem": "a dialog",
+   "expect": "RESOLVED",
+   "expect_id": "component/dlg"
+  },
+  {
+   "problem": "a tooltip",
+   "expect": "RESOLVED",
+   "expect_id": "component/tip"
+  },
+  {
+   "problem": "a loading spinner",
+   "expect": "RESOLVED",
+   "expect_id": "component/spinner"
+  },
+  {
+   "problem": "tabs",
+   "expect": "RESOLVED",
+   "expect_id": "component/tabs"
+  },
+  {
+   "problem": "breadcrumbs",
+   "expect": "RESOLVED",
+   "expect_id": "component/crumbs"
+  },
+  {
+   "problem": "a radio group",
+   "expect": "RESOLVED",
+   "expect_id": "component/radio"
+  },
+  {
+   "problem": "a range slider",
+   "expect": "RESOLVED",
+   "expect_id": "component/slider"
+  },
+  {
+   "problem": "an autocomplete",
+   "expect": "RESOLVED",
+   "expect_id": "component/cb"
+  },
+  {
+   "problem": "a date picker",
+   "expect": "RESOLVED",
+   "expect_id": "component/dp"
+  },
+  {
+   "problem": "an accordion",
+   "expect": "RESOLVED",
+   "expect_id": "component/acc"
+  },
+  {
+   "problem": "a user avatar",
+   "expect": "RESOLVED",
+   "expect_id": "component/avatar-sq"
+  },
+  {
+   "problem": "a file dropzone",
+   "expect": "RESOLVED",
+   "expect_id": "component/drop"
+  },
+  {
+   "problem": "a notifications panel",
+   "expect": "RESOLVED",
+   "expect_id": "component/notif"
+  },
+  {
+   "problem": "a command palette",
+   "expect": "RESOLVED",
+   "expect_id": "component/cmd"
+  },
+  {
+   "problem": "numbered pagination",
+   "expect": "RESOLVED",
+   "expect_id": "component/pager-num"
+  },
+  {
+   "problem": "a diff view",
+   "expect": "RESOLVED",
+   "expect_id": "component/diff"
+  },
+  {
+   "problem": "a bottom sheet",
+   "expect": "RESOLVED",
+   "expect_id": "component/sheet-end"
+  },
+  {
+   "problem": "a dashboard page",
+   "expect": "RESOLVED",
+   "expect_id": "pattern/dashboard"
+  },
+  {
+   "problem": "a settings page",
+   "expect": "RESOLVED",
+   "expect_id": "pattern/settings"
+  },
+  {
+   "problem": "the colour tokens",
+   "expect": "RESOLVED",
+   "expect_id": "token-set/colour"
+  },
+  {
+   "problem": "the spacing scale",
+   "expect": "RESOLVED",
+   "expect_id": "token-set/spacing"
+  },
+  {
+   "problem": "rounded corners on the cards",
+   "expect": "CONFLICT"
+  },
+  {
+   "problem": "a carousel",
+   "expect": "UNDEFINED"
+  }
+ ]
 }

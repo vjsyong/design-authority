@@ -1,48 +1,50 @@
 {
  "fallbacks": [
   {
-   "id": "fallback/plain-content",
-   "title": "Plain content on system surfaces",
+   "id": "fallback/no-js",
+   "kind": "fallback",
+   "title": "Behaviour without JavaScript",
+   "statement": "Every component degrades to its plain markup; the behaviour layer (components.js) is additive. Without JS, interactive widgets show their static forms (tabs stack, menus remain details/summary, file inputs remain native).",
    "scope": [
-    "layout",
-    "content",
-    "typography",
-    "status"
+    "javascript",
+    "no-js",
+    "degradation"
    ],
-   "statement": "Render plain content using the system type scale, spacing roles and layout tokens: system text styles on a system surface, no new visual language, no invented component skin.",
    "constraints": [
-    "tokens only",
-    "mark the improvisation (code comment or note) so it is not mistaken for canon"
-   ],
-   "kind": "fallback"
+    "never require JS for content",
+    "prefer native elements (dialog, details, input) so no-JS still works"
+   ]
   },
   {
-   "id": "fallback/native-control",
-   "title": "Native control, token-conformant",
+   "id": "fallback/scoped-embedding",
+   "kind": "fallback",
+   "title": "Scoped embedding into a host page",
+   "statement": "Drop Triage into an existing product without restyling it: wrap the region in .triage and load core/scoped.css (rules live in @scope(.triage) under @layer triage.components). Font-faces and keyframes stay global. Without core/reset.css the host owns root sizing and typography.",
    "scope": [
-    "forms",
-    "controls",
-    "input"
+    "integration",
+    "scoped",
+    "adoption",
+    "host page"
    ],
-   "statement": "If no system control fits, use the platform's native element with minimal token-conformant styling; keep native semantics and degrade without JS.",
    "constraints": [
-    "native semantics first",
-    "no invented component presented as canonical"
-   ],
-   "kind": "fallback"
+    "host content outside .triage is never restyled",
+    "pair with reset.css for parity, or own the root size"
+   ]
   },
   {
-   "id": "fallback/omit-and-report",
-   "title": "Omit and report",
+   "id": "fallback/motion-reduction",
+   "kind": "fallback",
+   "title": "Reduced-motion handling",
+   "statement": "The system honours prefers-reduced-motion: spinners slow to the slow duration and reveal transitions collapse. Motion tokens stay the single source for durations either way.",
    "scope": [
-    "*"
+    "motion",
+    "accessibility",
+    "reduced motion"
    ],
-   "statement": "When nothing sanctioned fits and any fallback would mislead users, omit the feature area rather than inventing canon, and report a gap.",
    "constraints": [
-    "never silently invent",
-    "a gap record is required when this fallback is used"
-   ],
-   "kind": "fallback"
+    "never opt out of the user preference",
+    "keep durations on tokens even in the reduced path"
+   ]
   }
  ]
 }

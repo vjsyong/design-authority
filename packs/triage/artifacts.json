@@ -1,20 +1,397 @@
 {
  "artifacts": [
   {
+   "id": "token-set/colour",
+   "kind": "token-set",
+   "title": "Colour — paper, ink, one accent, status trio",
+   "summary": "Ink-on-paper colour through tokens only: surfaces, text tiers, tints and line roles, one accent, a status trio (ok/warn/err) with tint and solid variants. Every token ships light and dark; compact density lives in token extensions. Raw colour values are lint errors (TDS002).",
+   "status": "stable",
+   "aliases": [
+    "colour",
+    "color",
+    "palette",
+    "tokens",
+    "ink",
+    "paper",
+    "dark mode",
+    "theme"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tokens": [
+     "bg",
+     "card",
+     "card2",
+     "line",
+     "line2",
+     "hover",
+     "active",
+     "fg",
+     "dim",
+     "acc",
+     "ok",
+     "warn",
+     "err",
+     "tint-acc",
+     "tint-ok",
+     "tint-warn",
+     "tint-err",
+     "panel",
+     "panel-dim",
+     "codebg",
+     "codefg",
+     "ink",
+     "focus",
+     "placeholder"
+    ],
+    "extensions": [
+     "com.triage.dark (per-token dark values)",
+     "com.triage.compact (density values)"
+    ],
+    "verify": [
+     "tokens/tokens.css"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (color group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/typography",
+   "kind": "token-set",
+   "title": "Typography — system stack, one base, a rem ladder",
+   "summary": "Typography is tokenised: family tokens, a single base-size (16) that the rem ladder divides by, and an fs-* design scale. Font stacks derive from family tokens; off-system fonts are lint errors (TDS008).",
+   "status": "stable",
+   "aliases": [
+    "typography",
+    "type",
+    "fonts",
+    "font",
+    "type scale"
+   ],
+   "body": {
+    "group": "Foundations",
+    "families": [
+     "family-text",
+     "family-mono"
+    ],
+    "scale": [],
+    "base": {
+     "value": 16,
+     "unit": "px"
+    },
+    "verify": [
+     "tokens/tokens.css"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (typography group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/spacing",
+   "kind": "token-set",
+   "title": "Spacing — preferred scale plus semantic roles",
+   "summary": "Spacing has a curated preferred scale (2/4/8/12/16/24/32/48) and semantic roles (page/card/field/control) emitted as --space-*; primitives consume roles by intent. Off-scale spacing is a lint warning (TDS005); fixed chrome widths live in misc.layout.",
+   "status": "stable",
+   "aliases": [
+    "spacing",
+    "space",
+    "gaps",
+    "padding",
+    "layout scale"
+   ],
+   "body": {
+    "group": "Foundations",
+    "preferred": [
+     "2",
+     "4",
+     "8",
+     "12",
+     "16",
+     "24",
+     "32",
+     "48"
+    ],
+    "roles": [
+     "page",
+     "card",
+     "field",
+     "control"
+    ],
+    "tokens": [
+     "s2",
+     "s4",
+     "s6",
+     "s8",
+     "s10",
+     "s12",
+     "s14",
+     "s16",
+     "s18",
+     "s24",
+     "s26",
+     "s30",
+     "s32",
+     "s34",
+     "s44",
+     "s48"
+    ],
+    "verify": [
+     "tokens/tokens.css"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (spacing group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/motion",
+   "kind": "token-set",
+   "title": "Motion — durations and easing, reduced-motion aware",
+   "summary": "Motion is tokenised (dur-*/ease-*); off-token durations are flagged (TDS006). The system ships prefers-reduced-motion handling (spinner slows, reveal transitions collapse) instead of ignoring the user setting.",
+   "status": "stable",
+   "aliases": [
+    "motion",
+    "animation",
+    "transition",
+    "duration",
+    "easing",
+    "reduced motion"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tokens": [
+     "duration",
+     "easing"
+    ],
+    "verify": [
+     "tokens/tokens.css",
+     "src/core/additions.css (prefers-reduced-motion)"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (motion group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/elevation",
+   "kind": "token-set",
+   "title": "Elevation — reserved for floating layers",
+   "summary": "Elevation is reserved for layers that float (menus, dialogs, sheets, toasts); in-flow surfaces use hairline lines and paper tints instead of shadows. Tokenised shadow values only.",
+   "status": "stable",
+   "aliases": [
+    "elevation",
+    "shadow",
+    "depth",
+    "floating"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tokens": [
+     "pop",
+     "insert",
+     "toast",
+     "drawer",
+     "pill",
+     "lift"
+    ],
+    "verify": [
+     "tokens/tokens.css"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (shadow group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/dataviz",
+   "kind": "token-set",
+   "title": "Data visualisation — Okabe–Ito derived series",
+   "summary": "A categorical series palette derived from Okabe–Ito and contrast-adjusted, with pairwise colour-vision-deficiency separation checked. Charts consume series tokens like everything else.",
+   "status": "stable",
+   "aliases": [
+    "dataviz",
+    "data visualisation",
+    "charts",
+    "series",
+    "palette for charts"
+   ],
+   "body": {
+    "group": "Foundations",
+    "series": [
+     "series-1",
+     "series-2",
+     "series-3",
+     "series-4",
+     "series-5",
+     "series-6",
+     "series-7",
+     "series-8"
+    ],
+    "verify": [
+     "tokens/tokens.css"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (dataviz group)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "token-set/breakpoints",
+   "kind": "token-set",
+   "title": "Breakpoints — phone through wide, incl. phone-mode chrome",
+   "summary": "Media queries in source use {bp-*} placeholders resolved from the misc.breakpoint tokens (phone/desk/wide; phone-up variants). Phone mode also swaps chrome (drawer nav, sticky bars).",
+   "status": "stable",
+   "aliases": [
+    "breakpoints",
+    "responsive",
+    "media queries",
+    "phone",
+    "wide"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tokens": [
+     "sm",
+     "phone",
+     "phone-up",
+     "md",
+     "lg",
+     "xl"
+    ],
+    "verify": [
+     "tokens/tokens.json (misc.breakpoint)"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "tokens/tokens.json (misc.breakpoint)"
+   },
+   "compiled_from": [
+    "triage/tokens"
+   ]
+  },
+  {
+   "id": "guideline/interaction-standard",
+   "kind": "guideline",
+   "title": "Interaction standard (binding)",
+   "summary": "The interaction standard is binding for every screen: armed two-step deletes, confirm() only for one-way actions, show-the-reverse for reversible mutations, the three-channel feedback standard (banner/toast/empty state), save bars for editors, copy rules, and an exceptions register for deliberate deviations.",
+   "status": "stable",
+   "aliases": [
+    "interaction",
+    "behaviour",
+    "behavior",
+    "ux standard",
+    "interaction standard"
+   ],
+   "body": {
+    "group": "Doctrine",
+    "source_doc": "INTERACTION.md (repo root; enforced by lint/triage_lint.py)",
+    "channels": [
+     "banner (persistent)",
+     "toast (transient)",
+     "empty state (structural)"
+    ],
+    "verify": [
+     "INTERACTION.md"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "INTERACTION.md"
+   },
+   "compiled_from": [
+    "triage/interaction"
+   ]
+  },
+  {
+   "id": "guideline/consumption",
+   "kind": "guideline",
+   "title": "Consumption paths — global and scoped",
+   "summary": "Two sanctioned ways to adopt: the global path (four lines: tokens.css, base.css, optional patterns.css, components.js) styles the whole page; the scoped path wraps a region in .triage and loads scoped.css so host content is never restyled. Pair the scoped bundle with reset.css for parity; without it the host owns root sizing.",
+   "status": "stable",
+   "aliases": [
+    "consumption",
+    "getting started",
+    "adopt",
+    "integration",
+    "scoped",
+    "global"
+   ],
+   "body": {
+    "group": "Doctrine",
+    "global": [
+     "tokens/tokens.css",
+     "core/base.css",
+     "core/patterns.css (optional)",
+     "core/components.js"
+    ],
+    "scoped": [
+     ".triage wrapper",
+     "core/scoped.css",
+     "core/reset.css (recommended)"
+    ],
+    "verify": [
+     "README.md"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "README.md + CHANGELOG.md 0.12.0"
+   },
+   "compiled_from": [
+    "triage/consumption"
+   ]
+  },
+  {
    "id": "component/btn",
    "kind": "component",
    "title": "Button",
-   "summary": "Action trigger. Use a real button or link; variants (primary/ghost/danger/small), busy state via guardApply. Never a clickable div.",
+   "summary": "Button — from base.css. Documented states: default, hover, active, focus-visible, disabled, busy (guardApply). A11y: Use a real <button> or <a>; never a clickable div.",
    "status": "stable",
    "aliases": [
     "button",
+    "btn",
+    "button",
+    "primary button",
+    "secondary button",
     "cta",
-    "action button",
     "submit button",
-    "primary action"
+    "danger button",
+    "icon button",
+    "small button",
+    "action",
+    "action button"
    ],
    "body": {
     "class": "btn",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "hover",
@@ -35,36 +412,32 @@
      "Icon-only buttons need aria-label.",
      "guardApply freezes and relabels the submit button until navigation."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/buttons"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "btn"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (btn, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/iconbtn",
    "kind": "component",
    "title": "Icon button",
-   "summary": "Square icon-only control for compact toolbars and rows; must carry an aria-label.",
+   "summary": "Icon button — from base.css. Documented states: default, hover, active, focus-visible. A11y: aria-label is mandatory (the glyph is aria-hidden).",
    "status": "stable",
    "aliases": [
     "icon button",
+    "iconbtn",
     "icon-only button",
-    "kebab menu button",
-    "ellipsis button",
-    "overflow button"
+    "icon button"
    ],
    "body": {
     "class": "iconbtn",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "hover",
@@ -81,36 +454,33 @@
      "aria-label is mandatory (the glyph is aria-hidden).",
      "Minimum 44px on coarse pointers."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/buttons"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "iconbtn"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (iconbtn, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/px-sw",
    "kind": "component",
    "title": "Switch",
-   "summary": "The one boolean control for enabling/disabling an entity; auto-submits and announces.",
+   "summary": "Switch — from base.css. Documented states: checked, unchecked, disabled, focus-visible. A11y: The visible label wraps a real checkbox; hidden twin carries the off value.",
    "status": "stable",
    "aliases": [
-    "toggle",
     "switch",
-    "enable disable control",
-    "boolean control",
-    "on off control"
+    "px-sw",
+    "switch",
+    "toggle",
+    "on off switch"
    ],
    "body": {
     "class": "px-sw",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "checked",
      "unchecked",
@@ -129,35 +499,33 @@
      "Coarse pointers get a 44px hit area.",
      "Disabled state dims the track and blocks interaction."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "px-sw"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (px-sw, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/menu-item",
    "kind": "component",
    "title": "Menu item",
-   "summary": "Item inside a dropdown menu; sentence case; destructive items carry 'menu-item danger arm-del'.",
+   "summary": "Menu item — from base.css. Documented states: default, hover, danger, armed, focus-visible. A11y: Destructive items use .arm-del with data-arm-label naming the object.",
    "status": "stable",
    "aliases": [
-    "dropdown item",
-    "menu entry",
-    "menu option",
-    "context menu item"
+    "menu item",
+    "menu-item",
+    "menu item",
+    "overflow menu",
+    "row action"
    ],
    "body": {
     "class": "menu-item",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "hover",
@@ -176,35 +544,33 @@
      "Destructive items use .arm-del with data-arm-label naming the object.",
      "Escape and outside click disarm; details close disarms."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/navigation"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "menu-item"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (menu-item, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/nav-item",
    "kind": "component",
    "title": "Nav item",
-   "summary": "Sidebar/navigation link with icon, active rail state and aria-current.",
+   "summary": "Nav item — from base.css. Documented states: default, hover, active(selected), focus-visible. A11y: aria-current=\"page\" on the active item.",
    "status": "stable",
    "aliases": [
+    "nav item",
+    "nav-item",
+    "nav item",
     "navigation link",
-    "sidebar link",
-    "nav link",
-    "menu link"
+    "sidebar link"
    ],
    "body": {
     "class": "nav-item",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "hover",
@@ -221,35 +587,33 @@
      "aria-current=\"page\" on the active item.",
      "Active rail is border-inline-start (mirrors in RTL)."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/navigation"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "nav-item"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (nav-item, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/chip",
    "kind": "component",
    "title": "Chip",
-   "summary": "Compact filter/selection token used in filter rows; distinct from badge (not a status).",
+   "summary": "Chip — from base.css. Documented states: default, hover, active(selected), focus-visible. A11y: Counts live in .n; the whole chip is the target (not just the label).",
    "status": "stable",
    "aliases": [
+    "chip",
+    "chip",
+    "chip",
     "filter chip",
-    "filter pill",
-    "facet",
-    "filter tag"
+    "tag"
    ],
    "body": {
     "class": "chip",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "hover",
@@ -265,35 +629,32 @@
     "a11y": [
      "Counts live in .n; the whole chip is the target (not just the label)."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "chip"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (chip, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/index-row",
    "kind": "component",
    "title": "Index row",
-   "summary": "Standard row for list/index pages: primary text, meta, optional actions.",
+   "summary": "Index row — from patterns.css. Documented states: default, hover, active, focus-visible. A11y: 54px minimum height; one row = one destination.",
    "status": "stable",
    "aliases": [
-    "list row",
-    "index item",
-    "resource row",
-    "result row"
+    "index row",
+    "index-row",
+    "index row",
+    "list row"
    ],
    "body": {
     "class": "index-row",
+    "group": "Components",
+    "source_file": "patterns.css",
     "states": [
      "default",
      "hover",
@@ -309,36 +670,34 @@
     "a11y": [
      "54px minimum height; one row = one destination."
     ],
-    "source_file": "patterns.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "index-row"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (index-row, patterns.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/tbl",
    "kind": "component",
    "title": "Table",
-   "summary": "Data table with sticky headers; collapses to card rows (.mcards) on phones.",
+   "summary": "Table — from base.css. Documented states: default, row hover, selected, reflowed (mcards). A11y: th scope where the header is meaningful; row checkbox needs aria-label.",
    "status": "stable",
    "aliases": [
     "table",
-    "data grid",
+    "tbl",
+    "table",
     "data table",
-    "list table",
+    "rows",
     "grid"
    ],
    "body": {
     "class": "tbl",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "row hover",
@@ -356,35 +715,33 @@
      "th scope where the header is meaningful; row checkbox needs aria-label.",
      "Hover-revealed row actions must also be reachable by keyboard focus."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "tbl"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (tbl, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/bulkbar",
    "kind": "component",
    "title": "Bulk bar",
-   "summary": "Selection-only toolbar for batch operations; hidden until rows are selected.",
+   "summary": "Bulk bar — from base.css. Documented states: hidden, shown with selection. A11y: role=region with aria-label; count is text, not colour.",
    "status": "stable",
    "aliases": [
+    "bulk bar",
+    "bulkbar",
+    "bulk bar",
     "bulk actions",
-    "selection toolbar",
-    "action bar",
-    "batch toolbar"
+    "selection bar"
    ],
    "body": {
     "class": "bulkbar",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "hidden",
      "shown with selection"
@@ -396,35 +753,33 @@
     "a11y": [
      "role=region with aria-label; count is text, not colour."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "bulkbar"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (bulkbar, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/savebar",
    "kind": "component",
    "title": "Save bar",
-   "summary": "Sticky footer for editors: primary Save plus Cancel; validation renders above, focused.",
+   "summary": "Save bar — from base.css. Documented states: sticky, keyboard-lifted (JS transform). A11y: Lifts above the mobile keyboard via keyboard-fit.js (transform), not a class toggle.",
    "status": "stable",
    "aliases": [
+    "save bar",
+    "savebar",
+    "save bar",
     "sticky save",
-    "form footer",
-    "editor actions",
-    "save bar"
+    "unsaved changes bar"
    ],
    "body": {
     "class": "savebar",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "sticky",
      "keyboard-lifted (JS transform)"
@@ -436,40 +791,33 @@
      "Lifts above the mobile keyboard via keyboard-fit.js (transform), not a class toggle.",
      "One primary action per card."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "savebar"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (savebar, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/msg",
    "kind": "component",
    "title": "Flash message",
-   "summary": "Banner for server/redirect feedback; exactly ok/warn/err kinds.",
+   "summary": "Flash message — from base.css. Documented states: ok, warn, err. A11y: role=status (or role=alert for errors) on the rendered banner.",
    "status": "stable",
    "aliases": [
-    "banner",
-    "alert",
     "flash message",
-    "notice",
-    "inline alert",
-    "callout",
-    "error message",
-    "success message",
-    "server error"
+    "msg",
+    "flash message",
+    "inline banner",
+    "alert banner"
    ],
    "body": {
     "class": "msg",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "ok",
      "warn",
@@ -485,35 +833,33 @@
      "role=status (or role=alert for errors) on the rendered banner.",
      "Colour is always paired with text."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "msg"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (msg, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/toast2",
    "kind": "component",
    "title": "Toast",
-   "summary": "Transient in-place feedback (one at a time) from the shared toast host.",
+   "summary": "Toast — from base.css. Documented states: ok, warn, err, auto-dismiss. A11y: #toasts is aria-live=polite; one toast at a time.",
    "status": "stable",
    "aliases": [
     "toast",
-    "snackbar",
-    "transient notification",
-    "popup message"
+    "toast2",
+    "toast",
+    "toast notification",
+    "transient message"
    ],
    "body": {
     "class": "toast2",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "ok",
      "warn",
@@ -529,38 +875,33 @@
     "a11y": [
      "#toasts is aria-live=polite; one toast at a time."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "toast2"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (toast2, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/badge",
    "kind": "component",
    "title": "Badge",
-   "summary": "Compact status label (uppercase micro-badge); pair colour with text, never colour alone.",
+   "summary": "Badge — from base.css. Documented states: neutral, ok, warn, err, acc, solid. A11y: Uppercase micro-label; never the only signal — pair with text that says the same thing.",
    "status": "stable",
    "aliases": [
-    "status chip",
-    "lozenge",
-    "status label",
-    "state marker",
-    "pill",
+    "badge",
+    "badge",
+    "badge",
     "status badge",
-    "status indicator"
+    "label"
    ],
    "body": {
     "class": "badge",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "neutral",
      "ok",
@@ -578,38 +919,35 @@
      ".badge.solid"
     ],
     "a11y": [
-     "Uppercase micro-label; never the only signal \u2014 pair with text that says the same thing."
+     "Uppercase micro-label; never the only signal — pair with text that says the same thing."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "badge"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (badge, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/empty",
    "kind": "component",
    "title": "Empty state",
-   "summary": "Empty state anatomy: title, one-line reason, at most one primary CTA.",
+   "summary": "Empty state — from base.css. Documented states: default. A11y: h4 + one-line reason + at most one action; never a bare blank area.",
    "status": "stable",
    "aliases": [
     "empty state",
-    "nothing to show",
-    "zero state",
-    "blank state",
-    "no results"
+    "empty",
+    "empty state",
+    "no results",
+    "zero state"
    ],
    "body": {
     "class": "empty",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default"
     ],
@@ -620,36 +958,33 @@
     "a11y": [
      "h4 + one-line reason + at most one action; never a bare blank area."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "empty"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (empty, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/dlg",
    "kind": "component",
    "title": "Dialog (native)",
-   "summary": "Native dialog element for modals/confirms; static-backdrop variant available; dialog is the confirm primitive.",
+   "summary": "Dialog (native) — from base.css. Documented states: open (showModal), backdrop, wide variant. A11y: Native <dialog> + showModal(): top layer, inert background, Escape, focus restore — do not hand-roll a focus trap.",
    "status": "stable",
    "aliases": [
-    "modal",
+    "dialog (native)",
+    "dlg",
     "dialog",
-    "popup window",
-    "modal window",
-    "confirm window"
+    "modal",
+    "native dialog"
    ],
    "body": {
     "class": "dlg",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "open (showModal)",
      "backdrop",
@@ -664,39 +999,37 @@
      ".dlg-f"
     ],
     "a11y": [
-     "Native <dialog> + showModal(): top layer, inert background, Escape, focus restore \u2014 do not hand-roll a focus trap.",
+     "Native <dialog> + showModal(): top layer, inert background, Escape, focus restore — do not hand-roll a focus trap.",
      "aria-labelledby points at the heading; autofocus the first meaningful control, not the close button.",
      "Backdrop click closes unless the dialog is destructive.",
      "Backdrop close is suppressed for [data-dlg-static] / [data-danger] dialogs."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/overlays"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "dlg"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (dlg, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/tip",
    "kind": "component",
    "title": "Tooltip",
-   "summary": "Tooltip for supplementary hints; hover/focus triggered.",
+   "summary": "Tooltip — from base.css. Documented states: hover, focus-visible. A11y: Decorative tips only; essential text must be in the DOM. Pair with aria-describedby for screen readers.",
    "status": "stable",
    "aliases": [
     "tooltip",
-    "hint popup",
-    "help bubble"
+    "tip",
+    "tooltip",
+    "hint bubble"
    ],
    "body": {
     "class": "tip",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "hover",
      "focus-visible"
@@ -710,35 +1043,33 @@
     "a11y": [
      "Decorative tips only; essential text must be in the DOM. Pair with aria-describedby for screen readers."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/overlays"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "tip"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (tip, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/spinner",
    "kind": "component",
    "title": "Spinner",
-   "summary": "Loading indicator for waiting states; pair with text describing what is loading.",
+   "summary": "Spinner — from base.css. Documented states: spinning, reduced-motion (slowed). A11y: Indeterminate progress: keep the action label honest ('Queued…'), and slow to 1s under prefers-reduced-motion.",
    "status": "stable",
    "aliases": [
-    "loading spinner",
-    "loader",
-    "activity indicator",
-    "loading indicator"
+    "spinner",
+    "spinner",
+    "spinner",
+    "loading indicator",
+    "busy"
    ],
    "body": {
     "class": "spinner",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "spinning",
      "reduced-motion (slowed)"
@@ -748,37 +1079,35 @@
      "@keyframes tri-spin"
     ],
     "a11y": [
-     "Indeterminate progress: keep the action label honest ('Queued\u2026'), and slow to 1s under prefers-reduced-motion."
+     "Indeterminate progress: keep the action label honest ('Queued…'), and slow to 1s under prefers-reduced-motion."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "spinner"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (spinner, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/field-err",
    "kind": "component",
    "title": "Field error",
-   "summary": "Inline field validation message; form-level summary focuses at top.",
+   "summary": "Field error — from base.css. Documented states: message, aria-invalid input. A11y: Focusable summary at the top + inline message per field, linked with aria-describedby; aria-invalid=true on the control (W3C ARIA21).",
    "status": "stable",
    "aliases": [
     "field error",
-    "inline validation",
-    "form error",
-    "error text under field"
+    "field-err",
+    "field error",
+    "validation message",
+    "inline error"
    ],
    "body": {
     "class": "field-err",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "message",
      "aria-invalid input"
@@ -790,35 +1119,33 @@
     "a11y": [
      "Focusable summary at the top + inline message per field, linked with aria-describedby; aria-invalid=true on the control (W3C ARIA21)."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "field-err"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (field-err, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/tabs",
    "kind": "component",
    "title": "Tabs",
-   "summary": "In-place view switcher; roving tabindex + arrow keys via components.js.",
+   "summary": "Tabs — from base.css. Documented states: selected, hover, focus-visible, overflow-scroll. A11y: tablist/tab/tabpanel roles wired by components.js with roving tabindex and Arrow/Home/End.",
    "status": "stable",
    "aliases": [
+    "tabs",
+    "tabs",
+    "tabs",
     "tab bar",
-    "tabbed views",
-    "section switcher",
-    "tabs control"
+    "tabbed"
    ],
    "body": {
     "class": "tabs",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "selected",
      "hover",
@@ -835,35 +1162,32 @@
      "tablist/tab/tabpanel roles wired by components.js with roving tabindex and Arrow/Home/End.",
      "Panels are hidden, not unmounted; one tab is always selected."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/navigation"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "tabs"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (tabs, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/crumbs",
    "kind": "component",
    "title": "Breadcrumbs",
-   "summary": "Breadcrumb trail for hierarchical navigation.",
+   "summary": "Breadcrumbs — from base.css. Documented states: default, current. A11y: nav[aria-label=Breadcrumb] wraps an ordered list; plain text + separators.",
    "status": "stable",
    "aliases": [
-    "breadcrumb",
     "breadcrumbs",
-    "trail",
-    "path indicator"
+    "crumbs",
+    "breadcrumbs",
+    "breadcrumb"
    ],
    "body": {
     "class": "crumbs",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "current"
@@ -876,34 +1200,33 @@
      "nav[aria-label=Breadcrumb] wraps an ordered list; plain text + separators.",
      "aria-current on the leaf; the last item is not a link."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/navigation"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "crumbs"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (crumbs, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/radio",
    "kind": "component",
    "title": "Radio",
-   "summary": "Square single-choice control.",
+   "summary": "Radio — from base.css. Documented states: checked, unchecked, focus-visible, disabled. A11y: Native input inside the label; group with fieldset/radiogroup and a shared name.",
    "status": "stable",
    "aliases": [
-    "radio button",
-    "single choice control",
-    "radio group"
+    "radio",
+    "radio",
+    "radio",
+    "radio group",
+    "radio button"
    ],
    "body": {
     "class": "radio",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "checked",
      "unchecked",
@@ -918,34 +1241,33 @@
     "a11y": [
      "Native input inside the label; group with fieldset/radiogroup and a shared name."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "radio"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (radio, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/slider",
    "kind": "component",
    "title": "Slider",
-   "summary": "Range control with numeric readout.",
+   "summary": "Slider — from base.css. Documented states: default, focus-visible, disabled. A11y: aria-label on the range; the readout mirrors the value; keyboard steps come from the native input.",
    "status": "stable",
    "aliases": [
-    "range slider",
-    "seek control",
-    "range input"
+    "slider",
+    "slider",
+    "slider",
+    "range input",
+    "range slider"
    ],
    "body": {
     "class": "slider",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "focus-visible",
@@ -958,37 +1280,34 @@
     "a11y": [
      "aria-label on the range; the readout mirrors the value; keyboard steps come from the native input."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "slider"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (slider, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/cb",
    "kind": "component",
    "title": "Combobox",
-   "summary": "Combobox: type-to-filter select, optionally multi-select with chips and a mirror input.",
+   "summary": "Combobox — from base.css. Documented states: closed, open, filtered, selected, multi-chips. A11y: aria-activedescendant listbox: focus stays in the input; options are filtered in place.",
    "status": "stable",
    "aliases": [
     "combobox",
+    "cb",
+    "combobox",
     "autocomplete",
-    "multi-select",
-    "tag input",
-    "typeahead",
-    "picker with search"
+    "filterable select",
+    "typeahead"
    ],
    "body": {
     "class": "cb",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "closed",
      "open",
@@ -1006,35 +1325,33 @@
      "aria-activedescendant listbox: focus stays in the input; options are filtered in place.",
      "Multi-select mirrors values into a hidden input and announces chips via aria-live."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "cb"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (cb, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/dp",
    "kind": "component",
    "title": "Date picker",
-   "summary": "Date picker: text input plus calendar popover; min/max supported.",
+   "summary": "Date picker — from base.css. Documented states: open, today, selected, out-of-month, disabled-day, roving-focus (one tabbable cell). A11y: ISO value on the input; month/weekday names and full-date day labels via Intl (locale-aware).",
    "status": "stable",
    "aliases": [
     "date picker",
+    "dp",
+    "date picker",
     "datepicker",
-    "calendar input",
-    "date field"
+    "calendar input"
    ],
    "body": {
     "class": "dp",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "open",
      "today",
@@ -1051,41 +1368,39 @@
     ],
     "a11y": [
      "ISO value on the input; month/weekday names and full-date day labels via Intl (locale-aware).",
-     "Roving tabindex: exactly one day cell is tabbable \u2014 the selected day in view, else today, else the first enabled day.",
-     "Arrow keys move \u00b11/\u00b17 days, Home/End to week start/end, PageUp/PageDown change month; disabled days are skipped.",
+     "Roving tabindex: exactly one day cell is tabbable — the selected day in view, else today, else the first enabled day.",
+     "Arrow keys move ±1/±7 days, Home/End to week start/end, PageUp/PageDown change month; disabled days are skipped.",
      "Escape from anywhere inside the popup closes it and returns focus to the input; selecting a day does the same.",
      "min/max disable days; today carries aria-current=date.",
      "Clicking the input reopens the picker after a selection (the input is already focused, so no focus event fires)."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "dp"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (dp, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/acc",
    "kind": "component",
    "title": "Accordion",
-   "summary": "Accordion/disclosure for collapsible sections.",
+   "summary": "Accordion — from base.css. Documented states: closed, open, focus-visible. A11y: Native details/summary — keyboard and find-in-page work for free; group with the details name attribute for exclusivity.",
    "status": "stable",
    "aliases": [
     "accordion",
+    "acc",
+    "accordion",
     "disclosure",
-    "collapsible section",
-    "expandable section"
+    "foldable section"
    ],
    "body": {
     "class": "acc",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "closed",
      "open",
@@ -1097,37 +1412,34 @@
      "details.acc[open]>.acc-h::after"
     ],
     "a11y": [
-     "Native details/summary \u2014 keyboard and find-in-page work for free; group with the details name attribute for exclusivity."
+     "Native details/summary — keyboard and find-in-page work for free; group with the details name attribute for exclusivity."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "acc"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (acc, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/avatar-sq",
    "kind": "component",
    "title": "Avatar",
-   "summary": "Square avatar chip for people. (avatar-sq)",
+   "summary": "Avatar — from base.css. Documented states: initials, image, ink, group. A11y: Decorative avatars are aria-hidden; meaningful ones need alt/label. Groups carry an aria-label with the count.",
    "status": "stable",
    "aliases": [
     "avatar",
-    "profile image",
-    "user picture",
-    "user chip"
+    "avatar-sq",
+    "avatar",
+    "user avatar"
    ],
    "body": {
     "class": "avatar-sq",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "initials",
      "image",
@@ -1143,35 +1455,33 @@
     "a11y": [
      "Decorative avatars are aria-hidden; meaningful ones need alt/label. Groups carry an aria-label with the count."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "avatar-sq"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (avatar-sq, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/img",
    "kind": "component",
    "title": "Image",
-   "summary": "Image presentation with system borders; always alt text.",
+   "summary": "Image — from base.css. Documented states: 16:9, 4:3, 1:1, contain, caption. A11y: alt is mandatory (TDS014); the frame reserves space so loading never shifts layout.",
    "status": "stable",
    "aliases": [
     "image",
-    "media",
-    "thumbnail",
-    "attachment preview"
+    "img",
+    "image",
+    "figure",
+    "responsive image"
    ],
    "body": {
     "class": "img",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "16:9",
      "4:3",
@@ -1188,36 +1498,33 @@
     "a11y": [
      "alt is mandatory (TDS014); the frame reserves space so loading never shifts layout."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "img"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (img, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/drop",
    "kind": "component",
    "title": "Upload / dropzone",
-   "summary": "Dropzone + file input for uploads; dispatches triage:files.",
+   "summary": "Upload / dropzone — from base.css. Documented states: idle, dragover, focus-visible, file-list. A11y: role=button + Enter/Space; announces files with name and size; removal is a labelled button.",
    "status": "stable",
    "aliases": [
+    "upload / dropzone",
+    "drop",
     "dropzone",
-    "upload",
-    "file drop",
-    "attach files",
+    "file upload",
     "upload area"
    ],
    "body": {
     "class": "drop",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "idle",
      "dragover",
@@ -1233,35 +1540,33 @@
     "a11y": [
      "role=button + Enter/Space; announces files with name and size; removal is a labelled button."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/forms"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "drop"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (drop, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/notif",
    "kind": "component",
    "title": "Notifications",
-   "summary": "Notifications panel with unread dot and mark-all-read.",
+   "summary": "Notifications — from base.css. Documented states: unread, read, empty, mark-all. A11y: The summary's accessible name carries the unread count; unread uses background + a dot, never colour alone.",
    "status": "stable",
    "aliases": [
+    "notifications",
+    "notif",
     "notifications panel",
-    "notification centre",
-    "inbox dropdown",
-    "alerts menu"
+    "notification list",
+    "bell panel"
    ],
    "body": {
     "class": "notif",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "unread",
      "read",
@@ -1277,36 +1582,33 @@
     "a11y": [
      "The summary's accessible name carries the unread count; unread uses background + a dot, never colour alone."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "notif"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (notif, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/cmd",
    "kind": "component",
    "title": "Command palette",
-   "summary": "Command palette dialog (cmd-k style) with input, items and triggers.",
+   "summary": "Command palette — from base.css. Documented states: closed, open, filtered, active-item, empty. A11y: Native dialog; Arrow/Enter/Escape inside, cmd/ctrl+K opens; items are buttons with listbox roles.",
    "status": "stable",
    "aliases": [
     "command palette",
+    "cmd",
+    "command palette",
     "command menu",
-    "quick switcher",
-    "command bar",
-    "cmdk"
+    "cmd-k"
    ],
    "body": {
     "class": "cmd",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "closed",
      "open",
@@ -1324,36 +1626,34 @@
      "Native dialog; Arrow/Enter/Escape inside, cmd/ctrl+K opens; items are buttons with listbox roles.",
      "A click executes the clicked item (both data-href and data-cmd-action paths); Enter executes the highlighted item."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/overlays"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "cmd"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (cmd, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/page-state",
    "kind": "component",
    "title": "Full-page state",
-   "summary": "Full-page state (e.g. fatal/empty app shell) with message and action.",
+   "summary": "Full-page state — from base.css. Documented states: 404, 500, 403, offline, maintenance. A11y: One h2 per page state; the code is secondary; actions are the only focusable elements.",
    "status": "stable",
    "aliases": [
-    "full page state",
+    "full-page state",
+    "page-state",
+    "full-page state",
     "error page",
-    "fatal state",
-    "whole page message",
-    "404 state"
+    "empty page",
+    "maintenance page"
    ],
    "body": {
     "class": "page-state",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "404",
      "500",
@@ -1371,35 +1671,33 @@
     "a11y": [
      "One h2 per page state; the code is secondary; actions are the only focusable elements."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/feedback"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "page-state"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (page-state, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/pager-num",
    "kind": "component",
    "title": "Numbered pagination",
-   "summary": "Numbered pagination with page-size control; phone-trimmed.",
+   "summary": "Numbered pagination — from base.css. Documented states: first, middle, current, gap, disabled. A11y: aria-current marks the active page; range labels on prev/next; page-size select is labelled.",
    "status": "stable",
    "aliases": [
+    "numbered pagination",
+    "pager-num",
+    "numbered pagination",
     "pagination",
-    "pager",
-    "page numbers",
-    "paging control"
+    "pager"
    ],
    "body": {
     "class": "pager-num",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "first",
      "middle",
@@ -1416,39 +1714,32 @@
     "a11y": [
      "aria-current marks the active page; range labels on prev/next; page-size select is labelled."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "pager-num"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (pager-num, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/tl",
    "kind": "component",
    "title": "Timeline",
-   "summary": "Timeline for histories (e.g. approval steps): ordered entries with markers, time, actor.",
+   "summary": "Timeline — from base.css. Documented states: default, status-dots. A11y: Ordered list; dots are decorative (the text carries the meaning).",
    "status": "stable",
    "aliases": [
     "timeline",
-    "activity trail",
-    "history list",
-    "event feed",
-    "step history",
-    "approval history",
-    "approval steps",
-    "approval trail"
+    "tl",
+    "timeline",
+    "activity timeline"
    ],
    "body": {
     "class": "tl",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "default",
      "status-dots"
@@ -1462,34 +1753,35 @@
     "a11y": [
      "Ordered list; dots are decorative (the text carries the meaning)."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "tl"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (tl, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/diff",
    "kind": "component",
    "title": "Diff",
-   "summary": "Diff presentation for before/after comparison.",
+   "summary": "Diff — from base.css. Documented states: context, added, removed, empty. A11y: role=table with labelled columns; +/- expressed as background tints plus repeated line numbers.",
    "status": "stable",
    "aliases": [
+    "diff",
+    "diff",
+    "diff",
     "diff view",
+    "version comparison",
     "change comparison",
-    "before after view"
+    "before after diff"
    ],
    "body": {
     "class": "diff",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "context",
      "added",
@@ -1506,35 +1798,34 @@
     "a11y": [
      "role=table with labelled columns; +/- expressed as background tints plus repeated line numbers."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/data"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "diff"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (diff, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "component/sheet-end",
    "kind": "component",
    "title": "Sheet dialog",
-   "summary": "End sheet: slide-over dialog variant for secondary panels.",
+   "summary": "Sheet dialog — from base.css. Documented states: side, bottom. A11y: Same native-dialog contract as .dlg (top layer, Escape, focus restore); data-dlg-static still blocks backdrop close.",
    "status": "stable",
    "aliases": [
+    "sheet dialog",
+    "sheet-end",
+    "sheet",
+    "bottom sheet",
     "side sheet",
-    "end sheet",
-    "slide-over panel",
-    "side panel"
+    "drawer"
    ],
    "body": {
     "class": "sheet-end",
+    "group": "Components",
+    "source_file": "base.css",
     "states": [
      "side",
      "bottom"
@@ -1546,888 +1837,182 @@
     "a11y": [
      "Same native-dialog contract as .dlg (top layer, Escape, focus restore); data-dlg-static still blocks backdrop close."
     ],
-    "source_file": "base.css"
+    "status": "stable"
    },
-   "relations": [
-    {
-     "rel": "documented-at",
-     "url": "/components/overlays"
-    }
-   ],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "spec/states.json",
-    "pointer": "sheet-end"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/states.json (sheet-end, base.css)"
+   },
+   "compiled_from": [
+    "triage/states"
+   ]
   },
   {
    "id": "pattern/dashboard",
    "kind": "pattern",
-   "title": "Dashboard / overview",
-   "summary": "Landing overview: hero metric strip, status/automation chips, recent-activity feed, follow-up cards.",
-   "status": "documented",
+   "title": "Dashboard",
+   "summary": "Status first, attention second: system strip, hero metrics, stacked feed, filings and activity.",
+   "status": "stable",
    "aliases": [
-    "overview",
-    "home page",
-    "metrics page",
-    "stats page",
-    "landing dashboard"
+    "dashboard",
+    "dashboard page",
+    "home dashboard",
+    "metrics page"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/dashboard",
-     "css": "src/core/patterns.css",
-     "example": "examples/dashboard.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (dashboard)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
-   "id": "pattern/detail",
+   "id": "pattern/viewer",
    "kind": "pattern",
-   "title": "Detail / record page",
-   "summary": "Single-record page: page head with actions, fields, related lists, timeline.",
-   "status": "documented",
+   "title": "Detail page",
+   "summary": "Two-column detail: plain/HTML body and queue controls left, sticky metadata and audit right.",
+   "status": "stable",
    "aliases": [
+    "detail page",
     "detail view",
     "record page",
-    "entity page",
-    "item page",
-    "profile page"
+    "item page"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/detail",
-     "css": "src/core/patterns.css",
-     "example": "examples/viewer.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (viewer)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
    "id": "pattern/settings",
    "kind": "pattern",
    "title": "Settings",
-   "summary": "Task-sectioned settings cards with scoped partial saves.",
-   "status": "documented",
+   "summary": "Task sections with a sticky side nav, scoped setting-row forms and per-card save bars.",
+   "status": "stable",
    "aliases": [
-    "preferences",
-    "config pages",
+    "settings",
     "settings page",
-    "options page"
+    "preferences",
+    "settings screen"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/settings",
-     "css": "src/core/patterns.css",
-     "example": "examples/form.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (settings)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
    "id": "pattern/flows",
    "kind": "pattern",
-   "title": "Flow / automation builder",
-   "summary": "Builder canvas for trigger \u2192 filter \u2192 action chains (node spine, insert-on-connector).",
-   "status": "documented",
+   "title": "Flow canvas",
+   "summary": "The rule/flow builder: nodes, connectors with insert points, smart condition rows and live summary.",
+   "status": "stable",
    "aliases": [
-    "automation builder",
-    "pipeline editor",
-    "flow editor",
-    "rule builder"
+    "flow canvas",
+    "flow builder",
+    "rule builder",
+    "automation canvas"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/flows",
-     "css": "src/core/patterns.css",
-     "example": "examples/components.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (flows)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
-   "id": "pattern/dry-run",
+   "id": "pattern/simulator",
    "kind": "pattern",
-   "title": "Dry-run / simulator report",
-   "summary": "Two-column draft|report layout for previewing what an automated pipeline would do.",
-   "status": "documented",
+   "title": "Dry-run report",
+   "summary": "Dry-run report: draft controls, per-stage decision trail, proposed actions and a plain-English verdict.",
+   "status": "stable",
    "aliases": [
-    "simulator",
-    "preview report",
-    "what would happen",
-    "dry run page",
-    "test run"
+    "dry run",
+    "dry-run report",
+    "simulation report"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/dry-run",
-     "css": "src/core/patterns.css",
-     "example": "examples/components.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (simulator)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
-   "id": "pattern/stepper",
+   "id": "pattern/learning",
    "kind": "pattern",
-   "title": "Stepper / wizard",
-   "summary": "Multi-step task flow with step rail and per-step actions.",
-   "status": "documented",
+   "title": "Stepper & folds",
+   "summary": "The learning loop: step rail, evidence folds, model cards and promotion prerequisites.",
+   "status": "stable",
    "aliases": [
-    "wizard",
-    "multi-step form",
-    "onboarding wizard",
-    "step flow"
+    "learning loop",
+    "stepper",
+    "step rail",
+    "model cards"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/stepper",
-     "css": "src/core/patterns.css",
-     "example": "examples/form.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (learning)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
+   },
+   "compiled_from": [
+    "triage/patterns"
+   ]
   },
   {
-   "id": "pattern/index-eval",
+   "id": "pattern/misc",
    "kind": "pattern",
-   "title": "Index & eval queue",
-   "summary": "Work-queue page: progress stats, per-item review rows, blind-labelling flow.",
-   "status": "documented",
+   "title": "Index & eval",
+   "summary": "Two small page patterns: the phone overflow index and blind-label review.",
+   "status": "stable",
    "aliases": [
-    "indexing page",
-    "evaluation queue",
-    "labelling flow",
-    "review queue",
-    "annotation queue"
+    "index page",
+    "overflow index",
+    "blind label",
+    "blind-label review"
    ],
    "body": {
-    "sources": {
-     "docs": "/patterns/index-eval",
-     "css": "src/core/patterns.css",
-     "example": "examples/list.html"
-    },
-    "note": "no states/verify contract (see gap G-003)"
+    "group": "Patterns",
+    "source_file": "site/pages_patterns.py (misc)"
    },
-   "relations": [],
    "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/ + src/core/patterns.css"
-   }
-  },
-  {
-   "id": "guideline/armed-delete",
-   "kind": "guideline",
-   "title": "Armed two-step delete",
-   "summary": "Deleting an entity listed in the UI is a two-step, in-place action with auto-disarm; no confirm() dialogs for these.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "carry .arm-del with data-arm-label and a matching aria-label",
-     "arm on first activation (label becomes 'Confirm delete'), delete on second",
-     "auto-disarm after 4s, on Escape, outside click, or menu close",
-     "announce the result afterwards (banner or toast)"
-    ],
-    "dont": [
-     "no confirm() for entity deletes",
-     "no arming as a substitute for feedback"
-    ],
-    "quote": "No `confirm()` dialog, ever, for these.",
-    "enforced_by": null
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_patterns.py"
    },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#item-deletes"
-   }
-  },
-  {
-   "id": "guideline/high-stakes-confirm",
-   "kind": "guideline",
-   "title": "High-stakes confirmations",
-   "summary": "Irreversible, security-relevant, or multi-item actions keep a native confirm() whose sentence names the object and consequence.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "name the object and the consequence in the sentence",
-     "keep strings apostrophe-safe"
-    ],
-    "dont": [
-     "do not route entity deletes through confirm() (use arming)"
-    ],
-    "quote": "Representative set: remove account \u00b7 reset tokens \u00b7 rebuild the index \u00b7 clear a chat \u00b7 enable auto-apply \u00b7 approve a risky plugin.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#one-way-actions"
-   }
-  },
-  {
-   "id": "guideline/reversible-mutations",
-   "kind": "guideline",
-   "title": "Reversible mutations show the reverse",
-   "summary": "Edits undoable in place need no confirmation and no danger styling; put the reverse control next to the action.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "pair remove \u21c4 re-include, snooze \u21c4 wake, tag \u21c4 untag"
-    ],
-    "dont": [
-     "no confirms or danger styling for reversible edits"
-    ],
-    "quote": "Put the reverse control next to the action.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#reversible-mutations"
-   }
-  },
-  {
-   "id": "guideline/feedback-routing",
-   "kind": "guideline",
-   "title": "Feedback routing: banner vs toast",
-   "summary": "Server/redirect results render an .msg banner; in-place JS results call toast(); kinds are exactly ok/warn/err.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "announce every mutation unless the new state is self-evident in the same viewport",
-     "wording is past tense and names the object"
-    ],
-    "dont": [
-     "no info kind",
-     "no page-local toast markup or query-param toasts"
-    ],
-    "quote": "There is no `info` kind \u2014 use `ok` for a benign outcome and `warn` when only part of it worked.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#feedback"
-   }
-  },
-  {
-   "id": "guideline/row-actions",
-   "kind": "guideline",
-   "title": "Row actions",
-   "summary": "Clicking a row opens the record; secondary actions live in .rowacts, revealed on hover/focus (always visible on touch).",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "inline the relevant few with .ra-inline; rest in details.menu with .ra-menu",
-     "sentence case menu items; destructive item is 'menu-item danger arm-del'"
-    ],
-    "dont": [
-     "no physical-direction CSS (use logical properties)",
-     "no grey tags/categories styling here \u2014 that's product convention"
-    ],
-    "quote": "Touch (\u2264767px): `.ra-inline` hides and the `\u22ef` menu shows.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#lists-row-actions"
-   }
-  },
-  {
-   "id": "guideline/savebar-editor",
-   "kind": "guideline",
-   "title": "Editors end in a save bar",
-   "summary": "Editors end in .savebar: primary Save <thing> plus Cancel. Cancel is the way out; Back is only for a navigation backlink.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "render server-side validation at the top of the form and focus it",
-     "settings cards keep scoped partial saves"
-    ],
-    "dont": [
-     "a card never submits fields it does not own"
-    ],
-    "quote": "Settings cards keep scoped partial saves.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#save-bars"
-   }
-  },
-  {
-   "id": "guideline/empty-anatomy",
-   "kind": "guideline",
-   "title": "Empty state anatomy",
-   "summary": ".empty = optional icon, h4 title, one line of reason, at most one CTA (.btn primary).",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "use for any list or card with nothing to show",
-     "micro-empties inside a feed may be a single .sub line"
-    ],
-    "dont": [
-     "never a bare blank area or a bare 'failed'"
-    ],
-    "quote": "Give a specific reason and one recovery action.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#empty-states"
-   }
-  },
-  {
-   "id": "guideline/copy-helper",
-   "kind": "guideline",
-   "title": "Copy helper owns the clipboard",
-   "summary": "Use the shared cp() helper / .copy element; the helper owns fallback and confirmation labelling.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     ".copy marks the copy affordance"
-    ],
-    "dont": [
-     "never call navigator.clipboard from page code"
-    ],
-    "quote": "The helper owns the fallback and the confirmation labelling.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#copy"
-   }
-  },
-  {
-   "id": "guideline/labels-accessibility",
-   "kind": "guideline",
-   "title": "Labels & accessibility baseline",
-   "summary": "Sentence case for buttons/links/menu items; name the object; keep the global focus ring; 44px touch targets; colour never the only signal; every interactive element has an accessible name.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "name the object in destructive labels and aria-labels",
-     "keep :focus-visible intact"
-    ],
-    "dont": [
-     "positive tabindex",
-     "icon-only controls without labels"
-    ],
-    "quote": null,
-    "enforced_by": "triage-lint TDS014/TDS015/TDS004"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#labels-accessibility"
-   }
-  },
-  {
-   "id": "guideline/colour-not-alone",
-   "kind": "guideline",
-   "title": "Colour is never the only signal",
-   "summary": "Status and meaning are carried by text or icon as well as colour; charts must survive greyscale and colour-blindness.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "label status lines directly",
-     "vary dash patterns or annotate in charts"
-    ],
-    "dont": [
-     "no colour-only dots or fills for meaning"
-    ],
-    "quote": "Do not rely on colour alone: label lines directly, vary dash patterns, or annotate.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md#labels-accessibility + dataviz guidance"
-   }
-  },
-  {
-   "id": "guideline/page-hierarchy",
-   "kind": "guideline",
-   "title": "Page hierarchy",
-   "summary": "One element, one token and one job per level: page title \u2192 section heading \u2192 card heading \u2192 body \u2192 meta. Don't skip levels.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "let a long page title wrap at --fs-page-title"
-    ],
-    "dont": [
-     "don't shrink a page title with inline font-size",
-     "don't use a section heading as a card label"
-    ],
-    "quote": "Don't skip levels or spend a level you don't need.",
-    "enforced_by": null
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "site/pages_foundations.py#typography"
-   }
-  },
-  {
-   "id": "guideline/overlay-zorder",
-   "kind": "guideline",
-   "title": "Overlay z-order",
-   "summary": "New full-screen overlays must clear the mobile tab bar; the ladder is tokenised (misc.zindex).",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "use ladder values from tokens"
-    ],
-    "dont": [
-     "no arbitrary z-index values"
-    ],
-    "quote": null,
-    "enforced_by": "triage-lint TDS007"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens.json#misc.zindex"
-   }
-  },
-  {
-   "id": "guideline/spacing-roles",
-   "kind": "guideline",
-   "title": "Spacing by role, not by vibe",
-   "summary": "Use semantic spacing roles (page/card/field/control) and the preferred scale 2/4/8/12/16/24/32/48; legacy steps remain only for compatibility.",
-   "status": "normative",
-   "aliases": [],
-   "body": {
-    "do": [
-     "snap new work to the preferred scale"
-    ],
-    "dont": [
-     "no ad-hoc spacing values"
-    ],
-    "quote": null,
-    "enforced_by": "triage-lint TDS005"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens.json#spacing"
-   }
-  },
-  {
-   "id": "token-set/color",
-   "kind": "token-set",
-   "title": "Colour tokens",
-   "summary": "Primitives plus semantic aliases (surface-*, text-*, status-*, interactive-*, ink), tints and solid status surfaces; both themes.",
-   "status": "source-of-truth",
-   "aliases": [
-    "colour tokens",
-    "palette",
-    "colors",
-    "theme colors",
-    "colour palette"
-   ],
-   "body": {
-    "group": "color"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#color"
-   }
-  },
-  {
-   "id": "token-set/typography",
-   "kind": "token-set",
-   "title": "Typography tokens",
-   "summary": "Geist / Geist Mono families, relative --base-size root, --fs-* scale, weights and line-heights.",
-   "status": "source-of-truth",
-   "aliases": [
-    "type scale",
-    "fonts",
-    "text styles",
-    "typography"
-   ],
-   "body": {
-    "group": "typography"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#typography"
-   }
-  },
-  {
-   "id": "token-set/spacing",
-   "kind": "token-set",
-   "title": "Spacing tokens",
-   "summary": "Preferred scale 2/4/8/12/16/24/32/48 + semantic roles --space-page/card/field/control + legacy steps (compatibility).",
-   "status": "source-of-truth",
-   "aliases": [
-    "spacing scale",
-    "gaps and padding",
-    "space tokens"
-   ],
-   "body": {
-    "group": "spacing"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#spacing"
-   }
-  },
-  {
-   "id": "token-set/motion",
-   "kind": "token-set",
-   "title": "Motion tokens",
-   "summary": "Duration set (100\u2013400ms) and easings; ad-hoc durations are off-token.",
-   "status": "source-of-truth",
-   "aliases": [
-    "durations",
-    "animation timing",
-    "easing",
-    "motion tokens"
-   ],
-   "body": {
-    "group": "motion"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#motion"
-   }
-  },
-  {
-   "id": "token-set/misc",
-   "kind": "token-set",
-   "title": "System constants",
-   "summary": "Radius policy 0, breakpoint set, z-index ladder, fixed layout widths (--layout-sidebar/content-max/dock).",
-   "status": "source-of-truth",
-   "aliases": [
-    "radius policy",
-    "breakpoints",
-    "z-index ladder",
-    "layout widths"
-   ],
-   "body": {
-    "group": "misc"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#misc"
-   }
-  },
-  {
-   "id": "token-set/dataviz",
-   "kind": "token-set",
-   "title": "Dataviz palette",
-   "summary": "Eight categorical series (Okabe-Ito derived), CVD-checked, for downstream chart code.",
-   "status": "source-of-truth",
-   "aliases": [
-    "chart colors",
-    "data visualization palette",
-    "chart palette"
-   ],
-   "body": {
-    "group": "dataviz"
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "tokens/tokens.json#dataviz"
-   }
-  },
-  {
-   "id": "example/chat",
-   "kind": "example",
-   "title": "Example: Chat \u2014 skeleton",
-   "summary": "Reference screen (85 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/chat.html",
-    "classes_used": 85
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/chat.html"
-   }
-  },
-  {
-   "id": "example/components",
-   "kind": "example",
-   "title": "Example: Component gallery \u2014 design system",
-   "summary": "Reference screen (160 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/components.html",
-    "classes_used": 160
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/components.html"
-   }
-  },
-  {
-   "id": "example/dashboard",
-   "kind": "example",
-   "title": "Example: Dashboard \u2014 skeleton",
-   "summary": "Reference screen (87 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/dashboard.html",
-    "classes_used": 87
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/dashboard.html"
-   }
-  },
-  {
-   "id": "example/form",
-   "kind": "example",
-   "title": "Example: Settings \u2014 skeleton",
-   "summary": "Reference screen (50 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/form.html",
-    "classes_used": 50
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/form.html"
-   }
-  },
-  {
-   "id": "example/list",
-   "kind": "example",
-   "title": "Example: List \u2014 skeleton",
-   "summary": "Reference screen (68 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/list.html",
-    "classes_used": 68
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/list.html"
-   }
-  },
-  {
-   "id": "example/shell",
-   "kind": "example",
-   "title": "Example: App name",
-   "summary": "Reference screen (55 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/shell.html",
-    "classes_used": 55
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/shell.html"
-   }
-  },
-  {
-   "id": "example/viewer",
-   "kind": "example",
-   "title": "Example: Viewer \u2014 skeleton",
-   "summary": "Reference screen (66 classes used).",
-   "status": "reference",
-   "aliases": [],
-   "body": {
-    "path": "examples/viewer.html",
-    "classes_used": 66
-   },
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "examples/viewer.html"
-   }
-  },
-  {
-   "id": "reference/quickstart",
-   "kind": "reference",
-   "title": "Consumption quickstart",
-   "summary": "Global vs scoped adoption, load order, component dependencies, theme and density switches.",
-   "status": "documented",
-   "aliases": [
-    "getting started",
-    "install",
-    "how to load the css"
-   ],
-   "body": {},
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "README.md"
-   }
-  },
-  {
-   "id": "reference/interaction-standard",
-   "kind": "reference",
-   "title": "Interaction standard (binding)",
-   "summary": "Action grammar, feedback, save bars, empty states, copy, a11y labels, exceptions register, review checklist.",
-   "status": "documented",
-   "aliases": [
-    "interaction rules",
-    "ux conventions",
-    "behaviour standard"
-   ],
-   "body": {},
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "INTERACTION.md"
-   }
-  },
-  {
-   "id": "reference/agents-contract",
-   "kind": "reference",
-   "title": "Repository agent contract",
-   "summary": "How to change the system: generated files, gates, spec disciplines, provenance policy (repo-internal).",
-   "status": "documented",
-   "aliases": [
-    "agents.md",
-    "repo rules"
-   ],
-   "body": {},
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "AGENTS.md"
-   }
-  },
-  {
-   "id": "reference/migration",
-   "kind": "reference",
-   "title": "0.6 \u2192 0.12 migration",
-   "summary": "Upgrade guide for consumers on older versions.",
-   "status": "documented",
-   "aliases": [
-    "upgrade guide"
-   ],
-   "body": {},
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "MIGRATION.md"
-   }
-  },
-  {
-   "id": "reference/rename-map",
-   "kind": "reference",
-   "title": "Vocabulary rename map",
-   "summary": "Pre-Triage (mail-triage era) names \u2192 current names; TDS001 enforcement source.",
-   "status": "documented",
-   "aliases": [
-    "old class names",
-    "renames"
-   ],
-   "body": {},
-   "relations": [],
-   "source": {
-    "repo": "vjsyong/triage-design-system",
-    "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-    "path": "RENAME-MAP.md"
-   }
+   "compiled_from": [
+    "triage/patterns"
+   ]
   }
  ]
 }

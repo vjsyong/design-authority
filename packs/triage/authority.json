@@ -1,31 +1,28 @@
 {
  "id": "triage",
- "name": "Triage Design System",
+ "name": "Triage",
  "format_version": "0.1",
  "version": "0.12.1",
  "snapshot": {
-  "repo": "vjsyong/triage-design-system",
-  "commit": "e374f3803d5a4e2a5f4fee7b1ba6e41e73b0e11b",
-  "branch": "tds-fix-wrap",
+  "repo": "triage-design-system (local; published at triage.seanyong.xyz)",
+  "commit": "n/a - local working tree",
+  "branch": "n/a",
   "version": "0.12.1",
-  "path_hint": "~/triage-design-system-demo"
+  "path_hint": "~/triage-design-system"
  },
- "description": "The central, app-agnostic UI design authority for these products.",
+ "description": "Triage is the app-agnostic, paper-and-ink UI design authority: one token source of truth, one component runtime, one enforceable lint gate. Square corners, hairline rules, ink-on-paper surfaces, two themes (light/dark), two densities, a 35-component contract matrix, and a binding interaction standard. Dependency-free: plain CSS tokens, a small behaviour layer that degrades without JS, and generated artifacts.",
  "kinds": [
   "component",
   "pattern",
   "token-set",
   "guideline",
   "recipe",
-  "example",
   "reference"
  ],
  "capabilities": {
   "search": true,
   "resolve": true,
-  "validators": [
-   "triage-lint"
-  ],
+  "validators": [],
   "gap_reporting": true,
   "extension_proposals": true,
   "resolution_assist": "off"
@@ -42,6 +39,8 @@
   "fallbacks": "fallbacks.json",
   "prohibitions": "prohibitions.json",
   "validators": "validators.json",
-  "scoring": "scoring.json"
+  "scoring": "scoring.json",
+  "precedents": "precedents.json",
+  "candidates": "candidates.json"
  }
 }

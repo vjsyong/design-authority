@@ -1,146 +1,75 @@
 {
  "prohibitions": [
   {
-   "id": "prohibit/rounded-corners",
-   "statement": "Non-zero border-radius anywhere \u2014 zero radius is a system policy (enforced globally).",
+   "id": "prohibit/raw-colour",
+   "kind": "prohibition",
+   "statement": "Raw colour literals (hex/rgb/hsl) outside the token layer — colour arrives only via tokens (lint TDS002).",
    "signals": [
-    "rounded corner",
-    "border-radius",
-    "rounded edges",
-    "soft corners",
-    "rounded",
-    "corner radius",
-    "pill-shaped"
+    "hex colour",
+    "raw hex",
+    "rgb(",
+    "hsl(",
+    "hard-coded colour"
    ],
-   "rule": "TDS003",
-   "kind": "prohibition"
+   "rule": "TDS002"
   },
   {
-   "id": "prohibit/remove-focus-ring",
-   "statement": "Removing focus outlines without an equivalent visible :focus-visible replacement.",
+   "id": "prohibit/focus-removal",
+   "kind": "prohibition",
+   "statement": "Removing focus outlines without replacement — :focus-visible affordances are mandatory (lint TDS004).",
    "signals": [
-    "remove focus",
-    "remove the focus",
-    "hide the outline",
-    "no focus ring",
-    "disable outline",
-    "outline: none",
-    "outline none"
+    "outline none",
+    "remove focus ring",
+    "focus removed"
    ],
-   "rule": "TDS004",
-   "kind": "prohibition"
-  },
-  {
-   "id": "prohibit/raw-color",
-   "statement": "Raw colour literals where tokens exist; off-palette colours must be added to the token source deliberately, not inlined.",
-   "signals": [],
-   "detect": "color_literal",
-   "rule": "TDS002",
-   "kind": "prohibition"
-  },
-  {
-   "id": "prohibit/off-system-font",
-   "statement": "Off-system font stacks (Geist / Geist Mono or inherit only).",
-   "signals": [
-    "comic sans",
-    "futura",
-    "custom typeface",
-    "off-system font",
-    "different font family",
-    "helvetica"
-   ],
-   "rule": "TDS008",
-   "kind": "prohibition"
+   "rule": "TDS004"
   },
   {
    "id": "prohibit/token-override",
-   "statement": "Redefining a system custom property (--bg, --acc, --surface-*, \u2026) in product CSS.",
+   "kind": "prohibition",
+   "statement": "Overriding token values downstream (the token layer is the only place values change; lint TDS009).",
    "signals": [
-    "override the css variable",
-    "redefine the token",
-    "change --bg",
-    "redefine --",
-    "override --"
+    "override token",
+    "redefine variable",
+    "patch css variable"
    ],
-   "rule": "TDS009",
-   "kind": "prohibition"
+   "rule": "TDS009"
   },
   {
-   "id": "prohibit/color-only-status",
-   "statement": "Conveying status by colour alone.",
+   "id": "prohibit/token-fonts",
+   "kind": "prohibition",
+   "statement": "Fonts outside the system stack — family tokens own typefaces (lint TDS008).",
    "signals": [
-    "colour only",
-    "color only",
-    "by colour",
-    "by color",
-    "colored dot only",
-    "coloured dot only"
+    "custom font",
+    "webfont",
+    "google font",
+    "font import"
    ],
-   "related": [
-    "guideline/colour-not-alone"
-   ],
-   "source": "INTERACTION.md#labels-accessibility",
-   "kind": "prohibition"
+   "rule": "TDS008"
   },
   {
-   "id": "prohibit/custom-confirm-for-entity-delete",
-   "statement": "A confirm() dialog or custom modal to delete a listed entity \u2014 entity deletes use the armed two-step pattern instead.",
+   "id": "prohibit/off-radius",
+   "kind": "prohibition",
+   "statement": "Non-zero corner radius — the system is squarely squared; radius stays 0 (lint TDS003).",
    "signals": [
-    "confirm before deleting",
-    "popup to confirm delete"
+    "rounded corners",
+    "border radius",
+    "pill shape",
+    "rounded card"
    ],
-   "signals_all": [
-    [
-     "confirm dialog",
-     "delete"
-    ],
-    [
-     "confirm popup",
-     "delete"
-    ],
-    [
-     "confirmation dialog",
-     "delete"
-    ],
-    [
-     "confirm modal",
-     "delete"
-    ]
-   ],
-   "related": [
-    "guideline/armed-delete"
-   ],
-   "source": "INTERACTION.md#item-deletes",
-   "kind": "prohibition"
+   "rule": "TDS003"
   },
   {
-   "id": "prohibit/page-local-toast",
-   "statement": "Page-local toast markup or query-param toasts \u2014 the shared toast host owns feedback.",
+   "id": "prohibit/label-less-controls",
+   "kind": "prohibition",
+   "statement": "Interactive controls without accessible names — icon-only means aria-label, never a bare glyph (lint TDS015).",
    "signals": [
-    "page-local toast",
-    "query param toast",
-    "query-param toast"
+    "unlabeled",
+    "icon only",
+    "no aria label",
+    "mystery icon"
    ],
-   "related": [
-    "guideline/feedback-routing"
-   ],
-   "source": "INTERACTION.md#feedback",
-   "kind": "prohibition"
-  },
-  {
-   "id": "prohibit/ad-hoc-chart-colors",
-   "statement": "Chart colours chosen ad hoc instead of the dataviz palette (CVD-checked, greyscale-safe).",
-   "signals": [
-    "chart colors",
-    "chart colours",
-    "graph colors",
-    "graph colours"
-   ],
-   "related": [
-    "token-set/dataviz"
-   ],
-   "source": "site/pages_foundations.py#dataviz-guidance",
-   "kind": "prohibition"
+   "rule": "TDS015"
   }
  ]
 }
