@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(ROOT, "kernel"))
 
 from design_authority.pack import Pack  # noqa: E402
 
-DEFAULT_PACK = os.path.join(ROOT, "packs", "triage")
+DEFAULT_PACK = os.path.join(ROOT, "authorities", "triage")
 DEFAULT_OUT = os.path.join(ROOT, "benchmark", "materials", "kit-triage")
 
 

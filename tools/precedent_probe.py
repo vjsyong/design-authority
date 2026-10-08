@@ -54,7 +54,7 @@ def check(name, cond, detail=""):
 def main():
     packs = {}
     for name, (np_, nc) in EXPECT.items():
-        pack = Pack(os.path.join(ROOT, "packs", name))
+        pack = Pack(os.path.join(ROOT, "authorities", name))
         packs[name] = pack
         check("%s registers load (prec=%d, cand=%d)" % (name, np_, nc),
               len(pack.precedents) == np_ and len(pack.candidates) == nc,

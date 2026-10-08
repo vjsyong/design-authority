@@ -369,7 +369,7 @@ def info_index(index_path):
 def stale_index(index_path):
     con, meta = _load_db(index_path)
     con.close()
-    current = pack_hash(os.path.join(ROOT, "packs", meta["pack_id"]))
+    current = pack_hash(os.path.join(ROOT, "authorities", meta["pack_id"]))
     return {"stale": current != meta["pack_hash"], "pack_hash": meta["pack_hash"],
             "current": current}
 
@@ -452,7 +452,7 @@ def main(argv=None):
             return 4
     if not os.path.exists(idx):
         print(json.dumps({"error": "index not found: %s" % idx,
-                          "hint": "python3 tools/da_sem.py build --pack packs/<name>"}))
+                          "hint": "python3 tools/da_sem.py build --pack authorities/<name>"}))
         return 4
 
     if args.cmd == "query":

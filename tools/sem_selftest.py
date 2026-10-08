@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools"))
 
 import da_sem  # noqa: E402
 
-PACK = os.path.join(ROOT, "packs", "triage")
+PACK = os.path.join(ROOT, "authorities", "triage")
 fails = []
 
 

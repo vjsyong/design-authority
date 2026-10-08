@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITES = os.path.join(ROOT, "authorities")
-PACKS = os.path.join(ROOT, "packs")
+PACKS = os.path.join(ROOT, "authorities")
 
 # known font sources per authority (name -> [candidate dirs])
 FONT_SOURCES = {
