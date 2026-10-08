@@ -826,6 +826,11 @@ def gallery_root_noslash():
     return redirect("/authorities/", code=308)
 
 
+@app.route("/authorities/<name>/gallery/")
+def authority_gallery_slash(name):
+    return redirect("/authorities/%s/gallery" % name, code=308)
+
+
 @app.route("/authorities/<name>/gallery")
 def authority_gallery(name):
     if not is_pack(name):
