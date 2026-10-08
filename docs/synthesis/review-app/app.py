@@ -826,6 +826,34 @@ def gallery_root_noslash():
     return redirect("/authorities/", code=308)
 
 
+SITES_DIR = os.path.join(_REPO, "examples", "authority-sites")
+
+
+@app.route("/authorities/<name>/site/")
+@app.route("/authorities/<name>/site")
+def authority_site(name):
+    if not is_pack(name):
+        abort(404)
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/%s/site/" % name, code=308)
+    d = os.path.join(SITES_DIR, name)
+    if not os.path.isfile(os.path.join(d, "index.html")):
+        abort(404)
+    return send_from_directory(d, "index.html")
+
+
+@app.route("/authorities/<name>/site/<path:fn>")
+def authority_site_file(name, fn):
+    if not is_pack(name):
+        abort(404)
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/%s/site/%s" % (name, fn), code=308)
+    d = os.path.join(SITES_DIR, name)
+    if not os.path.isfile(os.path.join(d, fn)):
+        abort(404)
+    return send_from_directory(d, fn)
+
+
 @app.route("/authority-fonts/<name>/<fn>")
 def authority_fonts(name, fn):
     hit = _gal.font_file(name, fn)

@@ -297,6 +297,8 @@ def _kind_nav(pack, name, current):
         out.append('<a class="nav-item%s" href="%s/spec">Rules &amp; prohibitions<span class="gal-navcount">%d</span></a>'
                    % (act, base, n))
     out.append('<div class="nav-label">Source</div>')
+    if os.path.isfile(os.path.join(_REPO, "examples", "authority-sites", name, "index.html")):
+        out.append('<a class="nav-item" href="/authorities/%s/site/">Authority-built site</a>' % name)
     out.append('<a class="nav-item" href="/authorities/%s/audit">Audit &amp; provenance</a>' % name)
     out.append('<a class="nav-item" href="/authorities/">All authorities</a>')
     return "".join(out)
