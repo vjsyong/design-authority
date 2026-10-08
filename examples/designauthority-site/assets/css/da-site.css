@@ -36,6 +36,21 @@
 @media (max-width:920px){.da-grid3{grid-template-columns:1fr}}
 @media (max-width:760px){.da-grid2{grid-template-columns:1fr}}
 
+/* ---- hero secondary lead ---- */
+.da-lead2{max-width:44rem;color:var(--text-secondary);margin-top:var(--space-12)}
+
+/* ---- authority flow ---- */
+.da-flow{max-width:46rem;margin-top:var(--space-14)}
+.da-fstep{display:grid;grid-template-columns:86px 1fr;gap:var(--space-10);align-items:center;
+  border:1px solid var(--border-default);background:var(--surface-card);padding:var(--space-10) var(--space-12)}
+.da-fstep + .da-fstep{margin-top:var(--space-8)}
+.da-fstep p{margin:0;font-size:var(--fs-sub);color:var(--text-soft)}
+.da-fkind{font-size:var(--fs-pre-log);letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}
+.da-fstep.ink{background:var(--panel);border-color:var(--panel)}
+.da-fstep.ink p{color:var(--on-ink)}
+.da-fstep.ink .da-fkind{color:var(--on-ink);opacity:.72}
+@media (max-width:560px){.da-fstep{grid-template-columns:1fr;gap:var(--space-4)}}
+
 /* ---- code ---- */
 .da-code{background:var(--codebg);color:var(--codefg);border:1px solid var(--border-default);
   padding:var(--space-14) var(--space-16);margin:0;font-size:var(--fs-pre-log);line-height:1.55;

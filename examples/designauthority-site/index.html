@@ -5,9 +5,9 @@
 <script>try{var d=document.documentElement,t=localStorage.getItem('triage_theme');if(t==='dark'||t==='light')d.setAttribute('data-theme',t);if(localStorage.getItem('triage_density')==='compact')d.setAttribute('data-density','compact');}catch(err){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Design Authority · Fuzzy Concepts to Enforceable Design</title>
-<meta name="description" content="A design authority is a versioned, machine-readable contract for an interface system. Coding agents resolve every element against it before building; verifiers check the result against the same record.">
+<meta name="description" content="Design Authority compiles existing design precedent into an executable standard for coding agents. When the standard runs out, agents surface the decision instead of silently inventing canon; humans decide what becomes authoritative.">
 <meta property="og:title" content="Design Authority — Fuzzy Concepts to Enforceable Design">
-<meta property="og:description" content="Design intent, written as a contract machines can check.">
+<meta property="og:description" content="Design intent that agents can inherit, obey, and help evolve.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#fafafa">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -37,19 +37,23 @@
 <main id="main" class="content da-content">
 
   <section class="da-hero">
-    <h1>Design intent, written as a contract.</h1>
-    <p class="lead da-lead">A design authority is a versioned, machine-readable record of an interface system.
-    Coding agents resolve every element against it before they build. Verifiers check the result against the
-    same record. Decisions that would otherwise happen by default get written down, cited, and versioned.</p>
+    <h1>Design intent that agents can inherit, obey, and help evolve.</h1>
+    <p class="lead da-lead">Design Authority compiles existing design precedent into an executable standard for
+    coding agents. When the standard runs out, agents surface the decision instead of silently inventing canon;
+    humans decide what becomes authoritative.</p>
+    <p class="da-lead2 sub">More precisely: a design authority is a versioned, machine-readable record of an
+    interface system. Agents resolve every element against it before they build; verifiers check the result
+    against the same record. Decisions that would otherwise happen by default get written down, cited, and
+    versioned.</p>
     <div class="da-cta">
-      <a class="btn primary" href="https://audit.seanyong.xyz/designAuthority/jennu/">See a live review</a>
+      <a class="btn primary" href="/authorities/phantom/demo/jennu/">See a live review</a>
       <a class="btn" href="/authorities/triage/audit">Open the Triage authority</a>
     </div>
     <p class="da-fine sub">This page is built on Triage's foundations: its tokens and core styles, unmodified.</p>
   </section>
 
   <section class="da-sec">
-    <h2>The catalogue</h2>
+    <h2 id="catalogue">The catalogue</h2>
     <p class="da-intro sub">Every authority on this site, with the pages and the demo apps built from each.</p>
     <div class="da-grid3">
       <div class="card">
@@ -105,34 +109,53 @@
   </section>
 
   <section class="da-sec">
-    <h2>What an authority is made of</h2>
-    <p class="da-intro sub">Plain JSON, a deterministic resolver, and a consumption protocol. No database, no network,
-    the same answer every time.</p>
-    <div class="da-grid2">
-      <pre class="da-code mono">packs/triage/
-  authority.json      identity · version · consumers
-  artifacts.json      52 records — components, token sets, patterns
-  rules.json          19 enforceable rules (TDS001–015 + interaction)
-  golden.json         36 calibration cases — ask, expected, got
-  verification.json   claims a verifier can test against a build
-  AGENT-PROMPT.md     the consumption protocol for coding agents</pre>
-      <pre class="da-code mono">{
-  "id": "component/px-sw",
-  "kind": "component",
-  "title": "Switch",
-  "summary": "the square switch; track 26×15, thumb 11×11",
-  "states": ["default", "hover", "focus",
-             "checked", "disabled"],
-  "verify": ["[data-sw]",
-             "checked toggles aria-checked"]
-}</pre>
+    <h2>How teams work with an authority</h2>
+    <div class="da-grid3">
+      <div class="card">
+        <div class="card-h"><h3>Learn the standard</h3></div>
+        <p class="da-p">Existing artifacts and precedent are compiled into a candidate authority. Screenshots, the
+        live product, brand kits, past decisions — the machine gathers the evidence and proposes the norms.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Work under the standard</h3></div>
+        <p class="da-p">Agents defer to the authority, and independent verification checks conformance. Every build
+        is resolved against the same record a verifier later inspects.</p>
+      </div>
+      <div class="card">
+        <div class="card-h"><h3>Evolve the standard</h3></div>
+        <p class="da-p">New cases become reviewable evidence. Humans decide what becomes precedent; the authority
+        re-freezes only when a decision is made.</p>
+      </div>
     </div>
-    <p class="da-fine sub">The resolver answers with citations, never with a guess. Ask for "a switch" and it returns
-    <span class="mono">component/px-sw</span>. Ask for "rounded corners" and it returns a conflict and refuses.</p>
   </section>
 
   <section class="da-sec">
-    <h2>Nothing is improvised. Nothing is silently skipped.</h2>
+    <h2>Where an authority comes from, and who decides</h2>
+    <div class="da-flow">
+      <div class="da-fstep"><span class="da-fkind mono">input</span>
+        <p>existing product · brand kit · precedent</p></div>
+      <div class="da-fstep"><span class="da-fkind mono">machine</span>
+        <p>infers candidate norms from the evidence (screenshots, source, live product)</p></div>
+      <div class="da-fstep ink"><span class="da-fkind mono">human</span>
+        <p>adjudicates ambiguity — accept · modify · reject · undefined</p></div>
+      <div class="da-fstep"><span class="da-fkind mono">authority</span>
+        <p>a frozen, versioned candidate; everything downstream cites it</p></div>
+      <div class="da-fstep"><span class="da-fkind mono">machine</span>
+        <p>agents build under it; verifiers inspect the artifact, not the claim</p></div>
+      <div class="da-fstep"><span class="da-fkind mono">evidence</span>
+        <p>gaps · calibration cases · proposals · conformance reports</p></div>
+      <div class="da-fstep ink"><span class="da-fkind mono">human</span>
+        <p>adjudicates what leaves the evidence pile</p></div>
+      <div class="da-fstep"><span class="da-fkind mono">authority</span>
+        <p>evolves — patch or fresh freeze, precedents recorded — and the loop starts again</p></div>
+    </div>
+    <div class="note" style="margin-top:var(--space-14)"><b>Humans judge what becomes authoritative.</b>
+    Machines do the evidence gathering, formalization, implementation, and verification.</div>
+  </section>
+
+
+  <section class="da-sec">
+    <h2>Agents may improvise. They may not confuse improvisation with authority.</h2>
     <div class="card da-flush">
       <table class="tbl">
         <thead><tr><th>Outcome</th><th>Fires when</th><th>The build does</th></tr></thead>
@@ -147,8 +170,8 @@
               <td>the environment cannot support the primary answer</td>
               <td>follow the recorded degradation</td></tr>
           <tr><td><span class="dot warn"></span> <span class="mono">UNDEFINED</span></td>
-              <td>the record is silent</td>
-              <td>file a gap; do not invent</td></tr>
+              <td>authority has no answer</td>
+              <td>implement locally if necessary, mark the decision, and file the gap — never present it as canon</td></tr>
           <tr><td><span class="dot err"></span> <span class="mono">CONFLICT</span></td>
               <td>the request contradicts a prohibition</td>
               <td>stop and escalate; do not implement as asked</td></tr>
@@ -157,6 +180,8 @@
     </div>
     <p class="da-fine mono da-mono-line">resolve "a switch" → component/px-sw</p>
     <p class="da-fine mono da-mono-line">resolve "rounded corners on the cards" → CONFLICT — do not implement as requested</p>
+    <p class="da-fine sub">Improvised work stays visibly noncanonical: in the Cadence builds every element outside
+    authority carries a mark and a filed gap — the ◌ toggle reveals them, <a href="/authorities/wink/demo/cadence-v1/">see one live</a>.</p>
   </section>
 
   <section class="da-sec">
@@ -228,6 +253,34 @@
     <a href="https://triage.seanyong.xyz/spec/proposals/verification-levels.md">spec/proposals/verification-levels.md</a>.</p>
   </section>
 
+
+  <section class="da-sec">
+    <h2>What an authority is made of</h2>
+    <p class="da-intro sub">Plain JSON, a deterministic resolver, and a consumption protocol. No database, no network,
+    the same answer every time.</p>
+    <div class="da-grid2">
+      <pre class="da-code mono">packs/triage/
+  authority.json      identity · version · consumers
+  artifacts.json      80 records — components, token sets, patterns, guidelines
+  rules.json          19 enforceable rules (TDS001–015 + interaction)
+  golden.json         53 calibration cases — ask, expected, got
+  verification.json   claims a verifier can test against a build
+  AGENT-PROMPT.md     the consumption protocol for coding agents</pre>
+      <pre class="da-code mono">{
+  "id": "component/px-sw",
+  "kind": "component",
+  "title": "Switch",
+  "summary": "the square switch; track 26×15, thumb 11×11",
+  "states": ["default", "hover", "focus",
+             "checked", "disabled"],
+  "verify": ["[data-sw]",
+             "checked toggles aria-checked"]
+}</pre>
+    </div>
+    <p class="da-fine sub">The resolver answers with citations, never with a guess. Ask for "a switch" and it returns
+    <span class="mono">component/px-sw</span>. Ask for "rounded corners" and it returns a conflict and refuses.</p>
+  </section>
+
   <section class="da-sec da-sec-last">
     <div class="note ink">
       <b>What an authority is not.</b> Not a Figma library, not a lint config, not a moat. It is a contract you
@@ -237,7 +290,7 @@
   </section>
 
   <div class="foot da-foot">Design Authority — Fuzzy Concepts to Enforceable Design · Foundations: Triage Design System v0.12.1
-  (tokens + core styles, unmodified) · Live work at <a href="https://audit.seanyong.xyz/">audit.seanyong.xyz</a></div>
+  (tokens + core styles, unmodified) · Live builds: <a href="#catalogue">the catalogue above</a></div>
 
 </main>
 
