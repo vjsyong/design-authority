@@ -100,7 +100,7 @@ def main():
         check("overview identity", ov.get("status") == "ok"
               and ov["authority"]["authority"] == "triage",
               ov.get("authority", {}).get("version"))
-        check("overview counts", ov["counts"]["artifacts"].get("component") == 35)
+        check("overview counts", ov["counts"]["artifacts"].get("component") == 56)  # 35 matrix + 21 furniture
 
         # search + inspect
         s = call(proc, "search_authority", {"query": "approval history"}, 11)
@@ -122,7 +122,7 @@ def main():
               and ("resolution" in r1 or "fallback_policy" in r1),
               r1.get("outcome"))
         r2 = call(proc, "resolve_design_problem",
-                  {"problem": "add a progress bar for a long-running background job"}, 15)
+                  {"problem": "add a carousel of screenshots to the homepage"}, 15)
         check("resolve UNDEFINED (structured)", r2["outcome"] == "UNDEFINED"
               and "fallback_policy" in r2)
         r3 = call(proc, "resolve_design_problem",

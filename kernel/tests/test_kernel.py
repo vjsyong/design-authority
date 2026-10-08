@@ -35,8 +35,11 @@ class TestPack(unittest.TestCase):
         kinds = {}
         for a in self.pack.artifacts:
             kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
-        self.assertEqual(kinds.get("component"), 35)
+        # 35 states-matrix components + 21 furniture components documented in core
+        self.assertEqual(kinds.get("component"), 56)
         self.assertEqual(kinds.get("pattern"), 7)
+        # interaction standard + consumption + verification levels + 7 foundations
+        self.assertEqual(kinds.get("guideline"), 10)
         # the 15 TDS lint rules plus the 4 binding interaction rules
         self.assertEqual(len(self.pack.rules), 19)
         # the synthesis lineage carries no flow recipes yet; the kit curation holds
@@ -58,7 +61,7 @@ class TestResolution(unittest.TestCase):
                          "golden misses: %s" % json.dumps(misses, indent=1))
 
     def test_undefined_is_structured(self):
-        r = resolve(self.pack, "add a progress bar for a long-running background job")
+        r = resolve(self.pack, "add a carousel of screenshots to the homepage")
         self.assertEqual(r["outcome"], "UNDEFINED")
         self.assertIsNone(r["resolution"])
         self.assertIn("closest", r)

@@ -10,11 +10,13 @@
     "colour",
     "color",
     "palette",
+    "colour palette",
+    "color palette",
     "tokens",
+    "colour tokens",
+    "color tokens",
     "ink",
-    "paper",
-    "dark mode",
-    "theme"
+    "paper"
    ],
    "body": {
     "group": "Foundations",
@@ -71,7 +73,9 @@
     "type",
     "fonts",
     "font",
-    "type scale"
+    "type scale",
+    "typography tokens",
+    "type tokens"
    ],
    "body": {
     "group": "Foundations",
@@ -107,7 +111,8 @@
     "space",
     "gaps",
     "padding",
-    "layout scale"
+    "layout scale",
+    "spacing tokens"
    ],
    "body": {
     "group": "Foundations",
@@ -169,7 +174,8 @@
     "transition",
     "duration",
     "easing",
-    "reduced motion"
+    "reduced motion",
+    "motion tokens"
    ],
    "body": {
     "group": "Foundations",
@@ -200,7 +206,9 @@
     "elevation",
     "shadow",
     "depth",
-    "floating"
+    "floating",
+    "elevation tokens",
+    "shadow tokens"
    ],
    "body": {
     "group": "Foundations",
@@ -235,7 +243,9 @@
     "data visualisation",
     "charts",
     "series",
-    "palette for charts"
+    "palette for charts",
+    "chart colours",
+    "chart colors"
    ],
    "body": {
     "group": "Foundations",
@@ -862,10 +872,11 @@
       "solid — full-saturation surface, --text-on-ink white; contrast 6.06/4.84/5.02/4.96 pass 4.5:1 (TDS011)"
      ],
      "kinds": [
-      "informational — accent edge (.msg base, .note)",
+      "neutral — .msg base (ink-secondary edge)",
       "success — .ok",
       "warning — .warn",
-      "error — .err"
+      "error — .err",
+      "informational — .note carries the accent edge; info is retired as a flash kind (see voice & copy)"
      ],
      "edge_chip": "status colour lives in the var(--bw-edge) left chip; paper/tint keep the normal chip; highlights inside ink/solid banners use light-grey text on a dark chip",
      "sibling": ".note shares the surface and style families for inline notices (documented on /foundations)",
@@ -2088,6 +2099,908 @@
    },
    "compiled_from": [
     "triage/review-2026-10"
+   ]
+  },
+  {
+   "id": "guideline/philosophy",
+   "kind": "guideline",
+   "title": "Design philosophy (paper and ink)",
+   "summary": "Triage is a paper-and-ink interface language for tools that do real work on real data: one light paper (#fafafa), one ink layer, one accent, square geometry, and every machine action auditable. Depth is not faked with blur or gradient; only things that genuinely float cast shadows. Black ink is a material, not a theme; colour always means meaning, never decoration. Enforced by tokens and the spec, not just words.",
+   "status": "stable",
+   "aliases": [
+    "philosophy",
+    "design philosophy",
+    "design principles",
+    "principles",
+    "paper and ink",
+    "the why"
+   ],
+   "body": {
+    "group": "Foundations",
+    "paper_and_ink": [
+     "grey paper holds white cards with hairline borders and square corners",
+     "shadows reserved for floating layers (menus, toasts, dialogs, drawers)",
+     "black ink is a material: brand, key number, terminal, primary action",
+     "one saturated blue accent; status colour only where a status exists, always with text"
+    ],
+    "deliberately_absent": [
+     "dark patterns (countdowns, disguised cancellation, notification nagging)",
+     "confirmation popups for entities — deletes arm in place; native confirm() only for irreversible actions",
+     "colour-only meaning or emoji as status",
+     "grey-on-grey typography — every text token is contrast-checked",
+     "a second stylesheet for dark mode — one token file flips both themes"
+    ],
+    "source_file": "site/pages_foundations.py (philosophy)",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (philosophy)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/brand",
+   "kind": "guideline",
+   "title": "Brand & theming",
+   "summary": "One source of truth: Triage themes from tokens/tokens.json (W3C DTCG) and the core stylesheets carry no :root, so a re-theme is one JSON edit plus a rebuild. Two token tiers (semantic aliases over the raw palette — products prefer the alias column). The mark is a 24x24 ink square with an accent chip on the leading edge; lockups, favicon and templates ship in brand/. Never theme by overriding components.",
+   "status": "stable",
+   "aliases": [
+    "brand",
+    "logo",
+    "brand mark",
+    "the mark",
+    "wordmark",
+    "theming",
+    "theming rules",
+    "re-theme",
+    "retheme",
+    "white label",
+    "white-label",
+    "brand assets",
+    "favicon",
+    "brand strategy"
+   ],
+   "body": {
+    "group": "Foundations",
+    "tiers": [
+     "semantic alias tier over the raw palette (surface.page -> {color.bg}; prefer aliases)",
+     "tokens.css is generated from tokens.json; core carries no :root"
+    ],
+    "mark": "24x24 ink square with an accent chip on the leading edge; lockups, favicon and templates in brand/",
+    "rule": "do not theme by overriding components - edit the token source",
+    "source_file": "site/pages_foundations.py (brand)",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (brand)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/platform",
+   "kind": "guideline",
+   "title": "Platform & themes",
+   "summary": "One token file, four platform modes: dark theme, Windows High Contrast (forced-colors), RTL and print - all handled from the token layer and logical properties, no second stylesheet, no per-component overrides. In the dark theme surfaces rise instead of casting shadows.",
+   "status": "stable",
+   "aliases": [
+    "platform",
+    "platform modes",
+    "themes",
+    "theme",
+    "dark mode",
+    "dark theme",
+    "light mode",
+    "high contrast",
+    "forced colors",
+    "rtl",
+    "rtl support",
+    "print",
+    "print styles",
+    "print stylesheet",
+    "platform support"
+   ],
+   "body": {
+    "group": "Foundations",
+    "modes": [
+     "dark theme - surfaces rise instead of casting shadows; one token file flips both themes",
+     "forced-colors / Windows High Contrast - system colours respected; borders via CanvasText",
+     "RTL - logical properties (TDS013), one stylesheet, auto-mirroring chips/drawers/tooltips",
+     "print - handled from the token layer"
+    ],
+    "source_file": "site/pages_foundations.py (platform)",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (platform)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/icons",
+   "kind": "guideline",
+   "title": "Iconography",
+   "summary": "A transferable icon system - 174 glyphs, one spec. The registry is the Lucide set (ISC licence) normalised to the Triage drawing spec: 24x24 grid, fill:none, stroke:currentColor, stroke-width 1.7, round caps and joins. Ship it as a sprite (icons/sprite.svg), individual SVGs (icons/svg/*.svg), or a registry (icons/icons.json); original mail-triage names survive as aliases.",
+   "status": "stable",
+   "aliases": [
+    "iconography",
+    "icons",
+    "icon",
+    "icon set",
+    "icon system",
+    "glyph",
+    "glyphs",
+    "icon sprite",
+    "sprite",
+    "lucide",
+    "svg icons"
+   ],
+   "body": {
+    "group": "Foundations",
+    "spec": "24x24 grid / fill:none / stroke:currentColor / stroke-width 1.7 / round caps and joins",
+    "delivery": [
+     "sprite - icons/sprite.svg + <use>",
+     "individual SVGs - icons/svg/*.svg",
+     "registry - icons/icons.json (path bodies)"
+    ],
+    "sizes_a11y": "size tokens (--icon-*); decorative icons aria-hidden, meaningful icons labelled",
+    "source_file": "site/pages_foundations.py (icons) + icons/icons.json",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (icons)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/accessibility",
+   "kind": "guideline",
+   "title": "Accessibility (WCAG 2.2)",
+   "summary": "WCAG 2.2 scorecard against the source audit: focus visible, focus not obscured, non-text contrast, target size, contrast, animation, forced colours, resize and reflow pass; focus appearance partial. The ring is global - :focus-visible is never removed anywhere; inputs add a border and ring. Reduced motion is honoured.",
+   "status": "stable",
+   "aliases": [
+    "accessibility",
+    "a11y",
+    "wcag",
+    "wcag 2.2",
+    "focus",
+    "focus visible",
+    "focus ring",
+    "contrast",
+    "contrast rules",
+    "target size",
+    "screen reader",
+    "reduced motion"
+   ],
+   "body": {
+    "group": "Foundations",
+    "focus": ":focus-visible{outline:2px solid var(--interactive);outline-offset:2px} - never removed anywhere",
+    "scorecard": [
+     "2.4.7 Focus Visible - pass",
+     "2.4.11 Focus Not Obscured - pass",
+     "1.4.11 Non-Text Contrast - pass",
+     "2.4.13 Focus Appearance - partial",
+     "2.5.8 Target Size - pass",
+     "1.4.3 Contrast - pass",
+     "2.3.3 Animation - pass",
+     "1.4.1 forced colors - pass",
+     "1.4.4 Resize Text - pass",
+     "4.1.3 Status Messages - pass",
+     "1.4.10 Reflow - pass"
+    ],
+    "source_file": "site/pages_foundations.py (accessibility)",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (accessibility)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/voice",
+   "kind": "guideline",
+   "title": "Voice & copy",
+   "summary": "Sentence case for buttons, links and menu items (uppercase micro-labels are CSS). Verbs are Enable/Disable for entity state. Announce every mutation in past tense, naming the object. Three flash kinds only - ok, warn, err; info is retired. Name the object in destructive labels. Empty states: title + one-line reason + at most one action. One-way actions keep a native confirm().",
+   "status": "stable",
+   "aliases": [
+    "voice",
+    "voice and copy",
+    "copy",
+    "copy rules",
+    "microcopy",
+    "tone",
+    "writing",
+    "wording",
+    "labels",
+    "message copy",
+    "empty state copy"
+   ],
+   "body": {
+    "group": "Foundations",
+    "rules": [
+     "sentence case for buttons, links, menu items",
+     "Enable/Disable for entity state - never Pause/Resume or On/Off",
+     "announce mutations in past tense, naming the object",
+     "three flash kinds only: ok / warn / err - info is retired",
+     "name the object in destructive labels and aria-labels",
+     "empty states: title + one-line reason + at most one action"
+    ],
+    "source_file": "site/pages_foundations.py (voice)",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (voice)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "guideline/localisation",
+   "kind": "guideline",
+   "title": "Localisation & i18n",
+   "summary": "RTL is mechanics; i18n is content. The system ships the mechanics - logical properties (TDS013), auto-mirroring chips/drawers/tooltips and core/i18n.js for locale, messages and formats. Content rules: whole-message placeholders (never concatenate sentences), counts through plural(), store ISO and display via Intl, room for extra width (German ~35%), bidi hygiene with <bdi> for embedded identifiers.",
+   "status": "stable",
+   "aliases": [
+    "localisation",
+    "localization",
+    "i18n",
+    "internationalisation",
+    "internationalization",
+    "rtl",
+    "bilingual",
+    "bilingual copy",
+    "translations",
+    "locale",
+    "plural",
+    "intl"
+   ],
+   "body": {
+    "group": "Foundations",
+    "copy_rules": [
+     "whole-message placeholders - never concatenate sentences",
+     "counts go through plural() (Arabic six forms, Japanese one)",
+     "store ISO, display via Intl: dates YYYY-MM-DD, numbers raw",
+     "give first-class strings room: German adds ~35% width",
+     "bidi hygiene: wrap embedded Latin identifiers in <bdi>"
+    ],
+    "source_file": "site/pages_foundations.py (localisation) + core/i18n.js",
+    "verify": [
+     "site/pages_foundations.py"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "site/pages_foundations.py (localisation)"
+   },
+   "compiled_from": [
+    "triage/foundations"
+   ]
+  },
+  {
+   "id": "component/check",
+   "kind": "component",
+   "title": "Checkbox",
+   "summary": "A real checkbox wrapped in label.check; forms post a hidden twin (value 0) so a missing key cannot silently mean off. Grouped checkboxes live in a fieldset with a legend.",
+   "status": "stable",
+   "aliases": [
+    "checkbox",
+    "checkbox",
+    "check",
+    "tick box",
+    "checkbox group",
+    "hidden twin"
+   ],
+   "body": {
+    "class": "check",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A real checkbox wrapped in label.check; forms post a hidden twin (value 0) so a missing key cannot silently mean off. Grouped checkboxes live in a fieldset with a legend."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.check)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/dot",
+   "kind": "component",
+   "title": "Status dot",
+   "summary": "A 7px square status dot; neutral by default, with ok / warn / err variants paired with text (never colour alone).",
+   "status": "stable",
+   "aliases": [
+    "status dot",
+    "dot",
+    "status dot",
+    "status light",
+    "indicator dot"
+   ],
+   "body": {
+    "class": "dot",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A 7px square status dot; neutral by default, with ok / warn / err variants paired with text (never colour alone)."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.dot)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/kbd",
+   "kind": "component",
+   "title": "Keycap",
+   "summary": "A monospace keycap with a 2px base edge, for keyboard hints such as shortcuts.",
+   "status": "stable",
+   "aliases": [
+    "keycap",
+    "keycap",
+    "kbd",
+    "keyboard hint",
+    "shortcut hint",
+    "key hint"
+   ],
+   "body": {
+    "class": "kbd",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A monospace keycap with a 2px base edge, for keyboard hints such as shortcuts."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.kbd)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/stat",
+   "kind": "component",
+   "title": "Stat tile",
+   "summary": "An ink panel carrying one number and its label - the dashboard hero metric.",
+   "status": "stable",
+   "aliases": [
+    "stat tile",
+    "stat tile",
+    "stat",
+    "metric tile",
+    "big number",
+    "kpi tile"
+   ],
+   "body": {
+    "class": "stat",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "An ink panel carrying one number and its label - the dashboard hero metric."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.stat)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/kv",
+   "kind": "component",
+   "title": "Key-value rows",
+   "summary": "A two-column metadata grid (label -> value) for detail panes and sidebars.",
+   "status": "stable",
+   "aliases": [
+    "key-value rows",
+    "key value rows",
+    "kv rows",
+    "metadata rows",
+    "property list",
+    "definition list"
+   ],
+   "body": {
+    "class": "kv",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A two-column metadata grid (label -> value) for detail panes and sidebars."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.kv)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/progress",
+   "kind": "component",
+   "title": "Progress",
+   "summary": "A 6px progress bar with an inline variant (.progress-inline) for rows and tasks; pair with text so state never relies on the bar alone.",
+   "status": "stable",
+   "aliases": [
+    "progress",
+    "progress bar",
+    "progress",
+    "progress indicator",
+    "inline progress",
+    "loading bar"
+   ],
+   "body": {
+    "class": "progress",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A 6px progress bar with an inline variant (.progress-inline) for rows and tasks; pair with text so state never relies on the bar alone."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.progress)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/skeleton",
+   "kind": "component",
+   "title": "Skeleton",
+   "summary": "An animated shimmer placeholder shown while content loads.",
+   "status": "stable",
+   "aliases": [
+    "skeleton",
+    "skeleton",
+    "skeleton loader",
+    "shimmer",
+    "loading placeholder"
+   ],
+   "body": {
+    "class": "skeleton",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "An animated shimmer placeholder shown while content loads."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.skeleton)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/logpanel",
+   "kind": "component",
+   "title": "Log panel",
+   "summary": "An ink terminal panel for logs and streamed output; rows colour by kind (green / amber / red / dim / time).",
+   "status": "stable",
+   "aliases": [
+    "log panel",
+    "log panel",
+    "terminal panel",
+    "console panel",
+    "log viewer",
+    "terminal"
+   ],
+   "body": {
+    "class": "logpanel",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "An ink terminal panel for logs and streamed output; rows colour by kind (green / amber / red / dim / time)."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.logpanel)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/audit-row",
+   "kind": "component",
+   "title": "Audit rows",
+   "summary": "Audit trail rows - the flat list of machine and human actions with time, actor and detail columns; the provenance surface for accountable actions.",
+   "status": "stable",
+   "aliases": [
+    "audit rows",
+    "audit row",
+    "audit rows",
+    "audit trail",
+    "audit list",
+    "activity audit"
+   ],
+   "body": {
+    "class": "audit-list",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "Audit trail rows - the flat list of machine and human actions with time, actor and detail columns; the provenance surface for accountable actions."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.audit-list)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/bubble",
+   "kind": "component",
+   "title": "Chat bubble",
+   "summary": "A chat message turn (max-width 75%); user and model turns differ by surface, not by colour alone.",
+   "status": "stable",
+   "aliases": [
+    "chat bubble",
+    "chat bubble",
+    "message bubble",
+    "chat message",
+    "turn bubble"
+   ],
+   "body": {
+    "class": "bubble",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "A chat message turn (max-width 75%); user and model turns differ by surface, not by colour alone."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.bubble)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/composer",
+   "kind": "component",
+   "title": "Composer",
+   "summary": "The message input card at the foot of a chat: input, send, and any attachments.",
+   "status": "stable",
+   "aliases": [
+    "composer",
+    "composer",
+    "message composer",
+    "chat input",
+    "prompt input"
+   ],
+   "body": {
+    "class": "composer",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The message input card at the foot of a chat: input, send, and any attachments."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.composer)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/proposal",
+   "kind": "component",
+   "title": "Proposal card",
+   "summary": "The one visual contract for every AI action that needs review: proposal text, evidence and review actions.",
+   "status": "stable",
+   "aliases": [
+    "proposal card",
+    "proposal card",
+    "proposal",
+    "ai action card",
+    "suggestion card"
+   ],
+   "body": {
+    "class": "proposal",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The one visual contract for every AI action that needs review: proposal text, evidence and review actions."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.proposal)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/menu-pop",
+   "kind": "component",
+   "title": "Overflow menu",
+   "summary": "The absolute popover anchored to a trigger; shadows mark it as floating.",
+   "status": "stable",
+   "aliases": [
+    "overflow menu",
+    "overflow menu",
+    "menu popover",
+    "popover menu",
+    "row menu",
+    "kebab menu"
+   ],
+   "body": {
+    "class": "menu-pop",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The absolute popover anchored to a trigger; shadows mark it as floating."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.menu-pop)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/scrim",
+   "kind": "component",
+   "title": "Scrim",
+   "summary": "The fixed backdrop behind drawers, sheets and dialogs.",
+   "status": "stable",
+   "aliases": [
+    "scrim",
+    "scrim",
+    "backdrop",
+    "overlay backdrop",
+    "dim layer"
+   ],
+   "body": {
+    "class": "scrim",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The fixed backdrop behind drawers, sheets and dialogs."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.scrim)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/bottom-nav",
+   "kind": "component",
+   "title": "Bottom navigation",
+   "summary": "The persistent phone tab bar, with view transitions between tabs.",
+   "status": "stable",
+   "aliases": [
+    "bottom navigation",
+    "bottom navigation",
+    "bottom nav",
+    "tab bar",
+    "phone tab bar",
+    "mobile navigation"
+   ],
+   "body": {
+    "class": "bottom-nav",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The persistent phone tab bar, with view transitions between tabs."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.bottom-nav)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/dock",
+   "kind": "component",
+   "title": "Dock",
+   "summary": "The slim fixed side panel (46px) for persistent auxiliary tools; opens on demand.",
+   "status": "stable",
+   "aliases": [
+    "dock",
+    "dock",
+    "side dock",
+    "dock panel"
+   ],
+   "body": {
+    "class": "dock",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The slim fixed side panel (46px) for persistent auxiliary tools; opens on demand."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.dock)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/topbar",
+   "kind": "component",
+   "title": "App topbar",
+   "summary": "The tablet and phone chrome header (menu, title, theme and density toggles, status); hidden on desktop where the sidebar carries the brand.",
+   "status": "stable",
+   "aliases": [
+    "app topbar",
+    "topbar",
+    "app topbar",
+    "top bar",
+    "mobile header",
+    "app header"
+   ],
+   "body": {
+    "class": "topbar",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The tablet and phone chrome header (menu, title, theme and density toggles, status); hidden on desktop where the sidebar carries the brand."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.topbar)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/page-head",
+   "kind": "component",
+   "title": "Page header",
+   "summary": "The title row at the top of a page: title, description and actions.",
+   "status": "stable",
+   "aliases": [
+    "page header",
+    "page header",
+    "page title block",
+    "page heading",
+    "page frame"
+   ],
+   "body": {
+    "class": "page-head",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The title row at the top of a page: title, description and actions."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.page-head)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/seg",
+   "kind": "component",
+   "title": "Segmented control",
+   "summary": "The inline segmented selector for mutually exclusive views.",
+   "status": "stable",
+   "aliases": [
+    "segmented control",
+    "segmented control",
+    "segmented",
+    "seg control",
+    "segmented selector",
+    "toggle group"
+   ],
+   "body": {
+    "class": "seg",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The inline segmented selector for mutually exclusive views."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.seg)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/arm-del",
+   "kind": "component",
+   "title": "Armed delete",
+   "summary": "The two-step, in-place destructive control: the first click arms, the second confirms. No dialog; native confirm() stays reserved for irreversible actions.",
+   "status": "stable",
+   "aliases": [
+    "armed delete",
+    "armed delete",
+    "two-step delete",
+    "in-place confirm",
+    "destructive arm"
+   ],
+   "body": {
+    "class": "arm-del",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The two-step, in-place destructive control: the first click arms, the second confirms. No dialog; native confirm() stays reserved for irreversible actions."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.arm-del)"
+   },
+   "compiled_from": [
+    "triage/furniture"
+   ]
+  },
+  {
+   "id": "component/shell",
+   "kind": "component",
+   "title": "App shell",
+   "summary": "The page skeleton: sidebar, main column and content frame (.app / .side / .main), with the shell contract on /components/navigation.",
+   "status": "stable",
+   "aliases": [
+    "app shell",
+    "app shell",
+    "shell",
+    "page shell",
+    "layout shell",
+    "sidebar layout"
+   ],
+   "body": {
+    "class": "app",
+    "group": "Components - furniture",
+    "source_file": "core/base.css",
+    "matrix": "documented in core and the component pages; no states-matrix entry",
+    "note": "The page skeleton: sidebar, main column and content frame (.app / .side / .main), with the shell contract on /components/navigation."
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "core/base.css (.app)"
+   },
+   "compiled_from": [
+    "triage/furniture"
    ]
   }
  ]

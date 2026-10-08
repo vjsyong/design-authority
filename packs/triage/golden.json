@@ -73,6 +73,66 @@
    "expect_id": "component/msg"
   },
   {
+   "problem": "the design philosophy",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/philosophy"
+  },
+  {
+   "problem": "the logo and brand mark",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "problem": "dark mode",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "problem": "the icon set",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/icons"
+  },
+  {
+   "problem": "accessibility",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/accessibility"
+  },
+  {
+   "problem": "the voice and copy rules",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/voice"
+  },
+  {
+   "problem": "localisation and i18n",
+   "expect": "RESOLVED",
+   "expect_id": "guideline/localisation"
+  },
+  {
+   "problem": "a checkbox",
+   "expect": "RESOLVED",
+   "expect_id": "component/check"
+  },
+  {
+   "problem": "a progress bar",
+   "expect": "RESOLVED",
+   "expect_id": "component/progress"
+  },
+  {
+   "problem": "a chat bubble",
+   "expect": "RESOLVED",
+   "expect_id": "component/bubble"
+  },
+  {
+   "problem": "a proposal card",
+   "expect": "RESOLVED",
+   "expect_id": "component/proposal"
+  },
+  {
+   "problem": "a keycap",
+   "expect": "RESOLVED",
+   "expect_id": "component/kbd"
+  },
+  {
    "problem": "a toast notification",
    "expect": "RESOLVED",
    "expect_id": "component/toast2"

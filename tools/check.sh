@@ -6,6 +6,8 @@ echo "== triage pack drift check (synthesis pipeline)"
 # The live triage pack is built by docs/synthesis/triage/tools/build_triage_pack.py.
 # The kit builder (tools/build_pack_triage.py) remains for the evolution packs (--out).
 python3 tools/check_triage_pack.py
+echo "== triage coverage sweep (element by element)"
+python3 docs/synthesis/triage/tools/sweep_resolution.py --quiet
 echo "== kernel unit tests"
 python3 -m unittest discover -s kernel/tests -t . -q
 echo "== golden set"

@@ -1,0 +1,676 @@
+{
+ "version": "0.1",
+ "note": "element-by-element coverage of the triage design system against packs/triage; run with sweep_resolution.py",
+ "cases": [
+  {
+   "element": "component/btn",
+   "ask": "a button",
+   "expect_id": "component/btn"
+  },
+  {
+   "element": "component/btn",
+   "ask": "a primary button",
+   "expect_id": "component/btn"
+  },
+  {
+   "element": "component/btn",
+   "ask": "a primary action",
+   "expect_id": "component/btn"
+  },
+  {
+   "element": "component/iconbtn",
+   "ask": "an icon-only button",
+   "expect_id": "component/iconbtn"
+  },
+  {
+   "element": "component/px-sw",
+   "ask": "a switch",
+   "expect_id": "component/px-sw"
+  },
+  {
+   "element": "component/menu-item",
+   "ask": "a menu item",
+   "expect_id": "component/menu-item"
+  },
+  {
+   "element": "component/nav-item",
+   "ask": "a nav item",
+   "expect_id": "component/nav-item"
+  },
+  {
+   "element": "component/chip",
+   "ask": "a chip",
+   "expect_id": "component/chip"
+  },
+  {
+   "element": "component/index-row",
+   "ask": "an index row",
+   "expect_id": "component/index-row"
+  },
+  {
+   "element": "component/tbl",
+   "ask": "a data table",
+   "expect_id": "component/tbl"
+  },
+  {
+   "element": "component/bulkbar",
+   "ask": "a bulk action bar",
+   "expect_id": "component/bulkbar"
+  },
+  {
+   "element": "component/savebar",
+   "ask": "a save bar",
+   "expect_id": "component/savebar"
+  },
+  {
+   "element": "component/msg",
+   "ask": "a flash message",
+   "expect_id": "component/msg"
+  },
+  {
+   "element": "component/msg",
+   "ask": "a banner",
+   "expect_id": "component/msg"
+  },
+  {
+   "element": "component/msg",
+   "ask": "a tint banner",
+   "expect_id": "component/msg"
+  },
+  {
+   "element": "component/msg",
+   "ask": "a solid banner",
+   "expect_id": "component/msg"
+  },
+  {
+   "element": "component/msg",
+   "ask": "an informational banner",
+   "expect_id": "component/msg"
+  },
+  {
+   "element": "component/toast2",
+   "ask": "a toast",
+   "expect_id": "component/toast2"
+  },
+  {
+   "element": "component/badge",
+   "ask": "a status badge",
+   "expect_id": "component/badge"
+  },
+  {
+   "element": "component/empty",
+   "ask": "an empty state",
+   "expect_id": "component/empty"
+  },
+  {
+   "element": "component/dlg",
+   "ask": "a dialog",
+   "expect_id": "component/dlg"
+  },
+  {
+   "element": "component/dlg",
+   "ask": "a modal",
+   "expect_id": "component/dlg"
+  },
+  {
+   "element": "component/tip",
+   "ask": "a tooltip",
+   "expect_id": "component/tip"
+  },
+  {
+   "element": "component/spinner",
+   "ask": "a loading spinner",
+   "expect_id": "component/spinner"
+  },
+  {
+   "element": "component/field-err",
+   "ask": "a field error",
+   "expect_id": "component/field-err"
+  },
+  {
+   "element": "component/tabs",
+   "ask": "tabs",
+   "expect_id": "component/tabs"
+  },
+  {
+   "element": "component/crumbs",
+   "ask": "breadcrumbs",
+   "expect_id": "component/crumbs"
+  },
+  {
+   "element": "component/radio",
+   "ask": "a radio group",
+   "expect_id": "component/radio"
+  },
+  {
+   "element": "component/slider",
+   "ask": "a range slider",
+   "expect_id": "component/slider"
+  },
+  {
+   "element": "component/cb",
+   "ask": "a combobox",
+   "expect_id": "component/cb"
+  },
+  {
+   "element": "component/cb",
+   "ask": "an autocomplete",
+   "expect_id": "component/cb"
+  },
+  {
+   "element": "component/dp",
+   "ask": "a date picker",
+   "expect_id": "component/dp"
+  },
+  {
+   "element": "component/acc",
+   "ask": "an accordion",
+   "expect_id": "component/acc"
+  },
+  {
+   "element": "component/avatar-sq",
+   "ask": "an avatar",
+   "expect_id": "component/avatar-sq"
+  },
+  {
+   "element": "component/img",
+   "ask": "an image",
+   "expect_id": "component/img"
+  },
+  {
+   "element": "component/drop",
+   "ask": "a file dropzone",
+   "expect_id": "component/drop"
+  },
+  {
+   "element": "component/drop",
+   "ask": "an upload area",
+   "expect_id": "component/drop"
+  },
+  {
+   "element": "component/notif",
+   "ask": "a notifications panel",
+   "expect_id": "component/notif"
+  },
+  {
+   "element": "component/cmd",
+   "ask": "a command palette",
+   "expect_id": "component/cmd"
+  },
+  {
+   "element": "component/page-state",
+   "ask": "a full-page state",
+   "expect_id": "component/page-state"
+  },
+  {
+   "element": "component/page-state",
+   "ask": "an error page",
+   "expect_id": "component/page-state"
+  },
+  {
+   "element": "component/pager-num",
+   "ask": "numbered pagination",
+   "expect_id": "component/pager-num"
+  },
+  {
+   "element": "component/pager-num",
+   "ask": "a pager",
+   "expect_id": "component/pager-num"
+  },
+  {
+   "element": "component/tl",
+   "ask": "a timeline",
+   "expect_id": "component/tl"
+  },
+  {
+   "element": "component/tl",
+   "ask": "an approval history",
+   "expect_id": "component/tl"
+  },
+  {
+   "element": "component/diff",
+   "ask": "a diff view",
+   "expect_id": "component/diff"
+  },
+  {
+   "element": "component/sheet-end",
+   "ask": "a bottom sheet",
+   "expect_id": "component/sheet-end"
+  },
+  {
+   "element": "component/sheet-end",
+   "ask": "a drawer",
+   "expect_id": "component/sheet-end"
+  },
+  {
+   "element": "component/check",
+   "ask": "a checkbox",
+   "expect_id": "component/check"
+  },
+  {
+   "element": "component/check",
+   "ask": "a checkbox group",
+   "expect_id": "component/check"
+  },
+  {
+   "element": "component/dot",
+   "ask": "a status dot",
+   "expect_id": "component/dot"
+  },
+  {
+   "element": "component/dot",
+   "ask": "a dot",
+   "expect_id": "component/dot"
+  },
+  {
+   "element": "component/kbd",
+   "ask": "a keycap",
+   "expect_id": "component/kbd"
+  },
+  {
+   "element": "component/kbd",
+   "ask": "a keyboard shortcut hint",
+   "expect_id": "component/kbd"
+  },
+  {
+   "element": "component/stat",
+   "ask": "a stat tile",
+   "expect_id": "component/stat"
+  },
+  {
+   "element": "component/stat",
+   "ask": "a metric tile",
+   "expect_id": "component/stat"
+  },
+  {
+   "element": "component/kv",
+   "ask": "key-value rows",
+   "expect_id": "component/kv"
+  },
+  {
+   "element": "component/kv",
+   "ask": "a metadata list",
+   "expect_id": "component/kv"
+  },
+  {
+   "element": "component/progress",
+   "ask": "a progress bar",
+   "expect_id": "component/progress"
+  },
+  {
+   "element": "component/progress",
+   "ask": "an inline progress",
+   "expect_id": "component/progress"
+  },
+  {
+   "element": "component/skeleton",
+   "ask": "a skeleton loader",
+   "expect_id": "component/skeleton"
+  },
+  {
+   "element": "component/skeleton",
+   "ask": "a shimmer placeholder",
+   "expect_id": "component/skeleton"
+  },
+  {
+   "element": "component/logpanel",
+   "ask": "a log panel",
+   "expect_id": "component/logpanel"
+  },
+  {
+   "element": "component/logpanel",
+   "ask": "a terminal panel",
+   "expect_id": "component/logpanel"
+  },
+  {
+   "element": "component/audit-row",
+   "ask": "an audit trail",
+   "expect_id": "component/audit-row"
+  },
+  {
+   "element": "component/audit-row",
+   "ask": "audit rows",
+   "expect_id": "component/audit-row"
+  },
+  {
+   "element": "component/bubble",
+   "ask": "a chat bubble",
+   "expect_id": "component/bubble"
+  },
+  {
+   "element": "component/bubble",
+   "ask": "a message bubble",
+   "expect_id": "component/bubble"
+  },
+  {
+   "element": "component/composer",
+   "ask": "a message composer",
+   "expect_id": "component/composer"
+  },
+  {
+   "element": "component/proposal",
+   "ask": "a proposal card",
+   "expect_id": "component/proposal"
+  },
+  {
+   "element": "component/menu-pop",
+   "ask": "an overflow menu",
+   "expect_id": "component/menu-pop"
+  },
+  {
+   "element": "component/menu-pop",
+   "ask": "a row menu",
+   "expect_id": "component/menu-pop"
+  },
+  {
+   "element": "component/scrim",
+   "ask": "a scrim",
+   "expect_id": "component/scrim"
+  },
+  {
+   "element": "component/scrim",
+   "ask": "a backdrop",
+   "expect_id": "component/scrim"
+  },
+  {
+   "element": "component/bottom-nav",
+   "ask": "bottom navigation",
+   "expect_id": "component/bottom-nav"
+  },
+  {
+   "element": "component/bottom-nav",
+   "ask": "a phone tab bar",
+   "expect_id": "component/bottom-nav"
+  },
+  {
+   "element": "component/dock",
+   "ask": "a dock",
+   "expect_id": "component/dock"
+  },
+  {
+   "element": "component/topbar",
+   "ask": "an app topbar",
+   "expect_id": "component/topbar"
+  },
+  {
+   "element": "component/topbar",
+   "ask": "a mobile header",
+   "expect_id": "component/topbar"
+  },
+  {
+   "element": "component/page-head",
+   "ask": "a page header",
+   "expect_id": "component/page-head"
+  },
+  {
+   "element": "component/seg",
+   "ask": "a segmented control",
+   "expect_id": "component/seg"
+  },
+  {
+   "element": "component/arm-del",
+   "ask": "an armed delete",
+   "expect_id": "component/arm-del"
+  },
+  {
+   "element": "component/arm-del",
+   "ask": "a two-step delete",
+   "expect_id": "component/arm-del"
+  },
+  {
+   "element": "component/shell",
+   "ask": "an app shell",
+   "expect_id": "component/shell"
+  },
+  {
+   "element": "guideline/philosophy",
+   "ask": "the design philosophy",
+   "expect_id": "guideline/philosophy"
+  },
+  {
+   "element": "guideline/philosophy",
+   "ask": "paper and ink",
+   "expect_id": "guideline/philosophy"
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the brand",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the logo",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the brand mark",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the theming rules",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "white-label",
+   "expect_id": "guideline/brand"
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "dark mode",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "a dark theme",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "high contrast",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "rtl support",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "print styles",
+   "expect_id": "guideline/platform"
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "an icon",
+   "expect_id": "guideline/icons"
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "the icon set",
+   "expect_id": "guideline/icons"
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "the icon sprite",
+   "expect_id": "guideline/icons"
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "iconography",
+   "expect_id": "guideline/icons"
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "accessibility",
+   "expect_id": "guideline/accessibility"
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "wcag",
+   "expect_id": "guideline/accessibility"
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "the focus ring",
+   "expect_id": "guideline/accessibility"
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "contrast rules",
+   "expect_id": "guideline/accessibility"
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "voice and copy",
+   "expect_id": "guideline/voice"
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "the copy rules",
+   "expect_id": "guideline/voice"
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "microcopy",
+   "expect_id": "guideline/voice"
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "localisation",
+   "expect_id": "guideline/localisation"
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "i18n",
+   "expect_id": "guideline/localisation"
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "bilingual copy",
+   "expect_id": "guideline/localisation"
+  },
+  {
+   "element": "token-set/colour",
+   "ask": "the colour tokens",
+   "expect_id": "token-set/colour"
+  },
+  {
+   "element": "token-set/colour",
+   "ask": "the colour palette",
+   "expect_id": "token-set/colour"
+  },
+  {
+   "element": "token-set/typography",
+   "ask": "the type scale",
+   "expect_id": "token-set/typography"
+  },
+  {
+   "element": "token-set/typography",
+   "ask": "typography tokens",
+   "expect_id": "token-set/typography"
+  },
+  {
+   "element": "token-set/spacing",
+   "ask": "the spacing scale",
+   "expect_id": "token-set/spacing"
+  },
+  {
+   "element": "token-set/spacing",
+   "ask": "the spacing tokens",
+   "expect_id": "token-set/spacing"
+  },
+  {
+   "element": "token-set/motion",
+   "ask": "the motion tokens",
+   "expect_id": "token-set/motion"
+  },
+  {
+   "element": "token-set/motion",
+   "ask": "durations and easing",
+   "expect_id": "token-set/motion"
+  },
+  {
+   "element": "token-set/elevation",
+   "ask": "the shadows",
+   "expect_id": "token-set/elevation"
+  },
+  {
+   "element": "token-set/elevation",
+   "ask": "elevation tokens",
+   "expect_id": "token-set/elevation"
+  },
+  {
+   "element": "token-set/dataviz",
+   "ask": "the dataviz palette",
+   "expect_id": "token-set/dataviz"
+  },
+  {
+   "element": "token-set/dataviz",
+   "ask": "chart colours",
+   "expect_id": "token-set/dataviz"
+  },
+  {
+   "element": "token-set/breakpoints",
+   "ask": "the breakpoints",
+   "expect_id": "token-set/breakpoints"
+  },
+  {
+   "element": "pattern/dashboard",
+   "ask": "a dashboard page",
+   "expect_id": "pattern/dashboard"
+  },
+  {
+   "element": "pattern/viewer",
+   "ask": "a detail page",
+   "expect_id": "pattern/viewer"
+  },
+  {
+   "element": "pattern/settings",
+   "ask": "a settings page",
+   "expect_id": "pattern/settings"
+  },
+  {
+   "element": "pattern/flows",
+   "ask": "a flow builder",
+   "expect_id": "pattern/flows"
+  },
+  {
+   "element": "pattern/simulator",
+   "ask": "a dry-run report",
+   "expect_id": "pattern/simulator"
+  },
+  {
+   "element": "pattern/learning",
+   "ask": "the learning loop",
+   "expect_id": "pattern/learning"
+  },
+  {
+   "element": "pattern/learning",
+   "ask": "a stepper",
+   "expect_id": "pattern/learning"
+  },
+  {
+   "element": "pattern/misc",
+   "ask": "an index page",
+   "expect_id": "pattern/misc"
+  },
+  {
+   "element": "guideline/interaction-standard",
+   "ask": "the interaction standard",
+   "expect_id": "guideline/interaction-standard"
+  },
+  {
+   "element": "guideline/consumption",
+   "ask": "getting started",
+   "expect_id": "guideline/consumption"
+  },
+  {
+   "element": "guideline/verification-levels",
+   "ask": "the verification levels",
+   "expect_id": "guideline/verification-levels"
+  }
+ ]
+}

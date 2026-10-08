@@ -1,0 +1,1081 @@
+{
+ "pack": "triage",
+ "pack_version": "0.12.1",
+ "total": 134,
+ "passed": 134,
+ "misses": [],
+ "rows": [
+  {
+   "element": "component/btn",
+   "ask": "a button",
+   "expect_id": "component/btn",
+   "outcome": "RESOLVED",
+   "got_id": "component/btn",
+   "ok": true
+  },
+  {
+   "element": "component/btn",
+   "ask": "a primary button",
+   "expect_id": "component/btn",
+   "outcome": "RESOLVED",
+   "got_id": "component/btn",
+   "ok": true
+  },
+  {
+   "element": "component/btn",
+   "ask": "a primary action",
+   "expect_id": "component/btn",
+   "outcome": "RESOLVED",
+   "got_id": "component/btn",
+   "ok": true
+  },
+  {
+   "element": "component/iconbtn",
+   "ask": "an icon-only button",
+   "expect_id": "component/iconbtn",
+   "outcome": "RESOLVED",
+   "got_id": "component/iconbtn",
+   "ok": true
+  },
+  {
+   "element": "component/px-sw",
+   "ask": "a switch",
+   "expect_id": "component/px-sw",
+   "outcome": "RESOLVED",
+   "got_id": "component/px-sw",
+   "ok": true
+  },
+  {
+   "element": "component/menu-item",
+   "ask": "a menu item",
+   "expect_id": "component/menu-item",
+   "outcome": "RESOLVED",
+   "got_id": "component/menu-item",
+   "ok": true
+  },
+  {
+   "element": "component/nav-item",
+   "ask": "a nav item",
+   "expect_id": "component/nav-item",
+   "outcome": "RESOLVED",
+   "got_id": "component/nav-item",
+   "ok": true
+  },
+  {
+   "element": "component/chip",
+   "ask": "a chip",
+   "expect_id": "component/chip",
+   "outcome": "RESOLVED",
+   "got_id": "component/chip",
+   "ok": true
+  },
+  {
+   "element": "component/index-row",
+   "ask": "an index row",
+   "expect_id": "component/index-row",
+   "outcome": "RESOLVED",
+   "got_id": "component/index-row",
+   "ok": true
+  },
+  {
+   "element": "component/tbl",
+   "ask": "a data table",
+   "expect_id": "component/tbl",
+   "outcome": "RESOLVED",
+   "got_id": "component/tbl",
+   "ok": true
+  },
+  {
+   "element": "component/bulkbar",
+   "ask": "a bulk action bar",
+   "expect_id": "component/bulkbar",
+   "outcome": "RESOLVED",
+   "got_id": "component/bulkbar",
+   "ok": true
+  },
+  {
+   "element": "component/savebar",
+   "ask": "a save bar",
+   "expect_id": "component/savebar",
+   "outcome": "RESOLVED",
+   "got_id": "component/savebar",
+   "ok": true
+  },
+  {
+   "element": "component/msg",
+   "ask": "a flash message",
+   "expect_id": "component/msg",
+   "outcome": "RESOLVED",
+   "got_id": "component/msg",
+   "ok": true
+  },
+  {
+   "element": "component/msg",
+   "ask": "a banner",
+   "expect_id": "component/msg",
+   "outcome": "RESOLVED",
+   "got_id": "component/msg",
+   "ok": true
+  },
+  {
+   "element": "component/msg",
+   "ask": "a tint banner",
+   "expect_id": "component/msg",
+   "outcome": "RESOLVED",
+   "got_id": "component/msg",
+   "ok": true
+  },
+  {
+   "element": "component/msg",
+   "ask": "a solid banner",
+   "expect_id": "component/msg",
+   "outcome": "RESOLVED",
+   "got_id": "component/msg",
+   "ok": true
+  },
+  {
+   "element": "component/msg",
+   "ask": "an informational banner",
+   "expect_id": "component/msg",
+   "outcome": "RESOLVED",
+   "got_id": "component/msg",
+   "ok": true
+  },
+  {
+   "element": "component/toast2",
+   "ask": "a toast",
+   "expect_id": "component/toast2",
+   "outcome": "RESOLVED",
+   "got_id": "component/toast2",
+   "ok": true
+  },
+  {
+   "element": "component/badge",
+   "ask": "a status badge",
+   "expect_id": "component/badge",
+   "outcome": "RESOLVED",
+   "got_id": "component/badge",
+   "ok": true
+  },
+  {
+   "element": "component/empty",
+   "ask": "an empty state",
+   "expect_id": "component/empty",
+   "outcome": "RESOLVED",
+   "got_id": "component/empty",
+   "ok": true
+  },
+  {
+   "element": "component/dlg",
+   "ask": "a dialog",
+   "expect_id": "component/dlg",
+   "outcome": "RESOLVED",
+   "got_id": "component/dlg",
+   "ok": true
+  },
+  {
+   "element": "component/dlg",
+   "ask": "a modal",
+   "expect_id": "component/dlg",
+   "outcome": "RESOLVED",
+   "got_id": "component/dlg",
+   "ok": true
+  },
+  {
+   "element": "component/tip",
+   "ask": "a tooltip",
+   "expect_id": "component/tip",
+   "outcome": "RESOLVED",
+   "got_id": "component/tip",
+   "ok": true
+  },
+  {
+   "element": "component/spinner",
+   "ask": "a loading spinner",
+   "expect_id": "component/spinner",
+   "outcome": "RESOLVED",
+   "got_id": "component/spinner",
+   "ok": true
+  },
+  {
+   "element": "component/field-err",
+   "ask": "a field error",
+   "expect_id": "component/field-err",
+   "outcome": "RESOLVED",
+   "got_id": "component/field-err",
+   "ok": true
+  },
+  {
+   "element": "component/tabs",
+   "ask": "tabs",
+   "expect_id": "component/tabs",
+   "outcome": "RESOLVED",
+   "got_id": "component/tabs",
+   "ok": true
+  },
+  {
+   "element": "component/crumbs",
+   "ask": "breadcrumbs",
+   "expect_id": "component/crumbs",
+   "outcome": "RESOLVED",
+   "got_id": "component/crumbs",
+   "ok": true
+  },
+  {
+   "element": "component/radio",
+   "ask": "a radio group",
+   "expect_id": "component/radio",
+   "outcome": "RESOLVED",
+   "got_id": "component/radio",
+   "ok": true
+  },
+  {
+   "element": "component/slider",
+   "ask": "a range slider",
+   "expect_id": "component/slider",
+   "outcome": "RESOLVED",
+   "got_id": "component/slider",
+   "ok": true
+  },
+  {
+   "element": "component/cb",
+   "ask": "a combobox",
+   "expect_id": "component/cb",
+   "outcome": "RESOLVED",
+   "got_id": "component/cb",
+   "ok": true
+  },
+  {
+   "element": "component/cb",
+   "ask": "an autocomplete",
+   "expect_id": "component/cb",
+   "outcome": "RESOLVED",
+   "got_id": "component/cb",
+   "ok": true
+  },
+  {
+   "element": "component/dp",
+   "ask": "a date picker",
+   "expect_id": "component/dp",
+   "outcome": "RESOLVED",
+   "got_id": "component/dp",
+   "ok": true
+  },
+  {
+   "element": "component/acc",
+   "ask": "an accordion",
+   "expect_id": "component/acc",
+   "outcome": "RESOLVED",
+   "got_id": "component/acc",
+   "ok": true
+  },
+  {
+   "element": "component/avatar-sq",
+   "ask": "an avatar",
+   "expect_id": "component/avatar-sq",
+   "outcome": "RESOLVED",
+   "got_id": "component/avatar-sq",
+   "ok": true
+  },
+  {
+   "element": "component/img",
+   "ask": "an image",
+   "expect_id": "component/img",
+   "outcome": "RESOLVED",
+   "got_id": "component/img",
+   "ok": true
+  },
+  {
+   "element": "component/drop",
+   "ask": "a file dropzone",
+   "expect_id": "component/drop",
+   "outcome": "RESOLVED",
+   "got_id": "component/drop",
+   "ok": true
+  },
+  {
+   "element": "component/drop",
+   "ask": "an upload area",
+   "expect_id": "component/drop",
+   "outcome": "RESOLVED",
+   "got_id": "component/drop",
+   "ok": true
+  },
+  {
+   "element": "component/notif",
+   "ask": "a notifications panel",
+   "expect_id": "component/notif",
+   "outcome": "RESOLVED",
+   "got_id": "component/notif",
+   "ok": true
+  },
+  {
+   "element": "component/cmd",
+   "ask": "a command palette",
+   "expect_id": "component/cmd",
+   "outcome": "RESOLVED",
+   "got_id": "component/cmd",
+   "ok": true
+  },
+  {
+   "element": "component/page-state",
+   "ask": "a full-page state",
+   "expect_id": "component/page-state",
+   "outcome": "RESOLVED",
+   "got_id": "component/page-state",
+   "ok": true
+  },
+  {
+   "element": "component/page-state",
+   "ask": "an error page",
+   "expect_id": "component/page-state",
+   "outcome": "RESOLVED",
+   "got_id": "component/page-state",
+   "ok": true
+  },
+  {
+   "element": "component/pager-num",
+   "ask": "numbered pagination",
+   "expect_id": "component/pager-num",
+   "outcome": "RESOLVED",
+   "got_id": "component/pager-num",
+   "ok": true
+  },
+  {
+   "element": "component/pager-num",
+   "ask": "a pager",
+   "expect_id": "component/pager-num",
+   "outcome": "RESOLVED",
+   "got_id": "component/pager-num",
+   "ok": true
+  },
+  {
+   "element": "component/tl",
+   "ask": "a timeline",
+   "expect_id": "component/tl",
+   "outcome": "RESOLVED",
+   "got_id": "component/tl",
+   "ok": true
+  },
+  {
+   "element": "component/tl",
+   "ask": "an approval history",
+   "expect_id": "component/tl",
+   "outcome": "RESOLVED",
+   "got_id": "component/tl",
+   "ok": true
+  },
+  {
+   "element": "component/diff",
+   "ask": "a diff view",
+   "expect_id": "component/diff",
+   "outcome": "RESOLVED",
+   "got_id": "component/diff",
+   "ok": true
+  },
+  {
+   "element": "component/sheet-end",
+   "ask": "a bottom sheet",
+   "expect_id": "component/sheet-end",
+   "outcome": "RESOLVED",
+   "got_id": "component/sheet-end",
+   "ok": true
+  },
+  {
+   "element": "component/sheet-end",
+   "ask": "a drawer",
+   "expect_id": "component/sheet-end",
+   "outcome": "RESOLVED",
+   "got_id": "component/sheet-end",
+   "ok": true
+  },
+  {
+   "element": "component/check",
+   "ask": "a checkbox",
+   "expect_id": "component/check",
+   "outcome": "RESOLVED",
+   "got_id": "component/check",
+   "ok": true
+  },
+  {
+   "element": "component/check",
+   "ask": "a checkbox group",
+   "expect_id": "component/check",
+   "outcome": "RESOLVED",
+   "got_id": "component/check",
+   "ok": true
+  },
+  {
+   "element": "component/dot",
+   "ask": "a status dot",
+   "expect_id": "component/dot",
+   "outcome": "RESOLVED",
+   "got_id": "component/dot",
+   "ok": true
+  },
+  {
+   "element": "component/dot",
+   "ask": "a dot",
+   "expect_id": "component/dot",
+   "outcome": "RESOLVED",
+   "got_id": "component/dot",
+   "ok": true
+  },
+  {
+   "element": "component/kbd",
+   "ask": "a keycap",
+   "expect_id": "component/kbd",
+   "outcome": "RESOLVED",
+   "got_id": "component/kbd",
+   "ok": true
+  },
+  {
+   "element": "component/kbd",
+   "ask": "a keyboard shortcut hint",
+   "expect_id": "component/kbd",
+   "outcome": "RESOLVED",
+   "got_id": "component/kbd",
+   "ok": true
+  },
+  {
+   "element": "component/stat",
+   "ask": "a stat tile",
+   "expect_id": "component/stat",
+   "outcome": "RESOLVED",
+   "got_id": "component/stat",
+   "ok": true
+  },
+  {
+   "element": "component/stat",
+   "ask": "a metric tile",
+   "expect_id": "component/stat",
+   "outcome": "RESOLVED",
+   "got_id": "component/stat",
+   "ok": true
+  },
+  {
+   "element": "component/kv",
+   "ask": "key-value rows",
+   "expect_id": "component/kv",
+   "outcome": "RESOLVED",
+   "got_id": "component/kv",
+   "ok": true
+  },
+  {
+   "element": "component/kv",
+   "ask": "a metadata list",
+   "expect_id": "component/kv",
+   "outcome": "RESOLVED",
+   "got_id": "component/kv",
+   "ok": true
+  },
+  {
+   "element": "component/progress",
+   "ask": "a progress bar",
+   "expect_id": "component/progress",
+   "outcome": "RESOLVED",
+   "got_id": "component/progress",
+   "ok": true
+  },
+  {
+   "element": "component/progress",
+   "ask": "an inline progress",
+   "expect_id": "component/progress",
+   "outcome": "RESOLVED",
+   "got_id": "component/progress",
+   "ok": true
+  },
+  {
+   "element": "component/skeleton",
+   "ask": "a skeleton loader",
+   "expect_id": "component/skeleton",
+   "outcome": "RESOLVED",
+   "got_id": "component/skeleton",
+   "ok": true
+  },
+  {
+   "element": "component/skeleton",
+   "ask": "a shimmer placeholder",
+   "expect_id": "component/skeleton",
+   "outcome": "RESOLVED",
+   "got_id": "component/skeleton",
+   "ok": true
+  },
+  {
+   "element": "component/logpanel",
+   "ask": "a log panel",
+   "expect_id": "component/logpanel",
+   "outcome": "RESOLVED",
+   "got_id": "component/logpanel",
+   "ok": true
+  },
+  {
+   "element": "component/logpanel",
+   "ask": "a terminal panel",
+   "expect_id": "component/logpanel",
+   "outcome": "RESOLVED",
+   "got_id": "component/logpanel",
+   "ok": true
+  },
+  {
+   "element": "component/audit-row",
+   "ask": "an audit trail",
+   "expect_id": "component/audit-row",
+   "outcome": "RESOLVED",
+   "got_id": "component/audit-row",
+   "ok": true
+  },
+  {
+   "element": "component/audit-row",
+   "ask": "audit rows",
+   "expect_id": "component/audit-row",
+   "outcome": "RESOLVED",
+   "got_id": "component/audit-row",
+   "ok": true
+  },
+  {
+   "element": "component/bubble",
+   "ask": "a chat bubble",
+   "expect_id": "component/bubble",
+   "outcome": "RESOLVED",
+   "got_id": "component/bubble",
+   "ok": true
+  },
+  {
+   "element": "component/bubble",
+   "ask": "a message bubble",
+   "expect_id": "component/bubble",
+   "outcome": "RESOLVED",
+   "got_id": "component/bubble",
+   "ok": true
+  },
+  {
+   "element": "component/composer",
+   "ask": "a message composer",
+   "expect_id": "component/composer",
+   "outcome": "RESOLVED",
+   "got_id": "component/composer",
+   "ok": true
+  },
+  {
+   "element": "component/proposal",
+   "ask": "a proposal card",
+   "expect_id": "component/proposal",
+   "outcome": "RESOLVED",
+   "got_id": "component/proposal",
+   "ok": true
+  },
+  {
+   "element": "component/menu-pop",
+   "ask": "an overflow menu",
+   "expect_id": "component/menu-pop",
+   "outcome": "RESOLVED",
+   "got_id": "component/menu-pop",
+   "ok": true
+  },
+  {
+   "element": "component/menu-pop",
+   "ask": "a row menu",
+   "expect_id": "component/menu-pop",
+   "outcome": "RESOLVED",
+   "got_id": "component/menu-pop",
+   "ok": true
+  },
+  {
+   "element": "component/scrim",
+   "ask": "a scrim",
+   "expect_id": "component/scrim",
+   "outcome": "RESOLVED",
+   "got_id": "component/scrim",
+   "ok": true
+  },
+  {
+   "element": "component/scrim",
+   "ask": "a backdrop",
+   "expect_id": "component/scrim",
+   "outcome": "RESOLVED",
+   "got_id": "component/scrim",
+   "ok": true
+  },
+  {
+   "element": "component/bottom-nav",
+   "ask": "bottom navigation",
+   "expect_id": "component/bottom-nav",
+   "outcome": "RESOLVED",
+   "got_id": "component/bottom-nav",
+   "ok": true
+  },
+  {
+   "element": "component/bottom-nav",
+   "ask": "a phone tab bar",
+   "expect_id": "component/bottom-nav",
+   "outcome": "RESOLVED",
+   "got_id": "component/bottom-nav",
+   "ok": true
+  },
+  {
+   "element": "component/dock",
+   "ask": "a dock",
+   "expect_id": "component/dock",
+   "outcome": "RESOLVED",
+   "got_id": "component/dock",
+   "ok": true
+  },
+  {
+   "element": "component/topbar",
+   "ask": "an app topbar",
+   "expect_id": "component/topbar",
+   "outcome": "RESOLVED",
+   "got_id": "component/topbar",
+   "ok": true
+  },
+  {
+   "element": "component/topbar",
+   "ask": "a mobile header",
+   "expect_id": "component/topbar",
+   "outcome": "RESOLVED",
+   "got_id": "component/topbar",
+   "ok": true
+  },
+  {
+   "element": "component/page-head",
+   "ask": "a page header",
+   "expect_id": "component/page-head",
+   "outcome": "RESOLVED",
+   "got_id": "component/page-head",
+   "ok": true
+  },
+  {
+   "element": "component/seg",
+   "ask": "a segmented control",
+   "expect_id": "component/seg",
+   "outcome": "RESOLVED",
+   "got_id": "component/seg",
+   "ok": true
+  },
+  {
+   "element": "component/arm-del",
+   "ask": "an armed delete",
+   "expect_id": "component/arm-del",
+   "outcome": "RESOLVED",
+   "got_id": "component/arm-del",
+   "ok": true
+  },
+  {
+   "element": "component/arm-del",
+   "ask": "a two-step delete",
+   "expect_id": "component/arm-del",
+   "outcome": "RESOLVED",
+   "got_id": "component/arm-del",
+   "ok": true
+  },
+  {
+   "element": "component/shell",
+   "ask": "an app shell",
+   "expect_id": "component/shell",
+   "outcome": "RESOLVED",
+   "got_id": "component/shell",
+   "ok": true
+  },
+  {
+   "element": "guideline/philosophy",
+   "ask": "the design philosophy",
+   "expect_id": "guideline/philosophy",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/philosophy",
+   "ok": true
+  },
+  {
+   "element": "guideline/philosophy",
+   "ask": "paper and ink",
+   "expect_id": "guideline/philosophy",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/philosophy",
+   "ok": true
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the brand",
+   "expect_id": "guideline/brand",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/brand",
+   "ok": true
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the logo",
+   "expect_id": "guideline/brand",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/brand",
+   "ok": true
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the brand mark",
+   "expect_id": "guideline/brand",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/brand",
+   "ok": true
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "the theming rules",
+   "expect_id": "guideline/brand",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/brand",
+   "ok": true
+  },
+  {
+   "element": "guideline/brand",
+   "ask": "white-label",
+   "expect_id": "guideline/brand",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/brand",
+   "ok": true
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "dark mode",
+   "expect_id": "guideline/platform",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/platform",
+   "ok": true
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "a dark theme",
+   "expect_id": "guideline/platform",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/platform",
+   "ok": true
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "high contrast",
+   "expect_id": "guideline/platform",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/platform",
+   "ok": true
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "rtl support",
+   "expect_id": "guideline/platform",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/platform",
+   "ok": true
+  },
+  {
+   "element": "guideline/platform",
+   "ask": "print styles",
+   "expect_id": "guideline/platform",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/platform",
+   "ok": true
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "an icon",
+   "expect_id": "guideline/icons",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/icons",
+   "ok": true
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "the icon set",
+   "expect_id": "guideline/icons",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/icons",
+   "ok": true
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "the icon sprite",
+   "expect_id": "guideline/icons",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/icons",
+   "ok": true
+  },
+  {
+   "element": "guideline/icons",
+   "ask": "iconography",
+   "expect_id": "guideline/icons",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/icons",
+   "ok": true
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "accessibility",
+   "expect_id": "guideline/accessibility",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/accessibility",
+   "ok": true
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "wcag",
+   "expect_id": "guideline/accessibility",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/accessibility",
+   "ok": true
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "the focus ring",
+   "expect_id": "guideline/accessibility",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/accessibility",
+   "ok": true
+  },
+  {
+   "element": "guideline/accessibility",
+   "ask": "contrast rules",
+   "expect_id": "guideline/accessibility",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/accessibility",
+   "ok": true
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "voice and copy",
+   "expect_id": "guideline/voice",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/voice",
+   "ok": true
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "the copy rules",
+   "expect_id": "guideline/voice",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/voice",
+   "ok": true
+  },
+  {
+   "element": "guideline/voice",
+   "ask": "microcopy",
+   "expect_id": "guideline/voice",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/voice",
+   "ok": true
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "localisation",
+   "expect_id": "guideline/localisation",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/localisation",
+   "ok": true
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "i18n",
+   "expect_id": "guideline/localisation",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/localisation",
+   "ok": true
+  },
+  {
+   "element": "guideline/localisation",
+   "ask": "bilingual copy",
+   "expect_id": "guideline/localisation",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/localisation",
+   "ok": true
+  },
+  {
+   "element": "token-set/colour",
+   "ask": "the colour tokens",
+   "expect_id": "token-set/colour",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/colour",
+   "ok": true
+  },
+  {
+   "element": "token-set/colour",
+   "ask": "the colour palette",
+   "expect_id": "token-set/colour",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/colour",
+   "ok": true
+  },
+  {
+   "element": "token-set/typography",
+   "ask": "the type scale",
+   "expect_id": "token-set/typography",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/typography",
+   "ok": true
+  },
+  {
+   "element": "token-set/typography",
+   "ask": "typography tokens",
+   "expect_id": "token-set/typography",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/typography",
+   "ok": true
+  },
+  {
+   "element": "token-set/spacing",
+   "ask": "the spacing scale",
+   "expect_id": "token-set/spacing",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/spacing",
+   "ok": true
+  },
+  {
+   "element": "token-set/spacing",
+   "ask": "the spacing tokens",
+   "expect_id": "token-set/spacing",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/spacing",
+   "ok": true
+  },
+  {
+   "element": "token-set/motion",
+   "ask": "the motion tokens",
+   "expect_id": "token-set/motion",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/motion",
+   "ok": true
+  },
+  {
+   "element": "token-set/motion",
+   "ask": "durations and easing",
+   "expect_id": "token-set/motion",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/motion",
+   "ok": true
+  },
+  {
+   "element": "token-set/elevation",
+   "ask": "the shadows",
+   "expect_id": "token-set/elevation",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/elevation",
+   "ok": true
+  },
+  {
+   "element": "token-set/elevation",
+   "ask": "elevation tokens",
+   "expect_id": "token-set/elevation",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/elevation",
+   "ok": true
+  },
+  {
+   "element": "token-set/dataviz",
+   "ask": "the dataviz palette",
+   "expect_id": "token-set/dataviz",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/dataviz",
+   "ok": true
+  },
+  {
+   "element": "token-set/dataviz",
+   "ask": "chart colours",
+   "expect_id": "token-set/dataviz",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/dataviz",
+   "ok": true
+  },
+  {
+   "element": "token-set/breakpoints",
+   "ask": "the breakpoints",
+   "expect_id": "token-set/breakpoints",
+   "outcome": "RESOLVED",
+   "got_id": "token-set/breakpoints",
+   "ok": true
+  },
+  {
+   "element": "pattern/dashboard",
+   "ask": "a dashboard page",
+   "expect_id": "pattern/dashboard",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/dashboard",
+   "ok": true
+  },
+  {
+   "element": "pattern/viewer",
+   "ask": "a detail page",
+   "expect_id": "pattern/viewer",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/viewer",
+   "ok": true
+  },
+  {
+   "element": "pattern/settings",
+   "ask": "a settings page",
+   "expect_id": "pattern/settings",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/settings",
+   "ok": true
+  },
+  {
+   "element": "pattern/flows",
+   "ask": "a flow builder",
+   "expect_id": "pattern/flows",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/flows",
+   "ok": true
+  },
+  {
+   "element": "pattern/simulator",
+   "ask": "a dry-run report",
+   "expect_id": "pattern/simulator",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/simulator",
+   "ok": true
+  },
+  {
+   "element": "pattern/learning",
+   "ask": "the learning loop",
+   "expect_id": "pattern/learning",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/learning",
+   "ok": true
+  },
+  {
+   "element": "pattern/learning",
+   "ask": "a stepper",
+   "expect_id": "pattern/learning",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/learning",
+   "ok": true
+  },
+  {
+   "element": "pattern/misc",
+   "ask": "an index page",
+   "expect_id": "pattern/misc",
+   "outcome": "RESOLVED",
+   "got_id": "pattern/misc",
+   "ok": true
+  },
+  {
+   "element": "guideline/interaction-standard",
+   "ask": "the interaction standard",
+   "expect_id": "guideline/interaction-standard",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/interaction-standard",
+   "ok": true
+  },
+  {
+   "element": "guideline/consumption",
+   "ask": "getting started",
+   "expect_id": "guideline/consumption",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/consumption",
+   "ok": true
+  },
+  {
+   "element": "guideline/verification-levels",
+   "ask": "the verification levels",
+   "expect_id": "guideline/verification-levels",
+   "outcome": "RESOLVED",
+   "got_id": "guideline/verification-levels",
+   "ok": true
+  }
+ ]
+}
