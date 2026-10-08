@@ -246,6 +246,22 @@ for slug, title, desc in PATTERNS:
         {"group": "Patterns", "source_file": "site/pages_patterns.py (%s)" % slug},
         "site/pages_patterns.py", ["triage/patterns"]))
 
+artifacts.append(A(
+    "guideline/verification-levels", "guideline", "Verification levels (traceable conformance)",
+    "Four levels of conformance — static (shipped), behavioural (partial), rendered and product (proposed) — "
+    "with the traceability contract: every conformance claim cites its rule id, implementation location and "
+    "evidence; a lint score is a gate, never evidence. Coverage is declared per component.",
+    ["verification", "conformance", "evidence", "verification levels", "traceability"],
+    {"group": "Doctrine",
+     "levels": ["L1 static — lint + states matrix (shipped)",
+                "L2 behavioural — keyboard, state transitions, focus restoration, lifecycle (partial; declared per component)",
+                "L3 rendered — screenshots, overflow, zoom, dark, reduced motion, visual regression (proposed)",
+                "L4 product — workflow success, error recovery, comprehension (proposed cross-product agent experiment)"],
+     "contract": "rule id · component · implementation · evidence — score is a gate, not proof",
+     "source_doc": "spec/proposals/verification-levels.md",
+     "verify": ["spec/proposals/verification-levels.md"]},
+    "spec/proposals/verification-levels.md", ["triage/review-2026-10"]))
+
 json.dump({"artifacts": artifacts}, open(os.path.join(OUT, "artifacts.json"), "w"), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- rules -----
@@ -329,7 +345,69 @@ precedents = [
 json.dump({"precedents": precedents}, open(os.path.join(OUT, "precedents.json"), "w"), indent=1, ensure_ascii=False)
 
 # ----------------------------------------------------------- candidates -----
-json.dump({"candidates": []}, open(os.path.join(OUT, "candidates.json"), "w"), indent=1, ensure_ascii=False)
+candidates = [
+    {"id": "candidate/behavioural-verification", "kind": "candidate",
+     "title": "Declared behavioural (L2) evidence per component",
+     "request": "prove interactive components behave, not just that their selectors exist",
+     "matches": ["behavioural verification", "behaviour tests", "keyboard tests", "state transitions"],
+     "status": "candidate",
+     "summary": "Level 2 currently covers several families (badges, interaction, layout, contrast, roles, screens; datepicker arithmetic pinned). Overlays, combobox, command palette, dialog focus-restore and mobile sheets lack declared behavioural evidence.",
+     "emerges_from": ["external review 2026-10 (point C)", "spec/proposals/verification-levels.md"],
+     "evidence_present": "headless-Chrome fixtures exist; spec/states.json lists verify selectors per component.",
+     "promote_when": ["tests/browser coverage extended to overlays, combobox, command palette, dialog and sheets",
+                      "each component row in spec/states.json declares its L2 test ids",
+                      "CI runs the behavioural set on every change"],
+     "provenance": {"source": "triage repo review + proposals"}},
+    {"id": "candidate/rendered-verification", "kind": "candidate",
+     "title": "Rendered (L3) conformance — condition matrix + baselines",
+     "request": "verify how builds render, not only what they declare",
+     "matches": ["rendered verification", "visual regression", "screenshots", "overflow", "zoom"],
+     "status": "candidate",
+     "summary": "No automated rendered conformance: responsive overflow, 200% text zoom, dark mode, reduced motion, print and forced-colors are unchecked by the gate. Proposed: screenshot pass keyed by component id, diffed against metrics/ui-baseline.json.",
+     "emerges_from": ["external review 2026-10 (point C)", "spec/proposals/verification-levels.md"],
+     "evidence_present": "screens gallery exists; metrics/ui-baseline.json exists; tests/browser has the Chrome harness.",
+     "promote_when": ["baseline harness lands in tests/browser",
+                      "condition matrix (zoom/dark/reduced-motion/print/forced-colors) recorded per component",
+                      "L3 evidence declared in spec/states.json"],
+     "provenance": {"source": "triage repo review + proposals"}},
+    {"id": "candidate/provenance-contract", "kind": "candidate",
+     "title": "Machine-action provenance record (formal component contract)",
+     "request": "audit records that are evidence, distinct from transcripts and explanations",
+     "matches": ["provenance", "audit record", "provenance contract", "machine action", "reasoning"],
+     "status": "candidate",
+     "summary": "A required record shape for machine actions: action, initiating authority, input evidence, rule/model version, evaluation outcome, timestamp, state change, available reversal. Explanations are supplementary; confidence numbers need calibration or are omitted.",
+     "emerges_from": ["external review 2026-10 (point F)", "spec/proposals/provenance-contract.md"],
+     "evidence_present": "chat components already separate reasoning folds, tool disclosures and proposals; rule-versus-model rows exist.",
+     "promote_when": ["field schema merged into spec/",
+                      "one live surface rebuilt with the record (chat proposal card or audit row)",
+                      "lint check for record presence on machine actions"],
+     "provenance": {"source": "triage repo review + proposals"}},
+    {"id": "candidate/theme-profiles", "kind": "candidate",
+     "title": "Invariants vs theme opinions (adoption profiles)",
+     "request": "let adopters keep Triage's quality bar without inheriting every aesthetic choice",
+     "matches": ["theme profiles", "adoption", "invariants", "themeability", "radius policy"],
+     "status": "candidate",
+     "summary": "Split core invariants (status semantics, accessibility, state contracts, reversibility, traceability — always enforced) from theme opinions (radius, typeface, button fills, accent, density — overridable via a declared theme file). Strict profile stays the default identity.",
+     "emerges_from": ["external review 2026-10 (point D)", "spec/proposals/theme-profiles.md"],
+     "evidence_present": "scoped consumption path already exists; radius reset currently !important-locked.",
+     "promote_when": ["owner decision on adopt mode",
+                      "theme.json mechanism implemented and lint reads profiles",
+                      "radius reset moved behind its token"],
+     "provenance": {"source": "triage repo review + proposals"}},
+    {"id": "candidate/hierarchy-and-density", "kind": "candidate",
+     "title": "Hierarchy pass + density/border discipline",
+     "request": "make the interface decide what deserves attention first",
+     "matches": ["hierarchy", "density", "typography floor", "border discipline", "message list"],
+     "status": "candidate",
+     "summary": "The message-list and dashboard patterns get a pass against the three-level model (attention/decision → what happened → telemetry); supporting labels move toward 13–14px in comfortable density (12px reserved for secondary metadata); borders become structure/interaction-only with grouping via spacing and type.",
+     "emerges_from": ["external review 2026-10 (points A and E)", "spec/proposals/density-borders.md"],
+     "evidence_present": "published screens show the proposed-rule card pushing messages below the fold; dashboard flattens priorities.",
+     "promote_when": ["both patterns rebuilt against the three-level model",
+                      "label tiers applied and documented; border-discipline checklist added to INTERACTION.md",
+                      "the hierarchy change survives the L4 experiment"],
+     "provenance": {"source": "triage repo review + proposals"}},
+]
+json.dump({"candidates": candidates}, open(os.path.join(OUT, "candidates.json"), "w"), indent=1, ensure_ascii=False)
 json.dump({"recipes": []}, open(os.path.join(OUT, "recipes.json"), "w"), indent=1, ensure_ascii=False)
 
 # ------------------------------------------------------------- golden -------
@@ -376,5 +454,5 @@ golden = {
 }
 json.dump(golden, open(os.path.join(OUT, "golden.json"), "w"), indent=1, ensure_ascii=False)
 
-print("emitted packs/triage: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d golden cases"
-      % (len(artifacts), len(rules), len(prohibitions), len(fallbacks), len(precedents), len(golden["cases"])))
+print("emitted packs/triage: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases"
+      % (len(artifacts), len(rules), len(prohibitions), len(fallbacks), len(precedents), len(candidates), len(golden["cases"])))

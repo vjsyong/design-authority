@@ -2013,6 +2013,41 @@
    "compiled_from": [
     "triage/patterns"
    ]
+  },
+  {
+   "id": "guideline/verification-levels",
+   "kind": "guideline",
+   "title": "Verification levels (traceable conformance)",
+   "summary": "Four levels of conformance — static (shipped), behavioural (partial), rendered and product (proposed) — with the traceability contract: every conformance claim cites its rule id, implementation location and evidence; a lint score is a gate, never evidence. Coverage is declared per component.",
+   "status": "stable",
+   "aliases": [
+    "verification",
+    "conformance",
+    "evidence",
+    "verification levels",
+    "traceability"
+   ],
+   "body": {
+    "group": "Doctrine",
+    "levels": [
+     "L1 static — lint + states matrix (shipped)",
+     "L2 behavioural — keyboard, state transitions, focus restoration, lifecycle (partial; declared per component)",
+     "L3 rendered — screenshots, overflow, zoom, dark, reduced motion, visual regression (proposed)",
+     "L4 product — workflow success, error recovery, comprehension (proposed cross-product agent experiment)"
+    ],
+    "contract": "rule id · component · implementation · evidence — score is a gate, not proof",
+    "source_doc": "spec/proposals/verification-levels.md",
+    "verify": [
+     "spec/proposals/verification-levels.md"
+    ]
+   },
+   "source": {
+    "repo": "triage-design-system (triage.seanyong.xyz)",
+    "path": "spec/proposals/verification-levels.md"
+   },
+   "compiled_from": [
+    "triage/review-2026-10"
+   ]
   }
  ]
 }
