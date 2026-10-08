@@ -1,0 +1,48 @@
+{
+  "id": "cand/06-skip-catalogue",
+  "title": "Catalogue the skip link (class .skip) as a component",
+  "gap": "dispute/20261008-134355-5a90bd + gap/20261008-124813-ac670b",
+  "classification": "DOCUMENTATION-FIX",
+  "layer": "triage-snapshot + curation",
+  "review": {"verdict": "PENDING", "source": "docs/evolution/round2/03-review.md"},
+  "problem": "Agents asking for a skip link get a false RESOLVED to component/nav-item: nav-item's multi-word alias \"navigation link\" fires a phrase bonus on any query containing \"navigation\" and \"link\". The .skip class itself is shipped and documented in three places (core/base.css, css-catalog.md, components.md, and the site's Shell contract card) but no pack catalogues it, so the honest answer cannot be cited.",
+  "evidence": [
+    "dispute/20261008-134355-5a90bd: \"a skip link to jump past the navigation\" -> component/nav-item (8.0) on pinned; same misfire on evolution 0.13.0",
+    "gap/20261008-124813-ac670b (Duty build): agent used the shipped .skip class, refused nav-item, filed the gap",
+    "core/base.css:19 .skip + :30 .skip:focus (hidden until focused, jumps to #main) in both snapshots",
+    "provenance/references/css-catalog.md: \"`.skip` - skip-link\"; components.md: \"\".skip\" link first in body\"",
+    "scratch pre-test: with the record present, the query -> RESOLVED component/skip; nav queries unchanged (docs/evolution/data/r2-scratch)"
+  ],
+  "existing_authority_considered": [
+    "component/nav-item - wrong owner; the skip link is a page-level shortcut, not a nav item",
+    "deleting nav-item's \"navigation link\" alias - rejected: legitimate nav vocabulary; risks regressing honest nav queries",
+    "fallback/no-js etc. - fallbacks are for implementable defaults; the class exists, only addressability is missing"
+  ],
+  "why_insufficient": "The visual and behavioural layer already exists and is used in every page template; what is missing is a citable catalogue entry with aliases so resolution can answer honestly instead of mis-claiming nav-item.",
+  "proposed_change": {
+    "triage_snapshot": [
+      "spec/states.json: add component {class: \"skip\", name: \"Skip link\", source: \"base.css\", status: \"stable\", states: [\"default\", \"focus\"], verify: [\".skip\", \".skip:focus\"], a11y: [\"first element in body; hidden until focused; focus moves it into view; targets #main\"]}",
+      "VERSION + package.json + spec/rules.json + spec/states.json(version) + rename-map.json -> 0.13.1-experiment; CHANGELOG entry",
+      "no CSS changes; the class already ships"
+    ],
+    "curation": [
+      "aliases.json: component/skip -> [\"skip link\", \"skip to content\", \"skip navigation\", \"jump to content\"]",
+      "component-notes.json: component/skip -> \"Skip link: first in body; hidden until focused, jumps to #main. Keeps keyboard users out of the nav.\"",
+      "docs-map.json: component/skip -> the shell/accessibility page (match the map's URL style)"
+    ]
+  },
+  "not_proposed": [
+    "removing or rephrasing component/nav-item aliases (rejected above)",
+    "a new CSS utility or any visual change"
+  ],
+  "dependencies": ["component/nav-item (unchanged, cross-checked)"],
+  "scope": "global",
+  "compatibility": "Additive only: a new catalogue entry for an existing shipped class. No selector semantics altered.",
+  "validation": {
+    "criterion": "achievable contract under the frozen kernel:",
+    "mapping": "FINAL (to be re-verified post-build): \"a skip link to jump past the navigation\" -> RESOLVED component/skip; \"skip to content\" phrase searches hit component/skip",
+    "triage_gates": "evo build.py check with the matrix at 38 components; strict lint unchanged; no browser-baseline drift (additive states entry only)",
+    "non_regression": "\"a navigation link in the sidebar\", \"a sidebar link with an active state\" -> component/nav-item unchanged; run the full 14-probe battery"
+  },
+  "migration": "None for consumers: the class is unchanged. Existing implementations keeping a bare .skip remain conformant; new work can cite component/skip."
+}

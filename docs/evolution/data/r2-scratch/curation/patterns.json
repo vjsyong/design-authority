@@ -1,0 +1,12 @@
+{
+  "_note": "Patterns are documented page-level compositions (docs pages + CSS sections + example screens). Registered in the pack as first-class artifacts; unlike components they do not carry a verify/states contract (recorded gap G-003).",
+  "patterns": [
+    {"id": "pattern/dashboard", "title": "Dashboard / overview", "summary": "Landing overview: hero metric strip, status/automation chips, recent-activity feed, follow-up cards.", "sources": {"docs": "/patterns/dashboard", "css": "src/core/patterns.css", "example": "examples/dashboard.html"}},
+    {"id": "pattern/detail", "title": "Detail / record page", "summary": "Single-record page: page head with actions, fields, related lists, timeline.", "sources": {"docs": "/patterns/detail", "css": "src/core/patterns.css", "example": "examples/viewer.html"}},
+    {"id": "pattern/settings", "title": "Settings", "summary": "Task-sectioned settings cards with scoped partial saves.", "sources": {"docs": "/patterns/settings", "css": "src/core/patterns.css", "example": "examples/form.html"}},
+    {"id": "pattern/flows", "title": "Flow / automation builder", "summary": "Builder canvas for trigger → filter → action chains (node spine, insert-on-connector).", "sources": {"docs": "/patterns/flows", "css": "src/core/patterns.css", "example": "examples/components.html"}},
+    {"id": "pattern/dry-run", "title": "Dry-run / simulator report", "summary": "Two-column draft|report layout for previewing what an automated pipeline would do.", "sources": {"docs": "/patterns/dry-run", "css": "src/core/patterns.css", "example": "examples/components.html"}},
+    {"id": "pattern/stepper", "title": "Stepper / wizard", "summary": "Multi-step task flow with step rail and per-step actions.", "sources": {"docs": "/patterns/stepper", "css": "src/core/patterns.css", "example": "examples/form.html"}},
+    {"id": "pattern/index-eval", "title": "Index & eval queue", "summary": "Work-queue page: progress stats, per-item review rows, blind-labelling flow.", "sources": {"docs": "/patterns/index-eval", "css": "src/core/patterns.css", "example": "examples/list.html"}}
+  ]
+}

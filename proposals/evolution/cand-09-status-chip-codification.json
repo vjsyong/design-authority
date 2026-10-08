@@ -1,0 +1,41 @@
+{
+  "id": "cand/09-status-chip-codification",
+  "title": "Name the .status-chips classes on pattern/dashboard (alias conditional on the battery)",
+  "gap": "exp-02 part B finding: .status-chip ships in core/patterns.css with zero catalogue presence",
+  "classification": "DOCUMENTATION-FIX",
+  "layer": "curation",
+  "review": {"verdict": "PENDING", "source": "docs/evolution/round2/03-review.md"},
+  "problem": "The .status-chips/.status-chip row is shipped pattern furniture (core/patterns.css, the system's own patterns page, and the dashboard example) but no catalogue record names the classes. pattern/dashboard's summary says \"status/automation chips\" without naming them, and every \"status chip\" phrasing resolves to component/badge (its phrase alias), which is correct for state labels but leaves the shipped pattern furniture unaddressable.",
+  "evidence": [
+    "experiment 02 (part B): the agent found .status-chip in the distribution, refused it as uncanonical, built from chip + dot, filed a gap",
+    "core/patterns.css:39 .status-chips + :40 .status-chip (both snapshots); site/pages_patterns.py dashboard() shows the row",
+    "resolve probes: \"a row of status chips\", \"status chips for system state\" -> component/badge (13.0 phrase match)"
+  ],
+  "existing_authority_considered": [
+    "component/badge - owns the \"status chip\" phrasing for state labels; must not be disrupted",
+    "pattern/dashboard - the actual home of the .status-chips furniture; note lacks the class names",
+    "a new component record for .status-chip - rejected for now: it is pattern furniture, not a standalone component; prefer documentation per the layer order"
+  ],
+  "why_insufficient": "Addressability: the pattern exists and is catalogued; its note does not name the classes, so the shipped markup cannot be cited by class.",
+  "proposed_change": {
+    "curation": [
+      "patterns.json: pattern/dashboard note/body += class names: \"the status strip uses the shipped .status-chips/.status-chip row furniture\"",
+      "docs-map: pattern/dashboard already mapped; extend the note only",
+      "CONDITIONAL: aliases.json: pattern/dashboard += [\"status chips\"] ONLY IF the battery shows no badge disruption; otherwise note-only"
+    ]
+  },
+  "not_proposed": [
+    "a new component/status-chip record",
+    "changes to component/badge aliases"
+  ],
+  "dependencies": ["component/badge, pattern/dashboard"],
+  "scope": "global",
+  "compatibility": "Note-only unless the conditional alias passes the battery.",
+  "validation": {
+    "criterion": "addressability without disruption:",
+    "mapping": "the class names appear in the catalogue (searchable); badge resolution for \"status chip\" phrasings unchanged",
+    "triage_gates": "n/a (curation-only); authority build check + goldens",
+    "non_regression": "badge probes (4 phrasings) identical; if the alias is kept, \"a row of status chips\" may route to pattern/dashboard, which is the correct owner"
+  },
+  "migration": "None: documentation only."
+}
