@@ -129,27 +129,43 @@
   </section>
 
   <section class="da-sec">
-    <h2>Where an authority comes from, and who decides</h2>
-    <div class="da-flow" data-improv="loop diagram" title="Improvised (no authority record; gap filed)">
-      <div class="da-fstep"><span class="da-fkind mono">input</span>
-        <p>existing product · brand kit · precedent</p></div>
-      <div class="da-fstep"><span class="da-fkind mono">machine</span>
-        <p>infers candidate norms from the evidence (screenshots, source, live product)</p></div>
-      <div class="da-fstep ink"><span class="da-fkind mono">human</span>
-        <p>adjudicates ambiguous cases (accept, modify, reject, undefined)</p></div>
-      <div class="da-fstep"><span class="da-fkind mono">authority</span>
-        <p>a frozen, versioned candidate; everything downstream cites it</p></div>
-      <div class="da-fstep"><span class="da-fkind mono">machine</span>
-        <p>agents build under it; verifiers inspect the artifact, not the claim</p></div>
-      <div class="da-fstep"><span class="da-fkind mono">evidence</span>
-        <p>gaps · calibration cases · proposals · conformance reports</p></div>
-      <div class="da-fstep ink"><span class="da-fkind mono">human</span>
-        <p>adjudicates what leaves the evidence pile</p></div>
-      <div class="da-fstep"><span class="da-fkind mono">authority</span>
-        <p>evolves through a patch or a fresh freeze, with precedents recorded. Then the loop starts again</p></div>
+    <h2>How a Design Authority is created, used, and evolved</h2>
+    <div class="da-life" data-improv="loop diagram" title="Improvised (no authority record; gap filed)">
+      <div class="da-phase">1. COMPILE</div>
+      <div class="da-lbox">
+        <div class="da-lrow"><b>PRECEDENT</b><p>existing product · brand kit · cases</p></div>
+        <div class="da-larr">↓</div>
+        <div class="da-lrow"><b>MACHINE</b><p>extracts evidence + infers norms</p></div>
+        <div class="da-larr">↓</div>
+        <div class="da-lrow gate"><b>HUMAN GATE</b><p>accept · modify · reject · leave open</p></div>
+      </div>
+      <div class="da-larr">↓</div>
+      <div class="da-loopshell">
+        <div class="da-rail" aria-hidden="true"><em>release</em></div>
+        <div class="da-loopshell-main">
+          <div class="da-lauth"><b>DESIGN AUTHORITY</b><p>published, versioned standard · everything downstream cites it</p></div>
+          <div class="da-larr">↓</div>
+          <div class="da-phase">2. GOVERN</div>
+          <div class="da-lbox">
+            <div class="da-lrow"><b>AGENTS BUILD</b><p>resolve · compose · improvise visibly; never silently canonized</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow"><b>VERIFY</b><p>inspect artifact, not agent claims</p></div>
+          </div>
+          <div class="da-larr">↓</div>
+          <div class="da-phase">3. EVOLVE</div>
+          <div class="da-lbox">
+            <div class="da-lrow"><b>CASES</b><p>gaps · conflicts · proposals · fails</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow gate"><b>HUMAN GATE</b><p>adjudicate what should change</p></div>
+            <div class="da-larr">↓</div>
+            <div class="da-lrow"><b>RELEASE + PRECEDENT</b><p>patch or fresh freeze, with reasons on record</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="da-life-cap">The release merges back into the authority. That is the loop.</p>
     </div>
-    <div class="note" style="margin-top:var(--space-14)"><b>Humans judge what becomes authoritative.</b>
-    Machines do the evidence gathering, formalization, implementation, and verification.</div>
+    <div class="note" style="margin-top:var(--space-14)"><b>Machines gather evidence, infer, implement and verify.
+    Humans decide what becomes authoritative.</b></div>
   </section>
 
 

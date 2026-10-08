@@ -51,6 +51,40 @@
 .da-fstep.ink .da-fkind{color:var(--text-on-ink);opacity:.72}
 @media (max-width:560px){.da-fstep{grid-template-columns:1fr;gap:var(--space-4)}}
 
+/* ---- authority lifecycle ---- */
+.da-life{max-width:46rem;margin-top:var(--space-14)}
+.da-phase{margin:var(--space-16) 0 var(--space-8);font-size:var(--fs-log-row);font-weight:var(--fw-bold);
+  letter-spacing:.08em;color:var(--text-primary)}
+.da-lbox{border:1px solid var(--border-default);background:var(--surface-card)}
+.da-lrow{padding:var(--space-10) var(--space-14)}
+.da-lrow b{display:block;font-size:var(--fs-log-row);font-weight:var(--fw-semibold);letter-spacing:.06em}
+.da-lrow p{margin:var(--space-4) 0 0;font-size:var(--fs-sub);color:var(--text-soft)}
+.da-lrow.gate{margin-inline:var(--space-18);border:1px solid var(--interactive-border);
+  border-inline-start-width:4px;background:var(--interactive-subtle)}
+.da-lrow.gate b{color:var(--interactive)}
+.da-larr{text-align:center;color:var(--text-secondary);font-size:var(--fs-copy);line-height:1;
+  padding:var(--space-6) 0}
+.da-lauth{background:var(--ink-panel);color:var(--text-on-ink);border:1px solid var(--ink-panel);
+  padding:var(--space-16) var(--space-18);text-align:center}
+.da-lauth b{display:block;font-size:var(--fs-nav-item);font-weight:var(--fw-bold);letter-spacing:.08em}
+.da-lauth b::before{content:"";display:inline-block;inline-size:8px;block-size:8px;
+  background:var(--interactive);margin-inline-end:var(--space-8)}
+.da-lauth p{margin:var(--space-4) 0 0;font-size:var(--fs-sub);color:var(--text-on-ink);opacity:.78}
+.da-loopshell{display:flex;align-items:stretch;gap:var(--space-12)}
+.da-loopshell-main{flex:1;min-width:0}
+.da-rail{flex:none;width:44px;position:relative;
+  border-block-start:1px solid var(--border-strong);
+  border-block-end:1px solid var(--border-strong);
+  border-inline-start:1px solid var(--border-strong)}
+.da-rail::after{content:"";position:absolute;inset-block-start:-5px;inset-inline-end:-7px;
+  border-block:4.5px solid transparent;border-inline-start:7px solid var(--border-strong)}
+.da-rail em{position:absolute;inset-inline-start:50%;top:50%;transform:translate(-50%,-50%) rotate(180deg);
+  writing-mode:vertical-rl;font-style:normal;font-size:var(--fs-pre-log);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-secondary);background:var(--surface-page);
+  padding-block:var(--space-6)}
+.da-life-cap{margin-top:var(--space-10);font-size:var(--fs-log-row);color:var(--text-secondary)}
+@media (max-width:600px){.da-rail{width:26px}.da-rail em{display:none}}
+
 /* ---- code ---- */
 .da-code{background:var(--code-bg);color:var(--code-fg);border:1px solid var(--border-default);
   padding:var(--space-14) var(--space-16);margin:0;font-size:var(--fs-pre-log);line-height:1.55;
