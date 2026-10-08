@@ -59,29 +59,32 @@ def norm(s):
     return s
 
 
-def pack_text(auth):
-    base = os.path.join(PACKS, auth)
+def pack_text_dir(packdir):
     parts = []
-    for f in sorted(os.listdir(base)):
+    for f in sorted(os.listdir(packdir)):
         if f.endswith(".json"):
-            parts.append(open(os.path.join(base, f)).read())
+            parts.append(open(os.path.join(packdir, f)).read())
     return norm("".join(parts))
 
 
 def check(auth):
     build = os.path.join(SITES, auth, "site") if os.path.isdir(os.path.join(SITES, auth, "site")) else os.path.join(SITES, auth)
+    return check_dir(build, os.path.join(PACKS, auth), auth)
+
+
+def check_dir(build, packdir, label):
     css_p = os.path.join(build, "styles.css")
     if not os.path.isfile(css_p):
-        print("%s: no styles.css" % auth)
+        print("%s: no styles.css" % label)
         return []
     css = open(css_p).read()
     i, j = css.find(MARK_S), css.find(MARK_E)
     if i < 0 or j < 0:
-        print("%s: no generated block found" % auth)
+        print("%s: no generated block found" % label)
         return []
     block = css[i:j + len(MARK_E)]
     page_css = norm(css[:i] + css[j + len(MARK_E):])
-    pack = pack_text(auth)
+    pack = pack_text_dir(packdir)
 
     violations = []
     values = set(HEX.findall(block))
@@ -108,18 +111,25 @@ def check(auth):
             violations.append("font-family %s (only inherit is allowed)" % m.group(1).strip())
 
     if violations:
-        print("%s: %d violation(s)" % (auth, len(violations)))
+        print("%s: %d violation(s)" % (label, len(violations)))
         for v in violations:
             print("   -", v)
     else:
-        print("%s: clean (%d colour values checked)" % (auth, len(values)))
+        print("%s: clean (%d colour values checked)" % (label, len(values)))
     return violations
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--auth", nargs="*", default=None)
+    ap.add_argument("--build", default=None,
+                    help="explicit site build dir (used from an authority repo checkout)")
+    ap.add_argument("--pack", default=None,
+                    help="explicit pack dir (with --build)")
     args = ap.parse_args()
+    if args.build and args.pack:
+        v = check_dir(args.build, args.pack, os.path.basename(os.path.abspath(args.build)))
+        sys.exit(1 if v else 0)
     auths = args.auth or [d for d in sorted(os.listdir(SITES))
                           if os.path.isfile(os.path.join(SITES, d, "site", "index.html"))]
     bad = 0

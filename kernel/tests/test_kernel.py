@@ -204,7 +204,7 @@ class TestRecipeCompose(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.dom = Pack(os.path.join(ROOT, "packs", "dominion"))
+        cls.dom = Pack(os.path.join(ROOT, "authorities", "dominion"))
 
     def test_compose_cites_recipe(self):
         r = resolve(self.dom, "retire a ritual from the register")
