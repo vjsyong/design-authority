@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Design Authority — what it is, and how it evolves</title>
+<style>
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 300; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-300-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 400; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-400-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 700; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-700-latin.woff2") format("woff2"); }
+  @font-face { font-family: "Source Sans Pro"; font-style: normal; font-weight: 900; src: url("/examples/phantom-audit/assets/fonts/source-sans-pro-900-latin.woff2") format("woff2"); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Source Sans Pro", Helvetica, sans-serif; font-weight: 300; color: #585858;
+         width: 1240px; padding: 64px 72px 56px 72px; background: #ffffff; line-height: 1.55; }
+  code, .mono { font-family: "Courier New", monospace; font-size: 12.5px; }
+  code { background: rgba(46,90,249,0.986); color: #ff6bbc; padding: 1px 6px; border-radius: 4px; }
+  strong { font-weight: 900; }
+  em { font-weight: 700; }
+
+  h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.02em; color: #ff6bbc; line-height: 1.1; }
+  .kicker { font-size: 13px; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: #585858; margin-bottom: 10px; }
+  h2 { font-size: 19px; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: #ff6bbc;
+       border-top: solid 2px #c9c9c9; padding-top: 26px; margin: 46px 0 20px 0; }
+  h2 .n { color: #585858; margin-right: 14px; }
+  h3 { font-size: 13px; font-weight: 900; letter-spacing: 0.28em; text-transform: uppercase; color: #585858; margin: 22px 0 10px 0; }
+  p { margin-bottom: 12px; font-size: 15.5px; }
+  .lede { font-size: 17px; max-width: 62em; }
+  .muted { color: rgba(88,88,88,0.75); }
+  .pink { color: #ff6bbc; }
+
+  .cols { display: flex; gap: 34px; align-items: flex-start; }
+  .col { flex: 1 1 0; min-width: 0; }
+
+  .panel { background: rgba(144,144,144,0.075); padding: 22px 26px 18px 26px; }
+  .panel.white { background: #fff; border: solid 1px #c9c9c9; padding: 20px 24px 16px 24px; }
+
+  .kickerbox { display: inline-block; font-size: 11.5px; font-weight: 900; letter-spacing: 0.24em; text-transform: uppercase;
+               border: solid 1px #f2849e; color: #f2849e; padding: 2px 9px; margin-right: 8px; }
+  .kickerbox.lime { border-color: #3ef900; background: rgba(62,249,0,0.16); color: #585858; }
+  .kickerbox.blue { border-color: #20a3f5; color: #315df9; }
+  .kickerbox.purple { border-color: #8833e3; color: #8833e3; }
+  .kickerbox.red { border-color: #f51616; color: #f51616; }
+
+  ul.tick { list-style: none; }
+  ul.tick li { padding-left: 20px; position: relative; margin-bottom: 7px; font-size: 15px; }
+  ul.tick li::before { content: "—"; position: absolute; left: 0; color: #ff6bbc; font-weight: 900; }
+
+  .filetree { font-family: "Courier New", monospace; font-size: 13px; line-height: 1.75; }
+  .filetree b { font-weight: 700; }
+  .filetree .c { color: rgba(88,88,88,0.7); }
+  .filetree .cnt { color: #ff6bbc; font-weight: 700; }
+
+  .record { font-family: "Courier New", monospace; font-size: 12.5px; line-height: 1.7; white-space: pre; }
+  .record .k { color: #8833e3; }
+  .record .s { color: #ff6bbc; }
+
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 18px 0 8px 0; }
+  .flow .step { flex: 1 1 0; border: solid 1px #c9c9c9; padding: 14px 16px 12px 16px; }
+  .flow .step b { display: block; font-size: 12.5px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #585858; margin-bottom: 6px; }
+  .flow .step span { font-size: 13px; display: block; }
+  .flow .arr { flex: 0 0 34px; display: flex; align-items: center; justify-content: center; color: #ff6bbc; font-weight: 900; font-size: 20px; }
+
+  table.asks { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.asks td { padding: 8px 10px; border-bottom: solid 1px #c9c9c9; vertical-align: top; }
+  table.asks tr:last-child td { border-bottom: 0; }
+  table.asks .out { font-weight: 900; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
+  .ok { color: #f51616; } /* red = resolved?? no — resolved gets ink; keep semantic: */
+  .out.resolved { color: #585858; }
+  .out.undef { color: #8833e3; }
+  .out.fallback { color: #20a3f5; }
+
+  .timeline { list-style: none; }
+  .timeline li { position: relative; padding: 0 0 26px 34px; border-left: solid 2px #c9c9c9; margin-left: 10px; }
+  .timeline li::before { content: ""; position: absolute; left: -11px; top: 2px; width: 16px; height: 16px; border-radius: 100%;
+                         background: #fff; border: solid 3px #585858; }
+  .timeline li.v2::before { border-color: #ff6bbc; background: #ff6bbc; }
+  .timeline li.bad::before { border-color: #f51616; background: #fff; }
+  .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .timeline .ver { font-size: 16px; font-weight: 900; letter-spacing: 0.06em; }
+  .timeline .ver .tag { font-family: "Courier New", monospace; font-size: 12.5px; color: rgba(88,88,88,0.8); font-weight: 400; margin-left: 8px; }
+  .timeline p { font-size: 14px; margin: 5px 0 0 0; }
+
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 26px; }
+  .rules .r { border-left: solid 3px #ff6bbc; padding: 2px 0 2px 14px; }
+  .rules .r.grey { border-left-color: #585858; }
+  .rules .r.blue { border-left-color: #20a3f5; }
+  .rules .r.purple { border-left-color: #8833e3; }
+  .rules .r b { display: block; font-size: 13px; letter-spacing: 0.06em; }
+  .rules .r span { font-size: 13.5px; }
+
+  .footer { margin-top: 44px; border-top: solid 2px #c9c9c9; padding-top: 14px; font-size: 12.5px; color: rgba(88,88,88,0.85); }
+  .footer b { letter-spacing: 0.2em; text-transform: uppercase; font-size: 11.5px; }
+</style>
+</head>
+<body>
+
+  <div class="kicker">Design Authority · worked example — “Jennu” (packs/phantom 0.2.0)</div>
+  <h1>A design authority: what it looks like,<br/>and how it versions &amp; evolves</h1>
+  <p class="lede" style="margin-top:16px;">A <strong>design authority</strong> is a versioned, machine-readable description of an interface
+  system — its components, rules and fallbacks — written so that two independent readers can use the same contract:
+  a <strong>coding agent</strong> that builds with it, and a <strong>verifier</strong> that checks whether the build actually conforms.
+  It is a contract, not a style guide.</p>
+
+  <!-- ======================== WHAT IT LOOKS LIKE ======================== -->
+  <h2><span class="n">01</span>What it looks like — the pack</h2>
+  <div class="cols">
+    <div class="col" style="flex:1.15">
+      <div class="panel white">
+        <div class="filetree">
+<b>packs/phantom/</b> <span class="c">— the authority pack (v0.2.0, named Jennu)</span><br/>
+├─ <b>authority.json</b> <span class="c">identity · snapshot · version</span><br/>
+├─ <b>artifacts.json</b> <span class="cnt">29 records</span> <span class="c">— 6 token-sets · 1 guideline · 17 components · 5 layouts</span><br/>
+├─ <b>rules.json</b> <span class="cnt">8</span> <span class="c">— P-R1 reading-ink-pink … P-R8 state-colour-pink</span><br/>
+├─ <b>prohibitions.json</b> <span class="cnt">2</span> <span class="c">— e.g. “don’t rely on accent ink below 3:1”</span><br/>
+├─ <b>fallbacks.json</b> <span class="cnt">4</span> <span class="c">— light-only · no-script · cjk-system-fallback …</span><br/>
+├─ <b>precedents.json</b> <span class="cnt">1</span> <span class="c">— adjudications that persist across versions</span><br/>
+├─ <b>candidates.json</b> <span class="cnt">3</span> <span class="c">— ambitions with an explicit promotion bar</span><br/>
+├─ <b>golden.json</b> <span class="cnt">21 cases</span> <span class="c">— ask → expected outcome (guards resolution)</span><br/>
+├─ <b>recipes.json</b> <span class="cnt">0</span> <span class="c">— compositions, once they exist</span><br/>
+└─ <b>verification.json</b> <span class="cnt">15 checks</span> <span class="c">— the conformance contract</span>
+        </div>
+      </div>
+      <p class="muted" style="font-size:13.5px; margin-top:12px;">Plain JSON — no database. Records a consumer <em>produces</em>
+      (resolutions, gaps, proposals) are written to the consumer’s own workspace, never back into the pack; only adjudicated
+      decisions move the pack forward.</p>
+    </div>
+
+    <div class="col">
+      <h3>One artifact record (abridged)</h3>
+      <div class="panel">
+<div class="record">{
+  <span class="k">"id"</span>: <span class="s">"component/action-button"</span>,
+  <span class="k">"kind"</span>: "component",
+  <span class="k">"title"</span>: "Button — ink ring, pink hover",
+  <span class="k">"aliases"</span>: ["button", "cta", "submit …"],
+  <span class="k">"body"</span>: {
+    "states": [
+      "default: 2px ink ring, ink label",
+      "hover: label + ring #f2849e",
+      "primary: ink ground, white label" ],
+    "spec": ["44.8px tall", "0.8em/900 caps …"] },
+  <span class="k">"source"</span>: { "path": "deployed main.css ·
+              measured on elements.html" },
+  <span class="k">"compiled_from"</span>: ["redo/c"]   <span class="c">// evidence trail</span>
+}</div>
+      </div>
+      <h3>How a consumer reads it</h3>
+      <table class="asks">
+        <tr><td><em>“a primary button”</em></td><td class="out resolved">resolved →</td><td><code>component/action-button</code></td></tr>
+        <tr><td><em>“a carousel with controls”</em></td><td class="out undef">undefined →</td><td>candidate surfaces a bar: sources, motion policy, controls</td></tr>
+        <tr><td><em>“CJK in the wordmark”</em></td><td class="out fallback">fallback →</td><td>constraint recorded (no CJK stack declared)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>The two-consumer loop</h3>
+  <div class="flow">
+    <div class="step"><b>The pack</b><span>one machine-readable contract</span></div>
+    <div class="arr">→</div>
+    <div class="step"><b>Coding agent</b><span>resolves every ask; silences → improvisation, marked &amp; filed as gaps</span></div>
+    <div class="arr">→</div>
+    <div class="step"><b>Implementation</b><span>a working artifact, built from the records</span></div>
+    <div class="arr">→</div>
+    <div class="step"><b>Verifier</b><span>inspects the artifact itself — never the agent’s self-report</span></div>
+    <div class="arr">→</div>
+    <div class="step"><b>Conformance report</b><span>15 checks · 0 violations — published, hash-covers the build</span></div>
+  </div>
+
+  <!-- ======================== HOW IT EVOLVES ======================== -->
+  <h2><span class="n">02</span>How it versions &amp; evolves</h2>
+  <div class="cols">
+    <div class="col" style="flex:1.05">
+      <h3>A real revision — the redo</h3>
+      <ul class="timeline">
+        <li>
+          <div class="ver">v0.1.0 <span class="tag">initial freeze — hashed, git-tagged</span></div>
+          <p>Extracted from the <em>template’s</em> stylesheet: grey ink canon, the site’s pink type misfiled as “deviations”.
+          Verified mechanically (its contract re-run clean: 17/17), but extracted from the wrong layer.</p>
+        </li>
+        <li class="bad">
+          <div class="ver">rejected <span class="tag">owner review of the rendered result</span></div>
+          <p>“The site that exists runs pink type — extract what IS.” A version can be internally consistent and still
+          describe the wrong thing; only rendered evidence settles it.</p>
+        </li>
+        <li class="v2">
+          <div class="ver">v0.2.0 <span class="tag">fresh freeze — all pack files re-hashed</span></div>
+          <p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language.
+          The reversal became <code>precedent/pink-ink-canonised</code> — the old decision is superseded, not deleted.
+          Goldens re-run <strong>21/21</strong>; the verification contract rewritten (15 checks) and re-run <strong>15/15</strong>.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>The standing rules</h3>
+      <div class="rules">
+        <div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
+        <div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New/changed records, pipeline order, thresholds, tool contracts, governance taxonomies.</span></div>
+        <div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist across versions so agents never relitigate them.</span></div>
+        <div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit <em>promote-when</em> bar — no silent canonisation.</span></div>
+        <div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
+        <div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
+      </div>
+      <div class="panel" style="margin-top:18px;">
+        <h3 style="margin-top:0;">The evolution loop</h3>
+        <p style="font-size:14px; margin:0;"><strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) →
+        <strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) →
+        <strong>adjudicate</strong> (precedent · gap · candidate) → <strong>next version</strong> → consume again.
+        Nothing moves the pack except an adjudicated decision.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <b>Worked example</b> — Jennu, the design authority of zhenyoyo.github.io (HTML5 UP Phantom deployment), pack <code>packs/phantom</code> 0.2.0 ·
+    extracted 2026-10-08 from rendered evidence · <b>artefacts</b>: domain reports, screenshots, verification results inside the repository.
+  </div>
+
+</body>
+</html>
