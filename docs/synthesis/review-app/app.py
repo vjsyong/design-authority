@@ -837,7 +837,24 @@ def authority_gallery(name):
         abort(404)
     if not _is_designauthority_host():
         return redirect("https://designauthority.seanyong.xyz/authorities/%s/gallery" % name, code=308)
-    return _gal.render_gallery(name)
+    return _gal.render_gallery(name, "overview")
+
+
+@app.route("/authorities/<name>/gallery/<page>/")
+def authority_gallery_page_slash(name, page):
+    return redirect("/authorities/%s/gallery/%s" % (name, page), code=308)
+
+
+@app.route("/authorities/<name>/gallery/<page>")
+def authority_gallery_page(name, page):
+    if not is_pack(name):
+        abort(404)
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/%s/gallery/%s" % (name, page), code=308)
+    html = _gal.render_gallery(name, page)
+    if html is None:
+        abort(404)
+    return html
 
 
 @app.route("/authorities/<name>/demo/<app>/")

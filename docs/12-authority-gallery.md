@@ -87,6 +87,15 @@ pack update is visible without hand edits.**
   table, and per-kind sections down to per-record cards. Live on
   designauthority.seanyong.xyz. Acceptance met: all packs listed; pack
   update visible without restart; no hand lists.
+- **S1b · Doc-site shells — DONE (2026-10-08).** Each authority's gallery is
+  now a multi-page site in the Triage doc-site shape: the system's own shell
+  (side nav with per-kind counts, active states, mobile drawer, theme and
+  density toggles), an overview, a page per catalogue kind
+  (`/gallery/components`, `/patterns`, `/guidelines`, `/tokens`, `/recipes`,
+  `/examples`, `/references`), and a spec page (rules, prohibitions,
+  fallbacks). Every page renders from pack records only. Verified: all
+  routes 200 across all 8 packs, 404 for unknown pages, drawer + scrim +
+  theme toggles exercised live, desktop and 390px screenshots reviewed.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
