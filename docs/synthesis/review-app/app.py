@@ -623,10 +623,13 @@ def demo():
         for a in pack.artifacts:
             kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
         ktxt = " · ".join("%d %s" % (v, k) for k, v in sorted(kinds.items()))
+        # triage's audit lives on the concept site
+        href = ("https://designauthority.seanyong.xyz/authorities/%s/audit" % name
+                if name == "triage" else "/demo/%s" % name)
         cards.append(
-            "<a class='src' href='/demo/%s'><b>%s</b><p>%s</p>"
+            "<a class='src' href='%s'><b>%s</b><p>%s</p>"
             "<p><span class='chip src'>%s</span> <span class='chip gold'>golden %d/%d</span></p></a>"
-            % (name, _esc(pack.manifest.get("name")), _esc(src), _esc(ktxt), g["passed"], g["total"]))
+            % (href, _esc(pack.manifest.get("name")), _esc(src), _esc(ktxt), g["passed"], g["total"]))
     stress = []
     for name in PACK_META:
         d = os.path.join(_REPO, "examples", "cadence-%s" % name)
@@ -679,8 +682,7 @@ def demo():
             .replace("__STRESS3__", "".join(stress3) + audit))
 
 
-@app.route("/demo/<name>")
-def demo_pack(name):
+def _demo_page(name):
     pack = get_pack(name)
     g = golden_summary(name)
     m = pack.manifest
@@ -769,6 +771,27 @@ def demo_pack(name):
             .replace("__RECIPES__", recipes + prompt_html)
             .replace("__PACK__", _esc(name)))
     return page
+
+
+@app.route("/demo/<name>")
+def demo_pack(name):
+    if name == "triage":
+        # the triage authority audit lives on the concept site now
+        return redirect("https://designauthority.seanyong.xyz/authorities/triage/audit", code=308)
+    return _demo_page(name)
+
+
+@app.route("/authorities/<name>/audit")
+def authority_audit(name):
+    if name not in PACK_META:
+        abort(404)
+    if not _is_designauthority_host():
+        return redirect("https://designauthority.seanyong.xyz/authorities/%s/audit" % name, code=308)
+    page = _demo_page(name)
+    # on the concept site there is no candidate hub; anchor the back-link home
+    page = page.replace('<p><a class="back" href="/demo">&larr; all candidates</a></p>',
+                        '<p><a class="back" href="/">&larr; designauthority.seanyong.xyz</a></p>')
+    return Response(page, mimetype="text/html")
 
 
 @app.route("/stress/<name>/")
