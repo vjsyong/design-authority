@@ -46,7 +46,7 @@ with sync_playwright() as p:
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(150)
     exp_txt = pg.evaluate("document.querySelector('details.explainer').innerText")
-    check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "machine-readable" in exp_txt and "Extraction" in exp_txt)
+    check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "software can read" in exp_txt and "Extraction" in exp_txt)
     check("worked example is live (timeline + rules)", pg.evaluate("document.querySelectorAll('.expl-timeline li').length") == 3 and pg.evaluate("document.querySelectorAll('.expl-rules .r').length") == 6)
     pg.screenshot(path=os.path.join(T, "_evidence", "screens", "audit2-explainer.png"))
     pg.click("details.explainer > summary")
