@@ -59,6 +59,56 @@ for _slug, _kind in _PAGE_KINDS.items():
 
 _cache = {}
 
+try:
+    with open(os.path.join(_HERE, "authority_themes.json")) as _fh:
+        THEMES = {k: v for k, v in json.load(_fh).items() if not k.startswith("_")}
+except Exception:
+    THEMES = {}
+
+
+def _theme_css(name):
+    """@font-face + variable overrides for an authority's retheme (docs/12)."""
+    th = THEMES.get(name)
+    if not th:
+        return ""
+    out = []
+    for f in th.get("faces", []):
+        out.append("@font-face{font-family:'%s';src:url('/authority-fonts/%s/%s');"
+                   "font-weight:%s;font-style:%s;font-display:swap}"
+                   % (f["family"], name, f["file"], f.get("weight", "400"),
+                      f.get("style", "normal")))
+    vars_ = dict(th.get("vars", {}))
+    if vars_.get("--ok"):
+        vars_.setdefault("--ok-line", vars_["--ok"])
+    if vars_.get("--warn"):
+        vars_.setdefault("--warn-line", vars_["--warn"])
+    if vars_.get("--err"):
+        vars_.setdefault("--err-line", vars_["--err"])
+    if vars_.get("--acc"):
+        vars_.setdefault("--acc-line", vars_["--acc"])
+    if vars_:
+        out.append(":root{%s}" % "".join("%s:%s;" % (k, v) for k, v in vars_.items()))
+    if th.get("head_font"):
+        out.append("h1,h2,h3,.brand-name{font-family:%s}" % th["head_font"])
+    if th.get("extra_css"):
+        out.append(th["extra_css"])
+    return "".join(out)
+
+
+def font_file(name, fn):
+    """(abs_dir, filename) when fn is a declared face of that theme, else None."""
+    th = THEMES.get(name) or {}
+    for f in th.get("faces", []):
+        if f.get("file") == fn and "/" not in fn and "\\" not in fn:
+            d = os.path.join(_REPO, f["dir"])
+            if os.path.isfile(os.path.join(d, fn)):
+                return d, fn
+    return None
+
+
+def has_theme(name):
+    return name in THEMES
+
 
 def _sig(d):
     sig = []
@@ -267,7 +317,7 @@ def _shell(entry, name, current, body):
 <link rel="stylesheet" href="/assets/tokens/tokens.css">
 <link rel="stylesheet" href="/assets/core/base.css">
 <link rel="stylesheet" href="/assets/core/patterns.css">
-<style>%s</style>
+<style>%s%s</style>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="app">
@@ -302,7 +352,7 @@ def _shell(entry, name, current, body):
 </div>
 <script>%s</script>
 </body></html>""" % (_PRESCRIPT, _esc("%s · %s" % (pname, _PAGE_TITLES.get(current, current))),
-                    _GAL_CSS, _esc(pname), name, _esc(_abbr(name)), _esc(pname),
+                    _GAL_CSS, _theme_css(name), _esc(pname), name, _esc(_abbr(name)), _esc(pname),
                     _esc(version), _kind_nav(pack, name, current),
                     dot, _esc(version), _esc(label), name,
                     _esc(pname), dot, _esc(version), body,

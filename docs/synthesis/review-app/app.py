@@ -826,6 +826,14 @@ def gallery_root_noslash():
     return redirect("/authorities/", code=308)
 
 
+@app.route("/authority-fonts/<name>/<fn>")
+def authority_fonts(name, fn):
+    hit = _gal.font_file(name, fn)
+    if not hit:
+        abort(404)
+    return send_from_directory(hit[0], hit[1])
+
+
 @app.route("/authorities/<name>/gallery/")
 def authority_gallery_slash(name):
     return redirect("/authorities/%s/gallery" % name, code=308)

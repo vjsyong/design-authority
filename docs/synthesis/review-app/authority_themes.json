@@ -1,0 +1,271 @@
+{
+  "_note": "Per-authority visual themes for the gallery/authority sites. Values are traced to each authority's own records (token-set artifacts) and to the authority-faithful build archives; see _sources per theme. 'triage' has no entry: the base look IS triage's. Injected as CSS variable overrides over the shared shell.",
+  "wink": {
+    "_sources": [
+      "pack wink token-set/colour + type-scale",
+      "examples/cadence3-wink/app.css :root (W-01..W-07)"
+    ],
+    "vars": {
+      "--bg": "#ffffff",
+      "--card": "#ffffff",
+      "--card2": "#F6F6F4",
+      "--line": "#DEDDDC",
+      "--line2": "#CBCAC9",
+      "--hover": "#F6F6F4",
+      "--active": "#F0EFED",
+      "--fg": "#241C15",
+      "--dim": "#5D5245",
+      "--fg-soft": "#3E3730",
+      "--acc": "#007C89",
+      "--acc-ink": "#007C89",
+      "--tint-acc": "#E6F4F5",
+      "--ok": "#04713F",
+      "--warn": "#B26A00",
+      "--err": "#BF4055",
+      "--panel": "#241C15",
+      "--on-ink": "#ffffff",
+      "--focus": "rgba(0,124,137,0.35)",
+      "--font-sans": "'Inter', -apple-system, system-ui, sans-serif"
+    },
+    "head_font": "'Fraunces', Georgia, serif",
+    "faces": [
+      {
+        "family": "Inter",
+        "file": "Inter-VF.ttf",
+        "dir": "docs/synthesis/wink/tile/fonts",
+        "weight": "100 900",
+        "style": "normal"
+      },
+      {
+        "family": "Fraunces",
+        "file": "Fraunces-VF.ttf",
+        "dir": "docs/synthesis/wink/tile/fonts",
+        "weight": "100 900",
+        "style": "normal"
+      },
+      {
+        "family": "Fraunces",
+        "file": "Fraunces-Italic-VF.ttf",
+        "dir": "docs/synthesis/wink/tile/fonts",
+        "weight": "100 900",
+        "style": "italic"
+      }
+    ],
+    "extra_css": ".brand-mark{background:#FFE01B;color:#241C15}.card{border-radius:12px}.btn{border-radius:999px}.gal-chip{border-radius:999px}.btn.primary{background:#FFE01B;border-color:#FFE01B;color:#241C15}"
+  },
+  "leader": {
+    "_sources": [
+      "pack leader token-set/colour + type-scale",
+      "examples/cadence3-leader/app.css :root"
+    ],
+    "vars": {
+      "--bg": "#ffffff",
+      "--card": "#ffffff",
+      "--card2": "#F2F2F2",
+      "--line": "#D9D9D9",
+      "--line2": "#B3B3B3",
+      "--hover": "#F2F2F2",
+      "--active": "#EBEDFA",
+      "--fg": "#1A1A1A",
+      "--dim": "#595959",
+      "--fg-soft": "#333333",
+      "--acc": "#2E45B8",
+      "--acc-ink": "#2E45B8",
+      "--tint-acc": "#D6DBF5",
+      "--ok": "#0F6E3E",
+      "--warn": "#B26A00",
+      "--err": "#E3120B",
+      "--panel": "#1A1A1A",
+      "--on-ink": "#ffffff",
+      "--focus": "rgba(46,69,184,0.35)",
+      "--font-sans": "'Inter', -apple-system, system-ui, sans-serif"
+    },
+    "head_font": "'Gelasio', Georgia, serif",
+    "faces": [
+      {
+        "family": "Inter",
+        "file": "Inter-VF.ttf",
+        "dir": "docs/synthesis/leader/tile/fonts",
+        "weight": "100 900",
+        "style": "normal"
+      },
+      {
+        "family": "Gelasio",
+        "file": "Gelasio-VF.ttf",
+        "dir": "docs/synthesis/leader/tile/fonts",
+        "weight": "400 700",
+        "style": "normal"
+      },
+      {
+        "family": "Archivo Black",
+        "file": "ArchivoBlack-Regular.ttf",
+        "dir": "docs/synthesis/leader/tile/fonts",
+        "weight": "400",
+        "style": "normal"
+      }
+    ],
+    "extra_css": ".brand-mark{background:#E3120B;color:#fff}.brand .brand-name{font-family:'Archivo Black',sans-serif;font-weight:400}.brand{padding-bottom:var(--space-6);border-bottom:3px solid #E3120B}.card{border-radius:8px}.btn{border-radius:8px}.gal-chip{border-radius:3px}"
+  },
+  "dominion": {
+    "_sources": [
+      "pack dominion token-set/colour + type rhythm",
+      "examples/cadence3-dominion/app.css :root"
+    ],
+    "vars": {
+      "--bg": "#ffffff",
+      "--card": "#ffffff",
+      "--card2": "#F4F4F4",
+      "--line": "#D8D8D8",
+      "--line2": "#969696",
+      "--hover": "#F4F4F4",
+      "--active": "#E0E0E0",
+      "--fg": "#000000",
+      "--dim": "#6E6E6E",
+      "--fg-soft": "#333333",
+      "--acc": "#26374A",
+      "--acc-ink": "#26374A",
+      "--tint-acc": "#E7EDF3",
+      "--ok": "#04713F",
+      "--warn": "#B7791F",
+      "--err": "#EB2D37",
+      "--panel": "#000000",
+      "--on-ink": "#ffffff",
+      "--focus": "rgba(38,55,74,0.35)",
+      "--font-sans": "'Arimo', Helvetica, Arial, sans-serif"
+    },
+    "head_font": "",
+    "faces": [
+      {
+        "family": "Arimo",
+        "file": "Arimo-VF.ttf",
+        "dir": "docs/synthesis/dominion/tile/fonts",
+        "weight": "400 700",
+        "style": "normal"
+      }
+    ],
+    "extra_css": ".brand-mark{background:#EB2D37;color:#fff}.side-top{border-bottom:2px solid #EB2D37}.card{border-radius:4px}.btn{border-radius:4px}.gal-chip{border-radius:2px}"
+  },
+  "phantom": {
+    "_sources": [
+      "pack phantom token-set/colour + surfaces + type-scale (deployed values)"
+    ],
+    "vars": {
+      "--bg": "#ffffff",
+      "--card": "#ffffff",
+      "--card2": "#FBFBFB",
+      "--line": "#C9C9C9",
+      "--line2": "#8F8F8F",
+      "--hover": "#FBFBFB",
+      "--active": "#F6F6F6",
+      "--fg": "#FF6BBC",
+      "--dim": "#F2849E",
+      "--fg-soft": "#FF6BBC",
+      "--acc": "#20A3F5",
+      "--acc-ink": "#20A3F5",
+      "--tint-acc": "#E8F5FE",
+      "--ok": "#04713F",
+      "--warn": "#9A4F07",
+      "--err": "#C81E2C",
+      "--panel": "#3EF900",
+      "--on-ink": "#000000",
+      "--focus": "rgba(242,132,158,0.4)",
+      "--font-sans": "'Source Sans Pro', 'Source Sans 3', sans-serif"
+    },
+    "head_font": "",
+    "faces": [
+      {
+        "family": "Source Sans Pro",
+        "file": "source-sans-pro-300-latin.woff2",
+        "dir": "examples/phantom-audit/assets/fonts",
+        "weight": "300",
+        "style": "normal"
+      },
+      {
+        "family": "Source Sans Pro",
+        "file": "source-sans-pro-400-latin.woff2",
+        "dir": "examples/phantom-audit/assets/fonts",
+        "weight": "400",
+        "style": "normal"
+      },
+      {
+        "family": "Source Sans Pro",
+        "file": "source-sans-pro-700-latin.woff2",
+        "dir": "examples/phantom-audit/assets/fonts",
+        "weight": "700",
+        "style": "normal"
+      },
+      {
+        "family": "Source Sans Pro",
+        "file": "source-sans-pro-900-latin.woff2",
+        "dir": "examples/phantom-audit/assets/fonts",
+        "weight": "900",
+        "style": "normal"
+      }
+    ],
+    "extra_css": "body{font-weight:300}b,h1,h2,h3,h4,strong{font-weight:900}h2{text-transform:uppercase;letter-spacing:.18em;font-size:var(--fs-sub)}a{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:#20A3F5}a:hover{color:#F2849E}.brand-name{font-weight:900;text-transform:uppercase;letter-spacing:.02em}"
+  },
+  "indaba": {
+    "_sources": [
+      "pack indaba token-set/palette + type",
+      "examples/indaba-reference-app/reference-build/static/app.css"
+    ],
+    "vars": {
+      "--bg": "#F6F4F2",
+      "--card": "#ffffff",
+      "--card2": "#F6F4F2",
+      "--line": "#D9D4CE",
+      "--line2": "#AEA79F",
+      "--hover": "#F0EDEA",
+      "--active": "#EDE9E5",
+      "--fg": "#111111",
+      "--dim": "#6B6B6B",
+      "--fg-soft": "#333333",
+      "--acc": "#E95420",
+      "--acc-ink": "#E95420",
+      "--tint-acc": "#FBE8DE",
+      "--ok": "#04713F",
+      "--warn": "#9A4F07",
+      "--err": "#2C001E",
+      "--panel": "#77216F",
+      "--on-ink": "#ffffff",
+      "--focus": "rgba(233,84,32,0.35)",
+      "--font-sans": "'Ubuntu', 'Ubuntu Sans', system-ui, sans-serif"
+    },
+    "head_font": "",
+    "faces": [],
+    "extra_css": "h1,h2,h3{color:#77216F}.card{border-radius:8px}.btn{border-radius:8px}.gal-chip{border-radius:8px}"
+  },
+  "orbit": {
+    "_sources": [
+      "pack orbit token-set/palette + type",
+      "examples/orbit-v1-reference-build-archive :root",
+      "docs/portability/07-orbit-v2.md (accent re-authored #E03C31 -> #D63829, a11y revision)",
+      "status plates ink / gray-mid / red (portability 07) - no UI green"
+    ],
+    "vars": {
+      "--bg": "#ffffff",
+      "--card": "#ffffff",
+      "--card2": "#F5F5F5",
+      "--line": "#D9D9D9",
+      "--line2": "#6F6F6F",
+      "--hover": "#F5F5F5",
+      "--active": "#E6E6E6",
+      "--fg": "#101010",
+      "--dim": "#6F6F6F",
+      "--fg-soft": "#3A3A3A",
+      "--acc": "#D63829",
+      "--acc-ink": "#D63829",
+      "--tint-acc": "#F9E4E1",
+      "--ok": "#101010",
+      "--warn": "#6F6F6F",
+      "--err": "#D63829",
+      "--panel": "#101010",
+      "--on-ink": "#ffffff",
+      "--focus": "rgba(214,56,41,0.35)",
+      "--font-sans": "'Helvetica Neue', Helvetica, Arial, sans-serif"
+    },
+    "head_font": "",
+    "faces": [],
+    "extra_css": "h1,h2,h3{font-weight:700}a{text-decoration:underline}.brand-mark{background:#D63829;color:#fff}"
+  }
+}

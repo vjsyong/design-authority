@@ -96,6 +96,15 @@ pack update is visible without hand edits.**
   fallbacks). Every page renders from pack records only. Verified: all
   routes 200 across all 8 packs, 404 for unknown pages, drawer + scrim +
   theme toggles exercised live, desktop and 390px screenshots reviewed.
+- **S1c · Per-authority retheming — DONE (2026-10-08).** Each gallery
+  site wears its own authority's visual language (`authority_themes.json`):
+  wink (yellow mark, Fraunces, kale links, pills), leader (red mark + rule,
+  Archivo Black wordmark, Gelasio serif, Chicago blue), dominion (FIP red,
+  Arimo, squared), phantom (pink ink, lime panel mark, blue dotted links,
+  900 caps), indaba (aubergine, orange, warm tint, Ubuntu stack), orbit
+  (ink/gray/red plates, Helvetica, squared). Values traced to each pack's
+  token-set records + build archives; fonts served via `/authority-fonts/`
+  (declared faces only). CSS-variable overrides over the shared shell.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,
