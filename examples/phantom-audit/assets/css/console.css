@@ -147,3 +147,8 @@ details.explainer > summary:hover { color: #f2849e; }
 details.explainer .expl-body { padding: 0 0 1.2em 0; }
 details.explainer .expl-body h3 { font-size: 0.7em; margin: 1.2em 0 0.5em 0; }
 details.explainer .expl-body p { font-size: 0.9em; margin: 0 0 0.8em 0; }
+
+/* explainer poster figure (console kit) */
+.expl-figure { margin: 1.4em 0 0.2em 0; }
+.expl-figure img { width: 100%; height: auto; border: solid 1px #c9c9c9; display: block; }
+.expl-figure figcaption { font-size: 0.8em; color: rgba(88,88,88,0.85); margin-top: 0.6em; }

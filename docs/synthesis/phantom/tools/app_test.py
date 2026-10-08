@@ -45,6 +45,7 @@ with sync_playwright() as p:
     pg.wait_for_timeout(150)
     exp_txt = pg.evaluate("document.querySelector('details.explainer').innerText")
     check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "machine-readable" in exp_txt and "Extraction" in exp_txt)
+    check("explainer poster embedded", pg.evaluate("!!document.querySelector('details.explainer img') && document.querySelector('details.explainer img').getAttribute('src').indexOf('design-authority.png') > -1"))
     pg.screenshot(path=os.path.join(T, "_evidence", "screens", "audit2-explainer.png"))
     pg.click("details.explainer > summary")
     pg.wait_for_timeout(80)

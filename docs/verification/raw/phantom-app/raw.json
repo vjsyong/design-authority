@@ -2,7 +2,7 @@
  "pack": "phantom",
  "contract_version": "0.2",
  "target": "examples/phantom-audit",
- "generated": "2026-10-08 06:30:58",
+ "generated": "2026-10-08 06:36:49",
  "summary": {
   "total": 15,
   "PASS": 15,
@@ -325,7 +325,7 @@
    "selector": null,
    "status": "PASS",
    "observed": [
-    "64 literals, all allowlisted"
+    "66 literals, all allowlisted"
    ],
    "expected": [
     "{\"relation\": \"color_literals\", \"allow\": [\"#585858\", \"#c9c9c9\", \"#f2849e\", \"#ff6bbc\", \"#6bff2c\", \"#3ef900\", \"#20a3f5\", \"#f51616\", \"#8833e3\", "
