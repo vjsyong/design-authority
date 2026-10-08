@@ -1,6 +1,6 @@
 # Design Authority
 
-[https://designauthority.seanyong.xyz/]
+**Read the concept:** <https://designauthority.seanyong.xyz>
 
 A versioned, machine-readable design contract that lets coding agents work under a real design system instead of guessing at it. Agents resolve design problems against the authority (RESOLVED · COMPOSE · FALLBACK · UNDEFINED · CONFLICT), build against cited rules, check their work with explicit validators, and report gaps upstream instead of silently inventing canon. The kernel is completely kit-agnostic: it knows artifacts, rules, recipes, fallbacks, precedents, candidates, resolutions, gaps and proposals, and nothing about buttons or colours. A design system enters only as a pack.
 
