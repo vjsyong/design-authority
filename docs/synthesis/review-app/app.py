@@ -835,10 +835,16 @@ def audit_file(name, fn):
     return send_from_directory(d, fn)
 
 
-# ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jenmu) ----
-@app.route("/designAuthority/jenmu", strict_slashes=False)
+# ---- the Jennu review at its public path (audit.seanyong.xyz/designAuthority/jenmu/) ----
+@app.route("/designAuthority/jenmu/")
 def jenmu_index():
     return send_from_directory(os.path.join(_REPO, "examples", "phantom-audit"), "index.html")
+
+
+@app.route("/designAuthority/jenmu")
+def jenmu_index_noslash():
+    # the trailing slash matters: relative asset paths resolve against the directory URL
+    return redirect("/designAuthority/jenmu/", code=308)
 
 
 @app.route("/designAuthority/jenmu/<path:fn>")
