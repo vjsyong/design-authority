@@ -4,7 +4,7 @@
   "pack": "packs/indaba",
   "version": "0.1.0"
  },
- "generated_at": "2026-10-08T17:07:39+00:00",
+ "generated_at": "2026-10-08T17:18:25+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -25,8 +25,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "004d9206a10f1593fd2ca7b36e62a7ed717337c53d9c84ef573120ad078ee76f",
-   "size": 17733,
+   "sha256": "463ad0acc7244df5b3fb020c2847414c2759857a915f6f347e2d2a58a98040af",
+   "size": 50172,
    "role": "page"
   },
   {
@@ -43,8 +43,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "4893438c30b1265c892a459bbdb0baf214b3dbc6af57648331b26d4d2a053f4a",
-   "size": 5486,
+   "sha256": "f9485c02b4016f16f72c4bd40a1a54777a91626e4b9e92851c46ad210ec1fa7c",
+   "size": 8583,
    "role": "stylesheet"
   },
   {

@@ -4,7 +4,7 @@
   "pack": "packs/orbit",
   "version": "0.1.0"
  },
- "generated_at": "2026-10-08T17:07:39+00:00",
+ "generated_at": "2026-10-08T17:18:25+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -25,8 +25,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "6d9adf3a0688e52d7ab310742371d92ecddb62ba8f93e14db23adb3f5d904d15",
-   "size": 22294,
+   "sha256": "23d30d73d3b49ceac83d6d9093c804d77ccb7e69cacc4027b9a6a98bb11b69a3",
+   "size": 54769,
    "role": "page"
   },
   {
@@ -43,8 +43,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "2d744b18b1a461cf2108283382271b69c077dc4bc4440cdf86149666a8cefa3a",
-   "size": 6631,
+   "sha256": "45d7b6cc012203b05b1380fd1941aedd8d4be9bf1c8172ed83721f4c6ae943e2",
+   "size": 9715,
    "role": "stylesheet"
   },
   {

@@ -839,7 +839,9 @@ def authority_site(name):
     d = os.path.join(SITES_DIR, name)
     if not os.path.isfile(os.path.join(d, "index.html")):
         abort(404)
-    return send_from_directory(d, "index.html")
+    resp = send_from_directory(d, "index.html")
+    resp.headers["Cache-Control"] = "no-cache"
+    return resp
 
 
 @app.route("/authorities/<name>/site/<path:fn>")
@@ -851,7 +853,9 @@ def authority_site_file(name, fn):
     d = os.path.join(SITES_DIR, name)
     if not os.path.isfile(os.path.join(d, fn)):
         abort(404)
-    return send_from_directory(d, fn)
+    resp = send_from_directory(d, fn)
+    resp.headers["Cache-Control"] = "no-cache"
+    return resp
 
 
 @app.route("/authority-fonts/<name>/<fn>")

@@ -124,6 +124,18 @@ pack update is visible without hand edits.**
   `tools/archive_authority_assets.py` (idempotent; `--verify NAME` re-hashes
   and compares). Manifests serve alongside the builds under
   `/authorities/<name>/site/`.
+- **S1f · Artefacts directory — DONE (2026-10-08).** Every authority build
+  gains a generated `section#artefacts` (inserted before Specification, with
+  a nav entry cloned from the page's own Catalogue link): every artifact
+  grouped by kind with title / id / status / summary, a USE block carrying
+  the recorded selector, states and a11y/verify notes, aliases, and a copy
+  button that yields a ready-to-use snippet; live filter over name, alias
+  and kind with a live count. Styled per authority from the traced values in
+  `tools/add_artefacts_section.py` (idempotent). Serving fixes: site files
+  now send `Cache-Control: no-cache`, stylesheet links are cache-busted, and
+  the stale Cloudflare edge copies were purged (the edge had cached the old
+  `.css` by extension) - lesson: any update to a served `.css` on the
+  designauthority host needs an edge purge or a URL change.
 - **S2 · triage.seanyong.xyz — DONE (2026-10-08).** `site/authority.py`
   (reads `TRIAGE_AUTHORITY_DIR` or the `/authority` mount, then
   `CURRENT.json`) + `layout.py` version surfaces (brand-sub, side-foot,

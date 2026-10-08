@@ -4,7 +4,7 @@
   "pack": "packs/dominion",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:07:39+00:00",
+ "generated_at": "2026-10-08T17:18:25+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -30,8 +30,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "bd3f456889a23970cb70cc8d3ae22b524c01bcdb40e522cc3c7c0552f4a58a55",
-   "size": 17186,
+   "sha256": "ee668c28a000f03de2d71fa4de377ab1db724ce1a301dbf593d1e690d323e85c",
+   "size": 37966,
    "role": "page"
   },
   {
@@ -48,8 +48,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "847fd3102d51359e3833372593a83e3ed89b43a890073b101df897598a349f03",
-   "size": 9482,
+   "sha256": "ac03e3675c457cece67b9402be18bb47e72bb41663b3920d680e3ac6c2960f78",
+   "size": 12549,
    "role": "stylesheet"
   },
   {

@@ -4,7 +4,7 @@
   "pack": "packs/wink",
   "version": "0.2.0"
  },
- "generated_at": "2026-10-08T17:07:39+00:00",
+ "generated_at": "2026-10-08T17:18:25+00:00",
  "checks": {
   "external_references": 0,
   "css_extracted": true,
@@ -38,8 +38,8 @@
   },
   {
    "path": "index.html",
-   "sha256": "bf5266a94882eb3fcba152a1f00089edc016e0bf791ae107685beb4149ca98cf",
-   "size": 13034,
+   "sha256": "4db4a0af935b7b3240366711b7e2ce31189027eeeedb57ad05eca3d2dfa1ecd7",
+   "size": 35898,
    "role": "page"
   },
   {
@@ -56,8 +56,8 @@
   },
   {
    "path": "styles.css",
-   "sha256": "a9786a9737e9172bfcb55e4d5ec4d80609d9f7fb2419bdc1ab8c9ec4446ec0e1",
-   "size": 8652,
+   "sha256": "4bdfc084caa38bca1fc14ad70746d5af5d791cfc88d34171808fc2929bfaaebe",
+   "size": 11836,
    "role": "stylesheet"
   },
   {

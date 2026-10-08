@@ -1,15 +1,15 @@
 # Archive manifest - leader
 
-Authority: `packs/leader` @ 0.2.0 - generated 2026-10-08T17:07:39+00:00 UTC
+Authority: `packs/leader` @ 0.2.0 - generated 2026-10-08T17:18:25+00:00 UTC
 
 | file | role | sha256 (first 16) | size |
 |---|---|---|---|
 | `audit.jsonl` | machine-recorded authority call trace | `f7da1d1de4e6142f` | 59041 |
 | `brief.md` | build brief | `df3478fd0113ece0` | 2259 |
-| `index.html` | page | `14737a4bcc31c506` | 15605 |
+| `index.html` | page | `68b9623ae622326f` | 34557 |
 | `log.md` | build log (agent, 1:1 with audit.jsonl) | `fc60e498bf67f5f8` | 30662 |
 | `run-authority` | audited runner (build-time tool) | `8c8eb36c2f2b22d7` | 1033 |
-| `styles.css` | stylesheet | `7e38f8c4bc588758` | 8799 |
+| `styles.css` | stylesheet | `c5b1a0c99435c3db` | 11896 |
 | `fonts/ArchivoBlack-Regular.ttf` | brand font file | `dd9a89a019b4849f` | 90988 |
 | `fonts/Gelasio-VF.ttf` | brand font file | `4daecea457258c9e` | 168556 |
 | `fonts/Inter-VF.ttf` | brand font file | `29160a80ff49ddca` | 876576 |

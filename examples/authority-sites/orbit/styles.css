@@ -128,3 +128,33 @@ h1 { font-size: var(--text-xl); font-weight: 500; margin: 0 0 8px; }
   .register tbody tr:first-child { border-top: 0; }
   .register td { display: block; border-top: 0; padding: 2px 0; }
 }
+
+/* artefacts-directory:start */ /* styled from orbit records: token-set/palette (ink, gray-mid, accent #D63829); zero radius; square forms only */
+.artefacts { margin: 3.5rem 0 1rem; padding-top: 1.5rem; border-top: 1px solid #101010; }
+.artefacts .af-kick { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: #D63829; font-weight: 700; margin-bottom: .5rem; }
+.artefacts .af-h2 { font-size: 1.6rem; margin: 0 0 .6rem; }
+.artefacts .af-intro { color: #6F6F6F; max-width: 62ch; }
+.artefacts .af-filter { width: 100%; max-width: 34rem; padding: .6rem .8rem; border: 1px solid #101010; border-radius: 0; background: transparent; color: inherit; font: inherit; margin: .6rem 0 .2rem; }
+.artefacts .af-count { font-size: .82rem; color: #6F6F6F; margin: .2rem 0 1.2rem; }
+.artefacts .af-kindhead { display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .6rem; padding-bottom: .35rem; border-bottom: 1px solid #101010; }
+.artefacts .af-kindhead .af-lab { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #6F6F6F; font-weight: 700; }
+.artefacts .af-kindhead .af-n { font-size: .8rem; color: #6F6F6F; }
+.artefacts .af-row { padding: .9rem 0 1rem; border-bottom: 1px solid #101010; }
+.artefacts .af-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem .7rem; margin-bottom: .35rem; }
+.artefacts .af-kind { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #6F6F6F; }
+.artefacts .af-title { font-size: 1.08rem; margin: 0; }
+.artefacts .af-status { font-size: .72rem; padding: .08rem .5rem; border: 1px solid #101010; border-radius: 0; color: #6F6F6F; }
+.artefacts .af-id { font-size: .78rem; color: #6F6F6F; background: transparent; padding: .12rem .45rem; border-radius: 0; }
+.artefacts .af-sum { margin: .3rem 0 .6rem; max-width: 76ch; }
+.artefacts .af-use { background: transparent; border-radius: 0; padding: .6rem .8rem; margin: .5rem 0 .6rem; }
+.artefacts .af-line { display: flex; flex-wrap: wrap; gap: .5rem; margin: .25rem 0; align-items: baseline; }
+.artefacts .af-key { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #6F6F6F; min-width: 4.6rem; }
+.artefacts .af-sel { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; padding: .1rem .45rem; border-radius: 0; background: rgba(0,0,0,.06); color: inherit; }
+.artefacts .af-states { margin: .1rem 0; padding-left: 1.1rem; font-size: .9rem; }
+.artefacts .af-note { font-size: .9rem; color: #6F6F6F; max-width: 70ch; }
+.artefacts .af-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+.artefacts .af-alias { font-size: .8rem; color: #6F6F6F; }
+.artefacts .af-copy { margin-left: auto; font: inherit; font-size: .82rem; padding: .3rem .9rem; border: 1px solid #101010; border-radius: 0; background: transparent; color: #D63829; cursor: pointer; }
+.artefacts .af-copy:hover { background: #D63829; color: #ffffff; border-color: #D63829; }
+.artefacts .af-copy.ok { background: #D63829; color: #ffffff; border-color: #D63829; }
+/* artefacts-directory:end */
