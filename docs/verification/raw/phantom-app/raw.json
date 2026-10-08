@@ -2,7 +2,7 @@
  "pack": "phantom",
  "contract_version": "0.2",
  "target": "examples/phantom-audit",
- "generated": "2026-10-08 07:01:18",
+ "generated": "2026-10-08 07:09:12",
  "summary": {
   "total": 15,
   "PASS": 15,
@@ -86,9 +86,9 @@
    "selector": "#main h2",
    "status": "PASS",
    "observed": [
-    "text-transform: uppercase (all 12 ok)",
-    "font-weight: 900 (all 12 ok)",
-    "letter-spacing: 6.16px (all 12 ok)"
+    "text-transform: uppercase (all 11 ok)",
+    "font-weight: 900 (all 11 ok)",
+    "letter-spacing: 6.16px (all 11 ok)"
    ],
    "expected": [
     "{\"property\": \"text-transform\", \"relation\": \"equals\", \"value\": \"uppercase\"}",
@@ -109,9 +109,9 @@
    "selector": "#overview p a:not(.button)",
    "status": "PASS",
    "observed": [
-    "color: rgb(107, 255, 44) (all 3 ok)",
-    "border-bottom-style: dotted (all 3 ok)",
-    "border-bottom-color: rgb(32, 163, 245) (all 3 ok)"
+    "color: rgb(107, 255, 44)",
+    "border-bottom-style: dotted",
+    "border-bottom-color: rgb(32, 163, 245)"
    ],
    "expected": [
     "{\"property\": \"color\", \"relation\": \"color_is\", \"value\": \"#6bff2c\"}",
@@ -132,8 +132,8 @@
    "selector": "p code",
    "status": "PASS",
    "observed": [
-    "background-color: rgba(46, 90, 249, 0.984) (all 7 ok)",
-    "color: rgb(255, 107, 188) (all 7 ok)"
+    "background-color: rgba(46, 90, 249, 0.984) (all 6 ok)",
+    "color: rgb(255, 107, 188) (all 6 ok)"
    ],
    "expected": [
     "{\"property\": \"background-color\", \"relation\": \"color_is\", \"value\": \"#2e5af9\"}",
@@ -325,7 +325,7 @@
    "selector": null,
    "status": "PASS",
    "observed": [
-    "91 literals, all allowlisted"
+    "95 literals, all allowlisted"
    ],
    "expected": [
     "{\"relation\": \"color_literals\", \"allow\": [\"#585858\", \"#c9c9c9\", \"#f2849e\", \"#ff6bbc\", \"#6bff2c\", \"#3ef900\", \"#20a3f5\", \"#f51616\", \"#8833e3\", "

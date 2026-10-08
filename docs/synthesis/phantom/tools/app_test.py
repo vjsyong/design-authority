@@ -39,19 +39,6 @@ with sync_playwright() as p:
     check("AA rows rendered", pg.evaluate("document.querySelectorAll('.aa').length") >= 6)
     check("fonts loaded (300 body)", pg.evaluate("document.fonts.check('300 16px \"Source Sans Pro\"')"))
 
-    # explainer accordion
-    check("at-a-glance block is live elements", pg.evaluate("document.querySelectorAll('.aglance .fstep').length") == 5 and pg.evaluate("document.querySelectorAll('.aglance .filelist .cnt').length") >= 4)
-    check("learn-more button present + wired", pg.evaluate("(() => { const b = document.querySelector('.ag-cta .button'); return !!b && b.textContent.indexOf('Learn more about Design Authority') > -1 && b.getAttribute('href') === 'learn'; })()"))
-    check("explainer starts collapsed", pg.evaluate("!document.querySelector('details.explainer').open"))
-    pg.click("details.explainer > summary")
-    pg.wait_for_timeout(150)
-    exp_txt = pg.evaluate("document.querySelector('details.explainer').innerText")
-    check("explainer expands with content", pg.evaluate("document.querySelector('details.explainer').open") and "software can read" in exp_txt and "Extraction" in exp_txt)
-    check("worked example is live (timeline + rules)", pg.evaluate("document.querySelectorAll('.expl-timeline li').length") == 3 and pg.evaluate("document.querySelectorAll('.expl-rules .r').length") == 6)
-    pg.screenshot(path=os.path.join(T, "_evidence", "screens", "audit2-explainer.png"))
-    pg.click("details.explainer > summary")
-    pg.wait_for_timeout(80)
-    check("explainer collapses back", pg.evaluate("!document.querySelector('details.explainer').open"))
 
     # --- the deployed language, as rendered by the app itself ---
     check("body ink is the as-deployed pink (default)", pg.evaluate("getComputedStyle(document.querySelector('#overview p')).color") == "rgb(255, 107, 188)")

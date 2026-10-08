@@ -64,80 +64,6 @@
 								The review measures the site's interface page by page and records it as the <strong>Jennu design authority</strong>,
 								<em>packs/phantom</em> 0.2.0. Everything on this page is built from that record.</p>
 							</header>
-							<section class="aglance" data-improvised data-mk="explainer at a glance (console kit)">
-								<div class="ag-kicker">Design authority — at a glance</div>
-								<h2>How this review is put together</h2>
-								<div class="ag-cols">
-									<div class="ag-col">
-										<h3>01 · The contract</h3>
-										<p>A written description of an interface system that software can read: the components, the rules, and the fallbacks for anything not decided yet. <strong>It is a contract, not commentary.</strong></p>
-										<div class="filelist">
-<code>packs/phantom/</code> <span class="c">— plain JSON, no database</span><br/>
-artifacts.json <span class="cnt">29</span> <span class="c">components · token-sets · layouts</span><br/>
-rules.json <span class="cnt">8</span> <span class="c">· prohibitions <span class="cnt">2</span> · fallbacks <span class="cnt">4</span></span><br/>
-precedents.json <span class="cnt">1</span> <span class="c">· candidates.json <span class="cnt">3</span></span><br/>
-golden.json <span class="cnt">21</span> <span class="c">ask → expected outcome</span><br/>
-verification.json <span class="cnt">15</span> <span class="c">conformance checks</span>
-										</div>
-									</div>
-									<div class="ag-col">
-										<h3>02 · Two readers</h3>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>The pack</b>one file set, readable by software</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox l"><b>Coding agent</b>reads the pack and builds</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox"><b>Artifact</b>the built page; gaps in the pack are marked and filed</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox r"><b>Verifier</b>checks the page itself, not the agent's claims</div></div>
-										<div class="fstep"><span class="arr">▸</span><div class="fbox report"><b>Report</b>15 checks, 0 violations; published with hashes</div></div>
-									</div>
-									<div class="ag-col">
-										<h3>03 · How it changes</h3>
-										<ul class="evol">
-											<li><span class="chip chip--base">v0.1.0</span><span class="chip chip--fix">rejected</span><span class="chip chip--canon">v0.2.0</span> The first version described the template; the second described the site. The reversal is kept as a precedent.</li>
-											<li><span class="chip">rule</span> Small edits bump the patch number; real changes bump the version and re-freeze every file hash.</li>
-											<li><span class="chip">rule</span> Settled decisions are kept as precedents and are not reopened.</li>
-											<li><span class="chip">rule</span> New ideas become candidates with a written bar for promotion; gaps get filed.</li>
-										</ul>
-									</div>
-								</div>
-								<p class="ag-cta"><a href="learn" class="button large primary">Learn more about Design Authority</a></p>
-							</section>
-							<details class="explainer" data-improvised data-mk="explainer (console kit)">
-								<summary>What is a Design Authority — and what is this page?</summary>
-								<div class="expl-body">
-									<h3>What it is</h3>
-									<p>A design authority is a written description of an interface system that software can read. It lists the components (buttons, fields, menus), the rules (colour, type, spacing, voice), and the fallbacks for anything not decided yet. One program builds with it; another checks whether the build matches it. It is a contract, not a style guide.</p>
-									<h3>Why it exists</h3>
-									<p>Interfaces drift. Every page and edit makes slightly different choices, and after a while “follow the design” means nothing. A written authority makes the choices explicit and checkable: a reviewer can point at a record instead of an opinion, and gaps show up as gaps.</p>
-									<h3>How this page fits in</h3>
-									<p><strong>1 · Extraction.</strong> The deployed site was measured page by page: 64 screenshots and computed styles. Every value was recorded and tagged <em>base</em> (from the HTML5 UP template) or <em>override</em> (the site's own change).</p>
-									<p><strong>2 · Consumption.</strong> This review is built from that record. Covered elements follow it; where the record is silent, the build improvises in the same style, marks the spot (◌, bottom-right) and files a gap.</p>
-									<p><strong>3 · Verification.</strong> A separate checker (<em>da_verify</em>, 15 checks) inspects this rendered page, not the agent's account of it. Results are linked in the footer.</p>
-									<h3>Why it looks like this</h3>
-									<p>The review wears the language it reviews: pink type, green links, the lime menu. Where that language has problems, the ledger records them, with measurements, instead of hiding them.</p>
-									<h3>The worked example — one revision, live</h3>
-									<ul class="expl-timeline">
-										<li><span class="ver">v0.1.0</span> <span class="muted">initial freeze — hashed, git-tagged</span><p>Extracted from the template's stylesheet: grey ink canon, the site's pink type misfiled as "deviations". Verified mechanically (its contract re-run clean: 17/17) — but extracted from the wrong layer.</p></li>
-										<li class="bad"><span class="ver">rejected</span> <span class="muted">owner review of the rendered result</span><p>"The site that exists runs pink type — extract what IS." A version can be internally consistent and still describe the wrong thing; only rendered evidence settles it.</p></li>
-										<li class="v2"><span class="ver">v0.2.0</span> <span class="muted">fresh freeze — all pack files re-hashed</span><p>Re-extracted screenshot-first (4 domain teams, 64 captures): canon = the deployed language. The reversal became <code>precedent/pink-ink-canonised</code> — superseded, not deleted. Goldens re-run 21/21; the verification contract rewritten (15 checks), re-run 15/15.</p></li>
-									</ul>
-									<h3>The standing rules</h3>
-									<div class="expl-rules">
-										<div class="r"><b>Editorial edit → patch bump</b><span>Wording, typos, clarifications. No re-freeze needed.</span></div>
-										<div class="r"><b>Semantic change → minor bump + fresh freeze</b><span>New or changed records, pipeline order, thresholds, tool contracts, taxonomies.</span></div>
-										<div class="r grey"><b>Adjudications become precedents</b><span>Accepted / declined decisions persist so agents never relitigate them.</span></div>
-										<div class="r purple"><b>Ambitions become candidates</b><span>Every candidate carries an explicit promote-when bar — no silent canonisation.</span></div>
-										<div class="r blue"><b>Friction is recorded, not smoothed</b><span>Consumer gaps are filed per workspace; resolutions and proposals are first-class records.</span></div>
-										<div class="r"><b>The contract co-versions</b><span>Goldens guard resolution; the verification contract travels with the pack and re-runs against every build.</span></div>
-									</div>
-									<p>The evolution loop: <strong>extract</strong> (rendered evidence) → <strong>freeze</strong> (hashes) → <strong>consume</strong> (agents resolve &amp; build) → <strong>verify</strong> (independent checks) → <strong>adjudicate</strong> (precedent · gap · candidate) → next version. Nothing moves the pack except an adjudicated decision.</p>
-									<p class="ag-link muted"><a href="learn">Learn more about Design Authority ↗</a> · <a href="assets/explainer/design-authority.png" target="_blank" rel="noopener">poster (PNG)</a></p>
-								</div>
-							</details>
-							<ul class="snav" data-improvised data-mk="section nav (console kit)">
-								<li><a href="#system">The system</a></li>
-								<li><a href="#gaps">The ledger</a></li>
-								<li><a href="#adaptations">Adaptations</a></li>
-								<li><a href="#evidence">Evidence</a></li>
-							</ul>
 							<div class="statrow" data-improvised data-mk="console kit — stat row">
 								<div class="stat"><b id="statPages">9</b><span>pages surveyed</span></div>
 								<div class="stat"><b id="statArts">29</b><span>system artifacts</span></div>
@@ -151,15 +77,14 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 								<button type="button" class="button small" id="overrideToggle" aria-pressed="false">View as project page — the black-body override</button>
 								<span class="muted" style="font-size:0.8em;">Reading ink uses the AA strategy from Adaptations; the switch shows the site's own values.</span>
 							</div>
-							<h2>How to read this</h2>
-							<p data-improvised data-mk="console kit — legend">Every finding below is in one of seven postures.
-							<span class="chip chip--canon">canon</span> the deployed language defines it — the review uses it as is.
-							<span class="chip chip--base">base</span> a template value the deployment left untouched (still live).
-							<span class="chip chip--override">override</span> a deployment change — canonised where deliberate, recorded where risky.
-							<span class="chip chip--candidate">candidate</span> a promotion dossier with a bar to clear.
-							<span class="chip chip--improv">improvised</span> the system is silent — built in character, marked, filed.
-							<span class="chip chip--gap">gap</span> recorded for the owner; nothing invented silently.
-							<span class="chip chip--defect">defect</span> a plain bug — named, not designed around.</p>
+							<h2>In this review</h2>
+							<ul class="contents" data-improvised data-mk="console kit — contents">
+								<li><a href="#system"><b>01 · The system</b><span>29 artifacts, each with a live demo</span></a></li>
+								<li><a href="#gaps"><b>02 · The ledger</b><span>36 items: defects, risks and gaps</span></a></li>
+								<li><a href="#adaptations"><b>03 · Adaptations</b><span>6 responses, with live demos</span></a></li>
+								<li><a href="#evidence"><b>04 · Evidence</b><span>14 screenshots the findings cite</span></a></li>
+							</ul>
+							<p class="ag-cta"><a href="learn" class="button large primary">Learn more about Design Authority</a></p>
 							<p class="muted">The site under review is a working notebook — unfinished by its own admission —
 							and that is the honest context for every ledger item. Nothing on the reviewed site was modified:
 							the audit is evidence, not a rewrite.</p>
@@ -167,17 +92,25 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 
 						<section id="system">
 							<header>
-								<h2>The system — the deployed language</h2>
+								<h2>01 · The system</h2>
 								<p>Pass 2 extracted what the site <em>is</em>, from rendered evidence (screenshots read page by page,
 								computed styles measured). Each card carries the deployed spec, its posture, and — where useful — a
 								live demo rendered in the system's own language. Click a card for its authority record.</p>
+								<p class="muted" data-improvised data-mk="console kit — legend">Each card's posture:
+								<span class="chip chip--base">base</span> a template value still live ·
+								<span class="chip chip--override">override</span> a deployment change ·
+								<span class="chip chip--canon">canon</span> the deployed language defines it ·
+								<span class="chip chip--improv">improvised</span> built in character, marked, filed ·
+								<span class="chip chip--candidate">candidate</span> a promotion dossier ·
+								<span class="chip chip--gap">gap</span> recorded for the owner ·
+								<span class="chip chip--defect">defect</span> a plain bug.</p>
 							</header>
 							<ul class="cards" id="systemCards"></ul>
 						</section>
 
 						<section id="gaps">
 							<header>
-								<h2>The ledger — defects, risks &amp; gaps</h2>
+								<h2>02 · The ledger</h2>
 								<p id="gapIntro">— items across five families: <em>system</em> (measured risks inside the language),
 								<em>craft</em> (markup and wiring defects), <em>assets</em> (files the site references but no longer serves),
 								<em>content</em> (placeholder text and finishing passes), <em>patterns</em> (surfaces a portfolio needs that
@@ -199,7 +132,7 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 
 						<section id="adaptations">
 							<header>
-								<h2>Adaptations — how the system responds</h2>
+								<h2>03 · Adaptations</h2>
 								<p>Six worked responses to the highest-value ledger items: the pink-ink AA dossier, the override pattern
 								as an accessibility path, the carousel repair dossier, the project-gallery responsive fix, the CJK fallback,
 								and the craft repairs. These are demonstrations inside the review — none was pushed back into the authority.</p>
@@ -209,7 +142,7 @@ verification.json <span class="cnt">15</span> <span class="c">conformance checks
 
 						<section id="evidence">
 							<header>
-								<h2>Evidence — the screens this review rests on</h2>
+								<h2>04 · Evidence</h2>
 								<p>Extraction evidence captured page by page during the domain passes (1280 and 390 viewports; hover and
 								focus states triggered before capture). The full set — 64 screenshots across four domain teams — lives in the
 								synthesis archive; these are the fourteen the findings lean on hardest.</p>

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-08 07:01:18",
+ "generated": "2026-10-08 07:09:12",
  "tool": "tools/da_verify.py",
  "target": "examples/phantom-audit",
  "summary": {
@@ -13,7 +13,7 @@
  "covers": {
   "assets/css/main.css": "1151cade53024996",
   "app.js": "1c748bd145818723",
-  "index.html": "c6a4a10b10a82374"
+  "index.html": "5707c598810c695f"
  },
  "covers_note": "sha256[:16] of the app files this run read — if the served files differ, these results are stale; re-run the verifier. Results shipped inside the artifact are artifact-local: they can be replaced by whoever writes the artifact, so re-running tools/da_verify.py is the only trusted confirmation.",
  "note": "Independent verification results (verification experiment, 2026-10-08; post-adversarial hardening). Claims are not evidence; these results come from files, DOM, computed style and behaviour.",
@@ -55,8 +55,8 @@
    "status": "PASS",
    "selector": "#main h2",
    "observed": [
-    "text-transform: uppercase (all 12 ok)",
-    "font-weight: 900 (all 12 ok)"
+    "text-transform: uppercase (all 11 ok)",
+    "font-weight: 900 (all 11 ok)"
    ],
    "note": null
   },
@@ -69,8 +69,8 @@
    "status": "PASS",
    "selector": "#overview p a:not(.button)",
    "observed": [
-    "color: rgb(107, 255, 44) (all 3 ok)",
-    "border-bottom-style: dotted (all 3 ok)"
+    "color: rgb(107, 255, 44)",
+    "border-bottom-style: dotted"
    ],
    "note": null
   },
@@ -83,8 +83,8 @@
    "status": "PASS",
    "selector": "p code",
    "observed": [
-    "background-color: rgba(46, 90, 249, 0.984) (all 7 ok)",
-    "color: rgb(255, 107, 188) (all 7 ok)"
+    "background-color: rgba(46, 90, 249, 0.984) (all 6 ok)",
+    "color: rgb(255, 107, 188) (all 6 ok)"
    ],
    "note": null
   },
@@ -196,7 +196,7 @@
    "status": "PASS",
    "selector": null,
    "observed": [
-    "91 literals, all allowlisted"
+    "95 literals, all allowlisted"
    ],
    "note": null
   },

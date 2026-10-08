@@ -201,3 +201,11 @@ body.ink-reading a { color: #0b7285; }
 body.ink-reading code { color: #ffffff; }
 body.ink-reading .ag-kicker { color: #b03b72; }
 body.ink-reading .statrow .stat b { color: inherit; }
+
+/* contents ("in this review") — console kit */
+ul.contents { list-style: none; padding: 0; margin: 0.2em 0 1.4em 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.9em 1.6em; }
+ul.contents li a { display: block; border: solid 1px #c9c9c9; padding: 0.9em 1.1em; }
+ul.contents li a:hover { border-color: #f2849e; }
+ul.contents b { display: block; font-size: 0.8em; letter-spacing: 0.2em; text-transform: uppercase; color: #585858; }
+ul.contents span { font-size: 0.84em; color: rgba(88,88,88,0.85); }
+@media screen and (max-width: 736px) { ul.contents { grid-template-columns: 1fr; } }
