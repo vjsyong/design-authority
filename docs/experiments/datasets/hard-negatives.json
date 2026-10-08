@@ -1,0 +1,29 @@
+{
+  "note": "Hard negatives, frozen 2026-10-08 before any hybrid run. For each ask, the listed ids must not appear in top-3 of the hybrid engine. E0 (lexical) is reported alongside: pre-existing violations are noted, not counted against the assist, but the assist must not add new ones.",
+  "cases": [
+    {"query": "make the save button pulse until the user clicks it",
+     "forbid_top3": ["token-set/motion"],
+     "why": "attention-seeking decoration is not canon; motion tokens govern functional timing and must not read as a sanction"},
+    {"query": "a confetti burst when a checklist completes",
+     "forbid_top3": ["token-set/motion"],
+     "why": "celebratory effects have no home in the system"},
+    {"query": "pick a reviewer from the team directory",
+     "forbid_top3": ["component/arm-del", "component/bulkbar"],
+     "why": "benign selection must not surface destructive controls (the review's entity-delete test)"},
+    {"query": "schedule a message to send at midnight",
+     "forbid_top3": ["component/toast2", "component/msg"],
+     "why": "out-of-band scheduling is not transient in-app notification"},
+    {"query": "auto-save changes without asking",
+     "forbid_top3": ["component/savebar"],
+     "why": "the save-bar contract is explicit unsaved-change warning; silent auto-save contradicts it"},
+    {"query": "a carousel of marketing images",
+     "forbid_top3": ["component/img"],
+     "why": "carousel is not a sanctioned image pattern"},
+    {"query": "export the full audit trail to a spreadsheet",
+     "forbid_top3": ["component/drop"],
+     "why": "upload surface must not stand in for an export need"},
+    {"query": "notify the whole team by email when a record changes",
+     "forbid_top3": ["component/notif", "component/toast2"],
+     "why": "in-app notification surfaces must not stand in for outbound email delivery"}
+  ]
+}

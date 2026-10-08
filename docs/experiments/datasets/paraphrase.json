@@ -1,0 +1,29 @@
+{
+  "note": "Held-out paraphrase set, frozen 2026-10-08 before any hybrid run. Wording avoids canonical vocabulary (aliases and titles). Expected ids assigned by reading the pack only.",
+  "cases": [
+    {"query": "the control people press to send a completed form", "expect_id": "component/btn"},
+    {"query": "let someone flip a single preference on or off right away", "expect_id": "component/px-sw"},
+    {"query": "a small marker showing whether a nightly job finished well", "expect_id": "component/dot"},
+    {"query": "a bar that keeps warning you about changes you have not saved yet", "expect_id": "component/savebar"},
+    {"query": "the screen shown when a query returns nothing", "expect_id": "component/empty"},
+    {"query": "confirm before a record is wiped for good", "expect_id": "component/arm-del"},
+    {"query": "grey blocks in place of numbers while data is loading", "expect_id": "component/skeleton"},
+    {"query": "a tiny explainer that appears when hovering over an element", "expect_id": "component/tip"},
+    {"query": "who changed what and when, listed chronologically", "expect_id": "component/audit-row"},
+    {"query": "a compact number tile at the top of a metrics page", "expect_id": "component/stat"},
+    {"query": "suggests matching entries while someone types into a text box", "expect_id": "component/cb"},
+    {"query": "a placeholder for somebody's profile picture", "expect_id": "component/avatar-sq"},
+    {"query": "the rail tracking where you are in a multi-step flow", "expect_id": "pattern/learning"},
+    {"query": "the container around each turn in a chat", "expect_id": "component/bubble"},
+    {"query": "a panel sliding in from the edge with a record's details", "expect_id": "component/sheet-end"},
+    {"query": "the mobile bar with the screen title and back affordance", "expect_id": "component/topbar"},
+    {"query": "compare two versions of a file line by line", "expect_id": "component/diff"},
+    {"query": "show which keys to press next to a menu entry", "expect_id": "component/kbd"},
+    {"query": "drag a file from the desktop to attach it", "expect_id": "component/drop"},
+    {"query": "a meter that fills while an upload is running", "expect_id": "component/progress"},
+    {"query": "a small label showing a record's state such as Draft", "expect_id": "component/badge"},
+    {"query": "a quick overlay for jumping to any screen from the keyboard", "expect_id": "component/cmd"},
+    {"query": "a three-way selector for switching between list views", "expect_id": "component/seg"},
+    {"query": "the chevron that reveals actions for a single row", "expect_id": "component/menu-pop"}
+  ]
+}
