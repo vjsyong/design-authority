@@ -7,6 +7,11 @@
 > (snapshot `2c701d2`): skips catalogued, slide-over and row-actions
 > vocabulary fixed, status chips named; all four seeded disputes replay
 > 0-standing on the evolution line (frozen pinned pack keeps its 4/4 gate).
+>
+> **Round 3 (concept, not started):** collaborative aliasing/tagging —
+> consumer filings nominate function-scope tags and aliases; see
+> [`round3/00-concept-collaborative-aliasing.md`](round3/00-concept-collaborative-aliasing.md)
+> (logged 2026-10-09; feasibility only, no experiments).
 
 This package consolidates every report and raw measurement from the Authority
 Evolution Experiment: taking the gap evidence filed by downstream agents
