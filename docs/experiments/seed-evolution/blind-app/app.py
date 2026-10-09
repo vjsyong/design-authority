@@ -123,13 +123,20 @@ class Handler(BaseHTTPRequestHandler):
     def _json(self, obj, code=200):
         self._send(code, "application/json", json.dumps(obj).encode())
 
-    def _file(self, path, ctype=None):
+    def _file(self, path, ctype=None, code=200):
         if not os.path.isfile(path):
             return self._json({"error": "not found"}, 404)
         if ctype is None:
             ctype = CTYPES.get(os.path.splitext(path)[1], "application/octet-stream")
         with open(path, "rb") as fh:
-            self._send(200, ctype, fh.read())
+            self._send(code, ctype, fh.read())
+
+    def _notfound(self):
+        """Styled 404 for page requests; JSON for API paths. Never embeds the
+        capability path (asset links are root-absolute and token-free)."""
+        if "/api/" in self.path:
+            return self._json({"error": "not found"}, 404)
+        return self._file(os.path.join(HERE, "notfound.html"), code=404)
 
     def _read_body(self):
         try:
@@ -153,8 +160,13 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/robots.txt":
             return self._send(200, "text/plain; charset=utf-8",
                               b"User-agent: *\nDisallow: /\n")
+        if path.startswith("/assets/"):
+            norm = os.path.normpath(path)
+            if ".." in path or not norm.startswith("/assets/"):
+                return self._notfound()
+            return self._file(os.path.join(HERE, norm.lstrip("/")))
         if path in ("/", ""):
-            return self._json({"error": "not found"}, 404)
+            return self._notfound()
         if path == base:
             self.send_response(301)
             self.send_header("Location", base + "/")
@@ -162,7 +174,7 @@ class Handler(BaseHTTPRequestHandler):
             self.end_headers()
             return
         if not path.startswith(base + "/"):
-            return self._json({"error": "not found"}, 404)
+            return self._notfound()
         rel = path[len(base) + 1:]
         if rel == "":
             return self._file(os.path.join(HERE, "index.html"))
@@ -171,12 +183,12 @@ class Handler(BaseHTTPRequestHandler):
         if rel.startswith("assets/"):
             norm = os.path.normpath(rel)
             if norm.startswith(".."):
-                return self._json({"error": "not found"}, 404)
+                return self._notfound()
             return self._file(os.path.join(HERE, norm))
         if rel.startswith("img/"):
             name = rel[len("img/"):]
             if not IMG_RE.match(name) or ".." in name:
-                return self._json({"error": "not found"}, 404)
+                return self._notfound()
             return self._file(os.path.join(BLINDSET, "img", name))
         if rel == "api/meta":
             s = load_set() or {}
@@ -207,7 +219,7 @@ class Handler(BaseHTTPRequestHandler):
                                     "scale": c.get("scale", 5)}
                                    for c in s.get("comparisons", [])]}
             return self._json(pub)
-        return self._json({"error": "not found"}, 404)
+        return self._notfound()
 
     # ---------------------------------------------------------------- POST
     def do_POST(self):
