@@ -7,8 +7,7 @@
   var SCALE = { 1: "very unlikely", 2: "unlikely", 3: "unsure", 4: "likely", 5: "very likely" };
   var DEFAULT_Q = "How likely are these two interfaces to belong to the same design system?";
   var KIND_LABEL = { pair: "Whole screens",
-                     primary: "Close-up: primary action",
-                     card: "Close-up: bookmark card" };
+                     match: "Element comparison" };
   var S = { meta: null, set: null, name: "", i: 0, rating: 0,
             answered: {}, local: {}, last: null };
 
