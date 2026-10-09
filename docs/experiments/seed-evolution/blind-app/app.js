@@ -6,7 +6,9 @@
   var viewEls = { welcome: "view-welcome", run: "view-run", done: "view-done" };
   var SCALE = { 1: "very unlikely", 2: "unlikely", 3: "unsure", 4: "likely", 5: "very likely" };
   var DEFAULT_Q = "How likely are these two interfaces to belong to the same design system?";
-
+  var KIND_LABEL = { pair: "Whole screens",
+                     primary: "Close-up: primary action",
+                     card: "Close-up: bookmark card" };
   var S = { meta: null, set: null, name: "", i: 0, rating: 0,
             answered: {}, local: {}, last: null };
 
@@ -80,6 +82,7 @@
     var total = S.set.comparisons.length;
     $("q-counter").textContent = "Comparison " + (S.i + 1) + " of " + total;
     $("q-text").textContent = c.prompt || DEFAULT_Q;
+    $("q-kind").textContent = KIND_LABEL[c.kind] || "";
     $("shot-a").src = "img/" + c.left;
     $("shot-b").src = "img/" + c.right;
     var mine = S.local[c.code] || {};
