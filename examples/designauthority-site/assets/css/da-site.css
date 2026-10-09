@@ -190,4 +190,5 @@ body.marks-on [data-improv]{outline:1px dashed var(--status-warning-solid);outli
   .da-hero h1{font-size:2.125rem}
   .da-statement{font-size:1.375rem}
   .da-appshot img{block-size:250px}
+.da-triage-mark{block-size:28px;inline-size:auto}
 }

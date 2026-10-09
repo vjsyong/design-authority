@@ -23,7 +23,7 @@ from .validate import validate
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
-DEFAULT_PACK = os.path.join(ROOT, "packs", "triage")
+DEFAULT_PACK = os.path.join(ROOT, "authorities", "triage")
 SEM_TOOLS = os.path.join(ROOT, "tools")
 
 mcp = FastMCP("design-authority")

@@ -246,7 +246,7 @@
       <div class="card">
         <div class="card-h"><h3>Triage</h3><span class="sub mono">v0.12.1</span></div>
         <p class="da-p">The app-agnostic paper-and-ink design authority. 80 artifacts, 19 rules, 53 calibration cases.</p>
-        <p class="da-links mono"><a href="/authorities/triage/audit">audit</a> · <a href="/authorities/triage/demo/duty/">duty console</a> · <a href="https://triage.seanyong.xyz">foundations</a></p>
+        <p class="da-links mono"><a href="/authorities/triage/audit">audit</a> · <a href="/authorities/triage/demo/duty/">duty console</a> · <a href="https://triage.seanyong.xyz">foundations</a> · <a href="https://github.com/vjsyong/authority-triage">pack</a></p>
       </div>
       <div class="card">
         <div class="card-h"><h3>Phantom</h3><span class="sub mono">v0.2.0</span></div>
@@ -278,7 +278,7 @@
     independent verification checks observable conformance. Decisions that would otherwise happen by default get
     written down, cited, and versioned.</p>
     <div class="da-grid2" data-improv="editorial grid" title="Improvised (no authority record; gap filed)">
-      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">packs/triage/
+      <pre class="da-code mono" data-improv="docs code block" title="Improvised (no authority record; gap filed)">authority-triage/   (the Triage pack, its own repository)
   authority.json      identity · version · consumers
   artifacts.json      80 records: components, token sets, patterns, guidelines
   rules.json          19 enforceable rules (TDS001–015 + interaction)
@@ -375,6 +375,20 @@
   </section>
 
   <section class="da-sec">
+    <div class="card da-triage-promo" id="triage-pack">
+      <div class="card-h">
+        <img class="da-triage-mark" src="/assets/img/triage-lockup.svg" alt="Triage">
+        <span class="sub mono">v0.12.1</span>
+      </div>
+      <p class="da-intro sub">Don't know what to try it with? <b>Try Triage</b>, a modern minimalist
+      design kit designed for Design Authority. It ships as its own pack: 80 artifacts, 19 rules,
+      a lint engine that checks a build, and byte-identical foundations for consumers.</p>
+      <p class="da-links mono"><a href="https://github.com/vjsyong/authority-triage">get the pack</a> ·
+      <a href="https://triage.seanyong.xyz">docs site</a> · <a href="/authorities/triage/audit">audit</a></p>
+      <pre class="da-code mono">git clone --depth 1 https://github.com/vjsyong/authority-triage.git
+python3 tools/da.py --pack authority-triage overview
+# expected: triage 0.12.1 - 80 artifacts</pre>
+    </div>
     <details class="fold" id="ledger">
       <summary>Authority ledger · how this page was built</summary>
       <div class="da-ledger-body">

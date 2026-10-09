@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Repo gates: pack drift, kernel unit tests, golden set, MCP smoke (venv).
-set -e
+set -euo pipefail
 cd "$(dirname "$0")/.."
 echo "== triage pack drift check (synthesis pipeline)"
 # The live triage pack is built by docs/synthesis/triage/tools/build_triage_pack.py.

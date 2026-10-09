@@ -19,7 +19,7 @@ from .resolve import resolve, resolve_golden, replay_disputes
 from .validate import validate
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DEFAULT_PACK = os.path.join(ROOT, "packs", "triage")
+DEFAULT_PACK = os.path.join(ROOT, "authorities", "triage")
 SEM_TOOLS = os.path.join(ROOT, "tools")
 
 

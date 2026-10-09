@@ -26,24 +26,49 @@ Set up the Design Authority on this machine, then work under it. Steps, in order
    python3 -m venv ~/design-authority/.venv
    ~/design-authority/.venv/bin/pip install 'mcp<2'
 
-3. Prove the authority works:
-   python3 ~/design-authority/tools/da.py overview
+3. The tooling is installed. To have something to work under, install a design pack next.
+   Don't know what to try it with? Try Triage, a modern minimalist design kit designed for
+   Design Authority. The block right below this one installs it and proves it.
+
+Then report back to me: your python version, that the venv is ready, and which pack you
+installed (or that you would like one suggested). I will then tell you what to build.
+```
+
+### Don't know what to try it with? Try Triage
+
+<img src="https://raw.githubusercontent.com/vjsyong/authority-triage/main/brand/lockup-horizontal.svg" alt="Triage" height="28">
+
+Triage is a modern minimalist design kit designed for Design Authority. It ships as its own
+pack: 80 artifacts, 19 rules, a lint engine, byte-identical foundations for consumers, and a
+reference site at <https://triage.seanyong.xyz>. The pack repository is
+[vjsyong/authority-triage](https://github.com/vjsyong/authority-triage).
+
+Copy this block into your coding agent to install the pack:
+
+```text
+Install the Triage pack (a modern minimalist design kit designed for Design Authority) and set it up for this project, verifying each expected output:
+
+1. Clone the pack:
+   git clone --depth 1 https://github.com/vjsyong/authority-triage.git ~/authority-triage
+
+2. Prove it resolves:
+   python3 ~/design-authority/tools/da.py --pack ~/authority-triage overview
    Expected: triage 0.12.1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed.
-   python3 ~/design-authority/tools/da.py resolve "a primary button"
+   python3 ~/design-authority/tools/da.py --pack ~/authority-triage resolve "a primary button"
    Expected: OUTCOME: RESOLVED citing component/btn.
    If either fails, stop and paste the output to me.
 
-4. Adopt the consumption protocol: append ~/design-authority/packs/triage/AGENT-PROMPT.md to this project's agent rules (AGENTS.md or CLAUDE.md). From now on you resolve before building, mark what has no authority record, and report gaps instead of inventing canon.
+3. Adopt the consumption protocol: append ~/authority-triage/AGENT-PROMPT.md to this project's agent rules (AGENTS.md or CLAUDE.md). From now on you resolve before building, mark what has no record, and report gaps instead of inventing canon.
 
-5. Pull the Triage foundations into this project when you start building: copy ~/design-authority/dist/triage/ (tokens.css, base.css, patterns.css, fonts/) into the project, load them in that order, and take every visual value from the tokens. Do not hand-roll colours, spacing, or type.
+4. Pull the foundations into this project when you start building: copy ~/authority-triage/dist/ (tokens.css, base.css, patterns.css, fonts/) into the project, load them in that order, and take every visual value from the tokens. Do not hand-roll colours, spacing, or type.
 
-6. Connect the MCP server if your host supports MCP (Claude Code/Cursor: .mcp.json; Hermes: hermes mcp add; opencode: opencode.json; the blocks are under "Install (for agents)" in ~/design-authority/README.md). Set DA_PACK to ~/design-authority/packs/triage and DA_WORKSPACE to this project. If your host has no MCP support, use the step-3 commands for every design question instead.
+5. Connect the MCP server if your host supports MCP: set DA_PACK to ~/authority-triage and DA_WORKSPACE to this project (registration blocks under "Install (for agents)"). If your host has no MCP support, use the step-2 commands for every design question instead.
 
-7. Before claiming any build is done, validate it:
-   python3 ~/design-authority/tools/da.py --pack ~/design-authority/packs/triage validate .
+6. Before claiming any build is done, validate it:
+   python3 ~/design-authority/tools/da.py --pack ~/authority-triage validate .
    Target: 0 errors and 0 warnings (score 100). Fix findings at their source; never suppress them. Re-run until clean.
 
-Then report back to me: the two proof outputs from step 3, whether MCP is connected, and the final validate score. I will then tell you what to build.
+Then report back to me: the two proof outputs from step 2, whether MCP is connected, and the final validate score. I will then tell you what to build.
 ```
 
 ## Install (for agents)
@@ -61,13 +86,13 @@ Stop and report to the human instead of improvising if: Python is older than 3.1
 ```bash
 git clone https://github.com/vjsyong/design-authority.git
 cd design-authority
-python3 tools/da.py overview
+python3 tools/da.py --pack ~/authority-triage overview
 ```
 
-Expected: triage 0.12.1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed. Then:
+Expected (with the Triage pack from the block above): triage 0.12.1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed. Then:
 
 ```bash
-python3 tools/da.py resolve "a primary button"
+python3 tools/da.py --pack ~/authority-triage resolve "a primary button"
 ```
 
 Expected: `OUTCOME: RESOLVED` citing `component/btn`.
@@ -78,7 +103,7 @@ Expected: `OUTCOME: RESOLVED` citing `component/btn`.
 python3 -m venv .venv && .venv/bin/pip install 'mcp<2'
 ```
 
-The stdio launcher is `tools/da-mcp.py`. Environment: `DA_PACK` selects the pack (default `packs/triage`); `DA_WORKSPACE` is where gaps, proposals and the decision log are written. Set `DA_WORKSPACE` to the project you are working on, so its records travel with it.
+The stdio launcher is `tools/da-mcp.py`. Environment: `DA_PACK` selects the pack (default `authorities/triage` in this repo; point it at the pack you installed, for example `~/authority-triage`); `DA_WORKSPACE` is where gaps, proposals and the decision log are written. Set `DA_WORKSPACE` to the project you are working on, so its records travel with it.
 
 ### 3. Register with your host
 
@@ -88,7 +113,7 @@ Claude Code / Cursor (`.mcp.json` in the project being worked on):
 {"mcpServers": {"design-authority": {
   "command": "/path/to/design-authority/.venv/bin/python",
   "args": ["/path/to/design-authority/tools/da-mcp.py"],
-  "env": {"DA_PACK": "/path/to/design-authority/packs/triage",
+  "env": {"DA_PACK": "/path/to/authority-triage",
           "DA_WORKSPACE": "/path/to/your/project"}}}}
 ```
 
@@ -97,7 +122,7 @@ Hermes:
 ```bash
 hermes mcp add design-authority \
   --command /path/to/design-authority/.venv/bin/python \
-  --env DA_PACK=/path/to/design-authority/packs/triage \
+  --env DA_PACK=/path/to/authority-triage \
   --env DA_WORKSPACE=/path/to/your/project \
   --args /path/to/design-authority/tools/da-mcp.py
 ```
@@ -107,7 +132,7 @@ opencode (project `opencode.json`):
 ```json
 {"mcp": {"design-authority": {"type": "local",
   "command": ["/path/to/design-authority/.venv/bin/python", "/path/to/design-authority/tools/da-mcp.py"],
-  "environment": {"DA_PACK": "/path/to/design-authority/packs/triage", "DA_WORKSPACE": "/path/to/your/project"}}}}
+  "environment": {"DA_PACK": "/path/to/authority-triage", "DA_WORKSPACE": "/path/to/your/project"}}}}
 ```
 
 ### 4. Verify over MCP
@@ -116,18 +141,18 @@ Call `authority_overview`; expected `"status": "ok"`. Then `resolve_design_probl
 
 ### 5. Pull the foundations for building
 
-Consumers build from the Triage foundations shipped in [`dist/triage/`](dist/triage/): `tokens.css`, `base.css`, `patterns.css` and `fonts/`, byte-identical to the pinned source. Load them in that order and wire the fonts per [`dist/triage/README.md`](dist/triage/README.md). Every visual value must come from the tokens.
+The pack you install ships its consumer foundations in `dist/` inside its own repository (for Triage: [`authority-triage/dist/`](https://github.com/vjsyong/authority-triage/tree/main/dist)): `tokens.css`, `base.css`, `patterns.css` and `fonts/`, byte-identical to the pinned source. Load them in that order and wire the fonts per that folder's README. Every visual value must come from the tokens.
 
 ### 6. Adopt the protocol (required)
 
-Copy [`packs/triage/AGENT-PROMPT.md`](packs/triage/AGENT-PROMPT.md) into the project's agent rules (for example `CLAUDE.md` or `AGENTS.md`). It is the consumption protocol: resolve before building; build the recorded way; when the authority has no answer, mark the improvisation and report a gap; verify before claiming done. [`AGENTS.md`](AGENTS.md) at this repository's root repeats the machine entry point.
+Copy the pack's `AGENT-PROMPT.md` (for Triage: [`authority-triage/AGENT-PROMPT.md`](https://github.com/vjsyong/authority-triage/blob/main/AGENT-PROMPT.md)) into the project's agent rules (for example `CLAUDE.md` or `AGENTS.md`). It is the consumption protocol: resolve before building; build the recorded way; when the authority has no answer, mark the improvisation and report a gap; verify before claiming done. [`AGENTS.md`](AGENTS.md) at this repository's root repeats the machine entry point.
 
 ### 7. Make conformance binding
 
 Add to CI:
 
 ```bash
-python3 tools/da.py --pack packs/triage validate <project directory>
+python3 tools/da.py --pack ~/authority-triage validate <project directory>
 ```
 
 The lint gate fails on any error (score = `100 - 8·errors - 2·warnings - 0.5·infos`), so nonconforming work cannot merge. Hold new work to score 100.
@@ -147,7 +172,7 @@ for paraphrased asks, off by default:
 
 ```
 pip install fastembed numpy                              # optional extras
-python3 tools/da_sem.py build --pack packs/triage        # build the index once per release
+python3 tools/da_sem.py build --pack authorities/triage   # build the index once per release
 python3 tools/da.py discover "flip a setting on or off"  # candidate ids, retrieval signal only
 python3 tools/da.py resolve "a filterable status field" --assist semantic  # assist block on UNDEFINED
 ```
@@ -181,7 +206,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 |---|-----------|--------|-------|
 | 1 | Frozen specification, 0.5.0 (tag `v0.5.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.5.0.sha256) |
 | 2 | Kit-agnostic kernel, CLI and MCP server | stable | `kernel/`, `tools/da.py`, `tools/da-mcp.py` |
-| 3 | Reference authority: Triage 0.12.1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 54/54 | `packs/triage/` |
+| 3 | Reference authority: Triage 0.12.1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 54/54 | [vjsyong/authority-triage](https://github.com/vjsyong/authority-triage) |
 | 4 | A/B/C authority benchmark | complete | `docs/08`–`docs/11`, `benchmark/` |
 | 5 | Authority-evolution loop | complete | `docs/evolution/` |
 | 6 | Second-authority portability spike | complete | `docs/portability/` |
@@ -189,7 +214,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 | 8 | Independent verification experiment | complete | `docs/verification/` |
 | 9 | Public concept site and review estate | live | `examples/designauthority-site/`, `docs/synthesis/review-app/` |
 | 10 | Synthesis skills: brand kit to authority | shipped | [`skills/`](skills/) |
-| 11 | Triage foundations distribution | shipped | [`dist/triage/`](dist/triage/) |
+| 11 | Triage pack (records, foundations, reference site) | shipped | [vjsyong/authority-triage](https://github.com/vjsyong/authority-triage) |
 
 ## Headline results
 
@@ -224,11 +249,8 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 ```
 kernel/design_authority/   kernel (pack, search, resolve, validate, records, CLI, MCP)
 tools/                     da CLI + MCP entrypoint, pack builders, verifier (da_verify), gates
-dist/triage/               Triage foundations for consumers (tokens, base, patterns, fonts; byte-identical)
-packs/triage/              reference authority: Triage 0.12.1 (pinned commit, drift-gated)
-packs/triage-evolution/    0.13.0-experiment release (authority-evolution outcome)
-packs/wink · leader · dominion/   synthesized authorities (codified)
-packs/orbit · indaba/             portability-spike authorities
+authorities/<name>/        one repo per authority (records at the root, site/ reference build);
+                           bootstrap.sh clones all 8; this repo ignores their contents
 docs/spec/                 the frozen specification
 docs/evolution/            the evolution experiment record (00…06 + data)
 docs/portability/          the second-authority spike record (00…12)
