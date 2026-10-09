@@ -1,0 +1,6 @@
+.design-authority/
+reference/
+opencode.json
+run-authority
+__pycache__/
+*.pyc

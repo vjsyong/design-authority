@@ -1,0 +1,14 @@
+[
+ {"id": "b01", "title": "A List Apart — design systems notes", "url": "https://alistapart.com/", "tags": ["design", "reading"], "createdAt": "2026-08-01T09:00:00Z"},
+ {"id": "b02", "title": "MDN — CSS custom properties", "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/--*", "tags": ["engineering", "reading"], "createdAt": "2026-08-02T10:30:00Z"},
+ {"id": "b03", "title": "Refactoring UI", "url": "https://www.refactoringui.com/", "tags": ["design", "tools"], "createdAt": "2026-08-03T14:15:00Z"},
+ {"id": "b04", "title": "D3 Graph Gallery", "url": "https://d3-graph-gallery.com/", "tags": ["engineering", "dataviz"], "createdAt": "2026-08-05T08:45:00Z"},
+ {"id": "b05", "title": "Smashing Magazine", "url": "https://www.smashingmagazine.com/", "tags": ["design"], "createdAt": "2026-08-07T16:20:00Z"},
+ {"id": "b06", "title": "Nielsen Norman Group — articles", "url": "https://www.nngroup.com/articles/", "tags": ["design", "reading"], "createdAt": "2026-08-09T11:05:00Z"},
+ {"id": "b07", "title": "web.dev — Learn Performance", "url": "https://web.dev/learn/performance", "tags": ["engineering"], "createdAt": "2026-08-11T09:40:00Z"},
+ {"id": "b08", "title": "The Pudding", "url": "https://pudding.cool/", "tags": ["dataviz", "reading"], "createdAt": "2026-08-13T19:00:00Z"},
+ {"id": "b09", "title": "Type Scale generator", "url": "https://typescale.com/", "tags": ["design", "tools"], "createdAt": "2026-08-15T13:25:00Z"},
+ {"id": "b10", "title": "Color Hunt palettes", "url": "https://colorhunt.co/", "tags": ["design", "tools"], "createdAt": "2026-08-17T15:50:00Z"},
+ {"id": "b11", "title": "Cooking for Engineers", "url": "https://www.cookingforengineers.com/", "tags": ["cooking"], "createdAt": "2026-08-19T18:10:00Z"},
+ {"id": "b12", "title": "Hacker News", "url": "https://news.ycombinator.com/", "tags": ["engineering"], "createdAt": "2026-08-21T07:35:00Z"}
+]

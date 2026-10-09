@@ -1,0 +1,28 @@
+{
+ "id": "base",
+ "name": "Base",
+ "format_version": "0.1",
+ "version": "0.0.0-rc0",
+ "snapshot": {
+  "repo": "local workspace",
+  "commit": "0000000",
+  "branch": "seed",
+  "version": "0.0.0",
+  "path_hint": "."
+ },
+ "description": "Project design authority. Empty until conventions are established.",
+ "kinds": [],
+ "capabilities": {
+  "search": true,
+  "resolve": true,
+  "validators": [],
+  "gap_reporting": true,
+  "extension_proposals": true,
+  "resolution_assist": "off"
+ },
+ "policy": {
+  "on_undefined": "No convention is recorded yet. Decide deliberately; prefer the project's nearest consistent pieces; file a gap with the need, the fallback used and evidence.",
+  "on_conflict": "A recorded convention constrains this request. Reconcile with the record; do not build the contradiction.",
+  "proposals": "Proposals are nonbinding precedent; they live in the workspace records and never override the authority."
+ }
+}

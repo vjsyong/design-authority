@@ -1,0 +1,14 @@
+[Unit]
+Description=X05 experiment conductor (seed evolution)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/xrim/design-authority
+ExecStart=/home/xrim/design-authority/.venv/bin/python3 /home/xrim/design-authority/docs/experiments/seed-evolution/tools/x05_conductor.py --root /home/xrim/x05
+Restart=on-failure
+RestartSec=60
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

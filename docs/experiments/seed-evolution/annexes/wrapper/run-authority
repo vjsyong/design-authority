@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Audited design-authority runner.
+
+Every authority call from a working session goes through here. Runs the
+mounted CLI, appends the call + outcome to audit.jsonl (a machine-recorded
+trace right next to this script), and passes output through unchanged.
+
+    ./run-authority resolve "how do I style the primary action?"
+    ./run-authority inspect component/example
+    ./run-authority gap-add --need "..." --context '{"where": "..."}'
+    ./run-authority propose --gap gap/... --file proposal.json
+    ./run-authority search "tag chip"
+    ./run-authority overview
+"""
+import json
+import os
+import subprocess
+import sys
+import time
+
+WS = os.path.dirname(os.path.abspath(__file__))
+PY = "/opt/py/venv/bin/python3"
+DA = "/opt/da/tools/da.py"
+PACK = os.environ.get("DA_PACK", "/opt/da/packs/base")
+
+WS_FLAGS = {"gap-add", "gaps", "propose", "review"}  # subcommands taking --workspace
+
+argv = sys.argv[1:]
+cmd = [PY, DA, "--pack", PACK] + argv
+sub = argv[0] if argv else ""
+if sub in WS_FLAGS and "--workspace" not in argv:
+    cmd += ["--workspace", WS]
+t0 = time.time()
+proc = subprocess.run(cmd, capture_output=True, text=True, cwd=WS)
+rec = {
+    "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    "argv": argv,
+    "rc": proc.returncode,
+    "ms": round((time.time() - t0) * 1000),
+    "stdout": proc.stdout[-6000:],
+    "stderr": proc.stderr[-2000:],
+}
+with open(os.path.join(WS, "audit.jsonl"), "a") as fh:
+    fh.write(json.dumps(rec) + "\n")
+sys.stdout.write(proc.stdout)
+sys.stderr.write(proc.stderr)
+sys.exit(proc.returncode)
