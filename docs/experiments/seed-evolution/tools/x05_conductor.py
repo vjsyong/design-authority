@@ -78,23 +78,30 @@ def dash_quiet(method, path, payload=None):
 
 
 # ------------------------------------------------------------------ program
-def session_done(root, sid):
-    """Complete = run.json ok + seal verifies + extraction inventory present
-    (+ census output for handoff sessions)."""
+def session_missing(root, sid):
+    """List what is missing for a session to count as complete."""
+    missing = []
     run = read_json(os.path.join(root, "run", sid, "run.json"))
     if not run or run.get("status") != "ok":
-        return False
-    if not os.path.isdir(os.path.join(root, "seal", sid)):
-        return False
-    bad, _ = seal_verify(os.path.join(root, "seal", sid))
-    if bad:
-        return False
+        missing.append("run.json:ok")
+    seal_dir = os.path.join(root, "seal", sid)
+    if not os.path.isdir(seal_dir):
+        missing.append("seal/")
+    else:
+        bad, _ = seal_verify(seal_dir)
+        if bad:
+            missing.append("seal-verify(%s)" % ",".join(bad[:2]))
     ex = os.path.join(root, "run", sid, "extraction")
     if not os.path.exists(os.path.join(ex, "inventory.json")):
-        return False
-    if run.get("kind") == "handoff" and not os.path.exists(os.path.join(ex, "census.json")):
-        return False
-    return True
+        missing.append("extraction/inventory.json")
+    if run and run.get("kind") == "handoff" and not os.path.exists(
+            os.path.join(ex, "census.json")):
+        missing.append("extraction/census.json")
+    return missing
+
+
+def session_done(root, sid):
+    return not session_missing(root, sid)
 
 
 def classify_failure(root, sid):
@@ -198,6 +205,20 @@ def run_one(root, entry, state):
         log_line(root, "DONE %s (%.0fs, %s)" % (sid, elapsed, note))
         dash_quiet("POST", "/api/tasks/%s/complete" % task, {"message": note})
         return "ok"
+    run = read_json(os.path.join(root, "run", sid, "run.json"))
+    if run and run.get("status") == "ok":
+        # runner completed but the pipeline artifacts are incomplete:
+        # instrument trouble, not an agent outcome; needs a human look
+        missing = session_missing(root, sid)
+        st["attempts"].append({"attempt": st["attempt"], "finished": now_iso(),
+                               "classification": "inconsistent",
+                               "reason": "missing: " + ", ".join(missing),
+                               "elapsed_s": elapsed, "unit_result": result})
+        st["status"] = "inconsistent"
+        save_state(root, state)
+        log_line(root, "INCONSISTENT %s attempt %d: missing %s"
+                 % (sid, st["attempt"], ", ".join(missing)))
+        return "inconsistent"
     cls, why = classify_failure(root, sid)
     st["attempts"].append({"attempt": st["attempt"], "finished": now_iso(),
                            "classification": cls, "reason": why,
@@ -309,6 +330,15 @@ def main(argv=None):
                        {"message": "all %d sessions complete" % total})
             return 0
 
+        # attempt cap: never loop forever on one session
+        stc = st.get("sessions", {}).get(entry["id"], {})
+        if stc.get("attempt", 0) >= 4:
+            notify_pause(root, "attempt cap reached for %s (last: %s)"
+                         % (entry["id"], stc.get("status")))
+            if args.once:
+                return 0
+            continue
+
         prev = entry.get("prev")
         if prev:
             bad, _ = seal_verify(os.path.join(root, "seal", prev))
@@ -319,6 +349,14 @@ def main(argv=None):
                 continue
 
         result = run_one(root, entry, st)
+
+        if result == "inconsistent":
+            missing = session_missing(root, entry["id"])
+            notify_pause(root, "pipeline incomplete for %s (missing: %s)"
+                         % (entry["id"], ", ".join(missing)))
+            if args.once:
+                return 0
+            continue
 
         if result == "ok":
             rail = post_session_rails(root, entry)

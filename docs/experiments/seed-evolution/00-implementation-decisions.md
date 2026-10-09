@@ -102,3 +102,22 @@ stable id; later corrections append, never rewrite.
   `/tmp/*` on top of the workspace so routine logging/redirects inside the
   sandbox do not hit denials; everything else outside the workspace stays
   denied (interface-bypass discipline).
+- **I-21 · Extractor repair (applied during f1, no session invalidated).**
+  `x05_extract.py` crashed on a dict-in-set (roles evidence); f1's sealed
+  state and capture were intact, so post-processing was re-run on the same
+  sealed bytes and the repair recorded in `run.json.post_repairs`. The rule:
+  instrument crashes in post-processing are repaired on the sealed state,
+  never by re-running the session; a session is only replaced for genuine
+  environment failures per the frozen policy.
+- **I-22 · Sanitized toolchain venv.** f1's transcript showed the mounted
+  toolchain leaking the host venv path (shebangs inside `/opt/py/venv`).
+  `/opt/py/venv` is now a freshly built, sanitized venv (python toolchain +
+  playwright pinned to 1.63.0, venv-own path rewritten, bytecode caches
+  dropped, text-metadata scrubbed; verified: zero repo/x05 strings inside).
+  f1 was examined: the leak was output-only (a shebang), revealed no
+  experiment structure, and was kept with this note.
+- **I-23 · Conductor consistency handling.** A session whose runner
+  completed (run.json ok) but whose pipeline artifacts are incomplete now
+  returns `inconsistent` and pauses the conductor with the missing list
+  (previously it looped); an attempt cap of 4 pauses instead of retrying
+  forever.

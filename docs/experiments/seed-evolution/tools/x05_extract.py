@@ -198,7 +198,7 @@ def destructive_behavior(inv):
                "undo": [el_summary(e) for e in tids.get("undo", [])]}
         out[sname] = obs
     # trigger placement: containment of the delete control within a card / bar
-    cards = {e["el"].get("rect") for e in _find_instances(inv, "bookmark-card")}
+    cards = [e["el"].get("rect") for e in _find_instances(inv, "bookmark-card")]
     dels = _find_instances(inv, "bookmark-delete")
     placement = []
     for d in dels:

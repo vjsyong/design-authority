@@ -190,6 +190,7 @@ def prep_ws(entry, root, run_dir):
 def bwrap_cmd(entry, root, run_dir):
     ws = os.path.join(run_dir, "ws")
     oc_config = os.path.join(run_dir, "oc-config")
+    mats = entry.get("_materials") or os.path.join(root, "materials")
     os.makedirs(oc_config, exist_ok=True)
     args = [
         "bwrap",
@@ -210,7 +211,7 @@ def bwrap_cmd(entry, root, run_dir):
         "--ro-bind", os.path.join(HOME, ".opencode"), os.path.join(HOME, ".opencode"),
         "--bind", os.path.join(HOME, ".local/share/opencode"),
         os.path.join(HOME, ".local/share/opencode"),
-        "--ro-bind", os.path.join(REPO, ".venv"), "/opt/py/venv",
+        "--ro-bind", os.path.join(mats, "pyvenv"), "/opt/py/venv",
         "--ro-bind", NODE_DIR, "/opt/node",
         "--ro-bind", PLAYWRIGHT_CACHE, "/opt/playwright",
         "--ro-bind", PYTOOLCHAIN, PYTOOLCHAIN,

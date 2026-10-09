@@ -13,6 +13,7 @@ fixture datasets. Also stages the da tooling the sandbox mounts read-only at
 import argparse
 import os
 import shutil
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,63 @@ def copy_tree(src, dst):
     shutil.copytree(src, dst)
 
 
+def build_pyvenv(mats):
+    """Sanitized toolchain venv mounted at /opt/py/venv: fresh venv from the
+    python toolchain + playwright pinned to the repo venv's version, with all
+    host paths rewritten. No repo path may appear in the mounted bytes."""
+    import glob
+    dst = os.path.join(mats, "pyvenv")
+    marker = os.path.join(dst, ".x05-sanitized.json")
+    if os.path.exists(marker):
+        return dst
+    toolchain = sorted(glob.glob(os.path.join(
+        os.path.expanduser("~"), ".hermes", "tools", "python-*-linux-x64")))[-1]
+    shutil.rmtree(dst, ignore_errors=True)
+    subprocess.run([os.path.join(toolchain, "bin", "python3"), "-m", "venv",
+                    "--copies", dst], check=True)
+    repo_py = os.path.join(REPO, ".venv", "bin", "python3")
+    show = subprocess.run([repo_py, "-m", "pip", "show", "playwright"],
+                          capture_output=True, text=True)
+    ver = None
+    for line in show.stdout.splitlines():
+        if line.startswith("Version:"):
+            ver = line.split(":", 1)[1].strip()
+    if not ver:
+        raise SystemExit("cannot determine repo playwright version")
+    subprocess.run([os.path.join(dst, "bin", "pip"), "install", "-q",
+                    "playwright==%s" % ver], check=True)
+    # sanitize (targeted): drop bytecode caches; rewrite dst path in every
+    # text file (shebangs, activate scripts, cfg, RECORD); never touch
+    # binaries (marshal/ELF offsets would corrupt).
+    bdst = dst.encode()
+    for root_, dirs, files in os.walk(dst):
+        for d in [d for d in dirs if d == "__pycache__"]:
+            shutil.rmtree(os.path.join(root_, d), ignore_errors=True)
+        for f in [f for f in files if f.endswith(".pyc")]:
+            try:
+                os.remove(os.path.join(root_, f))
+            except OSError:
+                pass
+    for root_, dirs, files in os.walk(dst):
+        for f in files:
+            p = os.path.join(root_, f)
+            try:
+                data = open(p, "rb").read()
+            except OSError:
+                continue
+            if bdst not in data:
+                continue
+            try:
+                data.decode("utf-8")
+            except UnicodeDecodeError:
+                continue
+            open(p, "wb").write(data.replace(bdst, b"/opt/py/venv"))
+    from x05_common import now_iso
+    write_json_atomic(marker, {"playwright": ver, "built": now_iso(),
+                               "sanitized": True})
+    return dst
+
+
 def stage(root=X05_ROOT, force=False):
     mats = os.path.join(root, "materials")
     os.makedirs(mats, exist_ok=True)
@@ -49,6 +107,7 @@ def stage(root=X05_ROOT, force=False):
             copy_tree(src, dst)
         else:
             shutil.copy2(src, dst)
+    build_pyvenv(mats)
     # da tooling (tools/da.py + the kernel package)
     da_tools = os.path.join(mats, "da", "tools")
     da_kernel = os.path.join(mats, "da", "kernel", "design_authority")
@@ -67,7 +126,7 @@ def stage(root=X05_ROOT, force=False):
     from x05_common import now_iso
     manifest["staged"] = now_iso()
     for rel in ["starter", "briefs", "wrapper", "packs/base", "spec", "rubrics",
-                "fixtures", "da", "protocol.md"]:
+                "fixtures", "da", "protocol.md", "pyvenv"]:
         p = os.path.join(mats, rel)
         if os.path.isdir(p):
             h = hash_tree(p)
