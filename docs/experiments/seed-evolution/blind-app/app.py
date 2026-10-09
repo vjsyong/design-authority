@@ -140,8 +140,11 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"error": "not found"}, 404)
         ref = secrets.token_hex(2)
         ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-        sys.stderr.write("driftexp notfound ref=%s path=%s\n"
-                         % (ref, self.path[:200]))
+        line = json.dumps({"ts": now(), "ref": ref, "path": self.path[:200]})
+        with LOCK:
+            with open(os.path.join(DATA, "notfound.log"), "a") as fh:
+                fh.write(line + "\n")
+        sys.stderr.write("driftexp notfound %s\n" % line)
         with open(os.path.join(HERE, "notfound.html")) as fh:
             html = fh.read().replace("{{REF}}", ref).replace("{{TS}}", ts)
         self._send(404, "text/html; charset=utf-8", html.encode())
