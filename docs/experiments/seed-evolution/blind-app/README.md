@@ -33,7 +33,7 @@ The startup line prints the local and public URLs (public host
   "new element vs established element" matches; order + orientation
   shuffled with a recorded seed; the mapping stays sealed until scoring
   ends). Rev 1 (all adjacent-checkpoint pairs) was replaced after a
-  pixel audited showed the established surfaces render byte-identical
+  pixel audit showed the established surfaces render byte-identical
   from the first handoff on; its set/key are kept as `set-real-v1.json`
   / `key-real-v1.json`.
 

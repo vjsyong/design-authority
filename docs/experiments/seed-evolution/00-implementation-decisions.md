@@ -144,3 +144,11 @@ stable id; later corrections append, never rewrite.
   (authority-triage `2307e53`, tag `v0.12.2`) adds both aliases to
   `component/page-state` plus two golden pins; the record carries
   provenance `extended_in 0.12.2` + the gap id.
+  Blind set rev 2 (same day): the first real set (rev 1, all adjacent
+  checkpoint pairs) was replaced after a pixel-diff audit showed the
+  established surfaces render byte-identical from the first handoff on
+  (most comparisons had nothing to judge). Rev 2 keeps the three
+  seed→H1 whole-screen steps and adds twelve per-handoff
+  new-element-vs-established-element matches (the "matched role and
+  component regions" clause). Shuffled with recorded seed; mapping
+  remains sealed in `key.json`; rev 1 kept aside as `*-real-v1.json`.
