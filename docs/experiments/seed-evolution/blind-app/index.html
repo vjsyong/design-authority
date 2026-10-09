@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Design drift review</title>
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/core/base.css">
+<link rel="stylesheet" href="assets/core/patterns.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap" id="main">
+
+  <header class="page-head">
+    <div>
+      <h1 class="page-title" id="hdr-title">Design drift review</h1>
+      <div class="page-desc" id="hdr-desc">A short, guided review. You only need to answer one question per screen.</div>
+    </div>
+    <div class="row">
+      <span class="badge" id="progressBadge">not started</span>
+    </div>
+  </header>
+
+  <p class="note tint hidden" id="placeholderNote">Placeholder set — this preview uses test images until the real review set is generated.</p>
+
+  <!-- ============================ welcome ============================ -->
+  <section id="view-welcome" class="card" aria-labelledby="welcome-h">
+    <h2 id="welcome-h" style="margin-top:0">How this works</h2>
+    <ol class="welcome-list">
+      <li>You will see pairs of interface screenshots from the same product, taken a few development sessions apart.</li>
+      <li>For each pair, answer one narrow question: <b>how likely is it that these two interfaces belong to the same design system?</b> Rate from 1 (very unlikely) to 5 (very likely).</li>
+      <li>Optionally add a one-line note if something specific jumps out. That is all — progress is saved as you go, and you can pause and come back.</li>
+    </ol>
+    <p class="sub" id="welcome-meta">Roughly 10–20 minutes. No right answers — first impressions are what count.</p>
+    <div class="welcome-form">
+      <label for="nameInput">Your name (so you can resume, and we can credit the review)</label>
+      <input id="nameInput" type="text" autocomplete="name" placeholder="e.g. Janet C.">
+      <div class="controls">
+        <button id="btnStart" class="btn primary" type="button">Start</button>
+        <span class="sub">You can stop at any point; your answers stay saved.</span>
+      </div>
+      <div class="msg err hidden" id="welcomeErr"></div>
+    </div>
+  </section>
+
+  <!-- ============================== run ============================= -->
+  <section id="view-run" class="hidden" aria-labelledby="q-text">
+    <div class="card">
+      <div class="qhead">
+        <h2 id="q-counter" style="margin:0">Comparison</h2>
+        <span class="sub" id="q-kind" data-improv="reviewer-facing kind label; no recorded component" title="Improvised: small status line"></span>
+      </div>
+      <div class="progress" role="progressbar" aria-label="Review progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+        <i id="progressFill"></i>
+      </div>
+
+      <p class="note paper" id="q-guide" data-improv="scale anchors note; composed from recorded .note.paper" title="Improvised: scale-anchor guidance composed from the recorded note component">1 = clearly different systems · 3 = unsure · 5 = clearly the same system</p>
+
+      <h3 id="q-text">How likely are these two interfaces to belong to the same design system?</h3>
+
+      <div class="pair">
+        <figure class="img img-contain" id="fig-a">
+          <img id="shot-a" alt="First interface screenshot">
+          <figcaption class="img-cap" id="cap-a">First</figcaption>
+        </figure>
+        <figure class="img img-contain" id="fig-b">
+          <img id="shot-b" alt="Second interface screenshot">
+          <figcaption class="img-cap" id="cap-b">Second</figcaption>
+        </figure>
+      </div>
+
+      <div class="rating-row">
+        <div class="seg" id="rating" role="group" aria-label="Rate 1 to 5 how likely these belong to the same design system">
+          <button class="btn" type="button" data-v="1" aria-pressed="false">1</button>
+          <button class="btn" type="button" data-v="2" aria-pressed="false">2</button>
+          <button class="btn" type="button" data-v="3" aria-pressed="false">3</button>
+          <button class="btn" type="button" data-v="4" aria-pressed="false">4</button>
+          <button class="btn" type="button" data-v="5" aria-pressed="false">5</button>
+        </div>
+        <span class="sub" id="ratingHint">Pick a number</span>
+      </div>
+
+      <label for="noteInput">Note (optional)</label>
+      <input id="noteInput" type="text" placeholder="Anything specific you noticed — optional">
+
+      <div class="controls">
+        <button id="btnNext" class="btn primary" type="button">Save &amp; next</button>
+        <button id="btnBack" class="btn ghost" type="button">Back</button>
+        <span class="keys" id="keysHint"><span class="kbd">1</span>–<span class="kbd">5</span> rate · <span class="kbd">&#8592;</span><span class="kbd">&#8594;</span> move · <span class="kbd">Enter</span> save &amp; next</span>
+      </div>
+      <div class="msg err hidden" id="runErr"></div>
+    </div>
+  </section>
+
+  <!-- ============================= done ============================= -->
+  <section id="view-done" class="hidden" aria-labelledby="done-h">
+    <div class="card">
+      <h2 id="done-h" style="margin-top:0">All done — thank you.</h2>
+      <p class="sub">Your ratings are saved. One last optional question, then you can close this page.</p>
+      <label for="commentInput">Anything else you noticed across the whole set? (optional)</label>
+      <textarea id="commentInput" placeholder="Optional"></textarea>
+      <div class="controls">
+        <button id="btnComment" class="btn" type="button">Send comment</button>
+        <span class="sub hidden" id="commentSent">Comment saved — you can close this window.</span>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Private, unlisted review link. Answers are stored with your name only and are not shared before scoring is complete.</p>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

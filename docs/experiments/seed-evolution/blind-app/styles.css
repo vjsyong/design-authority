@@ -1,0 +1,30 @@
+/* driftexp — x05 blind review. Composition layer over the Triage design
+   system (vendored byte-identical under assets/). Tokens only; logical
+   properties only; zero radius (system rule); no raw colours. */
+
+.wrap{max-inline-size:1080px;margin-inline:auto;padding-block:var(--space-30) var(--space-64);padding-inline:var(--space-16)}
+
+.welcome-list{margin-block:var(--space-10);padding-inline-start:var(--space-22);font-size:var(--fs-sub);line-height:var(--lh-prose)}
+.welcome-list li{margin-block:var(--space-5)}
+.welcome-list b{font-weight:var(--fw-semibold)}
+.welcome-form{margin-block-start:var(--space-14);max-inline-size:440px}
+
+.qhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--space-8)}
+.qhead h2{margin:0}
+
+.progress{margin-block:var(--space-10)}
+
+#q-guide{margin-block:var(--space-6) var(--space-2)}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-14);margin-block:var(--space-10) var(--space-4)}
+.pair figcaption{overflow-wrap:anywhere}
+@media(max-width:920px){.pair{grid-template-columns:1fr}}
+
+.rating-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-12);margin-block:var(--space-14) var(--space-2)}
+.rating-row .seg .btn{min-inline-size:var(--space-44)}
+
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-10);margin-block-start:var(--space-14)}
+.keys{font-size:var(--fs-pre-log);color:var(--text-secondary)}
+.keys .kbd{margin-inline:var(--space-1)}
+
+.foot{margin-block-start:var(--space-30)}

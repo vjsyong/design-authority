@@ -1,0 +1,14 @@
+[Unit]
+Description=driftexp blind review app (x05 seed-evolution)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/xrim/design-authority/docs/experiments/seed-evolution/blind-app
+ExecStart=/home/xrim/design-authority/.venv/bin/python3 /home/xrim/design-authority/docs/experiments/seed-evolution/blind-app/app.py --port 8455
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target

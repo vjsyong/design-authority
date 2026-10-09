@@ -171,7 +171,14 @@ def run_one(root, entry, state):
     log_line(root, "START %s attempt %d (unit %s)" % (sid, st["attempt"], unit))
     dash_quiet("POST", "/api/tasks/%s/progress" % task,
                {"current_step": 0, "total_steps": 1, "message": "session started"})
-    ok, err = launch_unit(unit, root, sid)
+    # Reattach if the unit is already running: a conductor restart mid-session
+    # must wait for the existing unit, never relaunch or archive its run dir.
+    a0, _, _ = unit_state(unit)
+    if a0 in ("active", "activating"):
+        log_line(root, "%s unit already active; reattaching" % sid)
+        ok, err = True, ""
+    else:
+        ok, err = launch_unit(unit, root, sid)
     if not ok:
         log_line(root, "unit launch failed for %s: %s" % (sid, err))
         st["status"] = "launch_failed"

@@ -121,3 +121,14 @@ stable id; later corrections append, never rewrite.
   returns `inconsistent` and pauses the conductor with the missing list
   (previously it looped); an attempt cap of 4 pauses instead of retrying
   forever.
+- **I-24 · Blind review app (driftexp).** Public-but-gated review surface at
+  `driftexp.seanyong.xyz` (Cloudflare tunnel ingress + systemd user unit
+  `x05-blind`): capability URL + reviewer name entry, one narrow 1–5
+  question per screen, optional one-line notes, autosave + resume by name,
+  noindex on every response. Built against the Triage authority (its dist
+  vendored byte-identical under `blind-app/assets/`; the pack's
+  `triage-lint` validator over the app reports 0 findings / spec score
+  100); two genuine silences filed as gaps in
+  `workspaces/x05-blind-review/`. Placeholder set (6 synthetic pairs)
+  until the real blind set is generated from the sealed captures; event
+  log at `blind-app/data/ratings.jsonl` (never committed).
