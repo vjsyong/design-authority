@@ -9,10 +9,17 @@
 <link rel="stylesheet" href="/assets/core/base.css">
 </head>
 <body>
+<!-- Full-page state, 404 variant — follows the recorded anatomy of
+     component/page-state (Triage spec/states.json): icon · code · human
+     title · one sentence + reassurance · meta ref. Actions deliberately
+     omitted: no safe public destination exists for an unauthenticated
+     visitor. -->
 <div class="page-state">
+  <div class="ps-icon"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /> <path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg></div>
   <div class="ps-code">404</div>
-  <h2>Not found</h2>
-  <p>This is a private, invitation-only review page. If you were given a link, open it exactly as sent to you.</p>
+  <h2>Nothing at this address</h2>
+  <p>This space only opens through the exact link you were given, so there is nothing to show at this one. Nothing is broken and nothing was lost.</p>
+  <div class="ps-meta">ref {{REF}} · {{TS}}</div>
 </div>
 </body>
 </html>

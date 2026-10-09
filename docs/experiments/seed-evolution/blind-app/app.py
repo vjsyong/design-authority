@@ -132,11 +132,19 @@ class Handler(BaseHTTPRequestHandler):
             self._send(code, ctype, fh.read())
 
     def _notfound(self):
-        """Styled 404 for page requests; JSON for API paths. Never embeds the
-        capability path (asset links are root-absolute and token-free)."""
+        """Styled 404 for page requests; JSON for API paths. Follows the
+        recorded component/page-state anatomy (icon, code, h2, sentence,
+        meta ref); the ref is logged so screenshots can be traced. Actions
+        deliberately omitted (no safe public destination)."""
         if "/api/" in self.path:
             return self._json({"error": "not found"}, 404)
-        return self._file(os.path.join(HERE, "notfound.html"), code=404)
+        ref = secrets.token_hex(2)
+        ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+        sys.stderr.write("driftexp notfound ref=%s path=%s\n"
+                         % (ref, self.path[:200]))
+        with open(os.path.join(HERE, "notfound.html")) as fh:
+            html = fh.read().replace("{{REF}}", ref).replace("{{TS}}", ts)
+        self._send(404, "text/html; charset=utf-8", html.encode())
 
     def _read_body(self):
         try:

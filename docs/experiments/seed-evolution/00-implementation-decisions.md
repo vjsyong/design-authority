@@ -132,3 +132,12 @@ stable id; later corrections append, never rewrite.
   `workspaces/x05-blind-review/`. Placeholder set (6 synthetic pairs)
   until the real blind set is generated from the sealed captures; event
   log at `blind-app/data/ratings.jsonl` (never committed).
+  Follow-up (same day, after the owner questioned the 404): the styled 404
+  follows the recorded `component/page-state` anatomy exactly (icon · code ·
+  h2 · sentence · meta ref; the 404 state is in `spec/states.json`, so it is
+  an adopted record, not an improvisation). Rebuilding it surfaced a
+  resolver observation: canonical asks resolve (`page-state`, `error page`,
+  `full-page state`) while the everyday "404 page" / "not found page" fall
+  through to `fallback/scoped-embedding` — filed as a gap in
+  `workspaces/x05-blind-review` (upstream alias curation is the triage
+  repo's call).
