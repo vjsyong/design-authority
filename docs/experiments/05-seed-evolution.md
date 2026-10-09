@@ -1,12 +1,11 @@
 # Experiment 05 · Seed evolution: design drift under successive agent handoffs
 
-Status: **revision 6, restructured per the third review direction**. The
-central question, the conditions, and the primary measurement are replaced.
-The earlier text-only transfer framing is retired to a deferred sub-study
-(full specification preserved in git history). Code and rendered-UI access
-are no longer treated as a confound: they are part of the natural development
-context in every condition, and the tested contrast is the same context
-with and without normative structure. Section 8 lists owner confirmations.
+Status: **revision 7, adding the orchestration and isolation layer**. The
+design, conditions, and measures stand as in revision 6; this revision
+specifies how the program actually runs: the run area, the sandboxed session
+runner, the per-condition isolation matrix, sealing and handoff flow, the
+conductor, capture and extraction, the failure model, and the Phase 0 setup
+with rehearsal. Section 9 lists owner confirmations.
 
 ## 0 · Revision history
 
@@ -17,36 +16,27 @@ calibration, and hardened execution rules. All of that machinery is carried
 forward where it still applies; the transfer test itself becomes a deferred
 sub-study.
 
-**In revision 6 (this version):**
+**In revision 6:** the problem statement was corrected (source and
+rendered-UI access are natural development context, not a confound to
+remove); the central question became drift reduction beyond natural
+continuity and informal precedent; three conditions replaced two; drift over
+time became the primary measurement; the program took its formation,
+codification, and drift-test structure; the feature sequence was designed
+for hard continuity.
 
-- The problem statement is corrected. Removing source and rendered-UI access
-  was testing the wrong thing: in a realistic workflow, agents already have
-  components, stylesheets, screenshots, and project history, and a useful
-  authority must improve consistency on top of those mechanisms, not
-  substitute for their absence.
-- The central question becomes: how much does an explicit design authority
-  reduce design drift beyond the continuity already provided by inherited
-  code, existing interfaces, and informal design precedent?
-- Three conditions replace the two: A, natural continuity (source, rendered
-  UI, project history); B, informal precedent (A plus the gaps, proposals,
-  and decision-log archive); C, canonical authority (B plus the adjudicated,
-  binding pack and the enforcement tooling).
-- Drift is measured over time: convention fidelity of newly introduced or
-  meaningfully modified decisions across successive handoffs is the primary
-  outcome, with cross-component consistency and correction burden as
-  secondary outcomes. Inherited components are always separated from new
-  ones.
-- The program becomes formation, then codification, then the drift test:
-  a formation chain produces the common seed and the archive; an
-  adjudication session converts the archive into the canon; the drift test
-  runs the same seed under the three conditions through an identical,
-  escalating feature sequence that forces genuinely new components.
-- The feature sequence is designed for hard continuity: later handoffs
-  demand components the application has never had (data visualisation, a
-  command palette, a multi-step import flow), so consistency cannot come
-  from reusing what exists.
-- The phase structure corresponds to the review's proposed 05, 06, and 07;
-  it is kept in one document for coherence and can be split later.
+**In revision 7 (this version):**
+
+- The mechanics layer is specified in full as section 6: a run area outside
+  the meta repository, a session runner with bubblewrap containment modeled
+  on the proven benchmark harness, an explicit per-condition isolation
+  matrix, immutable sealing with verified handoffs, a resumable conductor
+  with taildash monitoring and pause rails, the capture and extraction
+  pipeline that freezes applicable conventions before each next step, the
+  failure model, and the Phase 0 setup including a three-condition
+  rehearsal excluded from analysis.
+- Budgets, replacement policy, and blinding carry from revision 5
+  unchanged. MCP stays off in this experiment; the audited CLI wrapper is
+  the measured path.
 
 ## 1 · Question
 
@@ -99,6 +89,9 @@ that an agent improvised; a **proposal** is a candidate normative claim; a
 Phase 1 gates the program: without a sufficiently stable seed there is
 nothing to codify or drift. Phase 2 does not gate Phase 3; canon quality is
 reported as a covariate for interpreting C.
+
+Seventeen sessions in total: f1 to f3, cen (census), cod (adjudication), and
+h1a to h4c (the three drift chains).
 
 ## 3 · Phase 1 · Formation
 
@@ -210,14 +203,12 @@ handoffs force genuinely new components):
 its own chain's previous state. Interleave execution across conditions by
 handoff index (H1 across A, B, C, then H2, and so on), with within-index
 order fixed by a recorded seed. Checkpoint seal and HANDOFF.md after every
-handoff. Containment: conditions never see each other's materials, and the
-audit wrapper logs every authority call.
+handoff. Containment and the full mechanics layer are section 6.
 
-**Budgets and execution rules** (carried from revision 5): 2700 seconds
-wall and 20M sum_total tokens per run; sessions one at a time as
-`systemd-run --user` units; infrastructure-failure versus unsuccessful-run
-replacement policy unchanged; briefs frozen as annexes; no human fixes
-mid-run; agents never told the conditions or metrics.
+**Budgets and execution rules.** 2700 seconds wall and 20M sum_total tokens
+per run; briefs frozen as annexes; no human fixes mid-run; agents never
+told the conditions or metrics. Enforcement, replacement policy, and
+monitoring are section 6.
 
 ### 5.2 Measures
 
@@ -227,7 +218,7 @@ from the frozen per-handoff opportunity list and the implementation diff.
 For each decision point where an applicable convention exists (established
 by the seed or by earlier handoffs of that chain, extracted and frozen at
 each checkpoint under the same census protocol), reproduction is scored
-with the frozen dimension rubric (section 6). Departures score as
+with the frozen dimension rubric (section 7). Departures score as
 non-reproduction whether or not they were documented; whether a departure
 was explicit and recorded is reported separately. Fidelity per handoff:
 score sum divided by twice the applicable decision count. Reported as every
@@ -300,7 +291,182 @@ weak, that is part of the finding, not an excuse. A positive result does not
 show that authority works in general; it shows it worked here, at this
 scale.
 
-## 6 · Shared machinery (carried from revision 5)
+## 6 · Orchestration and isolation (mechanics layer)
+
+The run machinery reuses proven house components rather than inventing new
+ones: the benchmark session runner (`benchmark/harness/run_condition.py`:
+bubblewrap minimal filesystem, containment audit, token capture, serve and
+capture pipeline) and the sandboxed-agent-runs recipe (the containment
+fence, the audit surface, and the production lessons about one-session-at-a-
+time execution, temp-dir leakage, and unexplained kills).
+
+### 6.1 Run area and repository separation
+
+All live run state lives outside the meta repository, at `/home/xrim/x05/`.
+The repository contains this plan and is a thing agents must never be able
+to read; keeping the run area outside it means even a containment defect
+exposes nothing beyond the experiment's own tree. The system temp area is
+rejected as the run location because reboots wipe it; the run area must
+survive restarts and be resumable.
+
+```
+/home/xrim/x05/
+  schedule.json     frozen run plan: ids, order, budgets, brief hashes, seed
+  state.json        conductor progress, written atomically, resumable
+  run/<id>/         per session: ws/ (agent workspace), transcript.jsonl,
+                    run.json, audit.jsonl, capture/, extraction/
+  seal/<id>/        immutable sealed checkpoints: hash manifests and copies
+  materials/        staged inputs: blank pack copy, archive copy, canon copy,
+                    wrapper template
+  pilot/            rehearsal artifacts, excluded from analysis
+  logs/             conductor log
+```
+
+Experiment tooling lives in the repository under
+`docs/experiments/seed-evolution/tools/` and is executed from there by the
+conductor; agents never see it because the sandbox binds only `run/<id>`.
+When phases complete, the durable artifacts (seals, captures, run.json
+files, the report) are archived into the repository under
+`docs/experiments/seed-evolution/`; the x05 area is the working area, the
+repository is the record of truth.
+
+### 6.2 Session runner
+
+`x05_run.py`, modeled on the benchmark runner. Per session:
+
+1. **Preparation.** Copy the input state into `run/<id>/ws` (the sealed
+   previous checkpoint for handoffs, staged materials for f1), and verify
+   the copy byte-wise against the seal manifest. Write the frozen brief as
+   the prompt. For B and C, install the per-run authority wrapper.
+2. **Sandbox.** Bubblewrap minimal filesystem: read-only system directories,
+   proc and dev, tmpfs temp, and a single bind of `run/<id>`; opaque
+   toolchain mounts; cleared environment with explicit variables only; a
+   per-run config home so no global configuration, plugins, or skills load;
+   home limited to the agent's authentication paths. Python, node, and
+   browser tooling are present so agent self-tests do not hang. The seat of
+   write access is the workspace; seals, the x05 root, other runs, and the
+   repository are invisible.
+3. **Budget enforcement.** Wall clock via the unit timeout (2700 seconds);
+   token cap by monitoring transcript step events and stopping the session
+   at 20M sum_total; both recorded, cap hits named.
+4. **Post-session.** Containment audit over the transcript (protected-path
+   attempts versus mentions, against the X05 protected list: x05 paths,
+   other session ids, `schedule`, `seal`, the repository path). Serve and
+   capture the fixtures outside the sandbox. Extract the computed-style
+   inventory and the element diff versus the previous checkpoint. Seal the
+   workspace (SHA-256 manifest over code and records; read-only copy into
+   `seal/<id>`). Write `run.json`; append to `state.json`.
+5. **Evidence discipline.** Every measured artifact is produced by the
+   runner, never from agent self-report.
+
+### 6.3 Per-condition isolation matrix
+
+What the agent can see, per condition:
+
+| Material | A | B | C |
+|---|---|---|---|
+| Its own chain's application state (fresh copy) | yes | yes | yes |
+| Frozen current-state screenshots | yes | yes | yes |
+| Its session brief and the prior HANDOFF.md | yes | yes | yes |
+| Informal archive copy (read-only, cumulative) | no | yes | yes |
+| Authority CLI wrapper (audited) | no | yes, against the blank pack (filing and reading) | yes, against the canon (resolve, inspect, validate) |
+| Canon pack | no | no | yes |
+
+Hidden in all conditions: the x05 root, the schedule, seals, other runs,
+other conditions, this plan, and all measurement tooling. B's wrapper
+reproduces the formation-era filing behavior; C's wrapper adds canonical
+resolution and enforcement, with every call audited. MCP stays off in this
+experiment; the audited CLI wrapper is the measured path. The
+cross-condition leakage audit scans every transcript for other session ids,
+condition names, and x05 paths; nonzero attempts on protected paths are
+flagged and the run is examined before scoring, and is kept unless the
+attempt invalidated its own inputs.
+
+### 6.4 Sealing and handoff flow
+
+A seal is a hash manifest over code, records, and HANDOFF.md, copied
+read-only. The same sealed bytes feed every downstream consumer: the next
+handoff, capture, extraction, scoring, and audit. A session's workspace is a
+fresh copy of its chain's latest seal, verified against the manifest at
+preparation time, so chains provably continue from identical inputs and the
+three Phase 3 seeds are hash-identical at start (checked and recorded).
+Agents never write to seals; all measurement reads only seals.
+
+### 6.5 Conductor
+
+`x05_conductor.py`, run as the `x05-conductor` user unit (boot-persistent,
+restart-safe).
+
+- Consumes `schedule.json` and executes strictly one session at a time (the
+  host-stability lesson). Before each session it verifies the dependency:
+  the predecessor's seal exists and its manifest verifies. Extraction steps
+  run immediately after each session; census and adjudication run at their
+  scheduled positions.
+- Ordering: interleaved by handoff index; within-index order fixed by the
+  recorded seed; the next index starts only after all three chains of the
+  previous index are sealed and extracted.
+- Resumability: on start it reads `state.json`, verifies the last completed
+  seal, and continues at the next incomplete step. If the host reboots
+  mid-session, the dead session is classified as infrastructure interruption
+  and scheduled for replacement under the frozen policy.
+- Monitoring: a taildash parent task (`X05 program`, progress of 17
+  sessions) plus one task per session (`X05 f2 formation`, `X05 h2b drift`),
+  with heartbeats while sessions run and real outcomes on completion. The
+  dashboard, now containerized on this host, is the at-a-glance surface for
+  overnight chains.
+- Rails: the conductor pauses and notifies after the third infrastructure
+  failure, after a session that dies in an unexplained kill cluster (the
+  production lesson: treat the environment as the working hypothesis and
+  check host stability), and on any seal verification failure. Stray
+  processes are reaped between sessions by scanning for working directories
+  inside the run's workspace, never by broad pattern kills.
+
+### 6.6 Capture and extraction pipeline
+
+The capture harness runs outside the sandbox: it serves the sealed app on a
+per-session port, applies the fixed localStorage seeds, and screenshots the
+five standard states plus the handoff's feature states at both viewports.
+The extraction pass (deterministic wherever possible) records the element
+inventory, computed styles, and the diff against the previous checkpoint.
+Extraction is what freezes the applicable conventions for each handoff
+before the next session starts; any judgment classification that remains is
+performed against the frozen evidence, blinded to results, and timestamped,
+never re-chosen later. The census after f3 and the adjudication session are
+sessions like any other: budgeted, sandboxed, sealed. The census classifier
+sees only the sealed seed and its rubric, and cannot see Phase 3 because it
+has not run.
+
+### 6.7 Failure model
+
+- Infrastructure failure versus unsuccessful run: the revision 5 definition,
+  decided on observable technical criteria; replacements are logged
+  alongside the failed attempt, never deleted.
+- Wall and token caps enforced by the runner; cap hits recorded and reported
+  as censored outcomes.
+- Zero-change sessions (exit zero, no diff against the input state) are
+  detected by the diff step and treated as unsuccessful runs; they stay in
+  the analysis.
+- No repairs and no human fixes, ever. The checkpoint is the state,
+  including broken states; that is the drift being measured.
+
+### 6.8 Setup artifacts and rehearsal
+
+Phase 0 builds, before any scored session: `x05_run.py`, `x05_conductor.py`,
+materials staging (blank pack copy, archive copy, canon copy, wrapper
+template), the capture harness (fixture seeds and screenshot script), the
+extraction script, the seal tool, the leakage scan, the schedule generator
+(seed and brief hashes), the systemd units, and taildash wiring.
+
+Rehearsal: one throwaway session per condition at a reduced budget and a
+trivial task, against scratch copies, to validate containment, wrappers,
+capture, sealing, and auditing end to end. Inside the sandbox the
+verification probes from the containment recipe are run: toolchains import,
+a browser launches, and the isolation probe shows no experiment-visible
+paths. Rehearsal artifacts live under `pilot/` and are excluded from all
+analysis; they are recorded as pre-flight evidence. The checklist must pass
+on all three conditions before f1 starts.
+
+## 7 · Shared machinery (carried from revision 5)
 
 **Decision units.** A fileable decision is one of: a component treatment, a
 semantic colour role, an interaction convention, a layout pattern, or a
@@ -344,7 +510,7 @@ Net effort saved (corrections avoided minus codification and maintenance
 effort) needs editing-time observations and is deferred; the priority is
 establishing whether authority reduces drift at all.
 
-## 7 · Deferred
+## 8 · Deferred
 
 - **Text-only transfer sub-study** (revisions 1 to 5): retained as a
   narrower investigation, not central. Its full specification is preserved
@@ -355,7 +521,7 @@ establishing whether authority reduces drift at all.
 - **Net effort economics** and **additional seed lineages or chains per
   condition** for replication. Deferred as cost follows value.
 
-## 8 · Owner confirmations
+## 9 · Owner confirmations
 
 1. Model: pin the same one as the C-condition benchmark runs, or another.
 2. Pack name: `base`; canon label `base 0.1.0-experiment` with optional
@@ -366,17 +532,22 @@ establishing whether authority reduces drift at all.
    deferred.
 5. Budgets, reviewers (three predetermined), calibration set, and
    replacement policy carried from revision 5.
-6. Text-only transfer stays deferred.
+6. Mechanics layer as specified in section 6: run area at
+   `/home/xrim/x05/`, bubblewrap containment, conductor with taildash
+   monitoring, rehearsal excluded from analysis.
+7. Text-only transfer stays deferred.
 
 On confirmation this document becomes the pre-registered plan, committed
 and dated, before any session runs.
 
-## 9 · Deliverables
+## 10 · Deliverables
 
 - The sealed seed application with per-session history, the census, and the
   exemplar sheet.
 - The archive and the canon pack with Phase 2 quality measures.
 - Three condition chains, each with per-handoff checkpoints, audits, and
   records; the fidelity trajectories and the blind review.
+- The orchestration stack (runner, conductor, harnesses, seal and audit
+  tools) and the pre-flight rehearsal record.
 - The program report appended to this document, including the caveats in
   sections 1 and 5.3.
