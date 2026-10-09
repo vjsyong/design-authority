@@ -138,3 +138,36 @@ observations for the owner:
    recorded-selector mandate — this is the same open question as the
    verification-levels/provenance-contract proposals already queued.
 4. **Bundle quickstart** (F-3) + manifest scope note (F-2).
+
+## 6 - Fixes landed (same day)
+
+All four items were implemented and gated the same day (`./tools/check.sh`
+green):
+
+1. **Brief v2** (`tools/bundle_authority_site.py`): working Setup routes (bundle
+   zip / authority-repo git), `$PACK` throughout, the recorded-selector
+   mandate, and a "Verify before you claim done" section; a `quickstart.sh`
+   now ships in every bundle; all six authority briefs + zips regenerated via
+   the refresh tool (commits land per authority repo).
+2. **Verifier v2** (`tools/da_verify.py`): Playwright is optional (browser
+   checks degrade to UNVERIFIABLE, STATIC still runs); static scans resolve
+   file names (map, else glob); consumer `verify.map.json` (files / selectors
+   / ignore) maps a foreign app onto the contract; INTERACTION params resolve
+   through the map; new `border-ring-scan` scenario; summary reports N/A.
+3. **Wink contract 0.2**: `wink/brand-link-ink` + `wink/no-double-stroke`
+   added; `dialog-scrim` / `error-colour` patterns made spelling-tolerant
+   (claims, not one build's spellings).
+4. **Option (a)**: mandate + escape hatch. wink-calendar now carries
+   `verify.map.json`; its re-run: 34 checks -> PASS 23 / VIOLATION 0 / N/A 7 /
+   REVIEW 4 (was 9 / 13 / 6 / 4 over 32). Dialog padding corrected to the
+   recorded 48 (the one genuine value miss the mapping surfaced).
+
+Also fixed: the last `packs/` stragglers (`compile_pack.py` output dir; the
+`synthesize-authority` skill's commands).
+
+**Follow-ups (open):** mutation runs for the two new checks (pending an
+approval-blocked command); deploy the dialog-padding fix to the live
+`/var/www/wink` copy (needs sudo); reconcile the wink contract with the
+current reference docs site (~13 checks target the fuller build: `.dlg`,
+`#ringFill`, `.log-tick`, `app.css`-era layout) - its own pass, owner decides
+scope.

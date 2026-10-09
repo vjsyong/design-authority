@@ -8,12 +8,32 @@ implementation agent's claims. Agent annotations (data-* marks) are usable
 only as locator hints, never as proof.
 
 Usage:
-  python3 tools/da_verify.py --pack packs/wink --target examples/cadence3-wink \
+  python3 tools/da_verify.py --pack authorities/wink --target examples/cadence3-wink \
       --out docs/verification/raw/wink-clean [--json] [--no-shots]
 
 Statuses: PASS · VIOLATION · UNVERIFIABLE · NOT_APPLICABLE · REVIEW_REQUIRED.
 Ambiguous checks are never silently turned into PASS: a check whose target is
 absent fails when the contract says missing=fail, otherwise it is UNVERIFIABLE.
+
+Consumer mapping: a target may declare verify.map.json at its root to help the
+contract engage a build that uses its own class names and file names:
+
+  {
+    "note": "optional",
+    "files":     {"css": ["styles.css"], "html": ["index.html"], "js": ["app.js"]},
+    "selectors": {".dlg": ".dialog", ".cta.outline": [".btn-outline"]},
+    "ignore":    {"wink/ledger-head": "no table in this app"}
+  }
+
+  - files: substitutes for contract file names that do not exist (static scans).
+    With no map, a missing app.css falls back to the target's own *.css files.
+  - selectors: contract selector -> this app's selector (string or list).
+  - ignore: check ids deliberately exempted here; they report NOT_APPLICABLE.
+
+Playwright is required only for browser-backed modes (DOM / COMPUTED_STYLE /
+INTERACTION); without it those checks report UNVERIFIABLE and STATIC checks
+still run. Install for the full pass:
+  pip install playwright && python -m playwright install chromium
 """
 import argparse
 import json
@@ -25,7 +45,14 @@ import sys
 import time
 import unicodedata
 
-from playwright.sync_api import sync_playwright
+try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+    PLAYWRIGHT_AVAILABILITY_ERR = ""
+except Exception as _pw_exc:
+    sync_playwright = None
+    PLAYWRIGHT_AVAILABLE = False
+    PLAYWRIGHT_AVAILABILITY_ERR = str(_pw_exc)
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -126,6 +153,117 @@ def norm_ws(s):
 def read_file(target, name):
     p = os.path.join(target, name)
     return open(p, encoding="utf-8").read() if os.path.exists(p) else None
+
+
+# --------------------------------------------------- consumer mapping ---------
+
+def load_verify_map(target):
+    """Optional consumer-side mapping (verify.map.json at the target root)."""
+    p = os.path.join(target, "verify.map.json")
+    if not os.path.isfile(p):
+        return None
+    try:
+        data = json.load(open(p))
+    except Exception:
+        return None
+    if not isinstance(data, dict):
+        return None
+    ign = data.get("ignore")
+    if isinstance(ign, list):
+        data["ignore"] = {str(x): "" for x in ign}
+    return data
+
+
+def map_selector(vmap, selector):
+    """Resolve a contract selector through the consumer map (contract -> app)."""
+    if not selector or not vmap:
+        return selector
+    m = (vmap.get("selectors") or {}).get(selector)
+    if m is None:
+        return selector
+    if isinstance(m, list):
+        return ", ".join(str(x) for x in m)
+    return str(m)
+
+
+def resolve_static_files(explicit, vmap, target):
+    """Pick the files a static scan should read.
+
+    An explicit contract file that EXISTS wins. A missing explicit file is
+    substituted by the map's files of the same kind; with no map, by the
+    target's own same-extension files at the root. If nothing exists, the
+    original name is kept so the report still says what was expected.
+    """
+    def kind_of(f):
+        if f.endswith(".css"):
+            return "css"
+        if f.endswith((".html", ".htm")):
+            return "html"
+        if f.endswith(".js"):
+            return "js"
+        return None
+
+    def glob_kind(kind):
+        ext = {"css": ".css", "html": ".html", "js": ".js"}.get(kind)
+        if not ext:
+            return []
+        return sorted(f for f in os.listdir(target)
+                      if f.endswith(ext) and os.path.isfile(os.path.join(target, f)))
+
+    if not explicit:
+        if vmap and (vmap.get("files") or {}):
+            fl = []
+            for kind in ("css", "html"):
+                fl.extend(x for x in (vmap["files"].get(kind) or [])
+                          if os.path.exists(os.path.join(target, x)))
+            if fl:
+                return fl
+        if os.path.exists(os.path.join(target, "app.css")):
+            return ["app.css"]
+        gl = glob_kind("css")
+        return gl or ["app.css"]
+
+    resolved = []
+    for f in explicit:
+        if os.path.exists(os.path.join(target, f)):
+            resolved.append(f)
+            continue
+        kind = kind_of(f)
+        subs = ((vmap or {}).get("files") or {}).get(kind) if kind else None
+        if subs:
+            resolved.extend(s for s in subs if os.path.exists(os.path.join(target, s)))
+            continue
+        if not vmap and kind:
+            gl = glob_kind(kind)
+            if gl:
+                resolved.extend(gl)
+                continue
+        resolved.append(f)  # keep the expectation visible
+    existing = [f for f in resolved if os.path.exists(os.path.join(target, f))]
+    return existing or resolved or ["app.css"]
+
+
+def resolve_params(vmap, params):
+    """Resolve selectors inside an INTERACTION check's params through the map."""
+    if not vmap or not params:
+        return params, {}
+    mp = json.loads(json.dumps(params))
+    notes = {}
+    for key in ("trigger", "destructive", "selector"):
+        if mp.get(key):
+            res = map_selector(vmap, mp[key])
+            if res != mp[key]:
+                notes[key] = res
+                mp[key] = res
+    if mp.get("selectors"):
+        mp["selectors"] = [map_selector(vmap, x) for x in mp["selectors"]]
+    for step in mp.get("pre_steps") or []:
+        if isinstance(step, list) and len(step) > 1 and step[0] in ("click", "fill"):
+            res = map_selector(vmap, step[1])
+            if res != step[1]:
+                notes["step:%s" % step[1]] = res
+                step[1] = res
+    return mp, notes
 
 
 def free_port():
@@ -668,7 +806,36 @@ def scenario_computed_list(page, params):
     return {"values": vals, "values_count": len(vals)}
 
 
+def scenario_border_ring_scan(page, params):
+    """Outer ink rings (box-shadow 0 0 0 Npx) must not sit on a visible border —
+    the classic double-stroke (a UA-default border under the ring)."""
+    out = page.evaluate("""(() => {
+      const rows = { ringed: 0, double: [] };
+      for (const el of document.querySelectorAll('*')) {
+        const cs = getComputedStyle(el);
+        const sh = cs.boxShadow;
+        if (!sh || sh === 'none' || sh.indexOf('inset') !== -1) continue;
+        const i = sh.indexOf(' 0px 0px 0px ');
+        if (i === -1) continue;
+        const m = sh.slice(i + 13).match(/^([0-9.]+)px/);
+        if (!m || parseFloat(m[1]) < 1) continue;
+        rows.ringed++;
+        const w = ['borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth'].map(p => parseFloat(cs[p]) || 0);
+        const s = ['borderTopStyle','borderRightStyle','borderBottomStyle','borderLeftStyle'].map(p => cs[p]);
+        const c = ['borderTopColor','borderRightColor','borderBottomColor','borderLeftColor'].map(p => cs[p]);
+        const visible = w.some(x => x > 0) && s.some(x => x && x !== 'none') &&
+                        c.some(x => x && x !== 'rgba(0, 0, 0, 0)' && x !== 'transparent');
+        if (visible) rows.double.push({ el: (el.className || el.tagName).toString().slice(0, 48),
+                                        ring: sh.slice(0, 50), border: w.join('/') + ' ' + c[0] });
+      }
+      return rows;
+    })()""")
+    return {"ringed_elements": out["ringed"], "double_stroke": len(out["double"]),
+            "double_stroke_detail": json.dumps(out["double"][:3])[:240]}
+
+
 SCENARIOS = {
+    "border-ring-scan": scenario_border_ring_scan,
     "tab-focus": scenario_tab_focus,
     "tab-walk": scenario_tab_walk,
     "open-delete": scenario_open_delete,
@@ -689,6 +856,7 @@ SCENARIOS = {
 
 def run_contract(pack_dir, target, out_dir, shots=True):
     contract = json.load(open(os.path.join(pack_dir, "verification.json")))
+    vmap = load_verify_map(target)
     os.makedirs(out_dir, exist_ok=True)
     if shots:
         os.makedirs(os.path.join(out_dir, "screens"), exist_ok=True)
@@ -696,6 +864,11 @@ def run_contract(pack_dir, target, out_dir, shots=True):
     needs_browser = any(c["mode"] in ("DOM", "COMPUTED_STYLE", "ACCESSIBILITY", "INTERACTION")
                         for c in contract["checks"])
     server, proc, page, browser = None, None, None, None
+    if needs_browser and not PLAYWRIGHT_AVAILABLE:
+        print("note: playwright not available (%s) — browser-backed checks will "
+              "report UNVERIFIABLE; static checks still run."
+              % (PLAYWRIGHT_AVAILABILITY_ERR or "not installed"))
+        needs_browser = False
     if needs_browser:
         port = free_port()
         proc = subprocess.Popen([sys.executable, "-m", "http.server", str(port),
@@ -709,8 +882,7 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                 break
             except Exception:
                 time.sleep(0.1)
-        from playwright.sync_api import sync_playwright as _sp
-        pw = _sp().start()
+        pw = sync_playwright().start()
         browser = pw.chromium.launch()
         page = browser.new_context(viewport={"width": 1280, "height": 900}).new_page()
         page.on("pageerror", lambda e: None)
@@ -744,8 +916,22 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                  "evidence": {}, "screenshot": None, "note": check.get("note")}
             mode = check["mode"]
 
+            ign = (vmap or {}).get("ignore") or {}
+            if check["id"] in ign:
+                r["status"] = "NOT_APPLICABLE"
+                r["observed"] = ["consumer-mapped ignore: %s" % (ign.get(check["id"]) or "no reason given")]
+                results.append(r)
+                continue
+
             if mode == "REVIEW":
                 r["status"] = "REVIEW_REQUIRED"
+                results.append(r)
+                continue
+
+            if mode in ("DOM", "COMPUTED_STYLE", "ACCESSIBILITY", "INTERACTION") and page is None:
+                r["status"] = "UNVERIFIABLE"
+                r["observed"] = ["browser not available (%s) — install with: pip install playwright "
+                                 "&& python -m playwright install chromium" % (PLAYWRIGHT_AVAILABILITY_ERR or "not installed")]
                 results.append(r)
                 continue
 
@@ -753,8 +939,9 @@ def run_contract(pack_dir, target, out_dir, shots=True):
             evidence = {}
 
             if mode == "STATIC":
+                static_files = resolve_static_files(check.get("files"), vmap, target)
                 for a in check.get("assertions", []):
-                    st, detail = static_assert(a, target, check.get("files"))
+                    st, detail = static_assert(a, target, static_files)
                     outcomes.append((st, detail))
                     r["expected"].append(json.dumps(a)[:140])
                     r["observed"].append(detail)
@@ -766,9 +953,11 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                     if fn is None:
                         outcomes.append(("UNVERIFIABLE", f"unknown scenario {scen}"))
                     else:
-                        params = check.get("params", {}) or {}
+                        params, map_notes = resolve_params(vmap, check.get("params", {}) or {})
                         failed = run_steps(page, params.get("pre_steps", []))
                         evidence = fn(page, params)
+                        if map_notes:
+                            evidence["mapped_from"] = map_notes
                         if failed:
                             evidence["steps_failed"] = failed
                             if params.get("steps_required"):
@@ -780,13 +969,13 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                                             else ("UNVERIFIABLE", "evidence key missing"))
                             r["expected"].append(json.dumps(a)[:140])
                 else:
-                    sel = check.get("selector")
+                    sel = map_selector(vmap, check.get("selector"))
                     if mode == "DOM" and not sel:
                         # page-level DOM assertions
                         for a in check.get("assertions", []):
                             rel = a["relation"]
                             if rel == "absent" and a.get("selector"):
-                                n = page.evaluate("document.querySelectorAll(%s).length" % json.dumps(a["selector"]))
+                                n = page.evaluate("document.querySelectorAll(%s).length" % json.dumps(map_selector(vmap, a["selector"])))
                                 outcomes.append(("PASS" if n == 0 else "VIOLATION", f"found {n}"))
                             elif rel == "page_text_no_match":
                                 text = page.evaluate("""(() => {
@@ -821,10 +1010,10 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                                 else:
                                     outcomes.append(("VIOLATION", f"{out['ok']}/{out['total']} pairs; bad: {out['bad']}"))
                             elif rel == "exists":
-                                n = page.evaluate("document.querySelectorAll(%s).length" % json.dumps(a["selector"]))
+                                n = page.evaluate("document.querySelectorAll(%s).length" % json.dumps(map_selector(vmap, a["selector"])))
                                 outcomes.append(("PASS" if n >= 1 else "VIOLATION", f"found {n}"))
                             elif rel == "no_css_url_images":
-                                for f in a.get("files", ["app.css"]):
+                                for f in resolve_static_files(a.get("files") or ["app.css"], vmap, target):
                                     st, detail = static_assert(a, target, [f])
                                     if st != "PASS":
                                         outcomes.append((st, detail))
@@ -837,16 +1026,18 @@ def run_contract(pack_dir, target, out_dir, shots=True):
                     else:
                         count = page.evaluate("document.querySelectorAll(%s).length" % json.dumps(sel)) if sel else 0
                         if count == 0:
+                            sel_label = sel if sel == check.get("selector") else "%s (mapped to %s)" % (check.get("selector"), sel)
                             if check.get("missing") == "fail":
-                                outcomes.append(("VIOLATION", f"selector '{sel}' not found"))
+                                outcomes.append(("VIOLATION", f"selector '{sel_label}' not found"))
                             else:
-                                outcomes.append(("UNVERIFIABLE", f"selector '{sel}' not found"))
+                                outcomes.append(("UNVERIFIABLE", f"selector '{sel_label}' not found"))
                             r["observed"] = [o[1] for o in outcomes]
                         else:
                             if mode == "DOM":
                                 for a in check.get("assertions", []):
                                     rel = a["relation"]
-                                    scope_sel = (sel + " " + a.get("selector", "")) if (sel and a.get("selector")) else a.get("selector", "")
+                                    a_sel = map_selector(vmap, a.get("selector", ""))
+                                    scope_sel = (sel + " " + a_sel) if (sel and a_sel) else a_sel
                                     if rel == "text_len_min":
                                         tl = page.evaluate("""(sel => {
                                           const els = [...document.querySelectorAll(sel)].slice(0, 30);
@@ -932,16 +1123,19 @@ def run_contract(pack_dir, target, out_dir, shots=True):
     raw = {"pack": contract["authority"], "contract_version": contract["contract_version"],
            "target": os.path.relpath(os.path.abspath(target), REPO),
            "generated": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary,
-           "by_mode": by_mode, "checks": results}
+           "by_mode": by_mode, "verify_map": vmap, "checks": results}
     with open(os.path.join(out_dir, "raw.json"), "w") as fh:
         json.dump(raw, fh, indent=1, ensure_ascii=False)
 
+    na = summary.get("NOT_APPLICABLE", 0)
     lines = [f"# da_verify — {contract['authority']} on {raw['target']}",
              f"generated {raw['generated']}",
              f"TOTALS: {summary['total']} checks — PASS {summary['PASS']} · VIOLATION {summary['VIOLATION']} · "
-             f"UNVERIFIABLE {summary['UNVERIFIABLE']} · REVIEW_REQUIRED {summary['REVIEW_REQUIRED']}", ""]
+             f"UNVERIFIABLE {summary['UNVERIFIABLE']} · REVIEW_REQUIRED {summary['REVIEW_REQUIRED']}"
+             + (f" · N/A {na}" if na else ""), ""]
     for r in results:
-        mark = {"PASS": "PASS ", "VIOLATION": "VIOL ", "UNVERIFIABLE": "UNV  ", "REVIEW_REQUIRED": "REVIEW"}[r["status"]]
+        mark = {"PASS": "PASS ", "VIOLATION": "VIOL ", "UNVERIFIABLE": "UNV  ", "REVIEW_REQUIRED": "REVIEW",
+                "NOT_APPLICABLE": "N/A  "}[r["status"]]
         obs = "; ".join(str(x) for x in r["observed"][:2])[:150]
         lines.append(f"{mark} [{r['severity']:7s}] {r['id']} — {obs}")
     report = "\n".join(lines)

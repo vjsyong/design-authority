@@ -7,7 +7,7 @@ prohibitions/fallbacks + a golden set, and asserts every compiled decision was
 accepted by the reviewer (via review-app feedback.json).
 
 Usage:  python3 docs/synthesis/tools/compile_pack.py [--src wink|leader|dominion|all]
-Output: packs/<id>/ (authority.json, artifacts.json, rules.json, recipes.json,
+Output: authorities/<id>/ (authority.json, artifacts.json, rules.json, recipes.json,
         fallbacks.json, prohibitions.json, scoring.json, golden.json)
 """
 import argparse
@@ -476,7 +476,7 @@ BUILDERS = {"wink": build_wink, "leader": build_leader, "dominion": build_domini
 def emit(src):
     BUILDERS[src]()
     m = MANIFEST[src]
-    outdir = os.path.join(ROOT, "packs", src)
+    outdir = os.path.join(ROOT, "authorities", src)
     os.makedirs(outdir, exist_ok=True)
 
     arts = []
@@ -541,7 +541,7 @@ def emit(src):
          [("artifacts", [(s, a) for s, ids, a in ART]), ("rules", RULE),
           ("prohibitions", PROHIB), ("fallbacks", FALLBACK), ("recipes", RECIPES),
           ("golden", GOLDEN)]}
-    print("%s -> packs/%s/  %s" % (src, src, json.dumps(n)))
+    print("%s -> authorities/%s/  %s" % (src, src, json.dumps(n)))
 
 
 if __name__ == "__main__":
