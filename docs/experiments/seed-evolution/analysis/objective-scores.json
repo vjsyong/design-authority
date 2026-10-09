@@ -1,0 +1,2203 @@
+{
+ "gates": {
+  "D1": {
+   "exceeds": 0,
+   "median": 0.0,
+   "pass": false,
+   "threshold": 1.0
+  },
+  "D2": {
+   "exceeds": 0,
+   "median": 0.0,
+   "pass": false,
+   "threshold": 1.0
+  },
+  "D3": {
+   "C_ge_B_handoffs": 2,
+   "favors_C": false,
+   "means_H2_H4": {
+    "a": 0.9667,
+    "b": 0.9206,
+    "c": 0.9667
+   }
+  },
+  "deltas_B_minus_A": {
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0,
+   "4": 0.0
+  },
+  "deltas_C_minus_B": {
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0,
+   "4": 0.0
+  }
+ },
+ "generated": "2026-10-09T08:40:15+00:00",
+ "inputs_sha256": {
+  "cen/exemplars.json": "2e32e5fdc9a497d6bc5abc14a64299cda8c0ad08946af3e65881e1fb0313f34e",
+  "f3/ws/styles.css": "aac8a61532632e53c57b82e0cdce8abfe032f4db499fc6d2dfc72f2b71ea8732",
+  "schedule.json": "aaeee2422a2ae259287740fc8528ed15e27c3fe05c0d064275164d035ce86319"
+ },
+ "layer1": {
+  "a": {
+   "1": {
+    "excluded": [],
+    "fidelity": 1.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "filter-empty",
+      "role": "empty-state",
+      "score": 2,
+      "state": "filtered-none"
+     }
+    ],
+    "sum": 2
+   },
+   "2": {
+    "excluded": [
+     {
+      "element": "tag-filter",
+      "role": "tags-status",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "fidelity": 0.5,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "bookmark-card",
+      "role": "surfaces",
+      "score": 1,
+      "state": "populated"
+     }
+    ],
+    "sum": 1
+   },
+   "3": {
+    "excluded": [],
+    "fidelity": 0.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "command-palette",
+      "role": "surfaces",
+      "score": 0,
+      "state": "palette"
+     }
+    ],
+    "sum": 0
+   },
+   "4": {
+    "excluded": [
+     {
+      "element": "import-submit",
+      "role": "primary-action",
+      "why": "unrendered in all captured states"
+     }
+    ],
+    "fidelity": 0.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "import-wizard",
+      "role": "surfaces",
+      "score": 0,
+      "state": "wizard-1"
+     }
+    ],
+    "sum": 0
+   }
+  },
+  "b": {
+   "1": {
+    "excluded": [],
+    "fidelity": 1.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "filter-empty",
+      "role": "empty-state",
+      "score": 2,
+      "state": "filtered-none"
+     }
+    ],
+    "sum": 2
+   },
+   "2": {
+    "excluded": [
+     {
+      "element": "tag-filter",
+      "role": "tags-status",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "fidelity": 0.5,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "bookmark-card",
+      "role": "surfaces",
+      "score": 1,
+      "state": "populated"
+     }
+    ],
+    "sum": 1
+   },
+   "3": {
+    "excluded": [],
+    "fidelity": 0.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "command-palette",
+      "role": "surfaces",
+      "score": 0,
+      "state": "palette"
+     }
+    ],
+    "sum": 0
+   },
+   "4": {
+    "excluded": [
+     {
+      "element": "import-submit",
+      "role": "primary-action",
+      "why": "unrendered in all captured states"
+     }
+    ],
+    "fidelity": 0.0,
+    "n": 2,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "import-wizard",
+      "role": "surfaces",
+      "score": 0,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "command-palette",
+      "role": "surfaces",
+      "score": 0,
+      "state": "palette"
+     }
+    ],
+    "sum": 0
+   }
+  },
+  "c": {
+   "1": {
+    "excluded": [],
+    "fidelity": 1.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "filter-empty",
+      "role": "empty-state",
+      "score": 2,
+      "state": "filtered-none"
+     }
+    ],
+    "sum": 2
+   },
+   "2": {
+    "excluded": [
+     {
+      "element": "tag-filter",
+      "role": "tags-status",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "fidelity": 0.5,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "bookmark-card",
+      "role": "surfaces",
+      "score": 1,
+      "state": "populated"
+     }
+    ],
+    "sum": 1
+   },
+   "3": {
+    "excluded": [],
+    "fidelity": 0.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "command-palette",
+      "role": "surfaces",
+      "score": 0,
+      "state": "palette"
+     }
+    ],
+    "sum": 0
+   },
+   "4": {
+    "excluded": [
+     {
+      "element": "import-submit",
+      "role": "primary-action",
+      "why": "unrendered in all captured states"
+     }
+    ],
+    "fidelity": 0.0,
+    "n": 1,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        false
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "border",
+        false
+       ]
+      ],
+      "element": "import-wizard",
+      "role": "surfaces",
+      "score": 0,
+      "state": "wizard-1"
+     }
+    ],
+    "sum": 0
+   }
+  }
+ },
+ "layer2": {
+  "a": {
+   "1": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "list-controls",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 3,
+    "reuse_share": 0.0,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "density-control",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "search-input",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "sort-control",
+      "score": 2,
+      "state": "populated"
+     }
+    ],
+    "sum": 6
+   },
+   "2": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "analytics-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-empty-text",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-empty-title",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-panels",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-summary",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-tag-chart",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-tag-row",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-time-chart",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-total-bookmarks",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-total-tags",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-total-uses",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-view",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "list-view",
+      "state": "invalid",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 2,
+    "reuse_share": 0.5,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-analytics",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-back",
+      "score": 2,
+      "state": "analytics"
+     }
+    ],
+    "sum": 4
+   },
+   "3": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "palette-input",
+      "state": "palette",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 3,
+    "reuse_share": 0.6666666666666666,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-palette",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "palette-shortcut",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "palette-item",
+      "score": 2,
+      "state": "palette"
+     }
+    ],
+    "sum": 6
+   },
+   "4": {
+    "consistency": 0.9,
+    "excluded": [
+     {
+      "element": "import-plan",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-summary-reasons",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-summary-text",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-meta",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-rows",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-table",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-list",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-meta",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "progress-fill",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "progress-label",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "source-meta",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-back",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-done",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-error",
+      "state": "wizard-2",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-import",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-mapping",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-preview",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-source",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-steps",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 5,
+    "reuse_share": 0.8,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-import",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        false
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "import-source",
+      "score": 1,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-cancel",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-close",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-next",
+      "score": 2,
+      "state": "wizard-1"
+     }
+    ],
+    "sum": 9
+   }
+  },
+  "b": {
+   "1": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "list-controls",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 3,
+    "reuse_share": 0.0,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "density-control",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "search-input",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "sort-control",
+      "score": 2,
+      "state": "populated"
+     }
+    ],
+    "sum": 6
+   },
+   "2": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "analytics-body",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-empty-back",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-view",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "list-view",
+      "state": "invalid",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "tag-bar",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "tag-count-caption",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "tag-count-chart",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "tag-timeline-caption",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "tag-timeline-chart",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 5,
+    "reuse_share": 0.4,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "analytics-back",
+      "score": 2,
+      "state": "analytics"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-analytics",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-bookmarks",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "tag-counts-card",
+      "score": 2,
+      "state": "analytics"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "tag-timeline-card",
+      "score": 2,
+      "state": "analytics"
+     }
+    ],
+    "sum": 10
+   },
+   "3": {
+    "consistency": 0.8333333333333334,
+    "excluded": [
+     {
+      "element": "palette-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "palette-input",
+      "state": "palette",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "palette-list",
+      "state": "palette",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 3,
+    "reuse_share": 0.6666666666666666,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-palette",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        false
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "palette-shortcut",
+      "score": 1,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "palette-item",
+      "score": 2,
+      "state": "palette"
+     }
+    ],
+    "sum": 5
+   },
+   "4": {
+    "consistency": 0.9285714285714286,
+    "excluded": [
+     {
+      "element": "import-errors",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-preview",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-preview-body",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-preview-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-skip-dupes",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "import-summary-text",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-body",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-error",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-table",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-done",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-error",
+      "state": "wizard-2",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-progress",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-count",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-current",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-fill",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-label",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-step-import",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-step-label",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-step-mapping",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-step-preview",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-step-source",
+      "state": "wizard-2",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-steps",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 7,
+    "reuse_share": 0.7142857142857143,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-import",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "import-format",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        false
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "import-source",
+      "score": 1,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-back",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-cancel",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-close",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-next",
+      "score": 2,
+      "state": "wizard-1"
+     }
+    ],
+    "sum": 13
+   }
+  },
+  "c": {
+   "1": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "list-controls",
+      "state": "populated",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 3,
+    "reuse_share": 0.0,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "density-control",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "search-input",
+      "score": 2,
+      "state": "populated"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "sort-control",
+      "score": 2,
+      "state": "populated"
+     }
+    ],
+    "sum": 6
+   },
+   "2": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "analytics-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-empty-add",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-panels",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-summary",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-tag-bar",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-tag-bars",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-tags-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-time-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "analytics-timeline",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "analytics-view",
+      "state": "analytics",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "list-view",
+      "state": "invalid",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 5,
+    "reuse_share": 0.4,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "analytics-back",
+      "score": 2,
+      "state": "analytics"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "analytics-tags-panel",
+      "score": 2,
+      "state": "analytics"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "analytics-time-panel",
+      "score": 2,
+      "state": "analytics"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-analytics",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "nav-bookmarks",
+      "score": 2,
+      "state": "empty"
+     }
+    ],
+    "sum": 10
+   },
+   "3": {
+    "consistency": 1.0,
+    "excluded": [
+     {
+      "element": "import-file",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "palette-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "palette-input",
+      "state": "palette",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "palette-list",
+      "state": "palette",
+      "why": "not-measurable (structurally unstyled)"
+     }
+    ],
+    "n": 2,
+    "reuse_share": 1.0,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-palette",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "palette-item",
+      "score": 2,
+      "state": "palette"
+     }
+    ],
+    "sum": 4
+   },
+   "4": {
+    "consistency": 0.9,
+    "excluded": [
+     {
+      "element": "mapping-rows",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "mapping-table",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-error",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-import-count",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-rows",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-skipped",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-skipped-count",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-skipped-rows",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "preview-table",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "skipped-empty",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-back",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-done",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-error",
+      "state": "wizard-2",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-foot-note",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-map-error",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-count",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-fill",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-progress-label",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-steps",
+      "state": "wizard-1",
+      "why": "not-measurable (structurally unstyled)"
+     },
+     {
+      "element": "wizard-summary",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-summary-text",
+      "why": "unrendered in all captured states"
+     },
+     {
+      "element": "wizard-summary-title",
+      "why": "unrendered in all captured states"
+     }
+    ],
+    "n": 5,
+    "reuse_share": 0.8,
+    "rows": [
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "btn-import",
+      "score": 2,
+      "state": "empty"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-cancel",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-load-file",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        true
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-next",
+      "score": 2,
+      "state": "wizard-1"
+     },
+     {
+      "dimensions": [
+       [
+        "palette",
+        true
+       ],
+       [
+        "typography",
+        false
+       ],
+       [
+        "radius",
+        true
+       ],
+       [
+        "border",
+        true
+       ]
+      ],
+      "element": "wizard-source",
+      "score": 1,
+      "state": "wizard-1"
+     }
+    ],
+    "sum": 9
+   }
+  }
+ },
+ "spec": "analysis/objective-scoring-spec.md (commit a763410)",
+ "version": 1,
+ "vocab_sizes": {
+  "classes": 49,
+  "colors": 11,
+  "fonts": [
+   "sans",
+   "serif"
+  ],
+  "radii": [
+   0.0,
+   10.0,
+   8.0,
+   "pill"
+  ]
+ }
+}
