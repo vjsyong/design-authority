@@ -185,3 +185,15 @@ never renders (dialogs, progress ring, ledger head, badges, status, empty
 states, dark/outline variants, review instruments); none are measured-value
 drift, so the contract stays as-is and the docs site remains a records view,
 not a build target.
+
+**Estate follow-through (same day).** The brief template is now
+contract-aware: packs without a `verification.json` get truthful text
+(indaba and orbit no longer promise a file that does not exist;
+contract-holders byte-identical). Leader's contract exclusion list was stale
+against the v3.1d lens (`prov-` never matched `#provPanel`) - corrected
+(rule-strip regexes + instrument-subtree skip in the shadow/animation/
+background censuses); its clean build re-runs at 21 PASS / 1 known finding
+(`focus-visible`, the search input). Dominion, phantom and wink re-verified
+clean under verifier v2 (23/0/3, 15/15, 23/0/7/4); dominion's contract
+gained the wink-class link check (`dominion/nav-link-ink`, UA-default link
+leak) at 0.2.

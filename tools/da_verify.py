@@ -751,6 +751,7 @@ def scenario_shadow_census(page, params):
     rows = page.evaluate("""(() => {
       const out = [];
       for (const el of document.querySelectorAll('*')) {
+        if (el.closest('#provPanel,[data-mark],.mark-lbl,#markToggle,.mark-toggle,.marks-toggle')) continue;
         const s = getComputedStyle(el).boxShadow;
         if (s && s !== 'none') out.push({ el: (el.className || el.tagName).toString().slice(0, 48), v: s.slice(0, 90) });
       }
@@ -765,6 +766,7 @@ def scenario_animation_census(page, params):
     rows = page.evaluate("""(() => {
       const out = [];
       for (const el of document.querySelectorAll('*')) {
+        if (el.closest('#provPanel,[data-mark],.mark-lbl,#markToggle,.mark-toggle,.marks-toggle')) continue;
         const s = getComputedStyle(el);
         if (s.animationName && s.animationName !== 'none') out.push({ el: (el.className || el.tagName).toString().slice(0, 48), v: s.animationName });
       }
@@ -779,6 +781,7 @@ def scenario_background_scan(page, params):
     rows = page.evaluate("""(() => {
       const out = [];
       for (const el of document.querySelectorAll('*')) {
+        if (el.closest('#provPanel,[data-mark],.mark-lbl,#markToggle,.mark-toggle,.marks-toggle')) continue;
         const b = getComputedStyle(el).backgroundImage;
         if (b && b !== 'none' && b.indexOf('url(') !== -1 && out.length < 40) {
           out.push({ el: (el.className || el.tagName).toString().slice(0, 48), v: b.slice(0, 110) });

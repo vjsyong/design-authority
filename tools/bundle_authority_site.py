@@ -88,28 +88,7 @@ Sanity check (prints the authority overview):
    python3 tools/da.py --pack "$PACK" gap-add --need "<need>" \\
      --context '{{"source":"<your app>"}}' --workspace .design-authority
 
-## Verify before you claim done
-
-The pack ships a verification contract (`verification.json`): mechanically
-checkable assertions for this authority's records (computed-style, DOM,
-static, interaction). It is a separate layer from `validators` (the lint
-path, which may be empty). Run it over your build:
-
-    python3 tools/da_verify.py --pack "$PACK" --target <your-app-dir> --out .verify
-
-Reading the result: PASS / VIOLATION (fix it) / UNVERIFIABLE (could not run,
-usually a missing selector or file) / N/A (declared ignore) / REVIEW_REQUIRED
-(human item). Browser-backed checks need Playwright:
-
-    python3 -m venv .venv && .venv/bin/pip install playwright && .venv/bin/playwright install chromium
-    .venv/bin/python3 tools/da_verify.py --pack "$PACK" --target <your-app-dir> --out .verify
-
-If your build cannot keep a recorded selector (or uses different file names),
-declare it in `verify.map.json` in your app root:
-
-    {{"files": {{"css": ["styles.css"], "html": ["index.html"]}},
-      "selectors": {{".dlg": ".dialog"}},
-      "ignore": {{"authority/check-id": "why this build is exempt"}}}}
+{verify_block}
 
 ## House rules
 
@@ -131,14 +110,50 @@ declare it in `verify.map.json` in your app root:
 """
 
 
+VERIFY_WITH = """## Verify before you claim done
+
+The pack ships a verification contract (`verification.json`): mechanically
+checkable assertions for this authority's records (computed-style, DOM,
+static, interaction). It is a separate layer from `validators` (the lint
+path, which may be empty). Run it over your build:
+
+    python3 tools/da_verify.py --pack "$PACK" --target <your-app-dir> --out .verify
+
+Reading the result: PASS / VIOLATION (fix it) / UNVERIFIABLE (could not run,
+usually a missing selector or file) / N/A (declared ignore) / REVIEW_REQUIRED
+(human item). Browser-backed checks need Playwright:
+
+    python3 -m venv .venv && .venv/bin/pip install playwright && .venv/bin/playwright install chromium
+    .venv/bin/python3 tools/da_verify.py --pack "$PACK" --target <your-app-dir> --out .verify
+
+If your build cannot keep a recorded selector (or uses different file names),
+declare it in `verify.map.json` in your app root:
+
+    {"files": {"css": ["styles.css"], "html": ["index.html"]},
+      "selectors": {".dlg": ".dialog"},
+      "ignore": {"authority/check-id": "why this build is exempt"}}"""
+
+VERIFY_WITHOUT = """## Verify before you claim done
+
+This pack does not ship a verification contract yet, so run the checks you
+can: quote recorded values from the artefacts directory, resolve and inspect
+every decision, and file a gap wherever the authority is silent
+(`da.py gap-add`). When a `verification.json` contract ships in this pack,
+run it before claiming done:
+
+    python3 tools/da_verify.py --pack "$PACK" --target <your-app-dir> --out .verify"""
+
+
 def agent_brief(auth):
     pack = json.load(open(os.path.join(PACKS, auth, "authority.json")))
+    has_contract = os.path.isfile(os.path.join(PACKS, auth, "verification.json"))
     return AGENT_BRIEF.format(
         auth=auth,
         name=pack.get("name") or auth,
         version=pack.get("version") or "",
         fmt=pack.get("format_version") or "",
         desc=pack.get("description") or "",
+        verify_block=VERIFY_WITH if has_contract else VERIFY_WITHOUT,
     )
 
 
