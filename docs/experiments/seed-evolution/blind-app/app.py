@@ -225,6 +225,7 @@ class Handler(BaseHTTPRequestHandler):
             # serve only reviewer-facing fields
             pub = {"title": s.get("title"), "blurb": s.get("blurb", ""),
                    "placeholder": bool(s.get("placeholder")),
+                   "version": s.get("version"), "created": s.get("created"),
                    "comparisons": [{"code": c["code"], "kind": c.get("kind", ""),
                                     "prompt": c.get("prompt", ""),
                                     "left": c["left"], "right": c["right"],

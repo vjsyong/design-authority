@@ -132,6 +132,18 @@
           S.set = set;
           S.answered = {};
           (st.answered || []).forEach(function (code) { S.answered[code] = true; });
+          /* set-epoch guard: purge stale client answers when the set changes */
+          var setid = String(set.version || "") + "." + (set.created || "");
+          try {
+            if (localStorage.getItem("driftexp.setid") !== setid) {
+              Object.keys(localStorage).forEach(function (k) {
+                if (k.indexOf("driftexp.") === 0 && k !== "driftexp.name") {
+                  localStorage.removeItem(k);
+                }
+              });
+              localStorage.setItem("driftexp.setid", setid);
+            }
+          } catch (e) {}
           loadLocal();
           if (!set.comparisons.length) { fail("welcomeErr", "The review set is empty."); return; }
           if (st.index >= set.comparisons.length) { finish(); return; }

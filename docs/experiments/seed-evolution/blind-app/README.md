@@ -41,3 +41,9 @@ The startup line prints the local and public URLs (public host
 
 `{"event": "started"|"answer"|"comment", "name", "code", "rating", "note",
 "text", "ts"}` — append-only; last answer per (name, code) wins.
+
+To reset results for a new set revision: archive the file aside
+(`ratings-pre-reset-<stamp>.jsonl`) and start a fresh one. Stale
+client-side answers are purged automatically — `app.js` keeps a set epoch
+(`version.created`) in localStorage and clears cached answers whenever the
+epoch changes.
