@@ -25,7 +25,8 @@ _args = _ap.parse_args()
 OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "authorities", "triage")
 os.makedirs(OUT, exist_ok=True)
 
-V = "0.12.1"
+V = "0.12.2"      # authority (pack content) version — docs/spec/05 version layers
+SRC_V = "0.12.1"  # pinned design-system version; the snapshot is immutable within a pack version
 
 _src_commit = subprocess.run(["git", "-C", TR, "rev-parse", "HEAD"],
                              capture_output=True, text=True).stdout.strip() or "unknown"
@@ -56,7 +57,7 @@ auth = json.load(open(os.path.join(REPO, "authorities", "wink", "authority.json"
 auth.update({
     "id": "triage", "name": "Triage", "version": V,
     "snapshot": {"repo": "triage-design-system (local; published at triage.seanyong.xyz)",
-                 "commit": _src_commit, "branch": _src_branch, "version": V,
+                 "commit": _src_commit, "branch": _src_branch, "version": SRC_V,
                  "path_hint": "~/triage-design-system"},
     "description": ("Triage is the app-agnostic, paper-and-ink UI design authority: one token source of "
                     "truth, one component runtime, one enforceable lint gate. Square corners, hairline "
@@ -206,7 +207,8 @@ EXTRA_ALIASES = {
     "drop": ["dropzone", "file upload", "upload area"],
     "notif": ["notifications panel", "notification list", "bell panel"],
     "cmd": ["command palette", "command menu", "cmd-k"],
-    "page-state": ["full-page state", "error page", "empty page", "maintenance page"],
+    "page-state": ["full-page state", "error page", "empty page", "maintenance page",
+                   "404 page", "not found page"],
     "pager-num": ["numbered pagination", "pagination", "pager"],
     "tl": ["timeline", "activity timeline", "approval history", "activity log", "event trail",
           "version timeline", "version history"],
@@ -216,6 +218,20 @@ EXTRA_ALIASES = {
 
 GENERIC_EXTRA = {
     "Button": ["action", "action button"], "Table": ["grid"], "Tabs": ["tabbed"],
+}
+
+# Curation provenance (docs/spec/05): why a record changed, from what evidence.
+# Extended under the 0.12.2 curation bump; the triggering gap was filed by the
+# driftexp blind-review workspace (design-authority repo).
+PROVENANCE = {
+    "page-state": {
+        "extended_in": "0.12.2",
+        "triggering_gaps": ["gap/20261009-024914-945233"],
+        "review_decision": "owner-approved 2026-10-09 (everyday phrasings for the documented 404 state)",
+        "source_commit": _src_commit,
+        "tests": ["golden: '404 page' → RESOLVED component/page-state",
+                  "golden: 'not found page' → RESOLVED component/page-state"],
+    },
 }
 
 for c in STATES["components"]:
@@ -251,9 +267,11 @@ for c in STATES["components"]:
         }
         source_str = "spec/states.json (%s, %s) + site/pages_foundations.py (banner spec)" % (cls, c["source"])
         compiled = ["triage/states", "triage/banner-spec"]
-    artifacts.append(A(
-        "component/%s" % cls, "component", name, summary, aliases,
-        body, source_str, compiled))
+    art = A("component/%s" % cls, "component", name, summary, aliases,
+            body, source_str, compiled)
+    if cls in PROVENANCE:
+        art["provenance"] = PROVENANCE[cls]
+    artifacts.append(art)
 
 # ---- patterns (7, from the site's pattern pages) ----
 PATTERN_ALIASES = {
@@ -685,6 +703,8 @@ golden = {
         {"problem": "numbered pagination", "expect": "RESOLVED", "expect_id": "component/pager-num"},
         {"problem": "a diff view", "expect": "RESOLVED", "expect_id": "component/diff"},
         {"problem": "a bottom sheet", "expect": "RESOLVED", "expect_id": "component/sheet-end"},
+        {"problem": "404 page", "expect": "RESOLVED", "expect_id": "component/page-state"},
+        {"problem": "not found page", "expect": "RESOLVED", "expect_id": "component/page-state"},
         {"problem": "a dashboard page", "expect": "RESOLVED", "expect_id": "pattern/dashboard"},
         {"problem": "a settings page", "expect": "RESOLVED", "expect_id": "pattern/settings"},
         {"problem": "the colour tokens", "expect": "RESOLVED", "expect_id": "token-set/colour"},
@@ -701,7 +721,15 @@ json.dump(golden, open(os.path.join(OUT, "golden.json"), "w"), indent=1, ensure_
 build = {
     "generator": "docs/synthesis/triage/tools/build_triage_pack.py",
     "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-    "source": {"repo": TR, "commit": _src_commit, "version": V},
+    "source": {"repo": TR, "commit": _src_commit, "version": SRC_V},
+    "release": {
+        "label": "triage %s" % V,
+        "kind": "curation",
+        "based_on": "triage 0.12.1",
+        "snapshot_commit": _src_commit,
+        "triggering_gaps": ["gap/20261009-024914-945233"],
+        "approved": "owner 2026-10-09",
+    },
     "counts": {"artifacts": len(artifacts), "rules": len(rules),
                "prohibitions": len(prohibitions), "fallbacks": len(fallbacks),
                "precedents": len(precedents), "candidates": len(candidates),

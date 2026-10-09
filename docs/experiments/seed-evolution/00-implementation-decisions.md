@@ -140,4 +140,7 @@ stable id; later corrections append, never rewrite.
   `full-page state`) while the everyday "404 page" / "not found page" fall
   through to `fallback/scoped-embedding` — filed as a gap in
   `workspaces/x05-blind-review` (upstream alias curation is the triage
-  repo's call).
+  repo's call). Resolved the same day: triage authority **0.12.2**
+  (authority-triage `2307e53`, tag `v0.12.2`) adds both aliases to
+  `component/page-state` plus two golden pins; the record carries
+  provenance `extended_in 0.12.2` + the gap id.
