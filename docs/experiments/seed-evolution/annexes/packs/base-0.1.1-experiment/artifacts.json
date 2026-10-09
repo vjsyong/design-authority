@@ -1,0 +1,373 @@
+{
+ "artifacts": [
+  {
+   "id": "component/primary-action",
+   "kind": "component",
+   "title": "Primary action",
+   "summary": "The single dominant affirmative action of a surface, rendered as a solid accent-blue button; dismiss and secondary actions are ghost buttons.",
+   "status": "stable",
+   "aliases": [
+    "primary action",
+    "primary button",
+    "solid accent button",
+    "add bookmark button",
+    "save button",
+    "call to action",
+    "cta",
+    "affirmative action"
+   ],
+   "body": {
+    "class": ".btn.btn-primary (secondary/dismiss: .btn.btn-ghost; compact size modifier .btn-sm)",
+    "states": [
+     "default: solid accent fill var(--color-accent) #2563eb, white text, 1px transparent border",
+     "hover: var(--color-accent-hover) #1d4ed8",
+     "focus-visible: 2px var(--color-accent) outline, offset 2px",
+     "compact (bulk bar): .btn-sm padding 6px 12px, font-size 0.85rem"
+    ],
+    "a11y": [
+     "keyboard focusable with a visible accent focus ring",
+     "one dominant primary action per surface; secondary controls are ghost"
+    ],
+    "do": [
+     "use the shared .btn base so radius (10px) and typography (sans 600) stay consistent",
+     "reserve .btn-primary for the single dominant affirmative action"
+    ],
+    "dont": [
+     "do not use a raw accent hex in the component; reference var(--color-accent)",
+     "do not give one surface two solid primary buttons"
+    ],
+    "statement": "Primary actions are solid accent-blue (.btn.btn-primary); dismiss and secondary actions are ghost (.btn.btn-ghost).",
+    "group": "actions",
+    "quote": "styles.css: .btn-primary{background:var(--color-accent);color:#fff} .btn-ghost{background:transparent;color:var(--color-text);border-color:var(--color-border)}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "styles.css:43-63; index.html:18,44,55,66"},
+   "compiled_from": [
+    "gap/20261009-021009-2103e0",
+    "prop/20261009-021120-72f81b",
+    "gap/20261009-021010-54d44a",
+    "gap/20261009-022650-1e426d",
+    "gap/20261009-023638-ad6d33",
+    "census/primary-action",
+    "census/exemplars#primary-action",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-021009-2103e0", "gap/20261009-021010-54d44a", "gap/20261009-022650-1e426d", "gap/20261009-023638-ad6d33"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: primary action button styling"]
+   }
+  },
+  {
+   "id": "pattern/destructive",
+   "kind": "pattern",
+   "title": "Destructive confirmation",
+   "summary": "A destructive action opens the shared modal confirmation with a ghost Cancel and a solid danger accept; per-row triggers use the quieter danger-ghost role.",
+   "status": "stable",
+   "aliases": [
+    "destructive confirmation",
+    "delete confirmation",
+    "confirm dialog",
+    "confirmation modal",
+    "danger button",
+    "danger ghost button",
+    "row delete",
+    "irreversible action"
+   ],
+   "body": {
+    "class": ".confirm-overlay + .confirm-dialog (accept .btn.btn-danger; cancel .btn.btn-ghost; per-row trigger .btn.btn-danger-ghost)",
+    "states": [
+     "trigger placement: row action (.bookmark-delete) or the bulk toolbar Delete",
+     "per-row trigger: .btn-danger-ghost transparent fill, danger text var(--color-danger) #b91c1c, ghost border, hover tint #fef2f2",
+     "dialog: centered overlay rgba(20,24,33,0.45) over a surface dialog, radius 10px, shadow 0 12px 32px rgba(20,24,33,0.22)",
+     "accept: solid .btn-danger fill #b91c1c, white text, focused by default",
+     "dismiss: Cancel (ghost), Escape, backdrop click; post-action feedback: none"
+    ],
+    "a11y": [
+     "role=dialog aria-modal=true, labelled by the confirmation title",
+     "Escape dismisses and focus moves to the accept action"
+    ],
+    "do": [
+     "name the target and state the consequence (\"This can't be undone.\")",
+     "generalise one dialog by carrying a pending target (bulk count or single bookmark)"
+    ],
+    "dont": [
+     "do not use solid .btn-danger for a per-row trigger; use .btn-danger-ghost",
+     "do not delete without a confirmation"
+    ],
+    "statement": "Destructive actions use a shared modal: Cancel (ghost) plus a solid danger accept, with Escape/backdrop dismissal; per-row triggers are danger-ghost.",
+    "group": "feedback",
+    "quote": "styles.css: .btn-danger{background:var(--color-danger);color:#fff} .btn-danger-ghost{background:transparent;color:var(--color-danger);border-color:var(--color-border)}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "index.html:78-87; app.js:501-540; styles.css:272-298,379-414"},
+   "compiled_from": [
+    "gap/20261009-022650-88081e",
+    "prop/20261009-022909-c74c84",
+    "gap/20261009-023642-525eea",
+    "prop/20261009-023657-fb5846",
+    "gap/20261009-023642-51d239",
+    "prop/20261009-023657-5ff6c7",
+    "census/destructive",
+    "census/exemplars#destructive",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-022650-88081e", "gap/20261009-023642-525eea", "gap/20261009-023642-51d239"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: delete confirmation dialog"]
+   }
+  },
+  {
+   "id": "pattern/empty-state",
+   "kind": "pattern",
+   "title": "Empty state",
+   "summary": "Zero-content states use the centered .empty-state card: a title, a muted explanation, and one action; the filter-empty variant names the active tag and offers a ghost Clear filter.",
+   "status": "stable",
+   "aliases": [
+    "empty state",
+    "first run",
+    "no bookmarks",
+    "no matching bookmarks",
+    "filter empty",
+    "zero results",
+    "nothing here"
+   ],
+   "body": {
+    "class": ".empty-state (variant .empty-state.filter-empty)",
+    "states": [
+     "first-run: shown when there are no bookmarks; the list is hidden and the action is a primary CTA",
+     "filtered-empty: shown when a filter is active and no bookmark matches; names the active tag and offers a ghost Clear filter",
+     "card: white var(--color-surface), 1px dashed var(--color-border), radius 10px, padding 48px 24px, centered",
+     "title 1.15rem; body muted var(--color-muted) with max-width 42ch"
+    ],
+    "a11y": [
+     "the explanation text is real text, not an image",
+     "each state exposes exactly one clear next action"
+    ],
+    "do": [
+     "keep the empty-state card family for every zero-content state",
+     "let the filter-empty variant name the tag that produced no matches"
+    ],
+    "dont": [
+     "do not show the first-run copy for a filtered, still-populated collection",
+     "do not present a zero-content screen with no action"
+    ],
+    "statement": "Zero-content screens render the centered .empty-state card with one action; filter-empty is the recorded variant that names the active tag.",
+    "group": "states",
+    "quote": "styles.css: .empty-state{background:var(--color-surface);border:1px dashed var(--color-border);border-radius:var(--radius);padding:48px 24px;text-align:center}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "index.html:60-73; app.js:325-333; styles.css:164-181"},
+   "compiled_from": [
+    "gap/20261009-021010-5eba4f",
+    "prop/20261009-021120-b2f1bb",
+    "gap/20261009-022650-09233c",
+    "prop/20261009-022909-bbf7ba",
+    "census/empty-state",
+    "census/exemplars#empty-state",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-021010-5eba4f", "gap/20261009-022650-09233c"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: empty state with no bookmarks"]
+   }
+  },
+  {
+   "id": "pattern/form-validation",
+   "kind": "pattern",
+   "title": "Form validation",
+   "summary": "Forms validate on submit: offending fields get a danger border and aria-invalid, the message lands in the single form-error alert, and typing clears it.",
+   "status": "stable",
+   "aliases": [
+    "form validation",
+    "field validation",
+    "invalid input",
+    "validation error",
+    "form error",
+    "invalid field",
+    "required field"
+   ],
+   "body": {
+    "class": ".field input (invalid state .is-invalid); message node .add-form-error",
+    "states": [
+     "validation timing: on submit (form carries novalidate)",
+     "invalid field: danger border var(--color-danger) #b91c1c plus aria-invalid=true",
+     "message: one .add-form-error summary node, role=alert, danger-coloured",
+     "recovery: typing in the field clears its error and hides the message"
+    ],
+    "a11y": [
+     "aria-invalid=true on the offending input",
+     "form-error carries role=alert"
+    ],
+    "do": [
+     "validate title required and URL required plus plausible, with human messages",
+     "reuse the identical path for the add and edit forms"
+    ],
+    "dont": [
+     "do not validate live or before submit in this project",
+     "do not render a duplicate message per field"
+    ],
+    "statement": "Form validation is on submit: danger border + aria-invalid on the field, one form-error alert for the message, auto-clear on input.",
+    "group": "forms",
+    "quote": "app.js: handleSubmit marks .is-invalid and shows one form-error; styles.css .field input.is-invalid{border-color:var(--color-danger)}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "app.js:401-451; index.html:41; styles.css:416-424"},
+   "compiled_from": [
+    "gap/20261009-022650-0a3f4d",
+    "prop/20261009-022909-b08280",
+    "gap/20261009-023638-ad6d33",
+    "prop/20261009-023656-1b0877",
+    "census/form-validation",
+    "census/exemplars#form-validation",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-022650-0a3f4d", "gap/20261009-023638-ad6d33"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: form validation invalid input"]
+   }
+  },
+  {
+   "id": "component/tags-status",
+   "kind": "component",
+   "title": "Tags and chips",
+   "summary": "Tags render as accent-soft pill chips; the filter row reuses the same chip family with a solid-accent active state; the comma-separated tag field trims and case-insensitively dedupes.",
+   "status": "stable",
+   "aliases": [
+    "tag chip",
+    "tag treatment",
+    "tag filter",
+    "tag editing",
+    "tag chips",
+    "chip"
+   ],
+   "body": {
+    "class": ".tag (card chip) and .tag.tag-chip (filter chip); active state .tag-chip.is-active",
+    "states": [
+     "chip: accent-soft bg var(--color-accent-soft) #eff4ff, accent text var(--color-accent) #2563eb, pill radius 999px, sans 600 0.78rem, padding 2px 10px",
+     "filter chip: same family, padding 4px 12px, transparent border, accent border on hover",
+     "active chip: solid accent bg #2563eb, white text, aria-pressed=true",
+     "tag field: comma-separated; values are trimmed and case-insensitively deduped (parseTags); a tag with no users loses its chip"
+    ],
+    "a11y": [
+     "filter chips are buttons exposing aria-pressed",
+     "tags are edited through the shared comma-separated field"
+    ],
+    "do": [
+     "reuse the .tag chip family for card tags and filter chips",
+     "recompute the tag facets after any tag mutation"
+    ],
+    "dont": [
+     "do not introduce a status-label vocabulary; none exists in this project",
+     "do not render duplicate tags on a bookmark"
+    ],
+    "statement": "Tags are accent-soft pill chips; filter chips reuse the family and invert to solid accent when active; parseTags trims and case-insensitively dedupes.",
+    "group": "data-display",
+    "quote": "styles.css: .tag{background:var(--color-accent-soft);color:var(--color-accent);border-radius:999px} .tag-chip.is-active{background:var(--color-accent);color:#fff}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "styles.css:258-265,316-339; app.js:108-118,202-212,245-281"},
+   "compiled_from": [
+    "gap/20261009-021010-6aea99",
+    "prop/20261009-021121-b7a96f",
+    "gap/20261009-022650-549a54",
+    "prop/20261009-022909-907072",
+    "gap/20261009-022650-1e426d",
+    "prop/20261009-022909-a9ddc9",
+    "gap/20261009-023641-cecab3",
+    "prop/20261009-023656-b934f6",
+    "census/tags-status",
+    "census/exemplars#tags-status",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-021010-6aea99", "gap/20261009-022650-549a54", "gap/20261009-022650-1e426d", "gap/20261009-023641-cecab3"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: tag chip treatment"]
+   }
+  },
+  {
+   "id": "token/surfaces",
+   "kind": "token",
+   "title": "Surfaces",
+   "summary": "Cards and the form/edit panel share one surface token set: white fill, 1px hairline border, 10px radius and the standard shadow; the bulk bar is the recorded accent-soft, shadowless variant.",
+   "status": "stable",
+   "aliases": [
+    "surface card",
+    "surface treatment",
+    "surface token",
+    "bookmark card",
+    "card treatment",
+    "card surface",
+    "panel treatment",
+    "form panel",
+    "bookmark form",
+    "edit panel",
+    "row selection",
+    "selected row",
+    "selection styling"
+   ],
+   "body": {
+    "class": ".bookmark-card and .add-form (variant .bulk-bar; selected card .bookmark-card.is-selected)",
+    "states": [
+     "default surface: white var(--color-surface), 1px solid var(--color-border), radius 10px var(--radius), shadow var(--shadow)",
+     "bulk-bar variant: accent-soft fill #eff4ff, 1px accent border, radius 10px, no shadow (documented deviation)",
+     "selected card: accent border plus accent-soft tint (.is-selected)",
+     "edit panel reuses the add-form surface exactly (edit-panel on .form-panel)"
+    ],
+    "a11y": [
+     "surface boundaries remain visible without colour (hairline border)",
+     "interactive surfaces keep a visible focus style"
+    ],
+    "do": [
+     "compose a card from a title, a muted URL and optional tag chips",
+     "reuse the same token set for cards, panels and the confirmation dialog"
+    ],
+    "dont": [
+     "do not introduce a new radius or shadow for a card-like surface",
+     "do not add a shadow to the bulk bar"
+    ],
+    "statement": "Surfaces share one token set (white fill, 1px --color-border hairline, 10px radius, --shadow); the bulk bar is the recorded accent-soft, shadowless variant.",
+    "group": "layout",
+    "quote": "styles.css: .bookmark-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius);box-shadow:var(--shadow)} .bulk-bar{background:var(--color-accent-soft);border:1px solid var(--color-accent);border-radius:var(--radius)}"
+   },
+   "source": {"repo": "bookmarks", "commit": "7c16aac", "path": "styles.css:97-104,191-206,341-352; index.html:23,60,69"},
+   "compiled_from": [
+    "gap/20261009-021009-89ab3b",
+    "prop/20261009-021120-72fd93",
+    "gap/20261009-021010-54d44a",
+    "prop/20261009-021120-95f46a",
+    "gap/20261009-022650-9a8d16",
+    "prop/20261009-022909-2a81df",
+    "gap/20261009-022650-1217da",
+    "prop/20261009-022909-bf21e2",
+    "gap/20261009-023638-ad6d33",
+    "prop/20261009-023656-1b0877",
+    "census/surfaces",
+    "census/exemplars#surfaces",
+    "reference/census/census.json",
+    "reference/census/exemplars.json"
+   ],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-021009-89ab3b", "gap/20261009-021010-54d44a", "gap/20261009-022650-9a8d16", "gap/20261009-022650-1217da", "gap/20261009-023638-ad6d33"],
+    "review_decision": "ACCEPT",
+    "source_commit": "7c16aac",
+    "tests": ["golden: bookmark card surface treatment"]
+   }
+  }
+ ]
+}

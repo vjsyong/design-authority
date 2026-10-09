@@ -1,0 +1,24 @@
+{
+ "validators": [
+  {
+   "name": "base-lint",
+   "title": "Bookmarks lint engine",
+   "kind": "command",
+   "workdir": "{pack}",
+   "command": [
+    "python3",
+    "lint/bookmarks_lint.py",
+    "{target}",
+    "--json"
+   ],
+   "parser": "lint-json",
+   "applies_to": [
+    "css",
+    "html",
+    "js"
+   ],
+   "rules_source": "rules.json",
+   "notes": "Runs the pack-local linter over the target workspace. Delta-based against lint/baseline.json (generated from sealed seed f3): B001 new raw colour literals outside :root; B002 baseline QA hooks missing; B003 canonical storage key absent; B004 (warnings) token definitions outside :root and new duplicated treatment blocks. Report shape: findings[{rule,severity,file,line,message,excerpt,fix}], counts, by_rule, score."
+  }
+ ]
+}

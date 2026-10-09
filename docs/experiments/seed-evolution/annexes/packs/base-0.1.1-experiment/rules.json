@@ -1,0 +1,44 @@
+{
+ "rules": [
+  {
+   "id": "B001",
+   "name": "Semantic colour tokens only",
+   "severity": "error",
+   "applies_to": ["component/*", "pattern/*", "token/*"],
+   "summary": "Components reference semantic custom properties (var(--color-*), var(--radius), var(--shadow)), never raw colour literals.",
+   "why": "Every established treatment in this project is defined once as a custom property in styles.css; raw values fork the palette and defeat the census-verified token set.",
+   "fix": "Replace the literal with the matching custom property from :root (for example #2563eb -> var(--color-accent)).",
+   "enforcement": "resolve() detects colour literals via the prohibition base/no-raw-color and returns CONFLICT; review otherwise."
+  },
+  {
+   "id": "B002",
+   "name": "Preserve QA hooks",
+   "severity": "error",
+   "applies_to": ["*"],
+   "summary": "Every existing data-testid is a contract: never rename or remove one, and keep required hooks present.",
+   "why": "Automated checks drive the app only through data-testid hooks; QA.md makes them a fixed contract.",
+   "fix": "Add new hooks rather than changing existing ones; keep the hook set listed in QA.md and HANDOFF.md intact.",
+   "enforcement": "manual/browser check per QA.md."
+  },
+  {
+   "id": "B003",
+   "name": "Canonical storage shape",
+   "severity": "error",
+   "applies_to": ["*"],
+   "summary": "All app data lives in localStorage under bookmarks.v1 as a JSON array of {id, title, url, tags: [], createdAt}.",
+   "why": "Fixture data and the app share this exact shape; changing it breaks persistence and every seeded check.",
+   "fix": "Keep the bookmarks.v1 key and the documented field set; do not add a parallel store.",
+   "enforcement": "manual/browser check per QA.md."
+  },
+  {
+   "id": "B004",
+   "name": "Reuse before adding",
+   "severity": "warning",
+   "applies_to": ["*"],
+   "summary": "Prefer an existing artifact or token over a new primitive; follow the abstraction ladder.",
+   "why": "The pack is intentionally small; the established roles already cover buttons, chips, surfaces, empty states, validation and confirmation.",
+   "fix": "Compose the need from existing artifacts first; only propose a new one when no existing treatment fits and the census can establish it.",
+   "enforcement": "review at proposal time."
+  }
+ ]
+}

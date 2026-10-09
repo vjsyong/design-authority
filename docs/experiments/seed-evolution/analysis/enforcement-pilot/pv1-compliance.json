@@ -1,0 +1,34 @@
+{
+ "ts": "2026-10-09T09:07:48Z",
+ "id": "pv1",
+ "compliant": true,
+ "validate_calls": [
+  {
+   "ts": "2026-10-09T09:05:49Z",
+   "argv": [
+    "validate",
+    "."
+   ],
+   "rc": 0
+  },
+  {
+   "ts": "2026-10-09T09:06:05Z",
+   "argv": [
+    "validate",
+    "."
+   ],
+   "rc": 0
+  }
+ ],
+ "reasons": [],
+ "post_seal": {
+  "source": "seal",
+  "counts": {
+   "error": 0,
+   "warning": 0,
+   "info": 0
+  },
+  "score": 100
+ },
+ "unmatched_errors": []
+}

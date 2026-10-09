@@ -1,0 +1,50 @@
+{
+ "allowed_custom_props": [],
+ "allowed_dup_hashes": [],
+ "allowed_literals": [
+  "#991b1b",
+  "#f0f1f4",
+  "#fef2f2",
+  "#ffffff",
+  "rgba(20,24,33,0.22)",
+  "rgba(20,24,33,0.45)"
+ ],
+ "generated_by": "x05_build_validated_pack.py / bookmarks-lint v1",
+ "source": {
+  "files": {
+   "app.js": "1ec6d935498eb0bc44b61a16c8daa9d7c89bbbba29073f70d5a2463f4b2cf428",
+   "index.html": "1166b8a2b3a8f473c732de961ddf46c138c93a9f3377f08e6cb922152247b654",
+   "styles.css": "aac8a61532632e53c57b82e0cdce8abfe032f4db499fc6d2dfc72f2b71ea8732"
+  },
+  "seal": "f3"
+ },
+ "testids": [
+  "app",
+  "app-header",
+  "app-nav",
+  "bookmark-list",
+  "btn-add-bookmark",
+  "btn-add-first-bookmark",
+  "bulk-apply",
+  "bulk-bar",
+  "bulk-count",
+  "bulk-delete",
+  "bulk-tag-input",
+  "cancel-add",
+  "confirm",
+  "confirm-accept",
+  "confirm-cancel",
+  "confirm-message",
+  "empty-state",
+  "filter-empty",
+  "filter-empty-clear",
+  "filter-empty-text",
+  "form-add",
+  "form-error",
+  "input-tags",
+  "input-title",
+  "input-url",
+  "submit-add",
+  "tag-filter"
+ ]
+}

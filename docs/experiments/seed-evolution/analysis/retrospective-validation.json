@@ -1,0 +1,527 @@
+{
+ "ts": "2026-10-09T09:02:07Z",
+ "pack": "base-0.1.1-experiment",
+ "rows": {
+  "cen": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "cod": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "f1": {
+   "counts": {
+    "error": 13,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 13,
+   "score": 0,
+   "by_rule": {
+    "B002": 13
+   },
+   "findings": [
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='bulk-apply' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='bulk-bar' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='bulk-count' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='bulk-delete' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='bulk-tag-input' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='confirm' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='confirm-accept' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='confirm-cancel' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='confirm-message' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='filter-empty' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='filter-empty-clear' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='filter-empty-text' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    },
+    {
+     "rule": "B002",
+     "severity": "error",
+     "message": "required QA hook data-testid='tag-filter' is missing",
+     "location": {
+      "path": "index.html",
+      "line": 0
+     },
+     "fix": "restore the hook on its element",
+     "excerpt": ""
+    }
+   ]
+  },
+  "f2": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "f3": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h1a": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h1b": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h1c": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h2a": {
+   "counts": {
+    "error": 0,
+    "warning": 1,
+    "info": 0
+   },
+   "total": 1,
+   "score": 98,
+   "by_rule": {
+    "B004": 1
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    }
+   ]
+  },
+  "h2b": {
+   "counts": {
+    "error": 0,
+    "warning": 1,
+    "info": 0
+   },
+   "total": 1,
+   "score": 98,
+   "by_rule": {
+    "B004": 1
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    }
+   ]
+  },
+  "h2c": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h3a": {
+   "counts": {
+    "error": 1,
+    "warning": 1,
+    "info": 0
+   },
+   "total": 2,
+   "score": 90,
+   "by_rule": {
+    "B004": 1,
+    "B001": 1
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    },
+    {
+     "rule": "B001",
+     "severity": "error",
+     "message": "new raw colour literal rgba(20, 24, 33, 0.28) outside the token vocabulary; use a var(--color-*) token",
+     "location": {
+      "path": "styles.css",
+      "line": 714
+     },
+     "fix": "replace with the nearest semantic token or file a gap if a new token is needed",
+     "excerpt": "box-shadow: 0 16px 40px rgba(20, 24, 33, 0.28);"
+    }
+   ]
+  },
+  "h3b": {
+   "counts": {
+    "error": 0,
+    "warning": 1,
+    "info": 0
+   },
+   "total": 1,
+   "score": 98,
+   "by_rule": {
+    "B004": 1
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    }
+   ]
+  },
+  "h3c": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": 100,
+   "by_rule": {},
+   "findings": []
+  },
+  "h4a": {
+   "counts": {
+    "error": 2,
+    "warning": 5,
+    "info": 0
+   },
+   "total": 7,
+   "score": 74,
+   "by_rule": {
+    "B004": 5,
+    "B001": 2
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    },
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.add-form-close, .wizard-close); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 118
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".add-form-close {"
+    },
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.tag-list, .wizard-steps); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 257
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".tag-list {"
+    },
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.progress-track, .tag-bar-track); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 602
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".tag-bar-track {"
+    },
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.import-trigger, .palette-trigger); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 666
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".palette-trigger {"
+    },
+    {
+     "rule": "B001",
+     "severity": "error",
+     "message": "new raw colour literal rgba(20, 24, 33, 0.28) outside the token vocabulary; use a var(--color-*) token",
+     "location": {
+      "path": "styles.css",
+      "line": 714
+     },
+     "fix": "replace with the nearest semantic token or file a gap if a new token is needed",
+     "excerpt": "box-shadow: 0 16px 40px rgba(20, 24, 33, 0.28);"
+    },
+    {
+     "rule": "B001",
+     "severity": "error",
+     "message": "new raw colour literal rgba(20, 24, 33, 0.28) outside the token vocabulary; use a var(--color-*) token",
+     "location": {
+      "path": "styles.css",
+      "line": 846
+     },
+     "fix": "replace with the nearest semantic token or file a gap if a new token is needed",
+     "excerpt": "box-shadow: 0 16px 40px rgba(20, 24, 33, 0.28);"
+    }
+   ]
+  },
+  "h4b": {
+   "counts": {
+    "error": 0,
+    "warning": 2,
+    "info": 0
+   },
+   "total": 2,
+   "score": 96,
+   "by_rule": {
+    "B004": 2
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.analytics-subtitle, .app-tagline); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 82
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".app-tagline {"
+    },
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.add-form-error, .import-error); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 151
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".add-form-error {"
+    }
+   ]
+  },
+  "h4c": {
+   "counts": {
+    "error": 0,
+    "warning": 1,
+    "info": 0
+   },
+   "total": 1,
+   "score": 98,
+   "by_rule": {
+    "B004": 1
+   },
+   "findings": [
+    {
+     "rule": "B004",
+     "severity": "warning",
+     "message": "identical declaration block shared by 2 selectors (.add-form-error, .wizard-error); consider a shared class",
+     "location": {
+      "path": "styles.css",
+      "line": 152
+     },
+     "fix": "reuse before adding",
+     "excerpt": ".add-form-error {"
+    }
+   ]
+  }
+ }
+}

@@ -115,7 +115,7 @@ def prep_ws(entry, root, run_dir):
         shutil.copytree(os.path.join(mats, "starter"), ws)
     elif mode == "seal":
         prev = entry["prev"]
-        seal_dir = os.path.join(root, "seal", prev)
+        seal_dir = entry.get("prev_seal_dir") or os.path.join(root, "seal", prev)
         bad, _ = seal_verify(seal_dir)
         if bad:
             raise SystemExit("predecessor seal %s failed verification: %s"
@@ -148,8 +148,11 @@ def prep_ws(entry, root, run_dir):
     meta["brief"] = entry["brief"]
     meta["brief_sha"] = sha256_file(brief_src)
     if entry.get("protocol"):
-        shutil.copy2(os.path.join(mats, "protocol.md"),
-                     os.path.join(ref, "PROTOCOL.md"))
+        pfile = entry.get("protocol_file", "protocol.md")
+        psrc = os.path.join(mats, pfile)
+        shutil.copy2(psrc, os.path.join(ref, "PROTOCOL.md"))
+        meta["protocol_file"] = pfile
+        meta["protocol_sha"] = sha256_file(psrc)
     for extra in entry.get("reference_extra", []) or []:
         src = os.path.join(mats, extra)
         dst = os.path.join(ref, os.path.basename(extra))
@@ -161,7 +164,8 @@ def prep_ws(entry, root, run_dir):
         shutil.copy2(src, dst)
     # frozen current-state screenshots from the predecessor's capture
     if entry.get("prev"):
-        prev_screens = os.path.join(root, "run", entry["prev"], "capture", "screens")
+        prev_screens = entry.get("prev_screens_dir") or os.path.join(
+            root, "run", entry["prev"], "capture", "screens")
         if os.path.isdir(prev_screens):
             dst = os.path.join(ref, "screens")
             os.makedirs(dst, exist_ok=True)
@@ -221,7 +225,8 @@ def bwrap_cmd(entry, root, run_dir):
         args += ["--ro-bind", os.path.join(mats, "da", "tools"), "/opt/da/tools",
                  "--ro-bind", os.path.join(mats, "da", "kernel"), "/opt/da/kernel"]
     if entry.get("pack"):
-        ptpl = "base-0.1.0-experiment" if entry["pack"] == "canon" else "base"
+        ptpl = {"canon": "base-0.1.0-experiment",
+                "canon-v": "base-0.1.1-experiment"}.get(entry["pack"], "base")
         mats = entry.get("_materials") or os.path.join(root, "materials")
         args += ["--ro-bind", os.path.join(mats, "packs", ptpl),
                  "/opt/da/packs/base"]
@@ -522,6 +527,21 @@ def run_session(sid, root, entry, budget_wall, budget_tokens, skip_agent=False):
                        "records": manifest["summary"]["records"]}
     else:
         run["seal"] = {"existing": True}
+    # ---- declared-validator pass + handoff compliance (enforced only)
+    if entry.get("enforce_validation"):
+        vv = subprocess.run(
+            [VENV_PY, os.path.join(HERE, "x05_validate.py"), "validate",
+             "--id", sid, "--root", root, "--write"],
+            capture_output=True, text=True, timeout=300)
+        run["validation"] = {"rc": vv.returncode,
+                             "log": (vv.stdout or "").strip()[-300:]}
+        cc = subprocess.run(
+            [VENV_PY, os.path.join(HERE, "x05_validate.py"), "compliance",
+             "--id", sid, "--root", root],
+            capture_output=True, text=True, timeout=120)
+        run["compliance"] = {"rc": cc.returncode,
+                             "log": (cc.stdout or "").strip()[-300:]}
+        save()
     # cod output: stage the canon pack into the run area's materials
     if entry.get("kind") == "cod":
         canon_src = os.path.join(ws, "pack")
@@ -570,7 +590,20 @@ def main(argv=None):
     ap.add_argument("--condition", choices=["A", "B", "C"])
     ap.add_argument("--budget", type=int, default=None)
     ap.add_argument("--skip-agent", action="store_true")
+    ap.add_argument("--pack", choices=["blank", "canon", "canon-v"],
+                    default=None, help="pilot only: pack to mount")
+    ap.add_argument("--from-seal", default=None,
+                    help="pilot only: start from a sealed checkpoint id")
+    ap.add_argument("--protocol2", action="store_true",
+                    help="pilot only: stage protocol-rev2.md")
+    ap.add_argument("--brief", default="pilot.md",
+                    help="pilot only: brief under materials/briefs")
+    ap.add_argument("--enforce", action="store_true",
+                    help="pilot only: declared-validator pass + compliance "
+                         "check after the seal")
     args = ap.parse_args(argv)
+    if args.from_seal and not args.pilot:
+        raise SystemExit("--from-seal requires --pilot")
 
     root = args.root
     materials = os.path.join(root, "materials")
@@ -580,12 +613,24 @@ def main(argv=None):
         cond = args.condition or "A"
         entry = {
             "id": args.id, "kind": "pilot", "condition": cond, "step": None,
-            "input_mode": "starter", "brief": "pilot.md",
+            "input_mode": "seal" if args.from_seal else "starter",
+            "brief": args.brief,
             "protocol": cond in ("B", "C"),
+            "protocol_file": ("protocol-rev2.md" if args.protocol2
+                              else "protocol.md"),
             "wrapper": cond in ("B", "C"),
             "da_tools": cond in ("B", "C"),
-            "pack": {"B": "base", "C": "base"}.get(cond),
-            "prev": None, "model": DEFAULT_MODEL,
+            "pack": {"blank": "base", "canon": "canon",
+                     "canon-v": "canon-v"}.get(args.pack)
+                    or {"B": "base", "C": "base"}.get(cond),
+            "prev": args.from_seal,
+            "prev_seal_dir": (os.path.join(X05_ROOT, "seal", args.from_seal)
+                              if args.from_seal else None),
+            "prev_screens_dir": (os.path.join(X05_ROOT, "run", args.from_seal,
+                                              "capture", "screens")
+                                 if args.from_seal else None),
+            "model": DEFAULT_MODEL,
+            "enforce_validation": bool(args.enforce),
             "_materials": materials,
         }
         budget_wall = args.budget or 300

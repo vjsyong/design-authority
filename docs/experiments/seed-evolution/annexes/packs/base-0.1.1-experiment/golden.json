@@ -1,0 +1,15 @@
+{
+ "authority": "base",
+ "version": "0.1.0-experiment",
+ "cases": [
+  {"problem": "primary action button styling", "expect": "RESOLVED", "expect_id": "component/primary-action", "note": "census role primary-action"},
+  {"problem": "delete confirmation dialog", "expect": "RESOLVED", "expect_id": "pattern/destructive", "note": "census role destructive"},
+  {"problem": "empty state with no bookmarks", "expect": "RESOLVED", "expect_id": "pattern/empty-state", "note": "census role empty-state"},
+  {"problem": "form validation invalid input", "expect": "RESOLVED", "expect_id": "pattern/form-validation", "note": "census role form-validation"},
+  {"problem": "tag chip treatment", "expect": "RESOLVED", "expect_id": "component/tags-status", "note": "census role tags-status"},
+  {"problem": "bookmark card surface treatment", "expect": "RESOLVED", "expect_id": "token/surfaces", "note": "census role surfaces"},
+  {"problem": "overall app shell layout header navigation", "expect": "UNDEFINED", "note": "deferred direction: candidate/app-shell attaches"},
+  {"problem": "card action group", "expect": "UNDEFINED", "note": "deferred direction: candidate/card-actions attaches"},
+  {"problem": "use #2563eb directly on the button", "expect": "CONFLICT", "expect_id": "prohibition/no-raw-color", "note": "color_literal prohibition"}
+ ]
+}

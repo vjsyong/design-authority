@@ -1,0 +1,48 @@
+{
+ "ts": "2026-10-09T09:04:16Z",
+ "id": "pv0",
+ "source": "seal",
+ "target": "/home/xrim/x05/pilot/seal/pv0/tree",
+ "pack": "base-0.1.1-experiment",
+ "result": {
+  "target": "/home/xrim/x05/pilot/seal/pv0/tree",
+  "validators": [
+   {
+    "validator": "base-lint",
+    "status": "ok",
+    "exit": 0,
+    "findings": [],
+    "meta": {
+     "counts": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+     },
+     "spec_score": 100,
+     "files_scanned": 3,
+     "spec_version": "bookmarks-lint-1",
+     "by_rule": {}
+    }
+   }
+  ],
+  "findings": [],
+  "summary": {
+   "counts": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+   },
+   "total": 0,
+   "score": {
+    "value": 100,
+    "formula": "score = 100 - (errors*8 + warnings*2 + infos*0.5), floored at 0",
+    "gate": "zero error-severity findings from declared validators; golden set agreement 100%"
+   }
+  },
+  "authority": {
+   "authority": "base",
+   "version": "0.1.1-experiment",
+   "commit": "7c16aac"
+  }
+ }
+}

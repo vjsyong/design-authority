@@ -1,0 +1,44 @@
+{
+ "builder": "adjudication session (authority pack 0.1.0-experiment)",
+ "snapshot": {
+  "repo": "bookmarks",
+  "commit": "7c16aac",
+  "branch": "master"
+ },
+ "counts": {
+  "artifacts": 6,
+  "rules": 4,
+  "prohibitions": 1,
+  "candidates": 2,
+  "recipes": 0,
+  "fallbacks": 0,
+  "golden_cases": 8
+ },
+ "release": {
+  "label": "base 0.1.0-experiment",
+  "kind": "experiment",
+  "experiment": true,
+  "based_on": "base 0.0.0-rc0 (empty pack)",
+  "source_branch": "master",
+  "evidence": [
+   ".design-authority/gaps.jsonl (18 gaps)",
+   ".design-authority/proposals/ (18 proposals)",
+   "reference/census/census.json (6 Established roles)",
+   "reference/census/exemplars.json",
+   "index.html, app.js, styles.css, QA.md"
+  ],
+  "review": "Authorities adjudicated per the gap/proposal records; established census roles codified, provisional directions recorded as candidates, no grounded-policy declines."
+ },
+ "derived": {
+  "from": "base-0.1.0-experiment",
+  "to": "base-0.1.1-experiment",
+  "built_at": "2026-10-09T08:59:32.174047+00:00",
+  "builder": "x05_build_validated_pack.py",
+  "adds": [
+   "lint/bookmarks_lint.py",
+   "lint/baseline.json",
+   "validators.json"
+  ],
+  "notes": "Canon files copied byte-identical from 0.1.0; only the three files above plus version/capabilities fields changed. Baseline generated from sealed seed f3."
+ }
+}

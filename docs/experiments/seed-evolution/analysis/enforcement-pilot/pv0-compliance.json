@@ -1,0 +1,19 @@
+{
+ "ts": "2026-10-09T09:04:16Z",
+ "id": "pv0",
+ "compliant": false,
+ "validate_calls": [],
+ "reasons": [
+  "no validate call in the session window"
+ ],
+ "post_seal": {
+  "source": "seal",
+  "counts": {
+   "error": 0,
+   "warning": 0,
+   "info": 0
+  },
+  "score": 100
+ },
+ "unmatched_errors": []
+}

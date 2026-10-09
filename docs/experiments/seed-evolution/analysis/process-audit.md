@@ -101,6 +101,12 @@ nothing to run.** Log as a program-design gap, not an execution failure.
 semantic-tokens etc. — so violations were surfaced only when an agent chose
 to ask, never by inspection.)
 
+**Update (same day, owner-directed):** the gap is closed and
+pilot-validated — see `enforcement-rebuild.md` (base-lint v1 +
+`base-0.1.1-experiment` + protocol rev2 + runner compliance gate; live
+pilot pv1: validate ×2, score 100, compliance YES). The sealed run remains
+as analyzed.
+
 ## 4 · Did sessions follow the briefs? (checked axes — all pass)
 
 - **Brief read in-session:** every session (BRIEF mentions 4-10×).

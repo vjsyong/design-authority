@@ -1,0 +1,44 @@
+{
+ "candidates": [
+  {
+   "id": "candidate/app-shell",
+   "kind": "candidate",
+   "title": "App shell layout",
+   "request": "A common shell that holds a brand, global actions and a reserved place for navigation across screens.",
+   "matches": ["app shell", "shell layout", "header navigation", "centered column", "app header main"],
+   "status": "candidate",
+   "summary": "A centered 960px column with .app-header (brand left, .app-header-actions right holding a .app-nav slot and the primary action) and .app-main for screen content, separated by a hairline border. Implemented once, across the whole app, but the census recorded no shell/layout role; it is a provisional direction, not authority.",
+   "promote_when": [
+    "a second distinct surface mounts into app-main and reuses the header/nav slot (for example a settings or search screen), giving the census a second compatible opportunity; then codify as a pattern artifact."
+   ],
+   "emerges_from": ["gap/20261009-021006-de53da", "prop/20261009-021112-a22434"],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-021006-de53da"],
+    "review_decision": "DEFERRED",
+    "source_commit": "7c16aac",
+    "tests": ["resolve: overall app shell layout header navigation -> UNDEFINED + candidate/app-shell"]
+   }
+  },
+  {
+   "id": "candidate/card-actions",
+   "kind": "candidate",
+   "title": "Per-card action group",
+   "request": "A trailing group of per-row actions on a collection card (edit and delete), with a narrow-width layout that keeps them visible.",
+   "matches": ["card action group", "per row actions", "per bookmark actions", "trailing actions", "bookmark actions"],
+   "status": "candidate",
+   "summary": "Each .bookmark-card ends with a .bookmark-actions group holding a small ghost Edit and a small danger-ghost Delete, right-aligned on desktop and wrapped to its own full-width right-aligned row behind a hairline divider at phone width. The delete trigger is codified by pattern/destructive; the group layout itself has no census role and stays provisional.",
+   "promote_when": [
+    "a second collection surface reuses the same trailing action group (for example search results with share/duplicate), or the census records a per-row-actions role across two opportunities; then codify as a pattern artifact."
+   ],
+   "emerges_from": ["gap/20261009-023641-81ffcd", "prop/20261009-023657-d8d8aa"],
+   "provenance": {
+    "introduced_in": "0.1.0-experiment",
+    "triggering_gaps": ["gap/20261009-023641-81ffcd"],
+    "review_decision": "DEFERRED",
+    "source_commit": "7c16aac",
+    "tests": ["resolve: per bookmark edit and delete actions on each card -> candidate/card-actions"]
+   }
+  }
+ ]
+}

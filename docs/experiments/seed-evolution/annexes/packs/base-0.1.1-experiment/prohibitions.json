@@ -1,0 +1,11 @@
+{
+ "prohibitions": [
+  {
+   "id": "prohibition/no-raw-color",
+   "statement": "Design components must reference the semantic custom properties in styles.css rather than raw colour literals.",
+   "signals": ["hard-coded color", "hard coded color", "raw color", "hex color", "colour literal", "color literal"],
+   "detect": "color_literal",
+   "rule": "B001"
+  }
+ ]
+}

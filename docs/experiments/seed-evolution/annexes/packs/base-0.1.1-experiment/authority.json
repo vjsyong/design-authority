@@ -1,0 +1,35 @@
+{
+ "id": "base",
+ "name": "Base",
+ "format_version": "0.1",
+ "version": "0.1.1-experiment",
+ "snapshot": {
+  "repo": "bookmarks",
+  "commit": "7c16aac",
+  "branch": "master",
+  "version": "session-3",
+  "path_hint": "/opt/ws"
+ },
+ "description": "Canonical design conventions established across the Bookmarks app (sessions 1-3), compiled from the census of established roles and the project's gap/proposal records. Version 0.1.1-experiment adds declared validators (base-lint).",
+ "kinds": [
+  "component",
+  "pattern",
+  "token"
+ ],
+ "capabilities": {
+  "search": true,
+  "resolve": true,
+  "validators": [
+   "base-lint"
+  ],
+  "gap_reporting": true,
+  "extension_proposals": true,
+  "resolution_assist": "off"
+ },
+ "policy": {
+  "on_undefined": "Improvise in character using the project's existing token vocabulary (the semantic custom properties in styles.css), mark the improvisation, and report a gap; do not invent new primitives.",
+  "on_conflict": "Reject the raw value and use the semantic token or the canonical treatment named by the cited rule.",
+  "proposals": "A need may be proposed only after the census classifies a compatible treatment as Established across at least two distinct opportunities; proposals are recorded in .design-authority/proposals and promoted only through an owner verdict."
+ },
+ "entrypoints": {}
+}

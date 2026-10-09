@@ -1,0 +1,23 @@
+{
+ "format_version": "0.1",
+ "model": "lexical authority scoring (frozen 0.3 resolution semantics)",
+ "formula": "score = 100 - (errors*8 + warnings*2 + infos*0.5), floored at 0",
+ "gate": "zero error-severity findings from declared validators; golden set agreement 100%",
+ "resolution": {
+  "DIRECT_MIN": 6.5,
+  "DIRECT_MARGIN": 2.0,
+  "COMPOSE_MIN": 5.0,
+  "PHRASE_BONUS": 5.0
+ },
+ "field_weights": {
+  "artifact": {
+   "title": 3.0,
+   "summary": 1.5,
+   "alias": 4.0,
+   "body.class": 2.5,
+   "body.states|a11y|do|dont|quote|statement": 1.0,
+   "body.group": 1.0,
+   "source.path": 1.0
+  }
+ }
+}
