@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "generated": "2026-10-09T08:26:37+00:00",
+  "experiment": "x05 seed-evolution \u2014 blind review scoring",
+  "reviewer": "Sean Yong (single reviewer; owner)",
+  "source_evidence": {
+    "ratings_jsonl_sha256": "fdbb5b9e8cf90214b4abeb2283c34d2eb88ec6aafb4d7471e1e9c7b40e3acbed",
+    "key_json_sha256": "0b091fec08aba26907c231c4fa0c5c7813ad306797845813a48ea7f29374ce23",
+    "answer_events": 17,
+    "unique_codes": 15,
+    "duplicate_submissions": [
+      "R07",
+      "R08"
+    ]
+  },
+  "deviations": [
+    "Single reviewer executed; pre-registration specifies three predetermined reviewers (plan \u00a75.2). Reduced precision label applies.",
+    "Calibration / instrument discrimination not run (controlled variant set never assembled; reviewer confirmation skipped per I-15).",
+    "R07 and R08 submitted twice with identical values (idempotent re-submit); deduplicated last-wins, no effect."
+  ],
+  "per_item": [
+    {
+      "code": "R01",
+      "kind": "match",
+      "condition": "B",
+      "chain": "b",
+      "k": 3,
+      "region": "palette view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R02",
+      "kind": "match",
+      "condition": "C",
+      "chain": "c",
+      "k": 4,
+      "region": "wizard-2 view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R03",
+      "kind": "pair",
+      "condition": "A",
+      "chain": "a",
+      "k": 1,
+      "region": "seed -> h1, whole screens",
+      "rating": 4
+    },
+    {
+      "code": "R04",
+      "kind": "match",
+      "condition": "C",
+      "chain": "c",
+      "k": 1,
+      "region": "new list-controls vs seed tag-filter",
+      "rating": 3
+    },
+    {
+      "code": "R05",
+      "kind": "match",
+      "condition": "A",
+      "chain": "a",
+      "k": 4,
+      "region": "wizard-2 view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R06",
+      "kind": "match",
+      "condition": "B",
+      "chain": "b",
+      "k": 1,
+      "region": "new list-controls vs seed tag-filter",
+      "rating": 3
+    },
+    {
+      "code": "R07",
+      "kind": "match",
+      "condition": "B",
+      "chain": "b",
+      "k": 4,
+      "region": "wizard-2 view vs own card",
+      "rating": 3
+    },
+    {
+      "code": "R08",
+      "kind": "match",
+      "condition": "C",
+      "chain": "c",
+      "k": 3,
+      "region": "palette view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R09",
+      "kind": "match",
+      "condition": "A",
+      "chain": "a",
+      "k": 1,
+      "region": "new list-controls vs seed tag-filter",
+      "rating": 3
+    },
+    {
+      "code": "R10",
+      "kind": "pair",
+      "condition": "B",
+      "chain": "b",
+      "k": 1,
+      "region": "seed -> h1, whole screens",
+      "rating": 3
+    },
+    {
+      "code": "R11",
+      "kind": "match",
+      "condition": "A",
+      "chain": "a",
+      "k": 2,
+      "region": "analytics view vs own card",
+      "rating": 2
+    },
+    {
+      "code": "R12",
+      "kind": "match",
+      "condition": "B",
+      "chain": "b",
+      "k": 2,
+      "region": "analytics view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R13",
+      "kind": "match",
+      "condition": "A",
+      "chain": "a",
+      "k": 3,
+      "region": "palette view vs own card",
+      "rating": 1
+    },
+    {
+      "code": "R14",
+      "kind": "match",
+      "condition": "C",
+      "chain": "c",
+      "k": 2,
+      "region": "analytics view vs own card",
+      "rating": 4
+    },
+    {
+      "code": "R15",
+      "kind": "pair",
+      "condition": "C",
+      "chain": "c",
+      "k": 1,
+      "region": "seed -> h1, whole screens",
+      "rating": 4
+    }
+  ],
+  "matches": {
+    "A": {
+      "4": 4,
+      "1": 3,
+      "2": 2,
+      "3": 1
+    },
+    "B": {
+      "3": 4,
+      "1": 3,
+      "4": 3,
+      "2": 4
+    },
+    "C": {
+      "4": 4,
+      "1": 3,
+      "3": 4,
+      "2": 4
+    }
+  },
+  "pairs": {
+    "A": 4,
+    "B": 3,
+    "C": 4
+  },
+  "aggregates": {
+    "matches": {
+      "A": {
+        "values": [
+          3,
+          2,
+          1,
+          4
+        ],
+        "mean": 2.5,
+        "median": 2.5
+      },
+      "B": {
+        "values": [
+          3,
+          4,
+          4,
+          3
+        ],
+        "mean": 3.5,
+        "median": 3.5
+      },
+      "C": {
+        "values": [
+          3,
+          4,
+          4,
+          4
+        ],
+        "mean": 3.75,
+        "median": 4.0
+      }
+    },
+    "all_items": {
+      "A": {
+        "values": [
+          3,
+          2,
+          1,
+          4,
+          4
+        ],
+        "mean": 2.8,
+        "median": 3
+      },
+      "B": {
+        "values": [
+          3,
+          4,
+          4,
+          3,
+          3
+        ],
+        "mean": 3.4,
+        "median": 3
+      },
+      "C": {
+        "values": [
+          3,
+          4,
+          4,
+          4,
+          4
+        ],
+        "mean": 3.8,
+        "median": 4
+      }
+    }
+  },
+  "deltas": {
+    "C_minus_B_by_handoff": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1
+    },
+    "C_minus_A_by_handoff": {
+      "1": 0,
+      "2": 2,
+      "3": 3,
+      "4": 0
+    },
+    "median_C_minus_B_all_items": 1,
+    "median_C_minus_B_matches_only": 0.5,
+    "handoffs_C_gt_B": 1,
+    "handoffs_C_ge_B": 4
+  }
+}
