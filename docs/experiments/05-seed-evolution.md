@@ -1,50 +1,59 @@
 # Experiment 05 · Seed evolution: can an unadjudicated precedent archive transmit a design language?
 
-Status: **revision 3, incorporating the second owner review**. All four
-methodological corrections and both smaller improvements are applied. The
-remaining owner knobs are listed in section 8; on confirmation this document
-is frozen as pre-registered, and deviations are appended as D-n entries
-afterward, never edited in place.
+Status: **revision 4, incorporating the adversarial review**. All eight items
+of the review's minimum revision checklist are addressed. Section 8 lists the
+last owner confirmations; on confirmation this document is frozen as
+pre-registered, and deviations are appended as D-n entries afterward, never
+edited in place.
 
 ## 0 · Revision history
 
 **In revision 2:** research question narrowed to archival transfer; mandatory
 records-only and baseline controls, never conditioned on outcomes; B
 continuation chain replaced by independent controlled builds; forced new
-work per session with new-versus-inherited element evaluation; role-aware
-matched-region consistency as the primary measure with Jaccard demoted to a
-diagnostic; anchors rematched to same-brief independent pairs and
-known-common-authority pairs; hypotheses restructured and framed
-exploratory; handoff arithmetic corrected; seeded opportunities and a silent
-drift measure introduced; multiple anonymized reviewers.
+work per session; role-aware matched-region consistency as the primary
+measure; hypotheses restructured; handoff arithmetic corrected; multiple
+anonymized reviewers.
 
-**In revision 3 (this version):**
+**In revision 3:** H3 split so baseline is never scored on information it
+never received; six target roles frozen; blinded precedent census at seal
+time; scoring and reviewer combination specified; calibration rule fixed
+(anchor disagreement not disqualifying); text-only intervention scope stated;
+deferred arms per review (Tier 1 only, no B chain).
 
-- H3 is split so baseline runs are never scored on information they never
-  received: convention reproduction is compared across conditions, while
-  consultation and acknowledgment are measured only in records-access runs.
-- The six target design roles are frozen before Phase A as transfer targets,
-  and a blinded precedent census at the A3 checkpoint classifies each as
-  Established, Inconsistent, or Absent. Formation quality and transfer
-  quality are reported separately, so a weak archive cannot be scored only
-  on its strongest records.
-- Scoring, aggregation, missing-role handling, reviewer combination, and the
-  minimum meaningful difference are all specified before data exists, with
-  the difference threshold derived from a calibration exercise rather than
-  chosen after seeing results. No significance testing at this n; individual
-  run values, paired role comparisons, and descriptive effect sizes only.
-- The blind-review calibration rule no longer disqualifies reviewers for
-  disagreeing with an anchor's intended classification. Calibration
-  describes instrument discriminability and collects qualitative notes;
-  inter-rater agreement is reported.
-- The tested intervention is stated precisely: text-only, unadjudicated
-  precedent. A negative result bounds that specific configuration, not
-  design precedent in general; a follow-up may add rendered references.
-- Interpretation of a positive result is softened, and "human corrections"
-  is renamed identified correction requirements.
-- Per the review, no experimental arms are added and the chain is not
-  extended: code-only and full-context are deferred to a follow-up, and the
-  Tier 3 B handoff chain is removed. This experiment runs Tier 1 only.
+**In revision 4 (this version), per the adversarial review:**
+
+- The calibration midpoint is no longer the effect threshold. Three concepts
+  are separated: instrument discrimination, measurement reliability, and the
+  minimum meaningful treatment effect, which is now one full role
+  (1/K on the normalized scale), justified from the scoring granularity.
+- The six roles have a frozen opportunity matrix with guaranteed
+  opportunities in Phase A and required surfaces in Phase B. Missing
+  required implementations count as failures, never exclusions. Below four
+  established roles, the primary transfer evaluation is not performed.
+- Established is operationalized (repeated compatible use across at least
+  two distinct opportunities, traceable record), with explicit handling for
+  conventions observed only once.
+- Role scoring is dimension-level and role-specific: visual roles score
+  visual dimensions, interaction roles score presentation plus behavioral
+  dimensions. Weights, thresholds, viewport handling, and missing data are
+  frozen. Acknowledged deliberate departures are excluded from scores and
+  reported with rationale; unacknowledged departures count as
+  non-reproduction.
+- H3 is strictly temporal and mechanistic (inspection before implementation,
+  fidelity to established precedent), not a second version of H2.
+- Phase B results are explicitly conditional on one frozen archive, and run
+  order is randomized and interleaved.
+- The task specification, budgets, reviewer count, and cost tolerances are
+  frozen concretely (sections 2, 3, 6).
+- Baseline reporting is per role; a distinctiveness note documents whether
+  A's conventions offer plausible room for transfer against model priors.
+- Blinding is strengthened: randomized orientation, order, and identifiers;
+  reviewers independent of execution; exact agreement reported alongside
+  tolerance agreement; three reviewers predetermined.
+- The negative-result wording is corrected: "transfer was not demonstrated
+  under the tested configuration," followed only by evidence-supported
+  explanations.
 
 ## 1 · Question
 
@@ -52,15 +61,26 @@ drift measure introduced; multiple anonymized reviewers.
 decisions and be transmitted to fresh agents through an unadjudicated
 precedent archive, without access to the original implementation?
 
-**Secondary (Phase A):** across fresh-agent handoffs on one application, do
-newly introduced elements preserve the conventions established by earlier
-sessions, with no human adjudication?
+**Inferential boundary, stated now:** this experiment estimates the
+descriptive transfer effect of one frozen, agent-generated precedent archive
+across repeated fresh-agent implementations of one target task. It is not a
+general estimate of how reliably archival transfer works across different
+archives, applications, or models. The archive is a single experimental
+unit.
+
+**Claims, kept separate:**
+
+- **Claim A (Phase A, exploratory):** continuity of conventions across
+  fresh-agent handoffs under combined code inheritance, visible precedent,
+  and written records. Success is descriptive and is not evidence that the
+  textual archive caused continuity.
+- **Claim B (Phase B):** transfer through text-only records, without code or
+  rendered references, against a no-records baseline.
 
 **Progression.** This experiment tests whether informal precedent transmits.
-A follow-up experiment asks whether human adjudication of the archive into
-canonical authority improves coherence and transferability. The long-term
-question is whether the process reduces ongoing design correction. Each
-stage yields an interpretable negative result on its own.
+A follow-up experiment asks whether human adjudication improves the archive.
+The long-term question is whether the process reduces ongoing design
+correction.
 
 Three record states must not collapse into one another, and the report keeps
 them distinct throughout:
@@ -79,10 +99,22 @@ is the workspace store: gaps, proposals, decision logs.
 recipes, golden. It loads in the kernel, resolves UNDEFINED for every ask,
 and warns nothing.
 
-**Frozen target roles.** Before Phase A begins, six target design roles are
-frozen as the transfer targets: primary action, destructive confirmation,
-empty state, form validation, tags or status treatment, surfaces and
-borders. These are fixed now, not selected later.
+**Frozen target roles and opportunity matrix.** Six roles are frozen before
+execution. Each role has at least two distinct opportunities within Phase A
+and a required surface in Phase B:
+
+| Frozen role | Phase A opportunities | Phase B requirement |
+|---|---|---|
+| Primary action | A1: add bookmark; A2: bulk apply action; A3: save in edit flow | Add meal or recipe |
+| Destructive confirmation | A2: bulk delete confirmation; A3: single delete confirmation | Delete meal or recipe, with confirmation |
+| Empty state | A1: first-run empty list; A2: no filter matches; A3: collection empty after cleanup | No saved meals, and no filter matches |
+| Form validation | A2: add-bookmark form (required fields, invalid URL); A3: edit form | Create and edit meal form |
+| Tags or status | A2: tag filter chips; A3: tag editing | Meal categories or status |
+| Surfaces and borders | A1: bookmark cards; A2: bulk-selection surfaces; A3: edit panel | Meal cards and panels |
+
+Every Phase B run must expose all six roles with the deterministic states
+listed in section 3. If a run fails to implement a required role, that is an
+implementation failure scored as zero, not an exclusion.
 
 **Phase A · Generate precedent (exploratory emergence).**
 
@@ -90,9 +122,9 @@ Three fresh sessions on one app, sequential, one pinned model:
 
 | Session | Required new work |
 |---|---|
-| A1 | Bookmarks manager: list, navigation, primary actions, shell |
-| A2 | Tag filtering, empty state, bulk actions |
-| A3 | Edit flow, destructive confirmation, responsive details |
+| A1 | Bookmarks manager: shell, list, navigation, primary action (add), cards |
+| A2 | Tag filtering with empty-filtered state, bulk actions (bulk delete confirmation), add form with validation, selection surfaces |
+| A3 | Edit flow (save, validation), single delete confirmation, tag editing, responsive details |
 
 Protocol per session (pack AGENT-PROMPT plus session brief): resolve before
 deciding; file a gap for every uncovered decision unit with the fallback used
@@ -105,18 +137,28 @@ an agent treating a proposal as binding is a protocol violation recorded in
 the analysis.
 
 At the end of A3 the checkpoint is **sealed**: code and records frozen with
-SHA-256 manifests. At seal time, and strictly before any Phase B run, an
-independent classifier scores each frozen target role as Established,
-Inconsistent, or Absent against a fixed rubric, producing the **precedent
-census**. The classifier cannot know transfer outcomes because none exist
-yet.
+SHA-256 manifests. At seal time, strictly before any Phase B run, an
+independent classifier scores each frozen role against a fixed rubric,
+producing the **precedent census**:
+
+| Classification | Operational meaning |
+|---|---|
+| Established | Repeated compatible use across at least two distinct opportunities, supported by a traceable record |
+| Observed once | One clear implementation, insufficient evidence of stability |
+| Inconsistent | Multiple incompatible treatments without a documented exception |
+| Absent | No usable evidence of a convention |
+
+K is the number of roles classified Established. If K is below 4, the primary
+transfer evaluation is not performed and the result is reported as formation
+insufficient. The classifier cannot know transfer outcomes because none
+exist yet.
 
 **Phase B · Controlled transfer.**
 
 The same meal-planner specification, identical tools, identical broad visual
-brief, identical per-run budget in both conditions. One fresh agent per run,
+brief, identical frozen budgets in both conditions. One fresh agent per run,
 three independent runs per condition. Each run starts a brand new app repo
-and a fresh workspace for its own filings.
+and a fresh workspace for its own filings. Conditions:
 
 | Condition | Prior code | Prior records | What it isolates |
 |---|---|---|---|
@@ -129,10 +171,19 @@ access to A's source, rendered output, or screenshots. Containment follows
 the benchmark discipline, and tool inputs are audited for attempts to locate
 A (count must be 0).
 
+**Execution order.** The six Phase B runs are interleaved and randomized:
+the run order is fixed by a recorded seed at freeze, alternating conditions
+so no condition runs as a temporal block. Each run records start and end
+times.
+
 Every condition files its own records during its run, per protocol, and the
-UI workload is identical. Code-only and full-context arms are specified for
-the deferred follow-up experiment and are **not run here**. There is no B
-handoff chain.
+UI workload is identical. Code-only and full-context arms are deferred to a
+follow-up and are **not run here**. There is no B handoff chain.
+
+**Frozen task specification.** The agent-facing brief texts (Phase A
+sessions, Phase B runs, protocol text) are frozen verbatim as annexes at
+freeze time and are not edited afterward. The tables above define their
+required content.
 
 ## 3 · Measures
 
@@ -141,155 +192,200 @@ semantic colour role, an interaction convention, a layout pattern, or a
 deliberate exception. Filing granularity is per decision unit, never per CSS
 declaration.
 
-**Role-aware consistency (primary objective measure).** From the frozen
-checkpoints and the finished runs, capture matched interface regions at
-standard viewports (desktop 1280, mobile 390) for each frozen target role.
-Compare like with like: A's primary action against B's primary action, A's
-surfaces against B's surfaces. Each role pair scores 2 (reproduced: palette,
-radius, type role and spacing rhythm agree within tolerance), 1 (partial),
-or 0 (not reproduced). Tolerances are fixed at setup via the calibration
-exercise below. Roles are weighted equally. A role is **applicable** when
-B's specification requires that surface; roles B lacks entirely are excluded
-from both sides of a comparison, never scored as zero. Raw Jaccard overlap
-over all computed-style values is reported as a secondary diagnostic only.
+**Deterministic fixtures.** Every scored artifact is captured in five
+scripted states: empty dataset, populated list, filtered view (tag or
+category applied), invalid form submission, and confirmation open. Screenshot
+capture at both viewports uses scripted data seeds (fixed localStorage
+fixtures) so states are identical across runs. Screenshots and measurements
+are captured by the experimenter, never from an agent's self-report.
 
-**Convention reproduction rate (compared across conditions).** Per
-applicable frozen role, per run: score sum divided by twice the number of
-applicable roles. Reported as every individual run value plus condition
-medians, and as per-role tables showing baseline and records-only runs side
-by side.
+**Role scoring, dimension-level and frozen.**
 
-**Precedent consultation rate (records-access runs only).** For each
-applicable role: did the run locate and inspect the relevant archived
-records. Not scored for baseline runs, which never received the archive.
+- Visual roles (primary action, surfaces and borders, tags or status) score
+  visual dimensions: palette, radius, typography role, spacing rhythm, and
+  border or treatment.
+- Interaction roles score presentation plus behavioral dimensions.
+  Destructive confirmation: trigger placement, confirmation pattern
+  (dialog, inline, undo), destructive emphasis, cancel-first default,
+  acknowledgment recorded. Form validation: timing (submit, blur, live),
+  error placement, message treatment, invalid-field signaling, recovery
+  affordance.
+- Each dimension is pass or fail, independently; a palette mismatch does not
+  veto other dimensions. Role score: 2 when all mandatory dimensions pass,
+  1 when at least half pass, 0 otherwise.
+- Acknowledged deliberate departure: a departure documented at
+  implementation time in the run's own records is excluded from the role
+  score and reported separately with its rationale. An unacknowledged
+  departure counts as non-reproduction.
+- Viewports are separate observations: the primary analysis uses desktop
+  1280; mobile 390 is reported separately, never averaged in.
+- All six roles are applicable in every Phase B run by construction.
+  Missing data is failure, per section 2.
+- Dimension-level scores are reported alongside every composite.
+
+**Convention reproduction rate.** For each run: R_i = (sum of role scores) /
+(2K), over the K roles classified Established in the census. Reported as
+every individual run value, per-role tables for both conditions, and
+condition medians. Raw Jaccard overlap over computed-style values remains a
+secondary diagnostic. A distinctiveness note reports which of A's
+established conventions also appear in the no-authority calibration builds
+(that is, are plausibly generic model priors), reported by role, never
+excluded from analysis.
+
+**Instrument discrimination, reliability, and the minimum meaningful
+difference (three separate things).**
+
+- *Discrimination* is established during calibration and reported per role:
+  does the instrument separate anchor pairs that are known-same from pairs
+  that are known-different? Calibration anchors share the relationship of
+  the main comparison, independently implemented different applications with
+  and without a shared authority: (a) Triage concept site versus Duty
+  console (shared authority, existing builds), and (b) two reduced-scope
+  calibration builds commissioned at setup from the frozen Phase B brief
+  with no records and no prior code (no shared authority; they also serve as
+  the model-prior reference). Each anchor is reported individually; bands
+  are never pooled into a threshold. Same-lineage pairs (Cadence v1 versus
+  v3) are diagnostic only and are excluded from threshold derivation. For
+  any role the anchors do not expose, discrimination is reported as unknown
+  and quantitative results for that role are flagged, with the blind measure
+  carrying the weight for it.
+- *Reliability* is reported as inter-rater agreement: exact agreement and
+  the within-one-point share across the three reviewers, per pair.
+- *The minimum meaningful treatment effect (MMD)* is one fully reproduced
+  established role: MMD = 1/K on the normalized scale (approximately 0.167
+  when K = 6). It is committed now, grounded in the scoring granularity, and
+  is not derived from calibration.
+
+**H2 gate.** H2 holds only when all of: K is at least 4; the difference
+between condition medians, delta_R = median(R_records) minus
+median(R_baseline), is at or above MMD; the blind median improvement is at
+least 1.0 point in the same direction; and the instrument is discriminating
+for the affected roles. Sensitivity analyses (means instead of medians,
+leave-one-role-out) are reported as secondary and can never override the
+primary decision. Individual runs are always reported; a threshold crossing
+is not described as statistical confirmation.
+
+**H3, temporal and mechanistic.** For each established, accessible
+precedent, per records-only run: was the relevant record inspected *before*
+implementation of the corresponding surface began (timestamps from the
+audited wrapper and the transcript step timeline), was the implementation
+faithful to the established precedent or an acknowledged departure, or was
+it not consulted at all. Reported per role. This replaces any use of
+"correct reproduction"; fidelity is measured against established precedent,
+because no adjudicated authority exists in this experiment.
 
 **Unsupported deviation rate (records-access runs only).** The proportion of
-applicable, accessible conventions the run violates without acknowledging
-the departure. The silent-drift measure. Not scored for baseline runs.
+applicable, accessible conventions a run violates without acknowledging the
+departure. Not scored for baseline runs, which never received the archive.
 
-**Blind review.** Matched-region screenshot pairs, shuffled and anonymized:
-within-A handoffs (A1 vs A2, A2 vs A3), each Phase B run against A, baseline
-pairs against each other, and calibration anchors measured with the same
-instrument: (a) same-brief independent builds and (b) distinct apps under
-one known common authority (candidates: the Triage concept site versus the
-Duty console). Each reviewer answers two questions per pair: "how likely are
-these interfaces to belong to the same design system" (1 to 5), and "which
-elements are consistent or inconsistent" (short, itemized). Three
-independent reviewers where available; the mapping is sealed until scoring
-ends.
-
-**Calibration and the meaning of an improvement.** Before Phase B, run the
-instrument over a fixed calibration set: the known-same band is distinct
-apps under one known authority (the Triage concept site versus the Duty
-console) and same-lineage revisions (Cadence v1 versus v3); the
-known-different band is one app form under different authorities (the Wink
-site versus the Leader site). The minimum meaningful difference for role
-scores is the midpoint between the two bands' medians, fixed before any
-Phase B run; if the bands overlap, the instrument is declared
-non-discriminating at this scale and that limitation leads the report.
-Reviewer handling: per pair, the mean across reviewers; per-reviewer
-values and inter-rater agreement (share of ratings within one point) are
-reported alongside. H2 requires both: a condition-median role-score
-difference at or above the set minimum, and a blind median difference of at
-least 1.0 point in the same direction. Direction across individual runs is
-reported as a robustness display. No significance testing at this sample
-size; a marginal win is described as marginal, not as proof.
-
-**Record transfer, traceable.** For each frozen target role that Phase A
-established (per the census), per run: was the relevant decision available
-in the provided material, was it found and inspected, was it reproduced, and
-if divergent, was that deliberate and recorded.
-
-**Cost.** Identified correction requirements (reviewer-listed changes needed
-for consistency; not human editing time), wall time, and token use,
-comparing records-only against baseline.
-
-All screenshots and measurements are captured by the experimenter from the
-built artifact, never from an agent's self-report.
+**Cost and correction requirements.** Budget per run, frozen: 2700 seconds
+wall and a 20M sum_total token cap. Derivation: the benchmark's
+authority-condition single-page runs had a median of about 633 seconds and
+8.9M sum_total tokens; app builds are roughly twice the scope, so caps are
+set near 2.2x the benchmark median. Per run, report completion status per
+view, token use, wall time, and whether budget exhaustion affected any
+role's implementation (censored outcomes are named, not hidden). Identified
+correction requirements use a severity rubric: S1 conformance-critical
+(wrong role treatment or violation of an established convention), S2
+in-view inconsistency, S3 polish; weighted 3, 2, 1 and normalized per
+implemented view. Tolerance for H4: records-only median tokens and wall
+time within 1.25x baseline medians, and severity-weighted requirement
+scores per view within 0.5 severity points of baseline.
 
 ## 4 · Blinding
 
 Reviewers do not know the condition, run number, or which screenshots come
-from where. The mapping is sealed until scoring ends. Calibration anchors
-are embedded in the shuffled set and serve two purposes: describing whether
-the instrument separates known-same from known-different pairs, and
-collecting qualitative notes. A reviewer disagreeing with an anchor's
-intended classification is **not** disqualified; disagreement patterns are
-reported, and the reviewer's itemized explanations are treated as diagnostic
-evidence about why a quantitative measure reads as it does.
+from where. Pair orientation (which side is A), presentation order, and
+identifiers are randomized. Reviewers are independent of agent execution.
+The mapping is sealed until scoring ends. Three independent reviewers are
+the predetermined target; if fewer are available that is logged as a
+deviation. Each reviewer answers, per pair: "how likely are these interfaces
+to belong to the same design system" (1 to 5), and "which elements are
+consistent or inconsistent" (itemized). Calibration anchors are embedded in
+the shuffled set to describe instrument discrimination and collect
+qualitative notes. A reviewer disagreeing with an anchor's intended
+classification is not disqualified; disagreement patterns are reported, and
+the itemized explanations are treated as diagnostic evidence about why a
+quantitative measure reads as it does.
 
 ## 5 · Hypotheses and decision rules
 
-Framed as exploratory. Phase A is a single lineage; adjacent transitions are
-not independent observations. Phase B is the confirmatory surface, with
-three independent runs per condition.
+Framed as exploratory. Phase A is a single lineage; its transitions are not
+independent observations, and H1 concerns continuity under combined
+mechanisms (code inheritance, visible precedent, written records), reported
+descriptively. Phase B is the primary comparison surface.
 
-- **H1 (Phase A, within-app continuity):** newly introduced elements in A2
-  and A3 preserve the visual conventions A1 established, judged on the
-  new-element regions, not whole pages.
-- **H2 (Phase B, archival transfer):** records-only runs show greater
-  convention reproduction and blind-rated consistency with A than baseline
-  runs, by at least the pre-set minimum meaningful difference.
-- **H3 (record utility):** access to archived precedent increases correct
-  reproduction of established design conventions. Within records-access
-  runs, successful reproduction is supported by traceable consultation, and
-  deviations from applicable precedent are explicitly acknowledged.
-- **H4 (cost, optional):** records access does not worsen identified
-  correction requirements, wall time, or token use beyond the set budget
-  tolerance.
+- **H1 (Phase A, continuity):** newly introduced elements in A2 and A3
+  preserve the conventions established earlier, judged on the new-element
+  regions, not whole pages; descriptive only.
+- **H2 (Phase B, archival transfer):** delta_R at or above MMD, blind median
+  improvement of at least 1.0 in the same direction, K at least 4,
+  discriminating instrument.
+- **H3 (mechanism, records-only):** among established and accessible
+  precedents, the proportion inspected before implementation and reproduced
+  with fidelity, or explicitly departed from; reported per role.
+- **H4 (cost):** records-only within the frozen cost tolerances, wall time
+  and tokens within 1.25x baseline medians, severity-weighted requirements
+  within 0.5 points per view.
 
-Interpretation, fixed in advance:
+Decision table, fixed in advance:
 
-| Observed | Reading |
+| Result | Decision |
 |---|---|
-| Records-only meaningfully exceeds baseline | Evidence that the text archive supports cross-application design-language transfer under the tested conditions (text-only, unadjudicated precedent, one model, small n). Proceed to evaluating dedicated consultation tooling |
-| No meaningful difference | The archive effect is not detectable at this power. Consult the precedent census: poor formation (roles Absent or Inconsistent) reads as an upstream formation failure; adequate formation reads as transfer not demonstrated in this configuration |
-| Records-only below baseline | Reported honestly; investigate with the census and consultation rates before drawing conclusions |
-| Records-only wins on H2 but fails consultation traceability | Similarity without traceable use; investigate review artifacts and reproduction |
+| Fewer than 4 established roles | Formation insufficient for the planned primary transfer evaluation |
+| delta_R at or above MMD, blind improvement at least 1 point, discriminating instrument | Descriptive evidence supporting archival transfer |
+| 0 < delta_R < MMD | Positive but below the defined meaningful difference |
+| delta_R at or below 0 | No observed advantage in the primary role score |
+| Objective and blind measures disagree | Mixed evidence; both outcomes reported separately |
 
-Scope of the claim, stated now: the tested intervention is text-only,
-unadjudicated precedent. A negative result bounds that configuration. It
-would not show that design precedent generally cannot transfer, only that
-this archive form lacks sufficient visual specification, which motivates
-richer, evidence-grounded precedent (role-specific values, component
-examples, rendered references) in a follow-up.
+Interpretation notes, fixed in advance. If no meaningful difference is
+observed, the conclusion is "transfer was not demonstrated under the tested
+configuration," followed only by evidence-supported explanations, which may
+include weak precedent formation, insufficient consultation, ineffective
+prompting, application mismatch, constrained budgets, inadequate
+measurement sensitivity, or genuinely insufficient textual specification.
+The last is not assumed. A negative result bounds the text-only,
+unadjudicated configuration under one archive, one model, and one target
+task.
 
 ## 6 · Mechanics, controls, threats
 
 - Audited wrapper per workspace; every authority call logged. Sessions run
-  one at a time, chained as `systemd-run --user` units, transcripts archived.
-- Budget per run: proposed 45 minutes wall and a token cap set from the
-  benchmark baseline, recorded at freeze.
+  one at a time, chained as `systemd-run --user` units, transcripts archived
+  with step timelines.
+- Frozen budget per run: 2700 seconds wall, 20M sum_total tokens.
 - No human fixes, no mid-run codification, no re-runs except infrastructure
   failures, logged as deviations.
 - The precedent-consult tooling designed earlier remains on ice. The
   instruction layer stands in for it. Stated in the report.
-- Threats: Phase A is one lineage (exploratory); three runs per condition is
-  small; one model; the role-aware census measures surface agreement, not
-  composition quality; formation quality may dominate transfer results,
-  which the census separates rather than hides; calibration region mapping
-  is approximate where a calibration page's markup does not expose the
-  target roles cleanly, and that is reported.
-- Agents are never told this plan, the conditions, or the metrics.
+- Threats: one archive is one experimental unit (three records-only runs are
+  replications of agent behavior conditional on that archive, not three
+  independent formation events); one model; possible ceiling effect if A
+  converges on generic model priors, quantified by the distinctiveness note
+  and the no-authority calibration builds rather than assumed away;
+  reviewer learning mitigated by randomized orientation and order;
+  recorded budgets may censor slow runs, which is reported.
+- Agents are never told this plan, the conditions, or the metrics; briefs
+  are frozen annexes.
 
 ## 7 · Results
 
 To be appended after the runs, the census, the calibration, and the blind
-review. Materials live under `docs/experiments/seed-evolution/` in the house
-layout: per-run workspaces and audits, the sealed checkpoint manifests, the
-precedent census, screenshots, census outputs, reviewer sheets, the
-calibration record, and the sealed mapping.
+review. Materials live under `docs/experiments/seed-evolution/`: per-run
+workspaces and audits, sealed checkpoint manifests, the precedent census,
+fixture screenshots, census outputs, reviewer sheets, the calibration
+record, the run-order seed, and the sealed mapping.
 
-## 8 · Remaining owner knobs (everything else is settled by the reviews)
+## 8 · Final confirmations (owner)
 
-1. App genres: bookmarks manager and meal planner, or something else.
+1. Model: pin the same one as the C-condition benchmark runs, or another.
 2. Blank authority name: placeholder `base`.
-3. Model: pin the same one as the C-condition benchmark runs, or another.
-4. Budget numbers: 45 minutes wall plus a baseline token cap, both recorded
-   at freeze.
-5. Interface: audited CLI wrapper as the measured path, MCP optional.
-6. Reviewers: three independent if available; otherwise two.
-7. Confirm the frozen target roles as listed in section 2.
+3. Confirm the frozen budgets (2700s wall, 20M tokens), cost tolerances
+   (1.25x, 0.5 severity points per view), and three predetermined reviewers.
+4. Confirm commissioning the two reduced-scope no-authority calibration
+   builds at setup.
+5. Confirm that agent-facing brief texts are frozen as annexes at freeze
+   time.
 
 On confirmation: this document becomes the pre-registered plan, committed
 and dated, before any session runs.
