@@ -75,6 +75,32 @@ proposal files referenced in transcripts.
   contrast in practice tested *consultation + canon*, not *tooling
   enforcement*.
 
+**Root cause (traced same day, from the cod brief + protocol + materials):**
+this is not a codification failure. The canon **was** codified — 36 records
+adjudicated → 6 artifacts, 4 rules, 1 prohibition, 9 golden cases, 2
+candidates; 14 RESOLVED rulings were actually served during the drift phase.
+What was never *produced* is **checkable rules** (validators), at three
+layers:
+
+1. The pack-format spec marks `validators.json` **optional** ("declared
+   validator commands"); the cod brief's deliverables did not include it and
+   its acceptance test was only "the pack loads and answers" (overview + 3
+   resolves). The session wrote `"validators": []` explicitly.
+2. A validator is a declared *command* — real lint tooling. **No bookmarks
+   linter was ever built or staged by anyone** (materials contain none; the
+   only validator tooling on the box belongs to the real Triage authority).
+   There was literally nothing to declare.
+3. The B/C protocol — the thing sessions actually followed — never mentions
+   `validate`. Its enforcement is consultative: resolve → adopt; CONFLICT →
+   reconcile; UNDEFINED → decide + file. Sessions followed it faithfully.
+
+⇒ The C-design's "validate against canon" (§6.3) was never operationalized
+end-to-end: **consultation-enforcement worked; inspection-enforcement had
+nothing to run.** Log as a program-design gap, not an execution failure.
+(Reinforcing detail: the canon's rules DO shape resolve outcomes — B001
+semantic-tokens etc. — so violations were surfaced only when an agent chose
+to ask, never by inspection.)
+
 ## 4 · Did sessions follow the briefs? (checked axes — all pass)
 
 - **Brief read in-session:** every session (BRIEF mentions 4-10×).
