@@ -160,6 +160,14 @@ def refresh(auth, force=False):
                             capture_output=True, text=True)
         if rc.returncode == 0:
             print("%s: site refresh committed" % auth)
+            push = subprocess.run(["git", "-C", repo, "push", "-q"],
+                                  capture_output=True, text=True,
+                                  env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
+            if push.returncode == 0:
+                print("%s: site refresh pushed" % auth)
+            else:
+                print("%s: push failed (kept local): %s"
+                      % (auth, (push.stderr or "").strip()[:120]))
     return "refreshed (v%s, %d artefacts%s)" % (version, len(ids),
                                                 ", notice shown" if notice else "")
 

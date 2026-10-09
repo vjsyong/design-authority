@@ -197,3 +197,13 @@ background censuses); its clean build re-runs at 21 PASS / 1 known finding
 clean under verifier v2 (23/0/3, 15/15, 23/0/7/4); dominion's contract
 gained the wink-class link check (`dominion/nav-link-ink`, UA-default link
 leak) at 0.2.
+
+**CI closed the loop (same day).** The meta workflow gained a
+`verify-contracts` matrix: each contract-holder's pack is run against its
+recorded target (`examples/cadence3-leader`, `examples/cadence3-dominion`,
+`examples/phantom-audit`, `examples/wink-calendar`) via `tools/ci_verify.py`,
+red on any finding outside the recorded baseline (`docs/ci/`), on every push,
+nightly, and on demand. The calendar app moved into
+`examples/wink-calendar/` to serve as wink's stable CI target. The refresh
+timer now pushes its commits (gh credential helper, non-interactive), so
+regenerated briefs/zips reach GitHub without a manual batch.

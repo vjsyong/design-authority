@@ -1,0 +1,24 @@
+{
+  "note": "Consumer map for the wink verification contract (v0.2). This app keeps most recorded selectors (.cta, .brand, .badge, .btn) but names other surfaces its own way; the map lets the contract engage it. Context + adjudication: design-authority docs/experiments/06-consumer-flow-wink-calendar.md.",
+  "files": {
+    "css": ["styles.css"],
+    "html": ["index.html"],
+    "js": ["app.js"]
+  },
+  "selectors": {
+    ".dlg": ".dialog",
+    ".cta.dark": ".btn-ink",
+    ".cta.outline": ".btn-outline",
+    ".card:not(.tinted):not(.today-note)": [".month", ".daypanel"],
+    "#emptyState": ".empty"
+  },
+  "ignore": {
+    "wink/progress-ring": "no progress display in this app",
+    "wink/badge-shape": "the badge renders only inside an all-day agenda row; verifier fixtures for seeded states are not yet supported",
+    "wink/ledger-head": "the day agenda composes ledger rows without a table header",
+    "wink/status-words": "no status widget in this app",
+    "wink/tick-marked": "review-instrument mark; consumer builds do not ship it",
+    "wink/no-floating-surfaces": "the check's interaction fixture (.log-tick double-toggle) is reference-specific; the app's overlays were verified hidden at rest (see experiment doc 06)",
+    "wink/destructive-not-focused": "the app's confirm opens from inside the edit dialog; the check's default-view trigger and native-dialog assumptions cannot drive it (see experiment doc 06)"
+  }
+}

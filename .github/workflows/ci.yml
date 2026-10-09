@@ -1,6 +1,11 @@
 name: design-authority-ci
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
 
 jobs:
   verify:
@@ -29,3 +34,20 @@ jobs:
               python3 tools/check_artefacts_css.py --auth $a
             fi
           done
+
+  verify-contracts:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        auth: [wink, leader, dominion, phantom]
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch the authority repos (public)
+        run: bash authorities/bootstrap.sh
+      - name: playwright + chromium
+        run: |
+          python3 -m pip install --quiet playwright
+          python3 -m playwright install --with-deps chromium
+      - name: verification contract vs recorded target
+        run: python3 tools/ci_verify.py --auth ${{ matrix.auth }}

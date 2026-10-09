@@ -1,0 +1,7 @@
+{
+ "_note": "CI contract verification targets (see docs/ci/README.md). expected_findings = recorded known state, never a silencer for new problems.",
+ "wink":     {"target": "examples/wink-calendar", "expected_findings": []},
+ "leader":   {"target": "examples/cadence3-leader", "expected_findings": ["leader/focus-visible"]},
+ "dominion": {"target": "examples/cadence3-dominion", "expected_findings": []},
+ "phantom":  {"target": "examples/phantom-audit", "expected_findings": []}
+}

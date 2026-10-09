@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wink Calendar</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- component/navbar (W-11): white background; dark links; hover = light-grey
+     rounded-rect fill; primary CTA at right end; must stay single-row. -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#">Wink Calendar</a>
+    <nav class="topbar-right" aria-label="Calendar navigation">
+      <button type="button" class="btn btn-ghost" id="nav-prev" aria-label="Previous month">&lsaquo;</button>
+      <button type="button" class="btn btn-ghost" id="nav-next" aria-label="Next month">&rsaquo;</button>
+      <button type="button" class="btn btn-outline" id="nav-today">Today</button>
+      <h1 class="month-title" id="month-title" aria-live="polite">—</h1>
+      <button type="button" class="cta" id="btn-new">New event</button>
+    </nav>
+  </div>
+</header>
+
+<main class="app">
+  <div class="app-grid">
+
+    <!-- month grid: UNRECORDED in the pack (gap filed). Composed from the
+         nearest recorded pieces: structural square chrome (guideline/shape-language),
+         ledger hairline dividers (component/ledger), parsnip/white surfaces
+         (token-set/colour), today as a brand yellow field (token-set/colour). -->
+    <section class="month" data-improv="" aria-label="Month view">
+      <div class="month-dows" id="month-dows"></div>
+      <div class="month-cells" id="month-cells"></div>
+    </section>
+
+    <!-- day agenda: component/ledger (W-20) + component/card (W-07) vessel -->
+    <section class="daypanel" aria-label="Day agenda">
+      <div class="daypanel-head">
+        <p class="slabel" id="day-label">—</p>
+        <h2 id="day-title">—</h2>
+      </div>
+      <div id="day-body"><!-- ledger / empty-state rendered here --></div>
+    </section>
+
+  </div>
+
+  <!-- pattern/inline-notice: parsnip-filled rounded block, bold lead + plain
+       supporting line. No toast pattern observed, so feedback lives here. -->
+  <div class="notice" id="notice" role="status" hidden>
+    <p class="notice-lead" id="notice-lead"></p>
+    <p class="notice-sub" id="notice-sub"></p>
+  </div>
+</main>
+
+<!-- pattern/dialog-overlay: white 16px-rounded card on a warm ink scrim,
+     instant appearance (no motion invented), content from existing primitives. -->
+<div class="scrim" id="scrim" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+    <h2 id="dlg-title">New event</h2>
+    <form id="event-form" novalidate>
+      <label class="field">
+        <span class="field-label">Title</span>
+        <input type="text" name="title" class="field-input" placeholder="What's happening?" required>
+      </label>
+      <div class="field-row">
+        <label class="field">
+          <span class="field-label">Date</span>
+          <!-- fallback/platform-controls: native date, wink field styling -->
+          <input type="date" name="date" class="field-input" required>
+        </label>
+        <label class="field field-all">
+          <span class="field-label">All day</span>
+          <!-- fallback/platform-controls: native checkbox, wink field styling -->
+          <input type="checkbox" name="allday">
+        </label>
+      </div>
+      <div class="field-row" id="time-row">
+        <label class="field">
+          <span class="field-label">Starts</span>
+          <!-- fallback/platform-controls: native time, wink field styling -->
+          <input type="time" name="start" class="field-input">
+        </label>
+        <label class="field">
+          <span class="field-label">Ends</span>
+          <input type="time" name="end" class="field-input">
+        </label>
+      </div>
+      <label class="field">
+        <span class="field-label">Notes</span>
+        <textarea name="notes" class="field-input" rows="3" placeholder="Anything worth remembering"></textarea>
+      </label>
+      <p class="field-error" id="field-error" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn-ghost-danger" id="btn-delete" hidden>Delete</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-outline" id="btn-cancel">Cancel</button>
+        <button type="submit" class="cta" id="btn-save">Create event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- pattern/destructive-confirm: 16px confirm dialog; consequence sentence in
+     the warm voice; confirm = ink-filled pill with the concrete verb (never
+     "OK"); cancel = outline pill; the destructive action never gets default
+     focus (focus goes to the cancel button). -->
+<div class="scrim" id="scrim-confirm" hidden>
+  <div class="dialog dialog-narrow" role="alertdialog" aria-modal="true" aria-labelledby="conf-title" aria-describedby="conf-text">
+    <h2 id="conf-title">Delete this event?</h2>
+    <p class="conf-text" id="conf-text"></p>
+    <div class="dialog-actions">
+      <span class="spacer"></span>
+      <button type="button" class="btn btn-outline" id="conf-cancel">Keep it</button>
+      <button type="button" class="btn btn-ink" id="conf-confirm">Delete event</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

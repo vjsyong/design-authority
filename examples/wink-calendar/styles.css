@@ -1,0 +1,236 @@
+/* Wink Calendar — styles.css
+   Every recorded value quoted from the Wink pack (authority-wink 0.2.0):
+   token-set/colour (W-06), token-set/type-scale (W-05), guideline/typography
+   (W-04), component/action-pill (W-01..03), component/navbar (W-11),
+   component/card (W-07), component/ledger (W-20), component/field-select,
+   component/badge, pattern/dialog-overlay, pattern/destructive-confirm,
+   pattern/empty-state, pattern/inline-notice, guideline/shape-language (W-08),
+   fallback/platform-controls. Improvisations are marked with data-improv in
+   HTML and noted inline here. */
+
+/* ============================================================
+   TYPE — guideline/typography (W-04) + token-set/type-scale (W-05)
+   Soft-serif display (Fraunces) for headlines; grotesque (Inter) elsewhere.
+   Scale: display 48–64 w400 tight tracking (−1.2px at 64); section 35/1.0;
+   body 16/1.35; small 14; labels/buttons 13/500.
+   ============================================================ */
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fonts/Fraunces-Italic-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Inter";src:url("fonts/Inter-VF.ttf") format("truetype-variations");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* ============================================================
+   COLOUR — token-set/colour (W-06), quoted exactly:
+   yellow = brand field + primary action only; peppercorn = text, ink,
+   shadow tint; white + Parsnip = surfaces; #BF4055 = error text/fills.
+   Parsnip tint is a CONSTRUCTION (hex unrecorded) at low alpha of the
+   recorded warm-ink mechanism — same construction as the reference site
+   (gap/20261008-165711-89f9be).
+   ============================================================ */
+:root{
+  --yellow:#FFE01B;   /* Cavendish Yellow — brand field + primary action only */
+  --ink:#231E15;      /* Peppercorn — text, ink, shadow tint */
+  --white:#FFFFFF;    /* surfaces */
+  --hairline:#DEDDDC; /* 1px borders on inputs/dividers only, never on cards */
+  --parsnip:rgba(35,30,21,.05); /* warm surface tint (construction) */
+  --scrim:rgba(35,30,21,.35);   /* dialog overlay scrim (recorded alpha) */
+  --cardshadow:rgba(35,30,21,.2) 0 8px 32px; /* component/card (W-07) */
+  --error:#BF4055;    /* error text/fills */
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+body{
+  margin:0;background:var(--white);color:var(--ink);
+  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.35;font-weight:400;
+}
+button{font:inherit;color:inherit}
+/* component/navbar (W-11): "dark links" — links render in Peppercorn ink,
+   not the UA default link blue/purple. */
+a{color:var(--ink)}
+
+/* focus must not rely on colour alone (component/action-pill a11y note);
+   the 2px ink is the system's own outline weight (secondary outline pill).
+   Construction — marked. */
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:4px}
+
+/* ============================================================
+   TOP BAR — component/navbar (W-11): white background; dark links; hover =
+   light-grey rounded-rect fill; primary CTA at right end; single-row.
+   ============================================================ */
+.topbar{background:var(--white);position:sticky;top:0;z-index:10}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding-block:12px;padding-inline:24px;flex-wrap:nowrap;white-space:nowrap}
+.brand{font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0}
+.topbar-right{display:flex;align-items:center;gap:4px;flex-wrap:nowrap}
+.month-title{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:35px;
+  line-height:1.0;margin:0 8px;letter-spacing:0}
+@media (max-width:760px){
+  .topbar-inner{padding-inline:16px;overflow-x:auto}
+  .month-title{font-size:24px}
+}
+
+/* ============================================================
+   BUTTONS — component/action-pill (W-01..03):
+   primary = pill, #FFE01B fill, 1px ink ring (box-shadow 0 0 0 1px #231E15),
+   label in Peppercorn ink; hover translateY(-4.875px) + hard ink shadow
+   0 4.875px 0 0 (zero blur). Secondary = outline pill (2px ink inset).
+   Padding 12px/20px is a construction (unrecorded) per the reference site.
+   ============================================================ */
+.btn{display:inline-block;border:0;cursor:pointer;border-radius:999px;
+  padding:12px 20px;font-size:13px;font-weight:500;line-height:1;background:transparent}
+/* .cta is the complete primary action-pill (W-01..03): pill radius is part of
+   the record, so it lives here — not only on .btn — so any .cta is a pill. */
+.cta{display:inline-block;background:var(--yellow);color:var(--ink);
+  border-radius:999px;box-shadow:0 0 0 1px var(--ink);
+  padding:12px 20px;font-size:13px;font-weight:500;line-height:1;
+  border:0;cursor:pointer}
+.cta:hover{transform:translateY(-4.875px);box-shadow:0 0 0 1px var(--ink),0 4.875px 0 0 var(--ink)}
+.btn-outline{box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-outline:hover{background:var(--parsnip)}
+.btn-ink{background:var(--ink);color:var(--white);box-shadow:0 0 0 1px var(--ink)}
+.btn-ink:hover{transform:translateY(-4.875px);box-shadow:0 0 0 1px var(--ink),0 4.875px 0 0 var(--ink)}
+
+/* Ghost nav arrows: UNRECORDED (gap filed). Composed from the nearest
+   recorded pieces: secondary outline pill treatment at a smaller scale,
+   in a square structural chrome. data-improv in HTML. */
+.btn-ghost{padding:8px 12px;border-radius:12px;font-size:16px;font-weight:500;
+  box-shadow:inset 0 0 0 1px var(--hairline)}
+.btn-ghost:hover{background:var(--parsnip)}
+.btn-ghost-danger{color:var(--error);box-shadow:inset 0 0 0 2px var(--error)}
+.btn-ghost-danger:hover{background:rgba(191,64,85,.08)}
+
+/* ============================================================
+   APP LAYOUT — page-level composition is unrecorded (same gap the reference
+   site filed: 5f8d96). Two-panel shell: month grid left, day agenda right.
+   data-improv in HTML.
+   ============================================================ */
+.app{padding:24px}
+.app-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+@media (max-width:920px){.app-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   MONTH GRID — UNRECORDED (gap filed). Nearest recorded pieces:
+   structural chrome is square (guideline/shape-language); row dividers are
+   ledger hairlines #DEDDDC (component/ledger); surfaces are white/parsnip
+   (token-set/colour); today is the brand yellow field (token-set/colour).
+   ============================================================ */
+.month{background:var(--white);border:0;box-shadow:var(--cardshadow);
+  border-radius:16px;overflow:hidden} /* vessel = recorded card 16-radius, borderless */
+.month-dows{display:grid;grid-template-columns:repeat(7,1fr);
+  background:var(--parsnip)} /* Parsnip header row, 13/500 labels (ledger) */
+.month-dows span{padding:8px 12px;font-size:13px;font-weight:500;text-align:center}
+.month-cells{display:grid;grid-template-columns:repeat(7,1fr);
+  grid-auto-rows:96px}
+.cell{border-top:1px solid var(--hairline);border-left:1px solid var(--hairline);
+  padding:6px;display:flex;flex-direction:column;gap:3px;overflow:hidden;cursor:pointer}
+.cell:nth-child(7n+1){border-left:0}
+.cell .dnum{font-size:14px;font-weight:500;line-height:1.2}
+.cell.out{background:var(--parsnip)}       /* adjacent-month days, warm tint */
+.cell.out .dnum{color:rgba(35,30,21,.5)}
+.cell.today{background:var(--yellow)}       /* brand field (token-set/colour) */
+.cell.today .dnum{font-weight:700}
+.cell:hover{background:var(--parsnip)}
+.cell.today:hover{background:var(--yellow)}
+.cell.sel{box-shadow:inset 0 0 0 2px var(--ink)} /* selected day = outline-pill weight */
+/* Drag-over drop target: reuses the recorded 2px ink inset-ring mechanism
+   (same as the selected-day state). The drag interaction itself is an
+   improvisation — UNRECORDED in the pack (gap filed). data-improv in HTML. */
+.cell.drop-target{box-shadow:inset 0 0 0 2px var(--ink);background:var(--parsnip)}
+.cell.drop-target.today{background:var(--yellow)}
+.chip[draggable="true"],.agenda-row[draggable="true"]{cursor:grab}
+.chip.dragging,.agenda-row.dragging{opacity:.4}
+
+/* Event chip: UNRECORDED (gap filed). Composed from component/badge
+   (pill, 12/600) at reduced scale; yellow fill is reserved for primary
+   actions, so chips use the parsnip tint with ink text and a 1px ink ring.
+   border:0 is essential — without it the UA default <button> border adds a
+   second stroke (the "reflection" double-ring). */
+.chip{display:block;width:100%;text-align:start;padding:3px 8px;border-radius:999px;
+  border:0;font-size:12px;font-weight:600;background:var(--parsnip);
+  box-shadow:0 0 0 1px var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip .chip-time{font-weight:500}
+.chip-more{font-size:12px;font-weight:500;padding:0 8px}
+
+/* ============================================================
+   DAY PANEL — component/card (W-07): white, borderless, radius 16,
+   warm ink-tinted shadow, interior padding 48 (scaled to 24 for a side
+   panel — construction).
+   ============================================================ */
+.daypanel{background:var(--white);border-radius:16px;box-shadow:var(--cardshadow);
+  padding:24px;min-height:280px}
+.daypanel-head{margin-bottom:16px}
+.slabel{font-size:13px;font-weight:500;text-transform:uppercase;margin:0 0 8px}
+.daypanel h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:35px;
+  line-height:1.0;margin:0}
+
+/* Day agenda rows — component/ledger (W-20): 16px padded rows, hairline
+   #DEDDDC dividers, no zebra striping, row hover = Parsnip tint. */
+.agenda{margin-top:8px}
+.agenda-row{display:flex;align-items:baseline;gap:12px;padding:16px 8px;cursor:pointer}
+.agenda-row + .agenda-row{border-top:1px solid var(--hairline)}
+.agenda-row:hover{background:var(--parsnip)}
+.agenda-time{font-size:13px;font-weight:500;min-width:88px}
+.agenda-title{font-size:16px;font-weight:500}
+.agenda-notes{display:block;font-size:14px;margin-top:4px}
+
+/* All-day marker — component/badge: pill, yellow fill, 12/600 label. */
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--yellow);
+  font-size:12px;font-weight:600;box-shadow:0 0 0 1px var(--ink)}
+
+/* ============================================================
+   EMPTY STATE — pattern/empty-state: centered notice card; serif headline,
+   one plain warm sentence, one primary pill action.
+   ============================================================ */
+.empty{margin:32px 0;text-align:center}
+.empty h3{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:24px;
+  line-height:1.15;margin:0 0 8px}
+.empty p{font-size:16px;margin:0 0 16px}
+
+/* ============================================================
+   INLINE NOTICE — pattern/inline-notice: parsnip-filled rounded block,
+   bold lead sentence + plain supporting line.
+   ============================================================ */
+.notice{margin-top:16px;background:var(--parsnip);border-radius:16px;
+  padding:16px 20px}
+.notice-lead{font-weight:700;font-size:16px;margin:0 0 4px}
+.notice-sub{font-size:14px;margin:0}
+
+/* ============================================================
+   DIALOG — pattern/dialog-overlay: white 16px-rounded card on a warm ink
+   scrim (rgba(35,30,21,.35)), instant appearance (no motion invented).
+   ============================================================ */
+.scrim{position:fixed;inset:0;background:var(--scrim);display:flex;
+  align-items:flex-start;justify-content:center;padding:8vh 16px 16px;z-index:100;overflow:auto}
+.dialog{background:var(--white);border-radius:16px;box-shadow:var(--cardshadow);
+  width:100%;max-width:520px;padding:48px} /* padding: component/card record (48) */
+.dialog-narrow{max-width:420px}
+.dialog h2{font-family:"Fraunces",Georgia,serif;font-weight:400;font-size:35px;
+  line-height:1.0;margin:0 0 16px}
+.conf-text{font-size:16px;margin:0 0 24px}
+.dialog-actions{display:flex;align-items:center;gap:8px;margin-top:24px}
+.spacer{flex:1}
+
+/* ============================================================
+   FIELDS — component/field-select + fallback/platform-controls:
+   1px #DEDDDC border, radius 8, warm ink text, native semantics kept.
+   ============================================================ */
+.field{display:block;flex:1}
+.field-label{display:block;font-size:13px;font-weight:500;margin-bottom:6px}
+.field-input{width:100%;padding:12px 14px;border:1px solid var(--hairline);
+  border-radius:8px;background:var(--white);color:var(--ink);
+  font-family:inherit;font-size:16px}
+.field-input:focus{border-color:var(--ink)}
+.field-input[aria-invalid="true"]{border-color:var(--error)}
+textarea.field-input{resize:vertical}
+.field-row{display:flex;gap:12px}
+.field-all{display:flex;align-items:center;gap:8px}
+.field-all input{width:20px;height:20px;accent-color:var(--ink)}
+.field-all .field-label{margin:0}
+.field-error{color:var(--error);font-size:14px;margin:12px 0 0}
+
+/* Responsive: stack the field rows */
+@media (max-width:520px){
+  .field-row{flex-direction:column}
+  .dialog{padding:24px}
+}
