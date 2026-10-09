@@ -165,9 +165,23 @@ green):
 Also fixed: the last `packs/` stragglers (`compile_pack.py` output dir; the
 `synthesize-authority` skill's commands).
 
-**Follow-ups (open):** mutation runs for the two new checks (pending an
-approval-blocked command); deploy the dialog-padding fix to the live
-`/var/www/wink` copy (needs sudo); reconcile the wink contract with the
-current reference docs site (~13 checks target the fuller build: `.dlg`,
-`#ringFill`, `.log-tick`, `app.css`-era layout) - its own pass, owner decides
-scope.
+**Follow-ups (closed same day).** Mutation runs: `.cta` gains a border under
+its ink ring -> `wink/no-double-stroke` VIOLATION (double_stroke 3 of 4 ringed,
+per-element detail); the ink-link rule removed -> `wink/brand-link-ink`
+VIOLATION (`[el 1/1] color: rgb(0, 0, 238)`, the UA default). Each mutation hit
+exactly its target check, no collateral (22 PASS / 1 VIOLATION of 34 each).
+The first chip-targeted attempt did not fire and the diagnosis is worth
+keeping: the verifier scans the unseeded rest state, where the app renders no
+chips (no stored events) - a chip-class A/B probe then showed the scan flags a
+synthetic chip under the mutated rule and not under the fixed one, so the
+check logic is proven and seeded-state fixtures are the standing tooling
+follow-up (already flagged in the app's `verify.map.json`). Evidence:
+`assets/06-mutations/evidence.json`. Dialog-padding fix deployed to the live
+`/var/www/wink` copy (caddy-owned, cmp-identical) and verified served at
+`https://gpu-vm1.bigscale-snapper.ts.net/wink/styles.css` (`padding:48px`
+present, stale `32px` absent). Reference-site reconciliation: classified - the
+13 docs-site non-PASS checks all target build treatments the records page
+never renders (dialogs, progress ring, ledger head, badges, status, empty
+states, dark/outline variants, review instruments); none are measured-value
+drift, so the contract stays as-is and the docs site remains a records view,
+not a build target.

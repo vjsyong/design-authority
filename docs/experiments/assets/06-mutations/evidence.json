@@ -1,0 +1,34 @@
+{
+ "date": "2026-10-09",
+ "context": "negative tests for wink contract 0.2 checks (consumer-flow fixes, experiment 06)",
+ "mut1b": {
+  "mutation": ".cta rule gains 'border:2px solid var(--ink)' (border under ink ring)",
+  "verifier": "VIOLATION 1 of 34",
+  "check": "wink/no-double-stroke",
+  "evidence": {
+   "ringed_elements": 4,
+   "double_stroke": 3,
+   "detail": [
+    "cta: ring rgb(35,30,21) 0x0x0 1px, border 2/2/2/2 rgb(35,30,21)",
+    "cta: ring rgb(35,30,21) 0x0x0 1px, border 2/2/2/2 rgb(35,30,21)",
+    "cta: ring rgb(35,30,21) 0x0x0 1px, border 2/2/2/2 rgb(35,30,21)"
+   ]
+  }
+ },
+ "mut2": {
+  "mutation": "a{color:var(--ink)} removed (links fall to UA default)",
+  "verifier": "VIOLATION 1 of 34",
+  "check": "wink/brand-link-ink",
+  "evidence": {
+   "observed": "[el 1/1] color: rgb(0, 0, 238)"
+  }
+ },
+ "chip_probe": {
+  "note": "original .chip mutation did not fire because the docs app renders no chips at rest (no seeded events); chip-class A/B probe: injecting <button class='chip'> under the mutated CSS -> double_stroke ['chip']; under the fixed CSS -> 0. Scan logic verified; rest-state coverage limitation stands (map notes 'verifier fixtures for seeded states not yet supported')."
+ },
+ "totals_confirmation": {
+  "clean_app": "23 PASS / 0 VIOL / 7 N/A / 4 REVIEW",
+  "mut1b": "22 PASS / 1 VIOL (no-double-stroke)",
+  "mut2": "22 PASS / 1 VIOL (brand-link-ink)"
+ }
+}
