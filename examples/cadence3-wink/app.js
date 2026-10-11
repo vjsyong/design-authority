@@ -190,7 +190,7 @@ function renderCharts() {
     const h = Math.max(4, Math.round((vals[i] / max) * 118));
     const lab = DFULL[dparse(d).getDay()].charAt(0);
     return '<div class="bar-col"><span class="bar-num">' + vals[i] + '</span>' +
-           '<span class="bar-rule" style="height:' + h + 'px"></span>' +
+           '<span class="bar-rule' + (d === TODAY ? " today" : "") + '" style="height:' + h + 'px"></span>' +
            '<span class="bar-day">' + lab + (d === TODAY ? " ·" : "") + '</span></div>';
   }).join("");
   const bars = document.getElementById("barsWrap");

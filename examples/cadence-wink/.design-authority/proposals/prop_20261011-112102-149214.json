@@ -1,0 +1,71 @@
+{
+ "id": "prop_20261011-112102-149214",
+ "gap_id": "gap/20261011-112102-15f1d4",
+ "problem": "The pack carries no search-box / filter-field canon: 'search box', 'search field', 'filter field' resolve UNDEFINED. The Cadence consumer improvised the search bar (composed from component/field-select language) and flagged it; the owner reviewed the build and ruled: 'Can codify as a canonical search box item' (stress verdict 33, 2026-10-08).",
+ "insufficiency": "No existing artifact covers a persistent search/filter field: component/field-select is a native select for small fixed sets, not a text entry with a clear affordance; no recipe composes one (recipes.json empty). The improvised treatment (pill field + trailing Clear affordance) already follows the wink pill language, so codification is a one-record addition, not a new primitive.",
+ "reuse_case": "Every data-backed consumer screen (ritual lists, ledgers, message lists) needs a fast text filter; the pill field + clear affordance is app-independent.",
+ "composition_check": "component/field-select language + the pill radius cover the surface; what's missing is the record itself: the canonical class, its states (empty/value/cleared), the clear affordance rule and the live-filter announcement. One component record is the smallest carrier.",
+ "proposed": {
+  "id": "component/search-box",
+  "kind": "component",
+  "title": "Search box",
+  "group": "Forms & inputs",
+  "aliases": [
+   "search box",
+   "search field",
+   "search bar",
+   "filter field",
+   "filter box",
+   "quick filter"
+  ],
+  "body": {
+   "class": "search-box",
+   "states": [
+    "default",
+    "focus",
+    "value",
+    "cleared (clear affordance hidden)"
+   ],
+   "do": [
+    "pill field (radius = half height), warm paper surface",
+    "results filter live; the region announces the count",
+    "the clear affordance appears only when there is a value and is a text link, not an icon button"
+   ],
+   "dont": [
+    "never a submit button — filtering is live",
+    "no magnifier icon dependence (no icon set in canon)"
+   ],
+   "quote": "Verdict 33 on the cadence3-wink review: 'Can codify as a canonical search box item.'"
+  }
+ },
+ "depends_on": [],
+ "new_primitives": [],
+ "tests": {
+  "golden": [
+   {
+    "problem": "a search box to filter the list",
+    "expect": "RESOLVED",
+    "expect_id": "component/search-box"
+   },
+   {
+    "problem": "filter rituals by name",
+    "expect": "RESOLVED",
+    "expect_id": "component/search-box"
+   }
+  ]
+ },
+ "status": "proposed",
+ "review": {
+  "verdict": null,
+  "notes": "v3.2 revision of the cadence3-wink build, 2026-10-11; owner verdict 33 authorises codification.",
+  "evidence": "examples/cadence3-wink/ (the revised build)",
+  "reviewed_at": null,
+  "codified_summary": null
+ },
+ "authority": {
+  "authority": "wink",
+  "version": "0.3.0",
+  "commit": "authority-wink 0.3.0"
+ },
+ "created": "2026-10-11T11:21:02+00:00"
+}

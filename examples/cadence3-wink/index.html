@@ -72,7 +72,7 @@
       </div>
 
       <!-- search box: UNDEFINED → improvised (gap filed) -->
-      <div class="searchbar" data-decision="33" data-improvised="composed from component/field-select language">
+      <div class="searchbar" data-decision="33" data-improvised="composed from component/field-select language; v3.2: restyled as the canonical search box and proposed for codification (verdict 33)">
         <label class="sr-only" for="ritualSearch">Search rituals</label>
         <input type="search" id="ritualSearch" placeholder="Search rituals — name or category">
         <button class="tlink" id="searchClear" hidden>Clear</button>
@@ -109,7 +109,7 @@
 
       <div id="panelCharts" role="tabpanel" aria-labelledby="tabCharts">
         <!-- bar chart: declined precedent → minimal data block (numerals + rules) -->
-        <div class="card chartcard" data-decision="12" data-improvised="minimal data block — numerals + rules (precedent/declined-chart-treatments)">
+        <div class="card chartcard" data-decision="12" data-improvised="minimal data block — numerals + rules; v3.2: thicker bars, today in yellow (verdict 12)">
           <div class="chart-head">
             <h2 class="section">This week, day by day</h2>
             <p class="chart-total" id="barTotal">295 minutes in seven days.</p>
@@ -126,7 +126,7 @@
           <p class="chart-caption" id="heatLegendLabel">A yellow square is a day you showed up. The number is its minutes.</p>
         </div>
 
-        <div class="card chartcard" data-decision="14" data-improvised="minimal data block — rules + spacing (precedent/declined-chart-treatments)">
+        <div class="card chartcard" data-decision="14" data-improvised="minimal data block — rules + spacing; v3.2: kept minimal, sparkline deferred for promotion (verdict 14)">
           <div class="chart-head">
             <h2 class="section">The shape of seven days</h2>
           </div>
@@ -218,7 +218,7 @@
 
       <div class="card">
         <h2 class="section">Daily goal</h2>
-        <div class="field" data-decision="21" data-fallback="native slider — fallback/platform-controls">
+        <div class="field" data-decision="21" data-fallback="native slider, wink-styled (v3.2 revision, verdict 21) — fallback/platform-controls">
           <label for="goalSlider">Minutes a day</label>
           <input type="range" id="goalSlider" min="5" max="60" step="5" value="30">
           <p class="readout" id="goalOut">30 minutes a day — enough, not heroic.</p>
@@ -227,8 +227,8 @@
 
       <div class="card">
         <h2 class="section">Alerts</h2>
-        <div class="field checkline" data-decision="20" data-fallback="native toggle switch — fallback/platform-controls">
-          <input type="checkbox" id="remindersToggle" checked>
+        <div class="field checkline" data-decision="20" data-fallback="native toggle switch, pill-styled (v3.2 revision, verdict 20) — fallback/platform-controls">
+          <input type="checkbox" id="remindersToggle" class="pillswitch" checked>
           <label for="remindersToggle">Reminders — a daily nudge at 8:00</label>
         </div>
         <div class="field checkline" data-decision="26" data-fallback="native checkbox — fallback/platform-controls">
@@ -321,7 +321,7 @@
   <div class="wiz-step" id="wizStep3" hidden>
     <h3 class="wiz-h">How much is a good day?</h3>
     <p class="readout">A gentle target beats a heroic one.</p>
-    <div class="field" data-decision="21" data-fallback="native slider — fallback/platform-controls">
+    <div class="field" data-decision="21" data-fallback="native slider, wink-styled (v3.2 revision, verdict 21) — fallback/platform-controls">
       <label for="wizGoal">Minutes a day</label>
       <input type="range" id="wizGoal" min="5" max="60" step="5" value="30">
       <p class="readout" id="wizGoalOut">30 minutes.</p>

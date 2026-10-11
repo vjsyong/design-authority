@@ -1,6 +1,6 @@
 # Cadence · wink build — decision log (42 elements)
 
-**Build**: `examples/cadence3-wink/` — self-contained static app (`index.html` · `app.css` · `app.js` ·
+**Build (v3.2, 2026-10-11)**: `examples/cadence3-wink/` — self-contained static app (`index.html` · `app.css` · `app.js` ·
 `fonts/`), zero network (fonts vendored locally). A personal ritual tracker: Today · History ·
 Achievements · Settings, overlays for detail/confirm/onboarding, inline feedback, fixed fixtures.
 
@@ -336,3 +336,21 @@ agent claim:
 **Tested.** `docs/verification/tools/lens_check.py` — all assertions OK, zero
 console errors; screenshot `_evidence/screens/v31d-verification-lens.png`.
 Verifier re-run after the addition: wink 25/25 pass, 0 violations (unchanged).
+
+---
+
+## v3.2 revision — 2026-10-11 (the 14 owner verdicts)
+
+The review's verdict batch (7 accept · 5 modify · 1 reject · 1 undefined; store:
+`_evidence/cadence3-wink-verdicts-2026-10-08.json`) is applied:
+
+| # | verdict | disposition |
+|---|---|---|
+| 12 | modify | **applied** — bars are thicker (16px pill bars); today carries the yellow (`--yellow`); the numerals + caption keep the reading colour-independent |
+| 14 | reject | **deferred** — the sparkline trend is not built in this style; recorded as a first-class element for the next round (gap `gap/20261007-145939-b6450a` already names it) |
+| 16 | modify | **applied** — the title runs serif bold (Fraunces 700), keeping the italic emphasis fragment |
+| 20 | modify | **applied** — the toggle is a pill-shape slider (the native checkbox stays the control; mark note updated) |
+| 21 | modify | **applied** — a dedicated slider: pill track, yellow knob with an ink edge, visible focus (both instances) |
+| 33 | modify | **applied + proposed** — the search box is restyled as the canonical pill field and a codify-ready proposal filed (`prop_20261011-112102-149214`, gap `gap/20261011-112102-15f1d4`) |
+| 15, 18, 19, 22, 32, 38, v31t | accept | retained as reviewed |
+| 39 | undefined | retained (light-only fallback stands; the dark-theme gap stays open) |

@@ -1,0 +1,7 @@
+{
+ "note": "cadence3-wink build map. The contract's .brand targets the wink-notes brand LINK; this build's brand is the .wordmark span (the topbar nav is buttons, not links). Mapping keeps the check meaningful: the brand renders in ink, never a UA default. No ignore entries.",
+ "selectors": {
+  ".brand": ".wordmark"
+ },
+ "ignore": []
+}

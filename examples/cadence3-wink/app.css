@@ -49,7 +49,7 @@ button { font-family: inherit; }
 .display {
   font-family: 'Fraunces', serif;
   font-size: clamp(40px, 6vw, 64px);
-  font-weight: 400;
+  font-weight: 700;                /* v3.2 (verdict 16): serif bold for the title */
   letter-spacing: -0.02em;      /* ≈ −1.2px at 64 */
   line-height: 1.08;
   margin: 10px 0 12px;
@@ -168,8 +168,8 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
 .searchbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .searchbar input {
   font-family: 'Inter', sans-serif; font-size: 16px; color: var(--ink);
-  background: #fff; border: 1px solid var(--border); border-radius: 8px;
-  padding: 12px 14px; width: 100%; max-width: 420px;
+  background: #fff; border: 1px solid var(--border); border-radius: 999px;  /* v3.2 (verdict 33): the canonical search box — pill, per the wink language */
+  padding: 12px 18px; width: 100%; max-width: 420px;
 }
 
 /* ritual cards */
@@ -227,7 +227,8 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
 .bars { display: flex; gap: 20px; align-items: flex-end; height: 168px; padding: 0 4px 6px; border-bottom: 1px solid var(--border); }
 .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 8px; height: 100%; }
 .bar-num { font-size: 13px; font-weight: 500; }
-.bar-rule { width: 3px; background: var(--ink); border-radius: 999px; }
+.bar-rule { width: 16px; background: var(--ink); border-radius: 999px; }  /* v3.2 (verdict 12): thicker bars */
+.bar-rule.today { background: var(--yellow); }                            /* v3.2: today carries the yellow */
 .bar-day { font-size: 12px; color: var(--muted); }
 
 /* heatmap — minimal data block: rules + numerals */
@@ -239,7 +240,7 @@ a:focus-visible, .tlink:focus-visible { outline-offset: 3px; }
   display: grid; place-items: center; font-size: 9px; line-height: 1; color: var(--ink);
 }
 .heat-cell.on { background: var(--yellow); border-color: rgba(35,30,21,.18); }
-.heat-cell.today { box-shadow: 0 0 0 1px var(--ink); }
+.heat-cell.today { box-shadow: 0 0 0 1px var(--ink); border-color: transparent; }  /* v3.2: the ring replaces the border — single stroke */
 .heat-cell.future { border-style: dashed; }
 .heat-cell.blank { border-color: transparent; }
 
@@ -266,6 +267,35 @@ input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px
 .field.checkline { margin-bottom: 12px; }
 .checkline > label { display: inline; margin: 0; font-size: 15px; font-weight: 400; }
 .checkline input { width: auto; margin: 0; }
+
+/* v3.2 revision (verdict 20): toggle switches are pill sliders, like the pills.
+   The native checkbox stays the control (fallback/platform-controls); only its
+   dress changes. */
+.checkline input.pillswitch {
+  appearance: none; -webkit-appearance: none;
+  width: 46px; height: 26px; border-radius: 999px;
+  background: var(--parsnip); border: 1px solid var(--border);
+  position: relative; cursor: pointer; flex: 0 0 auto;
+  transition: background .15s ease, border-color .15s ease;
+}
+.checkline input.pillswitch::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: #fff; border: 1px solid var(--border);
+  transition: left .15s ease;
+}
+.checkline input.pillswitch:checked { background: var(--yellow); border-color: var(--ink); }
+.checkline input.pillswitch:checked::after { left: 24px; border-color: var(--ink); }
+.checkline input.pillswitch:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* v3.2 revision (verdict 21): the dedicated slider — pill track, deliberate
+   yellow knob with an ink edge. The native range stays the control. */
+input[type="range"] { appearance: none; -webkit-appearance: none; width: 100%; height: 26px; background: transparent; cursor: pointer; }
+input[type="range"]::-webkit-slider-runnable-track { height: 10px; border-radius: 999px; background: var(--parsnip); border: 1px solid var(--border); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--ink); margin-top: -7px; }
+input[type="range"]::-moz-range-track { height: 10px; border-radius: 999px; background: var(--parsnip); border: 1px solid var(--border); }
+input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); border: 2px solid var(--ink); }
+input[type="range"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .radio-row { display: flex; gap: 20px; flex-wrap: wrap; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
 .field-wide { grid-column: 1 / -1; }

@@ -178,7 +178,7 @@ def main():
               and pc.get("results") == [], "results=%s" % pc.get("results"))
         lc = call(proc, "list_candidates", {}, 23)
         check("list_candidates", lc.get("status") == "ok"
-              and lc.get("count") == 5, "count=%s" % lc.get("count"))
+              and lc.get("count") == 7, "count=%s" % lc.get("count"))  # 5 review + 2 F-5 candidates
 
         # optional semantic layer — must degrade cleanly when unavailable
         d = call(proc, "discover_candidates", {"query": "a small status marker"}, 25)
