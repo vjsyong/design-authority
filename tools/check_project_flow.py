@@ -145,9 +145,12 @@ def main():
         rec = next((r for r in arts if r["id"] == rid), None)
         got = (rec or {}).get("transition", {}).get("policy")
         C.check(got == policy, "transition policy missing on %s/%s: %s" % (auth, rid, got))
+    releases = json.load(open(os.path.join(ROOT, "docs", "synthesis", "data", "releases.json")))
     for auth in ("wink", "leader", "dominion"):
         version = json.load(open(os.path.join(ROOT, "authorities", auth, "authority.json")))["version"]
-        C.check("-rc" in version, "%s version is not an rc label: %s" % (auth, version))
+        finalized = releases.get("releases", {}).get(auth, {}).get("version") == version
+        C.check("-rc" in version or finalized,
+                "%s version is not an rc label and not owner-finalized: %s" % (auth, version))
 
     # 5. receipt discipline
     for d in receipt.get("deviations") or []:

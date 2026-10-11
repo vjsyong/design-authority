@@ -1,0 +1,8 @@
+{
+ "note": "Owner-finalized authority releases. Agents may only produce -rcN version bumps (release policy); a plain (non-rc) version on a source-system pack is legitimate only when the owner finalized it and the cut is registered here with its approval. check_project_flow.py reads this registry.",
+ "releases": {
+  "wink": {"version": "0.3.0", "approved": "owner 2026-10-11 (all approved)", "cut": "2026-10-11"},
+  "leader": {"version": "0.3.0", "approved": "owner 2026-10-11 (all approved)", "cut": "2026-10-11"},
+  "dominion": {"version": "0.3.0", "approved": "owner 2026-10-11 (all approved)", "cut": "2026-10-11"}
+ }
+}

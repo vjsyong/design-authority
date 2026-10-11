@@ -1,6 +1,6 @@
 {
  "pack": "triage",
- "pack_version": "0.14.0-rc1",
+ "pack_version": "0.14.0",
  "total": 134,
  "passed": 134,
  "misses": [],

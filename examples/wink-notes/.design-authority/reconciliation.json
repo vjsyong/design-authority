@@ -1,6 +1,6 @@
 {
  "plan_version": "0.1",
- "target_version": "0.3.0-rc1",
+ "target_version": "0.3.0",
  "counts": {
   "conforms": 3,
   "grandfathered": 0,
