@@ -306,7 +306,7 @@ and provenance; `validate_record` / `validate_provenance` are public so the
 invariants gate and the compiler cannot drift apart. Every normative record
 carries `compiled_from` approved decisions or an explicit `exception` block
 (reason + basis + approval); empty provenance is a hard error. The pass
-traced 20 non-artifact records to ledger decisions (resolving the citation
+traced 19 non-artifact records to ledger decisions (resolving the citation
 text already present in rules and prohibitions) and moved 6 to visible
 exceptions, all `approval: pending` owner ratification: the three
 protocol-authored platform-controls fallbacks, wink's light-only, leader's

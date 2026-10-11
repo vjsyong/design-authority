@@ -235,7 +235,7 @@ output satisfies the governance invariants". Fixed in a second pass:
 - **Provenance is universal.** Every normative record carries either
   `compiled_from` (approved decisions) or an explicit `exception` block
   (reason + basis + approval status). Empty provenance is a hard error; the
-  old silent `"decisions": []` no longer compiles. The pass traced 20
+  old silent `"decisions": []` no longer compiles. The pass traced 19
   non-artifact records to ledger decisions (resolving the existing citation
   text in rules and prohibitions) and moved 6 to visible exceptions:
   - wink `fallback/platform-controls`, `fallback/light-only`
