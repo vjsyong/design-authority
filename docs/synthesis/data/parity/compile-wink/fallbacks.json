@@ -31,7 +31,7 @@
       "exception": {
         "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
         "basis": "Synthesis protocol phase 5 (operational semantics); styling follows W-12 (inputs) and W-13 (small-set select).",
-        "approval": "pending"
+        "approval": "approved (owner decision page, 2026-10-11)"
       }
     },
     {
@@ -55,7 +55,7 @@
       "exception": {
         "reason": "No dark-mode decision exists in the ledger; the policy for dark surfaces (keep the recorded roles, mark the improvisation) is authored, not observed.",
         "basis": "Synthesis protocol phase 5; palette roles follow W-06.",
-        "approval": "pending"
+        "approval": "approved (owner decision page, 2026-10-11)"
       }
     }
   ]

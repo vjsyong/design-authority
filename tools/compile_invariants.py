@@ -36,7 +36,7 @@ REPO = da_compile.ROOT
 SRCS = ("wink", "leader", "dominion")
 EXPECTED_EXCEPTIONS = {
     "wink": ["fallback/light-only", "fallback/platform-controls"],
-    "leader": ["fallback/platform-controls", "fallback/selection", "fallback/ruled-panel"],
+    "leader": ["fallback/platform-controls", "fallback/ruled-panel"],
     "dominion": ["fallback/platform-controls"],
 }
 FIXED_NOW = "2026-10-07T15:19:22+00:00"

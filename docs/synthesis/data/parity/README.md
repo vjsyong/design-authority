@@ -33,3 +33,20 @@ The P0.1-era baselines remain in git history at commit `3589d62`. The
 `codify-<src>` fixtures are unchanged except the report gaining
 `"conflicts": []`. Companion gate: `tools/compile_invariants.py` (provenance
 coverage, trace validity, synthetic authority, refusal, re-codification).
+
+## Owner-rulings note (2026-10-11)
+
+The `compile-<src>` baselines were refreshed for the owner's rulings on the
+decision page (P0): the five authored exceptions gained their owner approval
+strings, leader's `fallback/selection` left the exception route for the
+decision route through the endorsed `L-12`, and dominion's
+`fallback/platform-controls` carries its owner-directed revision. Verified
+field-by-field before the refresh: `fallbacks.json` is the only record file
+that changed per source. In the same pass the dossier manifests regained the
+`precedents`/`candidates` entrypoints the deployed packs carry (`authority.json`
+in both fixture sets; the compile output had been silently dropping them, and
+the triage template gate surfaced the mismatch). A later pass in the same
+session restored the deployed alias sets and the pinned golden cases in the
+codify sources (curation the sources never carried); the `codify-<src>`
+baselines were refreshed with exactly that delta (alias lists and golden
+cases only). The P0.1b-era baselines remain in git history.

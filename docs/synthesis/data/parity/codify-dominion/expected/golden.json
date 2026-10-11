@@ -61,6 +61,48 @@
       "expect": "UNDEFINED",
       "expect_id": null,
       "note": "Deliberate: motion is undefined; gap over guess."
+    },
+    {
+      "problem": "a status label on track or slipping",
+      "expect": "RESOLVED",
+      "expect_id": "component/status",
+      "note": "Derived from the proposal's simulated checks."
+    },
+    {
+      "problem": "a table of logged entries",
+      "expect": "RESOLVED",
+      "expect_id": "component/ledger",
+      "note": "Derived from the proposal's simulated checks."
+    },
+    {
+      "problem": "a save confirmation message",
+      "expect": "RESOLVED",
+      "expect_id": "component/notice",
+      "note": "Derived from the proposal's simulated checks."
+    },
+    {
+      "problem": "a banner",
+      "expect": "RESOLVED",
+      "expect_id": "component/notice",
+      "note": "Single-token alias + exact-phrase bonus."
+    },
+    {
+      "problem": "a toast notification saying logged",
+      "expect": "UNDEFINED",
+      "expect_id": null,
+      "note": "No toast vocabulary was added; the deviation stays visible."
+    },
+    {
+      "problem": "bar chart of weekly minutes",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/plain-chart",
+      "note": "Derived from the proposal's simulated checks."
+    },
+    {
+      "problem": "calendar heatmap of the month",
+      "expect": "RESOLVED",
+      "expect_id": "pattern/plain-chart",
+      "note": "Derived from the proposal's simulated checks."
     }
   ]
 }

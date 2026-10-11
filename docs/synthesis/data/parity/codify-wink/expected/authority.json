@@ -39,6 +39,8 @@
     "fallbacks": "fallbacks.json",
     "prohibitions": "prohibitions.json",
     "validators": "validators.json",
-    "scoring": "scoring.json"
+    "scoring": "scoring.json",
+    "precedents": "precedents.json",
+    "candidates": "candidates.json"
   }
 }

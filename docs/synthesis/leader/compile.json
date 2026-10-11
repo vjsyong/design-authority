@@ -38,6 +38,7 @@
   "L-09",
   "L-10",
   "L-11",
+  "L-12",
   "L-14",
   "L-16",
   "L-20",
@@ -532,11 +533,13 @@
     "exception": {
      "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
      "basis": "Synthesis protocol phase 5; field styling follows L-11.",
-     "approval": "pending"
+     "approval": "approved (owner decision page, 2026-10-11)"
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-12"
+    ],
     "record": {
      "id": "fallback/selection",
      "title": "Selection beyond small sets",
@@ -555,11 +558,6 @@
       "report a gap if the need recurs"
      ],
      "kind": "fallback"
-    },
-    "exception": {
-     "reason": "Restates decision L-12, which the Gate-2 review left undefined (LEAVE UNDEFINED); the historical pack shipped this fallback anyway. Recorded as authored policy pending an owner decision: endorse L-12 into the ledger, or convert this fallback into a case.",
-     "basis": "Synthesis protocol phase 5; lineage via L-12 (left undefined at Gate 2).",
-     "approval": "pending"
     }
    },
    {
@@ -587,7 +585,7 @@
     "exception": {
      "reason": "Authored policy for interstitials (wizard/onboarding): ruled panels in the page flow, marked and reported. No dialog canon was endorsed at Gate 2 (L-19 was left undefined), so the 'no dialog canon' premise stands; flagged for owner review.",
      "basis": "Synthesis protocol phase 5; vessel styling cites L-07.",
-     "approval": "pending"
+     "approval": "approved (owner decision page, 2026-10-11)"
     }
    }
   ],
@@ -696,7 +694,9 @@
    "fallbacks": "fallbacks.json",
    "prohibitions": "prohibitions.json",
    "validators": "validators.json",
-   "scoring": "scoring.json"
+   "scoring": "scoring.json",
+   "precedents": "precedents.json",
+   "candidates": "candidates.json"
   }
  },
  "scoring": {

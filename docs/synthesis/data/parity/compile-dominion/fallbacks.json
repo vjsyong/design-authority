@@ -3,7 +3,7 @@
     {
       "id": "fallback/platform-controls",
       "title": "Platform defaults for uncovered controls",
-      "statement": "If the system defines no control for a need, use the platform's native element with the field styling; keep native semantics.",
+      "statement": "If the system defines no control for a need, theme the platform's native element with the system's own control language (soft border, radius 4, blue glow focus); keep native semantics.",
       "scope": [
         "checkbox",
         "radio",
@@ -15,9 +15,9 @@
         "stepper"
       ],
       "constraints": [
-        "field styling (soft border, radius 4)",
+        "styled in the system's own control language (soft border, radius 4)",
         "blue glow focus",
-        "mark the improvisation and report a gap"
+        "mark the improvisation and report a gap if the need recurs"
       ],
       "kind": "fallback",
       "source": {
@@ -25,9 +25,9 @@
         "path": "Authored policy (see exception)"
       },
       "exception": {
-        "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
+        "reason": "Authored policy for needs the system does not cover: platform controls themed from the system's own control language, marked and reported as a gap. No source decision states this policy. Revised 2026-10-11 per owner ruling (original wording rejected).",
         "basis": "Synthesis protocol phase 5; styling follows D-11 (fields) and D-12 (small-set select).",
-        "approval": "pending"
+        "approval": "approved (owner decision page, 2026-10-11; revision directed)"
       }
     },
     {
