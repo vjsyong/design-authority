@@ -113,7 +113,32 @@ Everything existing keeps working. Where you deliberately change an existing
 treatment, say so in your handoff. Finish runnable with `HANDOFF.md`
 updated and a commit.
 """,
+"h5": """# Bookmarks — this session: bring the design into line
+
+The product exists — source in the workspace, `HANDOFF.md` for how it was
+left, `QA.md` for the checks conventions.
+
+A design validator is available: run `./check-design` at the workspace root.
+It reports the project's design-guidance findings for the current state.
+
+Your task: **reach zero findings** while preserving all functionality. In
+order: run the validator, understand each finding, fix the underlying design
+inconsistency (not the symptom), keep every convention in `QA.md` intact
+(never rename or remove an existing `data-testid`), and keep the app fully
+working offline. Where a fix would change intended behavior, prefer the
+design-consistent option and note the trade-off.
+
+Everything existing keeps working. Keep `DECISIONS.md` current; finish
+runnable with `HANDOFF.md` updated and a commit.
+""",
 }
+
+CHECK_DESIGN = """#!/bin/sh
+# Run the project's design validator over this workspace.
+# Usage: ./check-design [path]   (default: the workspace root)
+DA_PACK="${DA_PACK:-/opt/da/packs/base}"
+exec /opt/py/venv/bin/python3 /opt/da/tools/da.py --pack "$DA_PACK" validate "${1:-.}"
+"""
 
 RELNOTES = {
 "c1": """## Design guidance change 1 — empty states are required
@@ -172,6 +197,11 @@ def write_reference_files():
     for name, body in BRIEFS.items():
         with open(materials("briefs", name + ".md"), "w") as fh:
             fh.write(body)
+    vdir = materials("validate")
+    os.makedirs(vdir, exist_ok=True)
+    with open(os.path.join(vdir, "check-design"), "w") as fh:
+        fh.write(CHECK_DESIGN)
+    os.chmod(os.path.join(vdir, "check-design"), 0o755)
     for cid, body in RELNOTES.items():
         with open(materials("relnotes", cid + ".md"), "w") as fh:
             fh.write(body)

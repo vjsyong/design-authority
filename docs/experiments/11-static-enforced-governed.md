@@ -1,11 +1,11 @@
-# 11 · Static vs enforced vs governed — the three-arm experiment (draft pre-registration)
+# 11 · Static vs enforced vs governed — the three-arm experiment (FROZEN 2026-10-11)
 
 Owner review of run 1 (2026-10-11): the observed difference "might come from
 several causes… the authority imposes a more disciplined workflow" — and
 the directive: *"Pre-register the primary comparison as C versus B, not C
-versus A."* This document is that design. It becomes a pre-registration
-when frozen and committed before any session runs; nothing below has been
-executed.
+versus A."* This document is the frozen pre-registration; execution began
+2026-10-11 on the owner's go with the review-format decision resolved
+("same review format as last time, public secret link").
 
 ## Question
 
@@ -96,12 +96,40 @@ reported separately, no composite score.
 - **Kill criterion:** all three arms flat (no accumulated cost anywhere) →
   no discriminable effect at this scale; reported as such.
 
-## Open decisions (resolve at freeze)
+## Resolved at freeze (2026-10-11, on the owner's go)
 
-1. Reviewers for the blind round (owner + one independent; the estate's
-   calibration set and logged-deviations mechanism).
-2. Seeds: 3 recommended; 2 acceptable; R1-only = pilot grade.
-3. Freeze date and go.
+1. **Review format:** the same as the x05 round — the driftexp blind-review
+   instrument (capability URL / public secret link, name entry, guided
+   one-question screens, autosave; `x05-blind` unit, public host
+   `driftexp.seanyong.xyz`). Reviewers: the owner plus independent reviewers
+   he brings; the set covers replication R1 (3 arms × 3 handoffs + the
+   seed-to-final whole-screen pairs) with the calibration stage first
+   (five pre-scored screens); the code→arm mapping stays sealed until
+   scoring ends.
+2. **Seeds:** 3 recorded seeds, one replication each; R1 is blind-reviewed;
+   any general-effect claim requires ≥ 2 seeds.
+3. **Execution:** autonomous with logged checkpoints after each replication
+   (no human gate mid-program; the checkpoints are reported). Staging was
+   offered and superseded by the owner's full-go.
 
-Status: design draft; freeze + pre-registration committed only on the
-owner's go.
+## Run log
+
+- **2026-10-11 · built, rehearsed, launched.** Arm transforms verified by
+  prep: A (no wrapper, no audit, no record, no validator; relnotes +
+  design-doc), B (same plus `check-design`; the same validator and pack
+  chain as C), C (the run-1 DA construction: wrapper + protocol + pack +
+  reconcile advisories). All arms: `DECISIONS.md` seeded and the convention
+  in the house-process line. H5 injection: `check-design` plus the
+  validator (pack 4) for every arm, `h5.md` as the brief. 45 sessions
+  `r<rep>-<arm>-h<k>`; the conductor drives them, captures R1's session
+  ends, and writes a checkpoint after each replication.
+- **Rehearsal found and fixed:** the sandbox port had dropped the x05
+  runner's Python-toolchain bind — the venv interpreter needs its base
+  install visible or every in-sandbox Python dies with "Failed to import
+  encodings". Bound now; both the B probe (`./check-design` -> 0 findings /
+  score 100) and the C probe (`./run-authority resolve` -> RESOLVED) pass
+  inside the sandbox. The B-arm pilot ran end to end (300 s budget, sealed,
+  +370/-37 lines). The capture pipeline smoke-tested on a run-1 state (real
+  UI renders; screenshots for the blind set).
+- **Launched** via the conductor (background); results land in
+  `run/<id>/run.json` + verified seals, captures under `run/<id>/capture/`.

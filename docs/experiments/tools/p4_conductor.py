@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""P4 conductor — drives the 8-session program, one session at a time.
+"""P4b conductor — drives the three-arm program (45 sessions), one at a time.
 
     python3 docs/experiments/tools/p4_conductor.py [--root ~/p4-maint] [--status]
 
 Completion is derived from artifacts (run.json + verified seal), so a restart
-continues at the first incomplete step. After each DA handoff the conductor
+continues at the first incomplete step. After each C-arm handoff the conductor
 runs the reconciliation pass (frozen tooling, pack p4-da-<k>) over a copy of
-the seal and writes the migration summary the next DA session receives as
-reference/MIGRATION.md. Completed-but-unsuccessful runs advance (the
-checkpoint is the state, broken states included); only infrastructure
-failures (no run.json) are retried once, with the failed attempt moved aside.
+the seal and writes the migration summary the next C session receives as
+reference/MIGRATION.md. Replication R1's sessions are captured (screens) for
+the blind round. A checkpoint file is written after each replication.
+Completed-but-unsuccessful runs advance (the checkpoint is the state, broken
+states included); only infrastructure failures (no run.json) are retried
+once, with the failed attempt moved aside.
 """
 import argparse
 import json
@@ -165,6 +167,33 @@ def write_json(path, data):
         json.dump(data, fh, indent=1, ensure_ascii=False)
 
 
+def capture_session(sid, root):
+    """Screens after an R1 session (blind round). Best effort, never fatal."""
+    try:
+        logf = open(os.path.join(run_dir(sid, root), "capture.log"), "a")
+        proc = subprocess.run([VENV_PY, os.path.join(HERE, "p4_capture.py"),
+                               "--id", sid, "--root", root],
+                              stdout=logf, stderr=subprocess.STDOUT, timeout=600)
+        log("capture %s: rc=%s" % (sid, proc.returncode))
+    except Exception as exc:
+        log("capture %s failed (kept going): %s" % (sid, str(exc)[:120]))
+
+
+def checkpoint(rep, root, schedule):
+    rows = []
+    for s in schedule["sessions"]:
+        if s.get("rep") != rep:
+            continue
+        rj = read_json(os.path.join(run_dir(s["id"], root), "run.json")) or {}
+        rows.append({"id": s["id"], "arm": s["arm"], "kind": s["kind"],
+                     "status": rj.get("status"), "wall_s": rj.get("wall_s"),
+                     "tokens": rj.get("tokens_total"),
+                     "changes": rj.get("changes")})
+    write_json(os.path.join(root, "checkpoint-%s.json" % rep),
+               {"rep": rep, "sessions": rows})
+    log("checkpoint %s written (%d sessions)" % (rep, len(rows)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=P4_ROOT)
@@ -183,7 +212,11 @@ def main():
             print("%-9s %s" % (sid, st))
         return 0
 
-    title = "P4 maintenance economics"
+    title = "P4b three-arm program"
+    rep_last = {}
+    for sid in order:
+        e = next(s for s in schedule["sessions"] if s["id"] == sid)
+        rep_last[e.get("rep")] = sid
     heartbeat(title, "working", 0, "starting")
     done = 0
     for i, sid in enumerate(order):
@@ -214,8 +247,12 @@ def main():
                 raise SystemExit("infrastructure failure on %s; paused" % sid)
         rj = read_json(os.path.join(run_dir(sid, root), "run.json")) or {}
         log("%s finished: status=%s" % (sid, rj.get("status")))
-        if entry["chain"] == "da":
+        if entry.get("condition") == "c" and entry.get("kind") == "handoff":
             reconcile_after(sid, root, entry)
+        if entry.get("rep") == "r1":
+            capture_session(sid, root)
+        if rep_last.get(entry.get("rep")) == sid:
+            checkpoint(entry.get("rep"), root, schedule)
         done += 1
         heartbeat(title, "working", int(100 * done / len(order)),
                   "%s %s" % (sid, rj.get("status")))

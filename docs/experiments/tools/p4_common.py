@@ -28,7 +28,7 @@ DEFAULT_MODEL = "deepseek/deepseek-flash"
 WALL_BUDGET_S = 2700
 TOKEN_BUDGET = 20_000_000
 
-CHAINS = ("da", "base")
+CHAINS = ("a", "b", "c")
 
 
 def run_dir(sid, root=None):
