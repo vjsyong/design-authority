@@ -51,7 +51,7 @@ correctness was not superior; 0 human interventions both. Cost of the
 complete workflow at this scale: +21% tokens, +37% tool calls, ≈+16% wall.
 Kill criterion not hit. The review's follow-up is recorded: run 1 does not
 isolate institutional memory from continuous verification — see the draft
-pre-registration `docs/experiments/11-memory-vs-verification.md`.
+pre-registration `docs/experiments/11-static-enforced-governed.md`.
 
 **P5 · Repository consolidation and release — this document.** One package,
 generated documentation, compatibility gates, stable specification: each is

@@ -92,9 +92,35 @@ larger (they carry the receipt sections; 168–202 lines vs 146–178).
 ## 6 · Token consumption and tool-call overhead
 
 DA Σ 50.2 M tokens vs base Σ 41.6 M — **DA ≈ +21%**. Tool calls: DA Σ 553
-vs base Σ 405 — **DA ≈ +37%**. The overhead is the governance itself: the
-DA chain made 1,467 audited authority calls across the run (317→429 per
-session, rising as the record grew).
+vs base Σ 405 — **DA ≈ +37%**.
+
+### 6.1 · Authority-call profile (review follow-up, corrected)
+
+The first draft of this document reported "1,467 audited authority calls
+(317→429 per session)". That was an artifact: the wrapper's `audit.jsonl`
+is carried across handoffs, so those figures were the *cumulative log
+sizes* at each session end (seed 243 + session work). The real in-run
+trace: **186 new wrapper calls across the four sessions** (74 / 25 / 37 /
+50), on top of the seed's 243 recorded calls. The profile is what matters
+for governance overhead:
+
+| bucket | calls | share | reading |
+|---|---|---|---|
+| lookups (`resolve` 49, `search` 12) | 61 | 33% | of the 49 resolves, **31 returned UNDEFINED** (new advice sought = new information); 18 hit RESOLVED (repeat-context retrievals) |
+| record writes (`gap-add` 31, `propose` 31) | 62 | 33% | the memory-accrual cost — a third of all governance calls create the record |
+| retrieval (`inspect` 21) | 21 | 11% | re-fetching known records (cacheable) |
+| validation (`validate` 15, all rc 0) | 15 | 8% | used as the protocol asks (last step, repair-or-file) |
+| orientation/misc (`gaps`, `overview`, `candidates`, `list`, `--help`, `discover`, `golden`, `review`, `verify`, `precedents`) | 27 | 15% | context re-establishment (batched-brief / cacheable) |
+| **errors** (nonzero rc) | 15 | 8% | bad args / not-found: a call-quality target |
+
+Zero resolve queries repeated *across* sessions; the repetition that exists
+is within-session re-checking (the 18 RESOLVED lookups + 21 inspects ≈ 21%
+of activity re-fetching established context). Directly actionable against
+the planned `da plan` architecture: batched resolution, a cached authority
+brief per handoff, and incremental verification of changed areas would
+target the ~26% retrieval/orientation share without weakening controls —
+and the 8% error share argues for CLI ergonomics work. As the review notes,
+each optimization should be measured, not assumed.
 
 ## Verdict (revised per owner review, 2026-10-11)
 
@@ -132,7 +158,7 @@ It does **not** isolate how much of the improvement comes from institutional
 memory (precedent, records, resolve-before-deciding) versus continuous
 verification (the validator, validate-as-last-step, advisories) — run 1
 bundled both. Separating them is the next experiment:
-`docs/experiments/11-memory-vs-verification.md` (draft pre-registration,
+`docs/experiments/11-static-enforced-governed.md` (draft pre-registration,
 freeze on owner go).
 
 ## Limits (recorded per the pre-registration)

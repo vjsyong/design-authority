@@ -168,4 +168,4 @@ sequence and launch chain 1's first session.
 - Cost of governance at this scale: +21% tokens, +37% tool calls, ≈+16%
   wall. Follow-up recorded: run 1 bundles memory and verification; the
   isolating experiment is drafted at
-  `docs/experiments/11-memory-vs-verification.md`.
+  `docs/experiments/11-static-enforced-governed.md`.
