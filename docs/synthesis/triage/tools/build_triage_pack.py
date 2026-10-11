@@ -14,6 +14,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import subprocess
 from datetime import datetime, timezone
 
@@ -737,5 +738,28 @@ build = {
 }
 json.dump(build, open(os.path.join(OUT, "BUILD.json"), "w"), indent=1)
 
-print("emitted authority pack: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases"
+# ------------------------------------------------- consumer lint bundle ----
+# The declared validator (validators.json, workdir "{pack}") runs the lint
+# FROM the pack, so `da validate` works for consumers without the (non-public)
+# design-system checkout. Ship every file the lint reads from its root.
+BUNDLE = [
+    ("lint/triage_lint.py", "lint/triage_lint.py"),
+    ("lint/engine.py", "lint/engine.py"),
+    ("spec/rules.json", "spec/rules.json"),
+    ("tokens/tokens.json", "tokens/tokens.json"),
+    ("rename-map.json", "rename-map.json"),
+    ("VERSION", "VERSION"),
+]
+for src, dst in BUNDLE:
+    dpath = os.path.join(OUT, dst)
+    os.makedirs(os.path.dirname(dpath), exist_ok=True)
+    shutil.copyfile(os.path.join(TR, src), dpath)
+_core_src = os.path.join(TR, "core")
+if os.path.isdir(_core_src):
+    os.makedirs(os.path.join(OUT, "core"), exist_ok=True)
+    for _fn in sorted(os.listdir(_core_src)):
+        if _fn.endswith(".css"):
+            shutil.copyfile(os.path.join(_core_src, _fn), os.path.join(OUT, "core", _fn))
+
+print("emitted authority pack: %d artifacts, %d rules, %d prohibitions, %d fallbacks, %d precedents, %d candidates, %d golden cases (+ lint bundle)"
       % (len(artifacts), len(rules), len(prohibitions), len(fallbacks), len(precedents), len(candidates), len(golden["cases"])))

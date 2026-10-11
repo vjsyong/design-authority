@@ -22,10 +22,13 @@ PACK = os.path.join(ROOT, "authorities", "triage")
 
 FILES = ["authority.json", "scoring.json", "artifacts.json", "rules.json",
          "prohibitions.json", "fallbacks.json", "precedents.json",
-         "candidates.json", "recipes.json", "golden.json"]
+         "candidates.json", "recipes.json", "golden.json",
+         "lint/triage_lint.py", "lint/engine.py", "spec/rules.json",
+         "tokens/tokens.json", "rename-map.json", "VERSION"]
 
 
 def main():
+    import glob
     with tempfile.TemporaryDirectory() as td:
         r = subprocess.run([sys.executable, GEN, "--out", td],
                            stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, text=True)
@@ -41,6 +44,11 @@ def main():
                 drifted.append(f + " (missing in pack)")
             elif not filecmp.cmp(fresh, committed, shallow=False):
                 drifted.append(f)
+        for fresh in sorted(glob.glob(os.path.join(td, "core", "*.css"))):
+            rel = os.path.relpath(fresh, td)
+            committed = os.path.join(PACK, rel)
+            if not os.path.exists(committed) or not filecmp.cmp(fresh, committed, shallow=False):
+                drifted.append(rel)
     if drifted:
         print("ERROR: triage pack drift: %s" % ", ".join(drifted))
         print("rerun: python3 docs/synthesis/triage/tools/build_triage_pack.py")
