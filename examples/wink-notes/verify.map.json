@@ -1,0 +1,21 @@
+{
+ "note": "wink-notes consumer app: engages the wink 0.2.0 verification contract with this build's own surfaces; checks with no counterpart here are exempted with a reason. The floating toast is a declared improvisation (case 05) and is intentionally left flagged, not suppressed.",
+ "files": {"css": ["app.css"], "html": ["index.html"], "js": ["app.js"]},
+ "selectors": {".log-tick": "#saveBtn"},
+ "ignore": {
+  "wink/action-dark-variant": "no warm-field context in this app (no dark CTA use case)",
+  "wink/dialog-vessel": "no dialog in this app",
+  "wink/dialog-scrim": "no dialog in this app",
+  "wink/dialog-no-motion": "no dialog in this app",
+  "wink/destructive-not-focused": "no destructive action in this app",
+  "wink/ledger-head": "no table or ledger in this app",
+  "wink/badge-shape": "no badges in this app",
+  "wink/progress-ring": "uses the recorded progress track (pattern/progress), not a ring",
+  "wink/tick-marked": "no tick / copy-with-mark surface in this app",
+  "wink/svg-census": "no svg icons in this app",
+  "wink/review-tone": "review item: copy register judged in the page review",
+  "wink/review-harmony": "review item: single-page app, no multi-surface harmony claim",
+  "wink/review-typography-registers": "review item: covered by the page review, not machine-checkable here",
+  "wink/review-hover-character": "review item: hover character judged in the page review"
+ }
+}

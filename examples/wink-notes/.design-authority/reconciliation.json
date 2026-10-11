@@ -1,0 +1,70 @@
+{
+ "plan_version": "0.1",
+ "target_version": "0.3.0-rc1",
+ "counts": {
+  "conforms": 3,
+  "grandfathered": 0,
+  "rectify": 1,
+  "review": 0
+ },
+ "obligations": {
+  "due": 1
+ },
+ "findings": [
+  {
+   "decision": "component/action-pill",
+   "revision": "latest",
+   "class": "conforms",
+   "reason": "the build applied this decision (recorded receipt evidence)",
+   "obligation": null,
+   "receipt_status": "unconfirmed",
+   "trigger_state": null
+  },
+  {
+   "decision": "pattern/empty-state",
+   "revision": "latest",
+   "class": "conforms",
+   "reason": "the build applied this decision (recorded receipt evidence)",
+   "obligation": null,
+   "receipt_status": "unconfirmed",
+   "trigger_state": null
+  },
+  {
+   "decision": "pattern/inline-notice",
+   "revision": "latest",
+   "class": "rectify",
+   "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision",
+   "obligation": {
+    "state": "due",
+    "trigger": "occurred"
+   },
+   "receipt_status": "unconfirmed",
+   "trigger_state": {
+    "state": "occurred",
+    "evidence": [
+     ".design-authority/receipts/2026-10-11-v1.json"
+    ],
+    "basis": "recorded modification of the affected area without migration"
+   }
+  },
+  {
+   "decision": "pattern/progress",
+   "revision": "latest",
+   "class": "conforms",
+   "reason": "the build applied this decision (recorded receipt evidence)",
+   "obligation": null,
+   "receipt_status": "unconfirmed",
+   "trigger_state": null
+  }
+ ],
+ "actions": [
+  {
+   "decision": "pattern/inline-notice",
+   "revision": "latest",
+   "action": "migrate",
+   "by": null,
+   "state": "due",
+   "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision"
+  }
+ ]
+}

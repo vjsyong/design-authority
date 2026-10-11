@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ritual notes</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <a class="brand" href="./">Ritual notes</a>
+    <p class="head-sub">Small commitments, kept in view.</p>
+  </header>
+
+  <!-- pattern/empty-state: centered notice card, serif headline, one warm
+       sentence, one primary pill action. -->
+  <section id="emptyState" class="empty-state" hidden>
+    <h2 class="empty-title">Nothing here yet.</h2>
+    <p class="empty-line">Add your first ritual to keep the week honest.</p>
+    <button id="emptyAdd" class="cta" type="button">Add your first ritual</button>
+  </section>
+
+  <!-- pattern/progress: parsnip track, yellow fill in flight, ink when
+       complete, paired with a short step caption. Hidden until a save runs. -->
+  <section id="saveProgress" class="progress" hidden aria-live="polite">
+    <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+    <p id="progressCaption" class="progress-caption">Saving</p>
+  </section>
+
+  <!-- pattern/inline-notice: parsnip-filled rounded block, bold lead sentence
+       plus a plain supporting line, placed near the content that changed. -->
+  <section id="saveNotice" class="notice" hidden role="status">
+    <p class="notice-lead">Saved.</p>
+    <p class="notice-line">Your ritual list is up to date.</p>
+  </section>
+
+  <form id="addForm" class="add" autocomplete="off">
+    <label class="add-label" for="noteInput">New ritual</label>
+    <input id="noteInput" class="add-input" type="text" placeholder="Water the plants">
+    <p id="inputError" class="field-error" hidden>A ritual needs a word or two.</p>
+    <div class="add-actions">
+      <button id="saveBtn" class="cta" type="submit">Save ritual</button>
+      <button id="clearBtn" class="cta outline" type="button">Clear</button>
+    </div>
+  </form>
+
+  <ul id="noteList" class="list"></ul>
+</main>
+
+<!-- noncanonical: floating toast. The brief asked for a toast; wink 0.2.0
+     records no toast pattern (pattern/inline-notice.dont: floating toast
+     stacks are not canon). Implemented as a marked improvisation; the need
+     is recorded as case 05 + a filed gap, and the receipt declares it. -->
+<div id="toast" class="toast" hidden data-improv="a floating toast notification (no wink record; case 05)"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

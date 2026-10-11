@@ -1,0 +1,9 @@
+{
+ "case_version": "0.1",
+ "id": "05-a-floating-toast-notification",
+ "need": "a floating toast notification",
+ "outcome": "UNDEFINED",
+ "status": "open",
+ "raised_in": "BRIEF.md",
+ "created": "2026-10-11T09:46:37+00:00"
+}

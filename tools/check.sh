@@ -22,6 +22,8 @@ echo "== reconcile regression (lifecycle pinned)"
 python3 tools/reconcile_regression.py | tail -1
 echo "== case read model (docs/16)"
 python3 tools/check_case_model.py | tail -1
+echo "== project flow (docs/13 P1.1/P1.2)"
+python3 tools/check_project_flow.py | tail -1
 echo "== synthesis precedents"
 python3 tools/precedent_probe.py | tail -1
 echo "== disputed-resolution regression fixtures"

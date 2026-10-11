@@ -593,3 +593,43 @@ is proven against the corpus.
   roadmap: the P1.1/P1.2 vertical slice (plan / verify / receipts through
   the runtime API), then the fresh-agent public adoption test.
 
+## D-038 · The consumer workflow lands end to end; transition policies enter the record layer (2026-10-11)
+
+The memo's vertical slice (P1.1 + P1.2 implemented together) is shipped on
+the one runtime library. Spec: `docs/17-consumer-workflow.md`.
+
+- **New public commands** (kernel + CLI, stdlib-only): `da init` pins the
+  authority into `.design-authority/authority.lock.json` (id, version,
+  commit, pack fingerprint); `da plan BRIEF.md` resolves every brief need
+  against the pinned pack, REFUSES on any citation that does not exist, and
+  writes the plan plus case stubs for unresolved needs; `da receipt-new` /
+  `da receipt-check` formalize the outcome receipts (format 0.2:
+  decisions_applied, unresolved_needs, provisional_solutions, deviations,
+  areas_modified, migration_for, verification ref); `da verify` is the
+  runtime-API alias over the independent verifier; `da reconcile` assesses a
+  built workspace and writes a deterministic, portable migration plan.
+- **The engine consumes the receipt** (the memo's requirement): receipt-
+  claimed decisions scope the sweep for consumer workspaces (chain links
+  keep precedence for the recorded corpus), and deviations remove claims
+  from adoption, so a recorded deviation on a decision surfaces as a
+  rectify row with a due obligation. Version comparisons tolerate rc labels.
+- **Transition policies entered the record layer**: the owner-set policies
+  (D-034) now ship WITH the packs. Codify carries `transition` from the
+  proposals into published records, validates it, and compares it for
+  conflicts; wink/leader/dominion were recompiled and redeployed at
+  **0.3.0-rc1** (agent-produced bumps carry rc labels per the release
+  policy; promotion is a human action). Parity baselines refreshed with the
+  verified deltas (transitions + versions only); the closure verifier was
+  re-run for its record-hash rebind (9/9 pass).
+- **End-to-end acceptance** (`examples/wink-notes/`, the acceptance
+  vehicle): brief with 5 needs -> plan (4 resolved, 1 undefined with case
+  stub) -> build (recorded values; the toast improvisation marked and a gap
+  filed) -> receipt v1 -> independent verification 19 PASS / 1 VIOLATION
+  (the declared toast, W-15) / 14 honest exemptions -> reconcile 3 conforms
+  + 1 rectify (the deviation produces the due migration obligation).
+  `tools/check_project_flow.py` (35 checks) pins the whole flow inside
+  `check.sh`, including receipt discipline and the deployed record layer.
+- Full check suite green. Next per the roadmap: the fresh-agent public
+  adoption test (P3), the longitudinal experiment design (P4), and the
+  queued consolidations (recipes promotion, Triage merges).
+

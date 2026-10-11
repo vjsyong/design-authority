@@ -2,6 +2,14 @@
 
     da overview | search Q | discover Q | inspect ID | resolve PROBLEM | validate TARGET
     da golden | gaps | gap-add | propose | dispute-add | disputes | dispute-replay
+    da init | plan BRIEF | receipt-new | receipt-check | verify TARGET | reconcile
+
+Consumer workflow (docs/13 P1.1/P1.2): `da init` pins an authority into the
+workspace contract (`.design-authority/authority.lock.json`), `da plan`
+turns a brief into the version-pinned plan, `da receipt-new`/`receipt-check`
+format the outcome receipt, `da verify` runs the independent verifier, and
+`da reconcile` assesses the built workspace against the current authority
+and writes a migration plan.
 
 `discover` and `resolve --assist semantic` are optional retrieval extensions
 (install extras: pip install fastembed numpy; build the index once with
@@ -11,8 +19,12 @@ authority. Without the extras every lexical surface is unchanged.
 import argparse
 import json
 import os
+import shutil
+import subprocess
 import sys
+import tempfile
 
+from . import project
 from . import records
 from .pack import Pack, PackError
 from .resolve import resolve, resolve_golden, replay_disputes
@@ -23,9 +35,12 @@ DEFAULT_PACK = os.path.join(ROOT, "authorities", "triage")
 SEM_TOOLS = os.path.join(ROOT, "tools")
 
 
+def _pack_path(args):
+    return args.pack or os.environ.get("DA_PACK") or DEFAULT_PACK
+
+
 def _load_pack(args):
-    path = args.pack or os.environ.get("DA_PACK") or DEFAULT_PACK
-    return Pack(path)
+    return Pack(_pack_path(args))
 
 
 def _dump(obj):
@@ -331,6 +346,115 @@ def cmd_candidates(pack, args):
         print("      %s" % (c.get("summary", "")[:110]))
 
 
+def cmd_init(pack, args):
+    lock = project.write_lock(args.workspace or os.getcwd(), pack, _pack_path(args))
+    if args.json:
+        return _dump(lock)
+    print("pinned %s %s (%s)" % (lock["authority"], lock["version"], lock["fingerprint"]))
+    print("workspace: %s" % os.path.abspath(args.workspace or os.getcwd()))
+    print("next: da plan BRIEF.md  ->  build  ->  da receipt-new  ->  da verify  ->  da reconcile")
+    return 0
+
+
+def cmd_plan(pack, args):
+    try:
+        plan = project.build_plan(pack, args.workspace or os.getcwd(), args.brief, _pack_path(args))
+    except ValueError as exc:
+        print("plan refused: %s" % exc, file=sys.stderr)
+        return 2
+    if args.json:
+        return _dump(plan)
+    print("plan: %d needs against %s %s" % (len(plan["needs"]), plan["authority"]["authority"],
+                                            plan["authority"]["version"]))
+    for n in plan["needs"]:
+        line = "  %-10s %s" % (n["outcome"], n["need"])
+        if n.get("id"):
+            line += "  -> %s" % n["id"]
+        if n.get("case"):
+            line += "  [case %s]" % n["case"]
+        print(line)
+    print("contract: .design-authority/ (lock + plan + %d case stub(s) + verification/)"
+          % len(plan["cases"]))
+    return 0
+
+
+def cmd_receipt_new(pack, args):
+    out = project.receipt_new(pack, args.workspace or os.getcwd(), args.revision,
+                              application=args.application, pack_path=_pack_path(args))
+    ws = os.path.abspath(args.workspace or os.getcwd())
+    if args.json:
+        return _dump({"path": out["path"], "pointer": out["pointer"]})
+    print("receipt scaffold: %s" % os.path.relpath(out["path"], ws))
+    print("fill the claims at completion, then: da receipt-check <file>")
+    return 0
+
+
+def cmd_receipt_check(pack, args):
+    problems = project.receipt_check(pack, args.workspace or os.getcwd(), args.file)
+    if args.json:
+        return _dump({"file": args.file, "problems": problems})
+    if problems:
+        for p in problems:
+            print("problem: %s" % p, file=sys.stderr)
+        return 1
+    print("receipt ok: %s" % args.file)
+    return 0
+
+
+def cmd_verify(pack, args):
+    """The independent verifier lives in tools/ (Playwright is optional and
+    outside the stdlib kernel); this is the runtime-API alias (docs/13 P1.2)."""
+    cmd = [sys.executable, os.path.join(ROOT, "tools", "da_verify.py"),
+           "--pack", _pack_path(args), "--target", args.target, "--out", args.out]
+    if args.no_shots:
+        cmd.append("--no-shots")
+    if getattr(args, "json", False):
+        cmd.append("--json")
+    return subprocess.call(cmd)
+
+
+def cmd_reconcile(pack, args):
+    ws = os.path.abspath(args.workspace or os.getcwd())
+    target = args.target_version or pack.manifest.get("version")
+    portfolio = project.build_portfolio(ws, pack, target)
+    tmp = tempfile.mkdtemp(prefix="da-reconcile-")
+    try:
+        auth_id = pack.manifest.get("id")
+        auth_dir = os.path.join(tmp, auth_id)
+        os.makedirs(auth_dir)
+        shutil.copyfile(os.path.join(_pack_path(args), "artifacts.json"),
+                        os.path.join(auth_dir, "artifacts.json"))
+        pfile = os.path.join(tmp, "portfolio.json")
+        with open(pfile, "w") as fh:
+            json.dump(portfolio, fh, indent=1)
+        store = os.path.join(tmp, "findings.jsonl")
+        report_p = os.path.join(tmp, "report.json")
+        rc = subprocess.call([sys.executable, os.path.join(ROOT, "tools", "da_sweep.py"),
+                              "--authority", tmp, "--portfolio", pfile, "--store", store,
+                              "--target-version", target, "--report", report_p, "--quiet"])
+        if rc != 0:
+            print("reconcile failed: sweep exited %d" % rc, file=sys.stderr)
+            return rc
+        with open(report_p) as fh:
+            report = json.load(fh)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    plan = project.migration_plan(report, ws)
+    out = os.path.join(ws, ".design-authority", "reconciliation.json")
+    with open(out, "w") as fh:
+        json.dump(plan, fh, indent=1)
+    if args.json:
+        return _dump(plan)
+    c = plan.get("counts") or {}
+    print("reconciliation vs %s %s: %s" % (pack.manifest.get("id"), target,
+          ", ".join("%s=%s" % (k, c[k]) for k in sorted(c))))
+    for a in plan["actions"]:
+        print("  %-8s %-28s %s%s" % (a["action"], a["decision"],
+              a.get("reason", ""), " (by %s)" % a["by"] if a.get("by") else ""))
+    print("migration plan: %s" % os.path.relpath(out, ws))
+    return 0
+
+
 def cmd_dispute_add(pack, args):
     ws = args.workspace or os.getcwd()
     context = json.loads(args.context) if args.context else {}
@@ -479,6 +603,37 @@ def main(argv=None):
     p.add_argument("--query", default="")
     p.add_argument("--json", action="store_true")
 
+    p = sub.add_parser("init")
+    p.add_argument("--workspace", default=None)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("plan")
+    p.add_argument("brief")
+    p.add_argument("--workspace", default=None)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("receipt-new")
+    p.add_argument("--revision", required=True)
+    p.add_argument("--application", default=None)
+    p.add_argument("--workspace", default=None)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("receipt-check")
+    p.add_argument("file")
+    p.add_argument("--workspace", default=None)
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("verify")
+    p.add_argument("target")
+    p.add_argument("--out", required=True)
+    p.add_argument("--no-shots", action="store_true")
+    p.add_argument("--json", action="store_true")
+
+    p = sub.add_parser("reconcile")
+    p.add_argument("--workspace", default=None)
+    p.add_argument("--target-version", default=None)
+    p.add_argument("--json", action="store_true")
+
     args = ap.parse_args(argv)
     try:
         pack = _load_pack(args)
@@ -495,7 +650,10 @@ def main(argv=None):
                "dispute-replay": cmd_dispute_replay,
                "precedents": cmd_precedents,
                "precedent-check": cmd_precedent_check,
-               "candidates": cmd_candidates}[args.cmd]
+               "candidates": cmd_candidates,
+               "init": cmd_init, "plan": cmd_plan,
+               "receipt-new": cmd_receipt_new, "receipt-check": cmd_receipt_check,
+               "verify": cmd_verify, "reconcile": cmd_reconcile}[args.cmd]
     return handler(pack, args) or 0
 
 

@@ -162,6 +162,23 @@ case store, case numbering and the compatibility adapters stay staged for
 the 0.6 freeze; P0.1's acceptance test 3 (one Case interface) now
 re-derives from the read model.
 
+**Landed (2026-10-11, vertical slice):** the consumer workflow ships on the
+same runtime library (spec: `docs/17-consumer-workflow.md`; decision D-038):
+`da init` pins the authority into `.design-authority/authority.lock.json`;
+`da plan` turns a brief into the version-pinned plan (citation-validated,
+unresolved needs become case stubs); `da receipt-new` / `da receipt-check`
+formalize the outcome receipts (format 0.2); `da verify` is the runtime-API
+alias over the independent verifier; `da reconcile` assesses a built
+workspace against the current authority and writes a deterministic,
+portable migration plan - consuming the same receipt (receipt-claimed
+decisions scope the assessment; deviations surface as rectify obligations).
+The owner-set transition policies entered the RECORD LAYER at first
+publication (packs now ship them; wink/leader/dominion recompiled,
+0.3.0-rc1). End-to-end acceptance: `examples/wink-notes/` (plan 5 needs ->
+build -> 19 PASS / 1 violation (the declared toast improvisation) / 14
+exemptions -> receipt -> reconcile 3 conforms + 1 rectify), pinned by
+`tools/check_project_flow.py` (35 checks) inside `check.sh`.
+
 **Interfaces** (P1.1/P1.2): `plan` / `resolve` / `verify` / `case` as the
 public operations; `review` / `publish` stay human-side. MCP, CLI, and any
 web surface call the same functions. Existing tools keep working as aliases
@@ -176,8 +193,8 @@ Owner priorities, kept as given, with the gate for each phase.
 | **P0.1** | One generic compile path replacing source-specific compilation and proposal application | **DONE** (section 5, two passes): parity fixtures byte-compare both mechanisms; shared emission invariants + governance gate; check.sh green |
 | **P0.2** | Canonical Case model with compatibility adapters | **DONE, read-model scope** (docs/16, D-037): `tools/da_case.py` + `tools/check_case_model.py` (20 checks) in check.sh; corpus 173 gaps / 4 disputes / 24 proposals / 38 findings retrieved through one interface. Recorded case store + adapters staged for the 0.6 freeze; dispute replay + goldens + kernel tests green |
 | **P0.3** | Documentation drift folded into the next freeze (`00-index` conformance text, `04-interfaces` paths); VERSION aligned now | Freeze ritual when 0.6.0 lands |
-| **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) and the decision receipts (intent + outcome; docs/14 §5) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
-| **P1.2** | Independent verification consolidated under the runtime API (`da_verify` core behind the library; contracts unchanged) | Contract matrix in meta CI stays green; consumer `verify.map.json` flow unchanged |
+| **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) and the decision receipts (intent + outcome; docs/14 §5) | **DONE** (docs/17, D-038): `da init` / `da plan` / `da receipt-new` / `da receipt-check` / `da reconcile` shipped; acceptance vehicle `examples/wink-notes/` + `tools/check_project_flow.py` (35 checks) in check.sh; the owner-set transition policies now ship with the packs (0.3.0-rc1) |
+| **P1.2** | Independent verification consolidated under the runtime API (`da_verify` core behind the library; contracts unchanged) | **DONE**: `da verify` is the runtime-API alias over `tools/da_verify.py` (kept specialized for Playwright; contracts and `verify.map.json` flow unchanged); exercised end to end by the wink-notes acceptance |
 | **P1.3** | Finish separation: dossiers -> `authorities/<auth>/source/`; Phase-2 moves (synthesis tiles, cadence builds, audit console, font route); converge `build_pack_triage.py` (curation -> dossier adapter) | Per-authority CI + meta integration gates; route rewiring verified live |
 | **P1.4** | Reconciliation (docs/14): `transition` policy on records, `da sweep` (deterministic + inferred impact), `da reconcile` (migration plan + case events); assessment never auto-modifies. First milestone: the end-to-end Cadence lifecycle test (`docs/experiments/07-reconciliation-cadence.md`; executed 2026-10-11, including the full closure cycle; lifecycle pinned by `tools/reconcile_regression.py` in check.sh) | Depends on P0.2 + P1.1 receipts; docs/14 §11 pre-registered criteria; sweep writes nothing to application trees |
 | **P2.1** | `da init --authority <name>`; single install; CLI-only parity (no MCP required) | Fresh-machine acceptance test, agent-completable, like the current Use-now flow |

@@ -1,0 +1,11 @@
+{
+ "lock_version": "0.1",
+ "authority": "wink",
+ "version": "0.2.0",
+ "commit": "n/a - derived from public sources, not a repository",
+ "fingerprint": "sha256:c81e16486d97580e",
+ "pack": {
+  "path": "/home/xrim/design-authority/authorities/wink"
+ },
+ "locked_at": "2026-10-11T09:46:37+00:00"
+}

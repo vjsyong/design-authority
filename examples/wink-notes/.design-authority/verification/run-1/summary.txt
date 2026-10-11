@@ -1,0 +1,38 @@
+# da_verify — wink on examples/wink-notes
+generated 2026-10-11 09:48:05
+TOTALS: 34 checks — PASS 19 · VIOLATION 1 · UNVERIFIABLE 0 · REVIEW_REQUIRED 0 · N/A 14
+
+PASS  [error  ] wink/action-pill-radius — border-radius: 26px (all 3 ok)
+PASS  [error  ] wink/action-yellow-fill — background-color: rgb(255, 224, 27) (all 2 ok)
+PASS  [error  ] wink/action-ink-ring — box-shadow: rgb(35, 30, 21) 0px 0px 0px 1px (all 2 ok)
+N/A   [error  ] wink/action-dark-variant — consumer-mapped ignore: no warm-field context in this app (no dark CTA use case)
+PASS  [error  ] wink/action-outline-secondary — box-shadow: rgb(35, 30, 21) 0px 0px 0px 2px inset
+PASS  [warning] wink/action-label-type — font-size: 13px (all 3 ok); font-weight: 500 (all 3 ok)
+PASS  [error  ] wink/card-vessel — border-radius: 16px (all 2 ok); border-top-width: 0px (all 2 ok)
+PASS  [warning] wink/palette-literals — 7 literals, all allowlisted
+PASS  [error  ] wink/no-pure-black-static — no match
+PASS  [error  ] wink/no-pure-black-body — color: rgb(35, 30, 21)
+PASS  [error  ] wink/focus-visible — 
+N/A   [error  ] wink/dialog-vessel — consumer-mapped ignore: no dialog in this app
+N/A   [error  ] wink/dialog-scrim — consumer-mapped ignore: no dialog in this app
+N/A   [error  ] wink/dialog-no-motion — consumer-mapped ignore: no dialog in this app
+N/A   [error  ] wink/destructive-not-focused — consumer-mapped ignore: no destructive action in this app
+PASS  [warning] wink/error-colour — matched in app.css; matched in app.css
+N/A   [warning] wink/progress-ring — consumer-mapped ignore: uses the recorded progress track (pattern/progress), not a ring
+N/A   [warning] wink/badge-shape — consumer-mapped ignore: no badges in this app
+N/A   [warning] wink/ledger-head — consumer-mapped ignore: no table or ledger in this app
+PASS  [error  ] wink/no-imagery — found 0; no image url() references
+PASS  [warning] wink/no-invented-motion — no match
+PASS  [warning] wink/status-words — text length min 4 of 2
+PASS  [warning] wink/empty-state-plain — found 0 of #emptyState img; found 0 of #emptyState svg
+N/A   [warning] wink/tick-marked — consumer-mapped ignore: no tick / copy-with-mark surface in this app
+N/A   [review ] wink/review-tone — consumer-mapped ignore: review item: copy register judged in the page review
+N/A   [review ] wink/review-harmony — consumer-mapped ignore: review item: single-page app, no multi-surface harmony claim
+N/A   [review ] wink/review-typography-registers — consumer-mapped ignore: review item: covered by the page review, not machine-checkable here
+N/A   [review ] wink/review-hover-character — consumer-mapped ignore: review item: hover character judged in the page review
+N/A   [warning] wink/svg-census — consumer-mapped ignore: no svg icons in this app
+PASS  [warning] wink/background-scan — 
+PASS  [warning] wink/animation-census — 
+VIOL  [error  ] wink/no-floating-surfaces — 
+PASS  [error  ] wink/brand-link-ink — color: rgb(35, 30, 21)
+PASS  [error  ] wink/no-double-stroke — 

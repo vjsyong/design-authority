@@ -1,0 +1,43 @@
+{
+ "receipt_version": "0.2",
+ "note": "Written by the implementing agent at completion; confirmed against evidence by the verifier (docs/14 section 5). Claims: decisions_applied, unresolved_needs, provisional_solutions, deviations, areas_modified, verification.",
+ "application": "wink-notes",
+ "revision": "v1",
+ "built_at": "2026-10-11",
+ "authority": {
+  "authority": "wink",
+  "version": "0.2.0",
+  "commit": "n/a - derived from public sources, not a repository",
+  "fingerprint": "sha256:c81e16486d97580e"
+ },
+ "decisions_applied": [
+  "component/action-pill",
+  "pattern/inline-notice",
+  "pattern/empty-state",
+  "pattern/progress"
+ ],
+ "unresolved_needs": [
+  "05-a-floating-toast-notification"
+ ],
+ "provisional_solutions": [
+  "a floating toast notification renders as an ad-hoc floating block (.toast), marked (no wink record; case 05; gap/20261011-094638-5d4cb5)"
+ ],
+ "deviations": [
+  {
+   "decision": "pattern/inline-notice",
+   "reason": "the brief asked for a toast; wink records none (W-15: toasts unevidenced). The toast ships as a marked improvisation and the verifier flags it (wink/no-floating-surfaces).",
+   "reviewed": false
+  }
+ ],
+ "areas_modified": [
+  "list / add form",
+  "feedback / save confirmation",
+  "progress readout",
+  "empty state"
+ ],
+ "verification": {
+  "ref": ".design-authority/verification/run-1/",
+  "result": "19 pass / 1 violation (the declared toast improvisation) / 14 n/a",
+  "checks": 34
+ }
+}

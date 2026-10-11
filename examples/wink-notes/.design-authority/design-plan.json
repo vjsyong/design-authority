@@ -1,0 +1,91 @@
+{
+ "plan_version": "0.1",
+ "brief": "BRIEF.md",
+ "authority": {
+  "authority": "wink",
+  "version": "0.2.0",
+  "commit": "n/a - derived from public sources, not a repository",
+  "fingerprint": "sha256:c81e16486d97580e"
+ },
+ "created": "2026-10-11T09:46:37+00:00",
+ "needs": [
+  {
+   "need": "a primary action button",
+   "outcome": "RESOLVED",
+   "id": "component/action-pill",
+   "intent": "adopt",
+   "evidence": {
+    "score": 17.0,
+    "matched": [
+     "button",
+     "action",
+     "primary",
+     "~primary button"
+    ],
+    "threshold": 6.5
+   },
+   "next": "Call inspect_artifact('component/action-pill') for full detail; validate_implementation(target) after building."
+  },
+  {
+   "need": "an inline notice confirming a save",
+   "outcome": "RESOLVED",
+   "id": "pattern/inline-notice",
+   "intent": "adopt",
+   "evidence": {
+    "score": 13.0,
+    "matched": [
+     "notic",
+     "inlin",
+     "~inlin notic"
+    ],
+    "threshold": 6.5
+   },
+   "next": "Call inspect_artifact('pattern/inline-notice') for full detail; validate_implementation(target) after building."
+  },
+  {
+   "need": "an empty state when no rituals exist",
+   "outcome": "RESOLVED",
+   "id": "pattern/empty-state",
+   "intent": "adopt",
+   "evidence": {
+    "score": 17.0,
+    "matched": [
+     "empty",
+     "stat",
+     "no",
+     "~empty stat"
+    ],
+    "threshold": 6.5
+   },
+   "next": "Call inspect_artifact('pattern/empty-state') for full detail; validate_implementation(target) after building."
+  },
+  {
+   "need": "a progress readout for saving",
+   "outcome": "RESOLVED",
+   "id": "pattern/progress",
+   "intent": "adopt",
+   "evidence": {
+    "score": 13.0,
+    "matched": [
+     "progress",
+     "readout",
+     "~progress readout"
+    ],
+    "threshold": 6.5
+   },
+   "next": "Call inspect_artifact('pattern/progress') for full detail; validate_implementation(target) after building."
+  },
+  {
+   "need": "a floating toast notification",
+   "outcome": "UNDEFINED",
+   "id": null,
+   "intent": "improvise_and_report",
+   "evidence": {},
+   "next": "Implement per the consuming project's fallback policy; mark the improvisation; then report_gap(need, context, attempted_resolution).",
+   "case": "05-a-floating-toast-notification"
+  }
+ ],
+ "cases": [
+  "05-a-floating-toast-notification"
+ ]
+}

@@ -212,11 +212,15 @@ receipts are append-only, corrections are new receipts - with a pointer at
 the store root to the latest.
 
 Fields a receipt carries (prototype `prototype-0.1`, used by the closure
-test; P1.1 formalizes): authority version; `decisions_applied`;
+test; formalized 2026-10-11 as format `0.2` by `da receipt-new` /
+`da receipt-check`, docs/17): authority version; `decisions_applied`;
 `unresolved_needs`; `provisional_solutions`; `deviations[]`;
 `areas_modified[]` (the trigger surface for `when_touched`); `migration_for[]`
 (closes earlier obligations for the named decisions); and a `verification`
-reference (result + check count + the fresh verifier run).
+reference (result + check count + the fresh verifier run). The transition
+policy now enters the record layer at first publication: the packs ship
+their owner-set `transition` blocks (0.3.0-rc1), and codify carries them
+from the proposals.
 
 Receipts are declarations, not proof: their claims are confirmed against
 evidence before the sweep treats them as settled - source diffs and hashes
