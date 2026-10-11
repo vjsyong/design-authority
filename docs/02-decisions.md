@@ -258,3 +258,36 @@ synthesis goldens 18/18 · 14/14 · 17/17 · precedent probe 31/31 · MCP smoke
 with a fresh freeze and manifest (`docs/spec/freeze-0.5.0.sha256`), tag
 `v0.5.0`.
 
+## D-027 · Simplification program adopted; P0.1 — one decision-to-authority compiler (2026-10-11)
+
+Owner review adopted as the program plan (`docs/13-simplification.md`): the
+system is reorganized around one organizing abstraction — a compiler for
+governed design decisions, with a small runtime that agents use to apply and
+verify them. Doctrine restated and unchanged: evidence produces decisions,
+approved decisions compile into authority, agents consume authority,
+deviations return as reviewable cases; agents may improvise, never present
+improvisation as authority.
+
+P0.1 executed — one generic compile path replaces the two mechanisms that
+turned approved decisions into authoritative records. `tools/da_compile.py`
+holds the single emit core: `synthesis` mode compiles an authority dossier
+(reviewed data at `docs/synthesis/<src>/compile.json`: the approved decision
+ledger plus the records those decisions emit), `codify` mode merges
+reviewer-accepted proposals into a pack. The hardcoded per-source builders
+in `compile_pack.py` (552 → 36 lines) and the `SUMMARY` dict in
+`apply_proposals.py` (179 → 38 lines) are gone; both files are
+CLI-compatible adapters. The eleven editorial summaries were migrated into
+the proposal records they describe (`review.codified_summary`), so summaries
+travel with their decisions. Parity fixtures captured from the
+pre-unification tools pin behaviour byte-for-byte
+(`docs/synthesis/data/parity/`, `tools/compile_parity.py`, wired into
+`check.sh`): compile 3/3 sources and codify 3/3 workspaces reproduce their
+baselines exactly (codify with its recorded `codified_at`). Conformance at
+this change: triage pack drift in sync · coverage sweep 134/134 · kernel
+34/34 · triage goldens 58/58 · synthesis goldens 18/18 · 14/14 · 17/17 ·
+compile parity OK · precedent probe 31/31 · dispute replay 4 standing
+(expected) · MCP smoke 25/25 · concept-site gate PASS · semantic self-test
+OK. The kernel and the frozen 0.5 surface are untouched; the next stages
+(Case model P0.2, drift fixes P0.3, plan/verify P1, source separation P1.3,
+`da init` P2) are staged in `docs/13-simplification.md`.
+
