@@ -146,7 +146,10 @@ kept).
 where a gap, a disputed resolution, a proposal and a review verdict are all
 *events* on a case rather than sibling record types. First implemented as a
 canonical view over the existing workspace files (zero migration), with
-adapters; storage changes only if authority-side case pages need more.
+adapters; storage changes only if authority-side case pages need more. The
+event vocabulary reserves the reconciliation events (`impact_finding`,
+`migration_decision`; docs/14) so retroactive assessment attaches to the same
+lifecycle instead of founding another.
 
 **Interfaces** (P1.1/P1.2): `plan` / `resolve` / `verify` / `case` as the
 public operations; `review` / `publish` stay human-side. MCP, CLI, and any
@@ -162,9 +165,10 @@ Owner priorities, kept as given, with the gate for each phase.
 | **P0.1** | One generic compile path replacing source-specific compilation and proposal application | **DONE** (section 5, two passes): parity fixtures byte-compare both mechanisms; shared emission invariants + governance gate; check.sh green |
 | **P0.2** | Canonical Case model with compatibility adapters | Existing surfaces unchanged; dispute replay + goldens + kernel tests green; freeze 0.6.0 only after a stability window |
 | **P0.3** | Documentation drift folded into the next freeze (`00-index` conformance text, `04-interfaces` paths); VERSION aligned now | Freeze ritual when 0.6.0 lands |
-| **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
+| **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) and the decision receipts (intent + outcome; docs/14 §5) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
 | **P1.2** | Independent verification consolidated under the runtime API (`da_verify` core behind the library; contracts unchanged) | Contract matrix in meta CI stays green; consumer `verify.map.json` flow unchanged |
 | **P1.3** | Finish separation: dossiers -> `authorities/<auth>/source/`; Phase-2 moves (synthesis tiles, cadence builds, audit console, font route); converge `build_pack_triage.py` (curation -> dossier adapter) | Per-authority CI + meta integration gates; route rewiring verified live |
+| **P1.4** | Reconciliation (docs/14): `transition` policy on records, `da sweep` (deterministic + inferred impact), `da reconcile` (migration plan + case events); assessment never auto-modifies | Depends on P0.2 + P1.1 receipts; docs/14 §11 pre-registered criteria; sweep writes nothing to application trees |
 | **P2.1** | `da init --authority <name>`; single install; CLI-only parity (no MCP required) | Fresh-machine acceptance test, agent-completable, like the current Use-now flow |
 | **P2.2** | Generated documentation and case timelines from canonical records | Docs regenerate from records; drift classes gone; concept-site copy re-checked |
 
@@ -309,6 +313,10 @@ exception-backed)`; full `check.sh` green.
    carry findings (`L-12` left undefined; the ruled-panel premise vs the
    never-endorsed dialog decision `L-19`). Ratify them as authored policy,
    or supply ledger decisions to map them.
+8. **Reconciliation defaults.** The default transition policy for
+   unannotated records and the receipt granularity (docs/14 section 10) are
+   the two governance defaults staged for your ruling; everything else in
+   docs/14 is specified and resolvable at implementation time.
 
 ## 7 · Gates applied to every change
 
@@ -324,7 +332,8 @@ reversal.
 ## References
 
 - Reviews this plan responds to: owner memo 2026-10-11 (D-027); owner code
-  review of P0.1, 2026-10-11 (D-028, section 5 P0.1b).
+  review of P0.1, 2026-10-11 (D-028, section 5 P0.1b); owner capability memo
+  on reconciliation, 2026-10-11 (D-029, `docs/14-reconciliation.md`).
 - P0.1 code: `tools/da_compile.py`, `tools/compile_parity.py`,
   `tools/compile_invariants.py`, `docs/synthesis/data/parity/`, dossiers
   under `docs/synthesis/<src>/compile.json`.

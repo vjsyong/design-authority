@@ -336,3 +336,37 @@ exception-backed) · kernel 34/34 · coverage sweep 134/134 · triage goldens
 dispute replay 4 standing (expected) · MCP smoke 25/25 · concept-site gate
 PASS · semantic self-test OK. Kernel and the frozen surface untouched.
 
+## D-029 · Reconciliation adopted — retroactive assessment of authority evolution (2026-10-11)
+
+Owner capability memo adopted as `docs/14-reconciliation.md`. The system
+gains its third question: when the authority evolves, what obligations does
+that create for applications built under earlier versions? The principle is
+fixed in the spec: authority evolves prospectively, its consequences may be
+assessed retrospectively, historical decisions remain intact, current
+implementations may require reconciliation.
+
+The doctrine separates three concepts that are never conflated (precedent,
+impact, migration policy). Transition policy becomes a property of the
+approved decision (`transition` block: prospective | when_touched | required
+| review; enforceable `required` must name its trigger `by`; `supersedes`
+chains imply a record lifecycle). The sweep (`da sweep --from --to`) matches
+deterministically first (recorded cases, and later decision receipts - 36 of
+53 existing consumer stores already pin the build version they ran under) and
+treats inferred matches as review candidates only (retrieval never
+establishes authority, extended to impact matching). Findings classify as
+conforms / grandfathered / rectify / review; grandfathering always preserves
+reason and trigger, never "forever". Impact findings and migration decisions
+attach to the Case lifecycle as reserved event kinds (`impact_finding`,
+`migration_decision`) - no fifth lifecycle. Rigid boundary: publishing a
+precedent triggers assessment, never automatic modification; changes ship as
+new plans and builds under the target version with their own verification.
+The four transition policies, report shape, receipt contents and
+pre-registered acceptance criteria are in docs/14 sections 3-11.
+
+Sequencing as the owner specified: implemented after P0.2 (Case model) and
+P1.1 (project contract + decision receipts); placed as P1.4 in
+docs/13-simplification.md. Open governance defaults left to the owner
+(docs/14 section 10): the default transition policy for unannotated records,
+receipt granularity, supersession lifecycle details, and the seat for
+`review`-class migration decisions.
+
