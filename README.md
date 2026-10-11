@@ -4,7 +4,11 @@
 
 A versioned, machine-readable design contract that lets coding agents work under a real design system instead of guessing at it. Agents resolve design problems against the authority (RESOLVED · COMPOSE · FALLBACK · UNDEFINED · CONFLICT), build against cited rules, check their work with explicit validators, and report gaps upstream instead of silently inventing canon. The kernel is completely kit-agnostic: it knows artifacts, rules, recipes, fallbacks, precedents, candidates, resolutions, gaps and proposals, and nothing about buttons or colours. A design system enters only as a pack.
 
-**Status:** the specification is frozen at 0.5.0 (tag `v0.5.0`).
+**Status:** the specification is frozen at 0.5.0 (tag `v0.5.0`). Release
+**0.6 "Integrated Governance"** is cut (tag `release-0.6.0`; record:
+[`docs/18-release-0.6.md`](docs/18-release-0.6.md)) — the roadmap's P0–P5
+wave: case model, project contracts, adoption-tested consumption, the
+maintenance-economics experiment, and this consolidation.
 
 **For humans:** click **Use now** (or scroll to the block below) and copy it into your coding agent on the machine that will do the work. The agent installs everything, proves it works, and validates what it builds.
 **For agents:** the Use now block below is your task. Do it in order, verify every expected output, and stop to report if one of them fails. The long-form reference for each step follows under "Install (for agents)".
