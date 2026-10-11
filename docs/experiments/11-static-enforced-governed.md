@@ -133,3 +133,9 @@ reported separately, no composite score.
   UI renders; screenshots for the blind set).
 - **Launched** via the conductor (background); results land in
   `run/<id>/run.json` + verified seals, captures under `run/<id>/capture/`.
+- **2026-10-11 · COMPLETE (22:43 UTC, 45/45, one capped: r3-b-h5).**
+  Results: `docs/experiments/12-three-arm-results.md`. Headline: enforcement
+  (B) held 100/100 at all 15 handoff states; static (A) decayed
+  98→70/88/92 with raw-colour drift; governed (C) carried 1-5 documented
+  B004 residuals. H5 repair of A cost ≈ the preventive premium (7.0M vs
+  +6.9M). Blind round live via the driftexp instrument (14 comparisons).
