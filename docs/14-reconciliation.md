@@ -99,6 +99,10 @@ Semantics:
   `review`: no silent migration obligation for older applications, and every
   report row shows which policy applied and whether it was explicit or
   defaulted.
+- The compiler validates every present block: policy enum, `by` if and only
+  if `required`, list-typed `supersedes`/`resolves_cases`, `exceptions`
+  enum. No invalid combination survives validation, so downstream consumers
+  never meet one.
 - `required` is only enforceable when it names its trigger (`by`: a release
   or date, non-empty). A `required` policy without a trigger is refused at
   compile time; it degrades to nothing, and governance is not allowed to
@@ -213,6 +217,13 @@ test; P1.1 formalizes): authority version; `decisions_applied`;
 `areas_modified[]` (the trigger surface for `when_touched`); `migration_for[]`
 (closes earlier obligations for the named decisions); and a `verification`
 reference (result + check count + the fresh verifier run).
+
+Receipts are declarations, not proof: their claims are confirmed against
+evidence before the sweep treats them as settled - source diffs and hashes
+for the modification scope (`areas_modified`), the fresh verifier run for
+applied decisions - and every finding that used receipt evidence carries
+`receipt_status: confirmed | unconfirmed`. The confirmer runs separately
+from the implementer.
 
 ## 6 · Grandfathering should not mean forgetting
 
@@ -331,12 +342,20 @@ case events. The reconcile output is a plan; it never edits an application.
 11. Trigger transition: a grandfathered `when_touched` finding records its
     trigger state, and once the trigger occurs without migration the finding
     reclassifies as rectifiable.
+12. Receipt claims are confirmed against evidence (source diffs + hashes;
+    the fresh verification for applied decisions), and stale evidence fails
+    loudly: record-hash and build-hash binding turn drift into a gate
+    failure instead of silent decay.
 
 The Cadence lifecycle test (`docs/experiments/07-reconciliation-cadence.md`)
 executes criteria 2, 4, 6, 7, 9, 10 and - through the closure test - 3 and 11
 in full: a real revision modified without migrating, the trigger detected,
-the obligation due, the migration applied, independently verified (8/8), and
-the obligation closed by the receipt.
+the obligation due, the migration applied, independently verified (9/9 checks,
+coverage disclosed), and the obligation closed by the confirmed receipt.
+`tools/reconcile_regression.py` (inside `check.sh`) re-runs these criteria
+from committed fixtures - pinned counts, idempotency, link derivation, the
+defaults behaviour, the full closure cycle, and evidence freshness - so the
+tested lifecycle survives refactoring.
 
 ## 12 · Dependencies and placement
 

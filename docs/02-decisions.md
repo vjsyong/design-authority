@@ -435,3 +435,41 @@ for three corrections, all landed in the spec and the prototype:
   application tree. Full record: docs/experiments/07-reconciliation-cadence.md
   section 5; fixtures: docs/experiments/reconcile-cadence/closure/.
 
+## D-032 · Reconciliation formalized: receipt confirmation, record-bound verification, policy validation, and the survival gate (2026-10-11)
+
+Owner review round three accepted the closure lifecycle and directed
+formalization instead of new capabilities; the concept boundaries are frozen
+and the remaining work is integration (canonical Case records, formal
+receipts, real transition policies, a consolidated API).
+
+- **Receipts are confirmed, not trusted.** A separate confirmer
+  (`examples/cadence-wink-r2/_evidence/confirm-receipts.py`) checks the
+  r2a/r2b claims against source evidence: diffs show the modification
+  confined to the claimed area (10 changed lines) and the migration (15
+  changed lines), with hashes of the v1, r2a and r2b states; the r2a code
+  state is committed as a snapshot so the claims stay confirmable from the
+  repository. Findings that used receipt evidence carry
+  `receipt_status: confirmed | unconfirmed`.
+- **Verification is bound to the record.** The DOM verifier loads the record
+  at runtime and records its hash (staleness is detectable), and discloses
+  coverage against the record's own normative items: 9/9 checks, 3 of 4
+  requirements mechanically covered, the copy register listed as a
+  human-review item instead of being implied.
+- **Transition policies are validated by the compiler.**
+  `da_compile.validate_transition` enforces the docs/14 section-3 rules
+  (policy enum; `by` if and only if `required`; list-typed links; exceptions
+  enum); compile reports carry explicit/missing policy counts; the
+  invariants gate exercises the validator against invalid combinations.
+  Setting the REAL policies for the twelve records remains the owner's
+  action - the machinery that receives them is ready.
+- **The tested lifecycle is pinned.** `tools/reconcile_regression.py` (in
+  `check.sh`) re-runs the sweeps from committed fixtures: pinned class
+  counts, idempotency, chain-derived links, the legacy default, the full
+  closure cycle, and evidence freshness (record-hash and build-hash binding;
+  drift fails the gate and demands a fresh verifier run). 26 checks, no
+  browser required.
+
+Remaining owner actions: the real transition policies for the twelve records
+and the disposition of the one `review` row. Remaining integration: Case
+records (P0.2), formal receipts (P1.1), the consolidated interface (P1.2+).
+
