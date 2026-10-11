@@ -1,0 +1,118 @@
+{
+ "portfolio": "cadence (cross-authority reconciliation lifecycle test)",
+ "note": "Each archived build is an application; `lineage` declares the shared product so the recorded cases of the flagship build reach its generations. Decision receipts (P1.1) will make this self-describing.",
+ "target_version": "0.2.0",
+ "apps": [
+  {
+   "name": "cadence-wink",
+   "authority": "wink",
+   "lineage": "cadence-wink",
+   "builds": [
+    {
+     "dir": "examples/cadence-wink",
+     "revision": "v1",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence2-wink",
+   "authority": "wink",
+   "lineage": "cadence-wink",
+   "builds": [
+    {
+     "dir": "examples/cadence2-wink",
+     "revision": "v2",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence3-wink",
+   "authority": "wink",
+   "lineage": "cadence-wink",
+   "builds": [
+    {
+     "dir": "examples/cadence3-wink",
+     "revision": "v3",
+     "built_under": "0.2.0",
+     "evidence": "examples/cadence3-wink/_evidence"
+    }
+   ]
+  },
+  {
+   "name": "cadence-leader",
+   "authority": "leader",
+   "lineage": "cadence-leader",
+   "builds": [
+    {
+     "dir": "examples/cadence-leader",
+     "revision": "v1",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence2-leader",
+   "authority": "leader",
+   "lineage": "cadence-leader",
+   "builds": [
+    {
+     "dir": "examples/cadence2-leader",
+     "revision": "v2",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence3-leader",
+   "authority": "leader",
+   "lineage": "cadence-leader",
+   "builds": [
+    {
+     "dir": "examples/cadence3-leader",
+     "revision": "v3",
+     "built_under": "0.2.0",
+     "evidence": "examples/cadence3-leader/_evidence"
+    }
+   ]
+  },
+  {
+   "name": "cadence-dominion",
+   "authority": "dominion",
+   "lineage": "cadence-dominion",
+   "builds": [
+    {
+     "dir": "examples/cadence-dominion",
+     "revision": "v1",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence2-dominion",
+   "authority": "dominion",
+   "lineage": "cadence-dominion",
+   "builds": [
+    {
+     "dir": "examples/cadence2-dominion",
+     "revision": "v2",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence3-dominion",
+   "authority": "dominion",
+   "lineage": "cadence-dominion",
+   "builds": [
+    {
+     "dir": "examples/cadence3-dominion",
+     "revision": "v3",
+     "built_under": "0.2.0",
+     "evidence": "examples/cadence3-dominion/_evidence"
+    }
+   ]
+  }
+ ]
+}

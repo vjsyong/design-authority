@@ -1,0 +1,773 @@
+{
+ "target_version": "0.2.0",
+ "counts": {
+  "conforms": 10,
+  "grandfathered": 0,
+  "rectify": 0,
+  "review": 26
+ },
+ "store": {
+  "new": 36,
+  "reused": 0,
+  "superseded": 0,
+  "total": 36
+ },
+ "findings": [
+  {
+   "id": "finding/cadence-dominion/component~ledger/0.2.0/v1",
+   "application": "cadence-dominion",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/ledger",
+   "decision_title": "Ledger (ruled register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-dominion/component~notice/0.2.0/v1",
+   "application": "cadence-dominion",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/notice",
+   "decision_title": "Notice (ruled box)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-13d338",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-dominion/component~status/0.2.0/v1",
+   "application": "cadence-dominion",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/status",
+   "decision_title": "Status label (word-first)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-dominion/pattern~plain-chart/0.2.0/v1",
+   "application": "cadence-dominion",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "pattern/plain-chart",
+   "decision_title": "Plain chart (bars, month grid, sparkline)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150030-0a71f9",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-leader/component~tag/0.2.0/v1",
+   "application": "cadence-leader",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "component/tag",
+   "decision_title": "Tag (status / category)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-d4706a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-leader/pattern~data-charts/0.2.0/v1",
+   "application": "cadence-leader",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-charts",
+   "decision_title": "Data charts (rectilinear register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-1ae98e",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-leader/pattern~data-readouts/0.2.0/v1",
+   "application": "cadence-leader",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-readouts",
+   "decision_title": "Data readouts (sparkline trend, stat counter)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-878f7a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~destructive-confirm/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/destructive-confirm",
+   "decision_title": "Destructive confirmation",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145139-ad4b85",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~dialog-overlay/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/dialog-overlay",
+   "decision_title": "Dialog (overlay vessel)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a0e2b0",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~empty-state/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/empty-state",
+   "decision_title": "Empty state",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a9d93a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~inline-notice/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~progress/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/progress",
+   "decision_title": "Progress readout",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145939-d19d36",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-dominion/component~ledger/0.2.0/v2",
+   "application": "cadence2-dominion",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/ledger",
+   "decision_title": "Ledger (ruled register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-dominion/component~notice/0.2.0/v2",
+   "application": "cadence2-dominion",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/notice",
+   "decision_title": "Notice (ruled box)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-13d338",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-dominion/component~status/0.2.0/v2",
+   "application": "cadence2-dominion",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/status",
+   "decision_title": "Status label (word-first)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-dominion/pattern~plain-chart/0.2.0/v2",
+   "application": "cadence2-dominion",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-dominion",
+   "decision": "pattern/plain-chart",
+   "decision_title": "Plain chart (bars, month grid, sparkline)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150030-0a71f9",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-leader/component~tag/0.2.0/v2",
+   "application": "cadence2-leader",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "component/tag",
+   "decision_title": "Tag (status / category)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-d4706a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-leader/pattern~data-charts/0.2.0/v2",
+   "application": "cadence2-leader",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-charts",
+   "decision_title": "Data charts (rectilinear register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-1ae98e",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-leader/pattern~data-readouts/0.2.0/v2",
+   "application": "cadence2-leader",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-readouts",
+   "decision_title": "Data readouts (sparkline trend, stat counter)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-878f7a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-wink/pattern~destructive-confirm/0.2.0/v2",
+   "application": "cadence2-wink",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/destructive-confirm",
+   "decision_title": "Destructive confirmation",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145139-ad4b85",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-wink/pattern~dialog-overlay/0.2.0/v2",
+   "application": "cadence2-wink",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/dialog-overlay",
+   "decision_title": "Dialog (overlay vessel)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a0e2b0",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-wink/pattern~empty-state/0.2.0/v2",
+   "application": "cadence2-wink",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/empty-state",
+   "decision_title": "Empty state",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a9d93a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-wink/pattern~inline-notice/0.2.0/v2",
+   "application": "cadence2-wink",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence2-wink/pattern~progress/0.2.0/v2",
+   "application": "cadence2-wink",
+   "revision": "v2",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/progress",
+   "decision_title": "Progress readout",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145939-d19d36",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-dominion/component~ledger/0.2.0/v3",
+   "application": "cadence3-dominion",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/ledger",
+   "decision_title": "Ledger (ruled register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-dominion/component~notice/0.2.0/v3",
+   "application": "cadence3-dominion",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/notice",
+   "decision_title": "Notice (ruled box)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-13d338",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-dominion/component~status/0.2.0/v3",
+   "application": "cadence3-dominion",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-dominion",
+   "decision": "component/status",
+   "decision_title": "Status label (word-first)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150031-f5a96f",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-dominion/pattern~plain-chart/0.2.0/v3",
+   "application": "cadence3-dominion",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-dominion",
+   "decision": "pattern/plain-chart",
+   "decision_title": "Plain chart (bars, month grid, sparkline)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-150030-0a71f9",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-leader/component~tag/0.2.0/v3",
+   "application": "cadence3-leader",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-leader",
+   "decision": "component/tag",
+   "decision_title": "Tag (status / category)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-d4706a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-leader/pattern~data-charts/0.2.0/v3",
+   "application": "cadence3-leader",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-charts",
+   "decision_title": "Data charts (rectilinear register)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-1ae98e",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-leader/pattern~data-readouts/0.2.0/v3",
+   "application": "cadence3-leader",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-leader",
+   "decision": "pattern/data-readouts",
+   "decision_title": "Data readouts (sparkline trend, stat counter)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145916-878f7a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-wink/pattern~destructive-confirm/0.2.0/v3",
+   "application": "cadence3-wink",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/destructive-confirm",
+   "decision_title": "Destructive confirmation",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145139-ad4b85",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-wink/pattern~dialog-overlay/0.2.0/v3",
+   "application": "cadence3-wink",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/dialog-overlay",
+   "decision_title": "Dialog (overlay vessel)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a0e2b0",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-wink/pattern~empty-state/0.2.0/v3",
+   "application": "cadence3-wink",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/empty-state",
+   "decision_title": "Empty state",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-a9d93a",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-wink/pattern~inline-notice/0.2.0/v3",
+   "application": "cadence3-wink",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "review",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  },
+  {
+   "id": "finding/cadence3-wink/pattern~progress/0.2.0/v3",
+   "application": "cadence3-wink",
+   "revision": "v3",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/progress",
+   "decision_title": "Progress readout",
+   "target_version": "0.2.0",
+   "policy": "review",
+   "policy_source": "default (legacy record)",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145939-d19d36",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T02:41:04+00:00"
+  }
+ ]
+}
