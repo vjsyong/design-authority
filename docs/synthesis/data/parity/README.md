@@ -49,4 +49,9 @@ the triage template gate surfaced the mismatch). A later pass in the same
 session restored the deployed alias sets and the pinned golden cases in the
 codify sources (curation the sources never carried); the `codify-<src>`
 baselines were refreshed with exactly that delta (alias lists and golden
-cases only). The P0.1b-era baselines remain in git history.
+cases only). The same day's record-layer pass (transition policies shipped
+with the packs, 0.3.0-rc1; dossier manifests bumped) refreshed both sets
+again with verified deltas: `codify-<src>/artifacts.json` gain the
+`transition` blocks only, and `authority.json` / `golden.json` change only
+by the version and pack_version. The P0.1b-era baselines remain in git
+history.

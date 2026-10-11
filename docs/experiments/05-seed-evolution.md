@@ -551,3 +551,105 @@ and dated, before any session runs.
   tools) and the pre-flight rehearsal record.
 - The program report appended to this document, including the caveats in
   sections 1 and 5.3.
+
+## 11 · Program report (2026-10-11)
+
+The program ran as pre-registered: 17 sealed sessions — formation (f1–f3)
+against the blank `base` pack, the census, the cod adjudication (canon
+`base 0.1.0-experiment`), then three handoff chains A/B/C (h1a…h4c, four
+handoffs each) on the bookmarks app. Same model (`deepseek/deepseek-flash`),
+same briefs and frozen screenshots per handoff, per-session budget 2700 s /
+20 M tokens (all sessions self-terminated early; 378–576 s used). Full
+records: `docs/experiments/seed-evolution/` (`units/`, `analysis/`), run
+area `~/x05`.
+
+### 11.1 The primary readout
+
+**Blind review** (`analysis/blind-review.md`; single reviewer, logged
+deviation, no calibration set — reduced precision): matched-region means
+**A 2.5 · B 3.5 · C 3.75**; all-items medians A 3 · B 3 · C 4. The
+pre-registered D1 blind corroboration read: all-items C−B = **+1.0 (at the
+threshold)**; matched-regions-only = +0.5 (below). Ordering C > B > A on
+means; C ≥ B at all four handoffs.
+
+**Objective scoring** (`analysis/objective-scores.md`; primary gate):
+Layer 1 role fidelity is flat and near-floor — identical trajectories
+across all three chains (1.0 / 0.5 / 0 / 0 by handoff), D1 and D2 **FAIL**
+(0/4 handoffs above threshold both ways). Layer 2 cross-component
+consistency sits near ceiling (means 0.92–0.97) with D3 not favoring C
+(2/3). Reuse ratio at H3 favors C (1.00 vs 0.67).
+
+**Process audit** (`analysis/process-audit.md`): condition C consulted the
+authority heavily and substantively (18–54 audited wrapper calls per
+session; 14 RESOLVED / 29 UNDEFINED across the chain; the h4c exemplar
+sequence: overview → search → inspect everything the wizard touches →
+resolve the new needs → file 10 gaps + 10 proposals → get rulings on
+guard-rail asks). Briefs were followed in every session; the continuity
+path (screenshots) was exercised in all conditions; no budget caps hit. The
+material finding: **the enforcement layer was hollow as executed** — the
+sealed canon declared no validators, so `validate` returned score 100 by
+construction on any target; condition C in practice tested *consultation +
+canon*, not *tooling enforcement*. Root cause was program design (no
+checkable rules were ever produced), not session failure; logged as such.
+
+**Enforcement rebuild (owner-directed, post-seal;**
+`analysis/enforcement-rebuild.md`**):** the gap was closed additively —
+`bookmarks-lint v1` (B001 new raw colour literals as a delta rule against
+the seed vocabulary; B002 hooks; B003 storage key; B004 warnings), pack
+`base-0.1.1-experiment` (canon byte-identical + declared validator),
+protocol rev2 (validate-as-last-step; repair-or-file), and an independent
+compliance gate computed from sealed artifacts. Unit/mutation battery and
+the live pilot pass (pv1: compliant, validate ×2, score 100). The sealed
+run and every prior analysis stayed byte-untouched.
+
+**Retrospective validation sweep** (`analysis/retrospective-validation.md`;
+exploratory, post-hoc): over the sealed 17, only **chain A** accumulated
+new-literal drift in the drift window (3 errors / 7 warnings vs B 0/4, C
+0/1); the divergence is a concrete token-vocabulary break
+(`rgba(20, 24, 33, 0.28)`), directionally consistent with the blind
+ordering C ≥ B > A. Explicitly labelled exploratory, not pre-registered.
+
+### 11.2 What the program says
+
+- **Governance changed behaviour; it did not move the fidelity gates.**
+  Under C, agents consulted rulings before building, reused canon classes
+  heavily, filed every new need, and introduced zero unauthorized
+  vocabulary; yet Layer 1 (the pre-registered primary) stayed flat and
+  near-floor for every chain. The measurable advantage sat in process
+  quality and vocabulary discipline, not in first-pass visual fidelity.
+- **The uniform look was a program artifact, not an authority effect.**
+  Sessions were recombinative by design (same tokens and chrome, single
+  pass per handoff, no refinement pressure, and no working validation in
+  the sealed arm). That explanation is mechanical and checkable in the
+  traces.
+- **The interesting variable was left untested.** With enforcement hollow
+  as executed, the C-vs-B contrast measured consultation and canon supply.
+  The enforced arm (protocol rev2 + validator + compliance gate) is built,
+  pilot-validated, and not yet run as a full chain; it needs its own
+  pre-registration addendum before it runs.
+- **The programme's honest bottom line, unchanged:** first-pass quality is
+  the wrong headline metric for this layer. What the machinery demonstrably
+  provides is **governed process and inspectable precedent** — which is
+  exactly the reframing the 2026-10-11 owner memo adopts for the next
+  experiment (maintenance economics across handoffs, not fidelity gains).
+
+### 11.3 Limits
+
+Single reviewer and no calibration set (logged deviations; reduced
+precision). Layer 1 is coarse and near-floor for this app (two measurement
+points excluded as not-measurable in all chains); Layer 2 is near ceiling.
+One chain per condition. The enforcement-rebuild pilot and the sweep are
+post-seal and exploratory; neither changes the frozen primary analysis.
+Transcript audit greps are heuristic lower bounds.
+
+### 11.4 Deliverables status (section 10)
+
+Sealed seed app + per-session history + census + exemplar sheet ✓ ·
+archive + canon pack ✓ · three condition chains with checkpoints, audits,
+records, trajectories, blind review ✓ · orchestration stack + rehearsal ✓
+(enforcement rebuild + compliance gate added post-seal) · program report =
+this section.
+
+The next experiment (per the owner memo, section 5: maintenance economics
+of governed precedent across successive agents) is designed separately;
+its pre-registration will cite this report and the sealed materials.
