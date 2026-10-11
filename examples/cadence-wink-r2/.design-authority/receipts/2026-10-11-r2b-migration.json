@@ -1,0 +1,32 @@
+{
+ "receipt_version": "prototype-0.1",
+ "note": "Prototype decision receipt (docs/14 section 5; P1.1 formalizes the format). Migration revision of the cadence-wink r2 build: applies pattern/inline-notice to the settings-save confirmation and closes the r2a deviation.",
+ "application": "cadence-wink",
+ "revision": "r2b (migration applied)",
+ "built_at": "2026-10-11",
+ "authority": {
+  "authority": "wink",
+  "version": "0.2.0"
+ },
+ "decisions_applied": [
+  "pattern/inline-notice"
+ ],
+ "unresolved_needs": [],
+ "provisional_solutions": [],
+ "deviations": [],
+ "migration_for": [
+  "pattern/inline-notice"
+ ],
+ "closes": [
+  ".design-authority/receipts/2026-10-11-r2a-modification.json"
+ ],
+ "areas_modified": [
+  "feedback / save confirmation (settings)"
+ ],
+ "verification": {
+  "result": "pass",
+  "checked": "8/8",
+  "ref": "_evidence/verification/notice-migration.json",
+  "verifier": "_evidence/verify-notice-migration.py"
+ }
+}

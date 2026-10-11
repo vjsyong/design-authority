@@ -1,0 +1,70 @@
+{
+ "verifier": "_evidence/verify-notice-migration.py",
+ "target": "examples/cadence-wink-r2",
+ "decision": "pattern/inline-notice",
+ "authority": {
+  "authority": "wink",
+  "version": "0.2.0"
+ },
+ "ran_at": "2026-10-11T03:04:40+00:00",
+ "verdict": "pass",
+ "checks": [
+  {
+   "id": "notice-exists",
+   "desc": "a notice element appears after saving settings",
+   "pass": true,
+   "detail": "present",
+   "record_ref": "pattern/inline-notice"
+  },
+  {
+   "id": "notice-visible",
+   "desc": "visible in the page flow",
+   "pass": true,
+   "detail": "{'x': 160, 'y': 526.609375, 'width': 960, 'height': 42.21875}",
+   "record_ref": "do: near the element that changed"
+  },
+  {
+   "id": "notice-fill",
+   "desc": "tinted fill = parsnip (#F6F6F4)",
+   "pass": true,
+   "detail": "rgb(246, 246, 244)",
+   "record_ref": "states[0]: rounded 12, tinted fill (palette roles)"
+  },
+  {
+   "id": "notice-radius",
+   "desc": "rounded 12",
+   "pass": true,
+   "detail": "12px",
+   "record_ref": "states[0]: rounded 12"
+  },
+  {
+   "id": "notice-in-flow",
+   "desc": "not a floating/toast surface",
+   "pass": true,
+   "detail": "static",
+   "record_ref": "dont: floating toast stacks are not canon"
+  },
+  {
+   "id": "notice-lead",
+   "desc": "bold lead sentence present",
+   "pass": true,
+   "detail": "'Saved.'",
+   "record_ref": "record summary: bold lead sentence + plain supporting line"
+  },
+  {
+   "id": "no-save-toast",
+   "desc": "the save flow no longer raises the improvised toast",
+   "pass": true,
+   "detail": "toast.show=False",
+   "record_ref": "canon: the notice is the sanctioned substitute for toasts"
+  },
+  {
+   "id": "stale-echo-gone",
+   "desc": "the r2a ad-hoc echo no longer exists",
+   "pass": true,
+   "detail": "saveEcho=False",
+   "record_ref": "migration scope"
+  }
+ ],
+ "note": "Focused independent verification for the reconciliation closure test (docs/experiments/07 section 6). Fresh run only; artifact-local results are never proof."
+}

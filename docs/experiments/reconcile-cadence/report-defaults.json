@@ -1,14 +1,16 @@
 {
  "target_version": "0.2.0",
+ "decision": null,
  "counts": {
   "conforms": 10,
   "grandfathered": 0,
   "rectify": 0,
   "review": 26
  },
+ "obligations": {},
  "store": {
-  "new": 36,
-  "reused": 0,
+  "new": 0,
+  "reused": 36,
   "superseded": 0,
   "total": 36
  },
@@ -31,8 +33,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-dominion/component~notice/0.2.0/v1",
@@ -52,8 +54,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-dominion/component~status/0.2.0/v1",
@@ -73,8 +75,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-dominion/pattern~plain-chart/0.2.0/v1",
@@ -94,8 +96,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-leader/component~tag/0.2.0/v1",
@@ -115,8 +117,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-leader/pattern~data-charts/0.2.0/v1",
@@ -136,8 +138,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-leader/pattern~data-readouts/0.2.0/v1",
@@ -157,8 +159,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-wink/pattern~destructive-confirm/0.2.0/v1",
@@ -178,8 +180,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-wink/pattern~dialog-overlay/0.2.0/v1",
@@ -199,8 +201,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-wink/pattern~empty-state/0.2.0/v1",
@@ -220,8 +222,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-wink/pattern~inline-notice/0.2.0/v1",
@@ -241,8 +243,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence-wink/pattern~progress/0.2.0/v1",
@@ -262,8 +264,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-dominion/component~ledger/0.2.0/v2",
@@ -283,8 +285,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-dominion/component~notice/0.2.0/v2",
@@ -304,8 +306,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-dominion/component~status/0.2.0/v2",
@@ -325,8 +327,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-dominion/pattern~plain-chart/0.2.0/v2",
@@ -346,8 +348,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-leader/component~tag/0.2.0/v2",
@@ -367,8 +369,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-leader/pattern~data-charts/0.2.0/v2",
@@ -388,8 +390,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-leader/pattern~data-readouts/0.2.0/v2",
@@ -409,8 +411,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-wink/pattern~destructive-confirm/0.2.0/v2",
@@ -430,8 +432,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-wink/pattern~dialog-overlay/0.2.0/v2",
@@ -451,8 +453,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-wink/pattern~empty-state/0.2.0/v2",
@@ -472,8 +474,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-wink/pattern~inline-notice/0.2.0/v2",
@@ -493,8 +495,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence2-wink/pattern~progress/0.2.0/v2",
@@ -514,8 +516,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence3-dominion/component~ledger/0.2.0/v3",
@@ -535,8 +537,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-dominion/component~notice/0.2.0/v3",
@@ -556,8 +558,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence3-dominion/component~status/0.2.0/v3",
@@ -577,8 +579,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-dominion/pattern~plain-chart/0.2.0/v3",
@@ -598,8 +600,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-leader/component~tag/0.2.0/v3",
@@ -619,8 +621,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-leader/pattern~data-charts/0.2.0/v3",
@@ -640,8 +642,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-leader/pattern~data-readouts/0.2.0/v3",
@@ -661,8 +663,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-wink/pattern~destructive-confirm/0.2.0/v3",
@@ -682,8 +684,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-wink/pattern~dialog-overlay/0.2.0/v3",
@@ -703,8 +705,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-wink/pattern~empty-state/0.2.0/v3",
@@ -724,8 +726,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   },
   {
    "id": "finding/cadence3-wink/pattern~inline-notice/0.2.0/v3",
@@ -745,8 +747,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "no explicit transition policy (legacy default): assess before any obligation",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "no explicit transition policy (legacy default): assess before any obligation"
   },
   {
    "id": "finding/cadence3-wink/pattern~progress/0.2.0/v3",
@@ -766,8 +768,8 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "reason": "the build resolved this decision (recorded evidence)",
-   "assessed_at": "2026-10-11T02:41:04+00:00"
+   "obligation": null,
+   "reason": "the build resolved this decision (recorded evidence)"
   }
  ]
 }

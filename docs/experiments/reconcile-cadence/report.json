@@ -1,15 +1,19 @@
 {
  "target_version": "0.2.0",
+ "decision": null,
  "counts": {
   "conforms": 10,
   "grandfathered": 22,
   "rectify": 3,
   "review": 1
  },
+ "obligations": {
+  "scheduled": 3
+ },
  "store": {
   "new": 0,
-  "reused": 36,
-  "superseded": 0,
+  "reused": 15,
+  "superseded": 21,
   "total": 36
  },
  "findings": [
@@ -31,10 +35,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   }
   },
   {
    "id": "finding/cadence-dominion/component~notice/0.2.0/v1",
@@ -53,11 +69,23 @@
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "occurred": false,
-    "basis": "obligation live until 0.3.0"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "rectify",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "obligation live until 0.3.0"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   }
   },
   {
    "id": "finding/cadence-dominion/component~status/0.2.0/v1",
@@ -77,10 +105,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   }
   },
   {
    "id": "finding/cadence-dominion/pattern~plain-chart/0.2.0/v1",
@@ -100,10 +140,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   }
   },
   {
    "id": "finding/cadence-leader/component~tag/0.2.0/v1",
@@ -123,10 +175,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   }
   },
   {
    "id": "finding/cadence-leader/pattern~data-charts/0.2.0/v1",
@@ -146,10 +210,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   }
   },
   {
    "id": "finding/cadence-leader/pattern~data-readouts/0.2.0/v1",
@@ -169,6 +245,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "policy 'prospective': no obligation on existing implementations"
   },
   {
@@ -189,10 +266,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   }
   },
   {
    "id": "finding/cadence-wink/pattern~dialog-overlay/0.2.0/v1",
@@ -212,10 +301,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   }
   },
   {
    "id": "finding/cadence-wink/pattern~empty-state/0.2.0/v1",
@@ -235,6 +336,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "policy 'prospective': no obligation on existing implementations"
   },
   {
@@ -255,10 +357,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   }
   },
   {
    "id": "finding/cadence-wink/pattern~progress/0.2.0/v1",
@@ -278,10 +392,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   }
   },
   {
    "id": "finding/cadence2-dominion/component~ledger/0.2.0/v2",
@@ -301,10 +427,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   }
   },
   {
    "id": "finding/cadence2-dominion/component~notice/0.2.0/v2",
@@ -323,11 +461,23 @@
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "occurred": false,
-    "basis": "obligation live until 0.3.0"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "rectify",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "obligation live until 0.3.0"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   }
   },
   {
    "id": "finding/cadence2-dominion/component~status/0.2.0/v2",
@@ -347,10 +497,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   }
   },
   {
    "id": "finding/cadence2-dominion/pattern~plain-chart/0.2.0/v2",
@@ -370,10 +532,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   }
   },
   {
    "id": "finding/cadence2-leader/component~tag/0.2.0/v2",
@@ -393,10 +567,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   }
   },
   {
    "id": "finding/cadence2-leader/pattern~data-charts/0.2.0/v2",
@@ -416,10 +602,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   }
   },
   {
    "id": "finding/cadence2-leader/pattern~data-readouts/0.2.0/v2",
@@ -439,6 +637,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "policy 'prospective': no obligation on existing implementations"
   },
   {
@@ -459,10 +658,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   }
   },
   {
    "id": "finding/cadence2-wink/pattern~dialog-overlay/0.2.0/v2",
@@ -482,10 +693,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   }
   },
   {
    "id": "finding/cadence2-wink/pattern~empty-state/0.2.0/v2",
@@ -505,6 +728,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "policy 'prospective': no obligation on existing implementations"
   },
   {
@@ -525,10 +749,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   }
   },
   {
    "id": "finding/cadence2-wink/pattern~progress/0.2.0/v2",
@@ -548,10 +784,22 @@
     "via": "resolves_cases"
    },
    "trigger_state": {
-    "occurred": false,
-    "basis": "no modification recorded after the decision shipped"
+    "state": "unknown",
+    "basis": "complete modification history not established (no receipts covering the window)"
    },
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "no modification recorded after the decision shipped"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   }
   },
   {
    "id": "finding/cadence3-dominion/component~ledger/0.2.0/v3",
@@ -571,6 +819,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -590,11 +839,23 @@
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "occurred": false,
-    "basis": "obligation live until 0.3.0"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T03:02:52+00:00",
+   "previous": {
+    "class": "rectify",
+    "obligation": null,
+    "trigger_state": {
+     "occurred": false,
+     "basis": "obligation live until 0.3.0"
+    },
+    "assessed_at": "2026-10-11T02:41:04+00:00",
+    "reason": "policy 'required': migration obligation is live (by 0.3.0); the implementation has not adopted the decision"
+   }
   },
   {
    "id": "finding/cadence3-dominion/component~status/0.2.0/v3",
@@ -614,6 +875,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -634,6 +896,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -654,6 +917,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -674,6 +938,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -694,6 +959,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -714,6 +980,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -734,6 +1001,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -754,6 +1022,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   },
   {
@@ -774,6 +1043,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "built at or after the decision without recorded adoption; assess (sanctioned deviation, pending work, or a conformance finding)"
   },
   {
@@ -794,6 +1064,7 @@
     "via": "resolves_cases"
    },
    "trigger_state": null,
+   "obligation": null,
    "reason": "the build resolved this decision (recorded evidence)"
   }
  ]

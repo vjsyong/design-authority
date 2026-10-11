@@ -34,3 +34,16 @@ Reproduce:
 The `authority/` files are PARTIAL on purpose: only `artifacts.json`, the
 sweep prototype's input. The packaged sweep (P1.4) will read real packs
 through the kernel loader and receipts through the project contract.
+
+## The closure test (`closure/`)
+
+- `closure/portfolio-stage1.json` / `closure/portfolio.json` — the focused
+  two-app scope (the cadence-wink v1 line) at the trigger point and after
+  migration.
+- `closure/findings.jsonl` + `report-1.json` / `report-2.json` — stage 1
+  (trigger detected, obligation due) and stage 2 (r2b conforms; the r2a
+  obligation closed by the r2b receipt with its verification result).
+- The revisions themselves live in `examples/cadence-wink-r2/`: r2a (the
+  modification without migration, deviation receipt) and r2b (the migrated
+  state with the independent verifier `_evidence/verify-notice-migration.py`
+  and the closing receipt).

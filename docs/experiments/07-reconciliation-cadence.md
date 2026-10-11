@@ -1,34 +1,36 @@
 # 07 · Reconciliation lifecycle test — the Cadence portfolio
 
-**Status:** executed 2026-10-11, prototype level, deterministic matching.
-This is the first milestone of the reconciliation capability (D-030,
-`docs/14-reconciliation.md`): not a test of interfaces, but of Design
-Authority as a system of persistent design governance across generations of a
-product.
+**Status:** executed 2026-10-11, prototype level, deterministic matching,
+including the full closure cycle (section 5: a real revision modified,
+migrated, independently verified, obligation closed). This is the first
+milestone of the reconciliation capability (D-030, `docs/14-reconciliation.md`):
+not a test of interfaces, but of Design Authority as a system of persistent
+design governance across generations of a product.
 
 **Artifacts:** tool `tools/da_sweep.py`; fixtures
-`docs/experiments/reconcile-cadence/` (portfolio manifest, sandbox
-authorities, findings stores, reports).
+`docs/experiments/reconcile-cadence/` (portfolio manifests, sandbox
+authorities, findings stores, reports, the closure test); the closure build
+`examples/cadence-wink-r2/` (revisions r2a and r2b with prototype receipts).
 
 ## 1 · The lifecycle, replayed on recorded data
 
-The owner's scenario — an agent encounters an undefined need, implements a
+The owner's scenario - an agent encounters an undefined need, implements a
 provisional solution, a human later establishes precedent, and the system
-determines whether the original implementation needs modification — exists in
+determines whether the original implementation needs modification - exists in
 recorded form in this repository already.
 
 **Step 1, the undefined need (wink 0.1.0).** The `cadence-wink` build resolves
 "delete a ritual permanently" against wink 0.1.0: outcome **U** (undefined).
-The build improvises in character — an outline pill with the error ring
-requiring confirmation, and a rounded white dialog on a 35% ink scrim — marks
+The build improvises in character - an outline pill with the error ring
+requiring confirmation, and a rounded white dialog on a 35% ink scrim - marks
 both elements (`data-improvised`), and files
 `gap/20261007-145139-ad4b85` ("destructive action affordance + confirmation +
 undo flow for deleting a ritual"). Its NOTES.md records exactly this: *U
-undefined → improvised in character, marked, gap filed.*
+undefined -> improvised in character, marked, gap filed.*
 
 **Step 2, the precedent.** That gap went through the documented loop:
 adjudication -> proposal `prop/...9ff839` (accepted) -> codified into wink
-0.2.0 as `pattern/destructive-confirm`. The same path produced eleven records
+0.2.0 as `pattern/destructive-confirm`. The same path produced twelve records
 across the three authorities: five in wink, three in leader, four in dominion.
 Each record carries its provenance; each originated in a case a real build
 filed when the need was UNDEFINED.
@@ -45,27 +47,35 @@ wink, leader and dominion. v1/v2 were built at 0.1.0; v3 was rebuilt at
 0.2.0 and carries adoption evidence (`_evidence/resolves.jsonl`). The
 manifest (`portfolio.json`) declares each build as an application plus a
 `lineage` so the flagship build's recorded cases reach its generations
-(receipts, P1.1, will make this self-describing).
+(receipts, P1.1, will make this self-describing). The closure test (section
+5) adds two further revisions of the cadence-wink line, `r2a` and `r2b`.
 
 ## 3 · Method
 
 - `tools/da_sweep.py` (prototype): deterministic level only - it follows
-  recorded cases; it never infers. Findings are idempotent by identity
-  (application, decision, target version, revision). Read-only over
-  application trees.
+  recorded cases and prototype decision receipts; it never infers. Findings
+  are idempotent by identity (application, decision, target version,
+  revision). Read-only over application trees.
 - Transition decisions are **simulated fixtures, clearly labelled**: the
   policy mix a reviewer would set at publication. Nine `when_touched`, two
   `prospective`, one `required` (`component/notice`, by 0.3.0). The real
   choices for these records belong to the review that publishes them.
 - A defaults variant (transition blocks stripped) exercises the owner-set
   default: legacy records -> `review`.
-- Adoption = recorded resolution evidence (the build RESOLVED the need to
-  that record). DOM-level adoption assessment is the conformance role's job
-  (`da_verify`), deliberately out of scope here.
+- Adoption = recorded resolution evidence, or a receipt's `decisions_applied`
+  list; a recorded deviation overrides a bare resolve. DOM-level adoption
+  assessment is the conformance role's job (`da_verify`), deliberately out of
+  scope here.
+- Findings carry the tightened semantics from the owner review (D-031):
+  tri-state `trigger_state` (`occurred` | `not_occurred` | `unknown`, with
+  evidence - missing evidence is never treated as "not occurred") and an
+  `obligation` object on rectify findings (`scheduled` | `due` | `overdue` |
+  `closed`, with `closed_by` + verification when a later receipt migrates).
 
 ## 4 · Results
 
-**Policy run — 36 findings: 10 conforms · 22 grandfathered · 3 rectify · 1 review.**
+**Policy run - 36 findings: 10 conforms · 22 grandfathered · 3 rectify · 1 review**, with 3 obligations (all `scheduled`: the `required` deadline 0.3.0
+is later than the target 0.2.0, so none is presented as already due).
 
 | Application | Class | Decisions |
 |---|---|---|
@@ -84,8 +94,8 @@ An exact grandfathered finding (from `findings.jsonl`):
       class: grandfathered (policy when_touched, explicit)
       built_under: 0.1.0 · target: 0.2.0
       link: gap/20261007-145139-ad4b85 (via proposal chain / resolves_cases)
-      trigger_state: {occurred: false, basis: "no modification recorded after
-        the decision shipped"}
+      trigger_state: {state: unknown, basis: "complete modification history
+        not established (no receipts covering the window)"}
       reason: "built while the need was UNDEFINED; policy 'when_touched'
         permits until destructive flows is next modified"
 
@@ -93,21 +103,25 @@ And the rectify row:
 
     finding/cadence-dominion/component~notice/0.2.0/v1
       class: rectify (policy required, by 0.3.0)
-      reason: "policy 'required': migration obligation is live (by 0.3.0);
-        the implementation has not adopted the decision"
+      obligation: {state: scheduled, by: 0.3.0}
+      reason: "policy 'required': migration obligation is not yet due
+        (scheduled for 0.3.0); the implementation has not adopted the decision"
 
 Properties demonstrated:
 
 - **Historical compliance intact.** Every finding carries `built_under` and
   `target_version`; no v1/v2 row is a violation of anything. Their class is a
   permission, not a judgment.
-- **Grandfathering carries reason + trigger.** The v1/v2 rows name the
-  trigger that would end the permission ("next modification of the
-  destructive flows"); trigger state is recorded, so the permission cannot
-  silently become permanent.
+- **Grandfathering carries reason + trigger, tri-state.** The v1/v2 rows name
+  the trigger that would end the permission and record trigger state
+  honestly: `unknown` where no receipts cover the window - absence of
+  evidence is not evidence of absence.
 - **Policy decided the outcome.** The same non-adoption splits into
   grandfathered (`when_touched`), review (non-adopted builds at the new
   version), and rectify (`required`) purely by policy.
+- **Future obligations are not presented as due.** The dominion `notice`
+  rows are rectify with `obligation.state = scheduled` (by 0.3.0), never
+  "overdue".
 - **A genuine review candidate surfaced.** `cadence3-wink` did not adopt
   `pattern/inline-notice` at 0.2.0 (no recorded resolution); the finding is
   `review`, not a violation. Whether that is a sanctioned deviation, pending
@@ -115,7 +129,8 @@ Properties demonstrated:
   examples in the owner's canvas.
 - **Idempotent re-sweep.** Second run: `0 new, 36 reused` - finding identity
   working as specified; reconciliation after every release adds signal, not
-  noise.
+  noise. (The semantics tightening from D-031 re-assessed 21 rows; the store
+  keeps every superseded class/obligation as history.)
 - **Link robustness.** With explicit `resolves_cases` stripped entirely, the
   sweep derived every link from the recorded proposal chain and produced
   identical findings (36/36, same classes, same reasons).
@@ -125,45 +140,107 @@ Properties demonstrated:
 - **Containment.** The sweep wrote nothing to any application tree (verified
   via `git status` scoped to `examples/`).
 
-## 5 · Acceptance criteria exercised (docs/14 section 11)
+## 5 · The closure: modified, migrated, verified, closed
 
-Executed: **2** (deterministic match on recorded cases), **4** (`required`
-carries its named trigger), **6** (no operation writes to application trees),
-**7** (both versions on every finding), **9** (resolution links, both
-explicit and chain-derived), **10** (idempotent re-sweep), and the
-grandfathering half of **3** and **11** (class + reason + trigger state
-recorded; the trigger-occurrence transition itself needs a real "area
-touched" event and is deferred with receipts).
+The main corpus never re-touches its applications after the precedent ships,
+so the final state transition - grandfathered -> trigger -> rectify ->
+migration -> verification -> closure - needed a real modification. The
+closure test takes the cadence-wink v1 line and modifies one affected area
+for real: `examples/cadence-wink-r2/`, a genuine next revision of the build.
+
+**Revision r2a - the modification, without migration.** The settings-save
+confirmation is reworked (v1's improvised `showToast("Saved")` becomes a
+persistent ad-hoc text echo). The rework's resolution session ran against the
+live resolver ("a saved confirmation after saving settings" -> RESOLVED
+`pattern/inline-notice`) and the canonical treatment was **not** adopted; the
+deviation is recorded in the r2a prototype receipt
+(`.design-authority/receipts/2026-10-11-r2a-modification.json`), with
+`areas_modified: ["feedback / save confirmation (settings)"]`.
+
+Sweep at this point (`closure/report-1.json`, 2 findings):
+
+    cadence-wink  v1   grandfathered  trigger {state: occurred,
+      evidence: [r2a receipt]}  "...permission ended: trigger recorded;
+      the obligation rides the modified revision"
+    cadence-wink-r2  r2a  RECTIFY  obligation {state: due}  trigger {occurred}
+      "the affected area (feedback) was modified without migrating..."
+
+**Revision r2b - the migration, independently verified.** The save
+confirmation is migrated to the canonical inline notice (parsnip fill,
+rounded 12, bold lead sentence plus a plain supporting line, in flow near the
+save control). The verification is independent and fresh: a separate script
+(`_evidence/verify-notice-migration.py`) serves the app, drives the save
+flow in headless Chromium, and re-derives every claim from the served DOM and
+computed styles against the record's own states - **8/8 checks pass**
+(`_evidence/verification/notice-migration.json`). The migration receipt
+(`...-r2b-migration.json`) declares `migration_for: ["pattern/inline-notice"]`
+and carries the verification reference.
+
+Sweep at this point (`closure/report-2.json`, 3 findings):
+
+    cadence-wink-r2  r2b  conforms (receipt: decisions_applied)
+    cadence-wink-r2  r2a  rectify, obligation {state: closed,
+      closed_by: [r2b receipt], verification: {result: pass, checked: 8/8},
+      previous: {state: due}}          <- superseded, history retained
+    cadence-wink     v1   unchanged (grandfathered, trigger occurred)
+
+That is the complete cycle the owner asked for: **historical build ->
+grandfathered -> affected area modified -> rectify -> approved migration
+applied -> independently verified -> conforms**, without any operation
+writing to an application tree.
+
+## 6 · Acceptance criteria exercised (docs/14 section 11)
+
+Executed: **2** (deterministic match on recorded cases), **3** (full cycle:
+grandfathered classification with reason/trigger, and the real transition
+through trigger and migration), **4** (`required` carries its named trigger),
+**6** (no operation writes to application trees), **7** (both versions on
+every finding), **9** (resolution links, both explicit and chain-derived),
+**10** (idempotent re-sweep), **11** (trigger transition: recorded,
+detected, and closed by a verified migration receipt).
 
 Not yet exercised: **1** (the full human-facing report), **5** (the inferred
-level is specified - review candidates only - but not built), **8**/
-remaining half of **11** (require receipts and a live product to re-touch).
+level is specified - review candidates only - but not built), **8** (the
+portfolio wiring across authorities is exercised; a fresh sweep corpus from
+a live product is still ahead).
 
-## 6 · Honesty notes and limits
+## 7 · Honesty notes and limits
 
 - The transition blocks in the fixture are **simulated and labelled**; they
   demonstrate the mechanism, not the owner's decisions. The real policies for
-  these eleven records should be set through the review that publishes them.
+  these twelve records should be set through the review that publishes them.
+- The r2 revisions are a genuine modification of the v1 build, made for this
+  test; their receipts use the prototype format (`prototype-0.1`; P1.1
+  formalizes). The r2a/r2b sequence was executed live in this session: stage
+  1's report (`closure/report-1.json`) is the assessment at the trigger
+  point; stage 2 is the final state. Re-running the sweep over the final tree
+  reproduces stage 2.
 - The lineage declaration in the manifest stands in for decision receipts;
   it is a recorded premise, stated in `portfolio.json`, not an inference.
 - Deterministic level only. Older applications with no recorded cases will
   need the inferred level (code analysis / semantic discovery), which stays
   review-candidate-only by doctrine and is not built yet.
-- Adoption is a proxy: recorded resolution evidence, not DOM verification.
+- Adoption in the main corpus is a proxy (recorded resolution evidence);
+  the closure revision's adoption carries a receipt + independent
+  verification instead.
 - The prototype is not wired into `check.sh`; a proper gate lands with P1.4.
 
-## 7 · What this unlocks / what is next
+## 8 · What this unlocks / what is next
 
 - The findings store is the natural feed for the Case events reserved in
   P0.2 (`impact_finding`, `migration_decision`) - no fifth lifecycle.
 - `da reconcile` (sweep + policy evaluation + migration plan) becomes a thin
   layer over this result once receipts (P1.1) upgrade the deterministic
-  level.
-- Owner decisions to fold in: the real transition policies for the eleven
-  records, and the disposition of the two `review` rows surfaced here.
+  level portfolio-wide.
+- Owner decisions to fold in: the real transition policies for the twelve
+  records, and the disposition of the `review` row surfaced here.
 
 ## References
 
-- Spec: `docs/14-reconciliation.md` (D-029; tightenings and defaults D-030).
-- Fixtures and stores: `docs/experiments/reconcile-cadence/`.
+- Spec: `docs/14-reconciliation.md` (D-029; tightenings and defaults D-030;
+  tri-state trigger and obligation states D-031).
+- Fixtures and stores: `docs/experiments/reconcile-cadence/` (main portfolio
+  and `closure/`).
+- Closure build: `examples/cadence-wink-r2/` (revisions r2a, r2b; receipts;
+  verification).
 - Tool: `tools/da_sweep.py`.

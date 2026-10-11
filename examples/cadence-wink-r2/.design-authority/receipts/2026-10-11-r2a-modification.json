@@ -1,0 +1,27 @@
+{
+ "receipt_version": "prototype-0.1",
+ "note": "Prototype decision receipt (docs/14 section 5; P1.1 formalizes the format). This is a genuine next revision of the cadence-wink stress build, created for the reconciliation closure test (docs/experiments/07-reconciliation-cadence.md); the transition policies in the sandbox authority are simulated fixtures.",
+ "application": "cadence-wink",
+ "revision": "r2a (modified; migration not applied)",
+ "built_at": "2026-10-11",
+ "authority": {
+  "authority": "wink",
+  "version": "0.2.0"
+ },
+ "decisions_applied": [],
+ "unresolved_needs": [],
+ "provisional_solutions": [
+  "the settings-save confirmation renders as an ad-hoc text echo (.save-echo)"
+ ],
+ "deviations": [
+  {
+   "decision": "pattern/inline-notice",
+   "reason": "the save confirmation was reworked without migrating to the canonical notice treatment; migration deferred to a follow-up revision",
+   "reviewed": false
+  }
+ ],
+ "areas_modified": [
+  "feedback / save confirmation (settings)"
+ ],
+ "verification": null
+}

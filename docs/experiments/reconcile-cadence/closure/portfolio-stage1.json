@@ -1,0 +1,33 @@
+{
+ "portfolio": "cadence closure test - the cadence-wink line at the trigger point (stage 1: modified, not migrated)",
+ "note": "Focused scope for the closure test (docs/14 acceptance criteria 3/11, full cycle). Stage 1 shows the trigger detected and the obligation due; stage 2 (after migration + verification) shows the obligation closed and the revision conforming.",
+ "target_version": "0.2.0",
+ "apps": [
+  {
+   "name": "cadence-wink",
+   "authority": "wink",
+   "lineage": "cadence-wink",
+   "builds": [
+    {
+     "dir": "examples/cadence-wink",
+     "revision": "v1",
+     "built_under": "0.1.0"
+    }
+   ]
+  },
+  {
+   "name": "cadence-wink-r2",
+   "authority": "wink",
+   "lineage": "cadence-wink",
+   "builds": [
+    {
+     "dir": "examples/cadence-wink-r2",
+     "revision": "r2a",
+     "built_under": "0.2.0",
+     "evidence": "examples/cadence-wink-r2/_evidence",
+     "receipt": ".design-authority/receipts/2026-10-11-r2a-modification.json"
+    }
+   ]
+  }
+ ]
+}

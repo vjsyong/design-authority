@@ -1,0 +1,126 @@
+{
+ "target_version": "0.2.0",
+ "decision": "pattern/inline-notice",
+ "counts": {
+  "conforms": 1,
+  "grandfathered": 1,
+  "rectify": 1,
+  "review": 0
+ },
+ "obligations": {
+  "closed": 1
+ },
+ "store": {
+  "new": 1,
+  "reused": 1,
+  "superseded": 1,
+  "total": 3
+ },
+ "findings": [
+  {
+   "id": "finding/cadence-wink-r2/pattern~inline-notice/0.2.0/r2a",
+   "application": "cadence-wink-r2",
+   "revision": "r2a",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "when_touched",
+   "policy_source": "explicit",
+   "class": "rectify",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": {
+    "state": "occurred",
+    "evidence": [
+     "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2a-modification.json"
+    ],
+    "basis": "recorded modification of the affected area without migration"
+   },
+   "obligation": {
+    "state": "closed",
+    "trigger": "occurred",
+    "closed_by": [
+     "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2b-migration.json"
+    ],
+    "verification": {
+     "result": "pass",
+     "checked": "8/8",
+     "ref": "_evidence/verification/notice-migration.json",
+     "verifier": "_evidence/verify-notice-migration.py"
+    }
+   },
+   "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision; closed by r2b (verification: pass)",
+   "assessed_at": "2026-10-11T03:04:51+00:00",
+   "previous": {
+    "class": "rectify",
+    "obligation": {
+     "state": "due",
+     "trigger": "occurred"
+    },
+    "trigger_state": {
+     "state": "occurred",
+     "evidence": [
+      "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2a-modification.json"
+     ],
+     "basis": "recorded modification of the affected area without migration"
+    },
+    "assessed_at": "2026-10-11T03:03:29+00:00",
+    "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision"
+   }
+  },
+  {
+   "id": "finding/cadence-wink-r2/pattern~inline-notice/0.2.0/r2b",
+   "application": "cadence-wink-r2",
+   "revision": "r2b",
+   "built_under": "0.2.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "when_touched",
+   "policy_source": "explicit",
+   "class": "conforms",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": null,
+   "obligation": null,
+   "reason": "the build applied this decision (recorded receipt evidence)",
+   "assessed_at": "2026-10-11T03:04:51+00:00"
+  },
+  {
+   "id": "finding/cadence-wink/pattern~inline-notice/0.2.0/v1",
+   "application": "cadence-wink",
+   "revision": "v1",
+   "built_under": "0.1.0",
+   "lineage": "cadence-wink",
+   "decision": "pattern/inline-notice",
+   "decision_title": "Inline notice (feedback)",
+   "target_version": "0.2.0",
+   "policy": "when_touched",
+   "policy_source": "explicit",
+   "class": "grandfathered",
+   "assessment": "deterministic",
+   "link": {
+    "case": "gap/20261007-145938-f646b2",
+    "via": "resolves_cases"
+   },
+   "trigger_state": {
+    "state": "occurred",
+    "evidence": [
+     "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2a-modification.json"
+    ],
+    "basis": "recorded modification of the affected area without migration"
+   },
+   "obligation": null,
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified (permission ended: trigger recorded; the obligation rides the modified revision)"
+  }
+ ]
+}
