@@ -27,7 +27,17 @@
     "graph",
     "data chart"
    ]
-  }
+  },
+  "aliases": [
+   "bar chart",
+   "chart",
+   "month grid",
+   "heatmap",
+   "graph",
+   "plot",
+   "data visualization",
+   "weekly chart"
+  ]
  },
  "depends_on": [
   "token-set/colour",

@@ -47,13 +47,29 @@
   "token-set/colour"
  ],
  "new_primitives": [],
- "tests": [
-  "resolve('bar chart of weekly minutes') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
-  "resolve('calendar heatmap of the month') -> RESOLVED pattern/plain-chart (simulated score 8.0)",
-  "resolve('sparkline trend of the last week') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
-  "Colour check: figure fills only use black / white / #F4F4F4 / pewter (D-05, D-R2; red stays ceremonial).",
-  "Motion check: no animated state defined (D-15 static doctrine)."
- ],
+ "tests": {
+  "golden": [
+   {
+    "problem": "bar chart of weekly minutes",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/plain-chart",
+    "note": "Derived from the proposal's simulated checks."
+   },
+   {
+    "problem": "calendar heatmap of the month",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/plain-chart",
+    "note": "Derived from the proposal's simulated checks."
+   }
+  ],
+  "checks": [
+   "resolve('bar chart of weekly minutes') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
+   "resolve('calendar heatmap of the month') -> RESOLVED pattern/plain-chart (simulated score 8.0)",
+   "resolve('sparkline trend of the last week') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
+   "Colour check: figure fills only use black / white / #F4F4F4 / pewter (D-05, D-R2; red stays ceremonial).",
+   "Motion check: no animated state defined (D-15 static doctrine)."
+  ]
+ },
  "status": "accepted",
  "review": {
   "verdict": "accept",

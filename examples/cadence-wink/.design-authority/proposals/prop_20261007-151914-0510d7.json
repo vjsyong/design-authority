@@ -17,7 +17,12 @@
    "popup",
    "dialog box",
    "overlay vessel",
-   "scrim"
+   "scrim",
+   "details modal",
+   "onboarding wizard",
+   "wizard",
+   "step wizard",
+   "modal dialog"
   ],
   "body": {
    "states": [

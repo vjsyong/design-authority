@@ -35,12 +35,34 @@
  },
  "depends_on": [],
  "new_primitives": [],
- "tests": [
-  "resolve('a save confirmation message') -> RESOLVED component/notice (simulated score 17.0)",
-  "resolve('a banner') -> RESOLVED component/notice (single-token alias + exact-phrase bonus, 9.0)",
-  "resolve('a toast notification saying logged') remains UNDEFINED (no toast vocabulary added \u2014 deviation stays visible)",
-  "Vocabulary check: no coloured-alert terms added (D-13 alternatives rejected: coloured alerts)."
- ],
+ "tests": {
+  "golden": [
+   {
+    "problem": "a save confirmation message",
+    "expect": "RESOLVED",
+    "expect_id": "component/notice",
+    "note": "Derived from the proposal's simulated checks."
+   },
+   {
+    "problem": "a banner",
+    "expect": "RESOLVED",
+    "expect_id": "component/notice",
+    "note": "Single-token alias + exact-phrase bonus."
+   },
+   {
+    "problem": "a toast notification saying logged",
+    "expect": "UNDEFINED",
+    "expect_id": null,
+    "note": "No toast vocabulary was added; the deviation stays visible."
+   }
+  ],
+  "checks": [
+   "resolve('a save confirmation message') -> RESOLVED component/notice (simulated score 17.0)",
+   "resolve('a banner') -> RESOLVED component/notice (single-token alias + exact-phrase bonus, 9.0)",
+   "resolve('a toast notification saying logged') remains UNDEFINED (no toast vocabulary added \u2014 deviation stays visible)",
+   "Vocabulary check: no coloured-alert terms added (D-13 alternatives rejected: coloured alerts)."
+  ]
+ },
  "status": "accepted",
  "review": {
   "verdict": "accept",

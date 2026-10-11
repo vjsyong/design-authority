@@ -61,12 +61,28 @@
   "guideline/typography"
  ],
  "new_primitives": [],
- "tests": [
-  "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
-  "resolve('a table of logged entries') -> RESOLVED component/ledger (simulated score 13.0)",
-  "resolve('a ledger of entries') -> RESOLVED component/ledger (simulated score 8.0)",
-  "Style check: no status state uses colour for meaning (red stays ceremonial; D-05/D-10/D-R2)."
- ],
+ "tests": {
+  "golden": [
+   {
+    "problem": "a status label on track or slipping",
+    "expect": "RESOLVED",
+    "expect_id": "component/status",
+    "note": "Derived from the proposal's simulated checks."
+   },
+   {
+    "problem": "a table of logged entries",
+    "expect": "RESOLVED",
+    "expect_id": "component/ledger",
+    "note": "Derived from the proposal's simulated checks."
+   }
+  ],
+  "checks": [
+   "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
+   "resolve('a table of logged entries') -> RESOLVED component/ledger (simulated score 13.0)",
+   "resolve('a ledger of entries') -> RESOLVED component/ledger (simulated score 8.0)",
+   "Style check: no status state uses colour for meaning (red stays ceremonial; D-05/D-10/D-R2)."
+  ]
+ },
  "status": "accepted",
  "review": {
   "verdict": "accept",

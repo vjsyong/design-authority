@@ -23,7 +23,14 @@
     "category tag",
     "chip"
    ]
-  }
+  },
+  "aliases": [
+   "tag",
+   "status label",
+   "status tag",
+   "category tag",
+   "chip"
+  ]
  },
  "depends_on": [
   "token-set/colour",

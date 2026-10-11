@@ -51,6 +51,12 @@
     "expect": "RESOLVED",
     "expect_id": "pattern/destructive-confirm",
     "note": "Destructive flow resolves to the pattern."
+   },
+   {
+    "problem": "delete a ritual permanently",
+    "expect": "RESOLVED",
+    "expect_id": "pattern/destructive-confirm",
+    "note": "Proposal check: must not be UNDEFINED once shipped."
    }
   ],
   "checks": [

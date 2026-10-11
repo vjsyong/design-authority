@@ -26,7 +26,16 @@
     "stat",
     "statistic"
    ]
-  }
+  },
+  "aliases": [
+   "sparkline",
+   "streak counter",
+   "stat counter",
+   "big number",
+   "statistic",
+   "streak",
+   "counter"
+  ]
  },
  "depends_on": [
   "token-set/type-scale",
