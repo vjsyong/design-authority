@@ -168,7 +168,7 @@ Owner priorities, kept as given, with the gate for each phase.
 | **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) and the decision receipts (intent + outcome; docs/14 §5) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
 | **P1.2** | Independent verification consolidated under the runtime API (`da_verify` core behind the library; contracts unchanged) | Contract matrix in meta CI stays green; consumer `verify.map.json` flow unchanged |
 | **P1.3** | Finish separation: dossiers -> `authorities/<auth>/source/`; Phase-2 moves (synthesis tiles, cadence builds, audit console, font route); converge `build_pack_triage.py` (curation -> dossier adapter) | Per-authority CI + meta integration gates; route rewiring verified live |
-| **P1.4** | Reconciliation (docs/14): `transition` policy on records, `da sweep` (deterministic + inferred impact), `da reconcile` (migration plan + case events); assessment never auto-modifies | Depends on P0.2 + P1.1 receipts; docs/14 §11 pre-registered criteria; sweep writes nothing to application trees |
+| **P1.4** | Reconciliation (docs/14): `transition` policy on records, `da sweep` (deterministic + inferred impact), `da reconcile` (migration plan + case events); assessment never auto-modifies. First milestone: the end-to-end Cadence lifecycle test (`docs/experiments/07-reconciliation-cadence.md`) | Depends on P0.2 + P1.1 receipts; docs/14 §11 pre-registered criteria; sweep writes nothing to application trees |
 | **P2.1** | `da init --authority <name>`; single install; CLI-only parity (no MCP required) | Fresh-machine acceptance test, agent-completable, like the current Use-now flow |
 | **P2.2** | Generated documentation and case timelines from canonical records | Docs regenerate from records; drift classes gone; concept-site copy re-checked |
 
@@ -313,10 +313,11 @@ exception-backed)`; full `check.sh` green.
    carry findings (`L-12` left undefined; the ruled-panel premise vs the
    never-endorsed dialog decision `L-19`). Ratify them as authored policy,
    or supply ledger decisions to map them.
-8. **Reconciliation defaults.** The default transition policy for
-   unannotated records and the receipt granularity (docs/14 section 10) are
-   the two governance defaults staged for your ruling; everything else in
-   docs/14 is specified and resolvable at implementation time.
+8. **Reconciliation defaults — resolved 2026-10-11.** Missing transition
+   policy → `review` for legacy records, with an explicit policy required for
+   newly approved norms (compiler-enforced); receipts are one immutable file
+   per published build. See D-030. The first milestone is the end-to-end
+   Cadence lifecycle test (docs/experiments/07).
 
 ## 7 · Gates applied to every change
 

@@ -370,3 +370,37 @@ docs/13-simplification.md. Open governance defaults left to the owner
 receipt granularity, supersession lifecycle details, and the seat for
 `review`-class migration decisions.
 
+## D-030 · Reconciliation tightened; defaults set; first milestone = the Cadence lifecycle test (2026-10-11)
+
+Owner review of docs/14 tightened four details before implementation:
+
+- **`resolves_cases`** joins the transition block: a new decision links the
+  previously unanswerable cases it resolves, so the sweep reaches affected
+  applications through recorded cases rather than semantic matching (a
+  superseded-records list cannot express a link to a need that had no
+  record).
+- **`applies_to` removed**: the policy determines applicability (prospective
+  = new implementations only; when_touched / required / review = existing
+  and new); narrower reach is an optional `scope` restriction. No
+  contradictory combinations remain for the compiler to reject.
+- **Findings carry trigger state**: a grandfathered when_touched finding
+  records whether its trigger has occurred, so grandfathering cannot become
+  permanent after its conditions expire.
+- **Sweeps are idempotent**: finding identity = (application, decision,
+  target version, assessed build revision); unchanged assessments reuse
+  findings, re-assessments supersede them - reconciliation after every
+  release adds signal, never duplicate noise.
+
+Defaults set (docs/14 section 10): missing transition policy -> `review` for
+legacy records while newly approved norms MUST carry an explicit policy
+(compiler-enforced); receipts are one immutable file per published build with
+a pointer to the latest.
+
+Milestone directed: an end-to-end reconciliation lifecycle test on the
+existing Cadence builds across wink/leader/dominion - undefined need ->
+provisional implementation -> precedent established -> determination - to
+test Design Authority as a system of persistent design governance rather
+than its individual interfaces. Executed at prototype level on recorded
+data, ahead of the full engine; write-up in
+docs/experiments/07-reconciliation-cadence.md.
+

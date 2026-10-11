@@ -1,13 +1,24 @@
 # 14 · Reconciliation — retroactive assessment of authority evolution
 
-**Status:** design adopted (D-029). Implementation is staged after the
-canonical Case model (P0.2) and the project decision receipts (P1.1), per the
-dependency analysis in section 12. Operation names (`da sweep`,
-`da reconcile`) are reserved by this document.
+**Status:** specification complete and adopted (D-029); no reconciliation
+engine exists yet. Implementation is staged after the canonical Case model
+(P0.2) and the project decision receipts (P1.1), per section 12 - except the
+end-to-end lifecycle test on the Cadence corpus
+(`docs/experiments/07-reconciliation-cadence.md`), which exercises this
+design at prototype level. Operation names (`da sweep`, `da reconcile`) are
+reserved by this document.
 
 > Authority evolves prospectively. Its consequences may be assessed
 > retrospectively. Historical decisions remain intact, while current
 > implementations may require reconciliation.
+
+Three responsibilities, three questions:
+
+| Responsibility | Question | What it produces |
+|---|---|---|
+| Governance | What becomes canon? | Approved, versioned decisions |
+| Conformance | Does this implementation follow canon? | Verifiable implementation evidence |
+| Reconciliation | What happens when canon changes? | Controlled migration over time |
 
 ## 1 · The third question
 
@@ -58,8 +69,10 @@ record fields):
 ```json
 "transition": {
   "policy": "when_touched",            // prospective | when_touched | required | review
-  "applies_to": "existing_and_new",    // existing_and_new | new_only
+  "by": "next minor release",          // required only when policy = required
   "supersedes": [],
+  "resolves_cases": ["case/0018"],     // previously unanswerable cases this decision answers
+  "scope": "actions",                  // optional; additional restriction only when needed
   "rationale": "Existing compositions remain acceptable until the affected interface is modified.",
   "exceptions": "allowed_with_review"  // allowed_with_review | none
 }
@@ -75,20 +88,34 @@ record fields):
 Semantics:
 
 - The block is set at promotion time (with the reviewer's verdict) and
-  travels with the record.
+  travels with the record. **Applicability is determined by the policy
+  itself**: `prospective` applies to new implementations only; `when_touched`
+  `required` and `review` apply to existing and new. A narrower reach is an
+  optional `scope` restriction, never a second applicability switch - there
+  is no `applies_to` to contradict the policy, and no invalid combination
+  left for the compiler to reject.
+- **Newly approved norms must declare a policy** (compiler-enforced, added to
+  the compile invariants). Legacy records without a block default to
+  `review`: no silent migration obligation for older applications, and every
+  report row shows which policy applied and whether it was explicit or
+  defaulted.
 - `required` is only enforceable when it names its trigger (`by`: a release
   or date, non-empty). A `required` policy without a trigger is refused at
   compile time; it degrades to nothing, and governance is not allowed to
   pretend otherwise.
-- `supersedes` names records this one replaces. Following the chain is how
-  the sweep finds deterministic matches, which implies a record lifecycle
-  (active -> superseded) added with the envelope work.
-- Grandfathering is therefore a deliberate outcome of policy, never something
-  an agent infers from the age of an implementation. Explicit, scoped
-  exemptions remain available where migration is inappropriate
-  (`exceptions`), and every exemption is reviewed.
-- Default for records without a block: see open question 1 (the one
-  governance default this document does not set by itself).
+- `supersedes` names earlier RECORDS this one replaces; following the chain
+  is how the sweep finds deterministic matches, which implies a record
+  lifecycle (active -> superseded) added with the envelope work.
+- `resolves_cases` names the previously UNADDRESSABLE cases this decision now
+  answers. `supersedes` cannot express this link (no authoritative record
+  existed when the need was filed); this is the sweep's deterministic hook
+  into applications affected by a newly resolved gap - recorded cases first,
+  semantic matching only as the fallback. Until the Case model lands,
+  recorded gap ids serve as case references.
+- Grandfathering is a deliberate outcome of policy, never something an agent
+  infers from the age of an implementation. Explicit, scoped exemptions
+  remain available where migration is inappropriate (`exceptions`), and
+  every exemption is reviewed.
 
 ## 4 · The authority impact sweep
 
@@ -116,6 +143,20 @@ Finding classes, per application and changed decision:
 - `rectify` - the policy requires migration (now, or at the named
   release/deadline);
 - `review` - uncertain match or context-sensitive; a human rules.
+
+Two properties every finding carries:
+
+- **Trigger state.** A `when_touched` finding that is grandfathered today
+  becomes rectifiable the moment the trigger occurs, so every finding records
+  whether the trigger has occurred (with the basis: an archived revision, a
+  later build that touched the area, a passed deadline). Without recorded
+  trigger state, grandfathering silently becomes permanent after its
+  conditions expire.
+- **A stable identity.** Findings are keyed by (application, decision, target
+  authority version, assessed build revision). Repeated sweeps are
+  idempotent: an unchanged assessment reuses the existing finding, a
+  re-assessment supersedes it. Reconciliation running after every release
+  therefore adds signal, never duplicate noise.
 
 Report shape (illustrative):
 
@@ -151,7 +192,10 @@ source code.
 Discipline: the receipt is written by the implementing agent at completion
 and **confirmed by the verifier** - self-report is evidence, not proof. The
 sweep trusts the confirmed variant and says so on every row it uses.
-Granularity and location: open question 2.
+
+Granularity (owner-set): **one immutable receipt per published build** -
+receipts are append-only, corrections are new receipts - with a pointer at
+the store root to the latest.
 
 ## 6 · Grandfathering should not mean forgetting
 
@@ -221,23 +265,25 @@ case events. The reconcile output is a plan; it never edits an application.
 - The estate's own example builds are the natural first sweep corpus: a real
   portfolio spanning two authority generations.
 
-## 10 · Open questions for the owner
+## 10 · Defaults and remaining details
 
-1. **Default transition policy for records without a block.** Legacy records
-   have none; new records may omit it. Proposal: `when_touched`, with the
-   default shown on every report row; alternative: `review` (assess before
-   any obligation). This is a governance default, so it is the owner's call.
-2. **Receipt granularity and location.** Proposal: one receipt per published
-   build under `.design-authority/receipts/<date>-<slug>.json`, with
-   `receipt.json` at the store root pointing at the latest. Confirm when
-   P1.1 lands.
-3. **Record lifecycle for supersession.** The envelope work should add the
-   superseded status so `supersedes` chains are explicit and audits can tell
-   "followed old canon" from "never re-checked".
-4. **Who owns a `review`-class migration decision.** Proposal: the same
-   human seat as proposal verdicts, recorded as a case event.
-5. **Applications with no store at all.** Screenshot-only builds fall to the
-   inferred level only; every report must state that limitation.
+**Settled (owner, 2026-10-11):**
+
+- **Missing transition policy:** legacy records default to `review` - no
+  silent migration obligation for older applications - while newly approved
+  norms must carry an explicit policy (compiler-enforced).
+- **Receipt granularity:** one immutable receipt per published build, with a
+  pointer to the latest (section 5).
+
+**Remaining details (resolvable at implementation time):**
+
+1. Record lifecycle for supersession: the envelope work adds the superseded
+   status so `supersedes` chains are explicit and audits can tell "followed
+   old canon" from "never re-checked".
+2. Who owns a `review`-class migration decision. Proposal: the same human
+   seat as proposal verdicts, recorded as a case event.
+3. Applications with no store at all fall to the inferred level only; every
+   report must state that limitation.
 
 ## 11 · Acceptance criteria (pre-registered for the phase)
 
@@ -260,13 +306,32 @@ case events. The reconcile output is a plan; it never edits an application.
 8. First real corpus: the estate's example builds (cadence v1-v3 across
    wink/leader/dominion) swept from their recorded versions to the current
    ones.
+9. Resolve links: a decision that answered a recorded case links to it
+   (`resolves_cases` or the recorded chain) and the sweep reaches the
+   affected applications through that link, not through semantic matching.
+10. Idempotent re-sweep: running the sweep twice over unchanged inputs
+    reuses every finding - zero duplicates, zero changes.
+11. Trigger transition: a grandfathered `when_touched` finding records its
+    trigger state, and once the trigger occurs without migration the finding
+    reclassifies as rectifiable.
+
+The Cadence lifecycle test (`docs/experiments/07-reconciliation-cadence.md`)
+executes the subset of these criteria that the deterministic level supports
+today: 2, 4, 6, 7, 9, 10 and the grandfathering half of 3 and 11.
 
 ## 12 · Dependencies and placement
 
 - **Depends on:** P0.2 Case model (event kinds, case links) and P1.1 project
   contract + decision receipts. Without receipts, sweeps depend on
-  reinterpreting old code, which weakens traceability - so this ships after
-  them, as the owner specified.
+  reinterpreting old code, which weakens traceability - so the full engine
+  ships after them, as the owner specified.
+- **The first milestone (owner direction, 2026-10-11):** an end-to-end
+  lifecycle test on the existing Cadence builds across wink/leader/dominion -
+  an agent encounters an undefined need, implements a provisional solution, a
+  human establishes precedent, and the system determines whether the original
+  implementation needs modification. Prototype-level, on recorded data, ahead
+  of the full engine; the write-up lands in
+  `docs/experiments/07-reconciliation-cadence.md`.
 - **Then:** the `transition` block enters the record layer (spec bump), then
   `da sweep`, then `da reconcile`, then portfolio wiring over the example
   builds.
