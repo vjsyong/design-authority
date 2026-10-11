@@ -101,7 +101,7 @@ def main():
         check("overview identity", ov.get("status") == "ok"
               and ov["authority"]["authority"] == "triage",
               ov.get("authority", {}).get("version"))
-        check("overview counts", ov["counts"]["artifacts"].get("component") == 57)  # 36 matrix (incl. prov) + 21 furniture
+        check("overview counts", ov["counts"]["artifacts"].get("component") == 58)  # 37 matrix (incl. prov, select) + 21 furniture
 
         # search + inspect
         s = call(proc, "search_authority", {"query": "approval history"}, 11)

@@ -702,3 +702,33 @@ advanced to merge landed in the Triage repo, and the pack followed:
   site's byte-identical foundations all refreshed; full `tools/check.sh`
   green.
 
+## D-041 · The Triage verification contract ships; the 17 recipes promote (2026-10-11)
+
+The last two approved workstreams from the adoption test and the round2
+review, both executed:
+
+- **F-2 closed: the verification contract.** `verification.json` ships in
+  the pack (14 checks: 10 mechanical + 4 explicit REVIEW; selector-absent
+  targets report UNVERIFIABLE, never PASS). Calibrated clean on the
+  recipe-box consumer build plus the list / dashboard / viewer examples;
+  mutation-tested (an `!important` radius bypass, off-system font, 11px
+  badges and suppressed rings produced exactly 4 violations, no false
+  positives); verified from a bare pack copy: `da verify` works for
+  consumers. One `da_verify` calibration fix: tab-walk now accepts
+  box-shadow ink rings (the styled-checkbox pattern). Record:
+  `docs/verification/10-triage-contract.md`.
+- **Recipes promotion executed: pack 0.14.0-rc1.** All 17 recipes from the
+  round2 review landed (10 direct; 6 with their prerequisite records,
+  including `fallback/native-control` authored from the INTERACTION.md
+  one-way-actions doctrine; `status-with-text` corrected to
+  `token-set/colour`). The naming-first case resolved by porting the
+  evolution line's **`.select`** into the design system (37 components;
+  repo 0.13.0 amended, untagged). The COMPOSE surface is live: needs like
+  `a long list with pages` now compose recipes where they previously
+  steered to fallbacks; the golden set pins one verified need per recipe
+  (75/75). Pack: 87 artifacts / 20 rules / 17 recipes / 4 fallbacks;
+  coverage 134/134; no prior resolution changed.
+- All repositories committed and pushed; kernel/smoke/README count
+  fixtures and the concept-site foundations refreshed; full
+  `tools/check.sh` green.
+

@@ -1,0 +1,168 @@
+{
+ "records": [
+  {
+   "id": "guideline/armed-delete",
+   "kind": "guideline",
+   "title": "Armed two-step delete",
+   "summary": "Deleting an entity listed in the UI is a two-step, in-place action with auto-disarm; no confirm() dialogs for these.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "carry .arm-del with data-arm-label and a matching aria-label",
+     "arm on first activation (label becomes 'Confirm delete'), delete on second",
+     "auto-disarm after 4s, on Escape, outside click, or menu close",
+     "announce the result afterwards (banner or toast)"
+    ],
+    "dont": [
+     "no confirm() for entity deletes",
+     "no arming as a substitute for feedback"
+    ],
+    "quote": "No `confirm()` dialog, ever, for these.",
+    "enforced_by": null
+   },
+   "source": {
+    "repo": "triage-design-system-evolution @ 0.13.1-experiment",
+    "path": "INTERACTION.md#item-deletes"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/03-review.md",
+    "docs/evolution/round2/10-recipes-promotion-review.md"
+   ]
+  },
+  {
+   "id": "guideline/high-stakes-confirm",
+   "kind": "guideline",
+   "title": "High-stakes confirmations",
+   "summary": "Irreversible, security-relevant, or multi-item actions keep a native confirm() whose sentence names the object and consequence.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "name the object and the consequence in the sentence",
+     "keep strings apostrophe-safe",
+     "reason-bearing reject/decline decisions pair the confirm with a required, labelled reason field recorded in history"
+    ],
+    "dont": [
+     "do not route entity deletes through confirm() (use arming)"
+    ],
+    "quote": "Representative set: remove account \u00b7 reset tokens \u00b7 rebuild the index \u00b7 clear a chat \u00b7 enable auto-apply \u00b7 approve a risky plugin.",
+    "enforced_by": null
+   },
+   "source": {
+    "repo": "triage-design-system-evolution @ 0.13.1-experiment",
+    "path": "INTERACTION.md#one-way-actions"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/03-review.md",
+    "docs/evolution/round2/10-recipes-promotion-review.md"
+   ]
+  },
+  {
+   "id": "guideline/colour-not-alone",
+   "kind": "guideline",
+   "title": "Colour is never the only signal",
+   "summary": "Status and meaning are carried by text or icon as well as colour; charts must survive greyscale and colour-blindness.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "label status lines directly",
+     "vary dash patterns or annotate in charts"
+    ],
+    "dont": [
+     "no colour-only dots or fills for meaning"
+    ],
+    "quote": "Do not rely on colour alone: label lines directly, vary dash patterns, or annotate.",
+    "enforced_by": null
+   },
+   "source": {
+    "repo": "triage-design-system-evolution @ 0.13.1-experiment",
+    "path": "INTERACTION.md#labels-accessibility + dataviz guidance"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/03-review.md",
+    "docs/evolution/round2/10-recipes-promotion-review.md"
+   ]
+  },
+  {
+   "id": "guideline/page-hierarchy",
+   "kind": "guideline",
+   "title": "Page hierarchy",
+   "summary": "One element, one token and one job per level: page title \u2192 section heading \u2192 card heading \u2192 body \u2192 meta. Don't skip levels.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     "let a long page title wrap at --fs-page-title"
+    ],
+    "dont": [
+     "don't shrink a page title with inline font-size",
+     "don't use a section heading as a card label"
+    ],
+    "quote": "Don't skip levels or spend a level you don't need.",
+    "enforced_by": null
+   },
+   "source": {
+    "repo": "triage-design-system-evolution @ 0.13.1-experiment",
+    "path": "site/pages_foundations.py#typography"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/03-review.md",
+    "docs/evolution/round2/10-recipes-promotion-review.md"
+   ]
+  },
+  {
+   "id": "guideline/copy-helper",
+   "kind": "guideline",
+   "title": "Copy helper owns the clipboard",
+   "summary": "Use the shared cp() helper / .copy element; the helper owns fallback and confirmation labelling.",
+   "status": "normative",
+   "aliases": [],
+   "body": {
+    "do": [
+     ".copy marks the copy affordance"
+    ],
+    "dont": [
+     "never call navigator.clipboard from page code"
+    ],
+    "quote": "The helper owns the fallback and the confirmation labelling.",
+    "enforced_by": null
+   },
+   "source": {
+    "repo": "triage-design-system-evolution @ 0.13.1-experiment",
+    "path": "INTERACTION.md#copy"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/03-review.md",
+    "docs/evolution/round2/10-recipes-promotion-review.md"
+   ]
+  },
+  {
+   "id": "fallback/native-control",
+   "kind": "fallback",
+   "title": "Native confirm() for one-way actions",
+   "summary": "Actions that are irreversible, security-relevant, or affect more than the clicked item keep a native confirm() whose sentence names the object and the consequence (INTERACTION.md, one-way set). Arming cannot carry the consequence; this is the sanctioned stop, and never a substitute for the armed pattern on ordinary entity deletes.",
+   "status": "stable",
+   "aliases": [
+    "native confirm",
+    "confirmation dialog",
+    "confirm dialog",
+    "are you sure prompt"
+   ],
+   "body": {
+    "when": "irreversible, security-relevant, or wider than the clicked item: remove account, reset tokens, rebuild the index, clear a chat, enable an auto-apply mode, approve a plugin with a browser view",
+    "form": "onsubmit=\"return confirm('...')\" on the form; kept apostrophe-safe",
+    "copy": "name the object and the consequence in the sentence; route entity deletes through arming instead",
+    "never": "routine entity deletes (use the armed pattern), async flows, or as a shortcut to avoid designing the armed control"
+   },
+   "source": {
+    "repo": "triage-design-system (INTERACTION.md)",
+    "path": "INTERACTION.md"
+   },
+   "compiled_from": [
+    "docs/evolution/round2/10-recipes-promotion-review.md (authored at promotion, 2026-10-11)"
+   ]
+  }
+ ]
+}

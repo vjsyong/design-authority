@@ -98,9 +98,9 @@ background:var(--surface-card);cursor:pointer;color:var(--text-primary);padding:
 .iconbtn svg{width:16px;height:16px;flex:none}
 form.inline{display:inline}
 /* ---- forms ---- */
-input[type=text],input[type=number],input[type=password],input[type=search],select,textarea{background:var(--surface-card);
+input[type=text],input[type=number],input[type=password],input[type=search],select,.select,textarea{background:var(--surface-card);
 border:1px solid var(--control-border);color:var(--text-primary);padding:var(--space-field) var(--space-10);font-size:var(--fs-bubble);width:100%;font-family:inherit}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--text-primary);box-shadow:0 0 0 3px var(--focus-ring)}
+input:focus,select:focus,.select:focus,textarea:focus{outline:none;border-color:var(--text-primary);box-shadow:0 0 0 3px var(--focus-ring)}
 input::placeholder,textarea::placeholder{color:var(--text-placeholder)}
 textarea{font-family:var(--mono);font-size:var(--fs-sub);min-height:120px;line-height:var(--lh-base)}
 label{display:block;font-size:var(--fs-label);color:var(--text-secondary);margin:var(--space-10) 0 var(--space-field);font-weight:var(--fw-medium)}
@@ -516,8 +516,8 @@ html{touch-action:manipulation;overscroll-behavior-y:contain}
      deliberately (no lint suppression). */
   .setting-row input:not([type=checkbox]):not([type=radio]),
   input[type=text],input[type=number],input[type=password],input[type=search],
-  input[type=email],input[type=url],input[type=tel],select,textarea{font-size:16px}
-  input:not([type=checkbox]):not([type=radio]),select{min-height:44px}
+  input[type=email],input[type=url],input[type=tel],select,.select,textarea{font-size:16px}
+  input:not([type=checkbox]):not([type=radio]),select,.select{min-height:44px}
   .nav-item{min-height:48px}
   .copy{padding:var(--space-8) var(--space-10)}
 }
@@ -604,7 +604,7 @@ html{touch-action:manipulation;overscroll-behavior-y:contain}
      a focused control below 16px triggers Safari's viewport zoom. No token. */
   .setting-row input:not([type=checkbox]):not([type=radio]),
   input[type=text],input[type=number],input[type=password],input[type=search],
-  input[type=email],input[type=url],input[type=tel],select,textarea{font-size:16px}
+  input[type=email],input[type=url],input[type=tel],select,.select,textarea{font-size:16px}
 }
 @media(max-width:640px){pre.log{font-size:var(--fs-pre-log)}}
 

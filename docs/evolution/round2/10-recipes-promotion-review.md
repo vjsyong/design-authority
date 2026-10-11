@@ -77,4 +77,31 @@ copy):
    alias/needs additions in the gap log. The pack's COMPOSE surface gains
    the 17 realistic needs above.
 
-Status: evaluation complete; promotion queued to the review route.
+Status: evaluation complete; **promotion executed 2026-10-11** (owner-approved
+via the "keep going, all approved" instruction).
+
+## Executed (2026-10-11)
+
+All 17 recipes were promoted into `authorities/triage` at **0.14.0-rc1**:
+
+- The 10 direct promotions landed as recipes.
+- The 6 with prerequisites landed with their named records ported from the
+  round2 evolution line (`guideline/armed-delete`,
+  `guideline/high-stakes-confirm`, `guideline/colour-not-alone`,
+  `guideline/page-hierarchy`, `guideline/copy-helper`) plus
+  `fallback/native-control`, which was authored from INTERACTION.md's
+  one-way-actions doctrine (the evolution line never carried it) and
+  registered in the pack's fallback ladder.
+- `assign-picker`'s naming question was resolved by porting the evolution
+  line's `.select` into the design system (base + focus + mobile rules,
+  `spec/states.json` entry, catalog at 37 components), so the recipe cites
+  `component/select` unchanged.
+- `status-with-text`'s ingredient was corrected to the live spelling
+  (`token-set/colour`).
+- The COMPOSE surface is live: `resolve` now answers the recipes' needs
+  (`a long list with pages` composes `recipe/paginated-list` where it
+  previously steered to `fallback/scoped-embedding`). The golden set pins
+  one verified need per recipe (58 -> 75 cases, 75/75 green); coverage
+  sweep stays 134/134; no prior resolution changed.
+- Pack counts: 87 artifacts (58 component / 15 guideline / 7 pattern /
+  7 token-set), 20 rules, 17 recipes, 4 fallbacks.

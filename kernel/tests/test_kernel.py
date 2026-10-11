@@ -36,16 +36,17 @@ class TestPack(unittest.TestCase):
         kinds = {}
         for a in self.pack.artifacts:
             kinds[a["kind"]] = kinds.get(a["kind"], 0) + 1
-        # 36 states-matrix components (incl. .prov) + 21 furniture components in core
-        self.assertEqual(kinds.get("component"), 57)
+        # 37 states-matrix components (incl. .prov, .select) + 21 furniture
+        self.assertEqual(kinds.get("component"), 58)
         self.assertEqual(kinds.get("pattern"), 7)
-        # interaction standard + consumption + verification levels + 7 foundations
-        self.assertEqual(kinds.get("guideline"), 10)
+        # 10 foundations/interaction + 5 promoted round2 guidelines (2026-10-11)
+        self.assertEqual(kinds.get("guideline"), 15)
         # the 16 TDS lint rules (incl. TDS016 label-tier) plus 4 binding interaction rules
         self.assertEqual(len(self.pack.rules), 20)
-        # the synthesis lineage carries no flow recipes yet; the kit curation holds
-        # 15 (a recorded merge item, not silently invented)
-        self.assertEqual(len(self.pack.recipes), 0)
+        # the 17 promoted flow recipes (round2 review, owner-approved 2026-10-11)
+        self.assertEqual(len(self.pack.recipes), 17)
+        # 3 system fallbacks + the authored fallback/native-control (promotion prereq)
+        self.assertEqual(len(self.pack.fallbacks), 4)
 
 
 class TestResolution(unittest.TestCase):

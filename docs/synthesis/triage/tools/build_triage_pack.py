@@ -26,7 +26,7 @@ _args = _ap.parse_args()
 OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "authorities", "triage")
 os.makedirs(OUT, exist_ok=True)
 
-V = "0.13.0-rc1"  # authority (pack content) version — docs/spec/05 version layers
+V = "0.14.0-rc1"  # authority (pack content) version — docs/spec/05 version layers
 SRC_V = "0.13.0"  # pinned design-system version; the snapshot is immutable within a pack version
 
 _src_commit = subprocess.run(["git", "-C", TR, "rev-parse", "HEAD"],
@@ -505,6 +505,18 @@ for aid, title, cls, summary, aliases in FURNITURE:
          "note": summary},
         "core/base.css (%s)" % cls, ["triage/furniture"]))
 
+# ------------------------------------------- promoted records + recipes -----
+# Ported from the evolution line's round2 review (owner-approved 2026-10-11;
+# docs/evolution/round2/10-recipes-promotion-review.md): five prerequisite
+# guideline records plus the authored fallback, and the 17 flow recipes that
+# give the pack its COMPOSE surface.
+_EXTRA = json.load(open(os.path.join(REPO, "docs", "synthesis", "triage", "records-extra.json")))["records"]
+for rec in _EXTRA:
+    if rec.get("kind") == "fallback":
+        continue  # routed to the fallbacks list below (single registration in by_id)
+    artifacts.append(rec)
+_RECIPES = json.load(open(os.path.join(REPO, "docs", "synthesis", "triage", "recipes.json")))["recipes"]
+
 json.dump({"artifacts": artifacts}, open(os.path.join(OUT, "artifacts.json"), "w"), indent=1, ensure_ascii=False)
 
 # ---------------------------------------------------------------- rules -----
@@ -571,6 +583,18 @@ fallbacks = [
      "scope": ["motion", "accessibility", "reduced motion"],
      "constraints": ["never opt out of the user preference", "keep durations on tokens even in the reduced path"]},
 ]
+# promoted record (round2 review, 2026-10-11): the authored fallback that rides
+# the recipes promotion; it also appears in artifacts.json for ingredient
+# resolution, this entry serves the resolution ladder's FALLBACK step.
+for _rec in _EXTRA:
+    if _rec.get("kind") == "fallback":
+        _body = _rec.get("body", {})
+        fallbacks.append({
+            "id": _rec["id"], "kind": "fallback", "title": _rec["title"],
+            "statement": _rec["summary"],
+            "scope": ["danger", "high stakes", "confirm", "one-way", "irreversible"],
+            "constraints": list(_body.get("dont", [])) + [ _body.get("never", "") ] if _body else [],
+        })
 json.dump({"fallbacks": fallbacks}, open(os.path.join(OUT, "fallbacks.json"), "w"), indent=1, ensure_ascii=False)
 
 # ----------------------------------------------------------- precedents -----
@@ -651,7 +675,7 @@ candidates = [
      "provenance": {"source": "triage repo review + proposals"}},
 ]
 json.dump({"candidates": candidates}, open(os.path.join(OUT, "candidates.json"), "w"), indent=1, ensure_ascii=False)
-json.dump({"recipes": []}, open(os.path.join(OUT, "recipes.json"), "w"), indent=1, ensure_ascii=False)
+json.dump({"recipes": _RECIPES}, open(os.path.join(OUT, "recipes.json"), "w"), indent=1, ensure_ascii=False)
 
 # ------------------------------------------------------------- golden -------
 golden = {
@@ -715,6 +739,24 @@ golden = {
         {"problem": "rounded corners on the cards", "expect": "CONFLICT"},
         {"problem": "make all the buttons rounded", "expect": "CONFLICT"},
         {"problem": "a carousel", "expect": "UNDEFINED"},
+        # ---- recipe COMPOSE surface (promotion 2026-10-11): one pinned need per promoted recipe
+        {"problem": "show the result of a form submit", "expect": "COMPOSE", "expect_id": "recipe/feedback-redirect"},
+        {"problem": "announce an action without navigation", "expect": "COMPOSE", "expect_id": "recipe/feedback-inplace"},
+        {"problem": "delete a record safely", "expect": "COMPOSE", "expect_id": "recipe/entity-delete-armed"},
+        {"problem": "confirm account removal", "expect": "COMPOSE", "expect_id": "recipe/high-stakes-confirm"},
+        {"problem": "enable or disable an entity", "expect": "COMPOSE", "expect_id": "recipe/entity-toggle"},
+        {"problem": "show the state of an item", "expect": "COMPOSE", "expect_id": "recipe/status-with-text"},
+        {"problem": "nothing to show yet", "expect": "COMPOSE", "expect_id": "recipe/empty-with-cta"},
+        {"problem": "select rows and act on them", "expect": "COMPOSE", "expect_id": "recipe/bulk-actions"},
+        {"problem": "save an editor document", "expect": "COMPOSE", "expect_id": "recipe/editor-savebar"},
+        {"problem": "per-row actions", "expect": "COMPOSE", "expect_id": "recipe/row-actions"},
+        {"problem": "screen header for a view", "expect": "COMPOSE", "expect_id": "recipe/page-head"},
+        {"problem": "a dialog for a small task", "expect": "COMPOSE", "expect_id": "recipe/dialog-task"},
+        {"problem": "a long list with pages", "expect": "COMPOSE", "expect_id": "recipe/paginated-list"},
+        {"problem": "copy a value to the clipboard", "expect": "COMPOSE", "expect_id": "recipe/copy-value"},
+        {"problem": "filter a table", "expect": "COMPOSE", "expect_id": "recipe/filter-row"},
+        {"problem": "assign a reviewer", "expect": "COMPOSE", "expect_id": "recipe/assign-picker"},
+        {"problem": "track a long running job", "expect": "COMPOSE", "expect_id": "recipe/job-progress"},
     ],
 }
 json.dump(golden, open(os.path.join(OUT, "golden.json"), "w"), indent=1, ensure_ascii=False)
@@ -725,10 +767,10 @@ build = {
     "source": {"repo": TR, "commit": _src_commit, "version": SRC_V},
     "release": {
         "label": "triage %s" % V,
-        "kind": "merge",
-        "based_on": "triage 0.12.3-rc1",
+        "kind": "promotion",
+        "based_on": "triage 0.13.0-rc1",
         "snapshot_commit": _src_commit,
-        "triggering_proposals": ["spec/proposals/verification-levels.md", "spec/proposals/density-borders.md", "spec/proposals/provenance-contract.md"],
+        "triggering_proposals": ["docs/evolution/round2/10-recipes-promotion-review.md (recipes promotion)"],
         "approved": "owner-approved 2026-10-11; rc cut by agent",
     },
     "counts": {"artifacts": len(artifacts), "rules": len(rules),
