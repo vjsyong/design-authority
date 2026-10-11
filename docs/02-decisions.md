@@ -633,3 +633,38 @@ the one runtime library. Spec: `docs/17-consumer-workflow.md`.
   adoption test (P3), the longitudinal experiment design (P4), and the
   queued consolidations (recipes promotion, Triage merges).
 
+## D-039 · Adoption test passed; the validator goes portable; program follow-through (2026-10-11)
+
+The independent adoption test (memo section 4) ran and passed its axes;
+the same-day fixes and the remaining program items:
+
+- **The test** (`docs/experiments/08-adoption-test.md`; runner
+  `x06_run.py`, sandboxed, brief-only, public repo only; run archived at
+  `~/x06-adoption/run1/`): a fresh agent found and ran the WHOLE workflow
+  unprompted — init, plan (9 resolved / 3 undefined), build on the shipped
+  foundations, receipt, reconcile (9 conforms) — filed five gaps, handled
+  every undefined need by the prescribed protocol (marked improvisations,
+  including an in-character confetti burst with reduced-motion), and
+  verified with real browser checks. Claims independently re-verified; zero
+  human intervention; zero containment hits.
+- **Fix landed (F-1):** the pack's declared lint validator was bound to the
+  non-public design-system checkout. The Triage pack now ships a
+  self-contained lint bundle and runs it with `workdir {pack}`; the
+  generator emits it and the drift gate covers it. Verified from a copied
+  pack with no snapshot: the adoption build re-checks at 0 violations /
+  score 100 against the real lint.
+- **Queued from the test (F-2):** the Triage pack needs a verification
+  contract (the `da verify` step). Author + calibrate under
+  references/verification.md discipline; the run's gap records it.
+- **x05 program report** written (05-seed-evolution.md section 11):
+  blind review, objective gates (D1/D2 fail, flat Layer 1), the hollow
+  enforcement finding and its rebuild, the exploratory drift sweep, limits.
+- **Recipes promotion review** (memo section 6): all 17 evolution recipes
+  evaluated against the live pack — 10 promote directly, 6 with a named
+  prerequisite record, 1 needs naming reconciliation; queued to the Triage
+  review route as bundles, never bulk-copied.
+- **P4 designed:** `docs/experiments/09-maintenance-economics.md`, the
+  draft pre-registration for the next experiment (maintenance economics of
+  governed precedent); frozen only on the owner's go.
+- Everything committed and pushed; full check suite green.
+
