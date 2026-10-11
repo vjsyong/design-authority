@@ -59,7 +59,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:48:18+00:00"
+  "reviewed_at": "2026-10-07T15:48:18+00:00",
+  "codified_summary": "Charts render in the rule-and-grid idiom: black bars on rules, a month grid, and a slate trend line; no rings, no shadows, no new colours."
  },
  "authority": {
   "authority": "dominion",

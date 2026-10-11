@@ -20,6 +20,10 @@ pack version; folds `tests.golden` and derives further goldens from each
 proposal's own `resolve('X') cites ID` checks; alias reconciliation included).
 Provenance on every entry: `provenance.proposal` + `reviewed_at`.
 
+*(P0.1, 2026-10-11: the tool is a shim over `tools/da_compile.py` codify mode
+now, and the entry summaries moved from a hardcoded dict into
+`review.codified_summary` on each proposal record.)*
+
 - **wink 0.2.0** (+5 entries): `pattern/dialog-overlay`, `pattern/empty-state`,
   `pattern/destructive-confirm`, `pattern/inline-notice`, `pattern/progress`
 - **leader 0.2.0** (+3): `pattern/data-charts`, `pattern/data-readouts`,

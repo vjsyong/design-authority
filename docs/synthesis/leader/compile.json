@@ -1,0 +1,672 @@
+{
+ "format": "da-compile-dossier/0.1",
+ "authority": {
+  "name": "Leader Interface System",
+  "description": "An editorial interface system derived from The Economist's Marber design system and live product for the Design Authority synthesis experiment. Serif-led, rules-based, blue interactive layer; no Economist marks reproduced.",
+  "repo": "marber.economist.com + economist.com live product",
+  "snapshot_version": "Marber as published 2026",
+  "id": "leader"
+ },
+ "source": {
+  "decisions": "docs/synthesis/leader/decisions.json",
+  "extracted_from": "docs/synthesis/tools/compile_pack.py @ 3eb576a"
+ },
+ "approved": [
+  "D-01",
+  "D-02",
+  "D-03",
+  "D-04",
+  "D-05",
+  "D-07",
+  "D-08",
+  "D-09",
+  "D-11",
+  "D-12",
+  "D-14",
+  "D-15",
+  "D-19",
+  "D-20",
+  "D-21",
+  "D-22",
+  "L-01",
+  "L-02",
+  "L-03",
+  "L-04",
+  "L-05",
+  "L-06",
+  "L-07",
+  "L-09",
+  "L-10",
+  "L-11",
+  "L-14",
+  "L-16",
+  "L-20",
+  "L-21",
+  "L-24",
+  "W-01",
+  "W-02",
+  "W-03",
+  "W-04",
+  "W-05",
+  "W-06",
+  "W-07",
+  "W-08",
+  "W-09",
+  "W-10",
+  "W-11",
+  "W-12",
+  "W-13",
+  "W-20",
+  "W-21",
+  "W-22",
+  "W-23",
+  "W-26"
+ ],
+ "records": {
+  "artifacts": [
+   {
+    "decisions": [
+     "L-01"
+    ],
+    "record": {
+     "id": "component/action",
+     "kind": "component",
+     "title": "Action (navy rounded)",
+     "aliases": [
+      "button",
+      "cta",
+      "primary button",
+      "action",
+      "link button",
+      "subscribe button"
+     ],
+     "body": {
+      "class": "btn",
+      "group": "Actions",
+      "states": [
+       "primary: solid navy #2E45B8, radius ~8",
+       "secondary: 2px ink outline",
+       "tertiary: underlined blue link"
+      ],
+      "verify": [
+       ".btn.b-navy",
+       ".btn.b-out",
+       ".btn.b-txt"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-02"
+    ],
+    "record": {
+     "id": "guideline/shape-language",
+     "kind": "guideline",
+     "title": "Shape language (rounded product)",
+     "aliases": [
+      "shape",
+      "corner",
+      "radius",
+      "rounded corners",
+      "square corners"
+     ],
+     "body": {
+      "group": "Shape"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-03"
+    ],
+    "record": {
+     "id": "guideline/motion",
+     "kind": "guideline",
+     "title": "Motion",
+     "aliases": [
+      "motion",
+      "transition",
+      "animation",
+      "hover timing"
+     ],
+     "body": {
+      "group": "Motion"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-04"
+    ],
+    "record": {
+     "id": "guideline/typography",
+     "kind": "guideline",
+     "title": "Typography (three registers)",
+     "aliases": [
+      "typography",
+      "font",
+      "serif",
+      "sans",
+      "headline font"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-05"
+    ],
+    "record": {
+     "id": "token-set/type-scale",
+     "kind": "token-set",
+     "title": "Screen type scale",
+     "aliases": [
+      "type scale",
+      "font size",
+      "display size",
+      "heading size",
+      "body size"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-06"
+    ],
+    "record": {
+     "id": "token-set/colour",
+     "kind": "token-set",
+     "title": "Colour roles (red + Chicago blue)",
+     "aliases": [
+      "palette",
+      "colour",
+      "color",
+      "economist red",
+      "chicago blue",
+      "navy"
+     ],
+     "body": {
+      "group": "Colour"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-07"
+    ],
+    "record": {
+     "id": "guideline/surfaces",
+     "kind": "guideline",
+     "title": "Surfaces & separation",
+     "aliases": [
+      "surfaces",
+      "backgrounds",
+      "rules",
+      "hairlines",
+      "separation",
+      "elevation"
+     ],
+     "body": {
+      "group": "Surfaces"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-09"
+    ],
+    "record": {
+     "id": "guideline/hierarchy",
+     "kind": "guideline",
+     "title": "Section rhythm",
+     "aliases": [
+      "hierarchy",
+      "section label",
+      "headline",
+      "standfirst",
+      "page structure"
+     ],
+     "body": {
+      "group": "Structure"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-10"
+    ],
+    "record": {
+     "id": "component/navbar",
+     "kind": "component",
+     "title": "Top bar",
+     "aliases": [
+      "navbar",
+      "top bar",
+      "header",
+      "navigation",
+      "menu",
+      "search box",
+      "nav bar"
+     ],
+     "body": {
+      "class": "navbar",
+      "group": "Structure",
+      "states": [
+       "default (white bar, 2px ink rule)",
+       "active item: blue underline",
+       "search: rectangle with typing-cursor motif"
+      ],
+      "verify": [
+       ".navbar",
+       ".navbar .on",
+       ".cursorbox"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-11"
+    ],
+    "record": {
+     "id": "component/field",
+     "kind": "component",
+     "title": "Field (rounded, sans text)",
+     "aliases": [
+      "field",
+      "input",
+      "form field",
+      "text field",
+      "textbox",
+      "error message",
+      "validation error",
+      "textarea",
+      "text area",
+      "multiline field"
+     ],
+     "body": {
+      "class": "field",
+      "group": "Forms",
+      "states": [
+       "default (1px soft ink border)",
+       "focus adds no border highlight",
+       "invalid (small red line under)"
+      ],
+      "verify": [
+       ".field input",
+       ".field .err"
+      ],
+      "a11y": [
+       "<label for> always; focus visible by other means if border highlight is suppressed."
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-14"
+    ],
+    "record": {
+     "id": "component/notice",
+     "kind": "component",
+     "title": "Notice (ruled box)",
+     "aliases": [
+      "notice",
+      "alert",
+      "message",
+      "banner",
+      "notification",
+      "weekly summary",
+      "week summary",
+      "week-summary"
+     ],
+     "body": {
+      "class": "notice",
+      "group": "Feedback"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "L-16"
+    ],
+    "record": {
+     "id": "component/meter",
+     "kind": "component",
+     "title": "Progress meter",
+     "aliases": [
+      "meter",
+      "progress",
+      "progress bar",
+      "import progress",
+      "readout"
+     ],
+     "body": {
+      "class": "meter",
+      "group": "Progress",
+      "verify": [
+       ".meter",
+       ".meter i"
+      ]
+     },
+     "note": null
+    }
+   }
+  ],
+  "rules": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "L-R1",
+     "name": "rounded-interactive",
+     "severity": "error",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "Interactive components and container surfaces are soft-rounded (radius ~8); only rules, hairlines and glyph marks stay crisp.",
+     "why": "Live product review + Gate 2 (L-02, L-24).",
+     "fix": "Give the component the system radius; remove square interactive corners."
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "L-R2",
+     "name": "colour-families",
+     "severity": "warning",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "Red is brand/editorial punctuation; the Chicago blue family carries the interactive layer; frame is ink/white/London grey.",
+     "why": "Marber tokens + live product (L-06), accepted at Gate 2.",
+     "fix": "Map the colour to the nearest family token."
+    }
+   }
+  ],
+  "prohibitions": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/square-interactive",
+     "statement": "Square-cornered interactive components or cards — the live system is rounded (L-02, L-24).",
+     "signals": [
+      "square button",
+      "square buttons",
+      "buttons square",
+      "make it square",
+      "make them square",
+      "square corners",
+      "squared corners",
+      "sharp corners",
+      "sharp edges",
+      "right angles",
+      "border-radius: 0"
+     ],
+     "rule": "L-R1",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/ambient-glow",
+     "statement": "Ambient glow shadows — elevation uses defined shadow tokens only (L-24).",
+     "signals": [
+      "glow",
+      "glowing shadow",
+      "soft glow",
+      "neon glow"
+     ],
+     "rule": "L-R1",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/red-reading-surface",
+     "statement": "Red as a reading background (L-24).",
+     "signals": [
+      "red background",
+      "red page background",
+      "red as the background"
+     ],
+     "rule": "L-R2",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/off-family-colour",
+     "statement": "Colours outside the defined families / invented hues (L-24).",
+     "signals": [
+      "invented hue",
+      "off-brand colour",
+      "off brand colour",
+      "neon green",
+      "teal accent"
+     ],
+     "rule": "L-R2",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/decorative-noise",
+     "statement": "Emoji and exclamation marks (L-24).",
+     "signals": [
+      "emoji",
+      "emojis",
+      "exclamation mark",
+      "exclamation point",
+      "exclamation marks"
+     ],
+     "rule": "L-R2",
+     "kind": "prohibition"
+    }
+   }
+  ],
+  "fallbacks": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/platform-controls",
+     "title": "Platform defaults for uncovered controls",
+     "statement": "If the system defines no control for a need, use the platform's native element with the leader field styling; keep native semantics.",
+     "scope": [
+      "checkbox",
+      "radio",
+      "date",
+      "toggle",
+      "switch",
+      "slider",
+      "stepper"
+     ],
+     "constraints": [
+      "field styling (rounded, 1px soft border)",
+      "mark the improvisation and report a gap"
+     ],
+     "kind": "fallback"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/selection",
+     "title": "Selection beyond small sets",
+     "statement": "Small sets use a native select styled like a field; larger or filtered selection uses the platform default, marked.",
+     "scope": [
+      "select",
+      "dropdown",
+      "picker",
+      "combobox",
+      "listbox",
+      "filter"
+     ],
+     "constraints": [
+      "keep field styling",
+      "mark the improvisation",
+      "report a gap if the need recurs"
+     ],
+     "kind": "fallback"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/ruled-panel",
+     "title": "Interstitials become ruled panels",
+     "statement": "No dialog canon: interstitials render as plain ruled panels in the page flow (L-07); mark the improvisation.",
+     "scope": [
+      "dialog",
+      "modal",
+      "overlay",
+      "popup",
+      "interstitial",
+      "wizard",
+      "onboarding"
+     ],
+     "constraints": [
+      "2px ink rules, hairline detail",
+      "no scrim, no motion",
+      "mark the improvisation"
+     ],
+     "kind": "fallback"
+    }
+   }
+  ],
+  "recipes": []
+ },
+ "golden": [
+  {
+   "problem": "add a primary button to the page",
+   "expect": "RESOLVED",
+   "expect_id": "component/action",
+   "note": "Navy rounded action resolves."
+  },
+  {
+   "problem": "the top navigation bar",
+   "expect": "RESOLVED",
+   "expect_id": "component/navbar",
+   "note": "White bar, blue active underline."
+  },
+  {
+   "problem": "a form field for the borrower",
+   "expect": "RESOLVED",
+   "expect_id": "component/field",
+   "note": "Rounded field, sans text."
+  },
+  {
+   "problem": "show import progress with steps",
+   "expect": "RESOLVED",
+   "expect_id": "component/meter",
+   "note": "Ruled meter with readout."
+  },
+  {
+   "problem": "a notice message about overdue items",
+   "expect": "RESOLVED",
+   "expect_id": "component/notice",
+   "note": "Ruled notice box."
+  },
+  {
+   "problem": "square corners on the primary button",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/square-interactive",
+   "note": "Rounded throughout (L-R1)."
+  },
+  {
+   "problem": "make it a red background for reading",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/red-reading-surface",
+   "note": "Red is punctuation, never ground."
+  },
+  {
+   "problem": "add an emoji to the headline",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/decorative-noise",
+   "note": "No emoji (L-24)."
+  },
+  {
+   "problem": "a dialog for confirmation",
+   "expect": "FALLBACK",
+   "expect_id": "fallback/ruled-panel",
+   "note": "No dialog canon; ruled panel, marked."
+  },
+  {
+   "problem": "animate the hero with a bounce",
+   "expect": "UNDEFINED",
+   "expect_id": null,
+   "note": "Deliberate: bounce contradicts L-03; no motion canon exists."
+  }
+ ],
+ "manifest": {
+  "id": "leader",
+  "name": "Leader Interface System",
+  "format_version": "0.1",
+  "version": "0.1.0",
+  "snapshot": {
+   "repo": "marber.economist.com + economist.com live product",
+   "commit": "n/a - derived from public sources, not a repository",
+   "branch": "n/a",
+   "version": "Marber as published 2026",
+   "path_hint": ""
+  },
+  "description": "An editorial interface system derived from The Economist's Marber design system and live product for the Design Authority synthesis experiment. Serif-led, rules-based, blue interactive layer; no Economist marks reproduced.",
+  "kinds": [
+   "component",
+   "pattern",
+   "token-set",
+   "guideline",
+   "recipe",
+   "reference"
+  ],
+  "capabilities": {
+   "search": true,
+   "resolve": true,
+   "validators": [],
+   "gap_reporting": true,
+   "extension_proposals": true,
+   "resolution_assist": "off"
+  },
+  "policy": {
+   "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+   "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+   "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+  },
+  "entrypoints": {
+   "artifacts": "artifacts.json",
+   "rules": "rules.json",
+   "recipes": "recipes.json",
+   "fallbacks": "fallbacks.json",
+   "prohibitions": "prohibitions.json",
+   "validators": "validators.json",
+   "scoring": "scoring.json"
+  }
+ },
+ "scoring": {
+  "formula": "score = max(0, 100 - (errors*8 + warnings*2 + infos*0.5))",
+  "gate": "Authority CI fails on any error; --max-warnings can tighten warnings.",
+  "source": "docs/synthesis/00-source-selection.md"
+ }
+}

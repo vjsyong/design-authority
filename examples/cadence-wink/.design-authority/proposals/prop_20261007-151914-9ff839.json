@@ -63,7 +63,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:40:03+00:00"
+  "reviewed_at": "2026-10-07T15:40:03+00:00",
+  "codified_summary": "High-consequence actions route through a rounded 16px confirm dialog with a consequence sentence in the warm voice; confirm = ink-filled pill labelled with the concrete verb (never 'OK'); cancel = outline pill; the destructive action never receives default focus."
  },
  "authority": {
   "authority": "wink",

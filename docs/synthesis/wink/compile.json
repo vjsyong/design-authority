@@ -1,0 +1,609 @@
+{
+ "format": "da-compile-dossier/0.1",
+ "authority": {
+  "name": "Wink Interface System",
+  "description": "A friendly, clearly-designed interface system derived from the Mailchimp brand and live product for the Design Authority synthesis experiment. Warm, pill-shaped, playful; no Mailchimp marks reproduced.",
+  "repo": "mailchimp.com live product + Mailchimp brand resources",
+  "snapshot_version": "sources as published 2026",
+  "id": "wink"
+ },
+ "source": {
+  "decisions": "docs/synthesis/wink/decisions.json",
+  "extracted_from": "docs/synthesis/tools/compile_pack.py @ 3eb576a"
+ },
+ "approved": [
+  "D-01",
+  "D-02",
+  "D-03",
+  "D-04",
+  "D-05",
+  "D-07",
+  "D-08",
+  "D-09",
+  "D-11",
+  "D-12",
+  "D-14",
+  "D-15",
+  "D-19",
+  "D-20",
+  "D-21",
+  "D-22",
+  "L-01",
+  "L-02",
+  "L-03",
+  "L-04",
+  "L-05",
+  "L-06",
+  "L-07",
+  "L-09",
+  "L-10",
+  "L-11",
+  "L-14",
+  "L-16",
+  "L-20",
+  "L-21",
+  "L-24",
+  "W-01",
+  "W-02",
+  "W-03",
+  "W-04",
+  "W-05",
+  "W-06",
+  "W-07",
+  "W-08",
+  "W-09",
+  "W-10",
+  "W-11",
+  "W-12",
+  "W-13",
+  "W-20",
+  "W-21",
+  "W-22",
+  "W-23",
+  "W-26"
+ ],
+ "records": {
+  "artifacts": [
+   {
+    "decisions": [
+     "W-01",
+     "W-02",
+     "W-03"
+    ],
+    "record": {
+     "id": "component/action-pill",
+     "kind": "component",
+     "title": "Action (pill)",
+     "aliases": [
+      "button",
+      "cta",
+      "primary button",
+      "pill button",
+      "start free trial",
+      "action",
+      "submit",
+      "secondary button",
+      "outline button"
+     ],
+     "body": {
+      "class": "cta",
+      "group": "Actions",
+      "states": [
+       "default: yellow fill + 1px ink ring (box-shadow 0 0 0 1px #231E15)",
+       "dark variant on warm fields (ink fill, white label)",
+       "secondary: outline pill (2px ink inset)",
+       "hover: translateY(-4.875px) + hard ink shadow 0 4.875px 0 0 (live-measured, zero blur)"
+      ],
+      "verify": [
+       ".cta",
+       ".cta.dark",
+       ".cta.outline"
+      ],
+      "a11y": [
+       "Real <button>/<a> semantics; visible label; focus must not rely on colour alone."
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-04"
+    ],
+    "record": {
+     "id": "guideline/typography",
+     "kind": "guideline",
+     "title": "Typography (two registers)",
+     "aliases": [
+      "typography",
+      "font",
+      "display font",
+      "body font",
+      "headline font"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-05"
+    ],
+    "record": {
+     "id": "token-set/type-scale",
+     "kind": "token-set",
+     "title": "Screen type scale",
+     "aliases": [
+      "type scale",
+      "font size",
+      "display size",
+      "heading size"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-06"
+    ],
+    "record": {
+     "id": "token-set/colour",
+     "kind": "token-set",
+     "title": "Colour roles",
+     "aliases": [
+      "palette",
+      "colour",
+      "color",
+      "yellow",
+      "peppercorn",
+      "ink colour"
+     ],
+     "body": {
+      "group": "Colour"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-07"
+    ],
+    "record": {
+     "id": "component/card",
+     "kind": "component",
+     "title": "Card (soft vessel)",
+     "aliases": [
+      "card",
+      "surface",
+      "panel",
+      "tile"
+     ],
+     "body": {
+      "class": "card1",
+      "group": "Surfaces",
+      "states": [
+       "default (white, shadow, radius 16/24)",
+       "tinted variant (Parsnip, no shadow)"
+      ],
+      "verify": [
+       ".card1",
+       ".card2"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-08"
+    ],
+    "record": {
+     "id": "guideline/shape-language",
+     "kind": "guideline",
+     "title": "Shape classes",
+     "aliases": [
+      "shape",
+      "corner",
+      "radius",
+      "rounded corners",
+      "square corners",
+      "pill"
+     ],
+     "body": {
+      "group": "Shape"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-10"
+    ],
+    "record": {
+     "id": "guideline/hierarchy",
+     "kind": "guideline",
+     "title": "Section rhythm",
+     "aliases": [
+      "hierarchy",
+      "section label",
+      "page structure",
+      "headline pattern"
+     ],
+     "body": {
+      "group": "Structure"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-11"
+    ],
+    "record": {
+     "id": "component/navbar",
+     "kind": "component",
+     "title": "Top bar",
+     "aliases": [
+      "navbar",
+      "top bar",
+      "header",
+      "navigation",
+      "menu",
+      "nav bar"
+     ],
+     "body": {
+      "class": "navbar",
+      "group": "Structure",
+      "states": [
+       "default (white bar)",
+       "hover (light-grey rounded-rect fill)",
+       "dropdown items carry chevrons"
+      ],
+      "a11y": [
+       "Dropdown affordances need aria-haspopup/expanded when built; single-row layout."
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-13"
+    ],
+    "record": {
+     "id": "component/field-select",
+     "kind": "component",
+     "title": "Field & small-set select",
+     "aliases": [
+      "field",
+      "input",
+      "form field",
+      "select",
+      "dropdown",
+      "text field",
+      "textarea",
+      "text area",
+      "multiline field",
+      "notes field"
+     ],
+     "body": {
+      "class": "field",
+      "group": "Forms",
+      "states": [
+       "default",
+       "focus",
+       "invalid"
+      ],
+      "verify": [
+       ".field input",
+       ".field select"
+      ],
+      "a11y": [
+       "<label for> always; native select for small sets."
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-20"
+    ],
+    "record": {
+     "id": "component/ledger",
+     "kind": "component",
+     "title": "Ledger rows",
+     "aliases": [
+      "table",
+      "ledger",
+      "list rows",
+      "register list",
+      "rows"
+     ],
+     "body": {
+      "class": "ledger",
+      "group": "Repeated content"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-21"
+    ],
+    "record": {
+     "id": "component/badge",
+     "kind": "component",
+     "title": "Emphasis badge",
+     "aliases": [
+      "badge",
+      "label",
+      "most popular",
+      "tag"
+     ],
+     "body": {
+      "class": "badge",
+      "group": "Emphasis"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "W-22"
+    ],
+    "record": {
+     "id": "guideline/voice",
+     "kind": "guideline",
+     "title": "Voice",
+     "aliases": [
+      "voice",
+      "tone",
+      "copy",
+      "microcopy",
+      "writing"
+     ],
+     "body": {
+      "group": "Voice"
+     },
+     "note": null
+    }
+   }
+  ],
+  "rules": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "W-R1",
+     "name": "pill-language",
+     "severity": "error",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "Buttons are pills; no square primary buttons anywhere.",
+     "why": "Observed live (radius = half height) and reaffirmed at Gate 2.",
+     "fix": "Replace square corners on buttons with the pill radius."
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "W-R2",
+     "name": "palette-discipline",
+     "severity": "warning",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "Colours come from the wink palette only: Cavendish Yellow, Peppercorn ink, Parsnip, Ochre, Kale, #BF4055 error.",
+     "why": "Palette roles observed live + brand assets; Gate 2 accepted.",
+     "fix": "Map the colour to the nearest palette token."
+    }
+   }
+  ],
+  "prohibitions": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/square-buttons",
+     "statement": "Square or sharp button shapes — buttons are pills (W-02, W-08).",
+     "signals": [
+      "square button",
+      "square buttons",
+      "buttons square",
+      "make it square",
+      "make them square",
+      "square corners",
+      "squared corners",
+      "sharp corners",
+      "sharp edges",
+      "right angles",
+      "border-radius: 0"
+     ],
+     "rule": "W-R1",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/off-palette-colours",
+     "statement": "Colours outside the wink palette, including pure black text and clinical cold greys (W-06).",
+     "signals": [
+      "pure black",
+      "neon",
+      "off-brand",
+      "off brand colour",
+      "off brand color",
+      "invented colour",
+      "invented color",
+      "cold grey",
+      "clinical grey"
+     ],
+     "rule": "W-R2",
+     "kind": "prohibition"
+    }
+   }
+  ],
+  "fallbacks": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/platform-controls",
+     "title": "Platform defaults for uncovered controls",
+     "statement": "If the system defines no control for a need, use the platform's native element with the wink field styling (radius 8, warm ink text); keep native semantics.",
+     "scope": [
+      "checkbox",
+      "radio",
+      "date",
+      "time",
+      "file",
+      "toggle",
+      "switch",
+      "picker",
+      "combobox",
+      "slider",
+      "stepper",
+      "upload"
+     ],
+     "constraints": [
+      "field styling (radius 8, 1px #DEDDDC border)",
+      "warm ink text",
+      "mark the improvisation and report a gap if the need recurs"
+     ],
+     "kind": "fallback"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/light-only",
+     "title": "Light surfaces only",
+     "statement": "No dark-mode canon exists; if a dark surface is unavoidable, keep ink/yellow roles and mark the improvisation.",
+     "scope": [
+      "dark",
+      "mode",
+      "theme"
+     ],
+     "constraints": [
+      "keep the palette roles",
+      "mark the improvisation"
+     ],
+     "kind": "fallback"
+    }
+   }
+  ],
+  "recipes": []
+ },
+ "golden": [
+  {
+   "problem": "add a primary button to the page",
+   "expect": "RESOLVED",
+   "expect_id": "component/action-pill",
+   "note": "Pill action resolves directly."
+  },
+  {
+   "problem": "the top navigation bar",
+   "expect": "RESOLVED",
+   "expect_id": "component/navbar",
+   "note": "White bar with chevron items."
+  },
+  {
+   "problem": "show a \"most popular\" badge on the plan",
+   "expect": "RESOLVED",
+   "expect_id": "component/badge",
+   "note": "Yellow pill badge."
+  },
+  {
+   "problem": "a form field for the borrower email",
+   "expect": "RESOLVED",
+   "expect_id": "component/field-select",
+   "note": "Field language answers."
+  },
+  {
+   "problem": "square buttons for a serious look",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/square-buttons",
+   "note": "Pills only (W-R1)."
+  },
+  {
+   "problem": "use pure black for the headline text",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/off-palette-colours",
+   "note": "Warm ink, not pure black."
+  },
+  {
+   "problem": "add a checkbox for the opt-in",
+   "expect": "FALLBACK",
+   "expect_id": "fallback/platform-controls",
+   "note": "Uncovered control -> platform default with field styling."
+  },
+  {
+   "problem": "animate the dialog with a spring bounce",
+   "expect": "UNDEFINED",
+   "expect_id": null,
+   "note": "Deliberate: motion is undefined; gap over guess."
+  },
+  {
+   "problem": "a dark mode theme",
+   "expect": "FALLBACK",
+   "expect_id": "fallback/light-only",
+   "note": "No dark canon; marked improvisation."
+  }
+ ],
+ "manifest": {
+  "id": "wink",
+  "name": "Wink Interface System",
+  "format_version": "0.1",
+  "version": "0.1.0",
+  "snapshot": {
+   "repo": "mailchimp.com live product + Mailchimp brand resources",
+   "commit": "n/a - derived from public sources, not a repository",
+   "branch": "n/a",
+   "version": "sources as published 2026",
+   "path_hint": ""
+  },
+  "description": "A friendly, clearly-designed interface system derived from the Mailchimp brand and live product for the Design Authority synthesis experiment. Warm, pill-shaped, playful; no Mailchimp marks reproduced.",
+  "kinds": [
+   "component",
+   "pattern",
+   "token-set",
+   "guideline",
+   "recipe",
+   "reference"
+  ],
+  "capabilities": {
+   "search": true,
+   "resolve": true,
+   "validators": [],
+   "gap_reporting": true,
+   "extension_proposals": true,
+   "resolution_assist": "off"
+  },
+  "policy": {
+   "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+   "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+   "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+  },
+  "entrypoints": {
+   "artifacts": "artifacts.json",
+   "rules": "rules.json",
+   "recipes": "recipes.json",
+   "fallbacks": "fallbacks.json",
+   "prohibitions": "prohibitions.json",
+   "validators": "validators.json",
+   "scoring": "scoring.json"
+  }
+ },
+ "scoring": {
+  "formula": "score = max(0, 100 - (errors*8 + warnings*2 + infos*0.5))",
+  "gate": "Authority CI fails on any error; --max-warnings can tighten warnings.",
+  "source": "docs/synthesis/00-source-selection.md"
+ }
+}

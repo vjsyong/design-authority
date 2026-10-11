@@ -1,0 +1,15 @@
+{
+ "now": "2026-10-11T01:35:47+00:00",
+ "report": {
+  "pack": "leader",
+  "applied": [
+   "prop/20261007-151947-916eda",
+   "prop/20261007-151948-91ef4b",
+   "prop/20261007-151948-992c62"
+  ],
+  "skipped": [],
+  "version": "0.2.0"
+ },
+ "input": "compile-leader baseline + examples/cadence-leader",
+ "captured_from": "tools/apply_proposals.py @ 3eb576a"
+}

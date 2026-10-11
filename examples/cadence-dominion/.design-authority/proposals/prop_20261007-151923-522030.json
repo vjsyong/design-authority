@@ -72,7 +72,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:48:02+00:00"
+  "reviewed_at": "2026-10-07T15:48:02+00:00",
+  "codified_summary": "Status carries state through words (bilingual pairs over-under under 560px); statuses render as ruled chips, and registers/tables stay ruled: 2px header rule, hairline rows, pewter de-emphasis."
  },
  "authority": {
   "authority": "dominion",

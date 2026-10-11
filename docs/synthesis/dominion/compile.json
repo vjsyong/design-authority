@@ -1,0 +1,613 @@
+{
+ "format": "da-compile-dossier/0.1",
+ "authority": {
+  "name": "Dominion Interface System",
+  "description": "An austere civic interface system derived from the Government of Canada FIP standard and the live Canada.ca web layer for the Design Authority synthesis experiment. Bilingual, structured, calm; no government marks reproduced.",
+  "repo": "FIP design standard + canada.ca live web layer",
+  "snapshot_version": "GCWeb as served 2026",
+  "id": "dominion"
+ },
+ "source": {
+  "decisions": "docs/synthesis/dominion/decisions.json",
+  "extracted_from": "docs/synthesis/tools/compile_pack.py @ 3eb576a"
+ },
+ "approved": [
+  "D-01",
+  "D-02",
+  "D-03",
+  "D-04",
+  "D-05",
+  "D-07",
+  "D-08",
+  "D-09",
+  "D-11",
+  "D-12",
+  "D-14",
+  "D-15",
+  "D-19",
+  "D-20",
+  "D-21",
+  "D-22",
+  "L-01",
+  "L-02",
+  "L-03",
+  "L-04",
+  "L-05",
+  "L-06",
+  "L-07",
+  "L-09",
+  "L-10",
+  "L-11",
+  "L-14",
+  "L-16",
+  "L-20",
+  "L-21",
+  "L-24",
+  "W-01",
+  "W-02",
+  "W-03",
+  "W-04",
+  "W-05",
+  "W-06",
+  "W-07",
+  "W-08",
+  "W-09",
+  "W-10",
+  "W-11",
+  "W-12",
+  "W-13",
+  "W-20",
+  "W-21",
+  "W-22",
+  "W-23",
+  "W-26"
+ ],
+ "records": {
+  "artifacts": [
+   {
+    "decisions": [
+     "D-01"
+    ],
+    "record": {
+     "id": "component/action",
+     "kind": "component",
+     "title": "Action (slate rounded)",
+     "aliases": [
+      "button",
+      "cta",
+      "primary button",
+      "action",
+      "submit button",
+      "slate button",
+      "secondary button",
+      "outline button",
+      "undo"
+     ],
+     "body": {
+      "class": "btn",
+      "group": "Actions",
+      "states": [
+       "primary: solid slate #26374A, radius 4 (live-measured)",
+       "secondary: 2px slate outline",
+       "tertiary: underlined link"
+      ],
+      "verify": [
+       ".btn.b-slate",
+       ".btn.b-out"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-03"
+    ],
+    "record": {
+     "id": "guideline/typography",
+     "kind": "guideline",
+     "title": "Typography (one family)",
+     "aliases": [
+      "typography",
+      "font",
+      "weights",
+      "helvetica"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-04"
+    ],
+    "record": {
+     "id": "token-set/type-scale",
+     "kind": "token-set",
+     "title": "Screen type rhythm",
+     "aliases": [
+      "type scale",
+      "font size",
+      "title size",
+      "body size"
+     ],
+     "body": {
+      "group": "Type"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-05"
+    ],
+    "record": {
+     "id": "token-set/colour",
+     "kind": "token-set",
+     "title": "Colour roles (ceremony + web layer)",
+     "aliases": [
+      "palette",
+      "colour",
+      "color",
+      "fip red",
+      "slate",
+      "ceremonial red"
+     ],
+     "body": {
+      "group": "Colour"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-08"
+    ],
+    "record": {
+     "id": "component/masthead",
+     "kind": "component",
+     "title": "Masthead",
+     "aliases": [
+      "masthead",
+      "header",
+      "top bar",
+      "navigation",
+      "identity zone"
+     ],
+     "body": {
+      "class": "mh",
+      "group": "Structure",
+      "states": [
+       "default (white, 2px black rule, red accent bar)",
+       "active nav item: medium + underline"
+      ],
+      "verify": [
+       ".mh",
+       ".mh .acc"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-09"
+    ],
+    "record": {
+     "id": "guideline/bilingual",
+     "kind": "guideline",
+     "title": "Bilingual pairings",
+     "aliases": [
+      "bilingual",
+      "french",
+      "english",
+      "bilingual titles"
+     ],
+     "body": {
+      "group": "Voice"
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-11"
+    ],
+    "record": {
+     "id": "component/field",
+     "kind": "component",
+     "title": "Field (soft border, blue glow focus)",
+     "aliases": [
+      "field",
+      "input",
+      "form field",
+      "text field",
+      "error message",
+      "validation error"
+     ],
+     "body": {
+      "class": "field",
+      "group": "Forms",
+      "states": [
+       "default (1px #E0E0E0, radius 4)",
+       "focus: blue glow (1px #66AFE9 + 8px rgba(102,175,233,.6) halo — live-measured)",
+       "invalid: left rule + plain sentence"
+      ],
+      "verify": [
+       ".field input",
+       ".field input.focus"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-12"
+    ],
+    "record": {
+     "id": "component/select",
+     "kind": "component",
+     "title": "Select (small sets)",
+     "aliases": [
+      "select",
+      "dropdown",
+      "choice",
+      "small select"
+     ],
+     "body": {
+      "class": "choice",
+      "group": "Forms",
+      "states": [
+       "default",
+       "focus (blue glow)"
+      ],
+      "a11y": [
+       "Native semantics; visible label; larger selection uses the fallback."
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-15"
+    ],
+    "record": {
+     "id": "component/meter",
+     "kind": "component",
+     "title": "Progress meter",
+     "aliases": [
+      "meter",
+      "progress",
+      "progress bar",
+      "import progress",
+      "readout"
+     ],
+     "body": {
+      "class": "meter",
+      "group": "Progress",
+      "verify": [
+       ".meter",
+       ".meter i"
+      ]
+     },
+     "note": null
+    }
+   },
+   {
+    "decisions": [
+     "D-21"
+    ],
+    "record": {
+     "id": "guideline/interaction-states",
+     "kind": "guideline",
+     "title": "Focus & interaction states",
+     "aliases": [
+      "focus",
+      "focused",
+      "focus ring",
+      "focus glow",
+      "interaction states"
+     ],
+     "body": {
+      "group": "Interaction"
+     },
+     "note": null
+    }
+   }
+  ],
+  "rules": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "D-R1",
+     "name": "web-layer-interaction",
+     "severity": "warning",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "Interactive layer follows the live web layer: slate actions (#26374A, radius 4), blue focus glow (#66AFE9), soft borders.",
+     "why": "Live measurements on Canada.ca accepted at Gate 2 (D-01, D-11, D-21).",
+     "fix": "Use the measured slate/blue values for interactive elements."
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "D-R2",
+     "name": "ceremonial-red",
+     "severity": "warning",
+     "applies_to": [
+      "css",
+      "html"
+     ],
+     "summary": "FIP red is ceremony only — never status, errors, or reading surfaces.",
+     "why": "FIP standard + Gate 2 (D-05, D-22).",
+     "fix": "Remove red from status/error/background roles."
+    }
+   }
+  ],
+  "prohibitions": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/red-status",
+     "statement": "Red for status or errors — red is ceremonial (D-R2).",
+     "signals": [
+      "red error",
+      "red errors",
+      "red for errors",
+      "red for the error",
+      "red status",
+      "red for status",
+      "red errors",
+      "red alerts",
+      "red for alerts"
+     ],
+     "rule": "D-R2",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/elevation-shadows",
+     "statement": "Elevation or drop shadows — structure is flat, only the focus glow exists (D-22).",
+     "signals": [
+      "drop shadow",
+      "elevation",
+      "box shadow",
+      "soft shadow"
+     ],
+     "rule": "D-R1",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/imagery-pictograms",
+     "statement": "Imagery, pictograms or illustrative decoration (D-22).",
+     "signals": [
+      "imagery",
+      "photo",
+      "photograph",
+      "illustration",
+      "pictogram",
+      "clip art"
+     ],
+     "rule": "D-R1",
+     "kind": "prohibition"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "prohibit/decorative-colour",
+     "statement": "Decorative colour outside the FIP families (D-22).",
+     "signals": [
+      "decorative colour",
+      "decorative color",
+      "vibrant colours",
+      "vibrant colors",
+      "invented colour",
+      "invented color",
+      "neon"
+     ],
+     "rule": "D-R1",
+     "kind": "prohibition"
+    }
+   }
+  ],
+  "fallbacks": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/platform-controls",
+     "title": "Platform defaults for uncovered controls",
+     "statement": "If the system defines no control for a need, use the platform's native element with the field styling; keep native semantics.",
+     "scope": [
+      "checkbox",
+      "radio",
+      "date",
+      "toggle",
+      "switch",
+      "slider",
+      "check",
+      "stepper"
+     ],
+     "constraints": [
+      "field styling (soft border, radius 4)",
+      "blue glow focus",
+      "mark the improvisation and report a gap"
+     ],
+     "kind": "fallback"
+    }
+   },
+   {
+    "decisions": [],
+    "record": {
+     "id": "fallback/large-selection",
+     "title": "Selection beyond small sets",
+     "statement": "Small fixed sets use the select; larger or filtered selection uses the platform default, marked.",
+     "scope": [
+      "picker",
+      "combobox",
+      "autocomplete",
+      "filter",
+      "listbox",
+      "search"
+     ],
+     "constraints": [
+      "keep field styling",
+      "mark the improvisation"
+     ],
+     "kind": "fallback"
+    }
+   }
+  ],
+  "recipes": [
+   {
+    "decisions": [],
+    "record": {
+     "id": "recipe/retire-confirm",
+     "title": "Retire with confirmation",
+     "summary": "Destructive removal of a registered item, confirmed in a dialog with the consequence sentence.",
+     "needs": [
+      "retire an item",
+      "remove an item",
+      "delete from the register",
+      "confirmation",
+      "delete a ritual",
+      "confirmation dialog"
+     ],
+     "constraints": [
+      "confirm = solid slate rounded button with the verb",
+      "never pre-focused",
+      "bilingual titles (D-09)"
+     ],
+     "ingredients": [
+      "component/action",
+      "component/field"
+     ],
+     "kind": "recipe"
+    }
+   }
+  ]
+ },
+ "golden": [
+  {
+   "problem": "add a primary button to the page",
+   "expect": "RESOLVED",
+   "expect_id": "component/action",
+   "note": "Slate rounded action resolves."
+  },
+  {
+   "problem": "add the masthead at the top of the page",
+   "expect": "RESOLVED",
+   "expect_id": "component/masthead",
+   "note": "Red accent bar + rule."
+  },
+  {
+   "problem": "a form field for the borrower",
+   "expect": "RESOLVED",
+   "expect_id": "component/field",
+   "note": "Soft border + blue glow focus."
+  },
+  {
+   "problem": "show import progress with steps",
+   "expect": "RESOLVED",
+   "expect_id": "component/meter",
+   "note": "Squared meter with readout."
+  },
+  {
+   "problem": "retire an item from the register",
+   "expect": "COMPOSE",
+   "expect_id": "recipe/retire-confirm",
+   "note": "Destructive flow composes through the confirm dialog."
+  },
+  {
+   "problem": "use red for the error messages",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/red-status",
+   "note": "Red is ceremonial (D-R2)."
+  },
+  {
+   "problem": "add a drop shadow to the card",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/elevation-shadows",
+   "note": "Flat structure (D-22)."
+  },
+  {
+   "problem": "add a photograph to the empty state",
+   "expect": "CONFLICT",
+   "expect_id": "prohibit/imagery-pictograms",
+   "note": "No imagery (D-22)."
+  },
+  {
+   "problem": "a searchable picker for two hundred members",
+   "expect": "FALLBACK",
+   "expect_id": "fallback/large-selection",
+   "note": "Uncovered scale -> platform default, marked."
+  },
+  {
+   "problem": "animate the dialog opening",
+   "expect": "UNDEFINED",
+   "expect_id": null,
+   "note": "Deliberate: motion is undefined; gap over guess."
+  }
+ ],
+ "manifest": {
+  "id": "dominion",
+  "name": "Dominion Interface System",
+  "format_version": "0.1",
+  "version": "0.1.0",
+  "snapshot": {
+   "repo": "FIP design standard + canada.ca live web layer",
+   "commit": "n/a - derived from public sources, not a repository",
+   "branch": "n/a",
+   "version": "GCWeb as served 2026",
+   "path_hint": ""
+  },
+  "description": "An austere civic interface system derived from the Government of Canada FIP standard and the live Canada.ca web layer for the Design Authority synthesis experiment. Bilingual, structured, calm; no government marks reproduced.",
+  "kinds": [
+   "component",
+   "pattern",
+   "token-set",
+   "guideline",
+   "recipe",
+   "reference"
+  ],
+  "capabilities": {
+   "search": true,
+   "resolve": true,
+   "validators": [],
+   "gap_reporting": true,
+   "extension_proposals": true,
+   "resolution_assist": "off"
+  },
+  "policy": {
+   "on_undefined": "Implement per the consuming project's fallback policy, mark the improvisation, and report a gap. Never present improvisation as canonical.",
+   "on_conflict": "Do not implement as requested; the request violates an explicit constraint (see the cited rule/prohibition).",
+   "proposals": "Noncanonical. The authority is never modified by a consumer; proposals are reviewed upstream."
+  },
+  "entrypoints": {
+   "artifacts": "artifacts.json",
+   "rules": "rules.json",
+   "recipes": "recipes.json",
+   "fallbacks": "fallbacks.json",
+   "prohibitions": "prohibitions.json",
+   "validators": "validators.json",
+   "scoring": "scoring.json"
+  }
+ },
+ "scoring": {
+  "formula": "score = max(0, 100 - (errors*8 + warnings*2 + infos*0.5))",
+  "gate": "Authority CI fails on any error; --max-warnings can tighten warnings.",
+  "source": "docs/synthesis/00-source-selection.md"
+ }
+}

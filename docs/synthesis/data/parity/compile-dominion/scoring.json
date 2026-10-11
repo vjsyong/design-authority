@@ -1,0 +1,5 @@
+{
+  "formula": "score = max(0, 100 - (errors*8 + warnings*2 + infos*0.5))",
+  "gate": "Authority CI fails on any error; --max-warnings can tighten warnings.",
+  "source": "docs/synthesis/00-source-selection.md"
+}

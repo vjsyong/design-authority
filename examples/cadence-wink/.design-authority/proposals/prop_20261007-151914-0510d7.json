@@ -68,7 +68,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:39:43+00:00"
+  "reviewed_at": "2026-10-07T15:39:43+00:00",
+  "codified_summary": "Dialog/overlay vessel: white 16px-rounded card on a warm ink scrim, instant appearance (no motion invented), content composed from existing primitives."
  },
  "authority": {
   "authority": "wink",

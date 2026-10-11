@@ -1,0 +1,17 @@
+{
+ "now": "2026-10-11T01:35:47+00:00",
+ "report": {
+  "pack": "wink",
+  "applied": [
+   "prop/20261007-151914-0510d7",
+   "prop/20261007-151914-74dedc",
+   "prop/20261007-151914-9ff839",
+   "prop/20261007-151914-d08fa9",
+   "prop/20261007-151915-58de37"
+  ],
+  "skipped": [],
+  "version": "0.2.0"
+ },
+ "input": "compile-wink baseline + examples/cadence-wink",
+ "captured_from": "tools/apply_proposals.py @ 3eb576a"
+}

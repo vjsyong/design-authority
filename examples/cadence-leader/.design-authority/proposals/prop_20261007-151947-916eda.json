@@ -46,7 +46,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:45:28+00:00"
+  "reviewed_at": "2026-10-07T15:45:28+00:00",
+  "codified_summary": "Charts are rectilinear and editorial: ink bars on hairline baselines (2px ink origin rule, grey/ink gridlines), a month grid of square cells, and a hairline sparkline. Red appears only as a single accent; no rings, no decorative chart styling."
  },
  "authority": {
   "authority": "leader",

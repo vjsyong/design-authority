@@ -46,7 +46,8 @@
   "verdict": "accept",
   "notes": null,
   "evidence": null,
-  "reviewed_at": "2026-10-07T15:48:06+00:00"
+  "reviewed_at": "2026-10-07T15:48:06+00:00",
+  "codified_summary": "Notices are full-width banded rows (#F4F4F4) under a 2px rule; sentence only, no icon, no toast."
  },
  "authority": {
   "authority": "dominion",

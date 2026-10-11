@@ -37,6 +37,10 @@ its output and its proof).
    kernel-format packs — artifacts, rules, recipes, prohibitions, fallbacks, golden
    sets. The compiler **refuses to compile any decision that was not accepted**;
    undefined decisions ship as honest gaps (UNDEFINED/fallback behaviour).
+   *(P0.1, 2026-10-11: the compiler is the generic `tools/da_compile.py` now;
+   this step's description maps 1:1, and the per-source definitions that used
+   to be code moved to reviewed data at `docs/synthesis/<src>/compile.json`.
+   See `docs/13-simplification.md`.)*
 8. **Verification.** Per-pack golden sets (29 cases total, 100%) + the standing
    battery (kernel tests, triage golden, MCP smoke, pack drift) with the kernel
    **unmodified**.

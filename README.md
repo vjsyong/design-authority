@@ -191,7 +191,7 @@ MCP: the `discover_candidates` tool and the `assist` parameter on
 
 The upstream half of the loop, turning design precedent into a new pack, ships as agent skills:
 
-- [`skills/synthesize-authority/SKILL.md`](skills/synthesize-authority/SKILL.md): source selection, quarantine, the gestalt gate, `decisions.json`, the review instrument, compilation (`docs/synthesis/tools/compile_pack.py`), calibration to 100% goldens, stress testing, and the governance path (gaps, adjudication, proposals, codification).
+- [`skills/synthesize-authority/SKILL.md`](skills/synthesize-authority/SKILL.md): source selection, quarantine, the gestalt gate, `decisions.json`, the review instrument, compilation (`tools/da_compile.py`; the per-authority definitions are reviewed data at `docs/synthesis/<src>/compile.json`), calibration to 100% goldens, stress testing, and the governance path (gaps, adjudication, proposals, codification).
 - [`skills/extract-design-evidence/SKILL.md`](skills/extract-design-evidence/SKILL.md): the evidence layer. Renderable mirror, screenshot-first protocol with interaction states, evidence tags with BASE/OVERRIDE, domain-partitioned teams, merge and re-verification rules.
 
 Both are plain `SKILL.md` files an agent loads directly. The full working records, including the three completed derivations, are under `docs/synthesis/`.
