@@ -66,6 +66,10 @@ manifest (`portfolio.json`) declares each build as an application plus a
   list; a recorded deviation overrides a bare resolve. DOM-level adoption
   assessment is the conformance role's job (`da_verify`), deliberately out of
   scope here.
+- Prototype receipts are declarations until confirmed: a separate script
+  (`examples/cadence-wink-r2/_evidence/confirm-receipts.py`) confirms the
+  claimed modification scope against source diffs and hashes, and findings
+  that used a receipt carry `receipt_status: confirmed | unconfirmed`.
 - Findings carry the tightened semantics from the owner review (D-031):
   tri-state `trigger_state` (`occurred` | `not_occurred` | `unknown`, with
   evidence - missing evidence is never treated as "not occurred") and an
@@ -171,10 +175,25 @@ rounded 12, bold lead sentence plus a plain supporting line, in flow near the
 save control). The verification is independent and fresh: a separate script
 (`_evidence/verify-notice-migration.py`) serves the app, drives the save
 flow in headless Chromium, and re-derives every claim from the served DOM and
-computed styles against the record's own states - **8/8 checks pass**
-(`_evidence/verification/notice-migration.json`). The migration receipt
-(`...-r2b-migration.json`) declares `migration_for: ["pattern/inline-notice"]`
-and carries the verification reference.
+computed styles against the record's own states - **9/9 checks pass**
+(`_evidence/verification/notice-migration.json`). The verification is bound
+to the exact record (a `record_hash` makes staleness detectable) and its
+coverage is disclosed against the record's normative items: 3 of 4
+mechanically covered, the copy register (`copy is plain, non-blaming,
+question-first`) listed as a human-review item rather than implied. The
+migration receipt (`...-r2b-migration.json`) declares
+`migration_for: ["pattern/inline-notice"]` and carries the verification
+reference.
+
+**Both receipts are confirmed, not trusted.** A separate confirmer
+(`_evidence/confirm-receipts.py`) checks the claims against source evidence:
+the r2a modification is confined to the claimed area (10 changed lines:
+removes the improvised save toast, adds the ad-hoc echo), the r2b migration
+changes that area toward the notice (15 changed lines) and removes the echo,
+and hashes of the v1, r2a (committed snapshot, `_evidence/snapshots/r2a/`)
+and r2b states are recorded (`_evidence/verification/receipt-confirmation.json`).
+Every finding that used receipt evidence carries
+`receipt_status: confirmed`.
 
 Sweep at this point (`closure/report-2.json`, 3 findings):
 
@@ -197,7 +216,9 @@ through trigger and migration), **4** (`required` carries its named trigger),
 **6** (no operation writes to application trees), **7** (both versions on
 every finding), **9** (resolution links, both explicit and chain-derived),
 **10** (idempotent re-sweep), **11** (trigger transition: recorded,
-detected, and closed by a verified migration receipt).
+detected, and closed by a verified migration receipt), **12** (receipt claims
+confirmed against source evidence; freshness bound by hashes and enforced by
+the regression gate).
 
 Not yet exercised: **1** (the full human-facing report), **5** (the inferred
 level is specified - review candidates only - but not built), **8** (the
@@ -211,10 +232,12 @@ a live product is still ahead).
   these twelve records should be set through the review that publishes them.
 - The r2 revisions are a genuine modification of the v1 build, made for this
   test; their receipts use the prototype format (`prototype-0.1`; P1.1
-  formalizes). The r2a/r2b sequence was executed live in this session: stage
-  1's report (`closure/report-1.json`) is the assessment at the trigger
-  point; stage 2 is the final state. Re-running the sweep over the final tree
-  reproduces stage 2.
+  formalizes) and are confirmed against source evidence (diffs + hashes; the
+  r2a state is preserved as a committed snapshot,
+  `_evidence/snapshots/r2a/`). The r2a/r2b sequence was executed live in this
+  session: stage 1's report (`closure/report-1.json`) is the assessment at
+  the trigger point; stage 2 is the final state. Re-running the sweep over
+  the final tree reproduces stage 2.
 - The lineage declaration in the manifest stands in for decision receipts;
   it is a recorded premise, stated in `portfolio.json`, not an inference.
 - Deterministic level only. Older applications with no recorded cases will
@@ -223,7 +246,14 @@ a live product is still ahead).
 - Adoption in the main corpus is a proxy (recorded resolution evidence);
   the closure revision's adoption carries a receipt + independent
   verification instead.
-- The prototype is not wired into `check.sh`; a proper gate lands with P1.4.
+- The tested lifecycle is pinned for refactoring:
+  `tools/reconcile_regression.py` runs inside `check.sh` and re-derives the
+  pinned counts, idempotency, chain-derived links, the defaults behaviour,
+  the full closure cycle, and evidence freshness (record-hash and
+  build-hash binding: if the record or the build drifts from its
+  verification, the gate fails and the verifier must be re-run). The browser
+  verifier itself is not executed in the gate; its committed outputs are
+  re-checked instead.
 
 ## 8 · What this unlocks / what is next
 

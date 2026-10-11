@@ -1,0 +1,54 @@
+{
+ "confirmer": "_evidence/confirm-receipts.py",
+ "target": "examples/cadence-wink-r2",
+ "confirms": [
+  ".design-authority/receipts/2026-10-11-r2a-modification.json",
+  ".design-authority/receipts/2026-10-11-r2b-migration.json"
+ ],
+ "ran_at": "2026-10-11T03:36:31+00:00",
+ "verdict": "pass",
+ "checks": [
+  {
+   "id": "r2a-changed-feedback",
+   "desc": "the r2a modification changed the save-feedback area",
+   "pass": true,
+   "detail": "10 changed lines; removes the improvised save toast, adds the ad-hoc echo"
+  },
+  {
+   "id": "r2a-scope",
+   "desc": "the r2a change is confined to the claimed area (no wholesale rewrite)",
+   "pass": true,
+   "detail": "10 changed lines (claimed: feedback / save confirmation)"
+  },
+  {
+   "id": "r2b-migrated",
+   "desc": "the r2b migration changed that area toward the canonical notice",
+   "pass": true,
+   "detail": "15 changed lines; adds the notice element and its canonical styling"
+  },
+  {
+   "id": "r2b-removed-echo",
+   "desc": "the ad-hoc echo is gone after migration",
+   "pass": true,
+   "detail": "the r2a echo markup/style is removed in r2b"
+  }
+ ],
+ "hashes": {
+  "v1": {
+   "index.html": "a1ea74a805636ef4",
+   "app.js": "7f5a93c2537f7495",
+   "app.css": "da1330e4cd466bfb"
+  },
+  "r2a_snapshot": {
+   "index.html": "bbc95a42ca2e427d",
+   "app.js": "2b13b544837cdad8",
+   "app.css": "b8048bb7c62879f2"
+  },
+  "r2b_live": {
+   "index.html": "28c3399ce4ecb1bc",
+   "app.js": "b21d3b31379e24e7",
+   "app.css": "45bdf93a475c46b0"
+  }
+ },
+ "note": "Receipt confirmation for the reconciliation closure test (docs/14 section 5: receipts are declared by the implementing agent and confirmed against evidence). Source diffs + hashes; fresh run only."
+}

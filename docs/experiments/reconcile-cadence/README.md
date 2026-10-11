@@ -47,3 +47,9 @@ through the kernel loader and receipts through the project contract.
   modification without migration, deviation receipt) and r2b (the migrated
   state with the independent verifier `_evidence/verify-notice-migration.py`
   and the closing receipt).
+- `examples/cadence-wink-r2/_evidence/snapshots/r2a/` — the committed r2a
+  code state, so the receipt claims stay confirmable from the repository;
+  `_evidence/confirm-receipts.py` + `_evidence/verification/receipt-confirmation.json`
+  bind them with source diffs and hashes.
+- `tools/reconcile_regression.py` re-runs all of the above from committed
+  fixtures inside `check.sh` (plus evidence-freshness checks).

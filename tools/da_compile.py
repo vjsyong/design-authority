@@ -70,6 +70,39 @@ class CompileError(Exception):
     pass
 
 
+TRANSITION_POLICIES = ("prospective", "when_touched", "required", "review")
+TRANSITION_EXCEPTIONS = ("allowed_with_review", "none")
+
+
+def validate_transition(t):
+    """docs/14 section 3: the policy determines applicability; `by` is
+    required if and only if the policy is `required`; no invalid combination
+    survives validation. Returns the policy."""
+    if not isinstance(t, dict):
+        raise CompileError("transition must be an object")
+    policy = t.get("policy")
+    if policy not in TRANSITION_POLICIES:
+        raise CompileError("transition policy must be one of %s, got %r"
+                           % (" | ".join(TRANSITION_POLICIES), policy))
+    by = t.get("by")
+    if policy == "required":
+        if not (isinstance(by, str) and by.strip()):
+            raise CompileError("a 'required' transition must name its trigger ('by')")
+    elif by is not None:
+        raise CompileError("transition 'by' only applies to policy 'required'")
+    if "scope" in t and not (isinstance(t["scope"], str) and t["scope"].strip()):
+        raise CompileError("transition 'scope' must be a non-empty string")
+    for key in ("supersedes", "resolves_cases"):
+        if key in t and not (isinstance(t[key], list)
+                             and all(isinstance(x, str) and x for x in t[key])):
+            raise CompileError("transition %r must be a list of ids" % key)
+    exc = t.get("exceptions")
+    if exc is not None and exc not in TRANSITION_EXCEPTIONS:
+        raise CompileError("transition 'exceptions' must be one of %s"
+                           % " | ".join(TRANSITION_EXCEPTIONS))
+    return policy
+
+
 def _load_json(path):
     with open(path) as fh:
         return json.load(fh)
@@ -210,6 +243,7 @@ def compile_synthesis(dossier_file, out_dir):
 
     records = {}
     exceptions = []
+    policy_counts = {"policy_explicit": 0, "policy_missing": 0}
     seen_ids = set()
     for rtype in RECORD_TYPES:
         out_recs = []
@@ -257,6 +291,12 @@ def compile_synthesis(dossier_file, out_dir):
             if rec["id"] in seen_ids:
                 raise CompileError("%s: duplicate record id %r" % (src, rec["id"]))
             seen_ids.add(rec["id"])
+            tblock = rec.get("transition")
+            if tblock:
+                validate_transition(tblock)
+                policy_counts["policy_explicit"] += 1
+            else:
+                policy_counts["policy_missing"] += 1
             out_recs.append(rec)
         records[rtype] = out_recs
 
@@ -275,6 +315,7 @@ def compile_synthesis(dossier_file, out_dir):
     counts = {rtype: len(records[rtype]) for rtype in RECORD_TYPES}
     counts["golden"] = len(dossier["golden"])
     counts["exceptions"] = len(exceptions)
+    counts.update(policy_counts)
     return {"authority": src, "out": out_dir, "counts": counts,
             "exceptions": exceptions}
 

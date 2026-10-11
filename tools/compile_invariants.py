@@ -72,6 +72,9 @@ def check_source(src, tmp, C):
             "%s: exception set drifted: %s" % (src, exc_ids))
     C.check(all(e.get("approval") for e in report["exceptions"]),
             "%s: an exception is missing its approval status" % src)
+    C.check(report["counts"]["policy_explicit"] + report["counts"]["policy_missing"]
+            == sum(report["counts"][t] for t in da_compile.RECORD_TYPES),
+            "%s: policy counts do not account for every record" % src)
 
     records = 0
     traced = 0
@@ -168,7 +171,8 @@ def check_synthetic(tmp, C):
     report = da_compile.compile_synthesis(dossier_file, out)
     C.check(report["counts"] == {"artifacts": 1, "rules": 1, "prohibitions": 0,
                                  "fallbacks": 1, "recipes": 0, "golden": 1,
-                                 "exceptions": 1},
+                                 "exceptions": 1, "policy_explicit": 0,
+                                 "policy_missing": 3},
             "synthetic authority counts unexpected: %s" % report["counts"])
     rec = load(os.path.join(out, "artifacts.json"))["artifacts"][0]
     C.check(rec["id"] == "component/gizmo" and rec["compiled_from"] == ["SP-01"],
@@ -236,6 +240,33 @@ def check_recodification(tmp, C):
     C.check(same, "conflicting codification changed the pack")
 
 
+def check_transition_validation(C):
+    """docs/14 section 3: no invalid transition combination survives the
+    compiler-side validator."""
+    good = {"policy": "when_touched", "scope": "feedback", "supersedes": [],
+            "resolves_cases": ["case/0001"], "exceptions": "allowed_with_review"}
+    bads = [
+        {"policy": "sometimes"},
+        {"policy": "required"},
+        {"policy": "when_touched", "by": "0.3.0"},
+        {"policy": "required", "by": "0.3.0", "exceptions": "maybe"},
+        {"policy": "review", "scope": ""},
+        {"policy": "review", "supersedes": "component/old"},
+    ]
+    try:
+        da_compile.validate_transition(good)
+        C.check(True, "")
+    except da_compile.CompileError as exc:
+        C.check(False, "valid transition rejected: %s" % exc)
+    for i, bad in enumerate(bads):
+        refused = False
+        try:
+            da_compile.validate_transition(bad)
+        except da_compile.CompileError:
+            refused = True
+        C.check(refused, "invalid transition accepted (case %d): %r" % (i, bad))
+
+
 def main():
     C = Checker()
     tmp = tempfile.mkdtemp(prefix="da-invariants-")
@@ -246,6 +277,7 @@ def main():
         check_synthetic(tmp, C)
         check_refusal(tmp, C)
         check_recodification(tmp, C)
+        check_transition_validation(C)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

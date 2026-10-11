@@ -6,9 +6,20 @@
   "authority": "wink",
   "version": "0.2.0"
  },
- "ran_at": "2026-10-11T03:04:40+00:00",
+ "record": {
+  "id": "pattern/inline-notice",
+  "record_hash": "7f9ae1ef05c284e6"
+ },
+ "ran_at": "2026-10-11T03:37:08+00:00",
  "verdict": "pass",
  "checks": [
+  {
+   "id": "record-bound",
+   "desc": "verifies against the recorded pattern/inline-notice (wink 0.2.0)",
+   "pass": true,
+   "detail": "record_hash=7f9ae1ef05c284e6",
+   "record_ref": "record: pattern/inline-notice"
+  },
   {
    "id": "notice-exists",
    "desc": "a notice element appears after saving settings",
@@ -66,5 +77,37 @@
    "record_ref": "migration scope"
   }
  ],
- "note": "Focused independent verification for the reconciliation closure test (docs/experiments/07 section 6). Fresh run only; artifact-local results are never proof."
+ "coverage": [
+  {
+   "requirement": "states[0]: inline notice rounded 12, tinted fill (palette roles)",
+   "checks": [
+    "notice-fill",
+    "notice-radius"
+   ],
+   "covered": true
+  },
+  {
+   "requirement": "states[1]: copy is plain, non-blaming, question-first",
+   "checks": [],
+   "covered": false,
+   "note": "register/voice is a human-review item; not mechanically checked here"
+  },
+  {
+   "requirement": "do[0]: prefer inline notices near the changed element",
+   "checks": [
+    "notice-visible",
+    "notice-in-flow"
+   ],
+   "covered": true
+  },
+  {
+   "requirement": "dont[0]: floating toast stacks are not canon",
+   "checks": [
+    "notice-in-flow",
+    "no-save-toast"
+   ],
+   "covered": true
+  }
+ ],
+ "note": "Focused independent verification for the reconciliation closure test (docs/experiments/07 section 5). Coverage is bound to the record's normative items; uncovered items are disclosed, not implied. Fresh run only; artifact-local results are never proof."
 }

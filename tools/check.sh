@@ -18,6 +18,8 @@ echo "== compile parity (one decision-to-authority compiler)"
 python3 tools/compile_parity.py | tail -1
 echo "== compile invariants (governance properties)"
 python3 tools/compile_invariants.py | tail -1
+echo "== reconcile regression (lifecycle pinned)"
+python3 tools/reconcile_regression.py | tail -1
 echo "== synthesis precedents"
 python3 tools/precedent_probe.py | tail -1
 echo "== disputed-resolution regression fixtures"

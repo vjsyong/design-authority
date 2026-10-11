@@ -11,8 +11,8 @@
   "closed": 1
  },
  "store": {
-  "new": 1,
-  "reused": 1,
+  "new": 0,
+  "reused": 2,
   "superseded": 1,
   "total": 3
  },
@@ -54,24 +54,8 @@
      "verifier": "_evidence/verify-notice-migration.py"
     }
    },
-   "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision; closed by r2b (verification: pass)",
-   "assessed_at": "2026-10-11T03:04:51+00:00",
-   "previous": {
-    "class": "rectify",
-    "obligation": {
-     "state": "due",
-     "trigger": "occurred"
-    },
-    "trigger_state": {
-     "state": "occurred",
-     "evidence": [
-      "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2a-modification.json"
-     ],
-     "basis": "recorded modification of the affected area without migration"
-    },
-    "assessed_at": "2026-10-11T03:03:29+00:00",
-    "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision"
-   }
+   "receipt_status": "confirmed",
+   "reason": "the affected area (feedback) was modified without migrating; policy 'when_touched': the obligation is due for this revision; closed by r2b (verification: pass)"
   },
   {
    "id": "finding/cadence-wink-r2/pattern~inline-notice/0.2.0/r2b",
@@ -92,8 +76,8 @@
    },
    "trigger_state": null,
    "obligation": null,
-   "reason": "the build applied this decision (recorded receipt evidence)",
-   "assessed_at": "2026-10-11T03:04:51+00:00"
+   "receipt_status": "confirmed",
+   "reason": "the build applied this decision (recorded receipt evidence)"
   },
   {
    "id": "finding/cadence-wink/pattern~inline-notice/0.2.0/v1",
@@ -120,7 +104,22 @@
     "basis": "recorded modification of the affected area without migration"
    },
    "obligation": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified (permission ended: trigger recorded; the obligation rides the modified revision)"
+   "receipt_status": "confirmed",
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified (permission ended: trigger recorded; the obligation rides the modified revision)",
+   "assessed_at": "2026-10-11T03:37:59+00:00",
+   "previous": {
+    "class": "grandfathered",
+    "obligation": null,
+    "trigger_state": {
+     "state": "occurred",
+     "evidence": [
+      "examples/cadence-wink-r2/.design-authority/receipts/2026-10-11-r2a-modification.json"
+     ],
+     "basis": "recorded modification of the affected area without migration"
+    },
+    "assessed_at": "2026-10-11T03:37:49+00:00",
+    "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified (permission ended: trigger recorded; the obligation rides the modified revision)"
+   }
   }
  ]
 }

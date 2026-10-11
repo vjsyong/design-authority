@@ -115,6 +115,26 @@ def read_receipt(build):
     return load(path), "%s/%s" % (build["dir"], rel)
 
 
+def read_confirmations(build):
+    """Receipt refs this build's confirmation records vouch for (docs/14
+    section 5: a receipt is a declaration until confirmed against evidence)."""
+    out = set()
+    vdir = os.path.join(REPO, build["dir"], "_evidence", "verification")
+    if os.path.isdir(vdir):
+        for name in sorted(os.listdir(vdir)):
+            if not name.endswith(".json"):
+                continue
+            try:
+                rec = load(os.path.join(vdir, name))
+            except ValueError:
+                continue
+            if rec.get("verdict") != "pass":
+                continue
+            for ref in rec.get("confirms") or []:
+                out.add("%s/%s" % (build["dir"], ref))
+    return out
+
+
 # ---------------------------------------------------------------- linking
 
 def case_links(record, portfolio_apps):
@@ -218,6 +238,7 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
         for build in app["builds"]:
             app["_gaps"].update(read_gap_ids(os.path.join(REPO, build["dir"])))
             build["_receipt"], build["_receipt_ref"] = read_receipt(build)
+            build["_confirmed"] = read_confirmations(build)
             ev_dir = build.get("evidence") or None
             build["_resolves"] = read_adopted(os.path.join(REPO, ev_dir)) if ev_dir else set()
             build["_adopted"] = set(build["_resolves"])
@@ -232,9 +253,11 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
     # lineage pools: recorded cases + trigger events (deviations) + receipt coverage
     lineages = {}
     for app in apps:
-        L = lineages.setdefault(app["lineage"], {"cases": set(), "events": {}, "receipts": []})
+        L = lineages.setdefault(app["lineage"], {"cases": set(), "events": {},
+                                                 "receipts": [], "confirmed": set()})
         L["cases"].update(app["_gaps"].keys())
         for build in app["builds"]:
+            L["confirmed"] |= build["_confirmed"]
             receipt = build["_receipt"]
             if receipt is None:
                 continue
@@ -296,6 +319,16 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
                     cls, reason, trigger_state, obligation = classify(
                         build, rec["id"], rec["id"] in build["_adopted"], policy, tr,
                         target_version, trigger, is_source, closer)
+                    involved = set()
+                    if build["_receipt"] is not None:
+                        involved.add(build["_receipt_ref"])
+                    involved.update(e["ref"] for e in L["events"].get(rec["id"], []))
+                    if closer:
+                        involved.add(closer["ref"])
+                    receipt_status = None
+                    if involved:
+                        receipt_status = ("confirmed" if involved <= L["confirmed"]
+                                          else "unconfirmed")
                     findings.append({
                         "id": "finding/%s/%s/%s/%s" % (
                             app["name"], _slug(rec["id"]), target_version, build["revision"]),
@@ -313,6 +346,7 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
                         "link": hit,
                         "trigger_state": trigger_state,
                         "obligation": obligation,
+                        "receipt_status": receipt_status,
                         "reason": reason,
                     })
     return findings
@@ -358,7 +392,7 @@ def upsert(store_path, findings, now):
         else:
             same = all(old.get(k) == f.get(k) for k in
                        ("class", "policy", "policy_source", "trigger_state", "reason",
-                        "built_under", "target_version", "obligation"))
+                        "built_under", "target_version", "obligation", "receipt_status"))
             if same:
                 reused += 1
             else:
