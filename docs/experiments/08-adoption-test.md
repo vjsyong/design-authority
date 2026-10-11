@@ -66,11 +66,13 @@ upstream).
   with `workdir {pack}`; the generator emits the bundle and the drift gate
   covers it (16 files + `core/`). Verified from a copied pack with no
   snapshot: validator ok, real findings.
-- **F-2 (queued): the Triage pack ships no verification contract**, so the
-  workflow's `da verify` step aborts (`FileNotFoundError`). The run's gap
-  records it. Fix queued: author and calibrate a Triage contract
-  (references/verification.md discipline: calibrate against a clean build,
-  never loosen checks) and ship it in the pack.
+- **F-2 (fixed same day): the Triage pack ships a verification contract.**
+  `da verify` works for the flagship pack: 14 checks (10 mechanical, 4
+  explicit REVIEW), calibrated clean on the recipe-box build plus the list /
+  dashboard / viewer examples, mutation-tested (4 violations caught, no
+  false positives), and verified from a bare pack copy. Record:
+  `docs/verification/10-triage-contract.md`; one da_verify scenario fix fell
+  out of calibration (tab-walk now accepts box-shadow rings).
 - **F-3 (noted): semantic extras off by default** — `da discover` is
   unavailable without `fastembed`/`numpy`; the agent used the documented
   recovery (paraphrase -> UNDEFINED -> canonical vocabulary -> RESOLVED).

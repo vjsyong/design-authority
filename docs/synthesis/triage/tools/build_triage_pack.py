@@ -750,6 +750,8 @@ BUNDLE = [
     ("rename-map.json", "rename-map.json"),
     ("VERSION", "VERSION"),
 ]
+# the verification contract is curated at docs/synthesis/triage/verification.json
+BUNDLE.append((os.path.join(REPO, "docs", "synthesis", "triage", "verification.json"), "verification.json"))
 for src, dst in BUNDLE:
     dpath = os.path.join(OUT, dst)
     os.makedirs(os.path.dirname(dpath), exist_ok=True)

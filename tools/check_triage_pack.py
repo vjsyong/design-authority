@@ -24,7 +24,7 @@ FILES = ["authority.json", "scoring.json", "artifacts.json", "rules.json",
          "prohibitions.json", "fallbacks.json", "precedents.json",
          "candidates.json", "recipes.json", "golden.json",
          "lint/triage_lint.py", "lint/engine.py", "spec/rules.json",
-         "tokens/tokens.json", "rename-map.json", "VERSION"]
+         "tokens/tokens.json", "rename-map.json", "VERSION", "verification.json"]
 
 
 def main():

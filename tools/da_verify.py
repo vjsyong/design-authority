@@ -717,7 +717,9 @@ def run_steps(page, steps):
 
 
 def scenario_tab_walk(page, params):
-    """Keyboard-walk up to N tab stops; every focused control needs a visible ring."""
+    """Keyboard-walk up to N tab stops; every focused control needs a visible
+    ring — an outline OR an ink ring (box-shadow 0 0 0 Npx, the styled-checkbox
+    pattern; same definition as border-ring-scan)."""
     stops = int(params.get("stops", 20))
     samples, seen = [], set()
     for _ in range(stops):
@@ -730,7 +732,8 @@ def scenario_tab_walk(page, params):
           const oc = (cs.outlineColor || '').match(/rgba?\\((\\d+)[,\\s]+(\\d+)[,\\s]+(\\d+)(?:[,\\s]+([\\d.]+))?\\)/);
           return { tag: el.tagName.toLowerCase(), cls: (el.className || '').toString().slice(0, 44),
                    style: cs.outlineStyle, width: parseFloat(cs.outlineWidth) || 0,
-                   color: cs.outlineColor, alpha: oc && oc[4] ? parseFloat(oc[4]) : 1.0 };
+                   color: cs.outlineColor, alpha: oc && oc[4] ? parseFloat(oc[4]) : 1.0,
+                   shadow: (cs.boxShadow || '').slice(0, 160) };
         })()""")
         if info is None:
             continue
@@ -738,8 +741,17 @@ def scenario_tab_walk(page, params):
         if label in seen:
             continue
         seen.add(label)
-        visible = info["style"] != "none" and info["width"] >= 1 and info["alpha"] >= 0.15
-        samples.append({"el": label, "outline": f"{info['style']} {info['width']}px {info['color']}", "ok": bool(visible)})
+        outline_ok = info["style"] != "none" and info["width"] >= 1 and info["alpha"] >= 0.15
+        shadow = info.get("shadow") or ""
+        ring = re.search(r"0px 0px 0px ([\d.]+)px", shadow)
+        shadow_ok = bool(ring) and float(ring.group(1)) >= 1.0
+        if shadow_ok and "rgba" in shadow:
+            alphas = [float(x) for x in re.findall(r"rgba\([^)]*?([\d.]+)\)", shadow)]
+            if alphas and min(alphas) < 0.15:
+                shadow_ok = False
+        visible = bool(outline_ok or shadow_ok)
+        samples.append({"el": label, "outline": f"{info['style']} {info['width']}px {info['color']}",
+                        "ring": shadow if (shadow_ok and not outline_ok) else "", "ok": visible})
     bad = [s for s in samples if not s["ok"]]
     return {"tab_samples": len(samples), "tab_bad": len(bad),
             "tab_bad_detail": json.dumps(bad[:5])[:280], "tab_sampled": json.dumps([s["el"] for s in samples])[:280]}

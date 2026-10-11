@@ -1,0 +1,228 @@
+{
+ "contract_version": "0.2",
+ "authority": "triage",
+ "pack_version": "triage 0.13.0-rc1",
+ "scope_note": "Verification contract for the triage authority (authored 2026-10-11 in response to the adoption test: da verify previously aborted because the pack shipped no contract; authored per the references/verification.md discipline and calibrated against clean triage builds before shipping). Each check names the authority item it verifies, its classification, a mode and minimal deterministic assertions. REVIEW entries surface as REVIEW_REQUIRED and are never faked into PASS. Selector-based checks report UNVERIFIABLE (never PASS) when a selector is absent and missing is not fail, so partial surfaces cannot fake coverage. Calibration targets: the recipe-box consumer build (x06-adoption run1) plus the shipped list, dashboard and viewer examples.",
+ "checks": [
+  {
+   "id": "triage/square-cards",
+   "item": "rule/TDS003",
+   "title": "Cards are square (border-radius 0)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".card",
+   "assertions": [
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "0px"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "triage/square-buttons",
+   "item": "rule/TDS003",
+   "title": "Buttons are square (border-radius 0)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".btn",
+   "assertions": [
+    {
+     "property": "border-radius",
+     "relation": "equals",
+     "value": "0px"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/primary-ink",
+   "item": "component/btn",
+   "title": "Primary fill is a token pairing (ink on paper; paper on the ink bulkbar)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".btn.primary",
+   "assertions": [
+    {
+     "property": "background-color",
+     "relation": "color_in",
+     "value": ["rgb(0, 0, 0)", "rgb(255, 255, 255)"]
+    }
+   ],
+   "note": "Standard contexts fill with the ink token; the ink bulkbar deliberately flips to the paper fill (.bulkbar .btn.primary). Any other fill is off-canon; the pairing is the contract.",
+   "missing": "skip"
+  },
+  {
+   "id": "triage/geist-body",
+   "item": "token-set/typography",
+   "title": "The body runs the system text face (Geist)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": "body",
+   "assertions": [
+    {
+     "property": "font-family",
+     "relation": "contains",
+     "value": "geist"
+    }
+   ],
+   "missing": "fail"
+  },
+  {
+   "id": "triage/label-tier",
+   "item": "rule/TDS016",
+   "title": "Badge labels meet the comfortable tier (13px, uppercase)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".badge",
+   "assertions": [
+    {
+     "property": "font-size",
+     "relation": "equals",
+     "value": "13px"
+    },
+    {
+     "property": "text-transform",
+     "relation": "equals",
+     "value": "uppercase"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/mono-register",
+   "item": "token-set/typography",
+   "title": "Identifiers and timestamps run the mono register",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".mono",
+   "assertions": [
+    {
+     "property": "font-family",
+     "relation": "contains",
+     "value": "geist mono"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/status-nowrap",
+   "item": "rule/TDS002-adjacent (0.12.1 label integrity)",
+   "title": "Status chips are single nowrap units",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "COMPUTED_STYLE",
+   "selector": ".status-chip",
+   "assertions": [
+    {
+     "property": "white-space",
+     "relation": "equals",
+     "value": "nowrap"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/tab-ring",
+   "item": "guideline/accessibility",
+   "title": "Every keyboard-focused control keeps a visible ring",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "INTERACTION",
+   "scenario": "tab-walk",
+   "params": {
+    "stops": 24
+   },
+   "assertions": [
+    {
+     "evidence": "tab_bad",
+     "relation": "max",
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": "triage/empty-anatomy",
+   "item": "component/empty",
+   "title": "The empty state ships its one action (icon + title + CTA anatomy)",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "DOM",
+   "selector": ".empty",
+   "assertions": [
+    {
+     "relation": "exists",
+     "selector": ".btn"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/prov-record",
+   "item": "component/prov",
+   "title": "A provenance record renders its required label-value fields",
+   "classification": "MECHANICALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "DOM",
+   "selector": ".prov",
+   "assertions": [
+    {
+     "relation": "exists",
+     "selector": ".prov-k"
+    },
+    {
+     "relation": "exists",
+     "selector": ".prov-v"
+    }
+   ],
+   "missing": "skip"
+  },
+  {
+   "id": "triage/delete-armed-inline",
+   "item": "component/arm-del",
+   "title": "Destructive actions are armed inline (data-arm-label), never dialogs",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "error",
+   "mode": "REVIEW",
+   "assertion": "Where a delete/remove exists: it is the inline two-step armed control (data-arm-label) that announces afterwards, not a confirm() dialog; verify by inspection on surfaces the mechanical pass cannot reach.",
+   "missing": "review"
+  },
+  {
+   "id": "triage/voice-object-naming",
+   "item": "guideline/voice",
+   "title": "Copy names the object; sentence case; past-tense confirmations",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "warning",
+   "mode": "REVIEW",
+   "assertion": "Destructive labels and confirmations name the object ('Deleted \"Lemon pasta\".'), sentence case for buttons/links/menus, no exclamation marks or emoji.",
+   "missing": "review"
+  },
+  {
+   "id": "triage/motion-token-only",
+   "item": "token-set/motion",
+   "title": "Motion uses token durations; nothing decorative above one event",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "info",
+   "mode": "REVIEW",
+   "assertion": "Transitions consume --dur-* tokens, honour prefers-reduced-motion, and no animation runs beyond a single acknowledgement event (bursts degrade or stop under reduced motion).",
+   "missing": "review"
+  },
+  {
+   "id": "triage/claims-traceable",
+   "item": "VERIFICATION.md (traceability contract)",
+   "title": "Conformance claims cite rule id, component, location and evidence",
+   "classification": "PARTIALLY_VERIFIABLE",
+   "severity": "info",
+   "mode": "REVIEW",
+   "assertion": "Any conformance claim in the build's notes cites the four-part tuple; a global score is never quoted as proof that a specific requirement holds.",
+   "missing": "review"
+  }
+ ]
+}
