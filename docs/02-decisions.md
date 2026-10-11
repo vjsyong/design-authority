@@ -559,3 +559,37 @@ the multi-file publication was not atomic as a whole. Addressed:
   a fully versioned release layout with a single-reference switch remains
   the recorded follow-up, stated in the compiler's contract.
 
+## D-037 · The Case read model lands: one interface over the record stores (2026-10-11)
+
+P1 of the owner's next-steps memo, implemented exactly as directed: the
+canonical Case model is a normalized, append-only EVENT VIEW over the
+existing stores, no new storage system, no migration until the read model
+is proven against the corpus.
+
+- `tools/da_case.py` (spec: `docs/16-case-read-model.md`): `list` / `show
+  <gap|dispute|prop id>` / `why <record id>`. Every event names its source
+  file and record; only recorded fields appear; output is deterministic and
+  the tool is read-only, so existing resolution behavior cannot change.
+- Corpus coverage at landing, through the one interface: **173 unique gaps**
+  (217 store occurrences across 61 stores, one case row per id), **4
+  disputes**, **24 proposals**, **38 reconciliation findings**, **2
+  receipts**; every finding attaches to a case and every proposal resolves
+  through its gap thread. The lifecycle reads end to end: report ->
+  evidence -> proposal -> review -> publication -> impact ->
+  migration_required -> migration_verified -> obligation_closed, with
+  reasons, rejected alternatives and receipts.
+- Gate: `tools/check_case_model.py` pins the model inside `check.sh` (20
+  checks): the corpus is re-derived independently of the tool, every
+  proposal/dispute is retrievable, the golden threads are pinned (the
+  destructive-confirm chain; the closure cycle with its verified close),
+  every event references a live source, the vocabulary is closed, output is
+  deterministic.
+- Reserved, as documented: case numbering (`case/NNNN`), first-class
+  recorded events (`impact_finding`, `migration_decision`) and the
+  compatibility adapters land with the 0.6 integration freeze. Sealed
+  experiment materials and evidence copies are excluded from the corpus
+  (stated in the spec, not silently skipped).
+- This marks the 0.6 specification boundary (memo section 2). Next per the
+  roadmap: the P1.1/P1.2 vertical slice (plan / verify / receipts through
+  the runtime API), then the fresh-agent public adoption test.
+

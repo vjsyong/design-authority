@@ -151,6 +151,17 @@ event vocabulary reserves the reconciliation events (`impact_finding`,
 `migration_decision`; docs/14) so retroactive assessment attaches to the same
 lifecycle instead of founding another.
 
+**Landed (2026-10-11):** the Case read model ships as `tools/da_case.py`
+(spec: `docs/16-case-read-model.md`; decision D-037): `list` / `show` /
+`why` over the whole record corpus (gaps, proposals, codification ledger,
+reconciliation findings, receipts, disputes) with per-event provenance,
+deterministic output, and zero migration. `tools/check_case_model.py` pins
+it inside `check.sh` (20 checks: corpus coverage re-derived independently,
+golden threads, the closure cycle, provenance, determinism). The recorded
+case store, case numbering and the compatibility adapters stay staged for
+the 0.6 freeze; P0.1's acceptance test 3 (one Case interface) now
+re-derives from the read model.
+
 **Interfaces** (P1.1/P1.2): `plan` / `resolve` / `verify` / `case` as the
 public operations; `review` / `publish` stay human-side. MCP, CLI, and any
 web surface call the same functions. Existing tools keep working as aliases
@@ -163,7 +174,7 @@ Owner priorities, kept as given, with the gate for each phase.
 | Phase | Change | Gate |
 |---|---|---|
 | **P0.1** | One generic compile path replacing source-specific compilation and proposal application | **DONE** (section 5, two passes): parity fixtures byte-compare both mechanisms; shared emission invariants + governance gate; check.sh green |
-| **P0.2** | Canonical Case model with compatibility adapters | Existing surfaces unchanged; dispute replay + goldens + kernel tests green; freeze 0.6.0 only after a stability window |
+| **P0.2** | Canonical Case model with compatibility adapters | **DONE, read-model scope** (docs/16, D-037): `tools/da_case.py` + `tools/check_case_model.py` (20 checks) in check.sh; corpus 173 gaps / 4 disputes / 24 proposals / 38 findings retrieved through one interface. Recorded case store + adapters staged for the 0.6 freeze; dispute replay + goldens + kernel tests green |
 | **P0.3** | Documentation drift folded into the next freeze (`00-index` conformance text, `04-interfaces` paths); VERSION aligned now | Freeze ritual when 0.6.0 lands |
 | **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) and the decision receipts (intent + outcome; docs/14 §5) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
 | **P1.2** | Independent verification consolidated under the runtime API (`da_verify` core behind the library; contracts unchanged) | Contract matrix in meta CI stays green; consumer `verify.map.json` flow unchanged |
@@ -269,7 +280,7 @@ output satisfies the governance invariants". Fixed in a second pass:
   compiled with zero engine edits (the review's acceptance test 1), refusal
   publishes nothing, and identical/conflicting re-codification behaviour
   (acceptance test 2 is the trace rule itself; test 3, one Case interface,
-  is P0.2).
+  landed as the read model in P0.2 (D-037; docs/16; `check_case_model.py`).
 
 Evidence: compile baselines intentionally refreshed with exactly the
 provenance delta (verified field-by-field before the refresh: records change
@@ -302,7 +313,8 @@ exception-backed)`; full `check.sh` green.
 5. **Case storage.** Recommend implementing Case first as a canonical view
    over the existing workspace records (gaps/proposals/disputes), zero
    migration, then deciding on dedicated storage when authority-side case
-   pages become real.
+   pages become real. **Landed as recommended** (read model first; docs/16,
+   D-037).
 6. **Positioning.** The review's final point stands: the defensible claim is
    *persistent, inspectable design judgment across independent agents and
    successive product generations*, not that first-pass visual quality
