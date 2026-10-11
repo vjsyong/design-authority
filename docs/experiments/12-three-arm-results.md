@@ -88,13 +88,43 @@ test-retest pair for A.
   absent import conflicts).
 - Blind round covers R1 only; calibration spread is 1–4 on the 1–5 scale.
 
-## What this means for the project
+## Confirmed confound (owner review, 2026-10-11)
 
-Run 1's headline ("Design Authority maintains conformance") resolves, under
-isolation, to **enforcement carrying the conformance**; the governed layer's
-distinctive value must lie where C alone produced artifacts: resolutions,
-receipts, advisories, and the reconciliation record — none of which this
-run's conformance grid measures. The natural next measurements are the
-governance-overhead optimizations (batched resolution, cached briefs,
-incremental verification) against the run-1 profile, and a task family where
-migration/advice quality — not surface conformance — is the outcome.
+The owner's reading: "All of them basically look the same bar some minor
+drift… this look was the default for this model; there's a confound that it
+is simply resorting to its own nature." Verified against the data:
+
+- **The design system under test WAS the model's default palette.** The
+  seed's token set is Tailwind's defaults with names on them:
+  `--color-accent: #2563eb` (blue-600), `--color-muted: #6b7280` (gray-500),
+  `--color-danger: #b91c1c` (red-700), `--color-accent-hover: #1d4ed8`
+  (blue-700). No distinctive design opinion was ever at stake, so
+  "consistency" required no arm to overcome any model nature — and the
+  code-imitation signal (every session reads the existing CSS) was
+  available to all arms equally.
+- **The measured arm differences are mechanism-level, not visual.** A's
+  B001 "raw colour" findings are `rgba(37, 99, 235, 0.12)` — the same
+  accent blue at 12% opacity written as a literal instead of a token.
+  The outcome variable was HOW values got written, not WHICH values; that
+  is invisible on a screen and therefore structurally unmeasurable by the
+  blind instrument. The reviewer's "requires a lot of interpretation" is
+  the correct read of the instrument, not a reviewer failure.
+
+Consequences for interpretation:
+
+- The three-arm result stands **as a process finding** (enforcement held
+  token discipline across handoffs where static did not) and is reframed
+  accordingly. It is NOT evidence about visible design consistency, and
+  the blind round as served cannot provide that evidence — its face
+  validity fails for this subject.
+- Attribution to the Authority (as opposed to model nature) is
+  overdetermined on the visual plane for this lineage. The de-confounded
+  version needs: (1) a deliberately **counter-default** contract (falling
+  back to the model's palette becomes the measurable violation, and the
+  lint can ban default-palette values explicitly); (2) a no-contract
+  control arm to estimate model nature directly; (3) blind items only
+  where counter-default stakes are visible, plus a "reversion to default"
+  metric (default-palette / standard-radius / system-font appearances
+  over handoffs); (4) optionally a second model to break single-model
+  attribution. Recommended as the next pre-registration (docs/13) on the
+  owner's go.
