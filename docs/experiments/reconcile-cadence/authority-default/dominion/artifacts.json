@@ -320,7 +320,7 @@
         "gap": "gap/20261007-150031-f5a96f",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:02+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
@@ -369,7 +369,7 @@
         "gap": "gap/20261007-150031-f5a96f",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:02+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
@@ -418,7 +418,7 @@
         "gap": "gap/20261007-150031-13d338",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:06+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a save confirmation message') -> RESOLVED component/notice (simulated score 17.0)",
@@ -477,7 +477,7 @@
         "gap": "gap/20261007-150030-0a71f9",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:18+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('bar chart of weekly minutes') -> RESOLVED pattern/plain-chart (simulated score 13.0)",

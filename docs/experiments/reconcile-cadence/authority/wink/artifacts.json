@@ -395,7 +395,7 @@
         "gap": "gap/20261007-145938-a0e2b0",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:39:43+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('animate the dialog with a spring bounce') must remain UNDEFINED (motion policy, golden case retained)"
@@ -406,7 +406,7 @@
       "transition": {
         "policy": "when_touched",
         "scope": "overlays",
-        "rationale": "Existing overlay vessels remain acceptable until the overlay area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing overlay vessels remain acceptable until the overlay area is next modified.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -449,7 +449,7 @@
         "gap": "gap/20261007-145938-a9d93a",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:39:54+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "a request for a canonical illustration style must remain UNDEFINED/marked (no asset library)"
@@ -460,7 +460,7 @@
       "transition": {
         "policy": "prospective",
         "scope": "empty states",
-        "rationale": "Optional stylistic pattern; new implementations adopt it, existing ones are untouched.",
+        "rationale": "Owner-set 2026-10-11: optional stylistic pattern; new implementations adopt it, existing ones are untouched.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -509,7 +509,7 @@
         "gap": "gap/20261007-145139-ad4b85",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:40:03+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('delete a ritual permanently') must not return UNDEFINED once shipped",
@@ -519,9 +519,10 @@
         "gap/20261007-145139-ad4b85"
       ],
       "transition": {
-        "policy": "when_touched",
+        "policy": "required",
+        "by": "0.3.0",
         "scope": "destructive flows",
-        "rationale": "Existing confirm flows remain acceptable until the destructive area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing confirm flows carry a migration obligation, due by 0.3.0.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -564,7 +565,7 @@
         "gap": "gap/20261007-145938-f646b2",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:41:43+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "no entry may advertise 'toast' as a resolved alias once shipped",
@@ -576,7 +577,7 @@
       "transition": {
         "policy": "when_touched",
         "scope": "feedback",
-        "rationale": "Existing feedback treatments remain acceptable until the feedback area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing feedback treatments remain acceptable until the feedback area is next modified.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -620,7 +621,7 @@
         "gap": "gap/20261007-145939-d19d36",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:42:53+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "states must use Parsnip/yellow/ink only (palette discipline)"
@@ -629,9 +630,10 @@
         "gap/20261007-145939-d19d36"
       ],
       "transition": {
-        "policy": "when_touched",
+        "policy": "required",
+        "by": "0.3.0",
         "scope": "progress readouts",
-        "rationale": "Existing progress treatments remain acceptable until the progress area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing progress treatments carry a migration obligation, due by 0.3.0.",
         "exceptions": "allowed_with_review"
       }
     }

@@ -56,10 +56,15 @@ manifest (`portfolio.json`) declares each build as an application plus a
   recorded cases and prototype decision receipts; it never infers. Findings
   are idempotent by identity (application, decision, target version,
   revision). Read-only over application trees.
-- Transition decisions are **simulated fixtures, clearly labelled**: the
-  policy mix a reviewer would set at publication. Nine `when_touched`, two
-  `prospective`, one `required` (`component/notice`, by 0.3.0). The real
-  choices for these records belong to the review that publishes them.
+- Transition decisions are the **owner's real policies** (decision page,
+  2026-10-11; D-033/D-034): `required` by 0.3.0 for wink
+  `pattern/destructive-confirm` and `pattern/progress`; `review` for
+  dominion `component/status`; `prospective` for `pattern/empty-state`
+  (wink), `pattern/data-readouts` (leader), `component/ledger` and
+  `component/notice` (dominion); `when_touched` for the remaining five.
+  The fixtures previously carried a simulated mix (nine `when_touched`,
+  two `prospective`, one `required`); the rulings replaced it and every
+  result below was regenerated.
 - A defaults variant (transition blocks stripped) exercises the owner-set
   default: legacy records -> `review`.
 - Adoption = recorded resolution evidence, or a receipt's `decisions_applied`
@@ -78,34 +83,36 @@ manifest (`portfolio.json`) declares each build as an application plus a
 
 ## 4 · Results
 
-**Policy run - 36 findings: 10 conforms · 22 grandfathered · 3 rectify · 1 review**, with 3 obligations (all `scheduled`: the `required` deadline 0.3.0
+**Policy run - 36 findings: 10 conforms · 18 grandfathered · 4 rectify · 4 review**, with 4 obligations (all `scheduled`: the `required` deadline 0.3.0
 is later than the target 0.2.0, so none is presented as already due).
 
 | Application | Class | Decisions |
 |---|---|---|
-| cadence-wink / cadence2-wink (v1/v2) | grandfathered | destructive-confirm, dialog-overlay, empty-state, inline-notice, progress |
+| cadence-wink / cadence2-wink (v1/v2) | grandfathered | dialog-overlay, empty-state, inline-notice |
+| cadence-wink / cadence2-wink (v1/v2) | rectify | destructive-confirm, progress |
 | cadence3-wink (v3) | conforms | destructive-confirm, dialog-overlay, empty-state, progress |
 | cadence3-wink (v3) | review | inline-notice |
 | cadence-leader / cadence2-leader | grandfathered | data-charts, data-readouts, tag |
 | cadence3-leader | conforms | data-charts, data-readouts, tag |
-| cadence-dominion / cadence2-dominion | grandfathered | status, ledger, plain-chart |
-| cadence-dominion / cadence2-dominion / cadence3-dominion | rectify | notice |
-| cadence3-dominion | conforms | status, ledger, plain-chart |
+| cadence-dominion / cadence2-dominion | grandfathered | ledger, notice, plain-chart |
+| cadence-dominion / cadence2-dominion | review | status |
+| cadence3-dominion | conforms | ledger, plain-chart, status |
+| cadence3-dominion | review | notice |
 
 An exact grandfathered finding (from `findings.jsonl`):
 
-    finding/cadence-wink/pattern~destructive-confirm/0.2.0/v1
+    finding/cadence-wink/pattern~dialog-overlay/0.2.0/v1
       class: grandfathered (policy when_touched, explicit)
       built_under: 0.1.0 · target: 0.2.0
-      link: gap/20261007-145139-ad4b85 (via proposal chain / resolves_cases)
+      link: gap/20261007-145938-a0e2b0 (via proposal chain / resolves_cases)
       trigger_state: {state: unknown, basis: "complete modification history
         not established (no receipts covering the window)"}
       reason: "built while the need was UNDEFINED; policy 'when_touched'
-        permits until destructive flows is next modified"
+        permits until overlays is next modified"
 
-And the rectify row:
+And a rectify row (wink, owner-set `required`):
 
-    finding/cadence-dominion/component~notice/0.2.0/v1
+    finding/cadence-wink/pattern~destructive-confirm/0.2.0/v1
       class: rectify (policy required, by 0.3.0)
       obligation: {state: scheduled, by: 0.3.0}
       reason: "policy 'required': migration obligation is not yet due
@@ -115,22 +122,28 @@ Properties demonstrated:
 
 - **Historical compliance intact.** Every finding carries `built_under` and
   `target_version`; no v1/v2 row is a violation of anything. Their class is a
-  permission, not a judgment.
+  permission (with an obligation where `required`), not a judgment.
 - **Grandfathering carries reason + trigger, tri-state.** The v1/v2 rows name
   the trigger that would end the permission and record trigger state
   honestly: `unknown` where no receipts cover the window - absence of
   evidence is not evidence of absence.
 - **Policy decided the outcome.** The same non-adoption splits into
   grandfathered (`when_touched`), review (non-adopted builds at the new
-  version), and rectify (`required`) purely by policy.
-- **Future obligations are not presented as due.** The dominion `notice`
-  rows are rectify with `obligation.state = scheduled` (by 0.3.0), never
-  "overdue".
-- **A genuine review candidate surfaced.** `cadence3-wink` did not adopt
-  `pattern/inline-notice` at 0.2.0 (no recorded resolution); the finding is
-  `review`, not a violation. Whether that is a sanctioned deviation, pending
-  work, or a real gap is a human call - the same shapes as the pagination
-  examples in the owner's canvas.
+  version, or affected builds under `review`), and rectify (`required`)
+  purely by policy - and the owner's rulings (D-034) chose which policy
+  each record carries.
+- **Future obligations are not presented as due.** The wink
+  `destructive-confirm`/`progress` rows are rectify with
+  `obligation.state = scheduled` (by 0.3.0), never "overdue".
+- **Genuine review candidates surfaced.** `cadence3-wink` did not adopt
+  `pattern/inline-notice` at 0.2.0 (no recorded resolution) and
+  `cadence3-dominion` built `component/notice` at the new version without a
+  recorded adoption; both are `review`, not violations. Whether they are
+  sanctioned deviations, pending work, or real gaps is a human call - the
+  same shapes as the pagination examples in the owner's canvas. The owner
+  disposed the wink row as pending work (adopt at the next revision;
+  D-034). The dominion `status` rows sit under the owner-set `review`
+  policy: each affected build's labels are reviewed before adoption.
 - **Idempotent re-sweep.** Second run: `0 new, 36 reused` - finding identity
   working as specified; reconciliation after every release adds signal, not
   noise. (The semantics tightening from D-031 re-assessed 21 rows; the store
@@ -227,9 +240,10 @@ a live product is still ahead).
 
 ## 7 · Honesty notes and limits
 
-- The transition blocks in the fixture are **simulated and labelled**; they
-  demonstrate the mechanism, not the owner's decisions. The real policies for
-  these twelve records should be set through the review that publishes them.
+- The transition blocks in the fixture are the **owner's real policies**
+  (decision page, 2026-10-11; D-034). The pre-ruling simulated mix (nine
+  `when_touched`, two `prospective`, one `required`) remains described in
+  section 3 and in git history.
 - The r2 revisions are a genuine modification of the v1 build, made for this
   test; their receipts use the prototype format (`prototype-0.1`; P1.1
   formalizes) and are confirmed against source evidence (diffs + hashes; the
@@ -262,8 +276,9 @@ a live product is still ahead).
 - `da reconcile` (sweep + policy evaluation + migration plan) becomes a thin
   layer over this result once receipts (P1.1) upgrade the deterministic
   level portfolio-wide.
-- Owner decisions to fold in: the real transition policies for the twelve
-  records, and the disposition of the `review` row surfaced here.
+- Owner decisions: **landed** (2026-10-11, decision page). The twelve
+  transition policies are set and the `review` row is disposed as pending
+  work (adopt at the next revision of cadence3-wink; D-034).
 
 ## References
 

@@ -3,16 +3,16 @@
  "decision": null,
  "counts": {
   "conforms": 10,
-  "grandfathered": 22,
-  "rectify": 3,
-  "review": 1
+  "grandfathered": 18,
+  "rectify": 4,
+  "review": 4
  },
  "obligations": {
-  "scheduled": 3
+  "scheduled": 4
  },
  "store": {
-  "new": 0,
-  "reused": 36,
+  "new": 36,
+  "reused": 0,
   "superseded": 0,
   "total": 36
  },
@@ -26,7 +26,7 @@
    "decision": "component/ledger",
    "decision_title": "Ledger (ruled register)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "prospective",
    "policy_source": "explicit",
    "class": "grandfathered",
    "assessment": "deterministic",
@@ -34,13 +34,11 @@
     "case": "gap/20261007-150031-f5a96f",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
-   },
+   "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-dominion/component~notice/0.2.0/v1",
@@ -51,21 +49,19 @@
    "decision": "component/notice",
    "decision_title": "Notice (ruled box)",
    "target_version": "0.2.0",
-   "policy": "required",
+   "policy": "prospective",
    "policy_source": "explicit",
-   "class": "rectify",
+   "class": "grandfathered",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "obligation": {
-    "state": "scheduled",
-    "by": "0.3.0"
-   },
+   "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-dominion/component~status/0.2.0/v1",
@@ -76,21 +72,19 @@
    "decision": "component/status",
    "decision_title": "Status label (word-first)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "review",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "review",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-150031-f5a96f",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
-   },
+   "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-dominion/pattern~plain-chart/0.2.0/v1",
@@ -115,7 +109,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-leader/component~tag/0.2.0/v1",
@@ -140,7 +135,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-leader/pattern~data-charts/0.2.0/v1",
@@ -165,7 +161,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-leader/pattern~data-readouts/0.2.0/v1",
@@ -187,7 +184,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'prospective': no obligation on existing implementations"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-wink/pattern~destructive-confirm/0.2.0/v1",
@@ -198,21 +196,22 @@
    "decision": "pattern/destructive-confirm",
    "decision_title": "Destructive confirmation",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "rectify",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-145139-ad4b85",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-wink/pattern~dialog-overlay/0.2.0/v1",
@@ -237,7 +236,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-wink/pattern~empty-state/0.2.0/v1",
@@ -259,7 +259,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'prospective': no obligation on existing implementations"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-wink/pattern~inline-notice/0.2.0/v1",
@@ -284,7 +285,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence-wink/pattern~progress/0.2.0/v1",
@@ -295,21 +297,22 @@
    "decision": "pattern/progress",
    "decision_title": "Progress readout",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "rectify",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-145939-d19d36",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-dominion/component~ledger/0.2.0/v2",
@@ -320,7 +323,7 @@
    "decision": "component/ledger",
    "decision_title": "Ledger (ruled register)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "prospective",
    "policy_source": "explicit",
    "class": "grandfathered",
    "assessment": "deterministic",
@@ -328,13 +331,11 @@
     "case": "gap/20261007-150031-f5a96f",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
-   },
+   "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until ledgers is next modified"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-dominion/component~notice/0.2.0/v2",
@@ -345,21 +346,19 @@
    "decision": "component/notice",
    "decision_title": "Notice (ruled box)",
    "target_version": "0.2.0",
-   "policy": "required",
+   "policy": "prospective",
    "policy_source": "explicit",
-   "class": "rectify",
+   "class": "grandfathered",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "obligation": {
-    "state": "scheduled",
-    "by": "0.3.0"
-   },
+   "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-dominion/component~status/0.2.0/v2",
@@ -370,21 +369,19 @@
    "decision": "component/status",
    "decision_title": "Status label (word-first)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "review",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "review",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-150031-f5a96f",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
-   },
+   "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until status labels is next modified"
+   "reason": "no explicit transition policy (legacy default): assess before any obligation",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-dominion/pattern~plain-chart/0.2.0/v2",
@@ -409,7 +406,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until charts is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-leader/component~tag/0.2.0/v2",
@@ -434,7 +432,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until tags is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-leader/pattern~data-charts/0.2.0/v2",
@@ -459,7 +458,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until data charts is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-leader/pattern~data-readouts/0.2.0/v2",
@@ -481,7 +481,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'prospective': no obligation on existing implementations"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-wink/pattern~destructive-confirm/0.2.0/v2",
@@ -492,21 +493,22 @@
    "decision": "pattern/destructive-confirm",
    "decision_title": "Destructive confirmation",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "rectify",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-145139-ad4b85",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until destructive flows is next modified"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-wink/pattern~dialog-overlay/0.2.0/v2",
@@ -531,7 +533,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until overlays is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-wink/pattern~empty-state/0.2.0/v2",
@@ -553,7 +556,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'prospective': no obligation on existing implementations"
+   "reason": "policy 'prospective': no obligation on existing implementations",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-wink/pattern~inline-notice/0.2.0/v2",
@@ -578,7 +582,8 @@
    },
    "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified"
+   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until feedback is next modified",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence2-wink/pattern~progress/0.2.0/v2",
@@ -589,21 +594,22 @@
    "decision": "pattern/progress",
    "decision_title": "Progress readout",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
-   "class": "grandfathered",
+   "class": "rectify",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-145939-d19d36",
     "via": "resolves_cases"
    },
-   "trigger_state": {
-    "state": "unknown",
-    "basis": "complete modification history not established (no receipts covering the window)"
+   "trigger_state": null,
+   "obligation": {
+    "state": "scheduled",
+    "by": "0.3.0"
    },
-   "obligation": null,
    "receipt_status": null,
-   "reason": "built while the need was UNDEFINED; policy 'when_touched' permits until progress readouts is next modified"
+   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-dominion/component~ledger/0.2.0/v3",
@@ -614,7 +620,7 @@
    "decision": "component/ledger",
    "decision_title": "Ledger (ruled register)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "prospective",
    "policy_source": "explicit",
    "class": "conforms",
    "assessment": "deterministic",
@@ -625,7 +631,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-dominion/component~notice/0.2.0/v3",
@@ -636,21 +643,19 @@
    "decision": "component/notice",
    "decision_title": "Notice (ruled box)",
    "target_version": "0.2.0",
-   "policy": "required",
+   "policy": "prospective",
    "policy_source": "explicit",
-   "class": "rectify",
+   "class": "review",
    "assessment": "deterministic",
    "link": {
     "case": "gap/20261007-150031-13d338",
     "via": "resolves_cases"
    },
    "trigger_state": null,
-   "obligation": {
-    "state": "scheduled",
-    "by": "0.3.0"
-   },
+   "obligation": null,
    "receipt_status": null,
-   "reason": "policy 'required': migration obligation is not yet due (scheduled for 0.3.0); the implementation has not adopted the decision"
+   "reason": "built at or after the decision without recorded adoption; assess (sanctioned deviation, pending work, or a conformance finding)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-dominion/component~status/0.2.0/v3",
@@ -661,7 +666,7 @@
    "decision": "component/status",
    "decision_title": "Status label (word-first)",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "review",
    "policy_source": "explicit",
    "class": "conforms",
    "assessment": "deterministic",
@@ -672,7 +677,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-dominion/pattern~plain-chart/0.2.0/v3",
@@ -694,7 +700,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-leader/component~tag/0.2.0/v3",
@@ -716,7 +723,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-leader/pattern~data-charts/0.2.0/v3",
@@ -738,7 +746,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-leader/pattern~data-readouts/0.2.0/v3",
@@ -760,7 +769,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-wink/pattern~destructive-confirm/0.2.0/v3",
@@ -771,7 +781,7 @@
    "decision": "pattern/destructive-confirm",
    "decision_title": "Destructive confirmation",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
    "class": "conforms",
    "assessment": "deterministic",
@@ -782,7 +792,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-wink/pattern~dialog-overlay/0.2.0/v3",
@@ -804,7 +815,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-wink/pattern~empty-state/0.2.0/v3",
@@ -826,7 +838,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-wink/pattern~inline-notice/0.2.0/v3",
@@ -848,7 +861,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "built at or after the decision without recorded adoption; assess (sanctioned deviation, pending work, or a conformance finding)"
+   "reason": "built at or after the decision without recorded adoption; assess (sanctioned deviation, pending work, or a conformance finding)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   },
   {
    "id": "finding/cadence3-wink/pattern~progress/0.2.0/v3",
@@ -859,7 +873,7 @@
    "decision": "pattern/progress",
    "decision_title": "Progress readout",
    "target_version": "0.2.0",
-   "policy": "when_touched",
+   "policy": "required",
    "policy_source": "explicit",
    "class": "conforms",
    "assessment": "deterministic",
@@ -870,7 +884,8 @@
    "trigger_state": null,
    "obligation": null,
    "receipt_status": null,
-   "reason": "the build resolved this decision (recorded evidence)"
+   "reason": "the build resolved this decision (recorded evidence)",
+   "assessed_at": "2026-10-11T09:23:22+00:00"
   }
  ]
 }

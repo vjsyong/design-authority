@@ -20,14 +20,15 @@ Reproduce:
   flagship build reach its generations. Decision receipts (P1.1) will make
   this self-describing.
 - `authority/<auth>/artifacts.json` — the live 0.2.0 packs' artifact files
-  with the reconciliation FIXTURE additions: **simulated** transition blocks
-  (the policy mix a reviewer would set at publication; not owner decisions)
-  and `resolves_cases` links derived from the recorded proposal chain.
+  with the reconciliation FIXTURE additions: the **owner's real** transition
+  policies (decision page, 2026-10-11) and `resolves_cases` links derived
+  from the recorded proposal chain.
 - `authority-default/<auth>/artifacts.json` — the same records with the
   transition blocks stripped, to demonstrate the owner-set default
   (legacy records -> `review`).
-- `findings.jsonl` / `report.json` — the policy run (36 findings; re-running
-  reuses all 36).
+- `findings.jsonl` / `report.json` — the policy run (36 findings =
+  10 conforms + 18 grandfathered + 4 rectify + 4 review, 4 scheduled
+  obligations; re-running reuses all 36).
 - `findings-defaults.jsonl` / `report-defaults.json` — the defaults run
   (36 = 10 conforms + 26 review).
 

@@ -395,7 +395,7 @@
         "gap": "gap/20261007-145938-a0e2b0",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:39:43+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('animate the dialog with a spring bounce') must remain UNDEFINED (motion policy, golden case retained)"
@@ -443,7 +443,7 @@
         "gap": "gap/20261007-145938-a9d93a",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:39:54+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "a request for a canonical illustration style must remain UNDEFINED/marked (no asset library)"
@@ -497,7 +497,7 @@
         "gap": "gap/20261007-145139-ad4b85",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:40:03+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('delete a ritual permanently') must not return UNDEFINED once shipped",
@@ -546,7 +546,7 @@
         "gap": "gap/20261007-145938-f646b2",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:41:43+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "no entry may advertise 'toast' as a resolved alias once shipped",
@@ -596,7 +596,7 @@
         "gap": "gap/20261007-145939-d19d36",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:42:53+00:00",
-        "codified_at": "2026-10-07T15:52:02+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "states must use Parsnip/yellow/ink only (palette discipline)"

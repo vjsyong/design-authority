@@ -28,7 +28,7 @@ import da_sweep  # noqa: E402
 REPO = da_sweep.REPO
 FIX = os.path.join(REPO, "docs", "experiments", "reconcile-cadence")
 R2 = os.path.join(REPO, "examples", "cadence-wink-r2")
-MAIN_COUNTS = {"conforms": 10, "grandfathered": 22, "rectify": 3, "review": 1}
+MAIN_COUNTS = {"conforms": 10, "grandfathered": 18, "rectify": 4, "review": 4}
 
 
 class Checker(object):
@@ -80,7 +80,7 @@ def check_main(tmp, C):
     if not r1:
         return
     C.check(r1["counts"] == MAIN_COUNTS, "main counts drifted: %s" % r1["counts"])
-    C.check(r1["obligations"] == {"scheduled": 3},
+    C.check(r1["obligations"] == {"scheduled": 4},
             "main obligations drifted: %s" % r1["obligations"])
     C.check(r1["store"]["new"] == 36, "main run added %s new findings" % r1["store"]["new"])
 

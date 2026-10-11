@@ -387,7 +387,7 @@
         "gap": "gap/20261007-145916-1ae98e",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:45:28+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('bar chart') cites pattern/data-charts",
@@ -401,7 +401,7 @@
       "transition": {
         "policy": "when_touched",
         "scope": "data charts",
-        "rationale": "Existing chart treatments remain acceptable until the charts area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -449,7 +449,7 @@
         "gap": "gap/20261007-145916-878f7a",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:47:11+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('sparkline') cites pattern/data-readouts",
@@ -463,7 +463,7 @@
       "transition": {
         "policy": "prospective",
         "scope": "data readouts",
-        "rationale": "Optional treatment; new implementations adopt it, existing ones are untouched.",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -506,7 +506,7 @@
         "gap": "gap/20261007-145916-d4706a",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:47:23+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('status label') cites component/tag",
@@ -520,7 +520,7 @@
       "transition": {
         "policy": "when_touched",
         "scope": "tags",
-        "rationale": "Existing tag treatments remain acceptable until the tag area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing tag treatments remain acceptable until the tag area is next modified.",
         "exceptions": "allowed_with_review"
       }
     }

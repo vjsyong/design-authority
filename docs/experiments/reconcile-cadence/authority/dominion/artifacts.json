@@ -320,7 +320,7 @@
         "gap": "gap/20261007-150031-f5a96f",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:02+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
@@ -333,9 +333,9 @@
         "gap/20261007-150031-f5a96f"
       ],
       "transition": {
-        "policy": "when_touched",
+        "policy": "review",
         "scope": "status labels",
-        "rationale": "Existing status labels remain acceptable until the status area is next modified.",
+        "rationale": "Owner-set 2026-10-11: each affected build's status labels are reviewed on the record before adoption.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -375,7 +375,7 @@
         "gap": "gap/20261007-150031-f5a96f",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:02+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a status label on track or slipping') -> RESOLVED component/status (simulated score 21.0)",
@@ -388,9 +388,9 @@
         "gap/20261007-150031-f5a96f"
       ],
       "transition": {
-        "policy": "when_touched",
+        "policy": "prospective",
         "scope": "ledgers",
-        "rationale": "Existing register treatments remain acceptable until the ledger area is next modified.",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -430,7 +430,7 @@
         "gap": "gap/20261007-150031-13d338",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:06+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('a save confirmation message') -> RESOLVED component/notice (simulated score 17.0)",
@@ -443,10 +443,9 @@
         "gap/20261007-150031-13d338"
       ],
       "transition": {
-        "policy": "required",
-        "by": "0.3.0",
+        "policy": "prospective",
         "scope": "notices",
-        "rationale": "The notice is the sanctioned substitute for toasts (toast requests stay deviations); migrate before 0.3.0.",
+        "rationale": "Owner-set 2026-10-11: adopt going forward; no migration obligation for existing builds.",
         "exceptions": "allowed_with_review"
       }
     },
@@ -496,7 +495,7 @@
         "gap": "gap/20261007-150030-0a71f9",
         "verdict": "accept",
         "reviewed_at": "2026-10-07T15:48:18+00:00",
-        "codified_at": "2026-10-07T15:52:26+00:00"
+        "codified_at": "2026-10-11T01:35:47+00:00"
       },
       "checks": [
         "resolve('bar chart of weekly minutes') -> RESOLVED pattern/plain-chart (simulated score 13.0)",
@@ -512,7 +511,7 @@
       "transition": {
         "policy": "when_touched",
         "scope": "charts",
-        "rationale": "Existing chart treatments remain acceptable until the charts area is next modified.",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
         "exceptions": "allowed_with_review"
       }
     }

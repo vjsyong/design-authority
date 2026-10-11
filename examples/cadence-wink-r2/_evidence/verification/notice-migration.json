@@ -8,16 +8,16 @@
  },
  "record": {
   "id": "pattern/inline-notice",
-  "record_hash": "7f9ae1ef05c284e6"
+  "record_hash": "0c0da43ce126139f"
  },
- "ran_at": "2026-10-11T03:37:08+00:00",
+ "ran_at": "2026-10-11T09:23:50+00:00",
  "verdict": "pass",
  "checks": [
   {
    "id": "record-bound",
    "desc": "verifies against the recorded pattern/inline-notice (wink 0.2.0)",
    "pass": true,
-   "detail": "record_hash=7f9ae1ef05c284e6",
+   "detail": "record_hash=0c0da43ce126139f",
    "record_ref": "record: pattern/inline-notice"
   },
   {
