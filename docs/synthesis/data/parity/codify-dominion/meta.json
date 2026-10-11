@@ -9,7 +9,7 @@
   ],
   "skipped": [],
   "conflicts": [],
-  "version": "0.2.0"
+  "version": "0.3.0-rc1"
  },
  "input": "compile-dominion baseline + examples/cadence-dominion",
  "captured_from": "tools/apply_proposals.py @ 3eb576a"

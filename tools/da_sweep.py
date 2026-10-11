@@ -66,7 +66,7 @@ def _slug(s):
 
 def _ver(s):
     try:
-        return tuple(int(x) for x in str(s).split("."))
+        return tuple(int(x) for x in str(s).split("-")[0].split("."))
     except ValueError:
         return (0,)
 
@@ -269,6 +269,26 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
                     L["events"].setdefault(d["decision"], []).append(
                         {"ref": ref, "revision": build["revision"], "reason": d.get("reason")})
 
+    # receipt-claimed decisions (P1.1): a build's receipt (decisions_applied,
+    # deviations, migration_for) scopes its decisions for assessment even when
+    # no recorded case chain exists. Chain links keep precedence; this only
+    # widens the corpus for builds that record outcomes (consumer workspaces).
+    claims = {}
+    for app in apps:
+        cmap = {}
+        for build in app["builds"]:
+            receipt = build["_receipt"]
+            if receipt is None:
+                continue
+            ref = build["_receipt_ref"]
+            ids = set(receipt.get("decisions_applied") or [])
+            ids |= {d.get("decision") for d in receipt.get("deviations") or []
+                    if isinstance(d, dict) and d.get("decision")}
+            ids |= set(receipt.get("migration_for") or [])
+            for rid in ids:
+                cmap.setdefault(rid, {"case": ref, "via": "receipt"})
+        claims[app["name"]] = cmap
+
     findings = []
     for auth in sorted(os.listdir(authority_dir)):
         auth_path = os.path.join(authority_dir, auth, "artifacts.json")
@@ -278,7 +298,10 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
             if decision_filter and rec["id"] != decision_filter:
                 continue
             links = case_links(rec, apps)
-            if not links:
+            rlinks = [dict(claims[app["name"]][rec["id"]], app=app["name"])
+                      for app in apps if app["authority"] == auth
+                      and rec["id"] in claims.get(app["name"], {})]
+            if not links and not rlinks:
                 continue
             transition = rec.get("transition") or {}
             policy = transition.get("policy") or "review"
@@ -290,9 +313,10 @@ def sweep(authority_dir, portfolio_file, target_version, decision_filter=None):
                 if not L:
                     continue
                 hits = [l for l in links if l["case"] in L["cases"]]
-                if not hits:
+                rhits = [l for l in rlinks if l.get("app") == app["name"]]
+                if not hits and not rhits:
                     continue
-                hit = hits[0]
+                hit = hits[0] if hits else rhits[0]
                 # receipts covering every post-decision build of this app?
                 post = [b for b in app["builds"]
                         if _ver(b["built_under"]) >= _ver(target_version)]

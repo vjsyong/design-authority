@@ -30,7 +30,13 @@
     "illustration-led variants deferred - illustration system not reproduced (no asset library)"
    ]
   },
-  "notes": "Content per decisions.json W-19 (accepted). Illustration style deliberately not proposed (W-19 deferral + W-23 no-assets policy)."
+  "notes": "Content per decisions.json W-19 (accepted). Illustration style deliberately not proposed (W-19 deferral + W-23 no-assets policy).",
+  "transition": {
+   "policy": "prospective",
+   "scope": "empty states",
+   "rationale": "Owner-set 2026-10-11: optional stylistic pattern; new implementations adopt it, existing ones are untouched.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "component/card",

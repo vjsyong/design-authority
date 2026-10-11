@@ -383,6 +383,12 @@
         ],
         "group": "Overlays"
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "overlays",
+        "rationale": "Owner-set 2026-10-11: existing overlay vessels remain acceptable until the overlay area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "mailchimp.com live product + Mailchimp brand resources",
         "path": "Reviewer-accepted proposal prop/20261007-151914-0510d7 (adjudicated 2026-10-07)"
@@ -402,13 +408,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145938-a0e2b0"
-      ],
-      "transition": {
-        "policy": "when_touched",
-        "scope": "overlays",
-        "rationale": "Owner-set 2026-10-11: existing overlay vessels remain acceptable until the overlay area is next modified.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/empty-state",
@@ -437,6 +437,12 @@
         ],
         "group": "Feedback"
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "empty states",
+        "rationale": "Owner-set 2026-10-11: optional stylistic pattern; new implementations adopt it, existing ones are untouched.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "mailchimp.com live product + Mailchimp brand resources",
         "path": "Reviewer-accepted proposal prop/20261007-151914-74dedc (adjudicated 2026-10-07)"
@@ -456,13 +462,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145938-a9d93a"
-      ],
-      "transition": {
-        "policy": "prospective",
-        "scope": "empty states",
-        "rationale": "Owner-set 2026-10-11: optional stylistic pattern; new implementations adopt it, existing ones are untouched.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/destructive-confirm",
@@ -497,6 +497,13 @@
         ],
         "group": "Destructive"
       },
+      "transition": {
+        "policy": "required",
+        "by": "0.3.0",
+        "scope": "destructive flows",
+        "rationale": "Owner-set 2026-10-11: existing confirm flows carry a migration obligation, due by 0.3.0.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "mailchimp.com live product + Mailchimp brand resources",
         "path": "Reviewer-accepted proposal prop/20261007-151914-9ff839 (adjudicated 2026-10-07)"
@@ -517,14 +524,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145139-ad4b85"
-      ],
-      "transition": {
-        "policy": "required",
-        "by": "0.3.0",
-        "scope": "destructive flows",
-        "rationale": "Owner-set 2026-10-11: existing confirm flows carry a migration obligation, due by 0.3.0.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/inline-notice",
@@ -553,6 +553,12 @@
         ],
         "group": "Feedback"
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "feedback",
+        "rationale": "Owner-set 2026-10-11: existing feedback treatments remain acceptable until the feedback area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "mailchimp.com live product + Mailchimp brand resources",
         "path": "Reviewer-accepted proposal prop/20261007-151914-d08fa9 (adjudicated 2026-10-07)"
@@ -573,13 +579,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145938-f646b2"
-      ],
-      "transition": {
-        "policy": "when_touched",
-        "scope": "feedback",
-        "rationale": "Owner-set 2026-10-11: existing feedback treatments remain acceptable until the feedback area is next modified.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/progress",
@@ -609,6 +609,13 @@
         ],
         "group": "Progress"
       },
+      "transition": {
+        "policy": "required",
+        "by": "0.3.0",
+        "scope": "progress readouts",
+        "rationale": "Owner-set 2026-10-11: existing progress treatments carry a migration obligation, due by 0.3.0.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "mailchimp.com live product + Mailchimp brand resources",
         "path": "Reviewer-accepted proposal prop/20261007-151915-58de37 (adjudicated 2026-10-07)"
@@ -628,14 +635,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145939-d19d36"
-      ],
-      "transition": {
-        "policy": "required",
-        "by": "0.3.0",
-        "scope": "progress readouts",
-        "rationale": "Owner-set 2026-10-11: existing progress treatments carry a migration obligation, due by 0.3.0.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     }
   ]
 }

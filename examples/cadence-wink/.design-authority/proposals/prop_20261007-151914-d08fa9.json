@@ -30,7 +30,13 @@
     "floating toast stacks are not canon (source: toasts unevidenced, rejected)"
    ]
   },
-  "notes": "Content per decisions.json W-15 (accepted). The floating toast is explicitly NOT proposed for canon; the Cadence toast remains a marked improvisation. Celebration/confetti motion likewise stays outside canon (motion not evidenced)."
+  "notes": "Content per decisions.json W-15 (accepted). The floating toast is explicitly NOT proposed for canon; the Cadence toast remains a marked improvisation. Celebration/confetti motion likewise stays outside canon (motion not evidenced).",
+  "transition": {
+   "policy": "when_touched",
+   "scope": "feedback",
+   "rationale": "Owner-set 2026-10-11: existing feedback treatments remain acceptable until the feedback area is next modified.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "guideline/voice",

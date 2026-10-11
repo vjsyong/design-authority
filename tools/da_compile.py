@@ -173,6 +173,8 @@ def _finalize_record(rtype, fields, *, source, decisions=None, exception=None,
                            "decisions nor exception)" % rec.get("id", "?"))
     if tail:
         rec.update(tail)
+    if rec.get("transition"):
+        validate_transition(rec["transition"])
     validate_record(rtype, rec)
     validate_provenance(rec)
     return rec
@@ -480,7 +482,7 @@ def _candidate_payload(prop, rec):
     body = dict(prop.get("body") or {})
     if prop.get("group") and "group" not in body:
         body["group"] = prop["group"]
-    return {
+    out = {
         "id": prop["id"],
         "kind": prop.get("kind", "component"),
         "title": prop.get("title") or prop["id"],
@@ -489,6 +491,11 @@ def _candidate_payload(prop, rec):
         "aliases": prop.get("aliases", []),
         "body": body,
     }
+    if prop.get("transition"):
+        # The release policy travels with the decision from first publication
+        # (docs/14 section 3; owner-set policies, D-034).
+        out["transition"] = prop["transition"]
+    return out
 
 
 def codify(workspace, pack_dir, now=None):
@@ -510,7 +517,7 @@ def codify(workspace, pack_dir, now=None):
     applied, skipped, conflicts = [], [], []
     now = now or datetime.now(timezone.utc).isoformat(timespec="seconds")
     repo = (auth.get("snapshot") or {}).get("repo", "")
-    compare_fields = ("kind", "title", "summary", "aliases", "body")
+    compare_fields = ("kind", "title", "summary", "aliases", "body", "transition")
 
     for f in files:
         rec = _load_json(f)

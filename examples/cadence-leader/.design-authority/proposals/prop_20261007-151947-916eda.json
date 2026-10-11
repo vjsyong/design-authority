@@ -37,7 +37,13 @@
    "plot",
    "data visualization",
    "weekly chart"
-  ]
+  ],
+  "transition": {
+   "policy": "when_touched",
+   "scope": "data charts",
+   "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "token-set/colour",

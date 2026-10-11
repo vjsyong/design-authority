@@ -40,7 +40,13 @@
     "no entrance/exit animation (motion is deliberately undefined in source)"
    ]
   },
-  "notes": "Content per decisions.json W-17. Multi-step wizards compose this vessel + progress readout (sibling proposal) + action pills; no wizard-specific motion is implied."
+  "notes": "Content per decisions.json W-17. Multi-step wizards compose this vessel + progress readout (sibling proposal) + action pills; no wizard-specific motion is implied.",
+  "transition": {
+   "policy": "when_touched",
+   "scope": "overlays",
+   "rationale": "Owner-set 2026-10-11: existing overlay vessels remain acceptable until the overlay area is next modified.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "component/card",

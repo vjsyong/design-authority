@@ -35,7 +35,13 @@
    "statistic",
    "streak",
    "counter"
-  ]
+  ],
+  "transition": {
+   "policy": "prospective",
+   "scope": "data readouts",
+   "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "token-set/type-scale",

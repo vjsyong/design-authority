@@ -29,7 +29,13 @@
       "no toasts"
      ]
     },
-    "note": "Compile of decision D-13 (docs/synthesis/dominion/decisions.json) \u2014 no new design. 'Toast' deliberately gains no vocabulary: D-13 declines toasts; the notice is the sanctioned substitute, so toast requests stay visible as deviations."
+    "note": "Compile of decision D-13 (docs/synthesis/dominion/decisions.json) \u2014 no new design. 'Toast' deliberately gains no vocabulary: D-13 declines toasts; the notice is the sanctioned substitute, so toast requests stay visible as deviations.",
+    "transition": {
+     "policy": "prospective",
+     "scope": "notices",
+     "rationale": "Owner-set 2026-10-11: adopt going forward; no migration obligation for existing builds.",
+     "exceptions": "allowed_with_review"
+    }
    }
   ]
  },

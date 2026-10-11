@@ -308,6 +308,12 @@
           "words carry meaning; structure carries emphasis"
         ]
       },
+      "transition": {
+        "policy": "review",
+        "scope": "status labels",
+        "rationale": "Owner-set 2026-10-11: each affected build's status labels are reviewed on the record before adoption.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-522030 (adjudicated 2026-10-07)"
@@ -354,6 +360,12 @@
           "status labels inline (component/status)"
         ]
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "ledgers",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-522030 (adjudicated 2026-10-07)"
@@ -399,6 +411,12 @@
           "in-flow and dismissible",
           "no toasts"
         ]
+      },
+      "transition": {
+        "policy": "prospective",
+        "scope": "notices",
+        "rationale": "Owner-set 2026-10-11: adopt going forward; no migration obligation for existing builds.",
+        "exceptions": "allowed_with_review"
       },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
@@ -455,6 +473,12 @@
           ".chart",
           ".chart i"
         ]
+      },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "charts",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+        "exceptions": "allowed_with_review"
       },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",

@@ -39,7 +39,13 @@
       ".chart i"
      ]
     },
-    "note": "New pattern shaped only from attested primitives: 2px rules, fills, the grey ramp and type rhythm (D-02/D-05/D-06/D-15 doctrine). No new primitives; no hue; static."
+    "note": "New pattern shaped only from attested primitives: 2px rules, fills, the grey ramp and type rhythm (D-02/D-05/D-06/D-15 doctrine). No new primitives; no hue; static.",
+    "transition": {
+     "policy": "when_touched",
+     "scope": "charts",
+     "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+     "exceptions": "allowed_with_review"
+    }
    }
   ]
  },

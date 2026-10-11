@@ -375,6 +375,12 @@
           "data chart"
         ]
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "data charts",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "marber.economist.com + economist.com live product",
         "path": "Reviewer-accepted proposal prop/20261007-151947-916eda (adjudicated 2026-10-07)"
@@ -428,6 +434,12 @@
           "statistic"
         ]
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "data readouts",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "marber.economist.com + economist.com live product",
         "path": "Reviewer-accepted proposal prop/20261007-151948-91ef4b (adjudicated 2026-10-07)"
@@ -475,6 +487,12 @@
           "category tag",
           "chip"
         ]
+      },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "tags",
+        "rationale": "Owner-set 2026-10-11: existing tag treatments remain acceptable until the tag area is next modified.",
+        "exceptions": "allowed_with_review"
       },
       "source": {
         "repo": "marber.economist.com + economist.com live product",

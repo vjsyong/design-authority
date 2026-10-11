@@ -308,6 +308,12 @@
           "words carry meaning; structure carries emphasis"
         ]
       },
+      "transition": {
+        "policy": "review",
+        "scope": "status labels",
+        "rationale": "Owner-set 2026-10-11: each affected build's status labels are reviewed on the record before adoption.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-522030 (adjudicated 2026-10-07)"
@@ -331,13 +337,7 @@
       "notes": "Compile of decision D-10 (docs/synthesis/dominion/decisions.json) — no new design.",
       "resolves_cases": [
         "gap/20261007-150031-f5a96f"
-      ],
-      "transition": {
-        "policy": "review",
-        "scope": "status labels",
-        "rationale": "Owner-set 2026-10-11: each affected build's status labels are reviewed on the record before adoption.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "component/ledger",
@@ -363,6 +363,12 @@
           "status labels inline (component/status)"
         ]
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "ledgers",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-522030 (adjudicated 2026-10-07)"
@@ -386,13 +392,7 @@
       "notes": "Compile of decision D-17 (docs/synthesis/dominion/decisions.json) — no new design.",
       "resolves_cases": [
         "gap/20261007-150031-f5a96f"
-      ],
-      "transition": {
-        "policy": "prospective",
-        "scope": "ledgers",
-        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "component/notice",
@@ -418,6 +418,12 @@
           "no toasts"
         ]
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "notices",
+        "rationale": "Owner-set 2026-10-11: adopt going forward; no migration obligation for existing builds.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-72cc3e (adjudicated 2026-10-07)"
@@ -441,13 +447,7 @@
       "notes": "Compile of decision D-13 (docs/synthesis/dominion/decisions.json) — no new design. 'Toast' deliberately gains no vocabulary: D-13 declines toasts; the notice is the sanctioned substitute, so toast requests stay visible as deviations.",
       "resolves_cases": [
         "gap/20261007-150031-13d338"
-      ],
-      "transition": {
-        "policy": "prospective",
-        "scope": "notices",
-        "rationale": "Owner-set 2026-10-11: adopt going forward; no migration obligation for existing builds.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/plain-chart",
@@ -483,6 +483,12 @@
           ".chart i"
         ]
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "charts",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "FIP design standard + canada.ca live web layer",
         "path": "Reviewer-accepted proposal prop/20261007-151923-bd08f2 (adjudicated 2026-10-07)"
@@ -507,13 +513,7 @@
       "notes": "New pattern shaped only from attested primitives: 2px rules, fills, the grey ramp and type rhythm (D-02/D-05/D-06/D-15 doctrine). No new primitives; no hue; static.",
       "resolves_cases": [
         "gap/20261007-150030-0a71f9"
-      ],
-      "transition": {
-        "policy": "when_touched",
-        "scope": "charts",
-        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     }
   ]
 }

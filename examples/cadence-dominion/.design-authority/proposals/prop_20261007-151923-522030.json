@@ -29,7 +29,13 @@
       "words carry meaning; structure carries emphasis"
      ]
     },
-    "note": "Compile of decision D-10 (docs/synthesis/dominion/decisions.json) \u2014 no new design."
+    "note": "Compile of decision D-10 (docs/synthesis/dominion/decisions.json) \u2014 no new design.",
+    "transition": {
+     "policy": "review",
+     "scope": "status labels",
+     "rationale": "Owner-set 2026-10-11: each affected build's status labels are reviewed on the record before adoption.",
+     "exceptions": "allowed_with_review"
+    }
    },
    {
     "id": "component/ledger",
@@ -53,7 +59,13 @@
       "status labels inline (component/status)"
      ]
     },
-    "note": "Compile of decision D-17 (docs/synthesis/dominion/decisions.json) \u2014 no new design."
+    "note": "Compile of decision D-17 (docs/synthesis/dominion/decisions.json) \u2014 no new design.",
+    "transition": {
+     "policy": "prospective",
+     "scope": "ledgers",
+     "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+     "exceptions": "allowed_with_review"
+    }
    }
   ]
  },

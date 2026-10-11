@@ -36,7 +36,14 @@
     "no undo/recovery UI is canonical - not evidenced (W-16)"
    ]
   },
-  "notes": "Content per decisions.json W-16 (accepted). Undo deliberately excluded (no source evidence)."
+  "notes": "Content per decisions.json W-16 (accepted). Undo deliberately excluded (no source evidence).",
+  "transition": {
+   "policy": "required",
+   "by": "0.3.0",
+   "scope": "destructive flows",
+   "rationale": "Owner-set 2026-10-11: existing confirm flows carry a migration obligation, due by 0.3.0.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "component/card",

@@ -1,6 +1,6 @@
 {
   "version": "0.1",
-  "pack_version": "wink 0.2.0",
+  "pack_version": "wink 0.3.0-rc1",
   "cases": [
     {
       "problem": "add a primary button to the page",

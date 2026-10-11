@@ -375,6 +375,12 @@
           "data chart"
         ]
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "data charts",
+        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "marber.economist.com + economist.com live product",
         "path": "Reviewer-accepted proposal prop/20261007-151947-916eda (adjudicated 2026-10-07)"
@@ -397,13 +403,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145916-1ae98e"
-      ],
-      "transition": {
-        "policy": "when_touched",
-        "scope": "data charts",
-        "rationale": "Owner-set 2026-10-11: existing chart treatments remain acceptable until the charts area is next modified.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "pattern/data-readouts",
@@ -437,6 +437,12 @@
           "statistic"
         ]
       },
+      "transition": {
+        "policy": "prospective",
+        "scope": "data readouts",
+        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "marber.economist.com + economist.com live product",
         "path": "Reviewer-accepted proposal prop/20261007-151948-91ef4b (adjudicated 2026-10-07)"
@@ -459,13 +465,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145916-878f7a"
-      ],
-      "transition": {
-        "policy": "prospective",
-        "scope": "data readouts",
-        "rationale": "Owner-set 2026-10-11: optional treatment; new implementations adopt it, existing ones are untouched.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     },
     {
       "id": "component/tag",
@@ -494,6 +494,12 @@
           "chip"
         ]
       },
+      "transition": {
+        "policy": "when_touched",
+        "scope": "tags",
+        "rationale": "Owner-set 2026-10-11: existing tag treatments remain acceptable until the tag area is next modified.",
+        "exceptions": "allowed_with_review"
+      },
       "source": {
         "repo": "marber.economist.com + economist.com live product",
         "path": "Reviewer-accepted proposal prop/20261007-151948-992c62 (adjudicated 2026-10-07)"
@@ -516,13 +522,7 @@
       ],
       "resolves_cases": [
         "gap/20261007-145916-d4706a"
-      ],
-      "transition": {
-        "policy": "when_touched",
-        "scope": "tags",
-        "rationale": "Owner-set 2026-10-11: existing tag treatments remain acceptable until the tag area is next modified.",
-        "exceptions": "allowed_with_review"
-      }
+      ]
     }
   ]
 }

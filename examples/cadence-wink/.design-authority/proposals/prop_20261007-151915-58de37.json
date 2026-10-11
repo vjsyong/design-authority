@@ -31,7 +31,14 @@
     "no animation beyond the defined transitions"
    ]
   },
-  "notes": "Content per decisions.json W-18 (accepted). Ring/track shape is an application choice; the spinner and motion stay outside canon."
+  "notes": "Content per decisions.json W-18 (accepted). Ring/track shape is an application choice; the spinner and motion stay outside canon.",
+  "transition": {
+   "policy": "required",
+   "by": "0.3.0",
+   "scope": "progress readouts",
+   "rationale": "Owner-set 2026-10-11: existing progress treatments carry a migration obligation, due by 0.3.0.",
+   "exceptions": "allowed_with_review"
+  }
  },
  "depends_on": [
   "token-set/colour",
