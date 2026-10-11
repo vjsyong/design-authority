@@ -473,3 +473,67 @@ Remaining owner actions: the real transition policies for the twelve records
 and the disposition of the one `review` row. Remaining integration: Case
 records (P0.2), formal receipts (P1.1), the consolidated interface (P1.2+).
 
+## D-033 · Owner rulings on the decision page: exceptions ratified, L-12 endorsed, dominion platform-controls revised (2026-10-11)
+
+The owner ruled all six exception-backed normative records on the
+consolidated decision page (`workspaces/owner-decisions-0.6`, tailnet
+:9120), all marked for the next release:
+
+- Five authored exceptions ratified: wink `fallback/platform-controls` and
+  `fallback/light-only`; leader `fallback/platform-controls`; leader
+  `fallback/ruled-panel` (L-19 stays undefined by the owner's explicit
+  call). Each dossier exception now carries the owner ruling in its
+  `approval` field.
+- Leader `fallback/selection`: the owner endorsed **L-12 into the approved
+  ledger** (chosen over conversion to a case). L-12 joins the approved list
+  and the record moves to the decision route (`compiled_from: [L-12]`);
+  exception count across the three authorities drops 6 -> 5.
+- Dominion `fallback/platform-controls`: **rejected as worded**; the owner
+  directed that uncovered controls be themed in the system's own design
+  language rather than plain platform defaults. The revision is applied
+  (soft border, radius 4, blue glow focus; native semantics kept; mark and
+  report), approved as owner-directed, for the next release.
+
+Landed through the unified compiler: dossiers updated, all three
+authorities recompiled (synthesis + codify) and deployed; parity baselines
+refreshed with the verified delta (`fallbacks.json` per source,
+field-by-field before the refresh); manifest entrypoints kept aligned with
+the deployed contract (`precedents`/`candidates`, surfaced by the triage
+template gate); the codify sources regained the deployed resolution aliases
+and the derived golden cases so the re-emission reproduces the deployed
+packs (verified field-by-field); the invariants gate pins 5 exception-backed
+records of 59; the independent verifier was re-run for the record-hash
+rebind (verdict pass, 9/9 checks).
+
+## D-034 · Real transition policies set; the review row disposed; the sweep regenerated (2026-10-11)
+
+Owner-set policies for the twelve cadence records (replacing the simulated
+fixture mix): `required` by 0.3.0 for wink `pattern/destructive-confirm`
+and `pattern/progress`; `review` for dominion `component/status`;
+`prospective` for wink `pattern/empty-state`, leader
+`pattern/data-readouts`, dominion `component/ledger` and
+`component/notice`; `when_touched` for the remaining five. The `required`
+deadline defaults to the next minor (0.3.0) - say the word to change it.
+
+The single review row (cadence3-wink · `pattern/inline-notice`) is disposed
+as pending work: adopt at the next revision of cadence3-wink; the review
+seat is the owner; the finding stays as the feed for the reserved Case
+events (P0.2).
+
+The reconcile fixtures were rebuilt as the live packs + recorded links +
+the real policies, and the sweep regenerated: **36 findings = 10 conforms ·
+18 grandfathered · 4 rectify · 4 review** with 4 `scheduled` obligations
+(pre-ruling simulated mix: 10 · 22 · 3 · 1, 3 obligations). The defaults
+run is unchanged (10 + 26 review). Pins updated; reconcile regression 26/26;
+full check suite green.
+
+## D-035 · Triage proposal rulings: three advance to merge; theme profiles rejected (2026-10-11)
+
+- **Theme profiles: rejected.** Forks remain the answer; brand stays
+  Geist-first. No theme-file mechanism; the proposal closes with the
+  owner's direction recorded.
+- **Verification levels, density and borders, provenance contract: advance
+  to merge** through the Triage repository's normal review route; the
+  Level-4 experiment is scheduled after the 0.6 line.
+- The 0.6 scope card was confirmed unchanged.
+

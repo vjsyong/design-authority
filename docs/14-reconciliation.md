@@ -302,6 +302,9 @@ case events. The reconcile output is a plan; it never edits an application.
   norms must carry an explicit policy (compiler-enforced).
 - **Receipt granularity:** one immutable receipt per published build, with a
   pointer to the latest (section 5).
+- **Real transition policies:** set for the twelve cadence records via the
+  owner's decision page (D-034); `required` names its trigger (`by 0.3.0`
+  where chosen). The fixtures carry them and the pinned sweep reflects them.
 
 **Remaining details (resolvable at implementation time):**
 
