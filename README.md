@@ -53,7 +53,7 @@ Install the Triage pack (a modern minimalist design kit designed for Design Auth
 
 2. Prove it resolves:
    python3 ~/design-authority/tools/da.py --pack ~/authority-triage overview
-   Expected: triage 0.12.1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed.
+   Expected: triage 0.12.3-rc1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed.
    python3 ~/design-authority/tools/da.py --pack ~/authority-triage resolve "a primary button"
    Expected: OUTCOME: RESOLVED citing component/btn.
    If either fails, stop and paste the output to me.
@@ -89,7 +89,7 @@ cd design-authority
 python3 tools/da.py --pack ~/authority-triage overview
 ```
 
-Expected (with the Triage pack from the block above): triage 0.12.1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed. Then:
+Expected (with the Triage pack from the block above): triage 0.12.3-rc1, 80 artifacts (component=56, guideline=10, pattern=7, token-set=7), and the resolution ladder printed. Then:
 
 ```bash
 python3 tools/da.py --pack ~/authority-triage resolve "a primary button"
@@ -206,7 +206,7 @@ Both are plain `SKILL.md` files an agent loads directly. The full working record
 |---|-----------|--------|-------|
 | 1 | Frozen specification, 0.5.0 (tag `v0.5.0`) | frozen | [`docs/spec/`](docs/spec/00-index.md) + [freeze manifest](docs/spec/freeze-0.5.0.sha256) |
 | 2 | Kit-agnostic kernel, CLI and MCP server | stable | `kernel/`, `tools/da.py`, `tools/da-mcp.py` |
-| 3 | Reference authority: Triage 0.12.1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 54/54 | [vjsyong/authority-triage](https://github.com/vjsyong/authority-triage) |
+| 3 | Reference authority: Triage 0.12.3-rc1 | 80 artifacts · 19 rules · coverage 134/134 · goldens 58/58 | [vjsyong/authority-triage](https://github.com/vjsyong/authority-triage) |
 | 4 | A/B/C authority benchmark | complete | `docs/08`–`docs/11`, `benchmark/` |
 | 5 | Authority-evolution loop | complete | `docs/evolution/` |
 | 6 | Second-authority portability spike | complete | `docs/portability/` |

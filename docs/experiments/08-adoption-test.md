@@ -57,8 +57,8 @@ upstream).
 
 ## Findings and fixes
 
-- **F-1 (fixed same day): the pack's lint validator was unusable for
-  consumers.** `validators.json` ran the lint from the design-system
+- **F-1 (fixed same day, cut as triage `0.12.3-rc1`):** the pack's lint
+  validator was unusable for consumers. `validators.json` ran the lint from the design-system
   checkout (`{snapshot}`), which is not public, so `da validate` errored
   out for every consumer while printing a vacuous score. Fix: the pack now
   ships a **self-contained lint bundle** (`lint/`, `spec/rules.json`,
