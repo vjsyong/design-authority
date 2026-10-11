@@ -159,7 +159,7 @@ Owner priorities, kept as given, with the gate for each phase.
 
 | Phase | Change | Gate |
 |---|---|---|
-| **P0.1** | One generic compile path replacing source-specific compilation and proposal application | **DONE** (section 5): parity fixtures byte-compare both mechanisms; check.sh green |
+| **P0.1** | One generic compile path replacing source-specific compilation and proposal application | **DONE** (section 5, two passes): parity fixtures byte-compare both mechanisms; shared emission invariants + governance gate; check.sh green |
 | **P0.2** | Canonical Case model with compatibility adapters | Existing surfaces unchanged; dispute replay + goldens + kernel tests green; freeze 0.6.0 only after a stability window |
 | **P0.3** | Documentation drift folded into the next freeze (`00-index` conformance text, `04-interfaces` paths); VERSION aligned now | Freeze ritual when 0.6.0 lands |
 | **P1.1** | Batch planning: `da plan` producing a version-pinned project contract (`.design-authority/authority.lock.json`, `design-plan.json`, `cases/`, `verification/`) | Plan validation = every cited norm exists; resolve-only workflow unaffected |
@@ -219,6 +219,62 @@ What P0.1 deliberately did **not** change: the kernel (frozen), the triage
 and evolution builders (frozen / spec-first, converge in P1.3), live authority
 repos (regeneration only happens when explicitly run), and any pack content.
 
+### P0.1b — shared emission invariants and publication hardening (review-driven, same day)
+
+The owner's code review of P0.1 found the unification stopped at the entry
+points (synthesis built whole packs; codify built records) and that
+non-artifact records could compile with empty provenance
+(`"decisions": []`). Parity had proved "no accidental drift", not "the
+output satisfies the governance invariants". Fixed in a second pass:
+
+- **One emission function through both modes.** `_finalize_record` is now
+  the only path a record takes to disk, in either mode; it attaches
+  provenance uniformly and validates record type, required fields and
+  provenance. `validate_record` and `validate_provenance` are public, so the
+  invariants gate and the compiler cannot drift apart.
+- **Provenance is universal.** Every normative record carries either
+  `compiled_from` (approved decisions) or an explicit `exception` block
+  (reason + basis + approval status). Empty provenance is a hard error; the
+  old silent `"decisions": []` no longer compiles. The pass traced 20
+  non-artifact records to ledger decisions (resolving the existing citation
+  text in rules and prohibitions) and moved 6 to visible exceptions:
+  - wink `fallback/platform-controls`, `fallback/light-only`
+  - leader `fallback/platform-controls`, `fallback/selection`, `fallback/ruled-panel`
+  - dominion `fallback/platform-controls`
+  (all `approval: pending`; see open question 7.)
+- **A real finding, caught by the new enforcement.** Leader
+  `fallback/selection` restates decision `L-12`, which the Gate-2 review
+  left undefined, yet the historical pack shipped it anyway; it is now
+  exception-backed with that history recorded (endorse L-12 into the ledger,
+  or convert the fallback into a case). Dominion
+  `prohibit/imagery-pictograms` leaned on the similarly-undefined `D-16` and
+  now cites `D-22` alone.
+- **Publication is staged and validated.** Builds happen in memory, land in
+  a staging directory, load through the runtime's own pack loader, and only
+  then are the files atomically replaced (one `os.replace` per file). A
+  validation failure publishes nothing.
+- **Conflicting codification is refused.** An identical resubmission stays
+  a silent no-op (idempotent); a resubmission whose definition differs from
+  the published record for the same id raises an explicit conflict naming
+  the id, the proposal and the differing fields - amend through a case, not
+  a second submission. Nothing is written on conflict.
+- **New gate** `tools/compile_invariants.py` (wired into `check.sh`):
+  provenance coverage and trace validity against the approved ledger,
+  record shape via the engine's own validator, reference integrity
+  (prohibition -> rule; recipe ingredients), a synthetic brand-new authority
+  compiled with zero engine edits (the review's acceptance test 1), refusal
+  publishes nothing, and identical/conflicting re-codification behaviour
+  (acceptance test 2 is the trace rule itself; test 3, one Case interface,
+  is P0.2).
+
+Evidence: compile baselines intentionally refreshed with exactly the
+provenance delta (verified field-by-field before the refresh: records change
+only by `source` + `compiled_from`, or `source` + `exception`; artifacts,
+goldens, scoring and manifests byte-identical; P0.1-era baselines remain in
+git history at `3589d62`); `compile parity: OK (3/3 + 3/3)`; `compile
+invariants: 146 passed, 0 failed (59 records: 53 decision-traced, 6
+exception-backed)`; full `check.sh` green.
+
 ## 6 · Open questions for the owner
 
 1. **Dossier home.** The definitions are reviewed data now, but still live
@@ -248,22 +304,29 @@ repos (regeneration only happens when explicitly run), and any pack content.
    successive product generations*, not that first-pass visual quality
    improves because of the governance layer. Concept-site and README copy
    audited against that distinction in P2.2.
+7. **Ratify the six exception-backed records** (listed in section 5). Three
+   are the same protocol-authored platform-controls fallback; the leader two
+   carry findings (`L-12` left undefined; the ruled-panel premise vs the
+   never-endorsed dialog decision `L-19`). Ratify them as authored policy,
+   or supply ledger decisions to map them.
 
 ## 7 · Gates applied to every change
 
 Per the review's closing requirement, each phase runs the existing suites
 before replacing anything old: `tools/check.sh` (pack drift, coverage sweep,
-kernel tests, goldens, compile parity, precedent probe, dispute replay, MCP
-smoke, concept-site gate, semantic self-test), plus phase-specific fixtures
-(evolution convergence battery when records or curation change; the
-verification contract matrix when the verify engine moves). No behaviour
-change ships without a fixture that would catch its reversal.
+kernel tests, goldens, compile parity, compile invariants, precedent probe,
+dispute replay, MCP smoke, concept-site gate, semantic self-test), plus
+phase-specific fixtures (evolution convergence battery when records or
+curation change; the verification contract matrix when the verify engine
+moves). No behaviour change ships without a fixture that would catch its
+reversal.
 
 ## References
 
-- Review this plan responds to: owner memo, 2026-10-11 (recorded as D-027 in
-  `docs/02-decisions.md`).
+- Reviews this plan responds to: owner memo 2026-10-11 (D-027); owner code
+  review of P0.1, 2026-10-11 (D-028, section 5 P0.1b).
 - P0.1 code: `tools/da_compile.py`, `tools/compile_parity.py`,
-  `docs/synthesis/data/parity/`, dossiers under `docs/synthesis/<src>/compile.json`.
+  `tools/compile_invariants.py`, `docs/synthesis/data/parity/`, dossiers
+  under `docs/synthesis/<src>/compile.json`.
 - Frozen surface and change control: `docs/spec/05-governance-and-freeze.md`.
 - Remaining consolidation items: `authorities/README.md` (Phase 2).

@@ -291,3 +291,48 @@ OK. The kernel and the frozen 0.5 surface are untouched; the next stages
 (Case model P0.2, drift fixes P0.3, plan/verify P1, source separation P1.3,
 `da init` P2) are staged in `docs/13-simplification.md`.
 
+## D-028 · Compiler governance invariants; P0.1b — shared emission and provenance enforcement (2026-10-11)
+
+Owner code review of P0.1: the unification stopped at the entry points
+(synthesis builds whole packs while codify builds records) and non-artifact
+records could compile with empty provenance (`"decisions": []`). Parity had
+proved "no accidental drift", not "the output satisfies the governance
+invariants". Directive adopted: governance is enforced by the compiler
+itself, not by convention; declare the invariant, then let the gate test it.
+
+Landed. ONE emission function (`_finalize_record`) now serves both modes,
+attaching provenance uniformly and validating record type, required fields
+and provenance; `validate_record` / `validate_provenance` are public so the
+invariants gate and the compiler cannot drift apart. Every normative record
+carries `compiled_from` approved decisions or an explicit `exception` block
+(reason + basis + approval); empty provenance is a hard error. The pass
+traced 20 non-artifact records to ledger decisions (resolving the citation
+text already present in rules and prohibitions) and moved 6 to visible
+exceptions, all `approval: pending` owner ratification: the three
+protocol-authored platform-controls fallbacks, wink's light-only, leader's
+ruled-panel, and leader's selection. The enforcement caught a real finding:
+leader `fallback/selection` restates decision L-12, which the Gate-2 review
+LEFT UNDEFINED, yet the historical pack shipped it anyway - now
+exception-backed with that history recorded (endorse L-12 into the ledger,
+or convert the fallback into a case); dominion `prohibit/imagery-pictograms`
+leaned on the likewise-undefined D-16 and now cites D-22 alone. Publication
+is staged and validated (memory -> staging dir -> runtime pack-loader
+validation -> per-file atomic `os.replace`; a failed validation publishes
+nothing). Codify refuses a resubmission whose definition differs from the
+published record for the same id (explicit conflict naming id, proposal and
+differing fields - amend through a case) while identical resubmissions stay
+silent no-ops. New gate `tools/compile_invariants.py` (wired into
+`check.sh`): provenance coverage, trace validity, record shape via the
+engine's own validator, reference integrity, a synthetic brand-new
+authority compiled with zero engine edits, refusal-publishes-nothing, and
+identical/conflicting re-codification. Compile parity baselines were
+intentionally refreshed with exactly the provenance delta (verified
+field-by-field before the refresh; artifacts, goldens, scoring and
+manifests byte-identical; the P0.1-era baselines remain in history at
+`3589d62`). Conformance at this change: compile parity OK (3/3 + 3/3) ·
+compile invariants 146/146 (59 records: 53 decision-traced, 6
+exception-backed) · kernel 34/34 · coverage sweep 134/134 · triage goldens
+58/58 · synthesis goldens 18/18 · 14/14 · 17/17 · precedent probe 31/31 ·
+dispute replay 4 standing (expected) · MCP smoke 25/25 · concept-site gate
+PASS · semantic self-test OK. Kernel and the frozen surface untouched.
+
