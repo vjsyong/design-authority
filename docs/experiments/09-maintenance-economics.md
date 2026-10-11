@@ -95,3 +95,32 @@ with the same visual assets and the same verification access.
 
 Frozen: 2026-10-11. Next action on approval of scope: record the feature
 sequence and launch chain 1's first session.
+
+## Run log
+
+### 2026-10-11 · seed + sequence recorded (amendment 1)
+
+- **Seed:** the sealed chain-C line's final state (`~/x05/seal/h4c`, the
+  bookmarks app after its 7th session, import wizard complete). Forked to
+  `~/p4-maint/seed` and **byte-verified 130/130 files against the h4c seal
+  manifest**. Both conditions start from this identical fork.
+- **Area:** `~/p4-maint/` (outside the repo, x05 convention). The sealed
+  x05 arm is untouched.
+- **Feature sequence (recorded order; a=ordinary, b=touches a decided area,
+  c=previously unresolved, d=canonical-rule change with transition policy):**
+
+| Handoff | (a) ordinary | (b) decided area | (c) unresolved | (d) canon change (DA: policy + reconcile / baseline: release notes) |
+|---|---|---|---|---|
+| H1 | collections: named groups + filter row | import "merge with existing" mode in the wizard's validation step | undo after bulk delete | `pattern/empty-state` prospective → required for list surfaces |
+| H2 | full-text search (title/URL/tags) | multi-select tag picker (revisits H1 collections) | share/export a single collection | dialog vessel when_touched → required for new overlays |
+| H3 | shortcuts: pin/unpin commands | search operators (tag:…) revisit H2 | bulk tag rename | focus-ring rule tightened for dense rows |
+| H4 | pinned favourites section | orphaned collections on delete (revisit H1) | import-conflict resolution (edits vs imported) | final policy sweep + full reconcile |
+
+- **Conditions:** DA = enforced pack + protocol rev2 (validators declared,
+  validate-as-last-step, repair-or-file); baseline = the static-contract
+  line (versioned docs, conventional handoff notes, equivalent verification
+  access — the x05 B-line shape). Budgets: 2700 s / 20 M tokens per session.
+- **Runner:** to be built at `docs/experiments/tools/p4_*` adapting the x05
+  stack (session runner with `--from-seal` handoff chaining, schedule, seal,
+  leakscan); rehearsal required before any chain launches. Next action:
+  build + rehearse the runner, then launch chain 1's first session.
