@@ -158,12 +158,14 @@ sequence and launch chain 1's first session.
 
 - All 8 sessions completed (`ok`), all seals verified, zero flagged leakage
   attempts, 12:21–13:53. Results: `docs/experiments/10-maintenance-economics-results.md`.
-- Headline against the frozen gates: unauthorized drift **met strictly**
-  (DA flat 0 findings / 100 score at every handoff; baseline decays
-  98→96→94 as duplicate treatments accumulate); recurrence **met under the
-  proxy reading** (0 true refilings; baseline invisible-by-construction);
-  migration **met** (explicit DA receipts + equal code outcomes, 0 human
-  interventions both). Kill criterion not hit — the conditions are
-  distinguishable.
+- Headline (owner-reviewed framing): *Across one controlled four-handoff
+  sequence, Design Authority maintained zero validator findings while the
+  static-contract baseline accumulated three, at the cost of approximately
+  21% more tokens and 16% more wall time.* Validator conformance = strong
+  within this run; recurrence = suggestive (not directly comparable);
+  migration = auditability demonstrated, no correctness difference; kill
+  criterion not hit.
 - Cost of governance at this scale: +21% tokens, +37% tool calls, ≈+16%
-  wall, against a monotone consistency decay in the baseline.
+  wall. Follow-up recorded: run 1 bundles memory and verification; the
+  isolating experiment is drafted at
+  `docs/experiments/11-memory-vs-verification.md`.

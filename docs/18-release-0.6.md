@@ -43,12 +43,15 @@ verification contract. The build it produced was independently verified
 **P4 · Longitudinal comparative experiment — run and read out.** The
 pre-registration (docs/09) froze the design; run 1 executed 8 sandboxed
 sessions (2 conditions × 4 handoffs) over the sealed bookmarks line. Result
-(`docs/experiments/10`): governed precedent held a flat 100/100 against the
-constant validator while the equally-good static-contract baseline decayed
-98→96→94 across handoffs; migration handling was receipt-backed; zero human
-interventions both conditions. The measurable cost of governance at this
-scale: +21% tokens, +37% tool calls, ≈+16% wall. Primary gates met; kill
-criterion not hit.
+(`docs/experiments/10`, owner-reviewed): validator conformance separated
+strongly within the run (DA flat 0 findings / 100 vs baseline 98→96→94);
+the recurrence reading is suggestive, not directly comparable (the baseline
+has no case store); migration accountability was demonstrated but migration
+correctness was not superior; 0 human interventions both. Cost of the
+complete workflow at this scale: +21% tokens, +37% tool calls, ≈+16% wall.
+Kill criterion not hit. The review's follow-up is recorded: run 1 does not
+isolate institutional memory from continuous verification — see the draft
+pre-registration `docs/experiments/11-memory-vs-verification.md`.
 
 **P5 · Repository consolidation and release — this document.** One package,
 generated documentation, compatibility gates, stable specification: each is

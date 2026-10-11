@@ -50,10 +50,12 @@ including one self-caught false lexical match (da-h4 audited its own
 `pattern/empty-state` hit before trusting it).
 
 The baseline has no record store (by design — conventional notes only), so
-its recurrence is invisible-by-construction and this comparison is proxy:
-the baseline's repeated re-derivation surfaces as the accumulating
-duplicate treatments in measure 1, not as filed needs. **Gate: recurrence
-DA < baseline — met under the proxy reading, with this caveat recorded.**
+its recurrence is invisible-by-construction and this comparison is
+suggestive only: the baseline's repeated re-derivation surfaces as the
+accumulating duplicate treatments in measure 1, not as filed needs. On the
+owner review's reading, **this claim is not directly comparable across
+conditions**; the DA-side evidence (0 true refilings) stands alone as
+suggestive.
 
 ## 3 · Migration correctness (secondary)
 
@@ -69,8 +71,12 @@ its reconcile is recorded (`run/da-h4/reconcile*.md`).
   reflects them, but no obligation framing or coverage claim exists
   (implicit adherence).
 
-**Gate: DA >= baseline — met (receipt-backed vs implicit), with zero human
-interventions in either condition.**
+**No independent correctness difference was observed** — both conditions
+implemented the changes, both with zero human interventions. The
+demonstrable difference is **auditability** (receipt-backed vs implicit),
+valuable in itself and not scored as superior implementation correctness.
+The recurrence comparison is fixed for future runs by the uniform
+decision-log convention in `docs/experiments/11`.
 
 ## 4 · Human review interventions
 
@@ -90,21 +96,44 @@ vs base Σ 405 — **DA ≈ +37%**. The overhead is the governance itself: the
 DA chain made 1,467 audited authority calls across the run (317→429 per
 session, rising as the record grew).
 
-## Verdict against the pre-registered gates
+## Verdict (revised per owner review, 2026-10-11)
 
-- **Unauthorized drift: met strictly** (flat 100 vs monotone decay to 94).
-- **Recurrence of resolved gaps: met under the proxy reading** (0 true
-  refilings vs an unrecordable baseline — caveat above).
-- **Migration correctness: met** (explicit receipts + equal code outcomes).
-- **Kill criterion: not hit** — the baseline did show accumulating cost, so
+**Headline:** *Across one controlled four-handoff sequence, Design Authority
+maintained zero validator findings while the static-contract baseline
+accumulated three, at the cost of approximately 21% more tokens and 16% more
+wall time.*
+
+Three claims, at three levels of confidence:
+
+| Claim | Evidence | Assessment |
+|---|---|---|
+| DA maintained better validator conformance | 0 findings throughout vs 1, 1, 2, 3 | **Strong within this run** |
+| DA reduced repeated design decisions | No repeated decided gaps; baseline developed duplicate treatments | **Suggestive, not directly comparable** (the baseline has no case store, so repeated gap reports cannot be counted in both conditions) |
+| DA produced more explicit migration accountability | Recorded receipts vs implicit adherence | **Demonstrated — but migration correctness was not superior** (both conditions implemented the changes; no independent correctness difference). Auditability is the difference, and it is not scored as superior implementation correctness. |
+
+- **Unauthorized drift:** the pre-registered primary gate — met, strongly
+  (above). This is the result the run establishes.
+- **Recurrence of resolved gaps:** the pre-registered gate as worded cannot be
+  satisfied from this run's data — the baseline's recurrence is
+  invisible-by-construction. Read the duplicate-treatment accumulation in
+  measure 1 as its only cross-comparable trace, and treat the DA-chain
+  evidence (0 true refilings) as suggestive.
+- **Migration handling:** no independent correctness difference; the
+  demonstrable difference is auditability.
+- **Human interventions:** 0 in both conditions — no discrimination.
+- **Kill criterion:** not hit — the baseline did show accumulating cost, so
   the conditions are distinguishable at this scale.
 
-Run 1 therefore answers the memo's question positively at this scale: on a
-4-handoff continuation of an existing app, governed precedent bought flat
-consistency and a receipt-backed audit trail for ≈ +21% tokens, +37% tool
-calls and ≈ +16% wall (~9 M tokens and ~7 minutes of extra compute against
-a visible, monotone consistency decay in the strong static-contract
-baseline).
+## What this does and does not establish
+
+Run 1 demonstrates that **the complete Design Authority workflow** reduces
+drift against a strong static-contract baseline on a 4-handoff continuation.
+It does **not** isolate how much of the improvement comes from institutional
+memory (precedent, records, resolve-before-deciding) versus continuous
+verification (the validator, validate-as-last-step, advisories) — run 1
+bundled both. Separating them is the next experiment:
+`docs/experiments/11-memory-vs-verification.md` (draft pre-registration,
+freeze on owner go).
 
 ## Limits (recorded per the pre-registration)
 
