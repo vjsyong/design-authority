@@ -1,4 +1,4 @@
-# 09 · Maintenance economics of governed precedent — experiment design (draft pre-registration)
+# 09 · Maintenance economics of governed precedent — pre-registration (FROZEN 2026-10-11)
 
 Owner memo (da_nextsteps.md section 5): finish the x05 report (done:
 `docs/experiments/05-seed-evolution.md` section 11), then design the next
@@ -7,8 +7,9 @@ experiment around the question:
 **Does persistent governed precedent reduce the cost of maintaining
 consistency across successive independent agents?**
 
-This document is the design. It becomes a pre-registration when frozen and
-committed before any session runs; nothing below has been executed.
+This document is the pre-registration. Frozen 2026-10-11 (owner go via the
+"keep going, all approved" instruction); nothing has been executed. Any
+change after this date is an amendment with its own dated note.
 
 ## Why this question
 
@@ -71,15 +72,26 @@ with the same visual assets and the same verification access.
   (everything already cheap), the experiment cannot distinguish the
   conditions and gets reported as such.
 
-## Open decisions before freezing
+## Decisions (resolved at freeze)
 
-1. Seed application and feature sequence (new app, or a fork of the x05
-   bookmarks line for comparability).
-2. Whether condition C runs with the enforced pack + protocol rev2 from the
-   start (recommended: yes; the sealed x05 arm stays untouched).
-3. Reviewer count and calibration set (the single-reviewer deviation from
-   x05 should not repeat).
-4. Budget and session count.
+1. **Seed application:** the sealed x05 bookmarks line's final state, forked
+   as the common starting point in both conditions (comparability with the
+   program that motivated this experiment). The feature sequence is
+   recorded in this document's run log before chain 1 starts.
+2. **Conditions run enforced:** yes. Condition DA runs with the enforced
+   pack and protocol rev2 from the x05 rebuild (validators declared,
+   validate-as-last-step, repair-or-file); the sealed x05 arm is not
+   modified.
+3. **Reviewers:** two independent reviewers plus a calibration set of five
+   pre-scored screens, closing the x05 single-reviewer deviation; the
+   blind-review harness from the estate is reused with its logged
+   deviations mechanism.
+4. **Budget:** per-session 2700 s / 20 M tokens (x05 parity); run 1 is one
+   chain per condition (4 handoffs each); a second chain per condition may
+   be added with its own dated amendment if run 1's spread is wide.
+5. **Analysis:** paired per handoff, diffs over means (the estate's
+   established preference); primary gates and the kill criterion as stated
+   above; all receipts and transcripts sealed before analysis.
 
-Status: design draft; freeze + pre-registration committed only on the
-owner's go.
+Frozen: 2026-10-11. Next action on approval of scope: record the feature
+sequence and launch chain 1's first session.
