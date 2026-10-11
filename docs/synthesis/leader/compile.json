@@ -657,7 +657,7 @@
   "id": "leader",
   "name": "Leader Interface System",
   "format_version": "0.1",
-  "version": "0.3.0-rc1",
+  "version": "0.3.0",
   "snapshot": {
    "repo": "marber.economist.com + economist.com live product",
    "commit": "n/a - derived from public sources, not a repository",

@@ -1,6 +1,6 @@
 {
  "version": "0.1",
- "pack_version": "dominion 0.3.0-rc1",
+ "pack_version": "dominion 0.3.0",
  "cases": [
   {
    "problem": "add a primary button to the page",
