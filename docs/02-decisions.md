@@ -537,3 +537,25 @@ full check suite green.
   Level-4 experiment is scheduled after the 0.6 line.
 - The 0.6 scope card was confirmed unchanged.
 
+## D-036 · Publication is a journaled transaction (2026-10-11)
+
+The owner's memo flagged one publication detail: the compiler validated a
+staging directory but then replaced individual files through os.replace, so
+the multi-file publication was not atomic as a whole. Addressed:
+
+- Publication now runs under a journal (`.da-publish-journal.json` plus a
+  `.da-publish-backup/` set inside the target): pre-publish bytes are backed
+  up, every replacement stays atomic, and the published pack is re-validated
+  from disk before the journal clears. A failed write rolls back in-run; a
+  hard kill mid-publish leaves the journal, and the very next run rolls the
+  interrupted release back before publishing (recovery) - a torn pack
+  cannot silently serve.
+- The invariants gate grew the publication checks (hard-kill recovery,
+  rollback-to-previous on failure, no debris): 164 checks, 0 failed. A
+  real-data re-publish through the new path is a byte no-op (authority repo
+  status clean, no debris). The triage pack was regenerated for its source
+  snapshot rebind (owner-annotation commit); content unchanged.
+- The remaining window is bounded to the replace loop itself (milliseconds);
+  a fully versioned release layout with a single-reference switch remains
+  the recorded follow-up, stated in the compiler's contract.
+

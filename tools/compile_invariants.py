@@ -240,6 +240,73 @@ def check_recodification(tmp, C):
     C.check(same, "conflicting codification changed the pack")
 
 
+def check_publication(tmp, C):
+    """Publication is a journaled transaction: a hard kill mid-publish leaves
+    a recoverable journal, the next run rolls the interrupted release back
+    before publishing, and a failed replacement rolls back in-run. No torn
+    state and no debris survive."""
+    src = os.path.join(tmp, "specimen", "compile.json")
+    out = os.path.join(tmp, "pub-out")
+    da_compile.compile_synthesis(src, out)  # state A (the specimen pack)
+    snap_a = {f: open(os.path.join(out, f), "rb").read() for f in os.listdir(out)}
+
+    gizmo = load(os.path.join(out, "artifacts.json"))["artifacts"][0]
+    files_b = {
+        "artifacts.json": ({"artifacts": [dict(gizmo, title="Gizmo control mk2")]},
+                           2, False, False),
+        "rules.json": (load(os.path.join(out, "rules.json")), 2, False, False),
+    }
+
+    # 1) hard kill mid-publish: journal + backup left, files untouched
+    crashed = False
+    try:
+        da_compile._stage_and_publish(files_b, out, whole_copy=out, _fault=0)
+    except da_compile._PublishCrash:
+        crashed = True
+    C.check(crashed, "publication fault injection did not crash")
+    C.check(os.path.exists(os.path.join(out, da_compile.PUBLISH_JOURNAL)),
+            "crashed publish left no journal")
+    C.check(all(open(os.path.join(out, f), "rb").read() == b for f, b in snap_a.items()),
+            "crashed publish already changed files")
+
+    # 2) recovery: the next run rolls the interrupted journal back, then publishes
+    da_compile._stage_and_publish(files_b, out, whole_copy=out)
+    C.check(not os.path.exists(os.path.join(out, da_compile.PUBLISH_JOURNAL))
+            and not os.path.exists(os.path.join(out, da_compile.PUBLISH_BACKUP)),
+            "recovery left journal or backup debris")
+    title = load(os.path.join(out, "artifacts.json"))["artifacts"][0]["title"]
+    C.check(title == "Gizmo control mk2",
+            "publish after recovery did not land: %r" % title)
+
+    # 3) in-run failure rolls back to the previous release
+    snap_b = {f: open(os.path.join(out, f), "rb").read() for f in os.listdir(out)}
+    files_c = {
+        "artifacts.json": ({"artifacts": [dict(gizmo, title="Gizmo control mk3")]},
+                           2, False, False),
+        "rules.json": (load(os.path.join(out, "rules.json")), 2, False, False),
+    }
+    orig = da_compile._replace_file
+
+    def flaky(replace_src, dst):
+        if dst.endswith("rules.json"):
+            raise OSError("simulated write failure")
+        return orig(replace_src, dst)
+
+    da_compile._replace_file = flaky
+    failed = False
+    try:
+        da_compile._stage_and_publish(files_c, out, whole_copy=out)
+    except OSError:
+        failed = True
+    finally:
+        da_compile._replace_file = orig
+    C.check(failed, "injected replace failure did not raise")
+    C.check(all(open(os.path.join(out, f), "rb").read() == b for f, b in snap_b.items()),
+            "in-run failure did not roll back to the previous release")
+    C.check(not os.path.exists(os.path.join(out, da_compile.PUBLISH_JOURNAL)),
+            "rollback left the journal behind")
+
+
 def check_transition_validation(C):
     """docs/14 section 3: no invalid transition combination survives the
     compiler-side validator."""
@@ -277,6 +344,7 @@ def main():
         check_synthetic(tmp, C)
         check_refusal(tmp, C)
         check_recodification(tmp, C)
+        check_publication(tmp, C)
         check_transition_validation(C)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -292,7 +360,8 @@ def main():
     exc = sum(len(v) for v in EXPECTED_EXCEPTIONS.values())
     print("compile invariants: provenance %d records (%d decision-traced, %d exception-backed)"
           % (total, traced, exc))
-    print("compile invariants: synthetic authority, refusal, re-codification OK")
+    print("compile invariants: synthetic authority, refusal, re-codification, "
+          "publication recovery OK")
     print("compile invariants: %d passed, 0 failed" % C.passed)
     return 0
 

@@ -28,10 +28,16 @@ Other hard rules:
   - codify is idempotent for identical resubmissions; a PROPOSED DEFINITION
     THAT DIFFERS from the published record for the same id is refused
     (amend through a case, not through a second submission)
-  - publication is staged and validated before anything is replaced: builds
-    happen in memory, land in a staging directory, load cleanly through the
-    runtime's own pack loader, and only then are the files atomically moved
-    into place (one os.replace per file)
+  - publication is staged, validated, and journaled before anything is
+    replaced: builds happen in memory, land in a staging directory, load
+    cleanly through the runtime's own pack loader, and are then moved into
+    place under a journal (pre-publish bytes backed up, one atomic
+    os.replace per file, the published pack re-validated from disk
+    afterwards). A failed write rolls back in-run; a hard kill mid-publish
+    leaves the journal, and the next run rolls the interrupted release
+    back before publishing. The mixed-read window for a concurrent reader
+    is bounded to the replace loop; a fully versioned release layout with
+    a single-reference switch is the recorded follow-up
 
 Usage:
     python3 tools/da_compile.py synthesis --src wink|leader|dominion|all [--out DIR]
@@ -41,6 +47,7 @@ Usage:
 """
 import argparse
 import glob
+import hashlib
 import json
 import os
 import re
@@ -194,17 +201,77 @@ def _write_files(dirpath, files):
                 fh.write("\n")
 
 
-def _stage_and_publish(files, out_dir, *, whole_copy=None):
-    """Stage -> validate -> publish, so a failure cannot leave a partial release.
+PUBLISH_JOURNAL = ".da-publish-journal.json"
+PUBLISH_BACKUP = ".da-publish-backup"
+
+
+class _PublishCrash(Exception):
+    """Test hook: simulates a hard kill mid-publish (journal left behind)."""
+
+
+def _sha256(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _replace_file(src, dst):
+    """The one replacement primitive; a seam for failure-injection tests."""
+    os.replace(src, dst)
+
+
+def _rollback_publish(out_dir, journal):
+    """Restore the pre-publish state described by the journal."""
+    backup = os.path.join(out_dir, PUBLISH_BACKUP)
+    for name in journal.get("new", {}):
+        cur = os.path.join(out_dir, name)
+        src = os.path.join(backup, name)
+        if name in journal.get("backup", {}):
+            if os.path.exists(src):
+                os.replace(src, cur)
+        elif os.path.exists(cur):
+            os.remove(cur)
+    shutil.rmtree(backup, ignore_errors=True)
+    jpath = os.path.join(out_dir, PUBLISH_JOURNAL)
+    if os.path.exists(jpath):
+        os.remove(jpath)
+
+
+def _recover_interrupted_publish(out_dir):
+    """A journal means a publish died mid-replace: roll it back first."""
+    jpath = os.path.join(out_dir, PUBLISH_JOURNAL)
+    if not os.path.exists(jpath):
+        return False
+    with open(jpath) as fh:
+        journal = json.load(fh)
+    _rollback_publish(out_dir, journal)
+    print("recovered an interrupted publish in %s (rolled back to the "
+          "previous release)" % out_dir)
+    return True
+
+
+def _stage_and_publish(files, out_dir, *, whole_copy=None, _fault=None):
+    """Stage -> validate -> journaled publish.
 
     files       {name: (obj, indent, newline, ensure_ascii)} to become authoritative
     out_dir     the pack directory being (re)published
     whole_copy  if set, stage a full copy of this pack first (codify: the staged
                 view must contain the untouched files for a real pack load)
+    _fault      test hook: crash after N replacements (journal left behind)
+
+    The staged set is validated first, then published under a journal: the
+    pre-publish bytes are backed up, every replacement is atomic, and the
+    published pack is re-validated from disk before the journal clears. A
+    failed replacement rolls back in-run; a hard kill leaves the journal and
+    the next run rolls the interrupted release back before publishing.
     """
     out_dir = os.path.abspath(out_dir)
     os.makedirs(os.path.dirname(out_dir) or ".", exist_ok=True)
     os.makedirs(out_dir, exist_ok=True)
+    _recover_interrupted_publish(out_dir)
+
     staging = tempfile.mkdtemp(prefix=".da-compile-staging-",
                                dir=os.path.dirname(out_dir))
     try:
@@ -214,8 +281,39 @@ def _stage_and_publish(files, out_dir, *, whole_copy=None):
             shutil.copytree(whole_copy, target)
         _write_files(target, files)
         _validate_pack_dir(target)
+
+        backup_dir = os.path.join(out_dir, PUBLISH_BACKUP)
+        shutil.rmtree(backup_dir, ignore_errors=True)
+        os.makedirs(backup_dir)
+        journal = {"new": {}, "backup": {}, "created": []}
         for name in files:
-            os.replace(os.path.join(target, name), os.path.join(out_dir, name))
+            journal["new"][name] = _sha256(os.path.join(target, name))
+            cur = os.path.join(out_dir, name)
+            if os.path.exists(cur):
+                shutil.copy2(cur, os.path.join(backup_dir, name))
+                journal["backup"][name] = _sha256(cur)
+            else:
+                journal["created"].append(name)
+        jpath = os.path.join(out_dir, PUBLISH_JOURNAL)
+        with open(jpath + ".tmp", "w") as fh:
+            json.dump(journal, fh, indent=1)
+        os.replace(jpath + ".tmp", jpath)
+
+        try:
+            for i, name in enumerate(files):
+                if _fault is not None and i == _fault:
+                    raise _PublishCrash(
+                        "fault injected after %d replacement(s)" % i)
+                _replace_file(os.path.join(target, name),
+                              os.path.join(out_dir, name))
+            _validate_pack_dir(out_dir)
+        except _PublishCrash:
+            raise
+        except Exception:
+            _rollback_publish(out_dir, journal)
+            raise
+        os.remove(jpath)
+        shutil.rmtree(backup_dir, ignore_errors=True)
     finally:
         shutil.rmtree(staging, ignore_errors=True)
 
