@@ -668,3 +668,37 @@ the same-day fixes and the remaining program items:
   governed precedent); frozen only on the owner's go.
 - Everything committed and pushed; full check suite green.
 
+## D-040 · The three approved Triage proposals merged; pack 0.13.0-rc1 (2026-10-11)
+
+The owner said "keep going, all approved"; the three proposals the owner
+advanced to merge landed in the Triage repo, and the pack followed:
+
+- **density-borders (repo 0.12.2):** label-role sizes raised
+  (`size-badge` / `size-nav-label` 12px -> 13px; compact 0.8125rem,
+  proportional at the 15px root); new lint rule **TDS016 label-tier**
+  (info) with unit tests; border discipline documented in INTERACTION.md
+  (three rules + checklist item 9); UI baseline + exports regenerated
+  deliberately.
+- **verification-levels:** **VERIFICATION.md** — the four-level conformance
+  ladder and the four-part traceability contract (rule id · component ·
+  location · evidence; a score is a gate, never evidence); `evidence`
+  declarations added to `spec/states.json` (L1 for all; L2 browser test ids
+  where fixtures exist; undeclared = labelled unverified).
+- **provenance-contract (repo 0.13.0):** new component **`.prov`** (beta) —
+  the machine-action record with eight required fields, addressable by id,
+  explanation folded and labelled supplementary; live usage in
+  `examples/viewer.html`; caught and fixed a 320px/200% responsive blowout
+  via the layout fixture before landing.
+- **Pack cut `0.13.0-rc1`** (rc per release policy): 81 artifacts (+prov),
+  20 rules (+TDS016), goldens 58/58, coverage 134/134; consumer lint bundle
+  and dist foundations refreshed to the 0.13.0 snapshot; drift gate covers
+  the bundle.
+- **Resolver ripple, verified not suppressed:** two of four standing
+  disputes (panel slide-over; state-label query) now resolve UNDEFINED —
+  the new `.prov` artifact reshuffled candidate competition and no wrong
+  claim reproduces; the regression pin moved 4 -> 2 with the reason
+  recorded in `tools/check.sh`; the product gaps remain with the disputes.
+- Kernel count fixtures, MCP smoke pins, README numbers and the concept
+  site's byte-identical foundations all refreshed; full `tools/check.sh`
+  green.
+

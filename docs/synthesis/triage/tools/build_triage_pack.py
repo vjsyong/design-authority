@@ -26,8 +26,8 @@ _args = _ap.parse_args()
 OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "authorities", "triage")
 os.makedirs(OUT, exist_ok=True)
 
-V = "0.12.3-rc1"  # authority (pack content) version — docs/spec/05 version layers
-SRC_V = "0.12.1"  # pinned design-system version; the snapshot is immutable within a pack version
+V = "0.13.0-rc1"  # authority (pack content) version — docs/spec/05 version layers
+SRC_V = "0.13.0"  # pinned design-system version; the snapshot is immutable within a pack version
 
 _src_commit = subprocess.run(["git", "-C", TR, "rev-parse", "HEAD"],
                              capture_output=True, text=True).stdout.strip() or "unknown"
@@ -725,11 +725,11 @@ build = {
     "source": {"repo": TR, "commit": _src_commit, "version": SRC_V},
     "release": {
         "label": "triage %s" % V,
-        "kind": "fix",
-        "based_on": "triage 0.12.2",
+        "kind": "merge",
+        "based_on": "triage 0.12.3-rc1",
         "snapshot_commit": _src_commit,
-        "triggering_gaps": ["gap/20261011-100129-4b5013", "gap/20261011-101032-9ed1d0"],
-        "approved": "pending (rc cut by agent 2026-10-11; awaiting owner finalization)",
+        "triggering_proposals": ["spec/proposals/verification-levels.md", "spec/proposals/density-borders.md", "spec/proposals/provenance-contract.md"],
+        "approved": "owner-approved 2026-10-11; rc cut by agent",
     },
     "counts": {"artifacts": len(artifacts), "rules": len(rules),
                "prohibitions": len(prohibitions), "fallbacks": len(fallbacks),

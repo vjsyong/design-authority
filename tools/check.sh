@@ -27,7 +27,11 @@ python3 tools/check_project_flow.py | tail -1
 echo "== synthesis precedents"
 python3 tools/precedent_probe.py | tail -1
 echo "== disputed-resolution regression fixtures"
-python3 tools/da.py dispute-replay --workspace docs/experiments/disputes --expect-standing 4 | tail -1
+# 2 of the original 4 clear at 0.13.0: the new .prov artifact reshuffles
+# candidate competition for two disputed queries (panel slide-over; state
+# label), which now resolve UNDEFINED — no wrong claim reproduces. The
+# underlying product gaps stay recorded with the disputes.
+python3 tools/da.py dispute-replay --workspace docs/experiments/disputes --expect-standing 2 | tail -1
 if [ -x .venv/bin/python ]; then
   echo "== MCP smoke"
   python3 tools/mcp_smoke.py | tail -1
