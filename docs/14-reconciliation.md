@@ -144,14 +144,24 @@ Finding classes, per application and changed decision:
   release/deadline);
 - `review` - uncertain match or context-sensitive; a human rules.
 
-Two properties every finding carries:
+Three properties every finding carries:
 
-- **Trigger state.** A `when_touched` finding that is grandfathered today
-  becomes rectifiable the moment the trigger occurs, so every finding records
-  whether the trigger has occurred (with the basis: an archived revision, a
-  later build that touched the area, a passed deadline). Without recorded
-  trigger state, grandfathering silently becomes permanent after its
-  conditions expire.
+- **Trigger state, tri-state.** `occurred | not_occurred | unknown`, each
+  with an evidence reference and a basis. Missing evidence is never treated
+  as "not occurred": `unknown` is the honest state unless the system can
+  establish the modification history (receipts covering the application's
+  post-decision builds, none touching the affected area). A `when_touched`
+  permission ends the moment the trigger is recorded, and the obligation
+  rides the revision that performed the modification.
+- **Obligations carry state.** A rectify finding carries an `obligation`:
+  `scheduled` (a `required` deadline later than the target version - a future
+  obligation, not one already due), `due` (trigger recorded, or the deadline
+  met), `overdue` (deadline passed), `closed` (a later receipt migrated the
+  affected implementation; `closed_by` and the verification result ride
+  along, and the migrated revision carries its own `conforms` finding).
+  Re-assessments supersede findings while the store keeps the previous class
+  and obligation, so the whole grandfathered -> rectify -> closed -> conforms
+  trail stays auditable.
 - **A stable identity.** Findings are keyed by (application, decision, target
   authority version, assessed build revision). Repeated sweeps are
   idempotent: an unchanged assessment reuses the existing finding, a
@@ -196,6 +206,13 @@ sweep trusts the confirmed variant and says so on every row it uses.
 Granularity (owner-set): **one immutable receipt per published build** -
 receipts are append-only, corrections are new receipts - with a pointer at
 the store root to the latest.
+
+Fields a receipt carries (prototype `prototype-0.1`, used by the closure
+test; P1.1 formalizes): authority version; `decisions_applied`;
+`unresolved_needs`; `provisional_solutions`; `deviations[]`;
+`areas_modified[]` (the trigger surface for `when_touched`); `migration_for[]`
+(closes earlier obligations for the named decisions); and a `verification`
+reference (result + check count + the fresh verifier run).
 
 ## 6 · Grandfathering should not mean forgetting
 
@@ -259,9 +276,9 @@ case events. The reconcile output is a plan; it never edits an application.
   0.2.0; the cadence builds spanning two generations (v1/v2 at 0.1.0, v3 at
   0.2.0). Several of those gaps are exactly the "undefined then" needs this
   capability must adjudicate.
-- No decision receipts exist anywhere yet; they arrive with P1.1, upgrading
-  the deterministic level from "recorded cases" to "recorded decisions
-  applied".
+- Decision receipts did not exist before this work; the closure test ships
+  the first ones (prototype format, `examples/cadence-wink-r2/`), and P1.1
+  formalizes them for every build.
 - The estate's own example builds are the natural first sweep corpus: a real
   portfolio spanning two authority generations.
 
@@ -316,8 +333,10 @@ case events. The reconcile output is a plan; it never edits an application.
     reclassifies as rectifiable.
 
 The Cadence lifecycle test (`docs/experiments/07-reconciliation-cadence.md`)
-executes the subset of these criteria that the deterministic level supports
-today: 2, 4, 6, 7, 9, 10 and the grandfathering half of 3 and 11.
+executes criteria 2, 4, 6, 7, 9, 10 and - through the closure test - 3 and 11
+in full: a real revision modified without migrating, the trigger detected,
+the obligation due, the migration applied, independently verified (8/8), and
+the obligation closed by the receipt.
 
 ## 12 · Dependencies and placement
 

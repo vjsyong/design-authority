@@ -404,3 +404,34 @@ than its individual interfaces. Executed at prototype level on recorded
 data, ahead of the full engine; write-up in
 docs/experiments/07-reconciliation-cadence.md.
 
+## D-031 · Reconciliation semantics tightened (tri-state trigger, obligation states); the closure cycle demonstrated (2026-10-11)
+
+Owner review of the Cadence lifecycle test accepted the mechanism and asked
+for three corrections, all landed in the spec and the prototype:
+
+- **Trigger state is tri-state** (`occurred | not_occurred | unknown`, each
+  with evidence): missing evidence is never treated as "not occurred";
+  `unknown` is the honest default unless receipts cover the application's
+  whole post-decision modification history. The two editorial slips in the
+  experiment record were fixed in the same pass (twelve records, not eleven;
+  one `review` row, not two).
+- **Obligations carry state** (`scheduled | due | overdue | closed`): a
+  `required` deadline after the target version is scheduled, never presented
+  as already due; a later receipt with `migration_for` closes the obligation
+  and the verification result rides along; the store keeps the superseded
+  class/obligation as history.
+- **The closure cycle was demanded and demonstrated.** A genuine next
+  revision of the cadence-wink build (`examples/cadence-wink-r2/`, with the
+  first prototype decision receipts, `prototype-0.1`): r2a modified the
+  affected area (settings-save confirmation reworked; the canonical inline
+  notice resolved but NOT adopted; deviation recorded in the receipt), and
+  the sweep detected the trigger, ended the v1 permission, and put the
+  obligation on r2a as due; r2b migrated the confirmation to
+  `pattern/inline-notice` and was independently verified from the served DOM
+  (8/8 checks: notice in flow, parsnip fill, rounded 12, bold lead + plain
+  line, improvised save toast gone), and its receipt closed the obligation
+  (verified: pass). Sweep stage 2: r2b conforms, r2a's obligation closed
+  (`previous: due` retained), v1 unchanged. No operation wrote to any
+  application tree. Full record: docs/experiments/07-reconciliation-cadence.md
+  section 5; fixtures: docs/experiments/reconcile-cadence/closure/.
+
