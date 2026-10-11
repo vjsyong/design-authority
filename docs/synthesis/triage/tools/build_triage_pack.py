@@ -26,7 +26,7 @@ _args = _ap.parse_args()
 OUT = os.path.abspath(_args.out) if _args.out else os.path.join(REPO, "authorities", "triage")
 os.makedirs(OUT, exist_ok=True)
 
-V = "0.14.0"  # authority (pack content) version — docs/spec/05 version layers
+V = "0.14.1"  # authority (pack content) version — docs/spec/05 version layers
 SRC_V = "0.13.0"  # pinned design-system version; the snapshot is immutable within a pack version
 
 _src_commit = subprocess.run(["git", "-C", TR, "rev-parse", "HEAD"],
@@ -673,6 +673,20 @@ candidates = [
                       "label tiers applied and documented; border-discipline checklist added to INTERACTION.md",
                       "the hierarchy change survives the L4 experiment"],
      "provenance": {"source": "triage repo review + proposals"}},
+    {"id": "candidate/card-record", "kind": "candidate", "title": "A card record (container)",
+     "summary": "The .card/.card-h container is core furniture with no states-matrix record, so the everyday need 'a card' resolves to nothing (closest 4.0; threshold 6.5). Candidate: a card component record (or a curated alias route) so the container is citable like the rest.",
+     "emerges_from": ["adoption test x06 (F-5): the fresh agent's need 'a card' stayed UNDEFINED"],
+     "evidence_present": "the class is shipped and documented in core; consumers ask for it by name",
+     "promote_when": ["the review accepts a card record (states: default/nested) or an alias route",
+                      "a consumer build cites the card by id in a receipt"],
+     "provenance": {"source": "adoption test x06 F-5"}},
+    {"id": "candidate/text-field-record", "kind": "candidate", "title": "A text-field record (input family)",
+     "summary": "Text/number/password/search/textarea inputs are element-styled with no citable record (field-err is the closest, 4.0 vs 6.5 needed), so 'a text field' stays UNDEFINED. Candidate: an input-family record with its states (focus/invalid/disabled) so forms are citable.",
+     "emerges_from": ["adoption test x06 (F-5): the fresh agent's need 'a text field' stayed UNDEFINED"],
+     "evidence_present": "the element treatment is shipped; .select now has a record as the pattern to follow",
+     "promote_when": ["the review accepts an input-family record (mirroring the .select precedent)",
+                      "form-heavy consumers cite inputs by id in receipts"],
+     "provenance": {"source": "adoption test x06 F-5"}},
 ]
 json.dump({"candidates": candidates}, open(os.path.join(OUT, "candidates.json"), "w"), indent=1, ensure_ascii=False)
 json.dump({"recipes": _RECIPES}, open(os.path.join(OUT, "recipes.json"), "w"), indent=1, ensure_ascii=False)
@@ -767,7 +781,7 @@ build = {
     "source": {"repo": TR, "commit": _src_commit, "version": SRC_V},
     "release": {
         "label": "triage %s" % V,
-        "kind": "promotion",
+        "kind": "candidates",
         "based_on": "triage 0.13.0-rc1",
         "snapshot_commit": _src_commit,
         "triggering_proposals": ["docs/evolution/round2/10-recipes-promotion-review.md (recipes promotion)"],
