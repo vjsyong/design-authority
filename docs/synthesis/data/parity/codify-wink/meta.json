@@ -10,6 +10,7 @@
    "prop/20261007-151915-58de37"
   ],
   "skipped": [],
+  "conflicts": [],
   "version": "0.2.0"
  },
  "input": "compile-wink baseline + examples/cadence-wink",

@@ -19,3 +19,17 @@ pre-unification tools, before they were replaced by shims:
 `tools/check.sh`. The fixtures are frozen evidence — there is deliberately
 no `--update` flag. A divergence means the unified compiler changed
 behaviour these baselines pin.
+
+## P0.1b note (2026-10-11)
+
+The compiler gained its governance invariants (see `docs/13-simplification.md`
+section 5, P0.1b): every record carries `compiled_from` decisions or an
+explicit exception block, publication is staged and validated, and a
+conflicting codification is refused. The `compile-<src>` baselines were
+therefore refreshed with EXACTLY that delta (non-artifact records gained
+`source` + `compiled_from`, or `source` + `exception`; verified field-by-field
+before the refresh; artifacts, goldens, scoring and manifests byte-identical).
+The P0.1-era baselines remain in git history at commit `3589d62`. The
+`codify-<src>` fixtures are unchanged except the report gaining
+`"conflicts": []`. Companion gate: `tools/compile_invariants.py` (provenance
+coverage, trace validity, synthetic authority, refusal, re-codification).

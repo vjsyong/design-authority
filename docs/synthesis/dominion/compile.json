@@ -1,5 +1,5 @@
 {
- "format": "da-compile-dossier/0.1",
+ "format": "da-compile-dossier/0.2",
  "authority": {
   "name": "Dominion Interface System",
   "description": "An austere civic interface system derived from the Government of Canada FIP standard and the live Canada.ca web layer for the Design Authority synthesis experiment. Bilingual, structured, calm; no government marks reproduced.",
@@ -321,7 +321,11 @@
   ],
   "rules": [
    {
-    "decisions": [],
+    "decisions": [
+     "D-01",
+     "D-11",
+     "D-21"
+    ],
     "record": {
      "id": "D-R1",
      "name": "web-layer-interaction",
@@ -336,7 +340,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "D-05",
+     "D-22"
+    ],
     "record": {
      "id": "D-R2",
      "name": "ceremonial-red",
@@ -353,7 +360,10 @@
   ],
   "prohibitions": [
    {
-    "decisions": [],
+    "decisions": [
+     "D-05",
+     "D-22"
+    ],
     "record": {
      "id": "prohibit/red-status",
      "statement": "Red for status or errors — red is ceremonial (D-R2).",
@@ -373,7 +383,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "D-02",
+     "D-22"
+    ],
     "record": {
      "id": "prohibit/elevation-shadows",
      "statement": "Elevation or drop shadows — structure is flat, only the focus glow exists (D-22).",
@@ -388,7 +401,9 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "D-22"
+    ],
     "record": {
      "id": "prohibit/imagery-pictograms",
      "statement": "Imagery, pictograms or illustrative decoration (D-22).",
@@ -405,7 +420,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "D-05",
+     "D-22"
+    ],
     "record": {
      "id": "prohibit/decorative-colour",
      "statement": "Decorative colour outside the FIP families (D-22).",
@@ -446,10 +464,17 @@
       "mark the improvisation and report a gap"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
+     "basis": "Synthesis protocol phase 5; styling follows D-11 (fields) and D-12 (small-set select).",
+     "approval": "pending"
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "D-12"
+    ],
     "record": {
      "id": "fallback/large-selection",
      "title": "Selection beyond small sets",
@@ -472,7 +497,11 @@
   ],
   "recipes": [
    {
-    "decisions": [],
+    "decisions": [
+     "D-14",
+     "D-01",
+     "D-09"
+    ],
     "record": {
      "id": "recipe/retire-confirm",
      "title": "Retire with confirmation",

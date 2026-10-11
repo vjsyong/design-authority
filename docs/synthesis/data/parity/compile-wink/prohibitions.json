@@ -17,7 +17,16 @@
         "border-radius: 0"
       ],
       "rule": "W-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-02, W-08, W-26"
+      },
+      "compiled_from": [
+        "W-02",
+        "W-08",
+        "W-26"
+      ]
     },
     {
       "id": "prohibit/off-palette-colours",
@@ -34,7 +43,15 @@
         "clinical grey"
       ],
       "rule": "W-R2",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "mailchimp.com live product + Mailchimp brand resources",
+        "path": "Gate 2 accepted decisions: W-06, W-26"
+      },
+      "compiled_from": [
+        "W-06",
+        "W-26"
+      ]
     }
   ]
 }

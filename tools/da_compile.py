@@ -5,24 +5,33 @@ One mechanism: approved design decisions (reviewed data) become authoritative
 records in a pack. There is no second route. The two historical entry points
 delegate here:
 
-    synthesis   an authority dossier (docs/synthesis/<src>/compile.json:
-                the approved decision ledger + the records those decisions
-                emit) -> a full pack
+    synthesis   an authority dossier (docs/synthesis/<src>/compile.json,
+                format da-compile-dossier/0.2: the approved decision ledger
+                plus the records those decisions emit) -> a full pack
     codify      reviewer-ACCEPTED workspace proposals
                 (<workspace>/.design-authority/proposals/*.json) merged into
                 an existing pack
 
-Both modes call the same emit core and obey the same rules:
+Every emitted record, in both modes, passes through ONE emission function
+(`_finalize_record`) that validates record type, required fields and
+provenance. A record is governed when it either
 
-  - ONLY approved decisions compile. A record referencing an unapproved or
-    unknown decision id is a hard error; the compiler refuses.
-  - The compiler never invents editorial copy. A record summary comes from
-    the decision text; a codified proposal's summary comes from the review's
-    recorded `codified_summary` (or the proposal's own note / problem text).
-  - Every emitted record carries provenance: `compiled_from` decision ids
-    and a `source` naming where the decision was recorded.
-  - codify is idempotent: ids already present in the pack are skipped, never
-    rewritten.
+  - references at least one approved decision (emitted as `compiled_from`), or
+  - carries an explicit, visible exception block (reason + basis + approval
+    status). Empty provenance is a hard error; nothing is silent.
+
+Other hard rules:
+
+  - only approved decisions compile; unknown or unapproved references refuse
+  - summaries are never invented (decision text; the review's recorded
+    `codified_summary`; the proposal's own fields)
+  - codify is idempotent for identical resubmissions; a PROPOSED DEFINITION
+    THAT DIFFERS from the published record for the same id is refused
+    (amend through a case, not through a second submission)
+  - publication is staged and validated before anything is replaced: builds
+    happen in memory, land in a staging directory, load cleanly through the
+    runtime's own pack loader, and only then are the files atomically moved
+    into place (one os.replace per file)
 
 Usage:
     python3 tools/da_compile.py synthesis --src wink|leader|dominion|all [--out DIR]
@@ -35,13 +44,26 @@ import glob
 import json
 import os
 import re
+import shutil
 import sys
+import tempfile
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 RESOLVE_CITES = re.compile(r"resolve\('([^']+)'\)\s+(?:still\s+)?cites\s+([\w/-]+)")
+DOSSIER_FORMAT = "da-compile-dossier/0.2"
+
+ARTIFACT_KINDS = ("component", "pattern", "guideline", "token-set", "example", "reference")
+RECORD_TYPES = ("artifacts", "rules", "prohibitions", "fallbacks", "recipes")
+RECORD_REQUIRED = {
+    "artifacts": ("id", "kind", "title"),
+    "rules": ("id", "name", "severity", "summary"),
+    "prohibitions": ("id", "statement", "signals"),
+    "fallbacks": ("id", "title", "statement", "scope"),
+    "recipes": ("id", "title", "needs", "summary"),
+}
 
 
 class CompileError(Exception):
@@ -53,92 +75,208 @@ def _load_json(path):
         return json.load(fh)
 
 
-def _write_json(path, obj, indent=2, newline=False):
-    """Synthesis-style write: ensure_ascii=False, no trailing newline by default."""
-    with open(path, "w") as fh:
-        json.dump(obj, fh, indent=indent, ensure_ascii=False)
-        if newline:
-            fh.write("\n")
+# ------------------------------------------------------------- record layer
 
+def _validate_exception(exc):
+    if not isinstance(exc, dict):
+        raise CompileError("exception must be an object with reason/basis/approval")
+    for key in ("reason", "basis", "approval"):
+        val = exc.get(key)
+        if not (isinstance(val, str) and val.strip()):
+            raise CompileError("exception is missing a non-empty %r" % key)
+
+
+def validate_record(rtype, rec):
+    """Type + required-field validation for one emitted record."""
+    if rtype not in RECORD_REQUIRED:
+        raise CompileError("unknown record type %r" % rtype)
+    for key in RECORD_REQUIRED[rtype]:
+        val = rec.get(key)
+        if val is None or (isinstance(val, (str, list, dict)) and len(val) == 0):
+            raise CompileError("%s %r is missing required field %r"
+                               % (rtype, rec.get("id", "?"), key))
+    if rtype == "artifacts" and rec["kind"] not in ARTIFACT_KINDS:
+        raise CompileError("artifact %r has unknown kind %r"
+                           % (rec["id"], rec["kind"]))
+
+
+def validate_provenance(rec):
+    """Every record carries exactly one provenance route. Returns the route."""
+    cf = rec.get("compiled_from")
+    exc = rec.get("exception")
+    if cf and isinstance(cf, list) and not exc:
+        return "decisions"
+    if exc and not cf:
+        _validate_exception(exc)
+        return "exception"
+    raise CompileError("record %r must carry either compiled_from decisions or "
+                       "an exception block (and not both)" % rec.get("id", "?"))
+
+
+def _finalize_record(rtype, fields, *, source, decisions=None, exception=None,
+                     tail=None):
+    """THE emission function. Both modes normalize through here: provenance
+    is attached uniformly, then type/required-field validation runs."""
+    rec = dict(fields)
+    if decisions and exception:
+        raise CompileError("record %r: decisions and exception are mutually "
+                           "exclusive" % rec.get("id", "?"))
+    if decisions:
+        rec["source"] = dict(source)
+        rec["compiled_from"] = list(decisions)
+    elif exception:
+        _validate_exception(exception)
+        rec["source"] = dict(source)
+        rec["exception"] = dict(exception)
+    else:
+        raise CompileError("record %r carries no provenance route (neither "
+                           "decisions nor exception)" % rec.get("id", "?"))
+    if tail:
+        rec.update(tail)
+    validate_record(rtype, rec)
+    validate_provenance(rec)
+    return rec
+
+
+# ------------------------------------------------------------ publication
+
+def _validate_pack_dir(path):
+    """Load a directory through the runtime's own pack loader."""
+    kernel = os.path.join(ROOT, "kernel")
+    if kernel not in sys.path:
+        sys.path.insert(0, kernel)
+    from design_authority.pack import Pack, PackError  # noqa: WPS433
+    try:
+        return Pack(path)
+    except PackError as exc:
+        raise CompileError("staged pack failed validation: %s" % exc)
+
+
+def _write_files(dirpath, files):
+    """files: {name: (obj, indent, newline, ensure_ascii)}"""
+    for name, (obj, indent, newline, ensure_ascii) in files.items():
+        with open(os.path.join(dirpath, name), "w") as fh:
+            json.dump(obj, fh, indent=indent, ensure_ascii=ensure_ascii)
+            if newline:
+                fh.write("\n")
+
+
+def _stage_and_publish(files, out_dir, *, whole_copy=None):
+    """Stage -> validate -> publish, so a failure cannot leave a partial release.
+
+    files       {name: (obj, indent, newline, ensure_ascii)} to become authoritative
+    out_dir     the pack directory being (re)published
+    whole_copy  if set, stage a full copy of this pack first (codify: the staged
+                view must contain the untouched files for a real pack load)
+    """
+    out_dir = os.path.abspath(out_dir)
+    os.makedirs(os.path.dirname(out_dir) or ".", exist_ok=True)
+    os.makedirs(out_dir, exist_ok=True)
+    staging = tempfile.mkdtemp(prefix=".da-compile-staging-",
+                               dir=os.path.dirname(out_dir))
+    try:
+        target = staging
+        if whole_copy:
+            target = os.path.join(staging, "pack")
+            shutil.copytree(whole_copy, target)
+        _write_files(target, files)
+        _validate_pack_dir(target)
+        for name in files:
+            os.replace(os.path.join(target, name), os.path.join(out_dir, name))
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
+
+
+# ---------------------------------------------------------------- synthesis
 
 def dossier_path(src):
     return os.path.join(ROOT, "docs", "synthesis", src, "compile.json")
 
 
-# ------------------------------------------------------------------ synthesis
-
 def compile_synthesis(dossier_file, out_dir):
     """Compile one authority dossier into a full pack at `out_dir`.
 
-    Returns {"authority", "out", "counts"}; raises CompileError on any
-    unapproved or unknown decision reference.
+    Returns {"authority", "out", "counts", "exceptions"}; raises CompileError
+    on any unapproved/unknown decision reference or ungoverned record.
     """
     dossier = _load_json(dossier_file)
-    if dossier.get("format") != "da-compile-dossier/0.1":
-        raise CompileError("not a da-compile-dossier/0.1 file: %s" % dossier_file)
+    if dossier.get("format") != DOSSIER_FORMAT:
+        raise CompileError("not a %s file: %s" % (DOSSIER_FORMAT, dossier_file))
     src = dossier["authority"]["id"]
+    repo = dossier["authority"]["repo"]
     decisions = {d["id"]: d for d in _load_json(
         os.path.join(ROOT, dossier["source"]["decisions"]))["decisions"]}
     approved = set(dossier["approved"])
 
-    def check(ids):
-        for i in ids:
-            if i not in approved:
-                raise CompileError(
-                    "%s: decision %s is not approved at Gate 2 — refusing to compile"
-                    % (src, i))
-            if i not in decisions:
-                raise CompileError("%s: decision %s has no record in %s"
-                                   % (src, i, dossier["source"]["decisions"]))
+    records = {}
+    exceptions = []
+    seen_ids = set()
+    for rtype in RECORD_TYPES:
+        out_recs = []
+        for entry in dossier["records"].get(rtype, []):
+            ids = entry.get("decisions") or []
+            exc = entry.get("exception")
+            for i in ids:
+                if i not in approved:
+                    raise CompileError(
+                        "%s: decision %s is not approved at Gate 2 - refusing to compile"
+                        % (src, i))
+                if i not in decisions:
+                    raise CompileError("%s: decision %s has no record in %s"
+                                       % (src, i, dossier["source"]["decisions"]))
+            if rtype == "artifacts":
+                if not ids:
+                    raise CompileError("%s: artifact %r has no decision refs"
+                                       % (src, entry["record"].get("id")))
+                rec = entry["record"]
+                note = rec.get("note")
+                fields = {
+                    "id": rec["id"], "kind": rec["kind"], "title": rec["title"],
+                    "summary": decisions[ids[0]]["decision"] + ((" (%s)" % note) if note else ""),
+                    "status": "beta", "aliases": rec["aliases"],
+                    "body": rec["body"],
+                }
+                rec = _finalize_record(
+                    "artifacts", fields,
+                    source={"repo": repo,
+                            "path": "Gate 2 accepted decisions: " + ", ".join(ids)},
+                    decisions=ids)
+            elif ids:
+                rec = _finalize_record(
+                    rtype, entry["record"],
+                    source={"repo": repo,
+                            "path": "Gate 2 accepted decisions: " + ", ".join(ids)},
+                    decisions=ids)
+            else:
+                rec = _finalize_record(
+                    rtype, entry["record"],
+                    source={"repo": repo, "path": "Authored policy (see exception)"},
+                    exception=exc)
+                exceptions.append({"record": rec["id"], "type": rtype,
+                                   "approval": exc["approval"]})
+            if rec["id"] in seen_ids:
+                raise CompileError("%s: duplicate record id %r" % (src, rec["id"]))
+            seen_ids.add(rec["id"])
+            out_recs.append(rec)
+        records[rtype] = out_recs
 
-    artifacts = []
-    for entry in dossier["records"]["artifacts"]:
-        ids = entry["decisions"]
-        if not ids:
-            raise CompileError("%s: artifact %r has no decision refs"
-                               % (src, entry["record"].get("id")))
-        check(ids)
-        rec = entry["record"]
-        note = rec.get("note")
-        summary = decisions[ids[0]]["decision"] + ((" (%s)" % note) if note else "")
-        artifacts.append({
-            "id": rec["id"], "kind": rec["kind"], "title": rec["title"],
-            "summary": summary,
-            "status": "beta", "aliases": rec["aliases"],
-            "body": rec["body"],
-            "source": {"repo": dossier["authority"]["repo"],
-                       "path": "Gate 2 accepted decisions: " + ", ".join(ids)},
-            "compiled_from": ids,
-        })
+    manifest = dossier["manifest"]
+    golden = {"version": "0.1",
+              "pack_version": "%s %s" % (src, manifest["version"]),
+              "cases": dossier["golden"]}
+    files = {}
+    for rtype in RECORD_TYPES:
+        files[rtype + ".json"] = ({rtype: records[rtype]}, 2, False, False)
+    files["golden.json"] = (golden, 1, False, False)
+    files["scoring.json"] = (dossier["scoring"], 2, False, False)
+    files["authority.json"] = (manifest, 2, False, False)
 
-    def rows(key):
-        for entry in dossier["records"][key]:
-            check(entry["decisions"])
-            yield entry["record"]
-
-    out = {
-        "artifacts.json": ("artifacts", artifacts, 2),
-        "rules.json": ("rules", list(rows("rules")), 2),
-        "prohibitions.json": ("prohibitions", list(rows("prohibitions")), 2),
-        "fallbacks.json": ("fallbacks", list(rows("fallbacks")), 2),
-        "recipes.json": ("recipes", list(rows("recipes")), 2),
-        "golden.json": (None, {"version": "0.1",
-                               "pack_version": "%s %s" % (src, dossier["manifest"]["version"]),
-                               "cases": dossier["golden"]}, 1),
-    }
-    os.makedirs(out_dir, exist_ok=True)
-    for name, (key, data, indent) in out.items():
-        _write_json(os.path.join(out_dir, name),
-                    {key: data} if key else data, indent=indent)
-    _write_json(os.path.join(out_dir, "scoring.json"), dossier["scoring"])
-    _write_json(os.path.join(out_dir, "authority.json"), dossier["manifest"])
-
-    counts = {"artifacts": len(artifacts), "rules": len(out["rules.json"][1]),
-              "prohibitions": len(out["prohibitions.json"][1]),
-              "fallbacks": len(out["fallbacks.json"][1]),
-              "recipes": len(out["recipes.json"][1]),
-              "golden": len(dossier["golden"])}
-    return {"authority": src, "out": out_dir, "counts": counts}
+    _stage_and_publish(files, out_dir)
+    counts = {rtype: len(records[rtype]) for rtype in RECORD_TYPES}
+    counts["golden"] = len(dossier["golden"])
+    counts["exceptions"] = len(exceptions)
+    return {"authority": src, "out": out_dir, "counts": counts,
+            "exceptions": exceptions}
 
 
 def compile_authorities(srcs, out_base=None):
@@ -198,25 +336,42 @@ def _bump(version):
         return version
 
 
+def _candidate_payload(prop, rec):
+    """The artifact fields a codification would write (used for conflicts)."""
+    body = dict(prop.get("body") or {})
+    if prop.get("group") and "group" not in body:
+        body["group"] = prop["group"]
+    return {
+        "id": prop["id"],
+        "kind": prop.get("kind", "component"),
+        "title": prop.get("title") or prop["id"],
+        "summary": _codified_summary(prop, rec),
+        "status": "beta",
+        "aliases": prop.get("aliases", []),
+        "body": body,
+    }
+
+
 def codify(workspace, pack_dir, now=None):
     """Merge ACCEPTED proposals from `workspace` into the pack at `pack_dir`.
 
-    Returns {"pack", "applied", "skipped", "version"}. Rejected and
-    needs-info proposals are never touched; already-codified ids are skipped.
+    Idempotent: an identical resubmission for an existing id is skipped. A
+    resubmission whose definition DIFFERS from the published record is an
+    explicit conflict - refused before anything is written. Rejected and
+    needs-info proposals are never touched. Returns
+    {"pack", "applied", "skipped", "conflicts", "version"}.
     """
     prop_dir = os.path.join(os.path.abspath(workspace), ".design-authority", "proposals")
     files = sorted(glob.glob(os.path.join(prop_dir, "*.json")))
-    arts_path = os.path.join(pack_dir, "artifacts.json")
-    gold_path = os.path.join(pack_dir, "golden.json")
-    auth_path = os.path.join(pack_dir, "authority.json")
-    arts = _load_json(arts_path)
-    gold = _load_json(gold_path)
-    auth = _load_json(auth_path)
+    arts = _load_json(os.path.join(pack_dir, "artifacts.json"))
+    gold = _load_json(os.path.join(pack_dir, "golden.json"))
+    auth = _load_json(os.path.join(pack_dir, "authority.json"))
 
-    existing = {a.get("id") for a in arts["artifacts"]}
-    applied, skipped = [], []
+    existing = {a.get("id"): a for a in arts["artifacts"]}
+    applied, skipped, conflicts = [], [], []
     now = now or datetime.now(timezone.utc).isoformat(timespec="seconds")
     repo = (auth.get("snapshot") or {}).get("repo", "")
+    compare_fields = ("kind", "title", "summary", "aliases", "body")
 
     for f in files:
         rec = _load_json(f)
@@ -232,25 +387,19 @@ def codify(workspace, pack_dir, now=None):
         derived = _derive_golden(checks, set(new_ids))
         applied_here = False
         for prop in entries:
-            if not prop.get("id") or prop["id"] in existing:
+            if not prop.get("id"):
+                continue
+            cand = _candidate_payload(prop, rec)
+            if prop["id"] in existing:
+                cur = existing[prop["id"]]
+                diffs = [k for k in compare_fields if cur.get(k) != cand.get(k)]
+                if diffs:
+                    conflicts.append((prop["id"], pid, diffs))
                 continue
             applied_here = True
-            body = dict(prop.get("body") or {})
-            if prop.get("group") and "group" not in body:
-                body["group"] = prop["group"]
             reviewed_at = (rec.get("review") or {}).get("reviewed_at")
             adjudicated = (" (adjudicated %s)" % reviewed_at[:10]) if reviewed_at else ""
-            entry = {
-                "id": prop["id"],
-                "kind": prop.get("kind", "component"),
-                "title": prop.get("title") or prop["id"],
-                "summary": _codified_summary(prop, rec),
-                "status": "beta",
-                "aliases": prop.get("aliases", []),
-                "body": body,
-                "source": {"repo": repo,
-                           "path": "Reviewer-accepted proposal %s%s" % (pid, adjudicated)},
-                "compiled_from": [pid],
+            tail = {
                 "provenance": {
                     "proposal": pid, "gap": rec.get("gap_id"), "verdict": "accept",
                     "reviewed_at": reviewed_at,
@@ -259,9 +408,14 @@ def codify(workspace, pack_dir, now=None):
                 "checks": checks,
             }
             if prop.get("note"):
-                entry["notes"] = prop["note"]
+                tail["notes"] = prop["note"]
+            entry = _finalize_record(
+                "artifacts", cand,
+                source={"repo": repo,
+                        "path": "Reviewer-accepted proposal %s%s" % (pid, adjudicated)},
+                decisions=[pid], tail=tail)
             arts["artifacts"].append(entry)
-            existing.add(prop["id"])
+            existing[prop["id"]] = entry
         if applied_here:
             applied.append(pid)
             gold["cases"].extend(golden_cases)
@@ -269,16 +423,28 @@ def codify(workspace, pack_dir, now=None):
         else:
             skipped.append(pid)
 
+    if conflicts:
+        detail = "; ".join("%s (proposal %s differs in: %s)"
+                           % (rid, pid, ", ".join(diffs)) for rid, pid, diffs in conflicts)
+        raise CompileError(
+            "conflicting codification refused: %s. An existing id cannot be "
+            "redefined by a second submission - amend through a case (a new "
+            "proposal against the published record) instead." % detail)
+
     if applied:
         old = auth.get("version", "0.0.0")
         new = _bump(old)
         auth["version"] = new
         gold["pack_version"] = "%s %s" % (auth.get("id"), new)
-        for path, obj in ((auth_path, auth), (arts_path, arts), (gold_path, gold)):
-            with open(path, "w") as fh:
-                json.dump(obj, fh, indent=2)
-                fh.write("\n")
+        files_out = {
+            "authority.json": (auth, 2, True, True),
+            "artifacts.json": (arts, 2, True, True),
+            "golden.json": (gold, 2, True, True),
+        }
+        _stage_and_publish(files_out, pack_dir, whole_copy=pack_dir)
     return {"pack": auth.get("id"), "applied": applied, "skipped": skipped,
+            "conflicts": [{"id": rid, "proposal": pid, "fields": diffs}
+                          for rid, pid, diffs in conflicts],
             "version": auth.get("version")}
 
 
@@ -303,7 +469,11 @@ def run_synthesis(srcs, out_base=None):
 def run_codify(workspace, pack, now=None):
     """CLI helper shared by da_compile and the apply_proposals shim."""
     pack = pack if os.path.isabs(pack) else os.path.join(ROOT, pack)
-    report = codify(workspace, pack, now=now)
+    try:
+        report = codify(workspace, pack, now=now)
+    except CompileError as exc:
+        print("codify refused: %s" % exc, file=sys.stderr)
+        return 2
     print(json.dumps(report, indent=1))
     return 0
 

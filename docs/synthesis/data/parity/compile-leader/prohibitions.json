@@ -17,7 +17,15 @@
         "border-radius: 0"
       ],
       "rule": "L-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-02, L-24"
+      },
+      "compiled_from": [
+        "L-02",
+        "L-24"
+      ]
     },
     {
       "id": "prohibit/ambient-glow",
@@ -29,7 +37,15 @@
         "neon glow"
       ],
       "rule": "L-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-07, L-24"
+      },
+      "compiled_from": [
+        "L-07",
+        "L-24"
+      ]
     },
     {
       "id": "prohibit/red-reading-surface",
@@ -40,7 +56,14 @@
         "red as the background"
       ],
       "rule": "L-R2",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-24"
+      },
+      "compiled_from": [
+        "L-24"
+      ]
     },
     {
       "id": "prohibit/off-family-colour",
@@ -53,7 +76,15 @@
         "teal accent"
       ],
       "rule": "L-R2",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-06, L-24"
+      },
+      "compiled_from": [
+        "L-06",
+        "L-24"
+      ]
     },
     {
       "id": "prohibit/decorative-noise",
@@ -66,7 +97,15 @@
         "exclamation marks"
       ],
       "rule": "L-R2",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "marber.economist.com + economist.com live product",
+        "path": "Gate 2 accepted decisions: L-20, L-24"
+      },
+      "compiled_from": [
+        "L-20",
+        "L-24"
+      ]
     }
   ]
 }

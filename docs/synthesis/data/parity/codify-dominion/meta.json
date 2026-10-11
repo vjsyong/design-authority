@@ -8,6 +8,7 @@
    "prop/20261007-151923-bd08f2"
   ],
   "skipped": [],
+  "conflicts": [],
   "version": "0.2.0"
  },
  "input": "compile-dominion baseline + examples/cadence-dominion",

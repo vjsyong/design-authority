@@ -19,7 +19,16 @@
         "blue glow focus",
         "mark the improvisation and report a gap"
       ],
-      "kind": "fallback"
+      "kind": "fallback",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Authored policy (see exception)"
+      },
+      "exception": {
+        "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
+        "basis": "Synthesis protocol phase 5; styling follows D-11 (fields) and D-12 (small-set select).",
+        "approval": "pending"
+      }
     },
     {
       "id": "fallback/large-selection",
@@ -37,7 +46,14 @@
         "keep field styling",
         "mark the improvisation"
       ],
-      "kind": "fallback"
+      "kind": "fallback",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-12"
+      },
+      "compiled_from": [
+        "D-12"
+      ]
     }
   ]
 }

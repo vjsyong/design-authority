@@ -21,7 +21,16 @@
         "component/action",
         "component/field"
       ],
-      "kind": "recipe"
+      "kind": "recipe",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-14, D-01, D-09"
+      },
+      "compiled_from": [
+        "D-14",
+        "D-01",
+        "D-09"
+      ]
     }
   ]
 }

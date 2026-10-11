@@ -15,7 +15,15 @@
         "red for alerts"
       ],
       "rule": "D-R2",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-05, D-22"
+      },
+      "compiled_from": [
+        "D-05",
+        "D-22"
+      ]
     },
     {
       "id": "prohibit/elevation-shadows",
@@ -27,7 +35,15 @@
         "soft shadow"
       ],
       "rule": "D-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-02, D-22"
+      },
+      "compiled_from": [
+        "D-02",
+        "D-22"
+      ]
     },
     {
       "id": "prohibit/imagery-pictograms",
@@ -41,7 +57,14 @@
         "clip art"
       ],
       "rule": "D-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-22"
+      },
+      "compiled_from": [
+        "D-22"
+      ]
     },
     {
       "id": "prohibit/decorative-colour",
@@ -56,7 +79,15 @@
         "neon"
       ],
       "rule": "D-R1",
-      "kind": "prohibition"
+      "kind": "prohibition",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-05, D-22"
+      },
+      "compiled_from": [
+        "D-05",
+        "D-22"
+      ]
     }
   ]
 }

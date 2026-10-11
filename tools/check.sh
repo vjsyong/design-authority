@@ -16,6 +16,8 @@ echo "== synthesis pack goldens"
 for p in wink leader dominion; do python3 tools/da.py --pack authorities/$p golden --file authorities/$p/golden.json | tail -1; done
 echo "== compile parity (one decision-to-authority compiler)"
 python3 tools/compile_parity.py | tail -1
+echo "== compile invariants (governance properties)"
+python3 tools/compile_invariants.py | tail -1
 echo "== synthesis precedents"
 python3 tools/precedent_probe.py | tail -1
 echo "== disputed-resolution regression fixtures"

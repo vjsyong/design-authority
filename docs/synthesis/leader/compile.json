@@ -1,5 +1,5 @@
 {
- "format": "da-compile-dossier/0.1",
+ "format": "da-compile-dossier/0.2",
  "authority": {
   "name": "Leader Interface System",
   "description": "An editorial interface system derived from The Economist's Marber design system and live product for the Design Authority synthesis experiment. Serif-led, rules-based, blue interactive layer; no Economist marks reproduced.",
@@ -372,7 +372,10 @@
   ],
   "rules": [
    {
-    "decisions": [],
+    "decisions": [
+     "L-02",
+     "L-24"
+    ],
     "record": {
      "id": "L-R1",
      "name": "rounded-interactive",
@@ -387,7 +390,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-06",
+     "L-24"
+    ],
     "record": {
      "id": "L-R2",
      "name": "colour-families",
@@ -404,7 +410,10 @@
   ],
   "prohibitions": [
    {
-    "decisions": [],
+    "decisions": [
+     "L-02",
+     "L-24"
+    ],
     "record": {
      "id": "prohibit/square-interactive",
      "statement": "Square-cornered interactive components or cards — the live system is rounded (L-02, L-24).",
@@ -426,7 +435,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-07",
+     "L-24"
+    ],
     "record": {
      "id": "prohibit/ambient-glow",
      "statement": "Ambient glow shadows — elevation uses defined shadow tokens only (L-24).",
@@ -441,7 +453,9 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-24"
+    ],
     "record": {
      "id": "prohibit/red-reading-surface",
      "statement": "Red as a reading background (L-24).",
@@ -455,7 +469,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-06",
+     "L-24"
+    ],
     "record": {
      "id": "prohibit/off-family-colour",
      "statement": "Colours outside the defined families / invented hues (L-24).",
@@ -471,7 +488,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "L-20",
+     "L-24"
+    ],
     "record": {
      "id": "prohibit/decorative-noise",
      "statement": "Emoji and exclamation marks (L-24).",
@@ -508,6 +528,11 @@
       "mark the improvisation and report a gap"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
+     "basis": "Synthesis protocol phase 5; field styling follows L-11.",
+     "approval": "pending"
     }
    },
    {
@@ -530,6 +555,11 @@
       "report a gap if the need recurs"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "Restates decision L-12, which the Gate-2 review left undefined (LEAVE UNDEFINED); the historical pack shipped this fallback anyway. Recorded as authored policy pending an owner decision: endorse L-12 into the ledger, or convert this fallback into a case.",
+     "basis": "Synthesis protocol phase 5; lineage via L-12 (left undefined at Gate 2).",
+     "approval": "pending"
     }
    },
    {
@@ -553,6 +583,11 @@
       "mark the improvisation"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "Authored policy for interstitials (wizard/onboarding): ruled panels in the page flow, marked and reported. No dialog canon was endorsed at Gate 2 (L-19 was left undefined), so the 'no dialog canon' premise stands; flagged for owner review.",
+     "basis": "Synthesis protocol phase 5; vessel styling cites L-07.",
+     "approval": "pending"
     }
    }
   ],

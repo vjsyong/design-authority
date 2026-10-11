@@ -10,7 +10,16 @@
       ],
       "summary": "Interactive layer follows the live web layer: slate actions (#26374A, radius 4), blue focus glow (#66AFE9), soft borders.",
       "why": "Live measurements on Canada.ca accepted at Gate 2 (D-01, D-11, D-21).",
-      "fix": "Use the measured slate/blue values for interactive elements."
+      "fix": "Use the measured slate/blue values for interactive elements.",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-01, D-11, D-21"
+      },
+      "compiled_from": [
+        "D-01",
+        "D-11",
+        "D-21"
+      ]
     },
     {
       "id": "D-R2",
@@ -22,7 +31,15 @@
       ],
       "summary": "FIP red is ceremony only — never status, errors, or reading surfaces.",
       "why": "FIP standard + Gate 2 (D-05, D-22).",
-      "fix": "Remove red from status/error/background roles."
+      "fix": "Remove red from status/error/background roles.",
+      "source": {
+        "repo": "FIP design standard + canada.ca live web layer",
+        "path": "Gate 2 accepted decisions: D-05, D-22"
+      },
+      "compiled_from": [
+        "D-05",
+        "D-22"
+      ]
     }
   ]
 }

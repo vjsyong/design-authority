@@ -1,5 +1,5 @@
 {
- "format": "da-compile-dossier/0.1",
+ "format": "da-compile-dossier/0.2",
  "authority": {
   "name": "Wink Interface System",
   "description": "A friendly, clearly-designed interface system derived from the Mailchimp brand and live product for the Design Authority synthesis experiment. Warm, pill-shaped, playful; no Mailchimp marks reproduced.",
@@ -377,7 +377,10 @@
   ],
   "rules": [
    {
-    "decisions": [],
+    "decisions": [
+     "W-02",
+     "W-26"
+    ],
     "record": {
      "id": "W-R1",
      "name": "pill-language",
@@ -392,7 +395,9 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "W-06"
+    ],
     "record": {
      "id": "W-R2",
      "name": "palette-discipline",
@@ -409,7 +414,11 @@
   ],
   "prohibitions": [
    {
-    "decisions": [],
+    "decisions": [
+     "W-02",
+     "W-08",
+     "W-26"
+    ],
     "record": {
      "id": "prohibit/square-buttons",
      "statement": "Square or sharp button shapes — buttons are pills (W-02, W-08).",
@@ -431,7 +440,10 @@
     }
    },
    {
-    "decisions": [],
+    "decisions": [
+     "W-06",
+     "W-26"
+    ],
     "record": {
      "id": "prohibit/off-palette-colours",
      "statement": "Colours outside the wink palette, including pure black text and clinical cold greys (W-06).",
@@ -478,6 +490,11 @@
       "mark the improvisation and report a gap if the need recurs"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "Authored policy for needs the system does not cover: platform defaults with the recorded field styling, marked and reported as a gap. No source decision states this policy.",
+     "basis": "Synthesis protocol phase 5 (operational semantics); styling follows W-12 (inputs) and W-13 (small-set select).",
+     "approval": "pending"
     }
    },
    {
@@ -496,6 +513,11 @@
       "mark the improvisation"
      ],
      "kind": "fallback"
+    },
+    "exception": {
+     "reason": "No dark-mode decision exists in the ledger; the policy for dark surfaces (keep the recorded roles, mark the improvisation) is authored, not observed.",
+     "basis": "Synthesis protocol phase 5; palette roles follow W-06.",
+     "approval": "pending"
     }
    }
   ],
