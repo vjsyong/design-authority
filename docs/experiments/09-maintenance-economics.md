@@ -124,3 +124,32 @@ sequence and launch chain 1's first session.
   stack (session runner with `--from-seal` handoff chaining, schedule, seal,
   leakscan); rehearsal required before any chain launches. Next action:
   build + rehearse the runner, then launch chain 1's first session.
+
+### 2026-10-11 · runner built, rehearsed, launched (amendment 2)
+
+- **Tools:** `p4_prepare.py` (materials, pack chain p4-da-0..4, seed seal),
+  `p4_schedule.py` (8 sessions, k-wise interleave da/base), `p4_run.py`
+  (sandbox, budgets, transcript, seal, leakscan), `p4_conductor.py`
+  (sequential driver + DA advisories between handoffs). Frozen sandbox
+  tooling: the current `tools/` + `kernel/` copied into materials (the x05
+  wrapper and protocol rev2 reused untouched).
+- **Pack evolutions:** change 1 empty-state required (0.1.2), change 2
+  form-validation required (0.1.3), change 3 row-level focus rule B005
+  (0.1.4), change 4 chips settled (0.1.5). Baseline receives the same
+  changes as release notes; DA receives them as pack + advisories.
+- **Rehearsal found and fixed:** opencode's permission schema (string
+  `deny` for webfetch/websearch/question); a token-monitor bug (`tell()`
+  during iteration silently zeroing counts — replaced with byte offsets);
+  a transient `.tmp-pack` staging dir breaking seal consistency (stripped
+  pre-seal); the frozen tool copy missing sibling tools (da_sweep);
+  read-only seal trees needing chmod before reconcile. Pilots for both
+  conditions ran end to end (300 s budget, timeouts as designed, tokens and
+  seals recorded).
+- **Reconcile note:** the seed predates the project-contract artifacts
+  (no lock/receipt), so the reconcile engine records no receipt-backed
+  obligations; the advisories the next session receives are the change
+  note + reconcile plan + pack validate output, and migration correctness
+  is measured at analysis time from the session diff + HANDOFF.md. Recorded
+  here as the honest behaviour of the machinery on this seed.
+- **Launched:** conductor started 2026-10-11 (bg process; 8 sessions ×
+  <= 2700 s; results land in `~/p4-maint/run/<id>/run.json` + seals).
