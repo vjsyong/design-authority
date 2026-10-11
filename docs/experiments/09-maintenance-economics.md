@@ -153,3 +153,17 @@ sequence and launch chain 1's first session.
   here as the honest behaviour of the machinery on this seed.
 - **Launched:** conductor started 2026-10-11 (bg process; 8 sessions ×
   <= 2700 s; results land in `~/p4-maint/run/<id>/run.json` + seals).
+
+### 2026-10-11 · program complete; run-1 readout (amendment 3)
+
+- All 8 sessions completed (`ok`), all seals verified, zero flagged leakage
+  attempts, 12:21–13:53. Results: `docs/experiments/10-maintenance-economics-results.md`.
+- Headline against the frozen gates: unauthorized drift **met strictly**
+  (DA flat 0 findings / 100 score at every handoff; baseline decays
+  98→96→94 as duplicate treatments accumulate); recurrence **met under the
+  proxy reading** (0 true refilings; baseline invisible-by-construction);
+  migration **met** (explicit DA receipts + equal code outcomes, 0 human
+  interventions both). Kill criterion not hit — the conditions are
+  distinguishable.
+- Cost of governance at this scale: +21% tokens, +37% tool calls, ≈+16%
+  wall, against a monotone consistency decay in the baseline.
